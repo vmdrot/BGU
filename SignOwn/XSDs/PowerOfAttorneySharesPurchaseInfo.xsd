@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PowerOfAttorneySharesPurchaseInfo" nillable="true" type="PowerOfAttorneySharesPurchaseInfo" />
+  <xs:complexType name="PowerOfAttorneySharesPurchaseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AttorneyIssuer" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VotesPct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PoAValidFrom" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PoAValidThru" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

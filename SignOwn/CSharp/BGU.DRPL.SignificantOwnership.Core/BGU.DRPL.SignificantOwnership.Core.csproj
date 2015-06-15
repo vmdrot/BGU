@@ -94,6 +94,9 @@
     <Compile Include="Spares\Data\BankruptcyInvestigationInfo.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableRecord.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableTotalsRecord.cs" />
+    <Compile Include="Spares\Data\SignificantOrDecisiveInfulenceInfo.cs" />
+    <Compile Include="Spares\Data\LegalTransactionInfo.cs" />
+    <Compile Include="Spares\Data\PowerOfAttorneySharesPurchaseInfo.cs" />
     <Compile Include="Spares\Data\SecondaryMarketSharesPurchaseInfo.cs" />
     <Compile Include="Spares\Data\CourtDecisionInfo.cs" />
     <Compile Include="Spares\Data\EmailInfo.cs" />

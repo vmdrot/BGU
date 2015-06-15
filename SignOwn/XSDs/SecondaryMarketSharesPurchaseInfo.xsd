@@ -6,7 +6,10 @@
       <xs:extension base="IPOSharesPurchaseInfo">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -55,4 +58,28 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
+  <xs:complexType name="LegalTransactionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Parties" type="ArrayOfGenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TransactionText" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="LegalTransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BuySellAgreement" />
+      <xs:enumeration value="GrantAgreement" />
+      <xs:enumeration value="Inheritance" />
+      <xs:enumeration value="SwapAgreement" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfGenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GenericPersonID" nillable="true" type="GenericPersonID" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

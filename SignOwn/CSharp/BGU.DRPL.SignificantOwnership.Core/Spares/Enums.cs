@@ -714,6 +714,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
 
     public enum BankAssociatedPeronsCode315p
     { 
+        [Description("Не вказано")]
         None = 0,
         [Description("Контролери банку")]
         BankControllers = 521,
@@ -733,6 +734,33 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Art52MgrsSignOwnersLPs = 528,
         [Description("Будь-яка особа, через яку проводиться операція в інтересах осіб, зазначених у частині першій статті 52 Закону, та на яку здійснюють вплив під час проведення такої операції особи, зазначені в цій частині, через трудові, цивільні та інші відносини")]
         AnyPersonInfluencingArt52 = 529,
+    }
+
+    public enum LegalTransactionType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Договір купівлі-продажу")]
+        BuySellAgreement,
+        [Description("Договір дарування")]
+        GrantAgreement,
+        [Description("Спадщина")]
+        Inheritance,
+        [Description("Договір обміну")]
+        SwapAgreement,
+        [Description("Інше")]
+        Other
+    }
+
+    [Description("Тип впливу")]
+    public enum InfluenceType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Значний")]
+        Significant,
+        [Description("Вирішальний")]
+        Decisive
     }
 }
 

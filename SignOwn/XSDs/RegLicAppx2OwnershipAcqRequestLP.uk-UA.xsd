@@ -25,11 +25,11 @@
             (повне офіційне найменування банку)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Юр.особа-заявник" description="1. Інформація про юридичну особу">
+      <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Юр.особа-заявник" description="1. Інформація про юридичну особу" category="І. Інформація про юридичну особу">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
-            1. Інформація про юридичну особу
+            І. Інформація про юридичну особу
             
             1.1. ____________________________________________________________________________.
                                                                                                                      (найменування юридичної особи)
@@ -44,22 +44,14 @@
             Самі реквізити мають потрапити до MentionedIdentities</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" displayName="1.5. Рейтингова оцінка" description="(за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,Standart &amp; Poor's, Moody's)">
+      <xs:element minOccurs="1" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" displayName="2. Ідентифікаційні дані::Рейтингова оцінка" description="(за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,Standart &amp; Poor's, Moody's)" category="І. Інформація про юридичну особу">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" displayName="1.7. Повні  офіційні  найменування банків,  у яких юридична особа має рахунки" description="(не заповнюється банками)">
+      <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthority" type="FinancialOversightAuthorityInfo" displayName="1.11. Державний наглядовий орган" description="1.11. Державний орган, що здійснює контроль (нагляд) за діяльністю юридичної особи">
         <xs:annotation>
-          <xs:documentation>1.7. Повні  офіційні  найменування банків,  у яких юридична особа має рахунки (не заповнюється банками), 
-            __________________________________________________________.
-            ------
-            Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthority" type="FinancialOversightAuthorityInfo" displayName="1.11. Державний наглядовий орган" description="1.11. Державний орган, що здійснює контроль (нагляд) за діяльністю юридичної особи ???!">
-        <xs:annotation>
-          <xs:documentation>1.11. Державний орган, що здійснює контроль (нагляд) за діяльністю юридичної особи,
+          <xs:documentation>3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
             _______________________________________________________________________________.
                        (найменування органу)</xs:documentation>
         </xs:annotation>
@@ -74,6 +66,14 @@
              (найменування органу, країна місцезнаходження)</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" displayName="4. Банківські рахунки юридичної особи" description="(не заповнюється банками)" category="І. Інформація про юридичну особу">
+        <xs:annotation>
+          <xs:documentation>1.7. Повні  офіційні  найменування банків,  у яких юридична особа має рахунки (не заповнюється банками), 
+            __________________________________________________________.
+            ------
+            Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IsIPO" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="2.2. Це первинне розміщення?" description="2.2. Подається заявка на придбання частки істотної участі в рамках первинного розміщення акцій банку?">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
@@ -86,9 +86,20 @@
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SecondaryMarketPurchase" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="2.3. Придбання на вторинному ринку" description="2.3. Інформація стосовно наміру придбання акцій (паїв) банку на вторинному ринку">
+      <xs:element minOccurs="1" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="2.3. Придбання на вторинному ринку" description="2.3. Інформація стосовно наміру придбання акцій (паїв) банку на вторинному ринку">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorneyPurchases" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OwnershipByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="3.2. Джерела  походження коштів юридичної особи" description="3.2. Джерела  походження коштів юридичної особи,  за рахунок яких  здійснюється сплата за акції (паї), ______.(прибуток, резервний капітал тощо)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            3.2. Джерела  походження коштів юридичної особи,  за рахунок 
+            яких  здійснюється сплата за акції (паї), ____________________________.
+                                                (прибуток, резервний капітал тощо)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ExistingDirectOwnershipWithBankSummary" type="SharesAcquisitionInfo" displayName="2.3. а) Наявна участь у банку - пряме володіння" description="а) пряме володіння - _______ відсотків статутного капіталу банку  в розмірі _______ гривень, що становить __________ акцій (паїв), загальною номінальною вартістю _________ гривень">
@@ -192,15 +203,6 @@
             3.1. Кількість  акцій,  які  юридична  особа  має намір придбати,  ___ одиниць, номінальна вартість однієї акції (паю) ____ гривень,  загальна сума ________ гривень, фактична вартість придбаних акцій  (паїв) ___________ гривень, у тому числі кількість акцій з правом  голосу _______________________________________________________________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="3.2. Джерела  походження коштів юридичної особи" description="3.2. Джерела  походження коштів юридичної особи,  за рахунок яких  здійснюється сплата за акції (паї), ______.(прибуток, резервний капітал тощо)">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.2. Джерела  походження коштів юридичної особи,  за рахунок 
-            яких  здійснюється сплата за акції (паї), ____________________________.
-                                                (прибуток, резервний капітал тощо)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PaymentDeadLines" type="ArrayOfPaymentDeadlineInfo" displayName="3.3. Терміни сплати" description="(одноразово, частинами, із зазначенням терміну, протягом якого здійснюватиметься сплата)">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
@@ -262,68 +264,26 @@
             здійснення інвестиції)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AcquireeOwnershipOtherThanBankRef" type="ArrayOfOwnershipStructure" displayName="4. Відносини власності заявника з іншими суб'єктами господарювання" description="4. Відносини власності юридичної особи із суб'єктами господарювання, у тому числі іншими банками (крім банку, у який планується здійснення інвестиції)">
+      <xs:element minOccurs="0" maxOccurs="1" name="AcquireeOwnershipOtherThanBankRef" type="ArrayOfOwnershipStructure" displayName="ІІІ. Відносини юридичної особи з іншими особами" description="13. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником: &#xA;14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи:&#xA;15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи:">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasAcquireeOwnershipOtherThanBankRef == true
 
-            4. Відносини власності юридичної особи із суб'єктами господарювання, 
-            у тому числі іншими банками (крім банку, у який планується
-            здійснення інвестиції)
-            4.1. Найменування юридичної особи, код за ЄДРПОУ _________________________________
-            _______________________________________________________________________________.
-            4.2. Місцезнаходження ___________________________________________________________.
-            4.3. Основний вид діяльності юридичної особи _______________________________________.
-            4.4. Відсоток власності в юридичній особі ___________________________________________.</xs:documentation>
+            ІІІ. Відносини юридичної особи з іншими особами
+            13. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником:
+            14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи:
+            15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи:</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsAssociatedOrOwnerWithBanks" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="4.7. Власник істотної  участі або афілійована особа у банках?" description="Чи існують банки,  у яких юридична особа є власником істотної  участі або афілійованою особою?">
+      <xs:element minOccurs="1" maxOccurs="1" name="HadBankruptcyInvestigation" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.1. Чи порушувалася справа про банкрутство юридичної особи?" description="6.1. Чи порушувалася справа про банкрутство юридичної особи?" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
-            4.7. Перелік  банків,  у яких юридична особа є власником істотної  участі або 
-            афілійованою особою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AssociatedOrOwnerWithBanks" type="ArrayOfBankInfo" displayName="4.7. Перелік  банків істотної участі або афілійованих" description="Перелік  банків,  у яких юридична особа є власником істотної  участі або афілійованою особою">
-        <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
-   IsAssociatedOrOwnerWithBanks == true</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AcquireeOwners" type="ArrayOfOwnershipStructure" displayName="5.1. Власники істотної участі в юридичній особі" description="Ланцюжок власників істотної участі в юридичній особі">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            5. Загальна інформація
-            
-            5.1. Власники істотної участі в юридичній особі:
-            юридична особа _________________________________________________________________
-                             (найменування, код за ЄДРПОУ,
-            _______________________________________________________________________________;
-                             місцезнаходження, відсоток участі)
-            
-            фізична особа ___________________________________________________________________
-                             [прізвище, ім'я, по батькові, паспортні дані,
-            
-            _______________________________________________________________________________.
-             реєстраційний номер облікової картки платника податків або серія та номер паспорта
-             (для фізичних осіб, які через свої релігійні переконання відмовляються  від прийняття реєстраційного
-             номера облікової картки платника  податків та повідомили про це відповідний контролюючий орган 
-             і мають відмітку у паспорті),  відсоток участі]</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HadBankruptcyInvestigation" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.1. Чи порушувалася справа про банкрутство юридичної особи?" description="6.1. Чи порушувалася справа про банкрутство юридичної особи?">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            6. Інші питання
-            (крім банків)
-            
+            IV. Ділова репутація
             6.1. Чи порушувалася справа про банкрутство юридичної особи? _______________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="BankruptcyInvestigations" type="ArrayOfBankruptcyInvestigationInfo" displayName="6.1. Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи">
+      <xs:element minOccurs="0" maxOccurs="1" name="BankruptcyInvestigations" type="ArrayOfBankruptcyInvestigationInfo" displayName="6.1. Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HadBankruptcyInvestigation == true
@@ -331,7 +291,7 @@
             6.1. Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.2. Є невиконані  зобов'язання перед іншими особами?" description="6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.2. Є невиконані  зобов'язання перед іншими особами?" description="6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -339,7 +299,7 @@
             _______________________________________________________________________</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" displayName="6.2. Невиконані  зобов'язання перед іншими особами - розшифровка" description="(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)">
+      <xs:element minOccurs="0" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" displayName="6.2. Невиконані  зобов'язання перед іншими особами - розшифровка" description="(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasMiscNonRepaidDebts == true
@@ -353,14 +313,14 @@
               щодо виконання/невиконання цих зобов'язань)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.3. Були порушення галузевого законодавства?" description="6.3. Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?">
+      <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.3. Були порушення галузевого законодавства?" description="6.3. Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             6.3. Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" displayName="6.3. Порушення галузевого законодавства - деталі" description="(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)">
+      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" displayName="6.3. Порушення галузевого законодавства - деталі" description="(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HadIndustrySpecificBreaches == true
@@ -369,7 +329,7 @@
                   (зазначити, коли вчинено порушення, зміст порушення, накладені санкції)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedSignOwnershipLastYear" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.4. Були власником ліквідованих юросіб протягом останнього року?" description="6.4. Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі (10 і більше відсотків) у цій особі?">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedSignOwnershipLastYear" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.4. Були власником ліквідованих юросіб протягом останнього року?" description="6.4. Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі (10 і більше відсотків) у цій особі?" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -377,7 +337,7 @@
             власником істотної участі (10 і більше відсотків) у цій особі?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedSignOwnershipLastYear" type="ArrayOfLiquidatedEntityOwnershipInfo" displayName="6.4. Ліквідовані протягом останнього року юрособи у власності" description="6.4. Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)">
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedSignOwnershipLastYear" type="ArrayOfLiquidatedEntityOwnershipInfo" displayName="6.4. Ліквідовані протягом останнього року юрособи у власності" description="6.4. Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)" category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasLiquidatedSignOwnershipLastYear == true
@@ -389,7 +349,7 @@
              код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsMoneyLaunderingEtcLawsKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.5. Дотримується законів щодо відмивання грошей та фінансування тероризму...?" description="6.5. Стверджую, що юридична особа належним чином виконує вимоги законодавства України з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, або фінансуванню тероризму та до юридичної особи (або власників істотної участі в юридичній особі) не застосовувалися міжнародні санкції.">
+      <xs:element minOccurs="1" maxOccurs="1" name="IsMoneyLaunderingEtcLawsKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6.5. Дотримується законів щодо відмивання грошей та фінансування тероризму...?" description="6.5. Стверджую, що юридична особа належним чином виконує вимоги законодавства України з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, або фінансуванню тероризму та до юридичної особи (або власників істотної участі в юридичній особі) не застосовувалися міжнародні санкції." category="IV. Ділова репутація">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -401,13 +361,6 @@
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Стверджую, що інформація, надана в анкеті, є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AmObligingToKeepUp2DateWithin10Days" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Зобов'язуюсь повідомляти про зміни?" description="У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            У разі будь-яких змін в інформації, що зазначена в цій анкеті,  зобов'язуюся повідомити про них Національний банк України  протягом 10-ти днів з дня їх виникнення.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету">
@@ -478,22 +431,30 @@
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LongTermCreditRatingType.uk-UA.xsd" />
   <xs:include schemaLocation="ShortTermCreditRatingType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialOversightAuthorityInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfSecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfSignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="InfluenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfIncomeOriginInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IncomeOriginInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
   <xs:include schemaLocation="SharesAcquisitionInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfIncomeOriginInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="IncomeOriginInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfLoanInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LoanInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />

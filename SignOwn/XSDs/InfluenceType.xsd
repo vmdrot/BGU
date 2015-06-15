@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InfluenceType" type="InfluenceType" />
+  <xs:simpleType name="InfluenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Significant" />
+      <xs:enumeration value="Decisive" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

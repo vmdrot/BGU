@@ -3,7 +3,7 @@
   <xs:element name="BankAssociatedPeronsCode315p" type="BankAssociatedPeronsCode315p" />
   <xs:simpleType name="BankAssociatedPeronsCode315p">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="None" />
+      <xs:enumeration value="None" description="Не вказано" />
       <xs:enumeration value="BankControllers" description="Контролери банку" />
       <xs:enumeration value="SignificantOwners" description="Особи, які мають істотну участь у банку, та особи, через яких ці особи здійснюють опосередковане володіння істотною участю в банку" />
       <xs:enumeration value="BankMgrsEtc" description="Керівники банку, керівник служби внутрішнього аудиту, керівники та члени комітетів банку" />
