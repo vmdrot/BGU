@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GenericPersonID" nillable="true" type="GenericPersonID" />
+  <xs:complexType name="GenericPersonID">
+    <xs:annotation>
+      <xs:documentation>Універсальний ідентифікатор особи (як юр., так і фізичної)
+            (щоб не "таскати", себто, не дублювати, усі реквізити особи там, де потребується просто послатися на ту особу).
+            Використовується (зокрема) для ідентифікації:
+             - об'єкту власності та власника - при розкритті ланцюжка кінцевих власників
+             - членів колегіального керівного органу;
+             - виданої гарантії/поручительства);
+             - тощо.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Код країни резидентності
+            
+
+Див.також: CountryInfo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Тип особи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Код особи;
+            Для юр.особи - TaxCodeOrHandelsRegNr
+            Для фіз.особи:
+            якщо (не пустий TaxOrSocSecID ) - то TaxOrSocSecID 
+            інакше - PassportID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

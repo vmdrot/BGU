@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="WellKnownCreditRatingAgencyType" type="WellKnownCreditRatingAgencyType" />
+  <xs:simpleType name="WellKnownCreditRatingAgencyType">
+    <xs:annotation>
+      <xs:documentation>http://en.wikipedia.org/wiki/Fitch_Ratings#Long-term_credit_ratings
+            http://en.wikipedia.org/wiki/DBRS
+            http://en.wikipedia.org/wiki/Dagong_Global_Credit_Rating
+            
+            
+
+Див.також: http://en.wikipedia.org/wiki/Moody%27s_Investors_Service#Moody.27s_credit_ratings</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Moodys" description="Moody's Investor Service" />
+      <xs:enumeration value="Fitch" description="Fitch Ratings" />
+      <xs:enumeration value="SAndP" description="Не вказано" />
+      <xs:enumeration value="DRBS" description="Standard &amp; Poors" />
+      <xs:enumeration value="Dagong" description="Dagong Credit Rating (та дочірні рейтингові компанії)" />
+      <xs:enumeration value="JCR" description="Japan Credit Rating" />
+      <xs:enumeration value="ACR" description="ARC Ratings, S.A." />
+      <xs:enumeration value="UCRA" description="Українська кредитна рейтингова аґенція" />
+      <xs:enumeration value="Other" description="Інша" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

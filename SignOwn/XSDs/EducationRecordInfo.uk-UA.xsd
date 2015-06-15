@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationRecordInfo" nillable="true" type="EducationRecordInfo" />
+  <xs:complexType name="EducationRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про документ про освіту (вищу, неповну, академічну, тощо)
+            
+
+Див.також: https://osvita.net/ua/checkdoc/</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" displayName="ВНЗ" description="ВНЗ - університет, інститут, коледж, тощо">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата закінчення">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле; достатньо рік, або рік і місяць</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" displayName="Тип диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" displayName="Тип відзнаки">
+        <xs:annotation>
+          <xs:documentation>необов'язкове поле (подавачі самі зацікавлені)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Якщо український диплом - обов'язкове; 
+            іншої країни - на віру</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Якщо український диплом - обов'язкове;
+            
+            
+
+Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo.DegreeSeries</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність/фах">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язково</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Спеціалізація">
+        <xs:annotation>
+          <xs:documentation>Якщо передбачено</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />
+  <xs:include schemaLocation="DegreeHonourType.uk-UA.xsd" />
+</xs:schema>

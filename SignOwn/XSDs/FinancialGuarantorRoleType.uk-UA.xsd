@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FinancialGuarantorRoleType" type="FinancialGuarantorRoleType" />
+  <xs:simpleType name="FinancialGuarantorRoleType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Guarantor" description="Гарантор" />
+          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" />
+          <xs:enumeration value="Attorney" description="Довірена особа" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PhysicalPersonInfo" nillable="true" type="PhysicalPersonInfo" />
+  <xs:complexType name="PhysicalPersonInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про фіз.особу (реквізити)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SurnameUkr" type="xs:string" type_ukr="текст" displayName="Прізвище (укр.)" description="Прізвище, українською">
+        <xs:annotation>
+          <xs:documentation>для нерезидентів</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Ім'я (укр.)" description="Ім'я, українською">
+        <xs:annotation>
+          <xs:documentation>для нерезидентів</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MiddleNameUkr" type="xs:string" type_ukr="текст" displayName="По-батькові/друге ім'я (укр.)" description="По-батькові/друге ім'я, українською">
+        <xs:annotation>
+          <xs:documentation>для нерезидентів</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="FullNameUkr" type="xs:string" type_ukr="текст" displayName="П.І.Б (укр.)" description="П.І.Б., українською">
+        <xs:annotation>
+          <xs:documentation>для нерезидентів</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" type_ukr="текст" displayName="Прізвище" description="Прізвище" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Ім'я" description="Ім'я" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" type_ukr="текст" displayName="По-батькові/друге ім'я" description="По-батькові/друге ім'я" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FullName" type="xs:string" type_ukr="текст" displayName="П.І.Б." description="П.І.Б.">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Вказувати достатньо повного імені; 
+            Якщо є натхнення (або вимагає анкета) - можна й деталізацію по полях
+            Для нерезидентів бажано вимагати як окремих частин імені, 
+            так і повного (повністю) (бо хто його там зна, як до нього звертатися)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" displayName="Стать" description="Стать">
+        <xs:annotation>
+          <xs:documentation>Бажано вимагати; дивитися за контекстом конкретного поля 
+            у конкретній анкеті</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата народження" description="Дата народження">
+        <xs:annotation>
+          <xs:documentation>Як правило, необов'язкове поле
+            Буває, що онука називають як діда, і у ланцюжку володіння фігурують обидва
+            Тоді корисно мати ще й дату народження, щоб відрізняти; 
+            буває, що онук ще неповнолітній та не має паспорта/кода
+            (реальний випадок - банк "Грант", щоправда, там, був код ІПН)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" type_ukr="текст" displayName="Серія № паспорта" description="Серія № паспорта" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта" description="Дата видачі паспорта" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" displayName="Орган, що видав паспорт" description="Орган, що видав паспорт" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TaxOrSocSecID" type="xs:string" type_ukr="текст" displayName="ІПН" description="ІПН/№ картки соціального страхування/тощо, дивлячись, що використовується у країні резидентства" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місце проживання/реєстрації" description="Місце проживання/реєстрації">
+        <xs:annotation>
+          <xs:documentation>Поле необхідне лише якщо вимагається у анкеті</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" displayName="Громадянство" description="Громадянство">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове поле (окрім хіба ContactInfo)
+            За змовчанням (пропонувати) - Україна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

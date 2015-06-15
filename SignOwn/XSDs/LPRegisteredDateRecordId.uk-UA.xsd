@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LPRegisteredDateRecordId" nillable="true" type="LPRegisteredDateRecordId" />
+  <xs:complexType name="LPRegisteredDateRecordId">
+    <xs:annotation>
+      <xs:documentation>Дата та номер запису про проведення державної реєстрації фізичної особи-підприємця</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RegisteredDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата запису" description="Дата запису про проведення державної реєстрації фізичної особи-підприємця">
+        <xs:annotation>
+          <xs:documentation>Дата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="RegistryRecordId" type="xs:string" type_ukr="текст" displayName="Номер запису" description="Номер запису про проведення державної реєстрації фізичної особи-підприємця">
+        <xs:annotation>
+          <xs:documentation>№ запису</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankruptcyInvestigationInfo" nillable="true" type="BankruptcyInvestigationInfo" />
+  <xs:complexType name="BankruptcyInvestigationInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про банкрутство (юр.особи)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CaseFiledDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата порушення справи про банкрутство" description="Дата відкриття справи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentStatus" type="BankruptcyCaseResolutionType" displayName="Статус" description="Поточний статус справи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="InCurrentStatusSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття поточного статусу" description="Перебуває в нинішньому статусі починаючи з...">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   CurrentStatus not in (None, CaseFiled)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CourtDecisions" type="ArrayOfCourtDecisionInfo" displayName="Список судових рішень у справі" description="Перелік судових рішень по справі банкрутства">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
+</xs:schema>

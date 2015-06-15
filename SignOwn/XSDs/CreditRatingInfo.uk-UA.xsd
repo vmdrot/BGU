@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CreditRatingInfo" nillable="true" type="CreditRatingInfo" />
+  <xs:complexType name="CreditRatingInfo">
+    <xs:annotation>
+      <xs:documentation>Кредитний рейтинг емітента
+            Три поля, по суті:
+            1) Аґенція, що роздала рейтинг;
+            2) Довго- та середньотерміновий рейтинг;
+            3) Короткотерміновий рейтинг.
+            Якщо аґенція - добре відома, то достатньо буде обрати зі списків WellKnownAgency, LongMidTermRatingValue і ShortTermRatingValue 
+            інакше, доведеться заповнити поле AgencyOther; якщо у полях значення рейтингу буде обрано "Інше" (Other), то також доведеться ввести значення у відповідному полі *RatingValueOther.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="WellKnownAgency" type="WellKnownCreditRatingAgencyType" displayName="Рейтингова аґенція (добре знана)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AgencyOther" type="RatingAgencyInfo" displayName="Рейтингова аґенція (інша)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі WellKnownAgency обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="LongMidTermRatingValue" type="LongTermCreditRatingType" displayName="Довго- та середньотермінове значення рейтингу(стандартне)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LongMidTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Довго- та середньотермінове значення рейтингу(якщо інше)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі LongMidTermRatingValue обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ShortTermRatingValue" type="ShortTermCreditRatingType" displayName="Короткотермінове значення рейтингу(стандартне)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ShortTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Короткотермінове значення рейтингу(якщо інше)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі ShortTermRatingValue обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="WellKnownCreditRatingAgencyType.uk-UA.xsd" />
+  <xs:include schemaLocation="RatingAgencyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LongTermCreditRatingType.uk-UA.xsd" />
+  <xs:include schemaLocation="ShortTermCreditRatingType.uk-UA.xsd" />
+</xs:schema>

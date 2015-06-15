@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FinancialServicesType" type="FinancialServicesType" />
+  <xs:simpleType name="FinancialServicesType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="PayDocsIssuance" />
+      <xs:enumeration value="Trust" />
+      <xs:enumeration value="CurrencyExchange" />
+      <xs:enumeration value="FinanceAssetsLiabilities" />
+      <xs:enumeration value="FinancialLeasing" />
+      <xs:enumeration value="Lending" />
+      <xs:enumeration value="Guarantees" />
+      <xs:enumeration value="FundsTransfer" />
+      <xs:enumeration value="InsuranceAndPensionSavings" />
+      <xs:enumeration value="StockExchangeActivities" />
+      <xs:enumeration value="Factoring" />
+      <xs:enumeration value="FinAssetsAdministeringGroupsPurchase" />
+      <xs:enumeration value="ConstructionAssetsManagement" />
+      <xs:enumeration value="MortgageSecuritiesMngtIssue" />
+      <xs:enumeration value="OtherFinBankServices" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

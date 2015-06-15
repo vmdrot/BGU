@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PurchasedVoteInfo" nillable="true" type="PurchasedVoteInfo" />
+  <xs:complexType name="PurchasedVoteInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про частку/голоси в управління юр.особою (ут.ч. банку), що 
+            подавач хоче набути/придбати</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Transferror" type="GenericPersonID" displayName="Передавач власності" description="Особа, що передає/передає право голосу/частку власності">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Від кого передаються голоси;
+            Реквізити - у MentionedEntities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PurchaseVotes" type="OwnershipVotesInfo" displayName="Набувані голоси/частка" description="Голоси/частка у власності, що купується/отримується">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="VotesTransferPath" type="xs:string" type_ukr="текст" displayName="Шлях передачі/купівлі голосів/власності" description="Шлях передачі/купівлі голосів/власності">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            напр. "довіреність ... від ..., угода про купівлю/продаж ...", тощо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+</xs:schema>

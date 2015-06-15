@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SentenceType" type="SentenceType" />
+  <xs:simpleType name="SentenceType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Jailed" />
+          <xs:enumeration value="RemedialWorks" />
+          <xs:enumeration value="Fined" />
+          <xs:enumeration value="Dismissed" />
+          <xs:enumeration value="LicenseRevoked" />
+          <xs:enumeration value="LicenseSuspended" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

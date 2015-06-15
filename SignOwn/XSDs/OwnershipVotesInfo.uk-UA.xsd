@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OwnershipVotesInfo" nillable="true" type="OwnershipVotesInfo" />
+  <xs:complexType name="OwnershipVotesInfo">
+    <xs:annotation>
+      <xs:documentation>Спрощений варіант інформації про часту власності (де не вимагається сума в абс. виразі)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів" description="Кількість голосів">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ManagementPosition" type="ManagementPosition" />
+  <xs:simpleType name="ManagementPosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="CEO" />
+      <xs:enumeration value="VCEO" />
+      <xs:enumeration value="ManagingBoardMember" />
+      <xs:enumeration value="ChiefBookkeeper" />
+      <xs:enumeration value="DeputyChiefBookkeeper" />
+      <xs:enumeration value="SupervisoryBoardHead" />
+      <xs:enumeration value="DeputySupervisoryBoardHead" />
+      <xs:enumeration value="SupervisoryBoardMember" />
+      <xs:enumeration value="SupervisoryBoardMemberLPRep" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

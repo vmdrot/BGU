@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EmploymentTerminationType" type="EmploymentTerminationType" />
+  <xs:simpleType name="EmploymentTerminationType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" />
+          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." />
+          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" />
+          <xs:enumeration value="Retired" description="Вихід на пенсію" />
+          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" />
+          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" />
+          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" />
+          <xs:enumeration value="OtherLeaveType" description="Інше" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

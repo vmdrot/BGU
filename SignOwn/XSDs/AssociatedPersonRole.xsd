@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AssociatedPersonRole" type="AssociatedPersonRole" />
+  <xs:simpleType name="AssociatedPersonRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Husband" />
+      <xs:enumeration value="Wife" />
+      <xs:enumeration value="Son" />
+      <xs:enumeration value="Daughter" />
+      <xs:enumeration value="Father" />
+      <xs:enumeration value="Mother" />
+      <xs:enumeration value="Patron" />
+      <xs:enumeration value="Brother" />
+      <xs:enumeration value="Sister" />
+      <xs:enumeration value="FatherInLaw" />
+      <xs:enumeration value="MotherInLaw" />
+      <xs:enumeration value="SonInLaw" />
+      <xs:enumeration value="DaughterInLaw" />
+      <xs:enumeration value="BrotherInLaw" />
+      <xs:enumeration value="SisterInLaw" />
+      <xs:enumeration value="Cousin" />
+      <xs:enumeration value="GrandFather" />
+      <xs:enumeration value="GrandMother" />
+      <xs:enumeration value="GrandSon" />
+      <xs:enumeration value="GrandDaughter" />
+      <xs:enumeration value="NephewNiece" />
+      <xs:enumeration value="AuncleAunt" />
+      <xs:enumeration value="OtherRelative" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PaymentType" type="PaymentType" />
+  <xs:simpleType name="PaymentType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Cash" description="Готівка" />
+          <xs:enumeration value="WireTransfer" description="Безготівка" />
+          <xs:enumeration value="Other" description="Інше" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CouncilBodyInfo" nillable="true" type="CouncilBodyInfo" />
+  <xs:complexType name="CouncilBodyInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про колегіальний орган управління (наглядова рада, виконавчий комітет, рада директорів, тощо)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GovernedEntityID" type="GenericPersonID" displayName="Керована організація">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Повні реквізити самої організації "житимуть", як правило, у MentionedEntities (або його еквіваленті)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Members" type="ArrayOfCouncilMemberInfo" displayName="Члени" description="Члени органу управління">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Перелік членів органу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HeadMember" type="GenericPersonID" displayName="Очільник/голова органу">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор особи-голови</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CouncilBodyName" type="xs:string" type_ukr="текст" displayName="Назва органу" description="Назва органу (мовою оригіналу)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Назва органу (мовою оригіналу)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CouncilBodyNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу (укр.)" description="Назва органу (українською, для організацій-нерезидентів)">
+        <xs:annotation>
+          <xs:documentation>Назва органу (українською, для організацій-нерезидентів)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCouncilMemberInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CouncilMemberInfo.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LiquidatedEntityOwnershipInfo" nillable="true" type="LiquidatedEntityOwnershipInfo" />
+  <xs:complexType name="LiquidatedEntityOwnershipInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LiquidatedOrInsolventEntityInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Stake" type="TotalOwnershipDetailsInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LiquidatedOrInsolventEntityInfoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asset" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationReason" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationPretext" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="InsolvencyStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Insolvent" />
+      <xs:enumeration value="Liquidated" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TotalOwnershipDetailsInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnership" type="OwnershipSummaryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImplicitOwnership" type="OwnershipSummaryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AcquiredVotes" type="OwnershipVotesInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCapitalSharePct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalVotes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipSummaryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipVotesInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

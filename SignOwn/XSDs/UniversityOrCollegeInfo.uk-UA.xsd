@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="UniversityOrCollegeInfo" nillable="true" type="UniversityOrCollegeInfo" />
+  <xs:complexType name="UniversityOrCollegeInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про навчальний заклад (університет, коледж, тощо) професійної, вищої чи неповної вищої освіти</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="UniversityName" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ" description="Назва вищого навчального закладу оригінальною мовою">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ (українською)" description="Назва вищого навчального закладу оригінальною мовою українською (якщо оригінальна мова інша">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове, якщо ВНЗ - не український, відповідно, 
+            назва оригінальна потребує перекладу/транслітерації українською.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса ВНЗ">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Хоча б місто й країна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор ВНЗ" description="Ідентифікатор ВНЗ - якщо є/передбачений">
+        <xs:annotation>
+          <xs:documentation>Не певен, чи десь існують ці ідентифікатори - 
+            у нас їх немає, але можуть запровадити.
+            Необов'зкове поле; заповнювати, якщо ідентифікатор існує.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+</xs:schema>

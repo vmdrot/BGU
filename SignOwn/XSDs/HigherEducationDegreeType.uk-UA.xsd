@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="HigherEducationDegreeType" type="HigherEducationDegreeType" />
+  <xs:simpleType name="HigherEducationDegreeType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" />
+          <xs:enumeration value="Master" description="Магістр" />
+          <xs:enumeration value="MBA" description="MBA" />
+          <xs:enumeration value="CandidateDoctor" description="Кандидат наук" />
+          <xs:enumeration value="PhD" description="PhD" />
+          <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" />
+          <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" />
+          <xs:enumeration value="Professor" description="Професор" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

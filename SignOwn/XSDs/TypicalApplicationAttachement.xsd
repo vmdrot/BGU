@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TypicalApplicationAttachement" type="TypicalApplicationAttachement" />
+  <xs:simpleType name="TypicalApplicationAttachement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="InternalReglementCopiesScans" />
+      <xs:enumeration value="WorkbookCopyScan" />
+      <xs:enumeration value="PassportCopyScan" />
+      <xs:enumeration value="CharterCopyScan" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankAssociatedPeronsCode315p" type="BankAssociatedPeronsCode315p" />
+  <xs:simpleType name="BankAssociatedPeronsCode315p">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BankControllers" />
+      <xs:enumeration value="SignificantOwners" />
+      <xs:enumeration value="BankMgrsEtc" />
+      <xs:enumeration value="Affiliated" />
+      <xs:enumeration value="AffiliatedSignOwners" />
+      <xs:enumeration value="AffiliatedMgrsEtc" />
+      <xs:enumeration value="AssocPersonsArt52pp16" />
+      <xs:enumeration value="Art52MgrsSignOwnersLPs" />
+      <xs:enumeration value="AnyPersonInfluencingArt52" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

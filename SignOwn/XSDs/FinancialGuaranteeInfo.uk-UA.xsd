@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FinancialGuaranteeInfo" nillable="true" type="FinancialGuaranteeInfo" />
+  <xs:complexType name="FinancialGuaranteeInfo">
+    <xs:annotation>
+      <xs:documentation>Структура для зберігання відомостей про надану гарантію, поручительство, тощо</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор особи;
+            обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="з яких питань">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове (але вільного формату)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="FinancialGuarantorRoleType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+</xs:schema>

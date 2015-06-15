@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BreachOfLawRecordInfo" nillable="true" type="BreachOfLawRecordInfo" />
+  <xs:complexType name="BreachOfLawRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про правопорушення/судимість (зокрема, у анкеті на кандидатів у керівники/члени наглядової ради)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" displayName="Тип правопорушення">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обрати з переліку, обов'язкове, хоча б Інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CourtName" type="xs:string" type_ukr="текст" displayName="Суд">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Суд, що виніс рішення, обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CourtNameUkr" type="xs:string" type_ukr="текст" displayName="Суд (укр.)">
+        <xs:annotation>
+          <xs:documentation>Суд, що виніс рішення - укр. (якщо іноземна юрисдикція)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна підсудності">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Юрисдикція, за змовчанням - Україна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SentenceDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата вироку">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CodeOrLaw" type="xs:string" type_ukr="текст" displayName="Закон/кодекс">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Articles" type="xs:string" type_ukr="текст" displayName="Стаття(-і)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" displayName="Тип вироку">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" type_ukr="текст" displayName="Інші санкції">
+        <xs:annotation>
+          <xs:documentation>якщо були (інші санкції)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Судимість погашена?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення судимості">
+        <xs:annotation>
+          <xs:documentation>якщо IsConvictionSettled == true, то обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankAccountInfo" nillable="true" type="BankAccountInfo" />
+  <xs:complexType name="BankAccountInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountOwner" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Bank" type="BankInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountCCY" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountDescription" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="BankInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

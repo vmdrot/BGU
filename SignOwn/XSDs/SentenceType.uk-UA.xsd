@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SentenceType" type="SentenceType" />
+  <xs:simpleType name="SentenceType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Jailed" description="Ув'язнення" />
+          <xs:enumeration value="RemedialWorks" description="Виправні роботи" />
+          <xs:enumeration value="Fined" description="Штраф" />
+          <xs:enumeration value="Dismissed" description="Звільнення" />
+          <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" />
+          <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

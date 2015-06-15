@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CharterCapitalTableRecord" nillable="true" type="CharterCapitalTableRecord" />
+  <xs:complexType name="CharterCapitalTableRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Shareholder" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPlaced" type="xs:int" type_ukr="ціле число" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CharterCapitalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PaidDocNr" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PaidDate" type="xs:dateTime" type_ukr="дата і час" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

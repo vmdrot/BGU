@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankingActivityType" type="BankingActivityType" />
+  <xs:simpleType name="BankingActivityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="DepositsTaking" />
+      <xs:enumeration value="AccountsMgmt" />
+      <xs:enumeration value="DepositedFundsPlacement" />
+      <xs:enumeration value="Investments" />
+      <xs:enumeration value="ProprietarySecuritiesIssue" />
+      <xs:enumeration value="Lotteries" />
+      <xs:enumeration value="SafeCustody" />
+      <xs:enumeration value="CashCollectionTransportation" />
+      <xs:enumeration value="SecuritiesCustody" />
+      <xs:enumeration value="ConsultancyOnBankFinServices" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

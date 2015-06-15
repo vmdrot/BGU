@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CommonOwnershipInfo" nillable="true" type="CommonOwnershipInfo" />
+  <xs:complexType name="CommonOwnershipInfo">
+    <xs:annotation>
+      <xs:documentation>Увага! Цей тип було помічено як такий, що не використовується/застарів (Obsolete)!</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Property" type="GenericPersonID" displayName="Об'єкт власності" description="Юр.особа, чия власність розкривається" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Partners" type="ArrayOfGenericPersonID" displayName="Співвласники" description="Перелік співвласників" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OwnershipType" type="OwnershipType" displayName="Тип спільної власності" description="Тип спільної власності (згідно періку)" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OwnershipTestimony" type="xs:string" type_ukr="текст" displayName="Підстава володіння" description="На підставі (якщо релевантно), напр. довіреності, тощо" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OwnershipPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка власності, %" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+</xs:schema>

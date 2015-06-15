@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RegLicAppx6EquityFormationTable" nillable="true" type="RegLicAppx6EquityFormationTable" />
+  <xs:complexType name="RegLicAppx6EquityFormationTable">
+    <xs:annotation>
+      <xs:documentation>ТАБЛИЦЯ формування статутного капіталу
+            Додаток 6 до Положення про порядок реєстрації та ліцензування банків, відкриття відокремлених підрозділів
+            file                                  : f364524n1228.doc
+            Рівень складності                     : 2
+            (оціночний, шкала від 1 до 10)
+            Пріоритетність                        : Hi  (Легенда: Hi - Висока, Lo - Низька, Mid - Середня, Hold - Поки що притримати)
+            Подавач анкети                        : BK (Легенда: LP - юр.особа, PP - фіз.особа, BK - банк)
+            Чи заповнюватиметься он-лайн          : Під питанням
+            Первинну розробку структури завершено : Ні
+            Структуру фіналізовано                : Ні
+            (=остаточно узгоджено 
+            з бізнес-користувачами)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AsOfDate" type="xs:dateTime" type_ukr="дата і час" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CharterCapital" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShareholderStakes" type="ArrayOfCharterCapitalTableRecord" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalPersonsSubtotals" type="CharterCapitalTableTotalsRecord" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysPersonsSubtotals" type="CharterCapitalTableTotalsRecord" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Totals" type="CharterCapitalTableTotalsRecord" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CEOSignature" type="SignatoryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChiefBookkeeperSignature" type="SignatoryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCharterCapitalTableRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="CharterCapitalTableRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="CharterCapitalTableTotalsRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+</xs:schema>
