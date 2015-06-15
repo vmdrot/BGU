@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="BGU.Web20.MiscItemsSite.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<link rel="stylesheet" href="/Bootstrap/css/normalize.css">
+		<link rel="stylesheet" href="/Bootstrap/css/stylesheet.css">
+        <link rel="stylesheet" href="/Bootstrap/css/selectize.default.css">
+        <link href="/Bootstrap/css/bootstrap-jsfiddle-panel.css" rel="stylesheet">
+
+    <%--<link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />--%>
+    <link rel="Stylesheet" href="~/App_Themes/Default/Default.css" />
+    <link href="/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%--<link href="/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />--%>
+		<%--<script language="javascript" type="text/javascript" src="/js/jquery.js"></script>--%>    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/Bootstrap/js/bootstrap.js"></script>
+<script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
+
+
+		<script language="javascript" type="text/javascript" src="/js/selectize-standalone/selectize.js"></script>
+		<script language="javascript" type="text/javascript" src="/js/index.js"></script>
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <title><asp:ContentPlaceHolder ID="cpht1" runat="server"></asp:ContentPlaceHolder></title>
+    <asp:ContentPlaceHolder ID="cphh" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="title">
+            <asp:ContentPlaceHolder ID="cpht2" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div class="clear hideSkiplink">
+            <asp:ContentPlaceHolder ID="cphmnu"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="cphm" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        <asp:ContentPlaceHolder ID="cphf" runat="server"/>
+    </div>
+</body>
+</html>

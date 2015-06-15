@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13FC3BB3-E57B-4796-A3A0-2038B681B8CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BGU.DRPL.SignificantOwnership.Core</RootNamespace>
+    <AssemblyName>BGU.DRPL.SignificantOwnership.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BGU.DRPL.SignificantOwnership.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\BGU.DRPL.SignificantOwnership.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />
+    <Compile Include="Checks\IQuestionnaireChecker.cs" />
+    <Compile Include="Checks\QuestionnaireCheckUtils.cs" />
+    <Compile Include="FXLicensing\Messages\IndividualFXLicenseAnnulMsgAppx9.cs" />
+    <Compile Include="FXLicensing\Messages\IndividualFXLicenseAppx3.cs" />
+    <Compile Include="FXLicensing\Messages\IndividualFXLicenseChangesAppx4.cs" />
+    <Compile Include="FXLicensing\Questionnares\ForeignAccountOpenMsgAppx1.cs" />
+    <Compile Include="FXLicensing\Questionnares\FXFundsMovesRptAppx10.cs" />
+    <Compile Include="FXLicensing\Questionnares\IndividualFXLicenseApplAppx5.cs" />
+    <Compile Include="FXLicensing\Questionnares\IndividualFXLicenseCancelApplAppx7.cs" />
+    <Compile Include="FXLicensing\Questionnares\IndividualFXLisenceChangesApplAppx6.cs" />
+    <Compile Include="Interfaces\IModule.cs" />
+    <Compile Include="Messages\DossierMessageBase.cs" />
+    <Compile Include="Messages\IDossierMessageBody.cs" />
+    <Compile Include="Messages\Post315AppxBankAssocPersons.cs" />
+    <Compile Include="Spares2\DossierMsgs\NbuCommonMgsTrail.cs" />
+    <Compile Include="Spares2\DossierMsgs\NbuCommonMsgHead.cs" />
+    <Compile Include="Spares2\Post315AppxBankAssocPerson.cs" />
+    <Compile Include="Messages\RegLicAppx2OwnershipAcqRequestLP_MoneyOriginsLtr.cs" />
+    <Compile Include="Misc\Utils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropertyNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Questionnaires\Appx3OwnershipStructPP.cs" />
+    <Compile Include="Questionnaires\QuestionnaireBase.cs" />
+    <Compile Include="Spares2\BankingLicenseInfo.cs" />
+    <Compile Include="Spares2\Enums2.cs" />
+    <Compile Include="Spares2\FinancialInstitutionRating.cs" />
+    <Compile Include="Spares2\GeneralForexLicenseInfo.cs" />
+    <Compile Include="Spares2\GenericFinancialInstitutionInfo.cs" />
+    <Compile Include="Spares2\NonBankFinInstitutionInfo.cs" />
+    <Compile Include="Spares2\NonBankingFinInstLicenseInfo.cs" />
+    <Compile Include="Spares\Data\BankruptcyInvestigationInfo.cs" />
+    <Compile Include="Spares\Data\CharterCapitalTableRecord.cs" />
+    <Compile Include="Spares\Data\CharterCapitalTableTotalsRecord.cs" />
+    <Compile Include="Spares\Data\SecondaryMarketSharesPurchaseInfo.cs" />
+    <Compile Include="Spares\Data\CourtDecisionInfo.cs" />
+    <Compile Include="Spares\Data\EmailInfo.cs" />
+    <Compile Include="Spares\Data\IPOSharesPurchaseInfo.cs" />
+    <Compile Include="Spares\Data\LicenseQualificationInfo.cs" />
+    <Compile Include="Spares\Data\LiquidatedEntityOwnershipInfo.cs" />
+    <Compile Include="Spares\Data\BreachOfLawRecordInfo.cs" />
+    <Compile Include="Spares\Data\EducationRecordInfo.cs" />
+    <Compile Include="Questionnaires\RegLicAppx12HeadCandidateAppl.cs" />
+    <Compile Include="Questionnaires\RegLicAppx14NewSvc.cs" />
+    <Compile Include="Questionnaires\Appx2OwnershipStructLP.cs" />
+    <Compile Include="Questionnaires\RegLicAppx17EquityChangeTable.cs" />
+    <Compile Include="Questionnaires\RegLicAppx3MemberCandidateAppl.cs" />
+    <Compile Include="Questionnaires\RegLicAppx4OwnershipAcqRequestPP.cs" />
+    <Compile Include="Questionnaires\RegLicAppx2OwnershipAcqRequestLP.cs" />
+    <Compile Include="Questionnaires\RegLicAppx6EquityFormationTable.cs" />
+    <Compile Include="Questionnaires\RegLicAppx7ShareAcqIntent.cs" />
+    <Compile Include="Questionnaires\IQuestionnaire.cs" />
+    <Compile Include="Questionnaires\RegLicAppx9BankingLicenseAppl.cs" />
+    <Compile Include="Spares\Data\AttachmentInfo.cs" />
+    <Compile Include="Spares\Data\BankingLicensedActivityInfo.cs" />
+    <Compile Include="Spares\Data\BankingLicenseInfo.cs" />
+    <Compile Include="Spares\Data\CommonOwnershipInfo.cs" />
+    <Compile Include="Spares\Data\ContactInfo.cs" />
+    <Compile Include="Spares\Data\CouncilMemberInfo.cs" />
+    <Compile Include="Spares\Data\CurrencyAmount.cs" />
+    <Compile Include="Spares\Data\FinancialGuaranteeInfo.cs" />
+    <Compile Include="Spares\Data\IncomeOriginInfo.cs" />
+    <Compile Include="Spares\Data\GenericPersonID.cs" />
+    <Compile Include="Spares\Data\GenericPersonIDShare.cs" />
+    <Compile Include="Spares\Data\GenericPersonInfo.cs" />
+    <Compile Include="Spares\Data\EmploymentRecordInfo.cs" />
+    <Compile Include="Spares\Data\IndebtnessInfo.cs" />
+    <Compile Include="Spares\Data\IndebtnessInfoBase.cs" />
+    <Compile Include="Spares\Data\LegalPersonShareInfo.cs" />
+    <Compile Include="Spares\Data\LiquidatedOrInsolventEntityInfoBase.cs" />
+    <Compile Include="Spares\Data\LiquidatedOrInsolventEntityMgmtRecordInfo.cs" />
+    <Compile Include="Spares\Data\LoanInfo.cs" />
+    <Compile Include="Spares\Data\LPRegisteredDateRecordId.cs" />
+    <Compile Include="Spares\Data\OwnershipStructure.cs" />
+    <Compile Include="Spares\Data\PaymentDeadlineInfo.cs" />
+    <Compile Include="Spares\Data\PaymentModeInfo.cs" />
+    <Compile Include="Spares\Data\PersonsAssociation.cs" />
+    <Compile Include="Spares\Data\PhoneInfo.cs" />
+    <Compile Include="Spares\Data\ProfessionLicenseInfo.cs" />
+    <Compile Include="Spares\Data\PurchasedVoteInfo.cs" />
+    <Compile Include="Spares\Data\OwnershipSummaryInfo.cs" />
+    <Compile Include="Spares\Data\OwnershipVotesInfo.cs" />
+    <Compile Include="Spares\Data\CouncilBodyInfo.cs" />
+    <Compile Include="Spares\Data\PhysicalPersonShareInfo.cs" />
+    <Compile Include="Spares\Data\SharesAcquisitionInfo.cs" />
+    <Compile Include="Spares\Data\SignatoryInfo.cs" />
+    <Compile Include="Spares\Data\TotalOwnershipDetailsInfoEx.cs" />
+    <Compile Include="Spares\Dict\BankAccountInfo.cs" />
+    <Compile Include="Spares\Dict\BankInfo.cs" />
+    <Compile Include="Spares\Dict\CountryInfo.cs" />
+    <Compile Include="Spares\Dict\CourtInfo.cs" />
+    <Compile Include="Spares\Dict\CreditRatingInfo.cs" />
+    <Compile Include="Spares\Dict\EconomicActivityType.cs" />
+    <Compile Include="Spares\Dict\FinancialOversightAuthorityInfo.cs" />
+    <Compile Include="Spares\Dict\LegalPersonInfo.cs" />
+    <Compile Include="Spares\Dict\ProfessionLicensingBodyInfo.cs" />
+    <Compile Include="Spares\Dict\PublicationInfo.cs" />
+    <Compile Include="Spares\Dict\PublishingHouseInfo.cs" />
+    <Compile Include="Spares\Dict\RatingAgencyInfo.cs" />
+    <Compile Include="Spares\Dict\RegistrarAuthority.cs" />
+    <Compile Include="Spares\Dict\LocationInfo.cs" />
+    <Compile Include="Spares\Dict\PhysicalPersonInfo.cs" />
+    <Compile Include="Spares\Data\TotalOwnershipDetailsInfo.cs" />
+    <Compile Include="Spares\Dict\UniversityOrCollegeInfo.cs" />
+    <Compile Include="Spares\Enums.cs" />
+    <Compile Include="Spares\EnumsLister.cs" />
+    <Compile Include="TypeEditors\BooleanEditor.cs" />
+    <Compile Include="TypeEditors\CountryInfoLookupEditor2.cs" />
+    <Compile Include="TypeEditors\CountryInfoLookupEditor.cs" />
+    <Compile Include="TypeEditors\EnumLookupEditor.cs" />
+    <Compile Include="TypeEditors\GenericPersonInfoEditor.cs" />
+    <Compile Include="TypeEditors\GenericPersonLookupEditor.cs" />
+    <Compile Include="TypeEditors\GenericTypeEditor.cs" />
+    <Compile Include="TypeEditors\IDataSourcedForm.cs" />
+    <Compile Include="TypeEditors\ITypeEditorForm.cs" />
+    <Compile Include="TypeEditors\TypeEditors.cs" />
+    <Compile Include="TypeEditors\TypeEditorsDispatcher.cs" />
+    <Compile Include="TypeEditors\TypeEditorsInterfaces.cs" />
+    <Compile Include="TypeEditors\TypeEditorTools.cs" />
+    <Compile Include="ValidationSchemes\ValidationSchemeBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TypeEditors\Interfaces\" />
+    <Folder Include="TypeEditors\TypeConverters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Utility\BGU.DRPL.SignificantOwnership.Utility.csproj">
+      <Project>{E7FA3686-C797-43EA-890E-5F970A54D348}</Project>
+      <Name>BGU.DRPL.SignificantOwnership.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolvex.Utility.Core\Evolvex.Utility.Core.csproj">
+      <Project>{80563496-BDC4-468D-A65C-58F2A1158A61}</Project>
+      <Name>Evolvex.Utility.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PropertyNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertyNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

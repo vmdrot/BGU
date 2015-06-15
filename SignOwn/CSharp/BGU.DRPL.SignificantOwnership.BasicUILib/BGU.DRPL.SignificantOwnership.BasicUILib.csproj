@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{47F2913D-8205-4FDA-A2D5-CAB966BF74EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BGU.DRPL.SignificantOwnership.BasicUILib</RootNamespace>
+    <AssemblyName>BGU.DRPL.SignificantOwnership.BasicUILib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3dPartyLibraries\Microsoft\EntLib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="FormFactories.cs" />
+    <Compile Include="Forms\LookupObjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LookupObjectForm.Designer.cs">
+      <DependentUpon>LookupObjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SimpleObjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SimpleObjectForm.Designer.cs">
+      <DependentUpon>SimpleObjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UltimateOwnersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UltimateOwnersForm.Designer.cs">
+      <DependentUpon>UltimateOwnersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UltimateOwnershipTreeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UltimateOwnershipTreeForm.Designer.cs">
+      <DependentUpon>UltimateOwnershipTreeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Core\BGU.DRPL.SignificantOwnership.Core.csproj">
+      <Project>{13FC3BB3-E57B-4796-A3A0-2038B681B8CB}</Project>
+      <Name>BGU.DRPL.SignificantOwnership.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Utility\BGU.DRPL.SignificantOwnership.Utility.csproj">
+      <Project>{E7FA3686-C797-43EA-890E-5F970A54D348}</Project>
+      <Name>BGU.DRPL.SignificantOwnership.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\LookupObjectForm.resx">
+      <DependentUpon>LookupObjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SimpleObjectForm.resx">
+      <DependentUpon>SimpleObjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UltimateOwnersForm.resx">
+      <DependentUpon>UltimateOwnersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UltimateOwnershipTreeForm.resx">
+      <DependentUpon>UltimateOwnershipTreeForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

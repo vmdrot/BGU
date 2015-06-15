@@ -1,0 +1,12 @@
+<%@ Register TagPrefix="dx" Namespace="DevExpress.Data" Assembly="DevExpress.Data.v10.2, Version=10.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
+<%@ Register Assembly="DevExpress.Web.ASPxHtmlEditor.v10.2, Version=10.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxHtmlEditor" TagPrefix="dxhe" %>
+
+<dxhe:ASPxHtmlEditor runat="server" >
+	<Styles CssPostfix="Office2003Olive" CssFilePath="~/App_Themes/Office2003Olive/{0}/styles.css">
+        <ViewArea Border-BorderColor="#758D5E" />
+	</Styles>
+    <Images SpriteCssFilePath="~/App_Themes/Office2003Olive/{0}/sprite.css">
+	    <LoadingPanel Url="~/App_Themes/Office2003Olive/HtmlEditor/Loading.gif"></LoadingPanel>
+	</Images>
+</dxhe:ASPxHtmlEditor>
+

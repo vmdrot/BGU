@@ -1,0 +1,46 @@
+ Volume in drive D has no label.
+ Volume Serial Number is AEF0-D1A0
+
+ Directory of D:\home\vmdrot\DEV\_tut\BGU.DRPL.SignificantOwnership\BGU.DRPL.SignificantOwnership.Core\Properties
+
+12.03.2015  13:13             1ÿ498 AssemblyInfo.cs
+               1 File(s)          1ÿ498 bytes
+
+ Directory of D:\home\vmdrot\DEV\_tut\BGU.DRPL.SignificantOwnership\BGU.DRPL.SignificantOwnership.Core\Questionnaires
+
+13.03.2015  14:34             2ÿ150 Appx2OwnershipStructLP.cs
+               1 File(s)          2ÿ150 bytes
+
+ Directory of D:\home\vmdrot\DEV\_tut\BGU.DRPL.SignificantOwnership\BGU.DRPL.SignificantOwnership.Core\Spares
+
+13.03.2015  18:28               474 Enums.cs
+               1 File(s)            474 bytes
+
+ Directory of D:\home\vmdrot\DEV\_tut\BGU.DRPL.SignificantOwnership\BGU.DRPL.SignificantOwnership.Core\Spares\Data
+
+13.03.2015  12:36               611 CommonOwnershipInfo.cs
+12.03.2015  13:39               374 CouncilBodyInfo.cs
+12.03.2015  15:14               559 DelegatedVoteInfo.cs
+12.03.2015  15:03               229 ImplicitOwnershipInfo.cs
+12.03.2015  15:38               367 LegalPersonShareInfo.cs
+12.03.2015  13:29               339 OwnershipSummaryInfo.cs
+12.03.2015  13:31               292 OwnershipVotesInfo.cs
+12.03.2015  15:17               373 PhysicalPersonShareInfo.cs
+12.03.2015  16:06               363 SignatoryInfo.cs
+12.03.2015  13:32               576 TotalOwnershipDetailsInfo.cs
+              10 File(s)          4ÿ083 bytes
+
+ Directory of D:\home\vmdrot\DEV\_tut\BGU.DRPL.SignificantOwnership\BGU.DRPL.SignificantOwnership.Core\Spares\Dict
+
+13.03.2015  13:16               572 BankInfo.cs
+13.03.2015  14:38               613 CountryInfo.cs
+13.03.2015  15:24               710 LegalPersonInfo.cs
+13.03.2015  14:21               524 LocationInfo.cs
+13.03.2015  14:26               213 PassportIssuingAuthorityInfo.cs
+13.03.2015  17:20             1ÿ008 PhysicalPersonInfo.cs
+13.03.2015  17:57               623 RegistrarAuthority.cs
+               7 File(s)          4ÿ263 bytes
+
+     Total Files Listed:
+              20 File(s)         12ÿ468 bytes
+               0 Dir(s)  244ÿ774ÿ117ÿ376 bytes free
