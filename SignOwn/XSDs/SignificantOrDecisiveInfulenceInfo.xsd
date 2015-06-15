@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SignificantOrDecisiveInfulenceInfo" nillable="true" type="SignificantOrDecisiveInfulenceInfo" />
+  <xs:complexType name="SignificantOrDecisiveInfulenceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfInfluence" type="InfluenceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InfluenceCircumstances" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="InfluenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Significant" />
+      <xs:enumeration value="Decisive" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -50,11 +50,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Required]
         public LocationInfo Address { get; set; }
 
-        /// <summary>
-        /// Якщо у органу є адреса чи ідентифікатор SWIFT
-        /// </summary>
-        [DisplayName("Адреса SWIFT")]
-        public string SWIFTBIC { get; set; }
+        ///// <summary>
+        ///// Якщо у органу є адреса чи ідентифікатор SWIFT
+        ///// </summary>
+        //[DisplayName("Адреса SWIFT")]
+        //public string SWIFTBIC { get; set; }
         /// <summary>
         /// Контакти органу
         /// Поля, які бажано заповнити - www

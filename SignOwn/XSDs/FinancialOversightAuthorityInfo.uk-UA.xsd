@@ -42,11 +42,6 @@
             Максимальне заповнення полів</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" type_ukr="текст" displayName="Адреса SWIFT">
-        <xs:annotation>
-          <xs:documentation>Якщо у органу є адреса чи ідентифікатор SWIFT</xs:documentation>
-        </xs:annotation>
-      </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!

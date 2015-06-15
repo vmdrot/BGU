@@ -6,7 +6,10 @@
       <xs:extension base="IPOSharesPurchaseInfo">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="xs:string" type_ukr="текст" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -17,4 +20,7 @@
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
 </xs:schema>

@@ -7,7 +7,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="AuthorityName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
     </xs:sequence>
   </xs:complexType>
