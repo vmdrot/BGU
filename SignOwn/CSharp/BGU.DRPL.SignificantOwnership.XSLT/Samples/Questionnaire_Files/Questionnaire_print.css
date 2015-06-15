@@ -1,0 +1,23 @@
+﻿BODY
+{
+	BACKGROUND-COLOR: white;
+	FONT-FAMILY: "Verdana", sans-serif;
+	FONT-SIZE: 100%;
+	MARGIN-LEFT: 0px;
+	MARGIN-TOP: 0px
+}
+.infoTable
+{
+    border: 0px solid rgb(255, 255, 255); font-size: 70%; margin-left: 10px; border-collapse: collapse; background-color: rgb(240, 240, 224);
+}
+
+.signTD
+{
+    border-bottom: solid Black 1px; 
+    text-align: center;
+}
+
+.signTDCaptBelow
+{
+    text-align:center; font-size: small; font-style: italic;
+}

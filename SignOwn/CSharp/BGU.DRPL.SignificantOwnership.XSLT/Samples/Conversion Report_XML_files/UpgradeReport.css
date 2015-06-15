@@ -1,0 +1,84 @@
+body {
+	font-family: "Verdana", sans-serif; font-size: 100%; margin-top: 0px; margin-left: 0px; background-color: white;
+}
+p {
+	line-height: 12pt; font-family: "Verdana", sans-serif; font-size: 70%; margin-top: 10px; margin-bottom: 0px; margin-left: 10px;
+}
+.note {
+	color: rgb(51, 102, 153); padding-right: 10px; font-family: "Verdana", sans-serif; font-size: 100%; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; background-color: rgb(255, 255, 255);
+}
+.infotable {
+	border: 0px solid rgb(255, 255, 255); font-size: 70%; margin-left: 10px; border-collapse: collapse; background-color: rgb(240, 240, 224);
+}
+.issuetable {
+	color: rgb(0, 0, 0); font-size: 100%; margin-top: 0px; margin-bottom: 10px; margin-left: 13px; border-collapse: collapse; background-color: rgb(255, 255, 232);
+}
+.issuetitle {
+	color: rgb(0, 51, 102); font-weight: normal; border-top-color: rgb(220, 220, 220); border-bottom-color: rgb(220, 220, 220); border-top-width: 1px; border-bottom-width: 1px; border-top-style: none; border-bottom-style: solid; background-color: rgb(255, 255, 255);
+}
+.header {
+	border: 1px solid rgb(255, 255, 255); color: rgb(0, 0, 0); font-weight: bold; background-color: rgb(206, 207, 156);
+}
+.issuehdr {
+	color: rgb(0, 0, 0); font-weight: normal; border-top-color: rgb(220, 220, 220); border-bottom-color: rgb(220, 220, 220); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; background-color: rgb(224, 235, 245);
+}
+.issuenone {
+	border: 0px currentColor; color: rgb(0, 0, 0); font-weight: normal; background-color: rgb(255, 255, 255);
+}
+.content {
+	border: 1px solid rgb(255, 255, 255); padding-left: 3px; background-color: rgb(231, 231, 206);
+}
+.issuecontent {
+	padding-left: 3px; border-top-color: rgb(220, 220, 220); border-bottom-color: rgb(220, 220, 220); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; background-color: rgb(255, 255, 255);
+}
+a:link {
+	color: rgb(204, 102, 51); text-decoration: underline;
+}
+a:visited {
+	color: rgb(204, 102, 51);
+}
+a:active {
+	color: rgb(204, 102, 51);
+}
+a:hover {
+	color: rgb(204, 51, 0); text-decoration: underline;
+}
+h1 {
+	margin: 0em 0em 0em -20px; color: rgb(255, 255, 255); padding-top: 16px; padding-bottom: 8px; padding-left: 30px; font-size: 130%; font-weight: normal; border-bottom-color: rgb(51, 102, 153); border-bottom-width: 6px; border-bottom-style: solid; background-color: rgb(0, 51, 102);
+}
+h2 {
+	color: rgb(0, 0, 0); padding-left: 0px; font-size: 80%; font-weight: bold; margin-top: 20px; margin-bottom: 3px; margin-left: 10px;
+}
+h3 {
+	color: rgb(0, 0, 0); font-size: 80%; font-weight: bold; margin-top: 20px; margin-bottom: -5px; margin-left: 10px;
+}
+h4 {
+	color: rgb(0, 0, 0); padding-bottom: 0px; font-size: 70%; font-weight: bold; margin-top: 15px; margin-bottom: 0px;
+}
+ul {
+	list-style: square; color: rgb(0, 0, 0); font-size: 70%; margin-top: 0pt; margin-bottom: 0pt;
+}
+ol {
+	list-style: square; color: rgb(0, 0, 0); font-size: 70%; margin-top: 0pt; margin-bottom: 0pt;
+}
+li {
+	list-style: square; margin-left: 0px;
+}
+.expandable {
+	cursor: hand;
+}
+.expanded {
+	color: black;
+}
+.collapsed {
+	display: none;
+}
+.foot {
+	border-top-color: rgb(206, 207, 156); border-bottom-color: rgb(206, 207, 156); border-top-width: 2px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid; background-color: rgb(255, 255, 255);
+}
+.settings {
+	margin-left: 25px;
+}
+.help {
+	text-align: right; margin-right: 10px;
+}
