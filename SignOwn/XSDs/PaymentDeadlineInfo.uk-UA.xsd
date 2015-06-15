@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PaymentDeadlineInfo" nillable="true" type="PaymentDeadlineInfo" />
+  <xs:complexType name="PaymentDeadlineInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про крайній термін сплати (deadline) якогось зобов'язання</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" type_ukr="дата і час" displayName="Дата">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+</xs:schema>

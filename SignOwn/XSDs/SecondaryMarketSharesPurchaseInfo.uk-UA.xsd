@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SecondaryMarketSharesPurchaseInfo" nillable="true" type="SecondaryMarketSharesPurchaseInfo" />
+  <xs:complexType name="SecondaryMarketSharesPurchaseInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IPOSharesPurchaseInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="xs:string" type_ukr="текст" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

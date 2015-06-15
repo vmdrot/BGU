@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationRecordInfo" nillable="true" type="EducationRecordInfo" />
+  <xs:complexType name="EducationRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DegreeSeries" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DegreeID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Trade" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UniversityOrCollegeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="HigherEducationDegreeType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Bachelor" />
+          <xs:enumeration value="Master" />
+          <xs:enumeration value="MBA" />
+          <xs:enumeration value="CandidateDoctor" />
+          <xs:enumeration value="PhD" />
+          <xs:enumeration value="DoctorOfSciences" />
+          <xs:enumeration value="DoctorOfLetters" />
+          <xs:enumeration value="Professor" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="DegreeHonourType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Rite" />
+          <xs:enumeration value="CumLaude" />
+          <xs:enumeration value="Honoured" />
+          <xs:enumeration value="MagnaCumLaude" />
+          <xs:enumeration value="SummaCumLaude" />
+          <xs:enumeration value="EgregiaCumLaude" />
+          <xs:enumeration value="MaximaCumLaude" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

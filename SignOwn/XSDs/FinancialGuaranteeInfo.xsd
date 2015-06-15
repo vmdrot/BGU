@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FinancialGuaranteeInfo" nillable="true" type="FinancialGuaranteeInfo" />
+  <xs:complexType name="FinancialGuaranteeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GuaranteeDetails" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="FinancialGuarantorRoleType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Guarantor" />
+          <xs:enumeration value="Pledger" />
+          <xs:enumeration value="Attorney" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

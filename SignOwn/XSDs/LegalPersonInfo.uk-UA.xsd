@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LegalPersonInfo" nillable="true" type="LegalPersonInfo" />
+  <xs:complexType name="LegalPersonInfo">
+    <xs:annotation>
+      <xs:documentation>Реквізити юридичної особи</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TaxCodeOrHandelsRegNr" type="xs:string" type_ukr="текст" displayName="Податковий №" description="ЄДРПОУ/Податковий ID/HandelsregisterNr.(для нерезидентів)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле (якщо контекстом проперті, де використовується цей тим, не визначено інакше)
+            Для резидентів - ЄДРПОУ
+            Для нерезидентів - еквівалентний ідентифікатор
+            
+
+Див.також: http://irc.gov.ua/ua/Poshuk-v-YeDR.html</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування" description="Найменування юридичної особи (оригінальною мовою)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле.
+            Назва оригінальною мовою.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування українською" description="Найменування юридичної особи українською мовою (для нерезидентів)">
+        <xs:annotation>
+          <xs:documentation>Назва українською (якщо оригінальна - іншою мовою).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місцезнаходження" description="місцезнаходження юридичної особи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Адреса юрособи. Поле обов'язкове, якщо контекстом не вказано інше.
+            Мінімальне заповнення - країна та місто</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції юридичної особи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Країна резидентності
+            Обов'язкове. За змовчанням (пропонувати) - Україна.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Registrar" type="RegistrarAuthority" displayName="Держорган-реєстратор" description="Державний орган, який здійснив реєстрацію юридичної особи">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове поле, якщо контекстом не визначено інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="RegisteredDateID" type="LPRegisteredDateRecordId" displayName="Дата/№ запису в держреєстрі" description="Дата та номер запису в Єдиному державному реєстрі юридичних осіб та фізичних осіб-підприємців">
+        <xs:annotation>
+          <xs:documentation>Дата та номер запису про проведення державної реєстрації фізичної особи-підприємця</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" displayName="Представник юрособи" description="Особа, що представляє юрособу">
+        <xs:annotation>
+          <xs:documentation>Якщо передбачений представник</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" displayName="Статутний капітал" description="Статутний фонд/капітал">
+        <xs:annotation>
+          <xs:documentation>Якщо анкетою вимагається (див. по контексту, необов'язкове поле).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" displayName="Основний вид діяльності" description="Основний(-і) вид(-и) діяльності юрособи">
+        <xs:annotation>
+          <xs:documentation>Вид діяльності - якщо вимагається в анкеті; логічно його притулити 
+            було до самої структури інформації про юр.особу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TotalOwnershipDetailsInfoEx" nillable="true" type="TotalOwnershipDetailsInfoEx" />
+  <xs:complexType name="TotalOwnershipDetailsInfoEx">
+    <xs:annotation>
+      <xs:documentation>Розширений варіант агрегованої інформації про власність</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="TotalOwnershipDetailsInfo">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="OwnerID" type="GenericPersonID" displayName="ID Власника">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Тут лише ідентифікатор особи; як завше, решта її реквізитів - десь у MentionedIdentities</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

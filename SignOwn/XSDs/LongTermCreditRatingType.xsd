@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LongTermCreditRatingType" type="LongTermCreditRatingType" />
+  <xs:simpleType name="LongTermCreditRatingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="A" />
+      <xs:enumeration value="A1" />
+      <xs:enumeration value="A2" />
+      <xs:enumeration value="A3" />
+      <xs:enumeration value="AA" />
+      <xs:enumeration value="Aa1" />
+      <xs:enumeration value="Aa2" />
+      <xs:enumeration value="Aa3" />
+      <xs:enumeration value="AAA" />
+      <xs:enumeration value="AAAMinus" />
+      <xs:enumeration value="AAAPlus" />
+      <xs:enumeration value="AAMinus" />
+      <xs:enumeration value="AAPlus" />
+      <xs:enumeration value="AMinus" />
+      <xs:enumeration value="APlus" />
+      <xs:enumeration value="B" />
+      <xs:enumeration value="B1" />
+      <xs:enumeration value="B2" />
+      <xs:enumeration value="B3" />
+      <xs:enumeration value="Ba1" />
+      <xs:enumeration value="Ba2" />
+      <xs:enumeration value="Ba3" />
+      <xs:enumeration value="Baa1" />
+      <xs:enumeration value="Baa2" />
+      <xs:enumeration value="Baa3" />
+      <xs:enumeration value="BB" />
+      <xs:enumeration value="BBB" />
+      <xs:enumeration value="BBBMinus" />
+      <xs:enumeration value="BBBPlus" />
+      <xs:enumeration value="BBMinus" />
+      <xs:enumeration value="BBPlus" />
+      <xs:enumeration value="BMinus" />
+      <xs:enumeration value="BPlus" />
+      <xs:enumeration value="C" />
+      <xs:enumeration value="Ca" />
+      <xs:enumeration value="Caa1" />
+      <xs:enumeration value="Caa2" />
+      <xs:enumeration value="Caa3" />
+      <xs:enumeration value="CC" />
+      <xs:enumeration value="CCC" />
+      <xs:enumeration value="CCCMinus" />
+      <xs:enumeration value="CCCPlus" />
+      <xs:enumeration value="CCMinus" />
+      <xs:enumeration value="CCPlus" />
+      <xs:enumeration value="CMinus" />
+      <xs:enumeration value="CPlus" />
+      <xs:enumeration value="D" />
+      <xs:enumeration value="LD" />
+      <xs:enumeration value="NR" />
+      <xs:enumeration value="R" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

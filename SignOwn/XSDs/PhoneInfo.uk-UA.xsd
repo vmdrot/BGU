@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PhoneInfo" nillable="true" type="PhoneInfo" />
+  <xs:complexType name="PhoneInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про телефон</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneName" type="xs:string" type_ukr="текст" displayName="Тип/назва телефону" description="Тип/назва телефону">
+        <xs:annotation>
+          <xs:documentation>не обов'язкове, значення (напр.) - дом., моб., роб., тощо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PhoneNr" type="xs:string" type_ukr="текст" displayName="№ телефону" description="№ телефону">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" type_ukr="текст" displayName="Примітки щодо телефону" description="Примітки щодо телефону">
+        <xs:annotation>
+          <xs:documentation>напр. "дзвонити з 9 до 18, по вихідних, поза зоною тоді-то, тощо"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

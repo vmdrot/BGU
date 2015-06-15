@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SignatoryInfo" nillable="true" type="SignatoryInfo" />
+  <xs:complexType name="SignatoryInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SignatoryPosition" type="xs:string" type_ukr="текст" displayName="Посада (підписанта)" description="Посада (підписанта)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SurnameInitials" type="xs:string" type_ukr="текст" displayName="Прізвище й ініціали (підписанта)" description="Прізвище й ініціали (підписанта)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове (якщо тільки контекстом не передбачено інше)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

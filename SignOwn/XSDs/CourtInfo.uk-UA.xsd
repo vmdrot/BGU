@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CourtInfo" nillable="true" type="CourtInfo" />
+  <xs:complexType name="CourtInfo">
+    <xs:annotation>
+      <xs:documentation>Ідентифікація суду (господарського, тощо)
+            Використовується, зокрема, у полях, де вимагається 
+            інформація про наявність порушених справ про банкрутство
+            
+
+Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+</xs:schema>

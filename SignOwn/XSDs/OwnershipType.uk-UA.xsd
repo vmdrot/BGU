@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OwnershipType" type="OwnershipType" />
+  <xs:simpleType name="OwnershipType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Direct" description="Пряма власність" />
+      <xs:enumeration value="Implicit" description="Опосередкована власність" />
+      <xs:enumeration value="Associated" description="Власність через пов'язану особу" />
+      <xs:enumeration value="Agreement" description="Власність через угоду/договір" />
+      <xs:enumeration value="Attorney" description="Власність по довіреності" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

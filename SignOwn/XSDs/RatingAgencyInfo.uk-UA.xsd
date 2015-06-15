@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RatingAgencyInfo" nillable="true" type="RatingAgencyInfo" />
+  <xs:complexType name="RatingAgencyInfo">
+    <xs:annotation>
+      <xs:documentation>Див.також: http://en.wikipedia.org/wiki/Category:Credit_rating_agencies</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" type_ukr="логічний тип(так/ні)" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+</xs:schema>

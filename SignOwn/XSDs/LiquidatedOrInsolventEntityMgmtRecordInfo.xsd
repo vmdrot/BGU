@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LiquidatedOrInsolventEntityMgmtRecordInfo" nillable="true" type="LiquidatedOrInsolventEntityMgmtRecordInfo" />
+  <xs:complexType name="LiquidatedOrInsolventEntityMgmtRecordInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LiquidatedOrInsolventEntityInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Position" type="ManagementPosition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LiquidatedOrInsolventEntityInfoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asset" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationReason" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationPretext" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="InsolvencyStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Insolvent" />
+      <xs:enumeration value="Liquidated" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ManagementPosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="CEO" />
+      <xs:enumeration value="VCEO" />
+      <xs:enumeration value="ManagingBoardMember" />
+      <xs:enumeration value="ChiefBookkeeper" />
+      <xs:enumeration value="DeputyChiefBookkeeper" />
+      <xs:enumeration value="SupervisoryBoardHead" />
+      <xs:enumeration value="DeputySupervisoryBoardHead" />
+      <xs:enumeration value="SupervisoryBoardMember" />
+      <xs:enumeration value="SupervisoryBoardMemberLPRep" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

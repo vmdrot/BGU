@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BreachOfLawType" type="BreachOfLawType" />
+  <xs:simpleType name="BreachOfLawType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Criminal" description="Кримінальне" />
+          <xs:enumeration value="Antitrust" description="Анти-монопольне" />
+          <xs:enumeration value="Taxation" description="Податкове" />
+          <xs:enumeration value="Banking" description="Банківське" />
+          <xs:enumeration value="Financial" description="Фінансове" />
+          <xs:enumeration value="ForeignCurrency" description="Валютне" />
+          <xs:enumeration value="StockExchange" description="Біржове" />
+          <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

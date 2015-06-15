@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PersonsAssociation" nillable="true" type="PersonsAssociation" />
+  <xs:complexType name="PersonsAssociation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="One" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Two" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="OwnershipType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="OwnershipType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Direct" />
+      <xs:enumeration value="Implicit" />
+      <xs:enumeration value="Associated" />
+      <xs:enumeration value="Agreement" />
+      <xs:enumeration value="Attorney" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AssociatedPersonRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Husband" />
+      <xs:enumeration value="Wife" />
+      <xs:enumeration value="Son" />
+      <xs:enumeration value="Daughter" />
+      <xs:enumeration value="Father" />
+      <xs:enumeration value="Mother" />
+      <xs:enumeration value="Patron" />
+      <xs:enumeration value="Brother" />
+      <xs:enumeration value="Sister" />
+      <xs:enumeration value="FatherInLaw" />
+      <xs:enumeration value="MotherInLaw" />
+      <xs:enumeration value="SonInLaw" />
+      <xs:enumeration value="DaughterInLaw" />
+      <xs:enumeration value="BrotherInLaw" />
+      <xs:enumeration value="SisterInLaw" />
+      <xs:enumeration value="Cousin" />
+      <xs:enumeration value="GrandFather" />
+      <xs:enumeration value="GrandMother" />
+      <xs:enumeration value="GrandSon" />
+      <xs:enumeration value="GrandDaughter" />
+      <xs:enumeration value="NephewNiece" />
+      <xs:enumeration value="AuncleAunt" />
+      <xs:enumeration value="OtherRelative" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

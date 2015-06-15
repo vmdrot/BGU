@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="IndebtnessInfo" nillable="true" type="IndebtnessInfo" />
+  <xs:complexType name="IndebtnessInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IndebtnessInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRepaymentPlanned" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PlannedRepaymentDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RepaymentPlans" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IndebtnessInfoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Lender" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Borrower" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DebtSubject" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Principal" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

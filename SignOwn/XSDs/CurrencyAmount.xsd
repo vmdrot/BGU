@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CurrencyAmount" nillable="true" type="CurrencyAmount" />
+  <xs:complexType name="CurrencyAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

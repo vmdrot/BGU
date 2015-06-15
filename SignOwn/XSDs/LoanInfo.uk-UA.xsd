@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LoanInfo" nillable="true" type="LoanInfo" />
+  <xs:complexType name="LoanInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про позику
+            
+
+Див.також: T:BGU.DRPL.SignificantOwnership.Core.Spares.Data.IndebtnessInfoBase</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="IndebtnessInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" type_ukr="текст" displayName="№ договору">
+            <xs:annotation>
+              <xs:documentation>для банківських позик - обов'язковий</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата договору">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Прострочено з ... (дата)">
+            <xs:annotation>
+              <xs:documentation>якщо є прострочка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+</xs:schema>

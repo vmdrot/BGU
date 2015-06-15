@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SecondaryMarketSharesPurchaseInfo" nillable="true" type="SecondaryMarketSharesPurchaseInfo" />
+  <xs:complexType name="SecondaryMarketSharesPurchaseInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IPOSharesPurchaseInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalTransaction" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IPOSharesPurchaseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NominalSharePrice" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NominalTotalSharesValue" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualTotalSharesValue" type="CurrencyAmount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PaymentDeadlines" type="ArrayOfPaymentDeadlineInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPaymentDeadlineInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentDeadlineInfo" nillable="true" type="PaymentDeadlineInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentDeadlineInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Amount" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

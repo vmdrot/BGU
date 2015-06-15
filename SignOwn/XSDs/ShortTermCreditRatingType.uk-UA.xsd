@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ShortTermCreditRatingType" type="ShortTermCreditRatingType" />
+  <xs:simpleType name="ShortTermCreditRatingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="A1" description="A-1" />
+      <xs:enumeration value="A2" description="A-2" />
+      <xs:enumeration value="A3" description="A-3" />
+      <xs:enumeration value="B" description="B" />
+      <xs:enumeration value="C" description="C" />
+      <xs:enumeration value="D" description="D" />
+      <xs:enumeration value="Other" description="Інше (вказати)" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

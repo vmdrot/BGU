@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DegreeHonourType" type="DegreeHonourType" />
+  <xs:simpleType name="DegreeHonourType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Rite" />
+          <xs:enumeration value="CumLaude" />
+          <xs:enumeration value="Honoured" />
+          <xs:enumeration value="MagnaCumLaude" />
+          <xs:enumeration value="SummaCumLaude" />
+          <xs:enumeration value="EgregiaCumLaude" />
+          <xs:enumeration value="MaximaCumLaude" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

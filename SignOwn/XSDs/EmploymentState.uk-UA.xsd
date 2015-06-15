@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EmploymentState" type="EmploymentState" />
+  <xs:simpleType name="EmploymentState">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Employed" description="Найманий працівник" />
+          <xs:enumeration value="Selfemployed" description="Самозайнятість" />
+          <xs:enumeration value="Freelance" description="Фрілансер" />
+          <xs:enumeration value="Unemployed" description="Безробітний" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankingLicensedActivityInfo" nillable="true" type="BankingLicensedActivityInfo" />
+  <xs:complexType name="BankingLicensedActivityInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BankingActivityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="DepositsTaking" />
+      <xs:enumeration value="AccountsMgmt" />
+      <xs:enumeration value="DepositedFundsPlacement" />
+      <xs:enumeration value="Investments" />
+      <xs:enumeration value="ProprietarySecuritiesIssue" />
+      <xs:enumeration value="Lotteries" />
+      <xs:enumeration value="SafeCustody" />
+      <xs:enumeration value="CashCollectionTransportation" />
+      <xs:enumeration value="SecuritiesCustody" />
+      <xs:enumeration value="ConsultancyOnBankFinServices" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FinancialServicesType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="PayDocsIssuance" />
+      <xs:enumeration value="Trust" />
+      <xs:enumeration value="CurrencyExchange" />
+      <xs:enumeration value="FinanceAssetsLiabilities" />
+      <xs:enumeration value="FinancialLeasing" />
+      <xs:enumeration value="Lending" />
+      <xs:enumeration value="Guarantees" />
+      <xs:enumeration value="FundsTransfer" />
+      <xs:enumeration value="InsuranceAndPensionSavings" />
+      <xs:enumeration value="StockExchangeActivities" />
+      <xs:enumeration value="Factoring" />
+      <xs:enumeration value="FinAssetsAdministeringGroupsPurchase" />
+      <xs:enumeration value="ConstructionAssetsManagement" />
+      <xs:enumeration value="MortgageSecuritiesMngtIssue" />
+      <xs:enumeration value="OtherFinBankServices" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

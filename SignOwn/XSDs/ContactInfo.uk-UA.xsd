@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ContactInfo" nillable="true" type="ContactInfo" />
+  <xs:complexType name="ContactInfo">
+    <xs:annotation>
+      <xs:documentation>Контактна інформація</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Контактна особа" description="Контактна особа (фізособа)">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле; якщо заповнюється, то достатньо (як правило) П.І.Б.; як вони хочуть, щоб до них зверталися (хоч би й лише Name),
+            напр. "Люда, тел. XXX-XXX-XX-XX, e-mail..."</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Бодай один телефон.
+            Хай самі вказують стільки, скільки хочуть, залежно від того, 
+            наскільки вони хочуть, щоб їх знайшли, у разі потреби/питань.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" type_ukr="текст" displayName="Факс">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле, як на мене - вже застарілий засіб зв'язку.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" displayName="E-mail-и" description="Перелік адрес електронної пошти">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Мінімум одне мило - обов'язково питати.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" type_ukr="текст" displayName="www" description="Веб-сайт">
+        <xs:annotation>
+          <xs:documentation>Не обов'язкове (окрім банку, видавництва, тощо - де це вимагається контекстом використання цього типу).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+</xs:schema>

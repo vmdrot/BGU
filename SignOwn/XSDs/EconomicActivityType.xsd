@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EconomicActivityType" nillable="true" type="EconomicActivityType" />
+  <xs:complexType name="EconomicActivityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="KVEDCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KVEDActivityName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivitySelfName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

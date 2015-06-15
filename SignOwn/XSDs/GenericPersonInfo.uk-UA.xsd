@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GenericPersonInfo" nillable="true" type="GenericPersonInfo" />
+  <xs:complexType name="GenericPersonInfo">
+    <xs:annotation>
+      <xs:documentation>Універсальна інформація про особу, "обгортка" (wrapper), куди можна "запхати" як юридичну, так і фізичну особу</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" displayName="Тип особи" description="Тип особи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysicalPerson" type="PhysicalPersonInfo" displayName="Фізична особа" description="Фізична особа">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове поле, якщо PersonType == Physical
+            Інакше - відсутнє!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Юридична особа" description="Юридична особа">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове поле, якщо PersonType == Legal
+            Інакше - відсутнє!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DegreeHonourType" type="DegreeHonourType" />
+  <xs:simpleType name="DegreeHonourType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" />
+          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" />
+          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" />
+          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" />
+          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" />
+          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" />
+          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

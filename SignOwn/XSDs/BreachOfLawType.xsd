@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BreachOfLawType" type="BreachOfLawType" />
+  <xs:simpleType name="BreachOfLawType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Criminal" />
+          <xs:enumeration value="Antitrust" />
+          <xs:enumeration value="Taxation" />
+          <xs:enumeration value="Banking" />
+          <xs:enumeration value="Financial" />
+          <xs:enumeration value="ForeignCurrency" />
+          <xs:enumeration value="StockExchange" />
+          <xs:enumeration value="OtherAdministrative" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

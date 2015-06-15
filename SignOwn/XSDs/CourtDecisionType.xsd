@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CourtDecisionType" type="CourtDecisionType" />
+  <xs:simpleType name="CourtDecisionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sentence" />
+      <xs:enumeration value="Ruling" />
+      <xs:enumeration value="Decision" />
+      <xs:enumeration value="CourtOrder" />
+      <xs:enumeration value="CourtResolution" />
+      <xs:enumeration value="SpecialResolution" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

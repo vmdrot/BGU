@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EconomicActivityType" nillable="true" type="EconomicActivityType" />
+  <xs:complexType name="EconomicActivityType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="KVEDCode" type="xs:string" type_ukr="текст" displayName="Код діяльності за КВЕД">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="KVEDActivityName" type="xs:string" type_ukr="текст" displayName="Назва діяльності за КВЕД">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivitySelfName" type="xs:string" type_ukr="текст" displayName="Власна фактична назва діяльності" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

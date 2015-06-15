@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CouncilMemberInfo" nillable="true" type="CouncilMemberInfo" />
+  <xs:complexType name="CouncilMemberInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про особу-члена керівного колегіального органу (наглядової ради, ради директорів, тощо)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Member" type="GenericPersonID" displayName="Член органу управління" description="Член органу управління">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Як завжди, тут тільки ідентифікатор особи; самі реквізити - в MentionedEntities (чи еквіваленті)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PositionName" type="xs:string" type_ukr="текст" displayName="Посада" description="Посада">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            за змовчанням - просто "член"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="FunctionsDescription" type="xs:string" type_ukr="текст" displayName="Опис функцій" description="Опис функцій">
+        <xs:annotation>
+          <xs:documentation>У декотрих анкетах вимагається;</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

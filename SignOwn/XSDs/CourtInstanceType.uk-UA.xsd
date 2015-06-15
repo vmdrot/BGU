@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CourtInstanceType" type="CourtInstanceType" />
+  <xs:simpleType name="CourtInstanceType">
+    <xs:annotation>
+      <xs:documentation>Перелік як у випадаючому списку "Інстанція"
+            
+
+Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="First" description="Перша" />
+      <xs:enumeration value="Appeal" description="Апеляційна" />
+      <xs:enumeration value="Cassation" description="Касаційна" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

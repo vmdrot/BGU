@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CurrencyAmount" nillable="true" type="CurrencyAmount" />
+  <xs:complexType name="CurrencyAmount">
+    <xs:annotation>
+      <xs:documentation>Структура для універсальної грошової суми</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Значення за змовчанням - UAH
+            
+
+Див.також: http://www.currency-iso.org/en/home/tables/table-a1.html</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TypicalApplicationAttachement" type="TypicalApplicationAttachement" />
+  <xs:simpleType name="TypicalApplicationAttachement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="InternalReglementCopiesScans" description="Копії/скан внутрішніх положень" />
+      <xs:enumeration value="WorkbookCopyScan" description="Копії/скан трудової книги" />
+      <xs:enumeration value="PassportCopyScan" description="Копії/скан паспорта" />
+      <xs:enumeration value="CharterCopyScan" description="Копії/скан статуту" />
+      <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

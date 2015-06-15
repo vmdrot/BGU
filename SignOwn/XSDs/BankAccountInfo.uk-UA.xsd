@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankAccountInfo" nillable="true" type="BankAccountInfo" />
+  <xs:complexType name="BankAccountInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про банківський рахунок (відкритий деінде)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AccountOwner" type="GenericPersonID" displayName="Власник рахунку">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            У цьому полі - лише ідентифікатор особи;
+            решта реквізитів особи - десь у MentionedEntities чи його еквіваленті</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Bank" type="BankInfo" displayName="У банку...">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікація банку, де відкрито рахунок
+            для укр. банків - назва, МФО
+            для нерезидентів - Назва, назва укр., (SWIFT або MFO), якщо ні - адреса, щоб однозначно ідентифікувати</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNr" type="xs:string" type_ukr="текст" displayName="№ рахунку">
+        <xs:annotation>
+          <xs:documentation>№ рахунку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountCCY" type="xs:string" type_ukr="текст" displayName="Валюта рахунку">
+        <xs:annotation>
+          <xs:documentation>ditto</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AccountDescription" type="xs:string" type_ukr="текст" displayName="Опис/примітки/призначення рахунку">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            релевантні примітки - що за рахунок, для чого використовується (залежно від контексту), необов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+</xs:schema>
