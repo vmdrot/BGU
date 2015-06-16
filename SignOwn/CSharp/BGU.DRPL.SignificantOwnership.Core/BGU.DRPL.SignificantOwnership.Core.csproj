@@ -149,6 +149,7 @@
     <Compile Include="Spares\Data\PhysicalPersonShareInfo.cs" />
     <Compile Include="Spares\Data\SharesAcquisitionInfo.cs" />
     <Compile Include="Spares\Data\SignatoryInfo.cs" />
+    <Compile Include="Spares\Data\SignificantOwnershipAcquisitionWaysInfo.cs" />
     <Compile Include="Spares\Data\TotalOwnershipDetailsInfoEx.cs" />
     <Compile Include="Spares\Dict\BankAccountInfo.cs" />
     <Compile Include="Spares\Dict\BankInfo.cs" />
