@@ -31,15 +31,8 @@
 
             І. Інформація про юридичну особу
             
-            1.1. ____________________________________________________________________________.
-                                                                                                                     (найменування юридичної особи)
-            
-            1.2. ____________________________________________________________________________.
-                                                                                                                  (місцезнаходження юридичної особи)
-            
-            1.3. Код за ЄДРПОУ _____________________________________________________________.
-            1.4. Код платника податків ________________________________________________________.
-            1.6. Основний вид діяльності юридичної особи _______________________________________.
+            1. Повне та скорочене найменування ________________________________________________________________
+            2. Ідентифікаційні дані:
             ---- 
             Самі реквізити мають потрапити до MentionedIdentities</xs:documentation>
         </xs:annotation>
@@ -56,50 +49,62 @@
                        (найменування органу)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AcquireeRegistrar" type="RegistrarAuthority" displayName="1.12. Державний  орган,  який здійснив реєстрацію юридичної особи  (для іноземців)" description="1.12. Державний  орган,  який здійснив реєстрацію юридичної особи  (для іноземців) (найменування органу, країна місцезнаходження)">
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="1.11. Державний наглядовий орган" description="1.11. Державний орган, що здійснює контроль (нагляд) за діяльністю юридичної особи">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
-   Acquiree.ResidenceCountry != UKRAINE
-
-            1.12. Державний  орган,  який здійснив реєстрацію юридичної особи  (для іноземців),
+          <xs:documentation>3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
             _______________________________________________________________________________.
-             (найменування органу, країна місцезнаходження)</xs:documentation>
+                       (найменування органу)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" displayName="4. Банківські рахунки юридичної особи" description="(не заповнюється банками)" category="І. Інформація про юридичну особу">
         <xs:annotation>
-          <xs:documentation>1.7. Повні  офіційні  найменування банків,  у яких юридична особа має рахунки (не заповнюється банками), 
-            __________________________________________________________.
-            ------
-            Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
+          <xs:documentation>Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsIPO" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="2.2. Це первинне розміщення?" description="2.2. Подається заявка на придбання частки істотної участі в рамках первинного розміщення акцій банку?">
+      <xs:element minOccurs="1" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" displayName="7. Спосіб(-оби) набуття/збільшення істотної участі в банку" description="7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
-            2. Відносини з банком-емітентом</xs:documentation>
+            7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне):
+            
+            придбання акцій (паїв) банку на первинному ринку;
+            придбання акцій (паїв) банку на вторинному ринку;
+            набуття/збільшення істотної участі в банку опосередковано шляхом придбання корпоративних прав юридичних осіб у структурі власності банку;
+            набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;
+            набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" displayName="2.2. Придбання на первинному ринку" description="2.2. Інформація стосовно наміру придбання акцій (паїв) банку на первинному ринку">
+      <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" displayName="Придбання на первинному ринку" description="8. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   AcquisitionWays.IsIPO == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="2.3. Придбання на вторинному ринку" description="2.3. Інформація стосовно наміру придбання акцій (паїв) банку на вторинному ринку">
+      <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="9. Придбання на вторинному ринку" description="9. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorneyPurchases" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OwnershipByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="3.2. Джерела  походження коштів юридичної особи" description="3.2. Джерела  походження коштів юридичної особи,  за рахунок яких  здійснюється сплата за акції (паї), ______.(прибуток, резервний капітал тощо)">
+      <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByPoAttorneys" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" displayName="10. Набуття за довіреністю" description="10. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   AcquisitionWays.IsPurchaseByPowOfAtt == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" displayName="11. Набуття у зв’язку із здійсненням впливу" description="11. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   AcquisitionWays.IsAcquireByImplicitInfluence == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="12. Джерела  походження коштів юридичної особи" description="12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
-            3.2. Джерела  походження коштів юридичної особи,  за рахунок 
-            яких  здійснюється сплата за акції (паї), ____________________________.
-                                                (прибуток, резервний капітал тощо)</xs:documentation>
+            12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку,
+            _______________________________________________________________________________________________________.
+            (прибуток, частина статутного капіталу, кошти фонду тощо)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ExistingDirectOwnershipWithBankSummary" type="SharesAcquisitionInfo" displayName="2.3. а) Наявна участь у банку - пряме володіння" description="а) пряме володіння - _______ відсотків статутного капіталу банку  в розмірі _______ гривень, що становить __________ акцій (паїв), загальною номінальною вартістю _________ гривень">
@@ -432,10 +437,13 @@
   <xs:include schemaLocation="LongTermCreditRatingType.uk-UA.xsd" />
   <xs:include schemaLocation="ShortTermCreditRatingType.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialOversightAuthorityInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignificantOwnershipAcquisitionWaysInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
@@ -477,7 +485,6 @@
   <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
   <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />

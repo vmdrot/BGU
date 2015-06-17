@@ -151,6 +151,7 @@
     <Compile Include="Spares\Data\SignatoryInfo.cs" />
     <Compile Include="Spares\Data\SignificantOwnershipAcquisitionWaysInfo.cs" />
     <Compile Include="Spares\Data\TotalOwnershipDetailsInfoEx.cs" />
+    <Compile Include="Spares\Data\TotalOwnershipSummaryInfo.cs" />
     <Compile Include="Spares\Dict\BankAccountInfo.cs" />
     <Compile Include="Spares\Dict\BankInfo.cs" />
     <Compile Include="Spares\Dict\CountryInfo.cs" />

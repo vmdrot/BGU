@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SignificantOwnershipAcquisitionWaysInfo" nillable="true" type="SignificantOwnershipAcquisitionWaysInfo" />
+  <xs:complexType name="SignificantOwnershipAcquisitionWaysInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsIPO" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsSecondaryMarketPurchase" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByImplicitOwnership" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByPowOfAtt" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsAcquireByImplicitInfluence" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

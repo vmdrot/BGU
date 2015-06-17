@@ -12,9 +12,15 @@
   </xs:complexType>
   <xs:complexType name="OwnershipSummaryInfo">
     <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharesNominalValue" type="CurrencyAmount" />
       <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="OwnershipVotesInfo">

@@ -7,19 +7,10 @@
             Обов'язково або Pct, або Amount</xs:documentation>
     </xs:annotation>
     <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="кількість акцій (паїв)" description="кількість акцій (паїв)" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharesNominalValue" type="CurrencyAmount" displayName="номінальна вартість акцій (паїв)" />
       <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Cума" description="Cума">
-        <xs:annotation>
-          <xs:documentation>Частина статутного капіталу/фонду, що перебуває у володінні</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів" description="Кількість голосів">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            Кількість голосів, що припадає на частку володіння (якщо припадають якісь)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
 </xs:schema>
