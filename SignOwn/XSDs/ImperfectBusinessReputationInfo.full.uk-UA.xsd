@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ImperfectBusinessReputationInfo" nillable="true" type="ImperfectBusinessReputationInfo" />
+  <xs:complexType name="ImperfectBusinessReputationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="HadBankruptcyInvestigation" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи порушувалася справа про банкрутство юридичної особи?" description="Чи порушувалася справа про банкрутство юридичної особи?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="BankruptcyInvestigations" type="ArrayOfBankruptcyInvestigationInfo" displayName="Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HadBankruptcyInvestigation == true
+
+            6.1. Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є невиконані  зобов'язання перед іншими особами?" description="Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?
+            _______________________________________________________________________</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" displayName="Невиконані  зобов'язання перед іншими особами - розшифровка" description="(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HasMiscNonRepaidDebts == true
+
+            6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?
+            ________________________________________________________________________________
+             (якщо так, то зазначити, які саме зобов'язання, у якому розмірі,
+            
+            _______________________________________________________________________________.
+             перед якою особою та з яких причин не були виконані, а також подальші плани
+              щодо виконання/невиконання цих зобов'язань)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Були порушення галузевого законодавства?" description="Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            6.3. Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" displayName="Порушення галузевого законодавства - деталі" description="(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HadIndustrySpecificBreaches == true
+
+            6.3. ________________________________________________________________________________
+                  (зазначити, коли вчинено порушення, зміст порушення, накладені санкції)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedSignOwnershipLastYear" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Були власником ліквідованих юросіб протягом останнього року?" description="Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі (10 і більше відсотків) у цій особі?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            6.4. Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи,  
+            власником істотної участі (10 і більше відсотків) у цій особі?</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedSignOwnershipLastYear" type="ArrayOfLiquidatedEntityOwnershipInfo" displayName="Ліквідовані протягом останнього року юрособи у власності" description="Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HasLiquidatedSignOwnershipLastYear == true
+
+            6.4. __________________________________________________________________________
+             (найменування юридичної особи,
+            
+            _______________________________________________________________________________.
+             код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBankruptcyInvestigationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BankruptcyInvestigationInfo" nillable="true" type="BankruptcyInvestigationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIndebtnessInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndebtnessInfo" nillable="true" type="IndebtnessInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBreachOfLawRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BreachOfLawRecordInfo" nillable="true" type="BreachOfLawRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLiquidatedEntityOwnershipInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LiquidatedEntityOwnershipInfo" nillable="true" type="LiquidatedEntityOwnershipInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedEntityOwnershipInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+</xs:schema>

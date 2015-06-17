@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankAssociatedPeronsCode315p" type="BankAssociatedPeronsCode315p" />
+  <xs:simpleType name="BankAssociatedPeronsCode315p">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="BankControllers" description="521-Контролери банку" />
+      <xs:enumeration value="SignificantOwners" description="522-Особи, які мають істотну участь у банку, та особи, через яких ці особи здійснюють опосередковане володіння істотною участю в банку" />
+      <xs:enumeration value="BankMgrsEtc" description="523-Керівники банку, керівник служби внутрішнього аудиту, керівники та члени комітетів банку" />
+      <xs:enumeration value="Affiliated" description="524-Споріднені та афільовані особи банку, у тому числі учасники банківської групи" />
+      <xs:enumeration value="AffiliatedSignOwners" description="525-Особи, які мають істотну участь у споріднених та афільованих особах банку" />
+      <xs:enumeration value="AffiliatedMgrsEtc" description="526-Керівники юридичних осіб та керівники банків, які є спорідненими та афільованими особами банку, керівник служби внутрішнього аудиту, керівники та члени комітетів цих осіб" />
+      <xs:enumeration value="AssocPersonsArt52pp16" description="527-Асоційовані особи фізичних осіб, зазначених у пунктах 1 – 6 частини першої статті 52 Закону" />
+      <xs:enumeration value="Art52MgrsSignOwnersLPs" description="528-Юридичні особи, у яких фізичні особи, зазначені в частині першій статті 52 Закону, є керівниками або власниками істотної участі" />
+      <xs:enumeration value="AnyPersonInfluencingArt52" description="529-Будь-яка особа, через яку проводиться операція в інтересах осіб, зазначених у частині першій статті 52 Закону, та на яку здійснюють вплив під час проведення такої операції особи, зазначені в цій частині, через трудові, цивільні та інші відносини" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

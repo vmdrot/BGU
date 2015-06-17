@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LiquidatedOrInsolventEntityInfoBase" nillable="true" type="LiquidatedOrInsolventEntityInfoBase" />
+  <xs:complexType name="LiquidatedOrInsolventEntityInfoBase">
+    <xs:annotation>
+      <xs:documentation>Інформація про ліквідовану юр.особу</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Ліквідована юрособа">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор, обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" displayName="Статус (ліквідації чи банкрутства)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Юр.особу ліквідовано, чи вона збанкрутіла/неплатоспроможна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття статусу (ліквідації чи банкрутства)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationReason" type="xs:string" type_ukr="текст" displayName="Причина ліквідації/банкрутства">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationPretext" type="xs:string" type_ukr="текст" displayName="Підстава ліквідації/банкрутства">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове; мається на увазі, документ, рішення, розпорядження, закон, тощо (конкретний...)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="InsolvencyStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Insolvent" description="Банкрут" />
+      <xs:enumeration value="Liquidated" description="Ліквідовано" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

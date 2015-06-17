@@ -42,7 +42,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             this.AquisitionByInfluence = new List<SignificantOrDecisiveInfulenceInfo>();
             this.ExistingOwnershipDetailsHive = new List<OwnershipStructure>();
             this.OutstandingLoansWithBanksDetails = new List<LoanInfo>();
-            this.MissingInformationResons = new Dictionary<string, string>();
+            this.MissingInformationResons = new List<MissingInformationResonInfo>();
         }
         #endregion
 
@@ -272,7 +272,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("...")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
-        public Dictionary<string, string> MissingInformationResons { get; set; }
+        public List<MissingInformationResonInfo> MissingInformationResons { get; set; }
 
         /// <summary>
         /// ____________________       __________________________    _______________________________

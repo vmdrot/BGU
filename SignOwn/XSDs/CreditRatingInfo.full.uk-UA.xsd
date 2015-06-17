@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CreditRatingInfo" nillable="true" type="CreditRatingInfo" />
+  <xs:complexType name="CreditRatingInfo">
+    <xs:annotation>
+      <xs:documentation>Кредитний рейтинг емітента
+            Три поля, по суті:
+            1) Аґенція, що роздала рейтинг;
+            2) Довго- та середньотерміновий рейтинг;
+            3) Короткотерміновий рейтинг.
+            Якщо аґенція - добре відома, то достатньо буде обрати зі списків WellKnownAgency, LongMidTermRatingValue і ShortTermRatingValue 
+            інакше, доведеться заповнити поле AgencyOther; якщо у полях значення рейтингу буде обрано "Інше" (Other), то також доведеться ввести значення у відповідному полі *RatingValueOther.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="WellKnownAgency" type="WellKnownCreditRatingAgencyType" displayName="Рейтингова аґенція (добре знана)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AgencyOther" type="RatingAgencyInfo" displayName="Рейтингова аґенція (інша)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі WellKnownAgency обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="LongMidTermRatingValue" type="LongTermCreditRatingType" displayName="Довго- та середньотермінове значення рейтингу(стандартне)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="LongMidTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Довго- та середньотермінове значення рейтингу(якщо інше)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі LongMidTermRatingValue обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ShortTermRatingValue" type="ShortTermCreditRatingType" displayName="Короткотермінове значення рейтингу(стандартне)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ShortTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Короткотермінове значення рейтингу(якщо інше)">
+        <xs:annotation>
+          <xs:documentation>Якщо в полі ShortTermRatingValue обрано "Інше" (Other)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="WellKnownCreditRatingAgencyType">
+    <xs:annotation>
+      <xs:documentation>http://en.wikipedia.org/wiki/Fitch_Ratings#Long-term_credit_ratings
+            http://en.wikipedia.org/wiki/DBRS
+            http://en.wikipedia.org/wiki/Dagong_Global_Credit_Rating
+            
+            
+
+Див.також: http://en.wikipedia.org/wiki/Moody%27s_Investors_Service#Moody.27s_credit_ratings</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Moodys" description="Moody's Investor Service" />
+      <xs:enumeration value="Fitch" description="Fitch Ratings" />
+      <xs:enumeration value="SAndP" description="Не вказано" />
+      <xs:enumeration value="DRBS" description="Standard &amp; Poors" />
+      <xs:enumeration value="Dagong" description="Dagong Credit Rating (та дочірні рейтингові компанії)" />
+      <xs:enumeration value="JCR" description="Japan Credit Rating" />
+      <xs:enumeration value="ACR" description="ARC Ratings, S.A." />
+      <xs:enumeration value="UCRA" description="Українська кредитна рейтингова аґенція" />
+      <xs:enumeration value="Other" description="Інша" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RatingAgencyInfo">
+    <xs:annotation>
+      <xs:documentation>Див.також: http://en.wikipedia.org/wiki/Category:Credit_rating_agencies</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" type_ukr="логічний тип(так/ні)" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="LongTermCreditRatingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="A" description="A" />
+      <xs:enumeration value="A1" description="A1" />
+      <xs:enumeration value="A2" description="A2" />
+      <xs:enumeration value="A3" description="A3" />
+      <xs:enumeration value="AA" description="AA" />
+      <xs:enumeration value="Aa1" description="Aa1" />
+      <xs:enumeration value="Aa2" description="Aa2" />
+      <xs:enumeration value="Aa3" description="Aa3" />
+      <xs:enumeration value="AAA" description="AAA" />
+      <xs:enumeration value="AAAMinus" description="AAA-" />
+      <xs:enumeration value="AAAPlus" description="AAA+" />
+      <xs:enumeration value="AAMinus" description="AA-" />
+      <xs:enumeration value="AAPlus" description="AA+" />
+      <xs:enumeration value="AMinus" description="A-" />
+      <xs:enumeration value="APlus" description="A+" />
+      <xs:enumeration value="B" description="B" />
+      <xs:enumeration value="B1" description="B1" />
+      <xs:enumeration value="B2" description="B2" />
+      <xs:enumeration value="B3" description="B3" />
+      <xs:enumeration value="Ba1" description="Ba1" />
+      <xs:enumeration value="Ba2" description="Ba2" />
+      <xs:enumeration value="Ba3" description="Ba3" />
+      <xs:enumeration value="Baa1" description="Baa1" />
+      <xs:enumeration value="Baa2" description="Baa2" />
+      <xs:enumeration value="Baa3" description="Baa3" />
+      <xs:enumeration value="BB" description="BB" />
+      <xs:enumeration value="BBB" description="BBB" />
+      <xs:enumeration value="BBBMinus" description="BBB-" />
+      <xs:enumeration value="BBBPlus" description="BBB+" />
+      <xs:enumeration value="BBMinus" description="BB-" />
+      <xs:enumeration value="BBPlus" description="BB+" />
+      <xs:enumeration value="BMinus" description="B-" />
+      <xs:enumeration value="BPlus" description="B+" />
+      <xs:enumeration value="C" description="C" />
+      <xs:enumeration value="Ca" description="Ca" />
+      <xs:enumeration value="Caa1" description="Caa1" />
+      <xs:enumeration value="Caa2" description="Caa2" />
+      <xs:enumeration value="Caa3" description="Caa3" />
+      <xs:enumeration value="CC" description="CC" />
+      <xs:enumeration value="CCC" description="CCC" />
+      <xs:enumeration value="CCCMinus" description="CCC-" />
+      <xs:enumeration value="CCCPlus" description="CCC+" />
+      <xs:enumeration value="CCMinus" description="CC-" />
+      <xs:enumeration value="CCPlus" description="CC+" />
+      <xs:enumeration value="CMinus" description="C-" />
+      <xs:enumeration value="CPlus" description="C+" />
+      <xs:enumeration value="D" description="D" />
+      <xs:enumeration value="LD" description="LD" />
+      <xs:enumeration value="NR" description="NR" />
+      <xs:enumeration value="R" description="R" />
+      <xs:enumeration value="Other" description="Інше (вказати)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ShortTermCreditRatingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="A1" description="A-1" />
+      <xs:enumeration value="A2" description="A-2" />
+      <xs:enumeration value="A3" description="A-3" />
+      <xs:enumeration value="B" description="B" />
+      <xs:enumeration value="C" description="C" />
+      <xs:enumeration value="D" description="D" />
+      <xs:enumeration value="Other" description="Інше (вказати)" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+</xs:schema>

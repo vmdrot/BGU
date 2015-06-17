@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MissingInformationResonInfo" nillable="true" type="MissingInformationResonInfo" />
+  <xs:complexType name="MissingInformationResonInfo">
+    <xs:annotation>
+      <xs:documentation>Причина відсутності відомостей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PropertyName" type="xs:string" type_ukr="текст" displayName="Назва поля" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReasonWhyMissing" type="xs:string" type_ukr="текст" displayName="Причина відсутності інформації/неможливості її надати" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

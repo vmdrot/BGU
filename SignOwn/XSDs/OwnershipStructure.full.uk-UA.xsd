@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OwnershipStructure" nillable="true" type="OwnershipStructure" />
+  <xs:complexType name="OwnershipStructure">
+    <xs:annotation>
+      <xs:documentation>Інформація-елемент ланцюжка розкриття структури власності</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Об'єкт власності" description="Юр.особа, чия власність розкривається">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор юр.особи - об'єкта власності</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Owner" type="GenericPersonID" displayName="Власник" description="Власник">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            ідентифікатор особи-власника</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="OwnershipKind" type="OwnershipType" displayName="Тип володіння" description="Тип володіння">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            За змовчанням Direct (пропонувати уже введене)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Share" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка у власності (сума)" description="Частка (сума)">
+        <xs:annotation>
+          <xs:documentation>Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка (%)" description="Частка (%)">
+        <xs:annotation>
+          <xs:documentation>Як правило, саме у %-х і зазначається власність</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів в управлінні" description="Кількість голосів в управлінні">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:annotation>
+      <xs:documentation>Універсальний ідентифікатор особи (як юр., так і фізичної)
+            (щоб не "таскати", себто, не дублювати, усі реквізити особи там, де потребується просто послатися на ту особу).
+            Використовується (зокрема) для ідентифікації:
+             - об'єкту власності та власника - при розкритті ланцюжка кінцевих власників
+             - членів колегіального керівного органу;
+             - виданої гарантії/поручительства);
+             - тощо.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Код країни резидентності
+            
+
+Див.також: CountryInfo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Тип особи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Код особи;
+            Для юр.особи - TaxCodeOrHandelsRegNr
+            Для фіз.особи:
+            якщо (не пустий TaxOrSocSecID ) - то TaxOrSocSecID 
+            інакше - PassportID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Physical" description="Фізична особа" />
+          <xs:enumeration value="Legal" description="Юридична особа" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="OwnershipType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Direct" description="Пряма власність" />
+      <xs:enumeration value="Implicit" description="Опосередкована власність" />
+      <xs:enumeration value="Associated" description="Власність через пов'язану особу" />
+      <xs:enumeration value="Agreement" description="Власність через угоду/договір" />
+      <xs:enumeration value="Attorney" description="Власність по довіреності" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

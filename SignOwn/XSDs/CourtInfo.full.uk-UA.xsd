@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CourtInfo" nillable="true" type="CourtInfo" />
+  <xs:complexType name="CourtInfo">
+    <xs:annotation>
+      <xs:documentation>Ідентифікація суду (господарського, тощо)
+            Використовується, зокрема, у полях, де вимагається 
+            інформація про наявність порушених справ про банкрутство
+            
+
+Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:annotation>
+      <xs:documentation>Країна 
+            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)
+            (в усіх місцях, окрім тих, де з контексту явно випливає, що буде не Україна)
+            
+
+Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
+            Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>Назва країни англ. мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Назва країни українською мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CourtInstanceType">
+    <xs:annotation>
+      <xs:documentation>Перелік як у випадаючому списку "Інстанція"
+            
+
+Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="First" description="Перша" />
+      <xs:enumeration value="Appeal" description="Апеляційна" />
+      <xs:enumeration value="Cassation" description="Касаційна" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

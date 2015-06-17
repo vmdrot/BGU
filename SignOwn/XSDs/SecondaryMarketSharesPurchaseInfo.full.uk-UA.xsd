@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SecondaryMarketSharesPurchaseInfo" nillable="true" type="SecondaryMarketSharesPurchaseInfo" />
+  <xs:complexType name="SecondaryMarketSharesPurchaseInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку 
+            та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі 
+            в банку (крім набуття істотної участі в результаті передавання особі права 
+            голосу або незалежно від формального володіння)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="IPOSharesPurchaseInfo">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Актив, що набувається" description="Банк або ж юр.особа - власник участі в банку (прямої чи опосередкованої)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" displayName="Попередній власник" description="Власник, від якого переходитиме власність">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" displayName="Правочин" description="Інформація про відповідний правочин">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%, що набувається" description="Відсоток у статутному капіталі юридичної особи або банку, який придбавається">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" displayName="Номінальна вартість" description="Загальна номінальна вартість акцій (часток, паїв), які придбаваються">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" displayName="Ціна реальної угоди" description="Ціна акцій (часток, паїв), які придбаваються ( Може зазначатися ціна, яка попередньо погоджена сторонами відповідно до проекту договору купівлі-продажу акцій банку ...)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LegalTransactionInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про правочин
+            У перспективі - продумати структуру, що б покривала опису, що надається у https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%B8%D0%BD</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Правочин відбувся?" description="Чи правочин уже відбувся чи лише планується?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" displayName="Тип правочину" description="..." />
+      <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" type_ukr="текст" displayName="№ правочину" description="напр. №/серія договору, тощо - якщо правочин вже відбувся та/або цей реквізит відомий">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   IsCommitted == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата правочину" description="якщо правочин вже відбувся та/або цей реквізит відомий">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   IsCommitted == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfGenericPersonID" displayName="Сторони" description="Сторони правочину">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionText" type="xs:string" type_ukr="текст" displayName="Зміст правочину" description="Стислий опис змісту правочину">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
+</xs:schema>

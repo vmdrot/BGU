@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AttachmentInfo" nillable="true" type="AttachmentInfo" />
+  <xs:complexType name="AttachmentInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про долучення до анкет</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FileName" type="xs:string" type_ukr="текст" displayName="Файл">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" displayName="Тип (з переліку)" description="Тип додатку із переліку типових долучень; якщо &quot;Інше&quot; - обов'язково вказати, що саме у полі &quot;Опис файлу&quot;.">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле, за змовчанням - Інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" type_ukr="текст" displayName="Опис файлу" description="Що у файлі?">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле, якщо в AttachmentType != Інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentType" type="xs:string" type_ukr="текст" displayName="Формат" description="Тип MIME, напр. pdf, xls, xlsx, doc, docs, rtf, тощо">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Заповнювати самостійно з розширення FileName
+            Давати можливість користувачу змінити</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypicalApplicationAttachement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="InternalReglementCopiesScans" description="Копії/скан внутрішніх положень" />
+      <xs:enumeration value="WorkbookCopyScan" description="Копії/скан трудової книги" />
+      <xs:enumeration value="PassportCopyScan" description="Копії/скан паспорта" />
+      <xs:enumeration value="CharterCopyScan" description="Копії/скан статуту" />
+      <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

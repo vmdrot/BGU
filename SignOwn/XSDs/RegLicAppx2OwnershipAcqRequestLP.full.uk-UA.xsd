@@ -218,11 +218,45 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ArrayOfCreditRatingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditRatingInfo" nillable="true" type="CreditRatingInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFinancialOversightAuthorityInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FinancialOversightAuthorityInfo" nillable="true" type="FinancialOversightAuthorityInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIPOSharesPurchaseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPOSharesPurchaseInfo" nillable="true" type="IPOSharesPurchaseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSecondaryMarketSharesPurchaseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SecondaryMarketSharesPurchaseInfo" nillable="true" type="SecondaryMarketSharesPurchaseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPowerOfAttorneySharesPurchaseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PowerOfAttorneySharesPurchaseInfo" nillable="true" type="PowerOfAttorneySharesPurchaseInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSignificantOrDecisiveInfulenceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SignificantOrDecisiveInfulenceInfo" nillable="true" type="SignificantOrDecisiveInfulenceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMissingInformationResonInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationResonInfo" nillable="true" type="MissingInformationResonInfo" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfCreditRatingInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CreditRatingInfo.uk-UA.xsd" />
   <xs:include schemaLocation="WellKnownCreditRatingAgencyType.uk-UA.xsd" />
   <xs:include schemaLocation="RatingAgencyInfo.uk-UA.xsd" />
@@ -237,14 +271,12 @@
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LongTermCreditRatingType.uk-UA.xsd" />
   <xs:include schemaLocation="ShortTermCreditRatingType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfFinancialOversightAuthorityInfo.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialOversightAuthorityInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignificantOwnershipAcquisitionWaysInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
@@ -252,11 +284,8 @@
   <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfSecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfPowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfSignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="InfluenceType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIncomeOriginInfo.uk-UA.xsd" />
@@ -289,7 +318,6 @@
   <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfMissingInformationResonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="MissingInformationResonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />

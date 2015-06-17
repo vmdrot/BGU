@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PersonsAssociation" nillable="true" type="PersonsAssociation" />
+  <xs:complexType name="PersonsAssociation">
+    <xs:annotation>
+      <xs:documentation>Інформація про зв'язок між двома особами;
+            використовується для ідентифікації пов'язаних осіб.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="One" type="GenericPersonID" displayName="Перша особа" description="Перша особа">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язково</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Two" type="GenericPersonID" displayName="Друга особа" description="Друга особа">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язково, не та ж що й One</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="OwnershipType" displayName="Тип зв'язку" description="Тип зв'язку">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язково</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" displayName="Ким приходиться перша особа другій" description="Назва, ким приходиться перша особа другій">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            батько, мати, дружина, кум, зять, брат, сват, і т.д.;
+            якби існував кінечний перелік, доцільно було б замінити ним</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" displayName="Ким приходиться друга особа першій" description="Назва, ким приходиться друга особа першій">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Віддзеркалення значення AssociationTitleOneVsTwo
+            син, син, чоловік, кум/кума/похресник/похресниця, тесть/свекор/теща/свекруха, брат/сестра, ..., і т.д.
+            
+
+Див.також: AssociationTitleOneVsTwo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" type_ukr="текст" displayName="Ролі осіособи одна одній (якщо інше)" description="Ким приходяться особи одна одній (якщо інше)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            опис ролей пов'язаних осіб, якщо в полях AssociationTitleTwoVsOne / AssociationTitleOneVsTwo вказано "Інше..."
+            
+
+Див.також: AssociationTitleOneVsTwo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AssociatedPersonRole">
+    <xs:annotation>
+      <xs:documentation>Близький до вичерпного перелік ролей пов'язаних осіб-родичів
+            Додаткові посилання:
+             - http://uba.ua/documents/doc/bevza.pdf
+             - http://uk.wikipedia.org/wiki/%D0%9F%D0%BE%D0%B2'%D1%8F%D0%B7%D0%B0%D0%BD%D0%B0_%D0%BE%D1%81%D0%BE%D0%B1%D0%B0
+            
+
+Див.також: http://uba.ua/documents/doc/bevza.pdf</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Husband" description="чоловік" />
+      <xs:enumeration value="Wife" description="дружина" />
+      <xs:enumeration value="Son" description="син" />
+      <xs:enumeration value="Daughter" description="дочка" />
+      <xs:enumeration value="Father" description="батько" />
+      <xs:enumeration value="Mother" description="мати" />
+      <xs:enumeration value="Patron" description="опікун/-ка" />
+      <xs:enumeration value="Brother" description="брат" />
+      <xs:enumeration value="Sister" description="сестра" />
+      <xs:enumeration value="FatherInLaw" description="тесть/свекор" />
+      <xs:enumeration value="MotherInLaw" description="теща/свекруха" />
+      <xs:enumeration value="SonInLaw" description="зять" />
+      <xs:enumeration value="DaughterInLaw" description="невістка" />
+      <xs:enumeration value="BrotherInLaw" description="шурин/дівер/зять" />
+      <xs:enumeration value="SisterInLaw" description="сестра чоловіка" />
+      <xs:enumeration value="Cousin" description="двоюрідні брат/сестра" />
+      <xs:enumeration value="GrandFather" description="дід" />
+      <xs:enumeration value="GrandMother" description="баба" />
+      <xs:enumeration value="GrandSon" description="онук" />
+      <xs:enumeration value="GrandDaughter" description="онука" />
+      <xs:enumeration value="NephewNiece" description="племінник(-ця) / небіж / небога" />
+      <xs:enumeration value="AuncleAunt" description="дядько / тітка / дядина" />
+      <xs:enumeration value="OtherRelative" description="інший родич" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LiquidatedOrInsolventEntityMgmtRecordInfo" nillable="true" type="LiquidatedOrInsolventEntityMgmtRecordInfo" />
+  <xs:complexType name="LiquidatedOrInsolventEntityMgmtRecordInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LiquidatedOrInsolventEntityInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Position" type="ManagementPosition" displayName="Посада">
+            <xs:annotation>
+              <xs:documentation>... займану Вами в цій юридичний особі посаду</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
+  <xs:include schemaLocation="ManagementPosition.uk-UA.xsd" />
+</xs:schema>

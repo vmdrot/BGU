@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RegLicAppx7ShareAcqIntent" nillable="true" type="RegLicAppx7ShareAcqIntent" />
+  <xs:complexType name="RegLicAppx7ShareAcqIntent">
+    <xs:annotation>
+      <xs:documentation>ПОВІДОМЛЕННЯ про наміри набуття/збільшення істотної участі в банку
+            Додаток 7 до Положення про порядок реєстрації та ліцензування банків, відкриття відокремлених підрозділів
+            file                                  : f364524n1027.doc
+            Рівень складності                     : 5
+            (оціночний, шкала від 1 до 10)
+            Пріоритетність                        : Lo  (Легенда: Hi - Висока, Lo - Низька, Mid - Середня, Hold - Поки що притримати)
+            Подавач анкети                        : LP;PP (Легенда: LP - юр.особа, PP - фіз.особа, BK - банк)
+            Чи заповнюватиметься он-лайн          : Так
+            Первинну розробку структури завершено : Ні
+            Структуру фіналізовано                : Ні
+            (=остаточно узгоджено 
+            з бізнес-користувачами)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк" description="Банк, у якому мається намір набути істотну участь">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            в ___________________________________________________
+            (повне офіційне найменування банку, його місцезнаходження)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Заявник" description="Особа, що має намір придбати істотну участь">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            
+            Прошу погодити _________________________________________________________________
+            (найменування юридичної особи та/або прізвище, ім'я та по батькові фізичної особи,</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipSummary" type="TotalOwnershipDetailsInfo" displayName="Наявна істотна участь" description="Наявна на сьогоднішній день участь істотна участь Заявника">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Наявна на сьогоднішній день участь.
+            Якщо участь набувається уперше - по 0-м.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnership" type="ArrayOfOwnershipStructure" displayName="Розшифровка існуючої істотної участі" description="Ланцюжок існуючих власників істотної участі - як прямої, так і опосередкованої, що">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Розшифровка наявної на сьогоднішній день участі.
+            Якщо участь набувається уперше - пуста колекція/масив.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnership" type="ArrayOfOwnershipStructure" displayName="Розшифровка істотної участі, що набувається" description="Ланцюжок власників істотної участі - як прямої, так і опосередкованої, - що набувається">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipSummary" type="TotalOwnershipDetailsInfo" displayName="Шукана (цільова) сумарна істотна участь Заявника" description="у результаті чого істотна участь становитиме ___ відсотків статутного капіталу банку, що становить _____________ гривень.">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            у результаті чого істотна участь становитиме ___ відсотків статутного капіталу банку, що становить _____________ гривень.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Повні реквізити фігурантів" description="Реквізити усіх осіб, що згадуються в полях анкети">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Реквізити усіх осіб, чиї GenericID-и згадуються в полях Acquiree, 
+            BankRef, ExistingOwnership, TargetedOwnership</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Пов'язані особи-фігуранти анкети" description="Укажіть зв'язки між особами фігурантами-анкети (якщо такі є)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Пуста колекція, якщо пов'язаних осіб серед фігурантів анкети немає.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Я, ________________________________________________________________________________,
+                 (прізвище, ім'я, по батькові)
+            стверджую, що інформація, надана в анкеті, є правдивою і повною, та не заперечую проти перевірки 
+            Національним банком України достовірності поданих документів і персональних даних, що в них містяться.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AmObligingToKeepUp2DateWithin10Days" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Зобов'язуюсь повідомляти про зміни?" description="У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Signee" type="SignatoryInfo">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Керівник юридичної особи    __________________
+            (підпис)
+            М.П.
+             ________________________
+            (ініціали, прізвище)
+            Фізична особа ___________________________________________________________________
+             (підпис, засвідчений нотаріально, ініціали, прізвище)
+            Дата _________________</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPersonsAssociation.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
+  <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+</xs:schema>

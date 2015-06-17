@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankruptcyInvestigationInfo" nillable="true" type="BankruptcyInvestigationInfo" />
+  <xs:complexType name="BankruptcyInvestigationInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про банкрутство (юр.особи)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CaseFiledDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата порушення справи про банкрутство" description="Дата відкриття справи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CurrentStatus" type="BankruptcyCaseResolutionType" displayName="Статус" description="Поточний статус справи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="InCurrentStatusSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття поточного статусу" description="Перебуває в нинішньому статусі починаючи з...">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   CurrentStatus not in (None, CaseFiled)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CourtDecisions" type="ArrayOfCourtDecisionInfo" displayName="Список судових рішень у справі" description="Перелік судових рішень по справі банкрутства">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BankruptcyCaseResolutionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="CaseFiled" description="Порушено справу" />
+      <xs:enumeration value="DeclaredBankrupt" description="Оголошено банкрутом" />
+      <xs:enumeration value="InFinRecovery" description="У стані санації" />
+      <xs:enumeration value="BankruptedRecovered" description="Відновлено (після банкрутства)" />
+      <xs:enumeration value="Liquidated" description="Ліквідовано" />
+      <xs:enumeration value="FinRecovered" description="Сановано" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfCourtDecisionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CourtDecisionInfo" nillable="true" type="CourtDecisionInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourtDecisionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DecisionType" type="CourtDecisionType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DecisionDate" type="xs:dateTime" type_ukr="дата і час" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DecisionText" type="xs:string" type_ukr="текст" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CourtDecisionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sentence" description="Вирок" />
+      <xs:enumeration value="Ruling" description="Постанова" />
+      <xs:enumeration value="Decision" description="Рішення" />
+      <xs:enumeration value="CourtOrder" description="Судовий наказ" />
+      <xs:enumeration value="CourtResolution" description="Ухвала суду" />
+      <xs:enumeration value="SpecialResolution" description="Окрема ухвала" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+</xs:schema>
