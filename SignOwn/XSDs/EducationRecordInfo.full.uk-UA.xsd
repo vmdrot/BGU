@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationRecordInfo" nillable="true" type="EducationRecordInfo" />
+  <xs:complexType name="EducationRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про документ про освіту (вищу, неповну, академічну, тощо)
+            
+
+Див.також: https://osvita.net/ua/checkdoc/</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" displayName="ВНЗ" description="ВНЗ - університет, інститут, коледж, тощо">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата закінчення">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле; достатньо рік, або рік і місяць</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" displayName="Тип диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" displayName="Тип відзнаки">
+        <xs:annotation>
+          <xs:documentation>необов'язкове поле (подавачі самі зацікавлені)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Якщо український диплом - обов'язкове; 
+            іншої країни - на віру</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Якщо український диплом - обов'язкове;
+            
+            
+
+Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo.DegreeSeries</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність/фах">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язково</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Спеціалізація">
+        <xs:annotation>
+          <xs:documentation>Якщо передбачено</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UniversityOrCollegeInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про навчальний заклад (університет, коледж, тощо) професійної, вищої чи неповної вищої освіти</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="UniversityName" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ" description="Назва вищого навчального закладу оригінальною мовою">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ (українською)" description="Назва вищого навчального закладу оригінальною мовою українською (якщо оригінальна мова інша">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове, якщо ВНЗ - не український, відповідно, 
+            назва оригінальна потребує перекладу/транслітерації українською.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса ВНЗ">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Хоча б місто й країна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор ВНЗ" description="Ідентифікатор ВНЗ - якщо є/передбачений">
+        <xs:annotation>
+          <xs:documentation>Не певен, чи десь існують ці ідентифікатори - 
+            у нас їх немає, але можуть запровадити.
+            Необов'зкове поле; заповнювати, якщо ідентифікатор існує.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="HigherEducationDegreeType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" />
+          <xs:enumeration value="Master" description="Магістр" />
+          <xs:enumeration value="MBA" description="MBA" />
+          <xs:enumeration value="CandidateDoctor" description="Кандидат наук" />
+          <xs:enumeration value="PhD" description="PhD" />
+          <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" />
+          <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" />
+          <xs:enumeration value="Professor" description="Професор" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="DegreeHonourType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" />
+          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" />
+          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" />
+          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" />
+          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" />
+          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" />
+          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+</xs:schema>

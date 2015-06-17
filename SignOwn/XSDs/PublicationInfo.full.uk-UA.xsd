@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PublicationInfo" nillable="true" type="PublicationInfo" />
+  <xs:complexType name="PublicationInfo">
+    <xs:annotation>
+      <xs:documentation>Відомості про публікацію (у декотрих анкетах вимагається 
+            офіційна публікація того чи іншого стану юр.особи (корпорації) чи банку</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Publisher" type="PublishingHouseInfo" displayName="Видавництво">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ISBN" type="xs:string" type_ukr="текст" displayName="ІSBN ідентифікатор" description="ІSBN ідентифікатор видання (якщо є)">
+        <xs:annotation>
+          <xs:documentation>ISBN публікації (якщо є).
+            
+
+Див.також: http://www.ukrbook.net/agentstvo.html</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MediaName" type="xs:string" type_ukr="текст" displayName="Назва ЗМІ">
+        <xs:annotation>
+          <xs:documentation>Якщо опубліковано не окремою публікацією, а у ЗМІ 
+            (газеті, журналі, часописі, альманасі, тощо) - назва такого ЗМІ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PubDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата публікації">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="IssueNr" type="xs:string" type_ukr="текст" displayName="Число публікації" description="Число/№ публікації (випуск газети, журналу, тощо)">
+        <xs:annotation>
+          <xs:documentation>якщо у ЗМІ, то обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PubUrl" type="xs:string" type_ukr="текст" displayName="URL публікації" description="Ланка на публікацію (адреса публікації в інтернет)">
+        <xs:annotation>
+          <xs:documentation>Якщо публікація в інтернеті - обов'язкове поле
+            Опціональне, якщо окрім друкованого варіанту є ще й он-лайновий</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="PublishingHouseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LegalTransactionType" type="LegalTransactionType" />
+  <xs:simpleType name="LegalTransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="BuySellAgreement" description="Договір купівлі-продажу" />
+      <xs:enumeration value="GrantAgreement" description="Договір дарування" />
+      <xs:enumeration value="Inheritance" description="Спадщина" />
+      <xs:enumeration value="SwapAgreement" description="Договір обміну" />
+      <xs:enumeration value="Other" description="Інше" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

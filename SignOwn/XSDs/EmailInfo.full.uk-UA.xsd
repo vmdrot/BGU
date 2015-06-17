@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EmailInfo" nillable="true" type="EmailInfo" />
+  <xs:complexType name="EmailInfo">
+    <xs:annotation>
+      <xs:documentation>Структура для зберігання інформації про e-mail
+            Можна відмовитися й зберігати просто значення e-mail</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Email" type="xs:string" type_ukr="текст" displayName="Адреса ел.пошти">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле
+            валідація як e-mail</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" type_ukr="текст" displayName="Примітки (необов'язково)">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле, передбачено для вказання, що за мило - робоче, особисте, офіційне (юр.особи).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

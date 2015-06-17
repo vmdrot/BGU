@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TotalOwnershipDetailsInfo" nillable="true" type="TotalOwnershipDetailsInfo" />
+  <xs:complexType name="TotalOwnershipDetailsInfo">
+    <xs:annotation>
+      <xs:documentation>Структура для агрегації даних про частки власності - як прямі, так і опосередковані, а також ті, що набуваються</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DirectOwnership" type="OwnershipSummaryInfo" displayName="Пряма власність" description="Пряма власність">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ImplicitOwnership" type="OwnershipSummaryInfo" displayName="Опосередкована власність" description="Опосередкована власність">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AcquiredVotes" type="OwnershipVotesInfo" displayName="Власність, що набувається" description="Власність, що набувається">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCapitalSharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Усього % у загальній власності" description="Усього % у загальній власності">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalVotes" type="xs:int" type_ukr="ціле число" displayName="Усього голосів" description="Усього голосів">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipSummaryInfo">
+    <xs:annotation>
+      <xs:documentation>Структура для групування загальної інформації про власність
+            Обов'язково або Pct, або Amount</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="кількість акцій (паїв)" description="кількість акцій (паїв)" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharesNominalValue" type="CurrencyAmount" displayName="номінальна вартість акцій (паїв)" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:annotation>
+      <xs:documentation>Структура для універсальної грошової суми</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Значення за змовчанням - UAH
+            
+
+Див.також: http://www.currency-iso.org/en/home/tables/table-a1.html</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipVotesInfo">
+    <xs:annotation>
+      <xs:documentation>Спрощений варіант інформації про часту власності (де не вимагається сума в абс. виразі)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів" description="Кількість голосів">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

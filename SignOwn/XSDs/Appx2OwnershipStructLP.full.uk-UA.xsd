@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Appx2OwnershipStructLP" nillable="true" type="Appx2OwnershipStructLP" />
+  <xs:complexType name="Appx2OwnershipStructLP">
+    <xs:annotation>
+      <xs:documentation>Увага! Цей тип було помічено як такий, що не використовується/застарів (Obsolete)!
+
+            АНКЕТА юридичної особи (у тому числі банку)
+            Додаток 2 до Положення про порядок подання відомостей про структуру власності
+            file                                  : f364553n172.doc
+            Рівень складності                     : 7
+            (оціночний, шкала від 1 до 10)
+            Пріоритетність                        : Lo  (Легенда: Hi - Висока, Lo - Низька, Mid - Середня, Hold - Поки що притримати)
+            Подавач анкети                        : LP (Легенда: LP - юр.особа, PP - фіз.особа, BK - банк)
+            Чи заповнюватиметься он-лайн          : Так
+            Первинну розробку структури завершено : Так
+            Структуру фіналізовано                : Ні
+            (=остаточно узгоджено 
+            з бізнес-користувачами)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="QuestionnaireBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк" description="Банк">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Ідентифікація банку
+            Лише укр. банки, лише головні контори, крім НБУ і всіх ТРУ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Юр.особа-заявник" description="1. Інформація про юридичну особу">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            p.1.1 , p.1.2 , p.1.3 , p.1.6
+            якнайповніше заповнення</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Наглядова (спостережна) рада юридичної особи?" description="1.4. Чи існує наглядова (спостережна) рада юридичної особи">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            p.1.4
+            Чекбокс, щоб вказати, що її не існує (не передбачено), цього органу</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" displayName="Особовий склад наглядової(спостережної)ради юрособи" description="1.4. Голова та члени наглядової (спостережної) ради юридичної особи">
+            <xs:annotation>
+              <xs:documentation>тільки якщо IsSupervisoryCouncilPresent == true</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutivesPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Виконавчий орган юридичної особи?" description="1.4. Чи існує виконавчий орган юридичної особи">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            p.1.5
+            Чекбокс, щоб вказати, що її не існує (не передбачено), цього органу</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Executives" type="CouncilBodyInfo" displayName="Особовий склад виконавчого органу юрособи" description="1.5. Голова та члени виконавчого органу юридичної особи">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            тільки якщо IsExecutivesPresent == true</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalOwneshipPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="% власності юрособи у капіталі банку" description="1.7. Відсоток участі в банку становить ... відсотків статутного капіталу банку">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            p.1.7
+            обов'язкове поле</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalOwneshipDetails" type="TotalOwnershipDetailsInfo" displayName="Частка власності юрособи в банку - розподіл" description="1.7. Відсоток участі в банку становить, у т.ч.:">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Агреговане резюме власності (прямої, опосередкованої)
+            обов'язкове поле</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="BankExistingCommonImplicitOwners" type="ArrayOfOwnershipStructure" displayName="Розшифровка ланцюжка власників банку" description="1.8. Інформація про спільне володіння (=розкриття усього ланцюжка власників, у т.ч. й пов'язаних юросіб)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            p.1.8
+            Ця структура потім має розгорнутися у дерево,
+            як його можна відприти в живому прототипі - Зразки -&gt; Положення про порядок... структуру -&gt; Анкета ... (Додаток 2) -&gt; Грант 
+            =&gt; і там п. меню Більше... -&gt; Кінцеві власники
+                                          Граф власності</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="SharesAppliedFor" type="ArrayOfPurchasedVoteInfo" displayName="Частка власності, що набувається" description="1.10. Інформація про набуття права голосу">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове
+            p.1.10</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="ApplicantOwnershipStructure" type="ArrayOfOwnershipStructure" displayName="Розшифровка ланцюжка власників юрособи-набувача" description="2.1. Інформація про осіб (юр. і фіз.), які володіють істотною участю в юридичній особі&#xA;(якщо не було розкрито у п.1.8.)">
+            <xs:annotation>
+              <xs:documentation>p.2.1
+            Якщо цю інформацію не розкрито в полі BankExistingCommonImplicitOwners
+            (як правило, таке трапляється коли набувач доти не мав жодних часток у банку</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Реквізити осіб-фігурантів анкети" description="Повна інформація про осіб, що згадуються в анкеті">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Внутрішнє, службове поле.
+            Для користувача заповнення інформації про кожну 
+            з осіб-фігурантів має відбуватися у тому місці, 
+            де ця особа фігурує: у полях BankRef, 
+            BankExistingCommonImplicitOwners, ApplicantOwnershipStructure, тощо).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Зв'язки між особами-фігурантами анкети" description="Відомості про пов'язаних осіб, що згадуються в анкеті">
+            <xs:annotation>
+              <xs:documentation>Бачу сенс вводити це поле окремо і явно;
+            у перспективі, запровадити попередню перевірку на 
+            наявність однофамільців серед фігурантів і "торбити"
+            заповнювача, що там 100% є пов'язані особи, мовляв, не хочете їх ідентифікувати.
+            Якщо немає пов'язаних осіб - не обов'язкове</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Усі поля обов'язкові</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язково бодай один тел. і один e-mail, решта - необов'язкові</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPurchasedVoteInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchasedVoteInfo" nillable="true" type="PurchasedVoteInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CouncilBodyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCouncilMemberInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CouncilMemberInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+  <xs:include schemaLocation="PurchasedVoteInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPersonsAssociation.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
+  <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+</xs:schema>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
+  <xs:complexType name="EmploymentRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Структура для зберігання відомостей про досвід роботи
+            (один "епізод" з трудової біографії)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле
+            Посилання - реквізити в MentionedEntities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове, вільний формат</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове, з точністю до місяця</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи">
+        <xs:annotation>
+          <xs:documentation>з точністю до місяця
+            якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" displayName="Тип зайнятості">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле (хіба ще досі там працює)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину">
+        <xs:annotation>
+          <xs:documentation>Пояснення обов'язкове для TerminationType типів:
+            - Dismissed
+            - OtherLeaveType
+            - VoluntaryQuit</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="EmployerContact" type="ContactInfo" displayName="Контакти роботодавця">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            тел, e-mail, якщо є - www;
+            якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EmploymentState">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="Employed" description="Найманий працівник" />
+          <xs:enumeration value="Selfemployed" description="Самозайнятість" />
+          <xs:enumeration value="Freelance" description="Фрілансер" />
+          <xs:enumeration value="Unemployed" description="Безробітний" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="EmploymentTerminationType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" />
+          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." />
+          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" />
+          <xs:enumeration value="Retired" description="Вихід на пенсію" />
+          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" />
+          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" />
+          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" />
+          <xs:enumeration value="OtherLeaveType" description="Інше" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+</xs:schema>

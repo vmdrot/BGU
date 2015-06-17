@@ -961,6 +961,8 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             File.Copy(Path.Combine(XsdFilesOutputDir, "schema0.xsd"), Path.Combine(XsdFilesOutputDir, string.Format("{0}.xsd", typ.Name.Trim())), true);
             File.Copy(Path.Combine(XsdFilesOutputDir, "schema0.xsd"), Path.Combine(XsdFilesOutputDir, string.Format("{0}.uk-UA.xsd", typ.Name.Trim())), true);
             ProcessXSDSingle(typ, assemblySummariesXml, "uk-UA.", true);
+            File.Copy(Path.Combine(XsdFilesOutputDir, "schema0.xsd"), Path.Combine(XsdFilesOutputDir, string.Format("{0}.full.uk-UA.xsd", typ.Name.Trim())), true);
+            ProcessXSDSingle(typ, assemblySummariesXml, "uk-UA.",false);
         }
 
         private static void CallXmlFormatterExe(string xsdPath)
@@ -1042,7 +1044,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
 
         private static void ProcessXSDSingle(Type typ, XmlDocument assemblySummariesXml, string extraFileExt, bool bRemoveAllOtherTypes)
         {
-            string targetPath = Path.Combine(XsdFilesOutputDir, string.Format("{0}.{1}xsd", typ.Name.Trim(), extraFileExt));
+            string targetPath = Path.Combine(XsdFilesOutputDir, string.Format("{0}{1}.{2}xsd", typ.Name.Trim(), (bRemoveAllOtherTypes ? "" : ".full"), extraFileExt));
             if(!bRemoveAllOtherTypes)
                 ProcessXSDSingle(targetPath, assemblySummariesXml, null);
             else

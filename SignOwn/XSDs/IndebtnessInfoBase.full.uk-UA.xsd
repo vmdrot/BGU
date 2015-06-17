@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="IndebtnessInfoBase" nillable="true" type="IndebtnessInfoBase" />
+  <xs:complexType name="IndebtnessInfoBase">
+    <xs:annotation>
+      <xs:documentation>Базовий тип (клас) для інформації про позику чи іншу заборгованість (містить усі спільні поля)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Lender" type="GenericPersonID" displayName="Кредитор">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Borrower" type="GenericPersonID" displayName="Позичальник">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DebtSubject" type="xs:string" type_ukr="текст" displayName="Суть заборгованості">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Principal" type="CurrencyAmount" displayName="Основна сума боргу">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення">
+        <xs:annotation>
+          <xs:documentation>обов'язкове, якщо передбачена дата погашення; може бути й безстрокова позика.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" displayName="Залишок заборгованості">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Прострочена заборгованість?">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" displayName="Сума простроченої заборгованості">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" type_ukr="текст" displayName="Деталі прострочки" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" type_ukr="текст" displayName="Прични прострочки">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+</xs:schema>

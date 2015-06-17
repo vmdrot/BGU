@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FundsOriginType" type="FundsOriginType" />
+  <xs:simpleType name="FundsOriginType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" description="Не вказано" />
+          <xs:enumeration value="WagesSalaries" description="Зарплатня" />
+          <xs:enumeration value="Royalties" description="Роялті" />
+          <xs:enumeration value="Dividends" description="Дивіденди" />
+          <xs:enumeration value="PassiveIncomes" description="Пасивний дохід" />
+          <xs:enumeration value="Inherited" description="Спадщина" />
+          <xs:enumeration value="OtherIncomes" description="Інші доходи" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+</xs:schema>

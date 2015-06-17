@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ManagementPosition" type="ManagementPosition" />
+  <xs:simpleType name="ManagementPosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="CEO" description="Голова Правління" />
+      <xs:enumeration value="VCEO" description="Заступник Голови Правління" />
+      <xs:enumeration value="ManagingBoardMember" description="Член Правління" />
+      <xs:enumeration value="ChiefBookkeeper" description="Головний бухгалтер" />
+      <xs:enumeration value="DeputyChiefBookkeeper" description="Заступник головного бухгалтера" />
+      <xs:enumeration value="SupervisoryBoardHead" description="Голова Спостережної ради" />
+      <xs:enumeration value="DeputySupervisoryBoardHead" description="Заступник Голови Спостережної ради" />
+      <xs:enumeration value="SupervisoryBoardMember" description="Член Спостережної ради" />
+      <xs:enumeration value="SupervisoryBoardMemberLPRep" description="Представник юридичної особи – Члена спостережної ради" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SharesAcquisitionInfo" nillable="true" type="SharesAcquisitionInfo" />
+  <xs:complexType name="SharesAcquisitionInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про пакет акцій, що купується</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="Кількість акцій (одиниць)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="InclVotingSharesCount" type="xs:int" type_ukr="ціле число" displayName="У тому числі кількість акцій з правом голосу">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharePrice" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="номінальна вартість однієї акції (паю)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCosts" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="загальна сума ... гривень">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            тобто, SharesCount * SharePrice</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
