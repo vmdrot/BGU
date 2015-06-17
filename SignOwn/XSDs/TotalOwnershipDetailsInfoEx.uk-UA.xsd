@@ -21,6 +21,7 @@
   </xs:complexType>
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />

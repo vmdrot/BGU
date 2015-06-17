@@ -44,5 +44,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
 </xs:schema>

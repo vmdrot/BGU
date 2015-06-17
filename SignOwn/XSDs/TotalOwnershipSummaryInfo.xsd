@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="OwnershipSummaryInfo" nillable="true" type="OwnershipSummaryInfo" />
+  <xs:element name="TotalOwnershipSummaryInfo" nillable="true" type="TotalOwnershipSummaryInfo" />
+  <xs:complexType name="TotalOwnershipSummaryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnershipSummary" type="OwnershipSummaryInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImplicitPct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalPct" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="OwnershipSummaryInfo">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" />

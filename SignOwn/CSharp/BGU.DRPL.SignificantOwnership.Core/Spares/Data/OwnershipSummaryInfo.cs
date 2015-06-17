@@ -14,28 +14,21 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.OwnershipSummaryInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class OwnershipSummaryInfo
     {
+        [DisplayName("кількість акцій (паїв)")]
+        [Description("кількість акцій (паїв)")]
+        public int SharesCount { get; set; }
+        [DisplayName("номінальна вартість акцій (паїв)")]
+        [Description("")]
+        public CurrencyAmount SharesNominalValue { get; set; }
         [DisplayName("%")]
         [Description("%")]
         public decimal Pct { get; set; }
-        /// <summary>
-        /// Частина статутного капіталу/фонду, що перебуває у володінні
-        /// </summary>
-        [DisplayName("Cума")]
-        [Description("Cума")]
-        public decimal Amount { get; set; }
-        /// <summary>
-        /// Кількість голосів, що припадає на частку володіння (якщо припадають якісь)
-        /// </summary>
-        [DisplayName("Кількість голосів")]
-        [Description("Кількість голосів")]
-        [Required]
-        public int Votes { get; set; }
 
         public override string ToString()
         {
-            if (Amount == 0.00M && Votes == 0)
+            if ((SharesNominalValue == null || SharesNominalValue.Amt == 0.0M) && SharesCount == 0)
                 return string.Format("{0}%", Pct);
-            return string.Format("{0}% {1:N0} {2:N0}", Pct, Amount, Votes);
+            return string.Format("{0}% {1} {2:N0}", Pct, SharesNominalValue, SharesCount);
         }
     }
 }
