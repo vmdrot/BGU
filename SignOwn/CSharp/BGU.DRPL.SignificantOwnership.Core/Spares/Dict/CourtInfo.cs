@@ -12,6 +12,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// інформація про наявність порушених справ про банкрутство
     /// </summary>
     /// <seealso cref="http://www.reyestr.court.gov.ua/"/>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CourtInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class CourtInfo
     {
         [Required]

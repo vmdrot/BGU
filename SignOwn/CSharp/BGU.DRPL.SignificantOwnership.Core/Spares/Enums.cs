@@ -471,6 +471,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherRelative
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum ManagementPosition
     {
         [Description("Не вказано")]
@@ -495,6 +496,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         SupervisoryBoardMemberLPRep
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum InsolvencyStatus
     {
         [Description("Не вказано")]
@@ -512,6 +514,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     /// 
     /// </summary>
     /// <seealso cref="http://en.wikipedia.org/wiki/Moody%27s_Investors_Service#Moody.27s_credit_ratings"/>
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum WellKnownCreditRatingAgencyType
     {
         [Description("Не вказано")]
@@ -536,6 +539,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum LongTermCreditRatingType
     {
         [Description("Не вказано")]
@@ -644,6 +648,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum ShortTermCreditRatingType
     {
         [Description("Не вказано")]
@@ -664,6 +669,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum BankruptcyCaseResolutionType
     {
         [Description("Не вказано")]
@@ -686,6 +692,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     /// Перелік як у випадаючому списку "Інстанція"
     /// </summary>
     /// <seealso cref="http://www.reyestr.court.gov.ua/"/>
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum CourtInstanceType
     { 
         [Description("Перша")]
@@ -696,6 +703,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Cassation
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum CourtDecisionType
     {
         [Description("Вирок")]
@@ -712,30 +720,32 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         SpecialResolution
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum BankAssociatedPeronsCode315p
     { 
         [Description("Не вказано")]
         None = 0,
-        [Description("Контролери банку")]
+        [Description("521-Контролери банку")]
         BankControllers = 521,
-        [Description("Особи, які мають істотну участь у банку, та особи, через яких ці особи здійснюють опосередковане володіння істотною участю в банку")]
+        [Description("522-Особи, які мають істотну участь у банку, та особи, через яких ці особи здійснюють опосередковане володіння істотною участю в банку")]
         SignificantOwners = 522,
-        [Description("Керівники банку, керівник служби внутрішнього аудиту, керівники та члени комітетів банку")]
+        [Description("523-Керівники банку, керівник служби внутрішнього аудиту, керівники та члени комітетів банку")]
         BankMgrsEtc = 523,
-        [Description("Споріднені та афільовані особи банку, у тому числі учасники банківської групи")]
+        [Description("524-Споріднені та афільовані особи банку, у тому числі учасники банківської групи")]
         Affiliated = 524,
-        [Description("Особи, які мають істотну участь у споріднених та афільованих особах банку")]
+        [Description("525-Особи, які мають істотну участь у споріднених та афільованих особах банку")]
         AffiliatedSignOwners = 525,
-        [Description("Керівники юридичних осіб та керівники банків, які є спорідненими та афільованими особами банку, керівник служби внутрішнього аудиту, керівники та члени комітетів цих осіб")]
+        [Description("526-Керівники юридичних осіб та керівники банків, які є спорідненими та афільованими особами банку, керівник служби внутрішнього аудиту, керівники та члени комітетів цих осіб")]
         AffiliatedMgrsEtc = 526,
-        [Description("Асоційовані особи фізичних осіб, зазначених у пунктах 1 – 6 частини першої статті 52 Закону")]
+        [Description("527-Асоційовані особи фізичних осіб, зазначених у пунктах 1 – 6 частини першої статті 52 Закону")]
         AssocPersonsArt52pp16 = 527,
-        [Description("Юридичні особи, у яких фізичні особи, зазначені в частині першій статті 52 Закону, є керівниками або власниками істотної участі")]
+        [Description("528-Юридичні особи, у яких фізичні особи, зазначені в частині першій статті 52 Закону, є керівниками або власниками істотної участі")]
         Art52MgrsSignOwnersLPs = 528,
-        [Description("Будь-яка особа, через яку проводиться операція в інтересах осіб, зазначених у частині першій статті 52 Закону, та на яку здійснюють вплив під час проведення такої операції особи, зазначені в цій частині, через трудові, цивільні та інші відносини")]
+        [Description("529-Будь-яка особа, через яку проводиться операція в інтересах осіб, зазначених у частині першій статті 52 Закону, та на яку здійснюють вплив під час проведення такої операції особи, зазначені в цій частині, через трудові, цивільні та інші відносини")]
         AnyPersonInfluencingArt52 = 529,
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum LegalTransactionType
     {
         [Description("Не вказано")]
@@ -752,6 +762,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [Description("Тип впливу")]
     public enum InfluenceType
     {

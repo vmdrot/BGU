@@ -23,6 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// (=остаточно узгоджено 
     /// з бізнес-користувачами)
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx3MemberCandidateAppl_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx3MemberCandidateAppl : IQuestionnaire
     {
         #region cctor(s)

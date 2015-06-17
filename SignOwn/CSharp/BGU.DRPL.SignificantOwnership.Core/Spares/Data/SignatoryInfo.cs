@@ -14,6 +14,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     public class SignatoryInfo
     {
         /// <summary>
+        /// Обов'язкове (якщо тільки контекстом не передбачено інше)
+        /// </summary>
+        [DisplayName("Дата підпису")]
+        [Description("Дата підпису")]
+        [Required]
+        public DateTime DateSigned { get; set; }
+        /// <summary>
         /// обов'язкове
         /// </summary>
         [DisplayName("Посада (підписанта)")]
@@ -27,13 +34,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Прізвище й ініціали (підписанта)")]
         [Required]
         public string SurnameInitials { get; set; }
-        /// <summary>
-        /// Обов'язкове (якщо тільки контекстом не передбачено інше)
-        /// </summary>
-        [DisplayName("Дата підпису")]
-        [Description("Дата підпису")]
+
+        [DisplayName("За довіреністю?")]
+        [Description("Підписант діє на підставі довіреності")]
         [Required]
-        public DateTime DateSigned { get; set; }
+        [DefaultValue(false)]
+        public bool IsActingByPowOfAttorney { get; set; }
+
+        [DisplayName("За довіреністю?")]
+        [Description("Підписант діє на підставі довіреності")]
+        [Required("IsActingByPowOfAttorney == true")]
+        public PowerOfAttorneyInfo PowerOfAttorney { get; set; }
 
         public override string ToString()
         {

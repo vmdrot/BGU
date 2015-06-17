@@ -5,13 +5,11 @@ using System.Text;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.PowerOfAttorneySharesPurchaseInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class PowerOfAttorneySharesPurchaseInfo
     {
-        public GenericPersonID AttorneyIssuer { get; set; }
+        public PowerOfAttorneyInfo PowerOfAttorney { get; set; }
         public decimal SharesPct { get; set; }
         public decimal VotesPct { get; set; }
-        public DateTime PoAValidFrom { get; set; }
-        public DateTime PoAValidThru { get; set; }
-        public string OtherInfo { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// в банку (крім набуття істотної участі в результаті передавання особі права 
     /// голосу або незалежно від формального володіння)
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.SecondaryMarketSharesPurchaseInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class SecondaryMarketSharesPurchaseInfo : IPOSharesPurchaseInfo
     {
         [DisplayName("Актив, що набувається")]

@@ -10,6 +10,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// <summary>
     /// Інформація про ліквідовану юр.особу
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.LiquidatedOrInsolventEntityInfoBase_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class LiquidatedOrInsolventEntityInfoBase
     {
         /// <summary>

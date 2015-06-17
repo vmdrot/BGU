@@ -16,6 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// Якщо аґенція - добре відома, то достатньо буде обрати зі списків WellKnownAgency, LongMidTermRatingValue і ShortTermRatingValue 
     /// інакше, доведеться заповнити поле AgencyOther; якщо у полях значення рейтингу буде обрано "Інше" (Other), то також доведеться ввести значення у відповідному полі *RatingValueOther.
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CreditRatingInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class CreditRatingInfo
     {
         [Required]

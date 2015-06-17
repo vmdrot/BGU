@@ -11,6 +11,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// Інформація про професійну діяльність, що ліцензується
     /// </summary>
     /// <seealso cref="http://kodeksy.com.ua/buh/kp.htm"/>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.LicenseQualificationInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class LicenseQualificationInfo
     {
         /// <summary>

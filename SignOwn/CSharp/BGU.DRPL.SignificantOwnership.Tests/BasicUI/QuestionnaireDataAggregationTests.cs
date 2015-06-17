@@ -7,6 +7,9 @@ using BGU.DRPL.SignificantOwnership.EmpiricalData.Examples;
 using BGU.DRPL.SignificantOwnership.Core.Checks;
 using BGU.DRPL.SignificantOwnership.BasicUILib.Forms;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
+using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
+using BGU.DRPL.SignificantOwnership.Utility;
+using System.ComponentModel;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.BasicUI
 {
@@ -37,6 +40,23 @@ namespace BGU.DRPL.SignificantOwnership.Tests.BasicUI
             frm.CentralAssetID = gb.Appx2Questionnaire.BankRef.LegalPerson;
             frm.DataSource = gb.Appx2Questionnaire.BankExistingCommonImplicitOwners;
             frm.ShowDialog();
+        }
+
+        [Test]
+        public void ListMissingUIEditorTypes()
+        {
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" , "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares" };
+
+            List<Type> allAuxTypes = XSDReflectionUtil.ListTypes(typeof(Appx2OwnershipStructLP), auxNamespacesNames, System.Reflection.BindingFlags.Public, true);
+
+            foreach(Type typ in allAuxTypes)
+            {
+                Attribute editorAttr = Attribute.GetCustomAttribute(typ, typeof(EditorAttribute));
+                if (editorAttr != null)
+                    continue;
+                Console.WriteLine(typ.Name);
+            }
+            
         }
     }
 }

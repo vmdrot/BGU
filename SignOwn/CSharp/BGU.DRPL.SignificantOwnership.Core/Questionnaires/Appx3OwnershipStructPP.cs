@@ -20,6 +20,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [Obsolete]
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.Appx3OwnershipStructPP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class Appx3OwnershipStructPP : IQuestionnaire
     {
         public string SuggestSaveAsFileName()

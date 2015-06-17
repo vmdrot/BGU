@@ -6,6 +6,8 @@ using System.ComponentModel;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
+
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.LiquidatedOrInsolventEntityMgmtRecordInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class LiquidatedOrInsolventEntityMgmtRecordInfo : LiquidatedOrInsolventEntityInfoBase
     {
         

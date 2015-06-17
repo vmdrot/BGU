@@ -16,6 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// - набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;
     /// - набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння. 
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignificantOwnershipAcquisitionWaysInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class SignificantOwnershipAcquisitionWaysInfo
     {
         [DisplayName("придбання акцій (паїв) банку на первинному ринку")]

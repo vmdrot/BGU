@@ -10,6 +10,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// 
     /// </summary>
     /// <seealso cref="http://en.wikipedia.org/wiki/Category:Credit_rating_agencies"/>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RatingAgencyInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RatingAgencyInfo
     {
         public string Name { get; set; }
