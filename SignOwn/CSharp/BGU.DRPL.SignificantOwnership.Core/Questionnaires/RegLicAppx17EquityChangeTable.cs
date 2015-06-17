@@ -19,6 +19,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// (=остаточно узгоджено 
     /// з бізнес-користувачами)
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx17EquityChangeTable_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx17EquityChangeTable : IQuestionnaire
     {
         public string SuggestSaveAsFileName()

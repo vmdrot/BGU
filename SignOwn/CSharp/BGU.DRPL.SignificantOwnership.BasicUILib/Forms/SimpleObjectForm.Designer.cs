@@ -53,7 +53,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(212, 289);
+            this.btnOK.Location = new System.Drawing.Point(212, 306);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -65,7 +65,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(294, 289);
+            this.btnCancel.Location = new System.Drawing.Point(294, 306);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -79,10 +79,10 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.propGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.propGrid.Location = new System.Drawing.Point(1, 2);
+            this.propGrid.Location = new System.Drawing.Point(2, 26);
             this.propGrid.Name = "propGrid";
             this.propGrid.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propGrid.Size = new System.Drawing.Size(385, 283);
+            this.propGrid.Size = new System.Drawing.Size(385, 277);
             this.propGrid.TabIndex = 2;
             this.propGrid.UseCompatibleTextRendering = true;
             this.propGrid.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propGrid_PropertyValueChanged);
@@ -91,7 +91,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 314);
+            this.statusBar.Location = new System.Drawing.Point(0, 331);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(389, 22);
             this.statusBar.TabIndex = 3;
@@ -105,7 +105,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             // btnFillObject
             // 
             this.btnFillObject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFillObject.Location = new System.Drawing.Point(1, 291);
+            this.btnFillObject.Location = new System.Drawing.Point(1, 308);
             this.btnFillObject.Name = "btnFillObject";
             this.btnFillObject.Size = new System.Drawing.Size(19, 20);
             this.btnFillObject.TabIndex = 4;
@@ -193,7 +193,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(389, 336);
+            this.ClientSize = new System.Drawing.Size(389, 353);
             this.Controls.Add(this.btnFillObject);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuStrip1);

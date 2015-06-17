@@ -5,6 +5,7 @@ using System.Text;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CharterCapitalTableRecord_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class CharterCapitalTableRecord
     {
         public GenericPersonID Shareholder { get; set; }

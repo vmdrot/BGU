@@ -12,6 +12,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// У перспективі - продумати структуру, що б покривала опису, що надається у https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%B8%D0%BD
     /// </summary>
     /// <see cref="https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%B8%D0%BD"/>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalTransactionInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class LegalTransactionInfo
     {
         [DisplayName("Правочин відбувся?")]

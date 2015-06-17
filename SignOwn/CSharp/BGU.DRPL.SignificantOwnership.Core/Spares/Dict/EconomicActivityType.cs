@@ -7,7 +7,8 @@ using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 {
-    
+
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EconomicActivityType_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class EconomicActivityType
     {
         /// <summary>

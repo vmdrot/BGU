@@ -368,6 +368,7 @@
   <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
   <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />

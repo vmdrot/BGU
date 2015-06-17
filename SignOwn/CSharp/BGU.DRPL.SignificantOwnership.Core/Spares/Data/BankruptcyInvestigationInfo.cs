@@ -10,6 +10,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// <summary>
     /// Інформація про банкрутство (юр.особи)
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankruptcyInvestigationInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class BankruptcyInvestigationInfo
     {
         [DisplayName("Дата порушення справи про банкрутство")]

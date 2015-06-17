@@ -68,4 +68,46 @@ namespace BGU.DRPL.SignificantOwnership.Core.TypeEditors
     public interface IUniversityOrCollegeInfoEditFormFactory : ITypeEditorFormFactoryBase { }
     public interface IFinancialOversightAuthorityInfoEditFormFactory : ITypeEditorFormFactoryBase { }
 
+    //p.III
+    public interface ICourtInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILPRegisteredDateRecordIdEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IEmailInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICreditRatingInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRegLicAppx12HeadCandidateApplEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IBankruptcyInvestigationInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILiquidatedOrInsolventEntityInfoBaseEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRegLicAppx9BankingLicenseApplEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IManagementPositionEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IInsolvencyStatusEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IWellKnownCreditRatingAgencyTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILongTermCreditRatingTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IShortTermCreditRatingTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IBankruptcyCaseResolutionTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICourtInstanceTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICourtDecisionTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IBankAssociatedPeronsCode315pEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILegalTransactionTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IInfluenceTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICharterCapitalTableRecordEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRegLicAppx6EquityFormationTableEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IEnumsListerEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRatingAgencyInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IEconomicActivityTypeEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICharterCapitalTableTotalsRecordEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ICourtDecisionInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILicenseQualificationInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IIPOSharesPurchaseInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ISecondaryMarketSharesPurchaseInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRegLicAppx17EquityChangeTableEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IAppx3OwnershipStructPPEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IRegLicAppx3MemberCandidateApplEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ILegalTransactionInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IPowerOfAttorneySharesPurchaseInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ISignificantOrDecisiveInfulenceInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ISignificantOwnershipAcquisitionWaysInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface ITotalOwnershipSummaryInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IImperfectBusinessReputationInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+    public interface IPowerOfAttorneyInfoEditFormFactory : ITypeEditorFormFactoryBase { }
+
 }

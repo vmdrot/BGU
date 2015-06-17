@@ -166,4 +166,5 @@
   <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
 </xs:schema>

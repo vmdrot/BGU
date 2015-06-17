@@ -11,6 +11,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// Структура для зберігання інформації про e-mail
     /// Можна відмовитися й зберігати просто значення e-mail
     /// </summary>
+    [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EmailInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class EmailInfo
     {
         /// <summary>

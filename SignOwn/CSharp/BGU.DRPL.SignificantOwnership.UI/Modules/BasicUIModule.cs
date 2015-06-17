@@ -72,6 +72,50 @@ namespace BGU.DRPL.SignificantOwnership.UI.Modules
             cont.RegisterInstance<IPublishingHouseInfoEditFormFactory>(new PublishingHouseInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
             cont.RegisterInstance<IUniversityOrCollegeInfoEditFormFactory>(new UniversityOrCollegeInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
             cont.RegisterInstance<IFinancialOversightAuthorityInfoEditFormFactory>(new FinancialOversightAuthorityInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+
+            //p.III
+            cont.RegisterInstance<ICourtInfoEditFormFactory>(new CourtInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILPRegisteredDateRecordIdEditFormFactory>(new LPRegisteredDateRecordIdEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IEmailInfoEditFormFactory>(new EmailInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IIndebtnessInfoBaseEditFormFactory>(new IndebtnessInfoBaseEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICreditRatingInfoEditFormFactory>(new CreditRatingInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRegLicAppx12HeadCandidateApplEditFormFactory>(new RegLicAppx12HeadCandidateApplEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IBankruptcyInvestigationInfoEditFormFactory>(new BankruptcyInvestigationInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILiquidatedOrInsolventEntityInfoBaseEditFormFactory>(new LiquidatedOrInsolventEntityInfoBaseEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRegLicAppx9BankingLicenseApplEditFormFactory>(new RegLicAppx9BankingLicenseApplEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IManagementPositionEditFormFactory>(new ManagementPositionEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IInsolvencyStatusEditFormFactory>(new InsolvencyStatusEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IWellKnownCreditRatingAgencyTypeEditFormFactory>(new WellKnownCreditRatingAgencyTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILongTermCreditRatingTypeEditFormFactory>(new LongTermCreditRatingTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IShortTermCreditRatingTypeEditFormFactory>(new ShortTermCreditRatingTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IBankruptcyCaseResolutionTypeEditFormFactory>(new BankruptcyCaseResolutionTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICourtInstanceTypeEditFormFactory>(new CourtInstanceTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICourtDecisionTypeEditFormFactory>(new CourtDecisionTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IBankAssociatedPeronsCode315pEditFormFactory>(new BankAssociatedPeronsCode315pEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILegalTransactionTypeEditFormFactory>(new LegalTransactionTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IInfluenceTypeEditFormFactory>(new InfluenceTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactory>(new LiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICharterCapitalTableRecordEditFormFactory>(new CharterCapitalTableRecordEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRegLicAppx6EquityFormationTableEditFormFactory>(new RegLicAppx6EquityFormationTableEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IEnumsListerEditFormFactory>(new EnumsListerEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRatingAgencyInfoEditFormFactory>(new RatingAgencyInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IEconomicActivityTypeEditFormFactory>(new EconomicActivityTypeEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICharterCapitalTableTotalsRecordEditFormFactory>(new CharterCapitalTableTotalsRecordEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ICourtDecisionInfoEditFormFactory>(new CourtDecisionInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILicenseQualificationInfoEditFormFactory>(new LicenseQualificationInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IIPOSharesPurchaseInfoEditFormFactory>(new IPOSharesPurchaseInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ISecondaryMarketSharesPurchaseInfoEditFormFactory>(new SecondaryMarketSharesPurchaseInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRegLicAppx17EquityChangeTableEditFormFactory>(new RegLicAppx17EquityChangeTableEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IAppx3OwnershipStructPPEditFormFactory>(new Appx3OwnershipStructPPEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IRegLicAppx3MemberCandidateApplEditFormFactory>(new RegLicAppx3MemberCandidateApplEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ILegalTransactionInfoEditFormFactory>(new LegalTransactionInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IPowerOfAttorneySharesPurchaseInfoEditFormFactory>(new PowerOfAttorneySharesPurchaseInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ISignificantOrDecisiveInfulenceInfoEditFormFactory>(new SignificantOrDecisiveInfulenceInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ISignificantOwnershipAcquisitionWaysInfoEditFormFactory>(new SignificantOwnershipAcquisitionWaysInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<ITotalOwnershipSummaryInfoEditFormFactory>(new TotalOwnershipSummaryInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IImperfectBusinessReputationInfoEditFormFactory>(new ImperfectBusinessReputationInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+            cont.RegisterInstance<IPowerOfAttorneyInfoEditFormFactory>(new PowerOfAttorneyInfoEditFormFactoryBasic(), new ContainerControlledLifetimeManager());
+
         }
     }
 }

@@ -10,6 +10,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.Configuration;
 using System.Data;
 using BGU.DRPL.SignificantOwnership.Utility;
+using BGU.DRPL.SignificantOwnership.Core.Spares;
 
 namespace BGU.DRPL.SignificantOwnership.BasicUILib
 {
@@ -214,6 +215,49 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib
     public class PublishingHouseInfoEditFormFactoryBasic : IPublishingHouseInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<PublishingHouseInfo>(); } }
     public class UniversityOrCollegeInfoEditFormFactoryBasic : IUniversityOrCollegeInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<UniversityOrCollegeInfo>(); } }
     public class FinancialOversightAuthorityInfoEditFormFactoryBasic : IFinancialOversightAuthorityInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<FinancialOversightAuthorityInfo>(); } }
+
+
+    //p.III
+    public class CourtInfoEditFormFactoryBasic : ICourtInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CourtInfo>(); } }
+    public class LPRegisteredDateRecordIdEditFormFactoryBasic : ILPRegisteredDateRecordIdEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LPRegisteredDateRecordId>(); } }
+    public class EmailInfoEditFormFactoryBasic : IEmailInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<EmailInfo>(); } }
+    public class CreditRatingInfoEditFormFactoryBasic : ICreditRatingInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CreditRatingInfo>(); } }
+    public class RegLicAppx12HeadCandidateApplEditFormFactoryBasic : IRegLicAppx12HeadCandidateApplEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RegLicAppx12HeadCandidateAppl>(); } }
+    public class BankruptcyInvestigationInfoEditFormFactoryBasic : IBankruptcyInvestigationInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<BankruptcyInvestigationInfo>(); } }
+    public class LiquidatedOrInsolventEntityInfoBaseEditFormFactoryBasic : ILiquidatedOrInsolventEntityInfoBaseEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LiquidatedOrInsolventEntityInfoBase>(); } }
+    public class RegLicAppx9BankingLicenseApplEditFormFactoryBasic : IRegLicAppx9BankingLicenseApplEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RegLicAppx9BankingLicenseAppl>(); } }
+    public class ManagementPositionEditFormFactoryBasic : IManagementPositionEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<ManagementPosition>(); } }
+    public class InsolvencyStatusEditFormFactoryBasic : IInsolvencyStatusEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<InsolvencyStatus>(); } }
+    public class WellKnownCreditRatingAgencyTypeEditFormFactoryBasic : IWellKnownCreditRatingAgencyTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<WellKnownCreditRatingAgencyType>(); } }
+    public class LongTermCreditRatingTypeEditFormFactoryBasic : ILongTermCreditRatingTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LongTermCreditRatingType>(); } }
+    public class ShortTermCreditRatingTypeEditFormFactoryBasic : IShortTermCreditRatingTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<ShortTermCreditRatingType>(); } }
+    public class BankruptcyCaseResolutionTypeEditFormFactoryBasic : IBankruptcyCaseResolutionTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<BankruptcyCaseResolutionType>(); } }
+    public class CourtInstanceTypeEditFormFactoryBasic : ICourtInstanceTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CourtInstanceType>(); } }
+    public class CourtDecisionTypeEditFormFactoryBasic : ICourtDecisionTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CourtDecisionType>(); } }
+    public class BankAssociatedPeronsCode315pEditFormFactoryBasic : IBankAssociatedPeronsCode315pEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<BankAssociatedPeronsCode315p>(); } }
+    public class LegalTransactionTypeEditFormFactoryBasic : ILegalTransactionTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LegalTransactionType>(); } }
+    public class InfluenceTypeEditFormFactoryBasic : IInfluenceTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<InfluenceType>(); } }
+    public class LiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactoryBasic : ILiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LiquidatedOrInsolventEntityMgmtRecordInfo>(); } }
+    public class CharterCapitalTableRecordEditFormFactoryBasic : ICharterCapitalTableRecordEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CharterCapitalTableRecord>(); } }
+    public class RegLicAppx6EquityFormationTableEditFormFactoryBasic : IRegLicAppx6EquityFormationTableEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RegLicAppx6EquityFormationTable>(); } }
+    public class EnumsListerEditFormFactoryBasic : IEnumsListerEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<EnumsLister>(); } }
+    public class RatingAgencyInfoEditFormFactoryBasic : IRatingAgencyInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RatingAgencyInfo>(); } }
+    public class EconomicActivityTypeEditFormFactoryBasic : IEconomicActivityTypeEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<EconomicActivityType>(); } }
+    public class CharterCapitalTableTotalsRecordEditFormFactoryBasic : ICharterCapitalTableTotalsRecordEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CharterCapitalTableTotalsRecord>(); } }
+    public class CourtDecisionInfoEditFormFactoryBasic : ICourtDecisionInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<CourtDecisionInfo>(); } }
+    public class LicenseQualificationInfoEditFormFactoryBasic : ILicenseQualificationInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LicenseQualificationInfo>(); } }
+    public class IPOSharesPurchaseInfoEditFormFactoryBasic : IIPOSharesPurchaseInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<IPOSharesPurchaseInfo>(); } }
+    public class SecondaryMarketSharesPurchaseInfoEditFormFactoryBasic : ISecondaryMarketSharesPurchaseInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<SecondaryMarketSharesPurchaseInfo>(); } }
+    public class RegLicAppx17EquityChangeTableEditFormFactoryBasic : IRegLicAppx17EquityChangeTableEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RegLicAppx17EquityChangeTable>(); } }
+    public class Appx3OwnershipStructPPEditFormFactoryBasic : IAppx3OwnershipStructPPEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<Appx3OwnershipStructPP>(); } }
+    public class RegLicAppx3MemberCandidateApplEditFormFactoryBasic : IRegLicAppx3MemberCandidateApplEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<RegLicAppx3MemberCandidateAppl>(); } }
+    public class LegalTransactionInfoEditFormFactoryBasic : ILegalTransactionInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<LegalTransactionInfo>(); } }
+    public class PowerOfAttorneySharesPurchaseInfoEditFormFactoryBasic : IPowerOfAttorneySharesPurchaseInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<PowerOfAttorneySharesPurchaseInfo>(); } }
+    public class SignificantOrDecisiveInfulenceInfoEditFormFactoryBasic : ISignificantOrDecisiveInfulenceInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<SignificantOrDecisiveInfulenceInfo>(); } }
+    public class SignificantOwnershipAcquisitionWaysInfoEditFormFactoryBasic : ISignificantOwnershipAcquisitionWaysInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<SignificantOwnershipAcquisitionWaysInfo>(); } }
+    public class TotalOwnershipSummaryInfoEditFormFactoryBasic : ITotalOwnershipSummaryInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<TotalOwnershipSummaryInfo>(); } }
+    public class ImperfectBusinessReputationInfoEditFormFactoryBasic : IImperfectBusinessReputationInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<ImperfectBusinessReputationInfo>(); } }
+    public class PowerOfAttorneyInfoEditFormFactoryBasic : IPowerOfAttorneyInfoEditFormFactory { public System.Windows.Forms.Form SpawnInstance() { return new SimpleObjectForm<PowerOfAttorneyInfo>(); } }
 
 }
 

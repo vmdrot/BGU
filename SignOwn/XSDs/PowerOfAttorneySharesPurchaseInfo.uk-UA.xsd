@@ -3,14 +3,12 @@
   <xs:element name="PowerOfAttorneySharesPurchaseInfo" nillable="true" type="PowerOfAttorneySharesPurchaseInfo" />
   <xs:complexType name="PowerOfAttorneySharesPurchaseInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="AttorneyIssuer" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
       <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
       <xs:element minOccurs="1" maxOccurs="1" name="VotesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PoAValidFrom" type="xs:dateTime" type_ukr="дата і час" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PoAValidThru" type="xs:dateTime" type_ukr="дата і час" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" type_ukr="текст" />
     </xs:sequence>
   </xs:complexType>
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
 </xs:schema>
