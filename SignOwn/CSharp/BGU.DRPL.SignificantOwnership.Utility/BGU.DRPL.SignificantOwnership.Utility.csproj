@@ -43,9 +43,17 @@
     <Compile Include="EnumType.cs" />
     <Compile Include="ParseDBF.cs" />
     <Compile Include="RcuKruReader.cs" />
+    <Compile Include="ReflectionUtil.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WPFGen\XAMLGenerator.cs" />
+    <Compile Include="WPFGen\XAMLTemplateGenerator.cs" />
+    <Compile Include="WPFGen\XAMLTemplatesGenerationManager.cs" />
+    <Compile Include="XAMLTemplates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XAMLTemplates.resx</DependentUpon>
+    </Compile>
     <Compile Include="XSDReflectionUtil.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +64,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="XAMLTemplates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>XAMLTemplates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="XAMLTemplates\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

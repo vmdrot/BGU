@@ -6,6 +6,7 @@ using NUnit.Framework;
 using BGU.DRPL.SignificantOwnership.Utility;
 using Newtonsoft.Json;
 using System.Xml;
+using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
 
 namespace BGU.DRPL.SignificantOwnership.Tests
 {
@@ -38,6 +39,22 @@ namespace BGU.DRPL.SignificantOwnership.Tests
 
             //foreach (string enm in enums)
             //    Console.WriteLine(enm);
+        }
+
+        [Test]
+        public void ListPropertyTypes()
+        {
+            ReflectionUtil.ClearLog();
+            List<Type> nonRecognizedTypes;
+            Dictionary<Type,int> scalarTypes = ReflectionUtil.ListPrimitiveTypesDistinct(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, out nonRecognizedTypes);
+            Console.WriteLine("Known primitive types:");
+            foreach (Type typ in scalarTypes.Keys) Console.WriteLine("{0}\t{1}", typ.Name, scalarTypes[typ]);
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine("Unknown non-user-defined types:");
+            foreach (Type typ in nonRecognizedTypes) Console.WriteLine(typ.Name);
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine("Unwinding log:\n{0}", ReflectionUtil.Log);
+
         }
 
     }
