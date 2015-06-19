@@ -49,10 +49,10 @@
     <Compile Include="WPFGen\XAMLGenerator.cs" />
     <Compile Include="WPFGen\XAMLTemplateGenerator.cs" />
     <Compile Include="WPFGen\XAMLTemplatesGenerationManager.cs" />
-    <Compile Include="XAMLTemplates.Designer.cs">
+    <Compile Include="XAMLTemplates\XAMLPrimitiveTemplates.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>XAMLTemplates.resx</DependentUpon>
+      <DependentUpon>XAMLPrimitiveTemplates.resx</DependentUpon>
     </Compile>
     <Compile Include="XSDReflectionUtil.cs" />
   </ItemGroup>
@@ -70,9 +70,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>XAMLTemplates.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="XAMLTemplates\XAMLPrimitiveTemplates.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>XAMLPrimitiveTemplates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="XAMLTemplates\" />
+    <Content Include="XAMLTemplates\bool.xml" />
+    <Content Include="XAMLTemplates\classstruct.xml" />
+    <Content Include="XAMLTemplates\DateTime.xml" />
+    <Content Include="XAMLTemplates\decimal.xml" />
+    <Content Include="XAMLTemplates\enum.xml" />
+    <Content Include="XAMLTemplates\GenericControlTemplate.xml" />
+    <Content Include="XAMLTemplates\int.xml" />
+    <Content Include="XAMLTemplates\ListOfT.xml" />
+    <Content Include="XAMLTemplates\multilinestring.xml" />
+    <Content Include="XAMLTemplates\onelinestring.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
