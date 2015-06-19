@@ -515,7 +515,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             return typ.FullName.Substring(0, lastDotPos);
         }
 
-        private static void WriteAttribute(XmlNode node, string attrName, string attrVal)
+        public static void WriteAttribute(XmlNode node, string attrName, string attrVal)
         {
             XmlAttribute attr = node.OwnerDocument.CreateAttribute(attrName);
             attr.Value = attrVal;

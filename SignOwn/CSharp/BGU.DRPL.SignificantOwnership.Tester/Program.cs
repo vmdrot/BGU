@@ -14,6 +14,7 @@ using BGU.DRPL.SignificantOwnership.Core.Checks;
 using System.Xml;
 using BGU.DRPL.SignificantOwnership.Utility;
 using System.Configuration;
+using BGU.DRPL.SignificantOwnership.Utility.WPFGen;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -55,7 +56,10 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             //WriteXML_Grant();
             //BuildOwnershipGraphGrantBankTest();
             //ProcessXSDTest();
-            UpdateXSDsTranslations();
+
+            //UpdateXSDsTranslations();
+
+            Generate4RegLicAppx2();
         }
 
         #region FFR
@@ -1051,6 +1055,16 @@ RegLicAppx9BankingLicenseAppl.xsd";
                 ProcessXSDSingle(targetPath, assemblySummariesXml, typ);
             CallXmlFormatterExe(targetPath);
         }
+        #endregion
+
+        #region WPF gen-related
+        public static void Generate4RegLicAppx2()
+        {
+            //string targetFolder = @"D:\home\vmdrot\DEV\_tut\WpfApplication2\WpfApplication2\Resources";
+            string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+        }
+
         #endregion
     }
 }

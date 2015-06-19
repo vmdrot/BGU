@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.IO;
+using System.Xml;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
     public class XAMLTemplatesGenerationManager
     {
-        private static readonly List<Type> PRIMITIVE_TYPES;
+        public static readonly List<Type> PRIMITIVE_TYPES;
         private static StringBuilder _log;
+
+        private static readonly string AUTO_GEN_TEMPL_NAME_FMT = "{0}_AutoGenTemplate.xaml";
+        
+
         private static void LogMsg(string msg)
         {
             _log.AppendLine(msg);
@@ -40,12 +46,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             PRIMITIVE_TYPES.Add(typeof(Enum));
         }
 
+
+
         public static List<Type> ListUserTypesToGenerateTemplatesFor(Type rootType, Assembly userAsmbly)
         {
             List<Type> rslt = new List<Type>();
             ProcessType(rootType, userAsmbly, rslt);
             return rslt;
         }
+
         private static void ProcessType(Type typ, Assembly userAssembly, List<Type> target)
         {
             LogFormat("Processing type {0}", typ.FullName);
@@ -66,6 +75,29 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 foreach (Type gt in gtyps)
                     ProcessType(gt, userAssembly, target);
             }
+        }
+
+        public static void GenerateXAMLTemplates(Type rootType, Assembly userAsmbly, string targetFolder)
+        {
+            List<Type> queue = ListUserTypesToGenerateTemplatesFor(rootType, userAsmbly);
+            Dictionary<Type, string> controlTemplateNames = new Dictionary<Type, string>();
+            foreach (Type typ in queue)
+                controlTemplateNames.Add(typ, GenerateTemplateFilName(typ));
+            foreach(Type typ in queue)
+            {
+                XAMLGenerator generator = new XAMLGenerator();
+                generator.GenerateAndSave(typ, userAsmbly, controlTemplateNames, GenerateTemplateFilePath(typ, targetFolder));
+            }
+        }
+
+        public static string GenerateTemplateFilName(Type typ)
+        {
+            return string.Format(AUTO_GEN_TEMPL_NAME_FMT, typ.Name);
+        }
+
+        public static string GenerateTemplateFilePath(Type typ,string targetFolder)
+        {
+            return Path.Combine(targetFolder, GenerateTemplateFilName(typ));
         }
     }
 }

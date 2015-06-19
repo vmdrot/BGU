@@ -53,6 +53,15 @@ namespace BGU.DRPL.SignificantOwnership.Tests
         }
 
 
+        [Test]
+        public void Generate4RegLicAppx2()
+        {
+            //string targetFolder = @"D:\home\vmdrot\DEV\_tut\WpfApplication2\WpfApplication2\Resources";
+            string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+        }
+
+
 
     }
 }

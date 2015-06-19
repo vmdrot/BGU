@@ -1,0 +1,3 @@
+﻿<Expander Grid.Row="0" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
+  <DataGrid CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding yourPropertyName}" AutoGenerateColumns="True"></DataGrid>
+</Expander>

@@ -78,7 +78,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// </summary>
         [Category("І. Інформація про юридичну особу")]
         [DisplayName("2. Ідентифікаційні дані::Рейтингова оцінка")]
-        [Description("(за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,Standart & Poor's, Moody's)")]
+        [Description("(за рейтингом, який підтверджений у бюлетені, однієї з провідних рейтингових компаній IBCA,Standart & Poor's, Moody's)")]
         [Required]
         public List<CreditRatingInfo> CreditRatingGrade { get; set; }
 

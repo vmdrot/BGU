@@ -1,0 +1,2 @@
+﻿<TextBlock Grid.Row="7" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" />
+<DatePicker Grid.Row="5" ToolTip="yourPropertyDescription"  Style="{StaticResource dtEdStyle}" SelectedDate="{Binding yourPropertyName}"/>
