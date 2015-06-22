@@ -7,6 +7,7 @@ using System.Xml;
 using System.Reflection;
 using System.ComponentModel;
 using System.IO;
+using System.Configuration;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
@@ -33,6 +34,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
         private static readonly string uniquifierAttrName = "guuiidd";
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
+        private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
+        private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
 
 
         private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> PropDispDescrs
@@ -59,6 +62,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(DateTime), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DateTime);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(Enum), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._enum);
 
+            _bguNS2XamlPfxs = new Dictionary<string, string>();
+            foreach (string currKey in ConfigurationManager.AppSettings.Keys)
+            {
+                string currVal = ConfigurationManager.AppSettings[currKey];
+                if (currKey.IndexOf(BGU2XAML_NS_CFG_PFX) != 0)
+                    continue;
+                string currNS = currKey.Substring(BGU2XAML_NS_CFG_PFX.Length);
+                if(!_bguNS2XamlPfxs.ContainsKey(currNS)) _bguNS2XamlPfxs.Add(currNS, currVal);
+            }
         }
         public void GenerateAndSave(Type typ, Assembly userAsmbly, Dictionary<Type, string> controlTemplateNames, string targetPath)
         {
@@ -110,10 +122,17 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach(PropertyInfo pi in props)
             {
                 XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
+                ReplaceTemplateDataType(dataTemplateNode, typ);
                 XmlNode gridNode = dataTemplateNode.FirstChild;
                 AddControl(gridNode, pi);
             }
             return rslt;
+        }
+
+        private void ReplaceTemplateDataType(XmlNode dataTemplateNode, Type typ)
+        {
+            string xamlDataTypeAlias = string.Format("{0}:{1}", _bguNS2XamlPfxs[typ.Namespace], typ.Name);
+            ReplaceAllAttrsPlaceholders(dataTemplateNode, templatedTypeNamePlaceholder, xamlDataTypeAlias);
         }
 
         private void AddControl(XmlNode container, PropertyInfo pi)
@@ -133,12 +152,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             //    }
             //}
 
-            if (pi.ReflectedType == typeof(string) || pi.ReflectedType == typeof(String)) AddStringEditControl(container, pi);
-            else if (pi.ReflectedType == typeof(int) || pi.ReflectedType == typeof(Int32) || pi.ReflectedType == typeof(long) || pi.ReflectedType == typeof(Int64) || pi.ReflectedType == typeof(short) || pi.ReflectedType == typeof(Int16)) AddIntEditControl(container, pi);
-            else if (pi.ReflectedType == typeof(decimal) || pi.ReflectedType == typeof(float) || pi.ReflectedType == typeof(double) || pi.ReflectedType == typeof(Double) || pi.ReflectedType == typeof(Decimal)) AddDecimalEditControl(container, pi);
-            else if (pi.ReflectedType == typeof(DateTime)) AddDateTimeEditControl(container, pi);
-            else if (pi.ReflectedType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(container, pi);
-            else if (pi.ReflectedType.IsEnum) AddEnumEditControl(container, pi);
+            if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(container, pi);
+            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(container, pi);
+            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(container, pi);
+            else if (pi.PropertyType == typeof(DateTime)) AddDateTimeEditControl(container, pi);
+            else if (pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(container, pi);
+            else if (pi.PropertyType.IsEnum) AddEnumEditControl(container, pi);
             else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(container, pi);
             else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(container, pi);
             
@@ -148,6 +167,18 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
         {
 #if __DISABLE_TEXT_INSERTION__
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(listOfTTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            {
+                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                ReplacePlaceholderTexts(curr, pi);
+                container.InsertAfter(curr, container.LastChild);
+            }
+
+            if (!_referencedTypes.Contains(pi.PropertyType))
+                _referencedTypes.Add(pi.PropertyType);
 #else
             string controlXamlFragment = ReplacePlaceholderTexts(listOfTTemplate, pi);
             //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
@@ -194,6 +225,20 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private void AddEnumEditControl(XmlNode container, PropertyInfo pi)
         {
 #if __DISABLE_TEXT_INSERTION__
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)]);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            {
+                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                ReplacePlaceholderTexts(curr, pi);
+                ReplaceAllAttrsPlaceholders(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
+                container.InsertAfter(curr, container.LastChild);
+            }
+
+            if (!_referencedTypes.Contains(pi.PropertyType))
+                _referencedTypes.Add(pi.PropertyType);
+
 #else
             string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)], pi);
             controlXamlFragment = controlXamlFragment.Replace(templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));

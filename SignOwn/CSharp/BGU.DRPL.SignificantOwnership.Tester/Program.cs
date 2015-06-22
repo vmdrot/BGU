@@ -57,9 +57,9 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             //BuildOwnershipGraphGrantBankTest();
             //ProcessXSDTest();
 
-            UpdateXSDsTranslations();
+            //UpdateXSDsTranslations();
 
-            //Generate4RegLicAppx2();
+            GenerateXAMLs4RegLicAppx2();
         }
 
         #region FFR
@@ -1058,7 +1058,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
         #endregion
 
         #region WPF gen-related
-        public static void Generate4RegLicAppx2()
+        public static void GenerateXAMLs4RegLicAppx2()
         {
             //string targetFolder = @"D:\home\vmdrot\DEV\_tut\WpfApplication2\WpfApplication2\Resources";
             string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
