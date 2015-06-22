@@ -24,7 +24,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx2OwnershipAcqRequestLP : IQuestionnaire
+    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase
     {
 
         #region cctor(s)
@@ -44,6 +44,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             this.OutstandingLoansWithBanksDetails = new List<LoanInfo>();
             this.MissingInformationResons = new List<MissingInformationResonInfo>();
         }
+
         #endregion
 
         /// <summary>
@@ -341,11 +342,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         #region inherited member(s)
 
-        public string SuggestSaveAsFileName()
-        {
-            return "regLicDod2IstUchYO";
-        }
+        //public override string SuggestSaveAsFileName()
+        //{
+        //    return "regLicDod2IstUchYO";
+        //}
 
         #endregion
+
+        protected override string QuestionnairePrefixForFileName
+        {
+            get { return "regLicDod2IstUchYO"; }
+        }
+
+        protected override string BankNameForFileName
+        {
+            get { return GetBankNameForFileName(BankRef); }
+        }
+
+        protected override string ApplicantNameForFileName
+        {
+            get { if (Acquiree == null) return string.Empty; return Acquiree.PersonCode; }
+        }
     }
 }
