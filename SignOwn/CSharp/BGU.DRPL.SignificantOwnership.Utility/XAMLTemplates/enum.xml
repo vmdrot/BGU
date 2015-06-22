@@ -1,2 +1,5 @@
-﻿<TextBlock Grid.Row="5" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" />
-<ComboBox Grid.Row="6" ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay}" SelectedValue="{Binding yourPropertyName}" DisplayMemberPath="Value" SelectedValuePath="EnumValue" HorizontalAlignment="Stretch"/>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <TextBlock Grid.Row="5" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" />
+  <ComboBox Grid.Row="6" ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay}" SelectedValue="{Binding yourPropertyName}" DisplayMemberPath="Value" SelectedValuePath="EnumValue" HorizontalAlignment="Stretch"/>
+</Template>

@@ -85,7 +85,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 controlTemplateNames.Add(typ, GenerateTemplateFilName(typ));
             foreach(Type typ in queue)
             {
-                XAMLGenerator generator = new XAMLGenerator();
+                IXAMLGenerator generator = XAMLGeneratorFactory.Instance.SpawnInstance();
                 generator.GenerateAndSave(typ, userAsmbly, controlTemplateNames, GenerateTemplateFilePath(typ, targetFolder));
             }
         }
