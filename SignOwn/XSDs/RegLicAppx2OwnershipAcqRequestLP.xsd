@@ -9,6 +9,8 @@
       <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthorities" type="ArrayOfFinancialOversightAuthorityInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" />
