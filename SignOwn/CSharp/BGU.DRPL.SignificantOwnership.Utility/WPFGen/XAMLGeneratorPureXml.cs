@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define __DISABLE_TEXT_INSERTION__
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,11 @@ using System.Xml;
 using System.Reflection;
 using System.ComponentModel;
 using System.IO;
-//using BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
-    public class XAMLGenerator : IXAMLGenerator
+    public class XAMLGeneratorPureXml : IXAMLGenerator
     {
-
         private List<Type> _referencedTypes = new List<Type>();
         private Dictionary<Type, string> _referencedControlTemplateNames;
         private Assembly _userAssembly;
@@ -48,7 +47,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
         }
 
-        static XAMLGenerator()
+        static XAMLGeneratorPureXml()
         {
             PRIMITIVE_TYPES_TEMPLATES = new Dictionary<Type, string>();
 
@@ -68,6 +67,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlDocument xamlDoc = this.Generate(typ, userAsmbly, controlTemplateNames);
                 xamlDoc.Save(targetPath);
             }
+#if __DISABLE_TEXT_INSERTION__
+#else
+
             string xamlTxt = File.ReadAllText(_targetPath);
             xamlTxt = xamlTxt.Replace(templatedTypeNamePlaceholder, _rootType.Name);
             foreach (string propNm in _propsRealXmls.Keys)
@@ -79,6 +81,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             xamlDoc1.Load(_targetPath);
             AddReferencedControlTemplatesIncludes(xamlDoc1);
             xamlDoc1.Save(_targetPath);
+#endif
         }
 
         private void AddReferencedControlTemplatesIncludes(XmlDocument xamlDoc1)
@@ -143,16 +146,32 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
         {
+#if __DISABLE_TEXT_INSERTION__
+#else
             string controlXamlFragment = ReplacePlaceholderTexts(listOfTTemplate, pi);
             //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
             XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
             XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
             container.InsertAfter(curr, container.LastChild);
             IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
+#endif
         }
 
         private void AddComplextTypeControl(XmlNode container, PropertyInfo pi)
         {
+#if __DISABLE_TEXT_INSERTION__
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(classStructControlTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            {
+                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                container.InsertAfter(curr, container.LastChild);
+            }
+
+            if (!_referencedTypes.Contains(pi.PropertyType))
+                _referencedTypes.Add(pi.PropertyType);
+#else
             string controlXamlFragment = ReplacePlaceholderTexts(classStructControlTemplate, pi);
             //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
             XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
@@ -162,6 +181,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
+#endif
         }
 
         private void AddPrimitiveEditControl(XmlNode container, PropertyInfo pi)
@@ -171,6 +191,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddEnumEditControl(XmlNode container, PropertyInfo pi)
         {
+#if __DISABLE_TEXT_INSERTION__
+#else
             string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)], pi);
             controlXamlFragment = controlXamlFragment.Replace(templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
             //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
@@ -178,6 +200,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
             container.InsertAfter(curr, container.LastChild);
             IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
+#endif
         }
 
         private void AddBoolEditControl(XmlNode container, PropertyInfo pi)
@@ -207,12 +230,20 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddEditControlWorker(XmlNode container, PropertyInfo pi, Type ctrlTyp)
         {
-            string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp], pi);
-            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
-            XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
-            XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
-            container.InsertAfter(curr, container.LastChild);
-            IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
+            //string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp], pi);
+            ////XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
+            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
+            //XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp]);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            {
+                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                container.InsertAfter(curr, container.LastChild);
+            }
+         
+            //IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
         }
 
 
@@ -255,6 +286,5 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _propsDummyXmls.Add(propNm, dummyXml);
             _propsRealXmls.Add(propNm, realXml);
         }
-
     }
 }

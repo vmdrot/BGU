@@ -1,3 +1,6 @@
-﻿<CheckBox Grid.Row="0" Checked="{Binding yourPropertyName}" FlowDirection="RightToLeft">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+<CheckBox Grid.Row="0" Checked="{Binding yourPropertyName}" FlowDirection="RightToLeft">
   <TextBlock FlowDirection="LeftToRight" Text="yourPropertyDispName:" ToolTip="yourPropertyDescription"/>
 </CheckBox>
+</Template>

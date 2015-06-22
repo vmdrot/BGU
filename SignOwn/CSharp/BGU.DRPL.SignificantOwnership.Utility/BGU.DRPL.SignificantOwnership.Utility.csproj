@@ -46,7 +46,10 @@
     <Compile Include="ReflectionUtil.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFGen\IXAMLGenerator.cs" />
     <Compile Include="WPFGen\XAMLGenerator.cs" />
+    <Compile Include="WPFGen\XAMLGeneratorFactory.cs" />
+    <Compile Include="WPFGen\XAMLGeneratorPureXml.cs" />
     <Compile Include="WPFGen\XAMLTemplateGenerator.cs" />
     <Compile Include="WPFGen\XAMLTemplatesGenerationManager.cs" />
     <Compile Include="XAMLTemplates\XAMLPrimitiveTemplates.Designer.cs">
