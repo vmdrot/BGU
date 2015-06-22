@@ -36,6 +36,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
         private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
+        private int _lastRowIdx = -1;
+        private static readonly string GRID_ROW_ATTR_NM = "Grid.Row";
 
 
         private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> PropDispDescrs
@@ -118,15 +120,43 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _userAssembly = userAsmbly;
             
             XmlDocument rslt = CreateControlWrapper(typ);
+            XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
+            XmlNode gridNode = dataTemplateNode.FirstChild;
+            ReplaceTemplateDataType(dataTemplateNode, typ);
+            AddTemplateDataTypeNS(rslt.DocumentElement, typ);
             PropertyInfo[] props = typ.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty);
             foreach(PropertyInfo pi in props)
             {
-                XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
-                ReplaceTemplateDataType(dataTemplateNode, typ);
-                XmlNode gridNode = dataTemplateNode.FirstChild;
+                
                 AddControl(gridNode, pi);
             }
+            SetGridRows(gridNode);
             return rslt;
+        }
+
+        private void AddTemplateDataTypeNS(XmlElement resourceDicNode, Type typ)
+        {
+            //xmlns:bguq="clr-namespace:BGU.DRPL.SignificantOwnership.Core.Questionnaires;assembly=BGU.DRPL.SignificantOwnership.Core"
+            string attrNm = string.Format("xmlns:{0}", _bguNS2XamlPfxs[typ.Namespace]);
+            string attrVal = string.Format("clr-namespace:{0};assembly={1}", typ.Namespace, typ.Assembly.FullName);
+            XSDReflectionUtil.WriteAttribute(resourceDicNode, attrNm, attrVal);
+        }
+
+        private void SetGridRows(XmlNode gridNode)
+        {
+            if (_lastRowIdx == -1)
+                return;
+            if (gridNode.FirstChild.Name != "Grid.RowDefinitions")
+                return;
+            XmlNode defsNode = gridNode.FirstChild;
+            defsNode.RemoveAll();
+            for(int i = 0; i<=_lastRowIdx; i++)
+            {
+                //<RowDefinition Height="*" />
+                XmlNode currRowDef = defsNode.OwnerDocument.CreateNode(XmlNodeType.Element, "RowDefinition", NewElemNS);
+                XSDReflectionUtil.WriteAttribute(currRowDef, "Height", "*");
+                defsNode.AppendChild(currRowDef);
+            }
         }
 
         private void ReplaceTemplateDataType(XmlNode dataTemplateNode, Type typ)
@@ -174,6 +204,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
                 ReplacePlaceholderTexts(curr, pi);
+                SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
             }
 
@@ -199,6 +230,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
                 ReplacePlaceholderTexts(curr, pi);
+                SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
             }
 
@@ -233,6 +265,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
                 ReplacePlaceholderTexts(curr, pi);
                 ReplaceAllAttrsPlaceholders(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
+                SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
             }
 
@@ -248,6 +281,14 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             container.InsertAfter(curr, container.LastChild);
             IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
 #endif
+        }
+
+        private void SetGridRow(XmlNode curr)
+        {
+            if (curr.Attributes[GRID_ROW_ATTR_NM] == null)
+                return;
+            _lastRowIdx++;
+            curr.Attributes[GRID_ROW_ATTR_NM].Value = _lastRowIdx.ToString();
         }
 
         private void AddBoolEditControl(XmlNode container, PropertyInfo pi)
@@ -288,6 +329,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
                 ReplacePlaceholderTexts(curr, pi);
+                SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
             }
          
