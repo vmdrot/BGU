@@ -88,6 +88,13 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 IXAMLGenerator generator = XAMLGeneratorFactory.Instance.SpawnInstance();
                 generator.GenerateAndSave(typ, userAsmbly, controlTemplateNames, GenerateTemplateFilePath(typ, targetFolder));
             }
+
+            StringBuilder includes = new StringBuilder();
+            foreach (Type typ in queue)
+            {
+                includes.AppendLine(string.Format("<ResourceDictionary Source=\"pack://application:,,,/WpfApplication2;component/Resources/{0}\" />", GenerateTemplateFilName(typ)));
+            }
+            File.WriteAllText(Path.Combine(targetFolder, string.Format("{0}_includes.xaml", rootType.Name)), includes.ToString());
         }
 
         public static string GenerateTemplateFilName(Type typ)

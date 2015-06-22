@@ -105,5 +105,26 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             }
 
         }
+
+        public static void InstantiateAllProps(object obj, Assembly userAssembly)
+        { 
+            PropertyInfo[] pis = obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.SetProperty | BindingFlags.Public);
+
+            foreach (PropertyInfo pi in pis)
+            {
+                if (pi.PropertyType.IsPrimitive || pi.PropertyType.IsEnum || pi.PropertyType.IsGenericType)
+                    continue;
+                if (pi.PropertyType.Assembly != userAssembly)
+                    continue;
+                if (!pi.CanWrite)
+                    continue;
+                ConstructorInfo cctor = pi.PropertyType.GetConstructor(new Type[] { });
+                if(cctor == null)
+                    continue;
+                object currChild = cctor.Invoke(null);
+                pi.SetValue(obj, currChild,null);
+                InstantiateAllProps(currChild, userAssembly);
+            }
+        }
     }
 }
