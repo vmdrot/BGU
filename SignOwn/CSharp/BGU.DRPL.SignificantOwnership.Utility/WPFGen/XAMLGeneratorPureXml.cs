@@ -65,6 +65,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _targetPath = targetPath;
             {
                 XmlDocument xamlDoc = this.Generate(typ, userAsmbly, controlTemplateNames);
+                AddReferencedControlTemplatesIncludes(xamlDoc);
                 xamlDoc.Save(targetPath);
             }
 #if __DISABLE_TEXT_INSERTION__
@@ -79,7 +80,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             File.WriteAllText(_targetPath, xamlTxt, Encoding.Unicode);
             XmlDocument xamlDoc1 = new XmlDocument();
             xamlDoc1.Load(_targetPath);
-            AddReferencedControlTemplatesIncludes(xamlDoc1);
+            
             xamlDoc1.Save(_targetPath);
 #endif
         }
@@ -166,6 +167,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                ReplacePlaceholderTexts(curr, pi);
                 container.InsertAfter(curr, container.LastChild);
             }
 
@@ -240,6 +242,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                ReplacePlaceholderTexts(curr, pi);
                 container.InsertAfter(curr, container.LastChild);
             }
          
@@ -261,19 +264,45 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             return rslt;
         }
 
-        private string ReplacePlaceholderTexts(string xamlFragment, PropertyInfo pi)
+        private void ReplacePlaceholderTexts(XmlNode target, PropertyInfo pi)
         {
             BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr pdd;
             if (PropDispDescrs.ContainsKey(pi.Name))
                 pdd = PropDispDescrs[pi.Name];
             else
                 pdd = new XSDReflectionUtil.PropDispDescr() { Category = string.Empty, DisplayName = pi.Name, Description = pi.Name};
-            string rslt = xamlFragment.Replace(templatedPropertyNamePlaceholder, pi.Name);
-            rslt = SafeXMLAttributeValueReplace(rslt, templatedPropertyDispNamePlaceholder, pdd.DisplayName);
-            rslt = SafeXMLAttributeValueReplace(rslt, templatedPropertyDescrPlaceholder, pdd.Description);
-            return rslt;
+            ReplacePlaceholderAttrsRecursively(target, pi, pdd);
         }
 
+
+        private void ReplacePlaceholderAttrsRecursively(XmlNode target, PropertyInfo pi, XSDReflectionUtil.PropDispDescr pdd)
+        {
+            ReplaceAllAttrsPlaceholders(target, templatedPropertyNamePlaceholder, pi.Name);
+            ReplaceAllAttrsPlaceholders(target, templatedPropertyDispNamePlaceholder, pdd.DisplayName);
+            ReplaceAllAttrsPlaceholders(target, templatedPropertyDescrPlaceholder, pdd.Description);
+
+            foreach(XmlNode child in target.ChildNodes)
+            {
+                ReplacePlaceholderAttrsRecursively(child, pi, pdd);
+            }
+        }
+
+        private void ReplaceAllAttrsPlaceholders(XmlNode target,string phTxt,string replTxt)
+        {
+            Dictionary<string, string> attrsToModify = new Dictionary<string, string>();
+            foreach(XmlAttribute attr in target.Attributes)
+            {
+                if (attr.Value.IndexOf(phTxt) == -1)
+                    continue;
+                string newAttrValue = attr.Value.Replace(phTxt, replTxt);
+                attrsToModify.Add(attr.Name, newAttrValue);
+            }
+            foreach (string attrNm in attrsToModify.Keys)
+            {
+                XSDReflectionUtil.WriteAttribute(target, attrNm, attrsToModify[attrNm]);
+            }
+        }
+        
         private static string SafeXMLAttributeValueReplace(string rslt, string oldString, string newString)
         {
             string replacement = newString.Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;");
