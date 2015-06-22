@@ -86,6 +86,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> FinancialInstitutionStatusList { get { return EnumType.GetEnumList(typeof(FinancialInstitutionStatus)); } }
         public static List<EnumType> CompanyOwnershipTypeList { get { return EnumType.GetEnumList(typeof(CompanyOwnershipType)); } }
         public static List<EnumType> InstitutionLevelList { get { return EnumType.GetEnumList(typeof(InstitutionLevel)); } }
+        public static List<EnumType> LegalTransactionTypeList { get { return EnumType.GetEnumList(typeof(LegalTransactionType)); } }
+        public static List<EnumType> InfluenceTypeList { get { return EnumType.GetEnumList(typeof(InfluenceType)); } }
+
         #endregion
     }
 }

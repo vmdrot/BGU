@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
   <Expander Grid.Row="0" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
-    <DataGrid CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding yourPropertyName}" AutoGenerateColumns="True"></DataGrid>
+    <DataGrid CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="True"></DataGrid>
   </Expander>
 </Template>

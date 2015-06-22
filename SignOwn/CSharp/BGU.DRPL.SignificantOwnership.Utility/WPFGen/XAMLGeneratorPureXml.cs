@@ -8,6 +8,7 @@ using System.Reflection;
 using System.ComponentModel;
 using System.IO;
 using System.Configuration;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
@@ -107,7 +108,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 if (!_referencedControlTemplateNames.ContainsKey(typ))
                     continue;
-                XmlNode currInclude = container.OwnerDocument.CreateNode(XmlNodeType.Element, "ResourceDictionary", NewElemNS);
+                XmlNode currInclude = container.OwnerDocument.CreateNode(XmlNodeType.Element, "ResourceDictionary", xamlDoc1.DocumentElement.NamespaceURI);
                 XSDReflectionUtil.WriteAttribute(currInclude, "Source", _referencedControlTemplateNames[typ]);
                 container.InsertAfter(currInclude, container.LastChild);
             }
@@ -127,18 +128,65 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             PropertyInfo[] props = typ.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty);
             foreach(PropertyInfo pi in props)
             {
-                
+                if(!CheckIsBrowsable(pi) || CheckIsXmlIgnore(pi) || (pi.CanRead && !pi.CanWrite))
+                    continue;
                 AddControl(gridNode, pi);
             }
             SetGridRows(gridNode);
+
+            //clean-up
+            RemoveEmptyNSAttrs((XmlNode)rslt.DocumentElement);
+
             return rslt;
+        }
+
+        private bool CheckIsXmlIgnore(PropertyInfo pi)
+        {
+            if (!Attribute.IsDefined(pi, typeof(XmlIgnoreAttribute)))
+                return false;
+
+            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(XmlIgnoreAttribute));
+            if (reqAttr0 is XmlIgnoreAttribute)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool CheckIsBrowsable(PropertyInfo pi)
+        {
+            if (!Attribute.IsDefined(pi, typeof(BrowsableAttribute)))
+                return true;
+
+            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(BrowsableAttribute));
+            if (reqAttr0 is BrowsableAttribute)
+            {
+                BrowsableAttribute reqAttr = (BrowsableAttribute)reqAttr0;
+                return reqAttr.Browsable;
+            }
+            return true;
+        }
+
+
+        private void RemoveEmptyNSAttrs(XmlNode target)
+        {
+            if (target.Attributes["xmlns"] != null && target.Attributes["xmlns"].Value == string.Empty)
+                target.Attributes.Remove(target.Attributes["xmlns"]);
+
+            foreach(XmlNode child in target.ChildNodes)
+            {
+                RemoveEmptyNSAttrs(child);
+            }
         }
 
         private void AddTemplateDataTypeNS(XmlElement resourceDicNode, Type typ)
         {
             //xmlns:bguq="clr-namespace:BGU.DRPL.SignificantOwnership.Core.Questionnaires;assembly=BGU.DRPL.SignificantOwnership.Core"
             string attrNm = string.Format("xmlns:{0}", _bguNS2XamlPfxs[typ.Namespace]);
-            string attrVal = string.Format("clr-namespace:{0};assembly={1}", typ.Namespace, typ.Assembly.FullName);
+            string assemblyShortName = typ.Assembly.FullName;
+            int commaPos = assemblyShortName.IndexOf(',');
+            assemblyShortName = assemblyShortName.Substring(0, commaPos);
+            string attrVal = string.Format("clr-namespace:{0};assembly={1}", typ.Namespace, assemblyShortName);
             XSDReflectionUtil.WriteAttribute(resourceDicNode, attrNm, attrVal);
         }
 
@@ -153,7 +201,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             for(int i = 0; i<=_lastRowIdx; i++)
             {
                 //<RowDefinition Height="*" />
-                XmlNode currRowDef = defsNode.OwnerDocument.CreateNode(XmlNodeType.Element, "RowDefinition", NewElemNS);
+                XmlNode currRowDef = defsNode.OwnerDocument.CreateNode(XmlNodeType.Element, "RowDefinition", gridNode.OwnerDocument.DocumentElement.NamespaceURI);
                 XSDReflectionUtil.WriteAttribute(currRowDef, "Height", "*");
                 defsNode.AppendChild(currRowDef);
             }
@@ -203,6 +251,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
@@ -229,6 +278,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);
@@ -263,6 +313,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 ReplaceAllAttrsPlaceholders(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
                 SetGridRow(curr);
@@ -271,7 +322,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
-
 #else
             string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)], pi);
             controlXamlFragment = controlXamlFragment.Replace(templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
@@ -328,6 +378,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 SetGridRow(curr);
                 container.InsertAfter(curr, container.LastChild);

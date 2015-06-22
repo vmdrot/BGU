@@ -6,7 +6,8 @@
                     xmlns:bguq="clr-namespace:BGU.DRPL.SignificantOwnership.Core.Questionnaires;assembly=BGU.DRPL.SignificantOwnership.Core"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:window="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
-                    xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms">
+                    xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+                    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="Styles.xaml" />
     <ResourceDictionary Source="Converters.xaml" />
