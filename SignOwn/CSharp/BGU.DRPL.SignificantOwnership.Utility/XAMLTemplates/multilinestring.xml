@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
   <TextBlock Grid.Row="3" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" />
-  <TextBox Grid.Row="4" Style="{StaticResource txtEdStyle}" Text="{Binding yourPropertyName}" ToolTip="yourPropertyDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Stretch" />
+  <TextBox Grid.Row="4" Style="{StaticResource txtEdStyle}" Text="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" ToolTip="yourPropertyDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Stretch" />
 </Template>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
   <Expander Grid.Row="0" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
-    <ContentControl Content="{Binding yourPropertyName}" Margin="5,2" />
+    <ContentControl Content="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" Margin="5,2" />
   </Expander>
 </Template>
