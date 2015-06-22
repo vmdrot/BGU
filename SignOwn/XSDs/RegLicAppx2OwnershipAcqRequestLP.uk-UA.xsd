@@ -37,7 +37,7 @@
             Самі реквізити мають потрапити до MentionedIdentities</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" displayName="2. Ідентифікаційні дані::Рейтингова оцінка" description="(за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,Standart &amp; Poor's, Moody's)" category="І. Інформація про юридичну особу">
+      <xs:element minOccurs="1" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" displayName="2. Ідентифікаційні дані::Рейтингова оцінка" description="(за рейтингом, який підтверджений у бюлетені, однієї з провідних рейтингових компаній IBCA,Standart &amp; Poor's, Moody's)" category="І. Інформація про юридичну особу">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -67,6 +67,18 @@
       <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" displayName="4. Банківські рахунки юридичної особи" description="(не заповнюється банками)" category="І. Інформація про юридичну особу">
         <xs:annotation>
           <xs:documentation>Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" displayName="6. Наміри щодо набуття/збільшення участі" description="6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+        <xs:annotation>
+          <xs:documentation>6. Інформація про розмір участі, що набувається (збільшується):
+            Наміри щодо набуття/збільшення участі в банку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="6. Майбутня участь особи в банку" description="6. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+        <xs:annotation>
+          <xs:documentation>6. Інформація про розмір участі, що набувається (збільшується):
+            Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" displayName="7. Спосіб(-оби) набуття/збільшення істотної участі в банку" description="7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">

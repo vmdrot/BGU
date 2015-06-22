@@ -96,6 +96,21 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="LiquidatedEntityOwnershipInfo" nillable="true" type="LiquidatedEntityOwnershipInfo" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="LiquidatedEntityOwnershipInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LiquidatedOrInsolventEntityInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Stake" type="TotalOwnershipDetailsInfo" displayName="Частки власності">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове; заповнення секцій - за фактом власності подавача (чи кого там в анкеті вимагають, за контекстом)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
@@ -112,7 +127,6 @@
   <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
   <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
-  <xs:include schemaLocation="LiquidatedEntityOwnershipInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
   <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
