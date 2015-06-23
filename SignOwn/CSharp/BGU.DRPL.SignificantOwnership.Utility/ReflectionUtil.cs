@@ -118,13 +118,18 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                     continue;
                 if (!pi.CanWrite)
                     continue;
-                ConstructorInfo cctor = pi.PropertyType.GetConstructor(new Type[] { });
-                if(cctor == null)
-                    continue;
-                object currChild = cctor.Invoke(null);
+                object currChild = InstantiateObject(pi.PropertyType);
                 pi.SetValue(obj, currChild,null);
                 InstantiateAllProps(currChild, userAssembly);
             }
+        }
+
+        public static object InstantiateObject(Type objType)
+        {
+            ConstructorInfo cctor = objType.GetConstructor(new Type[] { });
+            if (cctor == null)
+                return null;
+            return cctor.Invoke(null);
         }
     }
 }
