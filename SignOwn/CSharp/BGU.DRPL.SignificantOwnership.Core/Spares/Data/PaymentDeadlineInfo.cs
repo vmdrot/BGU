@@ -19,5 +19,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата")]
         [Required]
         public DateTime Deadline { get; set; }
+
+        public override string ToString()
+        {
+            if (Amount == null && Deadline == DateTime.MinValue)
+                return string.Empty;
+            string amt = Amount != null ? Amount.ToString() : string.Empty;
+            string dt = (Deadline == DateTime.MinValue || Deadline == DateTime.MaxValue) ? string.Empty : Deadline.ToString();
+            return string.Format("{0}, {1}", amt, dt);
+        }
     }
 }
