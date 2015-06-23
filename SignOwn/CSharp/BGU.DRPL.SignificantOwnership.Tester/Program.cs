@@ -1063,6 +1063,10 @@ RegLicAppx9BankingLicenseAppl.xsd";
             //string targetFolder = @"D:\home\vmdrot\DEV\_tut\WpfApplication2\WpfApplication2\Resources";
             string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(Appx2OwnershipStructLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx14NewSvc), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx3MemberCandidateAppl), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx4OwnershipAcqRequestPP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
         }
 
         #endregion
