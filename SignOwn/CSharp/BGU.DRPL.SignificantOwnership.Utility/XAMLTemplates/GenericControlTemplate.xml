@@ -13,9 +13,7 @@
     <ResourceDictionary Source="Converters.xaml" />
   </ResourceDictionary.MergedDictionaries>
   <DataTemplate DataType="{x:Type yourTemplatedTypeName}">
-    <Grid>
-      <Grid.RowDefinitions>
-      </Grid.RowDefinitions>
-    </Grid>
+    <StackPanel>
+    </StackPanel>
   </DataTemplate>
 </ResourceDictionary>

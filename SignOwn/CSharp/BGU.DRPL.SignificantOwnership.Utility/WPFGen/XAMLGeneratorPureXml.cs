@@ -75,6 +75,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 if(!_bguNS2XamlPfxs.ContainsKey(currNS)) _bguNS2XamlPfxs.Add(currNS, currVal);
             }
         }
+
         public void GenerateAndSave(Type typ, Assembly userAsmbly, Dictionary<Type, string> controlTemplateNames, string targetPath)
         {
             _targetPath = targetPath;
