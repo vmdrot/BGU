@@ -6,11 +6,14 @@
       <xs:simpleType>
         <xs:restriction base="xs:string">
           <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="WagesSalaries" description="Зарплатня" />
-          <xs:enumeration value="Royalties" description="Роялті" />
-          <xs:enumeration value="Dividends" description="Дивіденди" />
+          <xs:enumeration value="WagesSalaries" description="Зарплатня (ф.о.)" />
+          <xs:enumeration value="Royalties" description="Роялті (ф.о.)" />
+          <xs:enumeration value="Dividends" description="Дивіденди (ф.о.)" />
           <xs:enumeration value="PassiveIncomes" description="Пасивний дохід" />
-          <xs:enumeration value="Inherited" description="Спадщина" />
+          <xs:enumeration value="Inherited" description="Спадщина (ф.о.)" />
+          <xs:enumeration value="Profit" description="Прибуток (ю.о.)" />
+          <xs:enumeration value="Equity" description="Частина статутного капіталу (ю.о.)" />
+          <xs:enumeration value="SpecFunds" description="Кошти фонду(-ів) (ю.о.)" />
           <xs:enumeration value="OtherIncomes" description="Інші доходи" />
         </xs:restriction>
       </xs:simpleType>

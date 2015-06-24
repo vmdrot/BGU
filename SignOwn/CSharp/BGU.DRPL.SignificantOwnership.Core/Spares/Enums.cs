@@ -132,16 +132,22 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     public enum FundsOriginType
     {
         [Description("Не вказано")]None = 0,
-        [Description("Зарплатня")]
+        [Description("Зарплатня (ф.о.)")]
         WagesSalaries,
-        [Description("Роялті")]
+        [Description("Роялті (ф.о.)")]
         Royalties,
-        [Description("Дивіденди")]
+        [Description("Дивіденди (ф.о.)")]
         Dividends,
         [Description("Пасивний дохід")]
         PassiveIncomes,
-        [Description("Спадщина")]
+        [Description("Спадщина (ф.о.)")]
         Inherited,
+        [Description("Прибуток (ю.о.)")]
+        Profit,
+        [Description("Частина статутного капіталу (ю.о.)")]
+        Equity,
+        [Description("Кошти фонду(-ів) (ю.о.)")]
+        SpecFunds,
         [Description("Інші доходи")]
         OtherIncomes
     }
