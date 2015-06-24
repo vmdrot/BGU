@@ -11,6 +11,9 @@
           <xs:enumeration value="Dividends" />
           <xs:enumeration value="PassiveIncomes" />
           <xs:enumeration value="Inherited" />
+          <xs:enumeration value="Profit" />
+          <xs:enumeration value="Equity" />
+          <xs:enumeration value="SpecFunds" />
           <xs:enumeration value="OtherIncomes" />
         </xs:restriction>
       </xs:simpleType>
