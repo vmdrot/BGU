@@ -2,12 +2,15 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="IPOSharesPurchaseInfo" nillable="true" type="IPOSharesPurchaseInfo" />
   <xs:complexType name="IPOSharesPurchaseInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про придбання на акцій на первинному ринку</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NominalSharePrice" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NominalTotalSharesValue" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ActualTotalSharesValue" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PaymentDeadlines" type="ArrayOfPaymentDeadlineInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="Кількість акцій" description="Кількість акцій (паїв) банку, які юридична особа має намір придбати, штук" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NominalSharePrice" type="CurrencyAmount" displayName="Номінальна ціна" description="Номінальна вартість однієї акції (одного паю), грн." />
+      <xs:element minOccurs="0" maxOccurs="1" name="NominalTotalSharesValue" type="CurrencyAmount" displayName="Загальна номінальна вартість" description="Загальна номінальна вартість акцій (паїв), які юридична особа має намір придбати, грн." />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualTotalSharesValue" type="CurrencyAmount" displayName="Реальна ціна акцій" description="Ціна акцій (паїв), які юридична особа має намір придбати, грн." />
+      <xs:element minOccurs="0" maxOccurs="1" name="PaymentDeadlines" type="ArrayOfPaymentDeadlineInfo" displayName="Термін оплати" description="Запланований термін здійснення оплати" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfPaymentDeadlineInfo">
