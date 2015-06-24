@@ -19,35 +19,36 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private Assembly _userAssembly;
         private Type _rootType;
         private string _targetPath;
-        private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> _propDispDescrs;
+        private Dictionary<Type,Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr>> _propDispDescrs;
         private static readonly Dictionary<Type, string> PRIMITIVE_TYPES_TEMPLATES;
         private static readonly string templatedPropertyNamePlaceholder = "yourPropertyName";
         private static readonly string templatedPropertyDispNamePlaceholder = "yourPropertyDispName";
         private static readonly string templatedPropertyDescrPlaceholder = "yourPropertyDescription";
         private static readonly string templatedEnumListerPlaceholder = "yourEnumListerProperty";
         private static readonly string templatedTypeNamePlaceholder = "yourTemplatedTypeName";
-        private static readonly string templatedGridRowAttributeName = "Grid.Row";
+        //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
         private static readonly string listOfTTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ListOfT;
-        private static readonly string dummyNodeElementName = "dummyPhTag";
-        private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
-        private static readonly string uniquifierAttrName = "guuiidd";
+        private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
+        private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
+        //private static readonly string dummyNodeElementName = "dummyPhTag";
+        //private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
+        //private static readonly string uniquifierAttrName = "guuiidd";
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
         private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
 
 
 
-        private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> PropDispDescrs
+        private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> GetPropDispDescrs(Type typ)
         {
-            get
-            { 
-                if(_propDispDescrs == null)
-                {
-                    _propDispDescrs = XSDReflectionUtil.FetchPropDispsDescrs(_rootType);
-                }
-                return _propDispDescrs;
+            if(_propDispDescrs == null)
+            {
+                _propDispDescrs = new Dictionary<Type, Dictionary<string, XSDReflectionUtil.PropDispDescr>>();
             }
+            if (!_propDispDescrs.ContainsKey(typ))
+                _propDispDescrs.Add(typ, XSDReflectionUtil.FetchPropDispsDescrs(typ));
+            return _propDispDescrs[typ];
         }
 
         static XAMLGeneratorPureXmlStackPanel()
@@ -55,11 +56,16 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             PRIMITIVE_TYPES_TEMPLATES = new Dictionary<Type, string>();
 
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(bool), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._bool);
+            PRIMITIVE_TYPES_TEMPLATES.Add(typeof(bool?), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._bool);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(int), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._int);
+            PRIMITIVE_TYPES_TEMPLATES.Add(typeof(int?), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._int);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(decimal), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._decimal);
+            PRIMITIVE_TYPES_TEMPLATES.Add(typeof(decimal?), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._decimal);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(string), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.onelinestring);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(double), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._decimal);//todo
+            PRIMITIVE_TYPES_TEMPLATES.Add(typeof(double?), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._decimal);//todo
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(DateTime), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DateTime);
+            PRIMITIVE_TYPES_TEMPLATES.Add(typeof(DateTime?), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DateTime);
             PRIMITIVE_TYPES_TEMPLATES.Add(typeof(Enum), BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates._enum);
 
             _bguNS2XamlPfxs = new Dictionary<string, string>();
@@ -81,21 +87,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 AddReferencedControlTemplatesIncludes(xamlDoc);
                 xamlDoc.Save(targetPath);
             }
-#if __DISABLE_TEXT_INSERTION__
-#else
-
-            string xamlTxt = File.ReadAllText(_targetPath);
-            xamlTxt = xamlTxt.Replace(templatedTypeNamePlaceholder, _rootType.Name);
-            foreach (string propNm in _propsRealXmls.Keys)
-            {
-                xamlTxt = xamlTxt.Replace(_propsDummyXmls[propNm].Trim().Replace(string.Format("xmlns=\"{0}\" ",NewElemNS), string.Empty), _propsRealXmls[propNm].Trim());
-            }
-            File.WriteAllText(_targetPath, xamlTxt, Encoding.Unicode);
-            XmlDocument xamlDoc1 = new XmlDocument();
-            xamlDoc1.Load(_targetPath);
-            
-            xamlDoc1.Save(_targetPath);
-#endif
         }
 
         private void AddReferencedControlTemplatesIncludes(XmlDocument xamlDoc1)
@@ -123,11 +114,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode gridNode = dataTemplateNode.FirstChild;
             ReplaceTemplateDataType(dataTemplateNode, typ);
             AddTemplateDataTypeNS(rslt.DocumentElement, typ);
-            PropertyInfo[] props = typ.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty);
+            List<PropertyInfo> props = ReflectionUtil.ListEditableProperties(typ);
             foreach(PropertyInfo pi in props)
             {
-                if(!CheckIsBrowsable(pi) || CheckIsXmlIgnore(pi) || (pi.CanRead && !pi.CanWrite))
-                    continue;
                 AddControl(gridNode, pi);
             }
 
@@ -172,6 +161,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             foreach(XmlNode child in target.ChildNodes)
             {
+                if (child.NodeType != XmlNodeType.Element)
+                    continue;
                 RemoveEmptyNSAttrs(child);
             }
         }
@@ -212,10 +203,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             //}
 
             if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(container, pi);
-            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(container, pi);
-            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(container, pi);
-            else if (pi.PropertyType == typeof(DateTime)) AddDateTimeEditControl(container, pi);
-            else if (pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(container, pi);
+            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(container, pi);
+            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(container, pi);
+            else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(container, pi);
+            else if (pi.PropertyType == typeof(bool) || pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(container, pi);
             else if (pi.PropertyType.IsEnum) AddEnumEditControl(container, pi);
             else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(container, pi);
             else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(container, pi);
@@ -225,10 +216,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
         {
-#if __DISABLE_TEXT_INSERTION__
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(listOfTTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            XmlNode expanderNode = null;
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
@@ -236,23 +227,54 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 ReplacePlaceholderTexts(curr, pi);
                 
                 container.InsertAfter(curr, container.LastChild);
+                if (curr.Name == "Expander")
+                    expanderNode = curr;
             }
 
-            if (!_referencedTypes.Contains(pi.PropertyType))
-                _referencedTypes.Add(pi.PropertyType);
-#else
-            string controlXamlFragment = ReplacePlaceholderTexts(listOfTTemplate, pi);
-            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
-            XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
-            XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
-            container.InsertAfter(curr, container.LastChild);
-            IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
-#endif
+            if(pi.PropertyType.IsGenericType)
+            {
+                Type[] tmp = pi.PropertyType.GetGenericArguments();
+                Type itemTyp = null;
+                if(tmp != null && tmp.Length > 0)
+                    itemTyp = tmp[0];
+
+                XmlNode dgNode = expanderNode.FirstChild.FirstChild;
+                XmlNode dgColDefsNode = null;
+                if (dgNode.Name == "DataGrid")
+                    dgColDefsNode = dgNode.FirstChild;
+                if (dgColDefsNode != null)
+                {
+                    List<PropertyInfo> pis = ReflectionUtil.ListEditableProperties(itemTyp);
+                    foreach (PropertyInfo ppi in pis)
+                    {
+                        XmlDocument currColDefDoc = new XmlDocument();
+                        currColDefDoc.LoadXml(listOfT_DataColumnTemplate);
+                        XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
+                        ReplacePlaceholderTexts(colDefSrc, ppi, itemTyp, true);
+                        XmlNode currColDef = container.OwnerDocument.ImportNode(colDefSrc, true);
+                        dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
+                    }
+
+                    #region Insert action buttons column
+                    {
+                        XmlDocument currColDefDoc = new XmlDocument();
+                        currColDefDoc.LoadXml(listOfT_CMDsColumnTemplate);
+                        XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
+                        ReplacePlaceholderTexts(colDefSrc, pi, itemTyp, true);
+                        XmlNode currColDef = container.OwnerDocument.ImportNode(colDefSrc, true);
+                        dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
+                    }
+                    #endregion
+                }
+
+                if (!_referencedTypes.Contains(itemTyp))
+                    _referencedTypes.Add(itemTyp);
+
+            }
         }
 
         private void AddComplextTypeControl(XmlNode container, PropertyInfo pi)
         {
-#if __DISABLE_TEXT_INSERTION__
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(classStructControlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
@@ -267,17 +289,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
-#else
-            string controlXamlFragment = ReplacePlaceholderTexts(classStructControlTemplate, pi);
-            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
-            XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
-            XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
-            container.InsertAfter(curr, container.LastChild);
-            IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
-
-            if (!_referencedTypes.Contains(pi.PropertyType))
-                _referencedTypes.Add(pi.PropertyType);
-#endif
         }
 
         private void AddPrimitiveEditControl(XmlNode container, PropertyInfo pi)
@@ -287,7 +298,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddEnumEditControl(XmlNode container, PropertyInfo pi)
         {
-#if __DISABLE_TEXT_INSERTION__
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)]);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
@@ -303,15 +313,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
-#else
-            string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)], pi);
-            controlXamlFragment = controlXamlFragment.Replace(templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
-            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
-            XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
-            XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
-            container.InsertAfter(curr, container.LastChild);
-            IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
-#endif
         }
 
 
@@ -375,14 +376,23 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             rslt.LoadXml(BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.GenericControlTemplate);
             return rslt;
         }
-
         private void ReplacePlaceholderTexts(XmlNode target, PropertyInfo pi)
         {
+            ReplacePlaceholderTexts(target, pi, _rootType, false);
+        }
+
+        private void ReplacePlaceholderTexts(XmlNode target, PropertyInfo pi, Type typ, bool substDescrWithNonNullDisp)
+        {
             BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr pdd;
-            if (PropDispDescrs.ContainsKey(pi.Name))
-                pdd = PropDispDescrs[pi.Name];
+            if (GetPropDispDescrs(typ).ContainsKey(pi.Name))
+            {
+                BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr pddOrig = GetPropDispDescrs(typ)[pi.Name];
+                if (substDescrWithNonNullDisp && !string.IsNullOrEmpty(pddOrig.DisplayName) && string.IsNullOrEmpty(pddOrig.Description))
+                    pdd = new XSDReflectionUtil.PropDispDescr() { Category = pddOrig.Category, DisplayName = pddOrig.DisplayName, Description = pddOrig.DisplayName};
+                else pdd = pddOrig;
+            }
             else
-                pdd = new XSDReflectionUtil.PropDispDescr() { Category = string.Empty, DisplayName = pi.Name, Description = pi.Name};
+                pdd = new XSDReflectionUtil.PropDispDescr() { Category = string.Empty, DisplayName = pi.Name, Description = pi.Name };
             ReplacePlaceholderAttrsRecursively(target, pi, pdd);
         }
 
@@ -395,6 +405,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             foreach(XmlNode child in target.ChildNodes)
             {
+                if (child.NodeType != XmlNodeType.Element)
+                    continue;
                 ReplacePlaceholderAttrsRecursively(child, pi, pdd);
             }
         }
@@ -411,16 +423,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
             foreach (string attrNm in attrsToModify.Keys)
             {
-                XSDReflectionUtil.WriteAttribute(target, attrNm, attrsToModify[attrNm]);
+                //XSDReflectionUtil.WriteAttribute(target, attrNm, attrsToModify[attrNm]);
+                target.Attributes[attrNm].Value = attrsToModify[attrNm];
             }
         }
-        
-        private static string SafeXMLAttributeValueReplace(string rslt, string oldString, string newString)
-        {
-            string replacement = newString.Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;");
-            return rslt.Replace(oldString, replacement);
-        }
-
-
     }
 }

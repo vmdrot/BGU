@@ -15,6 +15,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalTransactionInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class LegalTransactionInfo
     {
+        public LegalTransactionInfo()
+        {
+            this.Parties = new List<GenericPersonID>();
+        }
         [DisplayName("Правочин відбувся?")]
         [Description("Чи правочин уже відбувся чи лише планується?")]
         [Required]

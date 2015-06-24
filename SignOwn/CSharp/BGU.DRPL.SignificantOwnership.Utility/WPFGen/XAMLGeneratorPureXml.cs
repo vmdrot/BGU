@@ -126,11 +126,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode gridNode = dataTemplateNode.FirstChild;
             ReplaceTemplateDataType(dataTemplateNode, typ);
             AddTemplateDataTypeNS(rslt.DocumentElement, typ);
-            PropertyInfo[] props = typ.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty);
+            List<PropertyInfo> props = ReflectionUtil.ListEditableProperties(typ);
             foreach(PropertyInfo pi in props)
             {
-                if(!CheckIsBrowsable(pi) || CheckIsXmlIgnore(pi) || (pi.CanRead && !pi.CanWrite))
-                    continue;
                 AddControl(gridNode, pi);
             }
             SetGridRows(gridNode);
@@ -141,32 +139,6 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             return rslt;
         }
 
-        private bool CheckIsXmlIgnore(PropertyInfo pi)
-        {
-            if (!Attribute.IsDefined(pi, typeof(XmlIgnoreAttribute)))
-                return false;
-
-            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(XmlIgnoreAttribute));
-            if (reqAttr0 is XmlIgnoreAttribute)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool CheckIsBrowsable(PropertyInfo pi)
-        {
-            if (!Attribute.IsDefined(pi, typeof(BrowsableAttribute)))
-                return true;
-
-            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(BrowsableAttribute));
-            if (reqAttr0 is BrowsableAttribute)
-            {
-                BrowsableAttribute reqAttr = (BrowsableAttribute)reqAttr0;
-                return reqAttr.Browsable;
-            }
-            return true;
-        }
 
 
         private void RemoveEmptyNSAttrs(XmlNode target)

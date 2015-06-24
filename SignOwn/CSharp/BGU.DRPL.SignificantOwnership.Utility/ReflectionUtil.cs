@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Utility
 {
@@ -112,6 +114,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility
 
             foreach (PropertyInfo pi in pis)
             {
+                if (pi.PropertyType == typeof(DateTime))
+                    pi.SetValue(obj, DateTime.Now, null);
                 if (pi.PropertyType.IsPrimitive || pi.PropertyType.IsEnum || pi.PropertyType.IsGenericType)
                     continue;
                 if (pi.PropertyType.Assembly != userAssembly)
@@ -131,5 +135,46 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                 return null;
             return cctor.Invoke(null);
         }
+
+        public static List<PropertyInfo> ListEditableProperties(Type typ)
+        {
+            List<PropertyInfo> rslt = new List<PropertyInfo>();
+            PropertyInfo[] props = typ.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty | BindingFlags.GetProperty);
+            foreach (PropertyInfo pi in props)
+            {
+                if (!CheckIsBrowsable(pi) || CheckIsXmlIgnore(pi) || (pi.CanRead && !pi.CanWrite))
+                    continue;
+                rslt.Add(pi);
+            }
+            return rslt;
+        }
+
+        public static bool CheckIsBrowsable(PropertyInfo pi)
+        {
+            if (!Attribute.IsDefined(pi, typeof(BrowsableAttribute)))
+                return true;
+
+            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(BrowsableAttribute));
+            if (reqAttr0 is BrowsableAttribute)
+            {
+                BrowsableAttribute reqAttr = (BrowsableAttribute)reqAttr0;
+                return reqAttr.Browsable;
+            }
+            return true;
+        }
+
+        public static bool CheckIsXmlIgnore(PropertyInfo pi)
+        {
+            if (!Attribute.IsDefined(pi, typeof(XmlIgnoreAttribute)))
+                return false;
+
+            Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(XmlIgnoreAttribute));
+            if (reqAttr0 is XmlIgnoreAttribute)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
