@@ -84,6 +84,8 @@
   <ItemGroup>
     <Content Include="XAMLTemplates\bool.xml" />
     <Content Include="XAMLTemplates\classstruct.xml" />
+    <Content Include="XAMLTemplates\DataGridCommandsColumnTemplate.xml" />
+    <Content Include="XAMLTemplates\DataGridTextColumnTemplate.xml" />
     <Content Include="XAMLTemplates\DateTime.xml" />
     <Content Include="XAMLTemplates\decimal.xml" />
     <Content Include="XAMLTemplates\enum.xml" />

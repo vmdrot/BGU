@@ -18,6 +18,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         public LegalPersonInfo()
         {
             ResidenceCountry = CountryInfo.UKRAINE;
+            this.PrincipalActivities = new List<EconomicActivityType>();
         }
         /// <summary>
         /// Обов'язкове поле (якщо контекстом проперті, де використовується цей тим, не визначено інакше)

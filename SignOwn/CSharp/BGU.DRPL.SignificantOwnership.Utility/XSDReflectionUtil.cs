@@ -27,6 +27,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                 string cat = Tools.GetPropCategory(pd);
                 if (string.IsNullOrEmpty(dispName) && string.IsNullOrEmpty(descr))
                     continue;
+                //if (string.IsNullOrEmpty(descr) && !string.IsNullOrEmpty(dispName))
+                //    descr = dispName;
                 rslt.Add(pd.Name, new PropDispDescr() { Description = descr, DisplayName = dispName, Category = cat });
             }
             return rslt;

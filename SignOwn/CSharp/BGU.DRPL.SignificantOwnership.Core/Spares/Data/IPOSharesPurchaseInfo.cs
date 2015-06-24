@@ -12,6 +12,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPOSharesPurchaseInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class IPOSharesPurchaseInfo
     {
+        public IPOSharesPurchaseInfo()
+        {
+            PaymentDeadlines = new List<PaymentDeadlineInfo>();
+        }
+
         [DisplayName("Кількість акцій")]
         [Description("Кількість акцій (паїв) банку, які юридична особа має намір придбати, штук")]
         public int SharesCount { get; set; }

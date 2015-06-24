@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Template>
+<Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Expander Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
-    <DataGrid CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="True"></DataGrid>
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" Orientation="Vertical">
+      <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False">
+        <DataGrid.Columns></DataGrid.Columns>
+      </DataGrid>
+      <Button Content="Add new row" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Width="75" Command="{x:Static local:MyCommands.AddNewRowCommand}" >
+        <!--todo IsEnabled="{Binding Path=AcquisitionWays.IsIPO}"-->
+        <Button.CommandParameter>
+          <MultiBinding Converter="{StaticResource multiValConv}">
+            <Binding Path="ItemsSource" ElementName="gridyourPropertyName"/>
+            <Binding Path="DataContext" ElementName="gridyourPropertyName" />
+            <Binding Path="yourPropertyName" />
+            <Binding ElementName="gridyourPropertyName" />
+          </MultiBinding>
+        </Button.CommandParameter>
+      </Button>
+    </StackPanel>
   </Expander>
 </Template>

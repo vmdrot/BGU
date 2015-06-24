@@ -24,7 +24,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         public IXAMLGenerator SpawnInstance()
         {
             //return new XAMLGenerator();
-            return new XAMLGeneratorPureXml();
+            //return new XAMLGeneratorPureXml();
+            return new XAMLGeneratorPureXmlStackPanel();
         }
     }
 }

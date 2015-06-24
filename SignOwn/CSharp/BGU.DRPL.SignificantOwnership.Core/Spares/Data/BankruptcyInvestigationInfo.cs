@@ -13,6 +13,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankruptcyInvestigationInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class BankruptcyInvestigationInfo
     {
+        public BankruptcyInvestigationInfo()
+        {
+            this.CourtDecisions = new List<CourtDecisionInfo>();
+        }
+
         [DisplayName("Дата порушення справи про банкрутство")]
         [Description("Дата відкриття справи")]
         [Required]
