@@ -2,35 +2,40 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="RegLicAppx2OwnershipAcqRequestLP" nillable="true" type="RegLicAppx2OwnershipAcqRequestLP" />
   <xs:complexType name="RegLicAppx2OwnershipAcqRequestLP">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Acquiree" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthorities" type="ArrayOfFinancialOversightAuthorityInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByPoAttorneys" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" />
-      <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ImprefectReputationDetails" type="ImperfectBusinessReputationInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationResonInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="ContactInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="QuestionnaireBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Acquiree" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CreditRatingGrade" type="ArrayOfCreditRatingInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthorities" type="ArrayOfFinancialOversightAuthorityInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByPoAttorneys" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ImprefectReputationDetails" type="ImperfectBusinessReputationInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationResonInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="ContactInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="QuestionnaireBase" abstract="true" />
   <xs:complexType name="BankInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
@@ -384,6 +389,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
       <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
       <xs:element minOccurs="1" maxOccurs="1" name="VotesPct" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>

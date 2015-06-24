@@ -57,9 +57,9 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             //BuildOwnershipGraphGrantBankTest();
             //ProcessXSDTest();
 
-            //UpdateXSDsTranslations();
+            UpdateXSDsTranslations();
 
-            GenerateXAMLs4RegLicAppx2();
+            //GenerateXAMLs4RegLicAppx2();
         }
 
         #region FFR

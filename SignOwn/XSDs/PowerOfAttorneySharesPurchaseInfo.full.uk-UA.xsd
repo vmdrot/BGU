@@ -2,10 +2,14 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="PowerOfAttorneySharesPurchaseInfo" nillable="true" type="PowerOfAttorneySharesPurchaseInfo" />
   <xs:complexType name="PowerOfAttorneySharesPurchaseInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
-      <xs:element minOccurs="1" maxOccurs="1" name="VotesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Реквізити довіреності" description="Особа, яка видаватиме довіреність, Запланований термін дії довіреності, Інша інформація" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="% участі довірителя" description="Розмір участі довірителя в банку, %" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів" description="Кількість голосів у банку, щодо яких передається право голосу" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VotesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="% голосів" description="Відсоток голосів у банку, щодо яких передається право голосу" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
