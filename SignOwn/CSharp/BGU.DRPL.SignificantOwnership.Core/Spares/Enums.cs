@@ -780,5 +780,39 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Вирішальний")]
         Decisive
     }
+
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    public enum LegalTransactionPartyRoleType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Продавець")]
+        Buyer,
+        [Description("Покупець")]
+        Seller,
+        [Description("Дарувач")]
+        Grantor,
+        [Description("Дароотримувач")]
+        Grantee,
+        [Description("Заповідач")]
+        Legator,
+        [Description("Спадкоємець")]
+        Inheritor,
+        [Description("Поручитель")]
+        Gurantor,
+        [Description("Кредитор")]
+        Creditor,
+        [Description("Позичальник")]
+        Borrower,
+        [Description("Боржник")]
+        Obligor,
+        [Description("Застоводавець")]
+        Pledger,
+        [Description("Заставоутримувач")]
+        Pledgee,
+        [Description("Інше")]
+        Other
+    }
+
 }
 

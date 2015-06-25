@@ -69,7 +69,7 @@
    IsCommitted == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfGenericPersonID" displayName="Сторони" description="Сторони правочину">
+      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" displayName="Сторони" description="Сторони правочину">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -81,6 +81,21 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ArrayOfLegalTransactionPartyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LegalTransactionPartyInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про сторону правочину</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
@@ -88,5 +103,5 @@
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
 </xs:schema>

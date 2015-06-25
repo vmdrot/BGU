@@ -53,5 +53,7 @@
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
 </xs:schema>

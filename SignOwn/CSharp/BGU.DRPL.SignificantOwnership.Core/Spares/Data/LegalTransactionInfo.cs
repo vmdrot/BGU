@@ -17,7 +17,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         public LegalTransactionInfo()
         {
-            this.Parties = new List<GenericPersonID>();
+            this.Parties = new List<LegalTransactionPartyInfo>();
         }
         [DisplayName("Правочин відбувся?")]
         [Description("Чи правочин уже відбувся чи лише планується?")]
@@ -37,7 +37,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Сторони")]
         [Description("Сторони правочину")]
         [Required]
-        public List<GenericPersonID> Parties { get; set; }
+        public List<LegalTransactionPartyInfo> Parties { get; set; }
         [DisplayName("Зміст правочину")]
         [Description("Стислий опис змісту правочину")]
         [Required]
