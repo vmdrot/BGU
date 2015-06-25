@@ -22,6 +22,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public DateTime? PlannedRepaymentDate { get; set; }
         [DisplayName("Плани щодо погашення")]
         [Required]
+        [Multiline]
         public string RepaymentPlans { get; set; }
     }
 }

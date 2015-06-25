@@ -22,6 +22,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public CurrencyAmount Income { get; set; }
         [DisplayName("Опис та деталі щодо джерела доходу")]
         [Required]
+        [Multiline]
         public string IncomeOriginNotes { get; set; }
     }
 }

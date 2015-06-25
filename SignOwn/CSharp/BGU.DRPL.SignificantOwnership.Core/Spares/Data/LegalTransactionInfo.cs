@@ -41,6 +41,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Зміст правочину")]
         [Description("Стислий опис змісту правочину")]
         [Required]
+        [Multiline]
         public string TransactionText { get; set; }
     }
 }

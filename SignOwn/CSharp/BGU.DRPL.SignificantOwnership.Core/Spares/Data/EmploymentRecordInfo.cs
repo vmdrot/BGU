@@ -60,6 +60,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Причина звільнення")]
         [Description("причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину")]
+        [Multiline]
         public string DismissalOrUnemployedReason { get; set; }
         /// <summary>
         /// тел, e-mail, якщо є - www;

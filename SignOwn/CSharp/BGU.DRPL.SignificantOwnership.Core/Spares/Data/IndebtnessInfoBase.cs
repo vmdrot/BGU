@@ -20,6 +20,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public GenericPersonID Borrower { get; set; }
         [DisplayName("Суть заборгованості")]
         [Required]
+        [Multiline]
         public string DebtSubject { get; set; }
         [DisplayName("Основна сума боргу")]
         [Required]
@@ -42,15 +43,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Сума простроченої заборгованості")]
         public CurrencyAmount PrincipalOverdue { get; set; }
-        [DisplayName("Деталі прострочки")]
+        
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>
+        [DisplayName("Деталі прострочки")]
+        [Multiline]
         public string OverdueDetails { get; set; }
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>
         [DisplayName("Прични прострочки")]
+        [Multiline]
         public string OverdueReasons { get; set; }
 
     }

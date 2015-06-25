@@ -33,6 +33,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Опис файлу")]
         [Description("Що у файлі?")]
+        [Multiline]
         public string Description { get; set; }
         /// <summary>
         /// Заповнювати самостійно з розширення FileName

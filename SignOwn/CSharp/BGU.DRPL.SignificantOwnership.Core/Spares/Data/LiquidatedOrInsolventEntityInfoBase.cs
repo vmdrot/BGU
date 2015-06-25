@@ -37,12 +37,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Причина ліквідації/банкрутства")]
         [Required]
+        [Multiline]
         public string LiquidationReason { get; set; }
         /// <summary>
         /// обов'язкове; мається на увазі, документ, рішення, розпорядження, закон, тощо (конкретний...)
         /// </summary>
         [DisplayName("Підстава ліквідації/банкрутства")]
         [Required]
+        [Multiline]
         public string LiquidationPretext { get; set; }
     }
 }

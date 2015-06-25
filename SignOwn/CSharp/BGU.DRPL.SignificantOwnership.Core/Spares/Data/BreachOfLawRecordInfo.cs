@@ -60,6 +60,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Стаття(-і)")]
         [Required]
+        [Multiline]
         public string Articles { get; set; }
         /// <summary>
         /// обов'язкове
@@ -72,6 +73,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// якщо були (інші санкції)
         /// </summary>
         [DisplayName("Інші санкції")]
+        [Multiline]
         public string OtherSanctionDetails { get; set; }
         /// <summary>
         /// обов'язкове

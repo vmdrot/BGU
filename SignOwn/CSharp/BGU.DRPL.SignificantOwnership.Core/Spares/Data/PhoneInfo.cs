@@ -28,6 +28,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Примітки щодо телефону")]
         [Description("Примітки щодо телефону")]
+        [Multiline]
         public string PhoneNotes { get; set; }
 
         public override string ToString()

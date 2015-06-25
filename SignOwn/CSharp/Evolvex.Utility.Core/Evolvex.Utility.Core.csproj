@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModelEx\MultilineAttribute.cs" />
     <Compile Include="ComponentModelEx\RequiredAttribute.cs" />
     <Compile Include="ComponentModelEx\ValidationAttribute.cs" />
     <Compile Include="Geo\BasicGeoposition.cs" />

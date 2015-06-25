@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Configuration;
 using System.Xml.Serialization;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
@@ -29,6 +30,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
         private static readonly string listOfTTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ListOfT;
+        private static readonly string multilineTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.multilinestring;
         private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
         private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
         //private static readonly string dummyNodeElementName = "dummyPhTag";
@@ -338,17 +340,28 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddStringEditControl(XmlNode container, PropertyInfo pi)
         {
-            AddEditControlWorker(container, pi, typeof(string));
+            bool isMultiline = Attribute.IsDefined(pi, typeof(MultilineAttribute));
+
+            if(!isMultiline)
+                AddEditControlWorker(container, pi, typeof(string));
+            else
+                AddEditControlWorker(container, pi, typeof(string), multilineTemplate);
         }
 
         private void AddEditControlWorker(XmlNode container, PropertyInfo pi, Type ctrlTyp)
+        {
+            AddEditControlWorker(container, pi, ctrlTyp, PRIMITIVE_TYPES_TEMPLATES[ctrlTyp]);
+        }
+        
+    
+        private void AddEditControlWorker(XmlNode container, PropertyInfo pi, Type ctrlTyp, string controlXamlTemplate)
         {
             //string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp], pi);
             ////XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
             //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
             //XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
-            controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp]);
+            controlXamlFragmentDoc.LoadXml(controlXamlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {

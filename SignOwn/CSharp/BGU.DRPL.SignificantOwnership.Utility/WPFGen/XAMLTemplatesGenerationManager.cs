@@ -90,6 +90,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
 
             StringBuilder includes = new StringBuilder();
+            //todo - take into account increasing presence of non-auto-generated templates
             foreach (Type typ in queue)
             {
                 includes.AppendLine(string.Format("<ResourceDictionary Source=\"pack://application:,,,/WpfApplication2;component/Resources/{0}\" />", GenerateTemplateFilName(typ)));

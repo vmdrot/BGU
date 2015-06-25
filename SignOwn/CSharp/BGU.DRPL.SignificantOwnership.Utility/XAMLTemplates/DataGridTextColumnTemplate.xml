@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <DataGridTextColumn Binding="{Binding Path=yourPropertyName, diag:PresentationTraceSources.TraceLevel=High, Mode=TwoWay}" Header="yourPropertyDispName" Width="*" TextBlock.TextAlignment="Center">
+    <DataGridTextColumn.HeaderStyle>
+      <Style TargetType="dataprimitives:DataGridColumnHeader">
+        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        <Setter Property="TextBlock.VerticalAlignment" Value="Stretch" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="SeparatorBrush" Value="Black" />
+        <Setter Property="ContentTemplate">
+          <Setter.Value>
+            <DataTemplate>
+              <ContentControl Content="{Binding}">
+                <ToolTipService.ToolTip>
+                  <ToolTip Content="yourPropertyDescription" />
+                </ToolTipService.ToolTip>
+              </ContentControl>
+            </DataTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </DataGridTextColumn.HeaderStyle>
+  </DataGridTextColumn>
+</Template>
