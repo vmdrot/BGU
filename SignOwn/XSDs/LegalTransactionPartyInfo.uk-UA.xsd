@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
+  <xs:complexType name="LegalTransactionPartyInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про сторону правочину</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
+</xs:schema>

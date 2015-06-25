@@ -1,31 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="LegalTransactionInfo" nillable="true" type="LegalTransactionInfo" />
-  <xs:complexType name="LegalTransactionInfo">
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TransactionText" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="LegalTransactionType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="BuySellAgreement" />
-      <xs:enumeration value="GrantAgreement" />
-      <xs:enumeration value="Inheritance" />
-      <xs:enumeration value="SwapAgreement" />
-      <xs:enumeration value="Other" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="ArrayOfLegalTransactionPartyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
-    </xs:sequence>
-  </xs:complexType>
+  <xs:element name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
   <xs:complexType name="LegalTransactionPartyInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" />

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LegalTransactionPartyRoleType" type="LegalTransactionPartyRoleType" />
+  <xs:simpleType name="LegalTransactionPartyRoleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Buyer" />
+      <xs:enumeration value="Seller" />
+      <xs:enumeration value="Grantor" />
+      <xs:enumeration value="Grantee" />
+      <xs:enumeration value="Legator" />
+      <xs:enumeration value="Inheritor" />
+      <xs:enumeration value="Gurantor" />
+      <xs:enumeration value="Creditor" />
+      <xs:enumeration value="Borrower" />
+      <xs:enumeration value="Obligor" />
+      <xs:enumeration value="Pledger" />
+      <xs:enumeration value="Pledgee" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

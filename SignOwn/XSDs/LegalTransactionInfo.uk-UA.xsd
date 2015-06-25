@@ -25,7 +25,7 @@
    IsCommitted == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfGenericPersonID" displayName="Сторони" description="Сторони правочину">
+      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" displayName="Сторони" description="Сторони правочину">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -38,7 +38,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
 </xs:schema>
