@@ -33,6 +33,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [Description("Опис функцій")]
         [DisplayName("Опис функцій")]
+        [Multiline]
         public string FunctionsDescription { get; set; }
 
         public override string ToString()

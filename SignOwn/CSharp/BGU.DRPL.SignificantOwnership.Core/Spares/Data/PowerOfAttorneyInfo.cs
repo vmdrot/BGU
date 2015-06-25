@@ -39,6 +39,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         
         [DisplayName("Інші відомості")]
         [Description("Додаткові (значущі) відомості про довіреність")]
+        [Multiline]
         public string OtherInfo { get; set; }
     }
 }

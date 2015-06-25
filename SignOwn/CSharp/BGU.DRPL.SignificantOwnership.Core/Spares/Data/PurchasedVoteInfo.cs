@@ -33,6 +33,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Шлях передачі/купівлі голосів/власності")]
         [Description("Шлях передачі/купівлі голосів/власності")]
         [Required]
+        [Multiline]
         public string VotesTransferPath { get; set; }
 
         public override string ToString()

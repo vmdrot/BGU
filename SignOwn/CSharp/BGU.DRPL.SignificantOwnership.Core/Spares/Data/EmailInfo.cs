@@ -25,6 +25,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// Необов'язкове поле, передбачено для вказання, що за мило - робоче, особисте, офіційне (юр.особи).
         /// </summary>
         [DisplayName("Примітки (необов'язково)")]
+        [Multiline]
         public string EmailDescription { get; set; }
 
         public override string ToString()

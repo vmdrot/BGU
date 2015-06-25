@@ -92,7 +92,9 @@
     <Content Include="XAMLTemplates\GenericControlTemplate.xml" />
     <Content Include="XAMLTemplates\int.xml" />
     <Content Include="XAMLTemplates\ListOfT.xml" />
-    <Content Include="XAMLTemplates\multilinestring.xml" />
+    <Content Include="XAMLTemplates\multilinestring.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="XAMLTemplates\onelinestring.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

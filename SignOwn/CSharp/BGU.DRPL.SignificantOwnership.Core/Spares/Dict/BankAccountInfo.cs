@@ -44,6 +44,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Опис/примітки/призначення рахунку")]
         [Required]
+        [Multiline]
         public string AccountDescription { get; set; }
     }
 }

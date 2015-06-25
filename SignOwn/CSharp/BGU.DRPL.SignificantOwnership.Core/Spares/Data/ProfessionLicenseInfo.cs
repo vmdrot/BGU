@@ -50,6 +50,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Формулювання/текст ліцензії")]
         [Description("Додаткові суттєві відомості про ліцензію")]
+        [Multiline]
         public string LicenseClause { get; set; }
     }
 }

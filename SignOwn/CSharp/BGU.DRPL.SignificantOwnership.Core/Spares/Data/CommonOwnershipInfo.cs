@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -26,6 +27,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public OwnershipType OwnershipType { get; set; }
         [DisplayName("Підстава володіння")]
         [Description("На підставі (якщо релевантно), напр. довіреності, тощо")]
+        [Multiline]
         public string OwnershipTestimony { get; set; }
         [DisplayName("Частка власності, %")]
         public decimal OwnershipPct { get; set; }

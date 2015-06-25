@@ -103,6 +103,26 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             }
         }
 
+        public static void WriteXML(object obj, string saveAs)
+        {
+            using (FileStream fs = File.Create(saveAs))
+            {
+                XmlSerializer serializer = new XmlSerializer(obj.GetType());
+                serializer.Serialize(fs, obj);
+            }
+        }
+
+        public static object ReadXML(string fromFile, Type targetType)
+        {
+            using (FileStream fs = new FileStream(fromFile, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(targetType);
+                object o = serializer.Deserialize(fs);
+                return o;
+            }
+        }
+
+
 
         public static bool DataTableToCSV(DataTable dtSource, string saveAsPath, bool includeHeader)
         {

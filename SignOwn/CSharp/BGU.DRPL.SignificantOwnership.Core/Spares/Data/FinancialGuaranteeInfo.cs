@@ -39,6 +39,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Деталі")]
         [Description("з яких питань")]
         [Required]
+        [Multiline]
         public string GuaranteeDetails { get; set; }
     }
 }
