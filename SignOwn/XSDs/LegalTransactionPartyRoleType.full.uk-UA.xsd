@@ -1,22 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="LegalTransactionPartyRoleType" type="LegalTransactionPartyRoleType" />
-  <xs:simpleType name="LegalTransactionPartyRoleType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Buyer" description="Продавець" />
-      <xs:enumeration value="Seller" description="Покупець" />
-      <xs:enumeration value="Grantor" description="Дарувач" />
-      <xs:enumeration value="Grantee" description="Дароотримувач" />
-      <xs:enumeration value="Legator" description="Заповідач" />
-      <xs:enumeration value="Inheritor" description="Спадкоємець" />
-      <xs:enumeration value="Gurantor" description="Поручитель" />
-      <xs:enumeration value="Creditor" description="Кредитор" />
-      <xs:enumeration value="Borrower" description="Позичальник" />
-      <xs:enumeration value="Obligor" description="Боржник" />
-      <xs:enumeration value="Pledger" description="Застоводавець" />
-      <xs:enumeration value="Pledgee" description="Заставоутримувач" />
-      <xs:enumeration value="Other" description="Інше" />
-    </xs:restriction>
-  </xs:simpleType>
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
 </xs:schema>

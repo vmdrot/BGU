@@ -46,7 +46,11 @@
           <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" type_ukr="текст" displayName="Деталі прострочки" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" type_ukr="текст" displayName="Деталі прострочки">
+        <xs:annotation>
+          <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" type_ukr="текст" displayName="Прични прострочки">
         <xs:annotation>
           <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>

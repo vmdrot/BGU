@@ -49,6 +49,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// 
         /// </summary>
+        [DisplayName("Кількість акцій")]
+        [Description("Кількість акцій, що належать Власникові в об'єкті власності")]
         public int SharesCount { get; set; }
         /// <summary>
         /// Як правило, саме у %-х і зазначається власність

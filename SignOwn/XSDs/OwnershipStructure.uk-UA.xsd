@@ -32,7 +32,7 @@
           <xs:documentation>Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="Кількість акцій" description="Кількість акцій, що належать Власникові в об'єкті власності" />
       <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка (%)" description="Частка (%)">
         <xs:annotation>
           <xs:documentation>Як правило, саме у %-х і зазначається власність</xs:documentation>
