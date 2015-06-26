@@ -38,6 +38,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
         public bool IsOverdue { get; set; }
+
+        /// <summary>
+        /// якщо є прострочка
+        /// </summary>
+        [DisplayName("Прострочено з ... (дата)")]
+        public DateTime? OverdueSince { get; set; }
+
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>

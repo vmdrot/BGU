@@ -25,10 +25,5 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата договору")]
         [Required]
         public DateTime AgreementDt { get; set; }
-        /// <summary>
-        /// якщо є прострочка
-        /// </summary>
-        [DisplayName("Прострочено з ... (дата)")]
-        public DateTime? OverdueSince { get; set; }
     }
 }

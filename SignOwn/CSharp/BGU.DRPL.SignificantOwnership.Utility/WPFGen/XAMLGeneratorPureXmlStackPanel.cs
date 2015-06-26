@@ -215,6 +215,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             
         }
 
+        private void AddCombo(XmlNode container, PropertyInfo pi)
+        {
+            //<ComboBox ToolTip="" ItemsSource="{Binding Source={x:Static bgud:CountryInfo.AllCountries}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedItem="{Binding Path=OperationCountry, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="CountryNameUkr" HorizontalAlignment="Stretch" />
+        }
 
         private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
         {
