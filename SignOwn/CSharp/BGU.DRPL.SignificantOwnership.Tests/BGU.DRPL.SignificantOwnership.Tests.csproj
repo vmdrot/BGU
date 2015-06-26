@@ -49,9 +49,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3dPartyLibraries\DevExpress\DevExpress.XtraVerticalGrid.v10.2.dll</HintPath>
     </Reference>
-    <Reference Include="GenericParsing">
-      <HintPath>..\3dPartyLibraries\Misc\GenericParsing.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\3dPartyLibraries\Newtonsoft\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -99,6 +96,10 @@
     <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Utility\BGU.DRPL.SignificantOwnership.Utility.csproj">
       <Project>{E7FA3686-C797-43EA-890E-5F970A54D348}</Project>
       <Name>BGU.DRPL.SignificantOwnership.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolvex.Utility.Core\Evolvex.Utility.Core.csproj">
+      <Project>{80563496-BDC4-468D-A65C-58F2A1158A61}</Project>
+      <Name>Evolvex.Utility.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

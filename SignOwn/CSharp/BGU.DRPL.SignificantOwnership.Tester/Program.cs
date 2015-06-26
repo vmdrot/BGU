@@ -65,7 +65,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         static void Main(string[] args)
         {
-            //Console.Read();
+            Console.Read();
 
             //CreateSampleAppx2OwnershipStructLP();
             //LocationInfoParser();

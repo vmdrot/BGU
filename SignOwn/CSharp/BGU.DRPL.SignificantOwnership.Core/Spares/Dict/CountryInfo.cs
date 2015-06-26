@@ -36,6 +36,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Required]
         public string CountryNameUkr { get; set; }
 
+
+        public static bool operator ==(CountryInfo x, CountryInfo y)
+        {
+            return x.CountryISONr == y.CountryISONr;
+        }
+
+        public static bool operator !=(CountryInfo x, CountryInfo y)
+        {
+            return x.CountryISONr != y.CountryISONr;
+        }
+
         #region specific countries
         public static readonly CountryInfo AALAND_ISLANDS = new CountryInfo() { CountryISO2Code = "AX", CountryISO3Code = "ALA", CountryISONr = "248", CountryNameEng = "AALAND_ISLANDS", CountryNameUkr = "Оландські острови" };
         public static readonly CountryInfo AFGHANISTAN = new CountryInfo() { CountryISO2Code = "AF", CountryISO3Code = "AFG", CountryISONr = "004", CountryNameEng = "AFGHANISTAN", CountryNameUkr = "Афганістан" };

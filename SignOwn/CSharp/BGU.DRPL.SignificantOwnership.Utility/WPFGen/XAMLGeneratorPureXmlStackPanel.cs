@@ -27,12 +27,16 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedPropertyDescrPlaceholder = "yourPropertyDescription";
         private static readonly string templatedEnumListerPlaceholder = "yourEnumListerProperty";
         private static readonly string templatedTypeNamePlaceholder = "yourTemplatedTypeName";
+        private static readonly string templatedComboItemsGetterPlaceholder = "yourComboItemsGetter";
+        private static readonly string templatedComboDisplayMemberPlaceholder = "yourComboDisplayMember";
+            
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
         private static readonly string listOfTTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ListOfT;
         private static readonly string multilineTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.multilinestring;
         private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
         private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
+        private static readonly string comboTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboTemplate;
         //private static readonly string dummyNodeElementName = "dummyPhTag";
         //private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
         //private static readonly string uniquifierAttrName = "guuiidd";
@@ -184,7 +188,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private void ReplaceTemplateDataType(XmlNode dataTemplateNode, Type typ)
         {
             string xamlDataTypeAlias = string.Format("{0}:{1}", _bguNS2XamlPfxs[typ.Namespace], typ.Name);
-            ReplaceAllAttrsPlaceholders(dataTemplateNode, templatedTypeNamePlaceholder, xamlDataTypeAlias);
+            ReplaceAllAttrPlaceholdersSingleNode(dataTemplateNode, templatedTypeNamePlaceholder, xamlDataTypeAlias);
         }
 
         private void AddControl(XmlNode container, PropertyInfo pi)
@@ -203,8 +207,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             //        }
             //    }
             //}
+            UIUsageComboAttribute comboAttr;
 
-            if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(container, pi);
+            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(container, pi, comboAttr);
+            else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(container, pi);
             else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(container, pi);
             else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(container, pi);
             else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(container, pi);
@@ -215,9 +221,54 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             
         }
 
-        private void AddCombo(XmlNode container, PropertyInfo pi)
+        private bool IsUIComboUsageDefined(PropertyInfo pi, out UIUsageComboAttribute attr)
+        {
+            attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(pi);
+            if (attr != null)
+                return true;
+            return false;
+        }
+
+        private void AddCombo(XmlNode container, PropertyInfo pi, UIUsageComboAttribute comboAttr)
         {
             //<ComboBox ToolTip="" ItemsSource="{Binding Source={x:Static bgud:CountryInfo.AllCountries}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedItem="{Binding Path=OperationCountry, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="CountryNameUkr" HorizontalAlignment="Stretch" />
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(comboTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+
+            //foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            //{
+
+            XmlNode currSrc = sourceBucket.FirstChild;
+            XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
+            XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+            ReplacePlaceholderTexts(curr, pi);
+            ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAttr.DisplayMember);
+            if (comboAttr.ItemsGetterClass != null && !string.IsNullOrEmpty(comboAttr.ItemsGetterMemberPath))
+            {
+                if(!_bguNS2XamlPfxs.ContainsKey(comboAttr.ItemsGetterClass.Namespace))
+                    throw new ApplicationException(String.Format("No namespace prefix defined for the namespace '{0}'", comboAttr.ItemsGetterClass.Namespace));
+                string itemsGetter = string.Format("{0}:{1}.{2}", _bguNS2XamlPfxs[comboAttr.ItemsGetterClass.Namespace], comboAttr.ItemsGetterClass.Name, comboAttr.ItemsGetterMemberPath);
+                ReplacePlaceholderAttrRecursively(curr, templatedComboItemsGetterPlaceholder, itemsGetter);
+                AddTemplateDataTypeNS(container.OwnerDocument.DocumentElement, comboAttr.ItemsGetterClass);
+            }
+            XmlNode comboNode = curr.ChildNodes[1];
+            if (comboAttr.ValueMemberUsageMode == ComboUIValueUsageMode.ValueProperty)
+            {
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedValuePath", comboAttr.ValueMember);
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedValue", string.Format("{{Binding Path={0}, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}}", pi.Name));
+            }
+            else if (comboAttr.ValueMemberUsageMode == ComboUIValueUsageMode.SelectedItem)
+            {
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedItem", string.Format("{{Binding Path={0}, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}}", pi.Name));
+            }
+
+            if(!string.IsNullOrEmpty(comboAttr.Width))
+                XSDReflectionUtil.WriteAttribute(comboNode, "Width", comboAttr.Width);
+
+
+
+            container.InsertAfter(curr, container.LastChild);
         }
 
         private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
@@ -312,7 +363,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
-                ReplaceAllAttrsPlaceholders(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
+                ReplacePlaceholderAttrRecursively(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
                 
                 container.InsertAfter(curr, container.LastChild);
             }
@@ -410,25 +461,29 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
             else
                 pdd = new XSDReflectionUtil.PropDispDescr() { Category = string.Empty, DisplayName = pi.Name, Description = pi.Name };
-            ReplacePlaceholderAttrsRecursively(target, pi, pdd);
+            ReplaceStandardPlaceholderAttrsRecursively(target, pi, pdd);
         }
 
 
-        private void ReplacePlaceholderAttrsRecursively(XmlNode target, PropertyInfo pi, XSDReflectionUtil.PropDispDescr pdd)
+        private void ReplaceStandardPlaceholderAttrsRecursively(XmlNode target, PropertyInfo pi, XSDReflectionUtil.PropDispDescr pdd)
         {
-            ReplaceAllAttrsPlaceholders(target, templatedPropertyNamePlaceholder, pi.Name);
-            ReplaceAllAttrsPlaceholders(target, templatedPropertyDispNamePlaceholder, pdd.DisplayName);
-            ReplaceAllAttrsPlaceholders(target, templatedPropertyDescrPlaceholder, pdd.Description);
+            ReplacePlaceholderAttrRecursively(target, templatedPropertyNamePlaceholder, pi.Name);
+            ReplacePlaceholderAttrRecursively(target, templatedPropertyDispNamePlaceholder, pdd.DisplayName);
+            ReplacePlaceholderAttrRecursively(target, templatedPropertyDescrPlaceholder, pdd.Description);
+        }
 
-            foreach(XmlNode child in target.ChildNodes)
+        private void ReplacePlaceholderAttrRecursively(XmlNode target, string phTxt, string replTxt)
+        {
+            ReplaceAllAttrPlaceholdersSingleNode(target, phTxt, replTxt);
+            foreach (XmlNode child in target.ChildNodes)
             {
                 if (child.NodeType != XmlNodeType.Element)
                     continue;
-                ReplacePlaceholderAttrsRecursively(child, pi, pdd);
+                ReplacePlaceholderAttrRecursively(child, phTxt, replTxt);
             }
         }
 
-        private void ReplaceAllAttrsPlaceholders(XmlNode target,string phTxt,string replTxt)
+        private void ReplaceAllAttrPlaceholdersSingleNode(XmlNode target,string phTxt,string replTxt)
         {
             Dictionary<string, string> attrsToModify = new Dictionary<string, string>();
             foreach(XmlAttribute attr in target.Attributes)

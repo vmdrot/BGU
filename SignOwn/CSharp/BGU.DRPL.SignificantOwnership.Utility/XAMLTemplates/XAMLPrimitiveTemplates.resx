@@ -148,11 +148,14 @@
   <data name="GenericControlTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>GenericControlTemplate.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DataGridCommandsColumnTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DataGridCommandsColumnTemplate.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DataGridTextColumnTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DataGridTextColumnTemplate.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ComboTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ComboTemplate.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

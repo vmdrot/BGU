@@ -5,6 +5,12 @@ using System.Text;
 using NUnit.Framework;
 using BGU.DRPL.SignificantOwnership.Utility.WPFGen;
 using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
+using System.Reflection;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
+using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Utility;
+using Newtonsoft.Json;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 
 namespace BGU.DRPL.SignificantOwnership.Tests
 {
@@ -61,7 +67,22 @@ namespace BGU.DRPL.SignificantOwnership.Tests
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
         }
 
-
+        [Test]
+        public void GetCustomAttributeTest()
+        { 
+            UIUsageComboAttribute attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(typeof(BankInfo).GetProperty("OperationCountry"));
+            UIUsageComboAttribute attr2 = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(typeof(GenericPersonID).GetProperty("CountryISO3Code"));
+            
+            if (attr != null)
+            {
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                string jsonStr = JsonConvert.SerializeObject(attr, settings);
+                Console.WriteLine(jsonStr);
+                jsonStr = JsonConvert.SerializeObject(attr2, settings);
+                Console.WriteLine(jsonStr);
+            }
+        }
 
     }
 }
