@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CurrencyInfo" nillable="true" type="CurrencyInfo" />
+  <xs:complexType name="CurrencyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNm" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode3D" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CCYMinorUnit" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

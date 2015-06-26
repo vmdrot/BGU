@@ -64,6 +64,7 @@
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Значення за змовчанням - UAH
+            http://www.iso.org/iso/en-US/home/standards/currency_codes.htm
             
 
 Див.також: http://www.currency-iso.org/en/home/tables/table-a1.html</xs:documentation>

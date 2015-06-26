@@ -23,11 +23,6 @@
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Прострочено з ... (дата)">
-            <xs:annotation>
-              <xs:documentation>якщо є прострочка</xs:documentation>
-            </xs:annotation>
-          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

@@ -41,6 +41,11 @@
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Прострочено з ... (дата)">
+        <xs:annotation>
+          <xs:documentation>якщо є прострочка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" displayName="Сума простроченої заборгованості">
         <xs:annotation>
           <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
