@@ -21,16 +21,22 @@ namespace BGU.DRPL.SignificantOwnership.Tester
     class Program
     {
 
+        #region field(s)
+        private delegate void CmdHandler(string[] args);
+        private static readonly Dictionary<string, CmdHandler> _cmdHandlers;
+
         private static readonly string XsdExePath;
         private static readonly string XsdFilesOutputDir;
         private static readonly string OriginalXsdFilesOutputDir;
         private static readonly bool XsdPutDispNmDescrIntoAnnotation;
         private static readonly string XmlFormatterPath;
         private static Dictionary<string, bool> _alreadyProcessedXSDExportTypes;
+        #endregion
 
-
+        #region cctor(s)
         static Program()
         {
+            #region Read config
             XsdExePath = ConfigurationManager.AppSettings["xsdExePath"];
             XsdFilesOutputDir = ConfigurationManager.AppSettings["xsdFilesOutputDir"];
             OriginalXsdFilesOutputDir = ConfigurationManager.AppSettings["origXsdFilesOutputDir"];
@@ -41,11 +47,25 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             bool tmp;
             if (bool.TryParse(xsdPutDispNmDescrIntoAnnotationStr, out tmp))
                 XsdPutDispNmDescrIntoAnnotation = tmp;
+            #endregion
+
+            #region CMD handlers
+
+            _cmdHandlers = new Dictionary<string, CmdHandler>();
+
+            #region populate
+            _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
+            _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
+
+            #endregion
+
+            #endregion
         }
+        #endregion
 
         static void Main(string[] args)
         {
-            Console.Read();
+            //Console.Read();
 
             //CreateSampleAppx2OwnershipStructLP();
             //LocationInfoParser();
@@ -56,10 +76,21 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             //WriteXML_Grant();
             //BuildOwnershipGraphGrantBankTest();
             //ProcessXSDTest();
+            string cmdHandlerKey = string.Empty;
+            if (args.Length > 0)
+                cmdHandlerKey = args[0].ToLower();
+            try
+            {
+                if (string.IsNullOrEmpty(cmdHandlerKey) || !_cmdHandlers.ContainsKey(cmdHandlerKey))
+                    return;
+                else
+                    _cmdHandlers[cmdHandlerKey](args);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.ToString());
+            }
 
-            //UpdateXSDsTranslations();
-
-            GenerateXAMLs4RegLicAppx2();
         }
 
         #region FFR
@@ -921,7 +952,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
         #endregion
 
         #region neat XSD-related
-        private static void UpdateXSDsTranslations()
+        private static void UpdateXSDsTranslations(string[] args)
         {
             //Type[] types2Process = new Type[] { typeof(Appx2OwnershipStructLP)};
             _alreadyProcessedXSDExportTypes = new Dictionary<string, bool>();
@@ -1058,7 +1089,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
         #endregion
 
         #region WPF gen-related
-        public static void GenerateXAMLs4RegLicAppx2()
+        public static void GenerateXAMLs4RegLicAppx2(string[] args)
         {
             //string targetFolder = @"D:\home\vmdrot\DEV\_tut\WpfApplication2\WpfApplication2\Resources";
             string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
