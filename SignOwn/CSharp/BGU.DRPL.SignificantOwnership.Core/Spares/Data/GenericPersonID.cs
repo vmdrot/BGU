@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Misc;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -26,6 +27,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         /// <seealso cref="CountryInfo"/>
         [Required]
+        [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMember = "CountryISONr", Width = "75")]
         public string CountryISO3Code { get; set; }
         /// <summary>
         /// Тип особи

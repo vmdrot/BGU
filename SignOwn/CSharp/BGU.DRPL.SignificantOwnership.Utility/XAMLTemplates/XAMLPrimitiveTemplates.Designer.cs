@@ -130,7 +130,22 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot;&gt;
+        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+        ///    &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///    &lt;ComboBox ToolTip=&quot;yourPropertyDescription&quot; ItemsSource=&quot;{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}&quot;  DisplayMemberPath=&quot;yourComboDisplayMember&quot; /&gt;
+        ///  &lt;/StackPanel&gt;
+        ///&lt;/Template&gt;.
+        /// </summary>
+        public static string ComboTemplate {
+            get {
+                return ResourceManager.GetString("ComboTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot; Width=&quot;*&quot; TextBlock.TextAlignment=&quot;Center&quot;&gt;
         ///    &lt;DataGridTemplateColumn.HeaderStyle&gt;
         ///      &lt;Style TargetType=&quot;dataprimitives:DataGridColumnHeader&quot;&gt;
         ///        &lt;Setter Property=&quot;ContentTemplate&quot;&gt;
@@ -138,8 +153,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         ///            &lt;DataTemplate&gt;
         ///              &lt;ContentControl Content=&quot;{Binding}&quot;&gt;
         ///                &lt;ToolTipService.ToolTip&gt;
-        ///                  &lt;ToolTip Content=&quot;Натисніть ґудзик, щоб редагувати чи видалити рядок&quot; /&gt;
-        ///                &lt;/ToolTipSe [rest of string was truncated]&quot;;.
+        ///                  &lt;ToolTip Content=&quot;Натисніть ґудзик, щоб редагувати чи вида [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataGridCommandsColumnTemplate {
             get {
@@ -150,15 +164,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;DataGridTextColumn Binding=&quot;{Binding Path=yourPropertyName, diag:PresentationTraceSources.TraceLevel=High, Mode=TwoWay}&quot; Header=&quot;yourPropertyDispName&quot;&gt;
+        ///  &lt;DataGridTextColumn Binding=&quot;{Binding Path=yourPropertyName, diag:PresentationTraceSources.TraceLevel=High, Mode=TwoWay}&quot; Header=&quot;yourPropertyDispName&quot; Width=&quot;*&quot; TextBlock.TextAlignment=&quot;Center&quot;&gt;
         ///    &lt;DataGridTextColumn.HeaderStyle&gt;
         ///      &lt;Style TargetType=&quot;dataprimitives:DataGridColumnHeader&quot;&gt;
-        ///        &lt;Setter Property=&quot;ContentTemplate&quot;&gt;
-        ///          &lt;Setter.Value&gt;
-        ///            &lt;DataTemplate&gt;
-        ///              &lt;ContentControl Content=&quot;{Binding}&quot;&gt;
-        ///                &lt;ToolTipService.ToolTip&gt;
-        ///         [rest of string was truncated]&quot;;.
+        ///        &lt;Setter Property=&quot;TextBlock.TextWrapping&quot; Value=&quot;Wrap&quot; /&gt;
+        ///        &lt;Setter Property=&quot;TextBlock.TextAlignment&quot; Value=&quot;Center&quot;/&gt;
+        ///        &lt;Setter Proper [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataGridTextColumnTemplate {
             get {
@@ -195,10 +206,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;Template&gt;
+        ///&lt;Template xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
         ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
         ///    &lt;StackPanel HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; Orientation=&quot;Vertical&quot;&gt;
-        ///      &lt;DataGrid x:Name=&quot;gridyourPropertyName&quot; CanUserAddRows=&quot;False&quot; CanUserDeleteRows=&quot;False&quot; ItemsSource=&quot;{Binding yourPropertyName, diag:Presentatio [rest of string was truncated]&quot;;.
+        ///      &lt;DataGrid x:Name=&quot;gridyourPropertyName&quot; CanUserAddRows=&quot;False&quot; CanUserDeleteRows=&quot;False&quot; I [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ListOfT {
             get {
@@ -210,7 +221,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
         ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; /&gt;
-        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; TextWrapping=&quot;Wrap&quot; AcceptsReturn=&quot;True&quot; VerticalAlignment=&quot;Stretch&quot; /&gt;
+        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; TextWrapping=&quot;Wrap&quot; AcceptsReturn=&quot;True&quot; VerticalAlignment=&quot;Stretch&quot; Height=&quot;auto&quot; MaxHeight=&quot;60&quot; /&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string multilinestring {

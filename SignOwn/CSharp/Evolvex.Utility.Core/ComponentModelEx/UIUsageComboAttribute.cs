@@ -36,5 +36,10 @@ namespace Evolvex.Utility.Core.ComponentModelEx
         public UIUsageComboAttribute(Type itemsGetterClass, string itemsGetterMemberPath, string displayMember, ComboUIValueUsageMode valueMemberUsageMode) 
             : this(itemsGetterClass, itemsGetterMemberPath, displayMember, valueMemberUsageMode, string.Empty) 
         {}
+
+        //public override string ToString()
+        //{
+        //    return string.Format("", this.DisplayMember, this.ValueMemberUsageMode , this.ValueMember, this.ItemsGetterClass, this.ItemsGetterMemberPath, this.Width);
+        //}
     }
 }

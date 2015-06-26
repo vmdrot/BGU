@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Utility
 {
@@ -176,5 +177,27 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             return false;
         }
 
+
+        public static T GetPropertyOrTypeAttribute<T>(PropertyInfo pi) where T: Attribute
+        {
+            
+            if (Attribute.IsDefined(pi, typeof(T)))
+            {
+                Attribute attr = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(T));
+                if (attr is T)
+                {
+                    return (T)attr;
+                }
+            }
+            else if (Attribute.IsDefined(pi.PropertyType, typeof(T)))
+            {
+                object[] attrs = pi.PropertyType.GetCustomAttributes(typeof(T), true);
+                if (attrs == null || attrs.Length == 0)
+                    return null;
+                return (T)attrs[0];
+            }
+
+            return null;
+        }
     }
 }
