@@ -10,6 +10,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" />
       <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" />
       <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" />
