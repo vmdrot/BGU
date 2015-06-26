@@ -161,6 +161,7 @@
     <Compile Include="Spares\Dict\CountryInfo.cs" />
     <Compile Include="Spares\Dict\CourtInfo.cs" />
     <Compile Include="Spares\Dict\CreditRatingInfo.cs" />
+    <Compile Include="Spares\Dict\CurrencyInfo.cs" />
     <Compile Include="Spares\Dict\EconomicActivityType.cs" />
     <Compile Include="Spares\Dict\FinancialOversightAuthorityInfo.cs" />
     <Compile Include="Spares\Dict\LegalPersonInfo.cs" />
