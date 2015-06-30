@@ -15,7 +15,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// <seealso cref="http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html"/>
     //[System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor2), typeof(System.Drawing.Design.UITypeEditor))]
-    [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMemberUsageMode=ComboUIValueUsageMode.SelectedItem, Width="50")]
+    [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMemberUsageMode=ComboUIValueUsageMode.SelectedItem, Width="175")]
     public class CountryInfo
     {
         /// <summary>
@@ -39,11 +39,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
         public static bool operator ==(CountryInfo x, CountryInfo y)
         {
+            if (x == null && y == null)
+                return true;
+            if (x == null || y == null)
+                return false;
             return x.CountryISONr == y.CountryISONr;
         }
 
         public static bool operator !=(CountryInfo x, CountryInfo y)
         {
+            if (x == null && y == null)
+                return false;
+            if (x == null || y == null)
+                return true;
             return x.CountryISONr != y.CountryISONr;
         }
 
@@ -575,6 +583,22 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         public override string ToString()
         {
             return DisplayName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (((object)this == null) && ((object)obj == null))
+                return true;
+            
+            if (((object)this != null) || ((object)obj != null))
+                return false;
+
+            if (obj is CountryInfo)
+                return (((CountryInfo)obj).CountryISONr == this.CountryISONr);
+
+            else if (obj is string)
+                return (obj as string) == this.CountryISONr || (obj as string) == this.CountryISO3Code;
+            return false;
         }
     }
 }
