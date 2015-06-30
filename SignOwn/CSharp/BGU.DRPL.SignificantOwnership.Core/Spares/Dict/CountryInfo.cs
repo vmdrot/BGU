@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using Evolvex.Utility.Core.Common;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 {
@@ -18,6 +19,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMemberUsageMode=ComboUIValueUsageMode.SelectedItem, Width="175")]
     public class CountryInfo
     {
+
+        private static readonly ILog log = Logging.GetLogger(typeof(CountryInfo));
         /// <summary>
         /// this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
         /// Див. вищевказаний урл для специфікації (для усіх полів)
@@ -587,17 +590,30 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
         public override bool Equals(object obj)
         {
+            log.Debug("Equals::entering Equals({0})", obj);
             if (((object)this == null) && ((object)obj == null))
+            {
+                log.Debug("Equals::both objects are null's");
                 return true;
-            
+            }
+
             if (((object)this != null) || ((object)obj != null))
+            {
+                log.Debug("Equals::one of the objects is null");
                 return false;
+            }
 
             if (obj is CountryInfo)
+            {
+                log.Debug("Equals::trying to compare object as CountryInfo");
                 return (((CountryInfo)obj).CountryISONr == this.CountryISONr);
+            }
 
             else if (obj is string)
+            {
+                log.Debug("Equals::trying to compare object as string");
                 return (obj as string) == this.CountryISONr || (obj as string) == this.CountryISO3Code;
+            }
             return false;
         }
     }
