@@ -24,7 +24,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase
+    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
 
         #region cctor(s)
@@ -362,6 +362,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         protected override string ApplicantNameForFileName
         {
             get { if (Acquiree == null) return string.Empty; return Acquiree.PersonCode; }
+        }
+
+        public IEnumerable<GenericPersonInfo> MentionedGenericPersons
+        {
+            get { return MentionedIdentities; }
+        }
+
+        public IEnumerable<LocationInfo> MentionedAddresses
+        {
+            get { return new List<LocationInfo>(); /* todo */ }
         }
     }
 }

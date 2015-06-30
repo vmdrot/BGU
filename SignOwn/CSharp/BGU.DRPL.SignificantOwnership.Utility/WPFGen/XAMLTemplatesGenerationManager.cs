@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 using System.Xml;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
@@ -82,7 +83,16 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             List<Type> queue = ListUserTypesToGenerateTemplatesFor(rootType, userAsmbly);
             Dictionary<Type, string> controlTemplateNames = new Dictionary<Type, string>();
             foreach (Type typ in queue)
-                controlTemplateNames.Add(typ, GenerateTemplateFilName(typ));
+            {
+                string templFname = null;
+                XamlTemplateNameAttribute xtna = ReflectionUtil.GetTypeAttribute<XamlTemplateNameAttribute>(typ);
+
+                if (xtna != null)
+                    templFname = xtna.TemplateFileName;
+                else
+                    templFname = GenerateTemplateFilName(typ);
+                controlTemplateNames.Add(typ, templFname);
+            }
             foreach(Type typ in queue)
             {
                 IXAMLGenerator generator = XAMLGeneratorFactory.Instance.SpawnInstance();

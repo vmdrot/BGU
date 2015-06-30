@@ -177,10 +177,24 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             return false;
         }
 
+        public static T GetTypeAttribute<T>(Type subject) where T : Attribute
+        {
+
+            if (Attribute.IsDefined(subject, typeof(T)))
+            {
+                object[] attrs = subject.GetCustomAttributes(typeof(T), true);
+                if (attrs == null || attrs.Length == 0)
+                    return null;
+                return (T)attrs[0];
+            }
+
+            return null;
+        }
+
 
         public static T GetPropertyOrTypeAttribute<T>(PropertyInfo pi) where T: Attribute
         {
-            
+
             if (Attribute.IsDefined(pi, typeof(T)))
             {
                 Attribute attr = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(T));
@@ -189,13 +203,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                     return (T)attr;
                 }
             }
-            else if (Attribute.IsDefined(pi.PropertyType, typeof(T)))
-            {
-                object[] attrs = pi.PropertyType.GetCustomAttributes(typeof(T), true);
-                if (attrs == null || attrs.Length == 0)
-                    return null;
-                return (T)attrs[0];
-            }
+            else
+                return GetTypeAttribute<T>(pi.PropertyType);
 
             return null;
         }

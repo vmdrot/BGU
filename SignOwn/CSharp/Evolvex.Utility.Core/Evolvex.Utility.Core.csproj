@@ -51,6 +51,7 @@
     <Compile Include="ComponentModelEx\RequiredAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAttribute.cs" />
     <Compile Include="ComponentModelEx\ValidationAttribute.cs" />
+    <Compile Include="ComponentModelEx\XamlTemplateNameAttribute.cs" />
     <Compile Include="Geo\BasicGeoposition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -25,7 +25,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx4PhysPQuest_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx4OwnershipAcqRequestPP : QuestionnaireBase
+    public class RegLicAppx4OwnershipAcqRequestPP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
         public RegLicAppx4OwnershipAcqRequestPP()
         {
@@ -404,6 +404,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
                     return this.Acquiree.FullName ?? this.Acquiree.FullNameUkr ?? this.Acquiree.Surname ?? this.Acquiree.SurnameUkr ?? string.Empty;
                 return string.Empty;
             }
+        }
+
+        public IEnumerable<GenericPersonInfo> MentionedGenericPersons
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IEnumerable<LocationInfo> MentionedAddresses
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }
