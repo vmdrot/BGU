@@ -597,7 +597,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
                 return true;
             }
 
-            if (((object)this != null) || ((object)obj != null))
+            if (((object)this == null) || ((object)obj == null))
             {
                 log.Debug("Equals::one of the objects is null");
                 return false;

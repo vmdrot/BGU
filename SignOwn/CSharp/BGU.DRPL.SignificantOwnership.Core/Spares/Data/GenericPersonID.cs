@@ -27,7 +27,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         /// <seealso cref="CountryInfo"/>
         [Required]
-        [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMember = "CountryISONr", Width = "75")]
+        [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMember = "CountryISONr", Width = "175")]
         public string CountryISO3Code { get; set; }
         /// <summary>
         /// Тип особи
