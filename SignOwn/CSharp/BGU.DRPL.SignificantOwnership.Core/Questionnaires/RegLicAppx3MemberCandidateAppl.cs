@@ -24,7 +24,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx3MemberCandidateAppl_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx3MemberCandidateAppl : IQuestionnaire
+    public class RegLicAppx3MemberCandidateAppl : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
         #region cctor(s)
         public RegLicAppx3MemberCandidateAppl()
@@ -365,9 +365,34 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
 
 
-        public string SuggestSaveAsFileName()
+        //public string SuggestSaveAsFileName()
+        //{
+        //    return "";
+        //}
+
+        public IEnumerable<GenericPersonInfo> MentionedGenericPersons
         {
-            return "regLicDod3KandUChl";
+            get { return MentionedIdentities; }
+        }
+
+        public IEnumerable<LocationInfo> MentionedAddresses
+        {
+            get { return new List<LocationInfo>(); /* todo */ }
+        }
+
+        protected override string QuestionnairePrefixForFileName
+        {
+            get { return "regLicDod3KandUChl"; }
+        }
+
+        protected override string BankNameForFileName
+        {
+            get { return GetBankNameForFileName(BankRef); }
+        }
+
+        protected override string ApplicantNameForFileName
+        {
+            get { if (this.Candidate == null) return string.Empty; return Candidate.PersonCode; }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     ///  - тощо.
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [XamlTemplateName("GenericPersonID_ManualTemplate.xaml")]
     public class GenericPersonID
     {
         /// <summary>
