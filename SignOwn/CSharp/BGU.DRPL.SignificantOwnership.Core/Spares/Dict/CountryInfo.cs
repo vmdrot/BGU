@@ -590,28 +590,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
         public override bool Equals(object obj)
         {
-            log.Debug("Equals::entering Equals({0})", obj);
+            //log.Debug("Equals::entering Equals({0})", obj);
             if (((object)this == null) && ((object)obj == null))
             {
-                log.Debug("Equals::both objects are null's");
+                //log.Debug("Equals::both objects are null's");
                 return true;
             }
 
             if (((object)this == null) || ((object)obj == null))
             {
-                log.Debug("Equals::one of the objects is null");
+                //log.Debug("Equals::one of the objects is null");
                 return false;
             }
 
             if (obj is CountryInfo)
             {
-                log.Debug("Equals::trying to compare object as CountryInfo");
+                //log.Debug("Equals::trying to compare object as CountryInfo");
                 return (((CountryInfo)obj).CountryISONr == this.CountryISONr);
             }
 
             else if (obj is string)
             {
-                log.Debug("Equals::trying to compare object as string");
+                //log.Debug("Equals::trying to compare object as string");
                 return (obj as string) == this.CountryISONr || (obj as string) == this.CountryISO3Code;
             }
             return false;

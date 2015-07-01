@@ -117,16 +117,30 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             {
                 if (pi.PropertyType == typeof(DateTime))
                     pi.SetValue(obj, DateTime.Now, null);
-                if (pi.PropertyType.IsPrimitive || pi.PropertyType.IsEnum || pi.PropertyType.IsGenericType)
+                if (pi.PropertyType.IsPrimitive || pi.PropertyType.IsEnum)
                     continue;
-                if (pi.PropertyType.Assembly != userAssembly)
+
+                if (!pi.PropertyType.IsGenericType && pi.PropertyType.Assembly != userAssembly)
                     continue;
                 if (!pi.CanWrite)
                     continue;
-                object currChild = InstantiateObject(pi.PropertyType);
+
+                object currChild = null;
+                if (pi.PropertyType.IsGenericType)
+                    currChild = InstantiateListOfT(pi.PropertyType);
+                else
+                {
+                    currChild = InstantiateObject(pi.PropertyType);
+                    InstantiateAllProps(currChild, userAssembly);
+                }
                 pi.SetValue(obj, currChild,null);
-                InstantiateAllProps(currChild, userAssembly);
+                
             }
+        }
+
+        private static object InstantiateListOfT(Type typ)
+        {
+            return Activator.CreateInstance(typ);
         }
 
         public static object InstantiateObject(Type objType)

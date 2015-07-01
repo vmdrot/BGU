@@ -29,7 +29,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         #region cctor(s)
         public RegLicAppx3MemberCandidateAppl()
         { 
-            //todo
+            
         }
         #endregion
 
