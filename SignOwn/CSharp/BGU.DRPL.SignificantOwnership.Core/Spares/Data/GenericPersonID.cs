@@ -21,6 +21,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [XamlTemplateName("GenericPersonID_ManualTemplate.xaml")]
+    [XamlExpanderWrapping(false)]
     public class GenericPersonID
     {
         /// <summary>

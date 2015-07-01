@@ -32,6 +32,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
+        private static readonly string classStructNoExpanderWrapControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct_noExpander;
         private static readonly string listOfTTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ListOfT;
         private static readonly string multilineTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.multilinestring;
         private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
@@ -332,8 +333,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddComplextTypeControl(XmlNode container, PropertyInfo pi)
         {
+          
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
-            controlXamlFragmentDoc.LoadXml(classStructControlTemplate);
+            XamlExpanderWrappingAttribute wrapAttr = ReflectionUtil.GetPropertyOrTypeAttribute<XamlExpanderWrappingAttribute>(pi);
+            string controlTemplate = null;
+            if (wrapAttr == null || wrapAttr.WrapIntoExpander)
+                controlTemplate = classStructControlTemplate;
+            else
+                controlTemplate = classStructNoExpanderWrapControlTemplate;
+            controlXamlFragmentDoc.LoadXml(controlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {

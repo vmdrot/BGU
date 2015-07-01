@@ -128,6 +128,16 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt; 
+        ///.
+        /// </summary>
+        public static string classstruct_noExpander {
+            get {
+                return ResourceManager.GetString("classstruct_noExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
         ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;

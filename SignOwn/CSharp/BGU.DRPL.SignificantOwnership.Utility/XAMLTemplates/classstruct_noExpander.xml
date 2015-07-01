@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="1*" />
+      <ColumnDefinition Width="4*" />
+    </Grid.ColumnDefinitions>
+    <TextBlock Grid.Column="0" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" HorizontalAlignment="Left" VerticalAlignment="Top" /> <ContentControl Grid.Column="1" Content="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" Margin="5,2" ToolTip="yourPropertyDescription" />
+  </Grid>
+</Template>

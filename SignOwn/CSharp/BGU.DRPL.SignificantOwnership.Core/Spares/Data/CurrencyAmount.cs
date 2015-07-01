@@ -11,6 +11,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// Структура для універсальної грошової суми
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CurrencyAmount_Editor), typeof(System.Drawing.Design.UITypeEditor))]
+    [XamlExpanderWrapping(false)]
     public class CurrencyAmount
     {
         /// <summary>
