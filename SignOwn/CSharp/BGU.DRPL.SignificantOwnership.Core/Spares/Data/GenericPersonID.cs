@@ -108,6 +108,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
             return (!string.IsNullOrEmpty(DisplayName) ? DisplayName : HashID);
         }
 
+
+        public override bool Equals(object obj)
+        {
+            if ((object)this == null && (object)obj == null)
+                return true;
+            if ((object)this == null || (object)obj == null)
+                return false;
+            if (!(obj is GenericPersonID))
+                return false;
+            return (this == (GenericPersonID)obj);
+        }
+
         #endregion
     }
 }
