@@ -26,6 +26,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
+        
+        private const string CATEGORY_I = "І. Інформація про юридичну особу";
+        private const string CATEGORY_II = "ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку";
+        private const string CATEGORY_III = "ІІІ. Відносини юридичної особи з іншими особами";
+        private const string CATEGORY_IV = "IV. Ділова репутація";
+        private const string CATEGORY_SignEtc = "Підписи і т.п.";
 
         #region cctor(s)
         public RegLicAppx2OwnershipAcqRequestLP()
@@ -66,7 +72,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// ---- 
         /// Самі реквізити мають потрапити до MentionedIdentities
         /// </summary>
-        [Category("І. Інформація про юридичну особу")]
+        [Category(CATEGORY_I)]
         [DisplayName("Юр.особа-заявник")]
         [Description("1. Інформація про юридичну особу")]
         [Required]
@@ -77,7 +83,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// (за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,
         ///  Standart & Poor's, Moody's)
         /// </summary>
-        [Category("І. Інформація про юридичну особу")]
+        [Category(CATEGORY_I)]
         [DisplayName("2. Ідентифікаційні дані::Рейтингова оцінка")]
         [Description("(за рейтингом, який підтверджений у бюлетені, однієї з провідних рейтингових компаній IBCA,Standart & Poor's, Moody's)")]
         [Required]
@@ -96,7 +102,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// -----
         /// Орган, що здійснив державну реєстрацію - див. у полі Acquiree
         /// </summary>
-        [Category("І. Інформація про юридичну особу")]
+        [Category(CATEGORY_I)]
         [Browsable(true)]
         [DisplayName("3. (4-5) Державний(-і) наглядовий(-і) орган(-и)")]
         [Description("3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами")]
@@ -117,7 +123,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// <summary>
         /// Поле обов'язкове, лише якщо заявник не є банком.
         /// </summary>
-        [Category("І. Інформація про юридичну особу")]
+        [Category(CATEGORY_I)]
         [DisplayName("4. Банківські рахунки юридичної особи")]
         [Description("(не заповнюється банками)")]
         public List<BankInfo> AccountsWithBanks { get; set; }
@@ -131,7 +137,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// 6. Інформація про розмір участі, що набувається (збільшується):
         /// Наміри щодо набуття/збільшення участі в банку
         /// </summary>
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [Browsable(true)]
         [DisplayName("6. Наміри щодо набуття/збільшення участі")]
         [Description("6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку")]
@@ -141,7 +147,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// 6. Інформація про розмір участі, що набувається (збільшується):
         /// Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі
         /// </summary>
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [Browsable(true)]
         [DisplayName("6. Майбутня участь особи в банку")]
         [Description("6. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі")]
@@ -156,13 +162,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;
         /// набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння. 
         /// </summary>
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("7. Спосіб(-оби) набуття/збільшення істотної участі в банку")]
         [Description("7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)")]
         [Required]
         public SignificantOwnershipAcquisitionWaysInfo AcquisitionWays { get; set; }
 
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("Придбання на первинному ринку")]
         [Description("8. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:")]
         [Required("AcquisitionWays.IsIPO == true")]
@@ -170,20 +176,20 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
 
 
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("9. Придбання на вторинному ринку")]
         [Description("9. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)")]
         [Required("AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true")]
         public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get; set; }
 
 
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("10. Набуття за довіреністю")]
         [Description("10. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю")]
         [Required("AcquisitionWays.IsPurchaseByPowOfAtt == true")]
         public List<PowerOfAttorneySharesPurchaseInfo> AquisitionByPoAttorneys { get; set; }
 
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("11. Набуття у зв’язку із здійсненням впливу")]
         [Description("11. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння")]
         [Required("AcquisitionWays.IsAcquireByImplicitInfluence == true")]
@@ -194,7 +200,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// _______________________________________________________________________________________________________.
         /// (прибуток, частина статутного капіталу, кошти фонду тощо)
         /// </summary>
-        [Category("ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку")]
+        [Category(CATEGORY_II)]
         [DisplayName("12. Джерела  походження коштів юридичної особи")]
         [Description("12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку")]
         [Required]
@@ -210,7 +216,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// ----
         /// Доцільно розшифровку ланцюжків власності усіх структур, що фігурують в анкеті, скласти в це одне поле, оскільки не виключено, що власники-юр.особи повторюватимуться/фігуруватимуть в різних іпостасях в усіх 3-х пунктах (себто, і 13, і 14, і 15) 
         /// </summary>
-        [Category("ІІІ. Відносини юридичної особи з іншими особами")]
+        [Category(CATEGORY_III)]
         [DisplayName("13, 14, 15. Розшифровка ланцюжків власності")]
         [Description("Розшифровка ланцюжків власності усіх структур-фігурантів анкети:\n 13. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником\n 14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи\n 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи")]
         public List<OwnershipStructure> ExistingOwnershipDetailsHive { get; set; }
@@ -220,7 +226,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// <summary>
         /// 16. Інформація про кредити, одержані юридичною особою:
         /// </summary>
-        [Category("IV. Ділова репутація")]
+        [Category(CATEGORY_IV)]
         [DisplayName("16. Чи є кредити, одержані й непогашені юридичною  особою  в  банках?")]
         [Description("(Станом на дату подання анкети)")]
         [Required]
@@ -229,7 +235,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// <summary>
         /// 16. Інформація про кредити, одержані юридичною особою:
         /// </summary>
-        [Category("IV. Ділова репутація")]
+        [Category(CATEGORY_IV)]
         [DisplayName("16. Інформація про кредити, одержані юридичною особою")]
         [Description("(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)")]
         [Required("HasOutstandingLoansWithBanks == true")]
@@ -242,7 +248,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// повне найменування юридичної особи)”; якщо такі ознаки є, то здійснюється опис ознаки (ознак) відсутності
         /// бездоганної ділової репутації].
         /// </summary>
-        [Category("IV. Ділова репутація")]
+        [Category(CATEGORY_IV)]
         [DisplayName("17. Стверджую, що немає ознак відсутності бездоганної ділової репутації")]
         [Description("Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування юридичної особи")]
         [Required]
@@ -253,7 +259,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// актом Національного банку України про порядок реєстрації та ліцензування банків, то здійснюється опис ознаки (ознак) відсутності
         /// бездоганної ділової репутації].
         /// </summary>
-        [Category("IV. Ділова репутація")]
+        [Category(CATEGORY_IV)]
         [DisplayName("17. Ознаки відсутності бездоганної ділової репутації")]
         [Description("Опис наявних ознак відсутності бездоганної ділової репутації")]
         [Required("HasNoImperfectReputationSigns == false")]
@@ -265,7 +271,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії
         /// легалізації (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.
         /// </summary>
-        [Category("IV. Ділова репутація")]
+        [Category(CATEGORY_IV)]
         [DisplayName("18. Вимоги законодавства дотримано")]
         [Description("18. Стверджую, що юридична особа _______ (зазначається повне найменування юридичної особи) належним чином виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.")]
         [Browsable(true)]
@@ -278,7 +284,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// Стверджую, що інформація, зазначена в анкеті, є правдивою і повною, та не заперечую проти перевірки
         /// Національним банком України її достовірності та повноти.
         /// </summary>
-        [Category("Підписи і т.п.")]
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Підтверджую правдивість інформації?")]
         [Description("Стверджую, що інформація, зазначена в анкеті, є правдивою і повною, та не заперечую проти перевірки Національним банком України її достовірності та повноти.")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
@@ -289,7 +295,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// <summary>
         /// Примітка. Якщо немає змоги надати інформацію за відповідними пунктами анкети, то слід зазначити причину.
         /// </summary>
-        [Category("Підписи і т.п.")]
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Примітка. Якщо немає змоги надати інформацію за відповідними пунктами анкети, то слід зазначити причину.")]
         [Description("...")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
@@ -303,7 +309,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         ///                                                           або реквізити довіреності представника за
         ///                                                           довіреністю)
         /// </summary>
-        [Category("Підписи і т.п.")]
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Підписант")]
         [Description("Відомості по особу, що підписала анкету")]
         [Required]
@@ -314,7 +320,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// 
         /// Номер телефону та факсу ________________________________________.
         /// </summary>
-        [Category("Підписи і т.п.")]
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Контакти")]
         [Description("Контактні дані відправника анкети")]
         [Required]
@@ -334,7 +340,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// <summary>
         /// Зв'язки між фігурантами анкети
         /// </summary>
-        [Category("ІІІ. Відносини юридичної особи з іншими особами")]
+        [Category(CATEGORY_III)]
         [DisplayName("Зв'язки між фігурантами анкети")]
         [Description("Опис зв'язків між фізичними та юридичними особами, що згадуються в розділах анкети")]
         [Required]

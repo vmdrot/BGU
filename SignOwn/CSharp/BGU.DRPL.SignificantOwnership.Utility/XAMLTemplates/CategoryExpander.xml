@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <Expander Header="yourCategoryName" ToolTip="yourCategoryName" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
+    <StackPanel Orientation="Vertical" Margin="5,2">
+    </StackPanel>
+  </Expander>
+</Template>
