@@ -29,6 +29,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedTypeNamePlaceholder = "yourTemplatedTypeName";
         private static readonly string templatedComboItemsGetterPlaceholder = "yourComboItemsGetter";
         private static readonly string templatedComboDisplayMemberPlaceholder = "yourComboDisplayMember";
+        private static readonly string templatedCategoryNamePlaceholder = "yourCategoryName";
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
@@ -38,13 +39,14 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
         private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
         private static readonly string comboTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboTemplate;
+        private static readonly string categoryExpanderTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.CategoryExpander;
         //private static readonly string dummyNodeElementName = "dummyPhTag";
         //private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
         //private static readonly string uniquifierAttrName = "guuiidd";
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
         private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
-
+        private Dictionary<string, XmlNode> _categoriesNodes = new Dictionary<string,XmlNode>();
 
 
         private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> GetPropDispDescrs(Type typ)
@@ -122,6 +124,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             ReplaceTemplateDataType(dataTemplateNode, typ);
             AddTemplateDataTypeNS(rslt.DocumentElement, typ);
             List<PropertyInfo> props = ReflectionUtil.ListEditableProperties(typ);
+            CreateCategoriesNodes(gridNode, props);
             foreach(PropertyInfo pi in props)
             {
                 AddControl(gridNode, pi);
@@ -131,6 +134,31 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             RemoveEmptyNSAttrs((XmlNode)rslt.DocumentElement);
 
             return rslt;
+        }
+
+        private void CreateCategoriesNodes(XmlNode gridNode, List<PropertyInfo> props)
+        {
+            List<String> categoryNames = new List<string>();
+            foreach (PropertyInfo pi in props)
+            {
+                CategoryAttribute catAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(pi);
+                if (catAttr == null || categoryNames.Contains(catAttr.Category))
+                    continue;
+                categoryNames.Add(catAttr.Category);
+            }
+            if (categoryNames.Count == 0)
+                return;
+
+            foreach (string catname in categoryNames)
+            {
+                XmlDocument catExpanderDoc = new XmlDocument();
+                catExpanderDoc.LoadXml(categoryExpanderTemplate);
+                ReplacePlaceholderAttrRecursively(catExpanderDoc.DocumentElement.FirstChild, templatedCategoryNamePlaceholder, catname);
+                XmlNode importedExpander = gridNode.OwnerDocument.ImportNode(catExpanderDoc.DocumentElement.FirstChild, true);
+                gridNode.InsertAfter(importedExpander, gridNode.LastChild);
+                XSDReflectionUtil.WriteAttribute(importedExpander, "xmlns", gridNode.OwnerDocument.DocumentElement.NamespaceURI);
+                _categoriesNodes.Add(catname, importedExpander.FirstChild);
+            }
         }
 
         private bool CheckIsXmlIgnore(PropertyInfo pi)
@@ -194,32 +222,21 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddControl(XmlNode container, PropertyInfo pi)
         {
-            //if (Attribute.IsDefined(pi, typeof(EditorAttribute))) //todo, later
-            //{
-
-            //    Attribute editorAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(EditorAttribute));
-            //    if (editorAttr0 is EditorAttribute)
-            //    {
-            //        EditorAttribute editorAttr = (EditorAttribute)editorAttr0;
-            //        if (!string.IsNullOrEmpty(editorAttr.EditorTypeName))
-            //        {
-            //            AddControlByTypeEditor(rslt, editorAttr.EditorTypeName);
-            //            return;
-            //        }
-            //    }
-            //}
-            UIUsageComboAttribute comboAttr;
-
-            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(container, pi, comboAttr);
-            else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(container, pi);
-            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(container, pi);
-            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(container, pi);
-            else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(container, pi);
-            else if (pi.PropertyType == typeof(bool) || pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(container, pi);
-            else if (pi.PropertyType.IsEnum) AddEnumEditControl(container, pi);
-            else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(container, pi);
-            else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(container, pi);
             
+            UIUsageComboAttribute comboAttr;
+            XmlNode insertInto = container;
+            CategoryAttribute catAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(pi);
+            if (catAttr != null && _categoriesNodes.ContainsKey(catAttr.Category))
+                insertInto = _categoriesNodes[catAttr.Category];
+            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(insertInto, pi, comboAttr);
+            else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(insertInto, pi);
+            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(insertInto, pi);
+            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(insertInto, pi);
+            else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(insertInto, pi);
+            else if (pi.PropertyType == typeof(bool) || pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(insertInto, pi);
+            else if (pi.PropertyType.IsEnum) AddEnumEditControl(insertInto, pi);
+            else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(insertInto, pi);
+            else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(insertInto, pi);
         }
 
         private bool IsUIComboUsageDefined(PropertyInfo pi, out UIUsageComboAttribute attr)

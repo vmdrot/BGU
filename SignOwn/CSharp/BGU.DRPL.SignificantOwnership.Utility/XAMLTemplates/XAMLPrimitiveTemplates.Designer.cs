@@ -116,6 +116,21 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
+        ///  &lt;Expander Header=&quot;yourCategoryName&quot; ToolTip=&quot;yourCategoryName&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
+        ///    &lt;StackPanel Orientation=&quot;Vertical&quot;&gt;
+        ///    &lt;/StackPanel&gt;
+        ///  &lt;/Expander&gt;
+        ///&lt;/Template&gt;.
+        /// </summary>
+        public static string CategoryExpander {
+            get {
+                return ResourceManager.GetString("CategoryExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
         ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
         ///    &lt;ContentControl Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5,2&quot; /&gt;
         ///  &lt;/Expander&gt;
@@ -128,8 +143,14 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt; 
-        ///.
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;Grid&gt;
+        ///    &lt;Grid.ColumnDefinitions&gt;
+        ///      &lt;ColumnDefinition Width=&quot;1*&quot; /&gt;
+        ///      &lt;ColumnDefinition Width=&quot;4*&quot; /&gt;
+        ///    &lt;/Grid.ColumnDefinitions&gt;
+        ///    &lt;TextBlock Grid.Column=&quot;0&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Left&quot; VerticalAlignment=&quot;Top&quot; /&gt; &lt;ContentControl Grid.Column=&quot;1&quot; Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string classstruct_noExpander {
             get {
