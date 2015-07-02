@@ -163,8 +163,14 @@
   <data name="CategoryExpander" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>CategoryExpander.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ComboAddBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ComboAddBtn.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="RadioButtonGroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>RadioButtonGroup.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RadioButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>RadioButton.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

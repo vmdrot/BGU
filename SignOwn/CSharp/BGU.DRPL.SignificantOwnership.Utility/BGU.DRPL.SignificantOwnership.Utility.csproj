@@ -87,6 +87,7 @@
     <Content Include="XAMLTemplates\classstruct.xml" />
     <Content Include="XAMLTemplates\ComboAddBtn.xml" />
     <Content Include="XAMLTemplates\ComboTemplate.xml" />
+    <Content Include="XAMLTemplates\RadioButton.xml" />
     <Content Include="XAMLTemplates\DataGridCommandsColumnTemplate.xml" />
     <Content Include="XAMLTemplates\DataGridTextColumnTemplate.xml" />
     <Content Include="XAMLTemplates\DateTime.xml" />
@@ -100,6 +101,7 @@
     </Content>
     <Content Include="XAMLTemplates\onelinestring.xml" />
     <Content Include="XAMLTemplates\classstruct_noExpander.xml" />
+    <Content Include="XAMLTemplates\RadioButtonGroup.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

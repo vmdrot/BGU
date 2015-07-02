@@ -34,6 +34,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedComboDisplayMemberPlaceholder = "yourComboDisplayMember";
         private static readonly string templatedCategoryNamePlaceholder = "yourCategoryName";
         private static readonly string templatedComboBtnAddCommandPlaceholder = "yourAddComboItemCommand";
+        private static readonly string templatedEnumCurrentValueTextPlaceholder = "yourEnumCurrentValueText";
+        private static readonly string templatedEnumCurrentValueDescriptionPlaceholder = "yourEnumCurrentValueDescription";
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
@@ -45,6 +47,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string comboTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboTemplate;
         private static readonly string categoryExpanderTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.CategoryExpander;
         private static readonly string comboAddBtnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboAddBtn;
+        private static readonly string enumRadioButtonGroupTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButtonGroup;
+        private static readonly string enumRadioButtonTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButton;
 
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
@@ -519,6 +523,44 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddEnumEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
+            UIUsageRadioButtonGroupAttribute rbgAttr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageRadioButtonGroupAttribute>(pi);
+            if (rbgAttr == null)
+                AddEnumEditComboControl(insPos, pi);
+            else
+                AddEnumEditRadioButtonGroupControl(insPos, pi, rbgAttr);
+        }
+
+        private void AddEnumEditRadioButtonGroupControl(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageRadioButtonGroupAttribute rbgAttr)
+        {
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(enumRadioButtonGroupTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+
+            XmlNode stackPanelNode = insPos.RelNode.OwnerDocument.ImportNode(sourceBucket.FirstChild, true);
+            XSDReflectionUtil.WriteAttribute(stackPanelNode, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+            ApplyConditionalVisibilityAttribute(stackPanelNode, pi);
+            ReplacePlaceholderTexts(stackPanelNode, pi);
+            XSDReflectionUtil.WriteAttribute(stackPanelNode, "Orientation", rbgAttr.GroupOrientation.ToString());
+            InsertNode(insPos, stackPanelNode, pi);
+
+            List<EnumType> ds = EnumType.GetEnumList(pi.PropertyType, false);
+            foreach (EnumType entry in ds)
+            {
+                if (entry.EnumValue.ToString() == "None" && !rbgAttr.ShowNoneItem)
+                    continue;
+                XmlDocument currRBDefDoc = new XmlDocument();
+                currRBDefDoc.LoadXml(enumRadioButtonTemplate);
+                XmlNode rbDefSrc = currRBDefDoc.DocumentElement.FirstChild;
+                ReplacePlaceholderTexts(rbDefSrc, pi);
+                ReplacePlaceholderAttrRecursively(rbDefSrc, templatedEnumCurrentValueDescriptionPlaceholder, entry.Value);
+                ReplacePlaceholderAttrRecursively(rbDefSrc, templatedEnumCurrentValueTextPlaceholder, entry.EnumValue.ToString());
+                XmlNode currRBDef = insPos.RelNode.OwnerDocument.ImportNode(rbDefSrc, true);
+                stackPanelNode.InsertAfter(currRBDef, stackPanelNode.LastChild);
+            }
+        }
+
+        private void AddEnumEditComboControl(ControlInsertionPosition insPos, PropertyInfo pi)
+        {
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)]);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
@@ -531,15 +573,14 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 ReplacePlaceholderTexts(curr, pi);
                 ReplacePlaceholderAttrRecursively(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
 
-                targetNodes.Add(curr);    
+                targetNodes.Add(curr);
             }
             InsertNode(insPos, targetNodes.ToArray(), pi);
-            
+
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
         }
-
 
         private void AddBoolEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {

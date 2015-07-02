@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <RadioButton Content="yourEnumCurrentValueDescription" GroupName="rbgyourPropertyName" ToolTip="yourEnumCurrentValueText - yourEnumCurrentValueDescription" IsChecked="{Binding Path=yourPropertyName, Mode=TwoWay, Converter={StaticResource enum2BoolConv}, ConverterParameter=yourEnumCurrentValueText}" />
+</Template>

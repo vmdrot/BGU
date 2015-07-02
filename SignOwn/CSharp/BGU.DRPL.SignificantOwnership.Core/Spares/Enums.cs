@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares
 {
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [Flags]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum  EntityType
     {
         [Description("Не вказано")]None = 0,
@@ -35,6 +37,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
 
     [Flags]
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, true)]
     public enum SexType
     {
         [Description("Не вказано")]None = 0,
@@ -154,6 +157,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
 
     [Flags]
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum PaymentType
     {
         [Description("Не вказано")]None = 0,
@@ -503,6 +507,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     }
 
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum InsolvencyStatus
     {
         [Description("Не вказано")]
@@ -699,6 +704,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     /// </summary>
     /// <seealso cref="http://www.reyestr.court.gov.ua/"/>
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, true)]
     public enum CourtInstanceType
     { 
         [Description("Перша")]
@@ -771,6 +777,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
 
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [Description("Тип впливу")]
+    [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum InfluenceType
     {
         [Description("Не вказано")]
