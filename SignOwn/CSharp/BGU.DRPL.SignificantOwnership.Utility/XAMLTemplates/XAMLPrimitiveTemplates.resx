@@ -160,8 +160,11 @@
   <data name="classstruct_noExpander" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>classstruct_noExpander.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CategoryExpander" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>CategoryExpander.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ComboAddBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ComboAddBtn.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

@@ -8,12 +8,10 @@ namespace Evolvex.Utility.Core.ComponentModelEx
 {
     public class UIUsageComboAttribute : Attribute
     {
-        //public delegate IEnumerable ItemsGetterHandler();
 
         public string DisplayMember { get; set; }
         public ComboUIValueUsageMode ValueMemberUsageMode { get; set; }
         public string ValueMember { get; set; }
-        //public ItemsGetterHandler ItemsGetter { get; set; }
         public Type ItemsGetterClass {get;set;}
         public string ItemsGetterMemberPath {get;set;}
         public string Width { get; set; }
