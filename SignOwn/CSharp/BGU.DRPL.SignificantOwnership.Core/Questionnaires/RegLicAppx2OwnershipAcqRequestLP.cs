@@ -24,7 +24,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService
+    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService, INotifyPropertyChanged
     {
         
         private const string CATEGORY_I = "І. Інформація про юридичну особу";
@@ -172,7 +172,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Придбання на первинному ринку")]
         [Description("8. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:")]
         [Required("AcquisitionWays.IsIPO == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsIPO")]
         public List<IPOSharesPurchaseInfo> IPOPurchase { get; set; }
+
 
 
 
@@ -180,19 +182,25 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("9. Придбання на вторинному ринку")]
         [Description("9. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)")]
         [Required("AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsSecondaryMarketOrImplicitOwnershipPurchase")]
         public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get; set; }
 
+        [Browsable(false)]
+        [NotifyParentProperty(true)]
+        public bool IsSecondaryMarketPurchasesVisible { get { return AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true; } }
 
         [Category(CATEGORY_II)]
         [DisplayName("10. Набуття за довіреністю")]
         [Description("10. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю")]
         [Required("AcquisitionWays.IsPurchaseByPowOfAtt == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsPurchaseByPowOfAtt")]
         public List<PowerOfAttorneySharesPurchaseInfo> AquisitionByPoAttorneys { get; set; }
 
         [Category(CATEGORY_II)]
         [DisplayName("11. Набуття у зв’язку із здійсненням впливу")]
         [Description("11. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння")]
         [Required("AcquisitionWays.IsAcquireByImplicitInfluence == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsAcquireByImplicitInfluence")]
         public List<SignificantOrDecisiveInfulenceInfo> AquisitionByInfluence { get; set; }
 
         /// <summary>
@@ -239,6 +247,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("16. Інформація про кредити, одержані юридичною особою")]
         [Description("(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)")]
         [Required("HasOutstandingLoansWithBanks == true")]
+        [UIConditionalVisibility("HasOutstandingLoansWithBanks")]
         public List<LoanInfo> OutstandingLoansWithBanksDetails { get; set; }
 
         /// <summary>
@@ -263,8 +272,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("17. Ознаки відсутності бездоганної ділової репутації")]
         [Description("Опис наявних ознак відсутності бездоганної ділової репутації")]
         [Required("HasNoImperfectReputationSigns == false")]
+        [UIConditionalVisibility("IsImprefectReputationDetailsVisible")]
         public ImperfectBusinessReputationInfo ImprefectReputationDetails { get; set; }
 
+        [Browsable(false)]
+        public bool IsImprefectReputationDetailsVisible { get { return HasNoImperfectReputationSigns == false; } }
 
         /// <summary>
         /// 18. Стверджую, що юридична особа _______ (зазначається повне найменування юридичної особи) належним чином
@@ -380,5 +392,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         {
             get { return new List<LocationInfo>(); /* todo */ }
         }
-    }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+        }
+   }
 }

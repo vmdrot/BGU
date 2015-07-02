@@ -381,6 +381,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             XmlNode currSrc = sourceBucket.FirstChild;
             XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+            ApplyConditionalVisibilityAttribute(curr, pi);
             XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
             ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAttr.DisplayMember);
@@ -411,6 +412,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             InsertNode(insPos, curr, pi);
         }
 
+        private void ApplyConditionalVisibilityAttribute(XmlNode curr, PropertyInfo pi)
+        {
+            UIConditionalVisibilityAttribute attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIConditionalVisibilityAttribute>(pi);
+            if (attr == null || string.IsNullOrEmpty(attr.VisibilityMemberPath))
+                return;
+            //Visibility="{Binding Path=IsSupervisoryCouncilPresent , Converter={StaticResource bool2Vis}}"
+            XSDReflectionUtil.WriteAttribute(curr, "Visibility", string.Format("{{Binding Path={0}, Converter={{StaticResource bool2Vis}}}}", attr.VisibilityMemberPath));
+        }
+
         private void AddCollectionEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
@@ -422,6 +432,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+                ApplyConditionalVisibilityAttribute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
 
                 targetNodes.Add(curr);
@@ -490,6 +501,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+                ApplyConditionalVisibilityAttribute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
 
                 targetNodes.Add(curr);
@@ -515,6 +527,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+                ApplyConditionalVisibilityAttribute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
                 ReplacePlaceholderAttrRecursively(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
 
@@ -573,6 +586,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                ApplyConditionalVisibilityAttribute(curr, pi);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 targetNodes.Add(curr);

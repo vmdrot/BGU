@@ -49,6 +49,7 @@
     <Compile Include="ComponentModelEx\ComponentModelExEnums.cs" />
     <Compile Include="ComponentModelEx\MultilineAttribute.cs" />
     <Compile Include="ComponentModelEx\RequiredAttribute.cs" />
+    <Compile Include="ComponentModelEx\UIConditionalVisibilityAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAddButtonAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAttribute.cs" />
     <Compile Include="ComponentModelEx\ValidationAttribute.cs" />
