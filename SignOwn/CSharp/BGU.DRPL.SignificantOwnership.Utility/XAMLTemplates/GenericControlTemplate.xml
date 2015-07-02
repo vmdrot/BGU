@@ -8,7 +8,8 @@
                     xmlns:window="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
                     xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
                     xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
-                    xmlns:dataprimitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework">
+                    xmlns:dataprimitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework"
+                    xmlns:localdata="clr-namespace:WpfApplication2.Data">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="Styles.xaml" />
     <ResourceDictionary Source="Converters.xaml" />
