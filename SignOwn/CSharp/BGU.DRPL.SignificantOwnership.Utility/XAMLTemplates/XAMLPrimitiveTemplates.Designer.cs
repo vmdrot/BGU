@@ -117,7 +117,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
         ///  &lt;Expander Header=&quot;yourCategoryName&quot; ToolTip=&quot;yourCategoryName&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
-        ///    &lt;StackPanel Orientation=&quot;Vertical&quot;&gt;
+        ///    &lt;StackPanel Orientation=&quot;Vertical&quot; Margin=&quot;5,2&quot;&gt;
         ///    &lt;/StackPanel&gt;
         ///  &lt;/Expander&gt;
         ///&lt;/Template&gt;.
@@ -155,6 +155,19 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         public static string classstruct_noExpander {
             get {
                 return ResourceManager.GetString("classstruct_noExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+        ///    &lt;TextBlock x:Name=&quot;lblyourPropertyName&quot; Height=&quot;auto&quot; Width=&quot;auto&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///    &lt;ComboBox x:Name=&quot;cbxyourPropertyName&quot; DisplayMemberPath=&quot;yourComboDisplayMember&quot; SelectedValuePath=&quot;ID&quot; HorizontalAlignment=&quot;Stretch&quot; SelectedValue=&quot;{Binding Acquiree, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yo [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ComboAddBtn {
+            get {
+                return ResourceManager.GetString("ComboAddBtn", resourceCulture);
             }
         }
         

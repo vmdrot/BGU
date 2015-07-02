@@ -33,6 +33,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedComboItemsGetterPlaceholder = "yourComboItemsGetter";
         private static readonly string templatedComboDisplayMemberPlaceholder = "yourComboDisplayMember";
         private static readonly string templatedCategoryNamePlaceholder = "yourCategoryName";
+        private static readonly string templatedComboBtnAddCommandPlaceholder = "yourAddComboItemCommand";
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
@@ -43,9 +44,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
         private static readonly string comboTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboTemplate;
         private static readonly string categoryExpanderTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.CategoryExpander;
-        //private static readonly string dummyNodeElementName = "dummyPhTag";
-        //private static readonly string dummyNodeElementNamespaceAttrNm = "xmlns";
-        //private static readonly string uniquifierAttrName = "guuiidd";
+        private static readonly string comboAddBtnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboAddBtn;
+
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
         private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
@@ -285,9 +285,11 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         {
             
             UIUsageComboAttribute comboAttr;
+            UIUsageComboAddButtonAttribute comboAddBtnAttr;
 
             ControlInsertionPosition insPos = DetectControlInsertionPosition(pi, container);
-            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(insPos, pi, comboAttr);
+            if (IsPropOrTypeAttributeDefined<UIUsageComboAttribute>(pi, out comboAttr)) AddCombo(insPos, pi, comboAttr);
+            else if (IsPropOrTypeAttributeDefined<UIUsageComboAddButtonAttribute>(pi, out comboAddBtnAttr)) AddComboAddBtn(insPos, pi, comboAddBtnAttr); 
             else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(insPos, pi);
             else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(insPos, pi);
             else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(insPos, pi);
@@ -298,13 +300,74 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(insPos, pi);
         }
 
-        private bool IsUIComboUsageDefined(PropertyInfo pi, out UIUsageComboAttribute attr)
+        private void AddComboAddBtn(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageComboAddButtonAttribute comboAddBtnAttr)
         {
-            attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(pi);
+            //<ComboBox ToolTip="" ItemsSource="{Binding Source={x:Static bgud:CountryInfo.AllCountries}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedItem="{Binding Path=OperationCountry, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="CountryNameUkr" HorizontalAlignment="Stretch" />
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            controlXamlFragmentDoc.LoadXml(comboAddBtnTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+
+
+            XmlNode currSrc = sourceBucket.FirstChild;
+            XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+            XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+            ReplacePlaceholderTexts(curr, pi);
+            ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAddBtnAttr.DisplayMember);
+            ReplacePlaceholderAttrRecursively(curr, templatedComboBtnAddCommandPlaceholder, comboAddBtnAttr.AddNewItemCommand);
+            if (!string.IsNullOrEmpty(comboAddBtnAttr.ItemGetterFull))
+            {
+                ReplacePlaceholderAttrRecursively(curr, templatedComboItemsGetterPlaceholder, comboAddBtnAttr.ItemGetterFull);
+            }
+            else if (comboAddBtnAttr.ItemsGetterClass != null && !string.IsNullOrEmpty(comboAddBtnAttr.ItemsGetterMemberPath))
+            {
+                if (!_bguNS2XamlPfxs.ContainsKey(comboAddBtnAttr.ItemsGetterClass.Namespace))
+                    throw new ApplicationException(String.Format("No namespace prefix defined for the namespace '{0}'", comboAddBtnAttr.ItemsGetterClass.Namespace));
+                string itemsGetter = string.Format("{0}:{1}.{2}", _bguNS2XamlPfxs[comboAddBtnAttr.ItemsGetterClass.Namespace], comboAddBtnAttr.ItemsGetterClass.Name, comboAddBtnAttr.ItemsGetterMemberPath);
+                ReplacePlaceholderAttrRecursively(curr, templatedComboItemsGetterPlaceholder, itemsGetter);
+                AddTemplateDataTypeNS(insPos.RelNode.OwnerDocument.DocumentElement, comboAddBtnAttr.ItemsGetterClass);
+            }
+            XmlNode comboNode = curr.ChildNodes[1];
+            if (comboAddBtnAttr.ValueMemberUsageMode == ComboUIValueUsageMode.ValueProperty)
+            {
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedValuePath", comboAddBtnAttr.ValueMember);
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedValue", string.Format("{{Binding Path={0}, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}}", pi.Name));
+            }
+            else if (comboAddBtnAttr.ValueMemberUsageMode == ComboUIValueUsageMode.SelectedItem)
+            {
+                XSDReflectionUtil.WriteAttribute(comboNode, "SelectedItem", string.Format("{{Binding Path={0}, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}}", pi.Name));
+            }
+
+            if (!string.IsNullOrEmpty(comboAddBtnAttr.Width))
+                XSDReflectionUtil.WriteAttribute(comboNode, "Width", comboAddBtnAttr.Width);
+
+
+
+            InsertNode(insPos, curr, pi);
+        }
+
+        //private bool IsUIComboAddButtonUsageDefined(PropertyInfo pi, out UIUsageComboAddButtonAttribute comboAddBtnAttr)
+        //{
+        //    attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(pi);
+        //    if (attr != null)
+        //        return true;
+        //    return false;
+        //}
+
+        private bool IsPropOrTypeAttributeDefined<T>(PropertyInfo pi, out T attr) where T : System.Attribute
+        {
+            attr = ReflectionUtil.GetPropertyOrTypeAttribute<T>(pi);
             if (attr != null)
                 return true;
             return false;
         }
+
+        //private bool IsUIComboUsageDefined(PropertyInfo pi, out UIUsageComboAttribute attr)
+        //{
+        //    attr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageComboAttribute>(pi);
+        //    if (attr != null)
+        //        return true;
+        //    return false;
+        //}
 
         private void AddCombo(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageComboAttribute comboAttr)
         {

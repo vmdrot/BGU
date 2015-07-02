@@ -19,9 +19,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     ///  - виданої гарантії/поручительства);
     ///  - тощо.
     /// </summary>
+    //[XamlTemplateName("GenericPersonID_ManualTemplate.xaml")]
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
-    [XamlTemplateName("GenericPersonID_ManualTemplate.xaml")]
     [XamlExpanderWrapping(false)]
+    [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddMentionedPersonCommand", DisplayMember = "DisplayName", ItemGetterFull = "localdata:DataModule.CurrentMentionedIdentities", ValueMember = "ID", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, Width = "150")]
     public class GenericPersonID
     {
         /// <summary>
