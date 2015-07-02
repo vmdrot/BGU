@@ -10,11 +10,14 @@ using System.IO;
 using System.Configuration;
 using System.Xml.Serialization;
 using Evolvex.Utility.Core.ComponentModelEx;
+using Evolvex.Utility.Core.Common;
 
 namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
     public class XAMLGeneratorPureXmlStackPanel : IXAMLGenerator
     {
+        private static readonly ILog log = Logging.GetLogger(typeof(XAMLGeneratorPureXmlStackPanel));
+
         private List<Type> _referencedTypes = new List<Type>();
         private Dictionary<Type, string> _referencedControlTemplateNames;
         private Assembly _userAssembly;
@@ -47,6 +50,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
         private static readonly string BGU2XAML_NS_CFG_PFX = "xamlns4:";
         private Dictionary<string, XmlNode> _categoriesNodes = new Dictionary<string,XmlNode>();
+        private Dictionary<string, int> _propertyIndexes = new Dictionary<string, int>();
+        private Dictionary<int, string> _indexes2PropNames = new Dictionary<int, string>();
+        private Dictionary<string, ResultantControlNodesRange> _propertyNodes = new Dictionary<string, ResultantControlNodesRange>();
+        private Dictionary<string, PropertyInfo> _propsByNames = new Dictionary<string,PropertyInfo>();
 
 
         private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> GetPropDispDescrs(Type typ)
@@ -139,8 +146,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private void CreateCategoriesNodes(XmlNode gridNode, List<PropertyInfo> props)
         {
             List<String> categoryNames = new List<string>();
+            int i = 0;
             foreach (PropertyInfo pi in props)
             {
+                _propertyIndexes.Add(pi.Name, i++);
+                _indexes2PropNames.Add(_propertyIndexes[pi.Name], pi.Name);
+                _propsByNames.Add(pi.Name, pi);
                 CategoryAttribute catAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(pi);
                 if (catAttr == null || categoryNames.Contains(catAttr.Category))
                     continue;
@@ -220,23 +231,71 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             ReplaceAllAttrPlaceholdersSingleNode(dataTemplateNode, templatedTypeNamePlaceholder, xamlDataTypeAlias);
         }
 
+        private ControlInsertionPosition DetectControlInsertionPosition(PropertyInfo pi, XmlNode container)
+        {
+            ControlInsertionPosition rslt = new ControlInsertionPosition();
+
+            CategoryAttribute catAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(pi);
+            if (catAttr != null && _categoriesNodes.ContainsKey(catAttr.Category))
+            {
+                rslt.BeforeOrAfter = InsertRelLocType.After;
+                rslt.RelNode = _categoriesNodes[catAttr.Category];
+                rslt.ChildRel = InsertChildRelLocType.LastChild;
+            }
+            else
+            {
+                string prevPropName = FindPreviousPropertyName(pi.Name);
+                if (string.IsNullOrEmpty(prevPropName))
+                {
+                    rslt.RelNode = container;
+                    rslt.BeforeOrAfter = InsertRelLocType.Before;
+                    rslt.ChildRel = InsertChildRelLocType.FirstChild;
+                }
+                else
+                {
+                    PropertyInfo prevProp = _propsByNames[prevPropName];
+                    CategoryAttribute prevPropCatAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(prevProp);
+                    if (prevPropCatAttr != null)
+                    {
+                        rslt.RelNode = _categoriesNodes[prevPropCatAttr.Category].ParentNode;
+                        rslt.BeforeOrAfter = InsertRelLocType.After;
+                        rslt.ChildRel = InsertChildRelLocType.NodeItself;
+                    }
+                    else
+                    {
+                        rslt.RelNode = _propertyNodes[prevPropName].Last;
+                        rslt.BeforeOrAfter = InsertRelLocType.After;
+                        rslt.ChildRel = InsertChildRelLocType.NodeItself;
+                    }
+                }
+            }
+
+            return rslt;
+        }
+
+        private string FindPreviousPropertyName(string propNm)
+        {
+            if (_propertyIndexes[propNm] == 0)
+                return null;
+            return _indexes2PropNames[_propertyIndexes[propNm] - 1];
+
+        }
+
         private void AddControl(XmlNode container, PropertyInfo pi)
         {
             
             UIUsageComboAttribute comboAttr;
-            XmlNode insertInto = container;
-            CategoryAttribute catAttr = ReflectionUtil.GetPropertyOrTypeAttribute<CategoryAttribute>(pi);
-            if (catAttr != null && _categoriesNodes.ContainsKey(catAttr.Category))
-                insertInto = _categoriesNodes[catAttr.Category];
-            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(insertInto, pi, comboAttr);
-            else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(insertInto, pi);
-            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(insertInto, pi);
-            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(insertInto, pi);
-            else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(insertInto, pi);
-            else if (pi.PropertyType == typeof(bool) || pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(insertInto, pi);
-            else if (pi.PropertyType.IsEnum) AddEnumEditControl(insertInto, pi);
-            else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(insertInto, pi);
-            else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(insertInto, pi);
+
+            ControlInsertionPosition insPos = DetectControlInsertionPosition(pi, container);
+            if (IsUIComboUsageDefined(pi, out comboAttr)) AddCombo(insPos, pi, comboAttr);
+            else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(insPos, pi);
+            else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(insPos, pi);
+            else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(insPos, pi);
+            else if (pi.PropertyType == typeof(DateTime) || pi.PropertyType == typeof(DateTime?)) AddDateTimeEditControl(insPos, pi);
+            else if (pi.PropertyType == typeof(bool) || pi.PropertyType == typeof(bool) || pi.ReflectedType == typeof(Boolean)) AddBoolEditControl(insPos, pi);
+            else if (pi.PropertyType.IsEnum) AddEnumEditControl(insPos, pi);
+            else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(insPos, pi);
+            else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(insPos, pi);
         }
 
         private bool IsUIComboUsageDefined(PropertyInfo pi, out UIUsageComboAttribute attr)
@@ -247,7 +306,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             return false;
         }
 
-        private void AddCombo(XmlNode container, PropertyInfo pi, UIUsageComboAttribute comboAttr)
+        private void AddCombo(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageComboAttribute comboAttr)
         {
             //<ComboBox ToolTip="" ItemsSource="{Binding Source={x:Static bgud:CountryInfo.AllCountries}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedItem="{Binding Path=OperationCountry, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="CountryNameUkr" HorizontalAlignment="Stretch" />
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
@@ -258,8 +317,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             //{
 
             XmlNode currSrc = sourceBucket.FirstChild;
-            XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
-            XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+            XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+            XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
             ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAttr.DisplayMember);
             if (comboAttr.ItemsGetterClass != null && !string.IsNullOrEmpty(comboAttr.ItemsGetterMemberPath))
@@ -268,7 +327,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                     throw new ApplicationException(String.Format("No namespace prefix defined for the namespace '{0}'", comboAttr.ItemsGetterClass.Namespace));
                 string itemsGetter = string.Format("{0}:{1}.{2}", _bguNS2XamlPfxs[comboAttr.ItemsGetterClass.Namespace], comboAttr.ItemsGetterClass.Name, comboAttr.ItemsGetterMemberPath);
                 ReplacePlaceholderAttrRecursively(curr, templatedComboItemsGetterPlaceholder, itemsGetter);
-                AddTemplateDataTypeNS(container.OwnerDocument.DocumentElement, comboAttr.ItemsGetterClass);
+                AddTemplateDataTypeNS(insPos.RelNode.OwnerDocument.DocumentElement, comboAttr.ItemsGetterClass);
             }
             XmlNode comboNode = curr.ChildNodes[1];
             if (comboAttr.ValueMemberUsageMode == ComboUIValueUsageMode.ValueProperty)
@@ -286,25 +345,28 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
 
 
-            container.InsertAfter(curr, container.LastChild);
+            InsertNode(insPos, curr, pi);
         }
 
-        private void AddCollectionEditControl(XmlNode container, PropertyInfo pi)
+        private void AddCollectionEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(listOfTTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
             XmlNode expanderNode = null;
+            List<XmlNode> targetNodes = new List<XmlNode>();
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
-                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
-                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+                XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
+
+                targetNodes.Add(curr);
                 
-                container.InsertAfter(curr, container.LastChild);
                 if (curr.Name == "Expander")
                     expanderNode = curr;
             }
+            InsertNode(insPos, targetNodes.ToArray(), pi);
 
             if(pi.PropertyType.IsGenericType)
             {
@@ -326,7 +388,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                         currColDefDoc.LoadXml(listOfT_DataColumnTemplate);
                         XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
                         ReplacePlaceholderTexts(colDefSrc, ppi, itemTyp, true);
-                        XmlNode currColDef = container.OwnerDocument.ImportNode(colDefSrc, true);
+                        XmlNode currColDef = insPos.RelNode.OwnerDocument.ImportNode(colDefSrc, true);
                         dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
                     }
 
@@ -336,7 +398,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                         currColDefDoc.LoadXml(listOfT_CMDsColumnTemplate);
                         XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
                         ReplacePlaceholderTexts(colDefSrc, pi, itemTyp, true);
-                        XmlNode currColDef = container.OwnerDocument.ImportNode(colDefSrc, true);
+                        XmlNode currColDef = insPos.RelNode.OwnerDocument.ImportNode(colDefSrc, true);
                         dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
                     }
                     #endregion
@@ -348,7 +410,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
         }
 
-        private void AddComplextTypeControl(XmlNode container, PropertyInfo pi)
+        private void AddComplextTypeControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
           
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
@@ -360,105 +422,212 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 controlTemplate = classStructNoExpanderWrapControlTemplate;
             controlXamlFragmentDoc.LoadXml(controlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            List<XmlNode> targetNodes = new List<XmlNode>();
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
-                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
-                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+                XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
-                
-                container.InsertAfter(curr, container.LastChild);
+
+                targetNodes.Add(curr);
             }
+            InsertNode(insPos, targetNodes.ToArray(), pi);
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
         }
 
-        private void AddPrimitiveEditControl(XmlNode container, PropertyInfo pi)
+        private void AddPrimitiveEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
             throw new NotImplementedException();
         }
 
-        private void AddEnumEditControl(XmlNode container, PropertyInfo pi)
+        private void AddEnumEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(PRIMITIVE_TYPES_TEMPLATES[typeof(Enum)]);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            List<XmlNode> targetNodes = new List<XmlNode>();
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
-                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
-                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+                XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 ReplacePlaceholderAttrRecursively(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
-                
-                container.InsertAfter(curr, container.LastChild);
+
+                targetNodes.Add(curr);    
             }
+            InsertNode(insPos, targetNodes.ToArray(), pi);
+            
 
             if (!_referencedTypes.Contains(pi.PropertyType))
                 _referencedTypes.Add(pi.PropertyType);
         }
 
 
-        private void AddBoolEditControl(XmlNode container, PropertyInfo pi)
+        private void AddBoolEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-            AddEditControlWorker(container, pi, typeof(bool));
+            AddEditControlWorker(insPos, pi, typeof(bool));
         }
 
-        private void AddDateTimeEditControl(XmlNode container, PropertyInfo pi)
+        private void AddDateTimeEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-            AddEditControlWorker(container, pi, typeof(DateTime));
+            AddEditControlWorker(insPos, pi, typeof(DateTime));
         }
 
-        private void AddDecimalEditControl(XmlNode container, PropertyInfo pi)
+        private void AddDecimalEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-            AddEditControlWorker(container, pi, typeof(decimal));
+            AddEditControlWorker(insPos, pi, typeof(decimal));
         }
 
-        private void AddIntEditControl(XmlNode container, PropertyInfo pi)
+        private void AddIntEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-            AddEditControlWorker(container, pi, typeof(int));
+            AddEditControlWorker(insPos, pi, typeof(int));
         }
 
-        private void AddStringEditControl(XmlNode container, PropertyInfo pi)
+        private void AddStringEditControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
             bool isMultiline = Attribute.IsDefined(pi, typeof(MultilineAttribute));
 
             if(!isMultiline)
-                AddEditControlWorker(container, pi, typeof(string));
+                AddEditControlWorker(insPos, pi, typeof(string));
             else
-                AddEditControlWorker(container, pi, typeof(string), multilineTemplate);
+                AddEditControlWorker(insPos, pi, typeof(string), multilineTemplate);
         }
 
-        private void AddEditControlWorker(XmlNode container, PropertyInfo pi, Type ctrlTyp)
+        private void AddEditControlWorker(ControlInsertionPosition insPos, PropertyInfo pi, Type ctrlTyp)
         {
-            AddEditControlWorker(container, pi, ctrlTyp, PRIMITIVE_TYPES_TEMPLATES[ctrlTyp]);
+            AddEditControlWorker(insPos, pi, ctrlTyp, PRIMITIVE_TYPES_TEMPLATES[ctrlTyp]);
         }
-        
-    
-        private void AddEditControlWorker(XmlNode container, PropertyInfo pi, Type ctrlTyp, string controlXamlTemplate)
+
+
+        private void AddEditControlWorker(ControlInsertionPosition insPos, PropertyInfo pi, Type ctrlTyp, string controlXamlTemplate)
         {
-            //string controlXamlFragment = ReplacePlaceholderTexts(PRIMITIVE_TYPES_TEMPLATES[ctrlTyp], pi);
-            ////XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, container.OwnerDocument.Attributes[dummyNodeElementNamespaceAttrNm].Value); //doesn't work
-            //XmlNode curr = container.OwnerDocument.CreateNode(XmlNodeType.Element, dummyNodeElementName, NewElemNS);
-            //XSDReflectionUtil.WriteAttribute(curr, uniquifierAttrName, Guid.NewGuid().ToString());
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             controlXamlFragmentDoc.LoadXml(controlXamlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            List<XmlNode> targetNodes = new List<XmlNode>();
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
-                XmlNode curr = container.OwnerDocument.ImportNode(currSrc, true);
-                XSDReflectionUtil.WriteAttribute(curr, "xmlns", container.OwnerDocument.DocumentElement.NamespaceURI);
+                XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
-                
-                container.InsertAfter(curr, container.LastChild);
+                targetNodes.Add(curr);
             }
+            InsertNode(insPos, targetNodes.ToArray(), pi);
          
-            //IncrementRealDummyXmls(pi.Name, controlXamlFragment, curr.OuterXml);
+        }
+
+
+        private void InsertNode(ControlInsertionPosition pos, XmlNode subj, PropertyInfo pi)
+        {
+            InsertNode(pos, new XmlNode[] { subj }, pi);
+        }
+        private void InsertNode(ControlInsertionPosition pos, XmlNode[] subj, PropertyInfo pi)
+        {
+            log.Debug("InsertNode: pi.Name = '{0}', this._rootType.FullName = '{1}'", pi.Name, this._rootType.FullName);
+            if (_propertyNodes.ContainsKey(pi.Name))
+                throw new ApplicationException(string.Format("InsertNode: Duplicate property control insert attempt: {0} ({1})", pi.Name, this._rootType.FullName));
+            _propertyNodes.Add(pi.Name, new ResultantControlNodesRange(){ First = subj[0], Last = subj[subj.Length-1] });
+            switch (pos.ChildRel)
+            {
+                case InsertChildRelLocType.FirstChild:
+                    {
+                        switch (pos.BeforeOrAfter)
+                        {
+                            case InsertRelLocType.Before:
+                                {
+                                    pos.RelNode.InsertBefore(subj[0], pos.RelNode.FirstChild);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.InsertAfter(subj[i],subj[0]);
+                                    }
+
+                                }
+                                break;
+                            case InsertRelLocType.After:
+                                {
+                                    pos.RelNode.InsertAfter(subj[0], pos.RelNode.FirstChild);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.InsertAfter(subj[i],subj[0]);
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case InsertChildRelLocType.LastChild:
+                    {
+                        switch (pos.BeforeOrAfter)
+                        {
+                            case InsertRelLocType.Before:
+                                {
+                                    pos.RelNode.InsertBefore(subj[0], pos.RelNode.LastChild);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.InsertAfter(subj[i],subj[0]);
+                                    }
+                                }
+                                break;
+                            case InsertRelLocType.After:
+                                {
+                                    pos.RelNode.InsertAfter(subj[0], pos.RelNode.LastChild);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.InsertAfter(subj[i],subj[0]);
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case InsertChildRelLocType.NodeItself:
+                    {
+                        switch (pos.BeforeOrAfter)
+                        {
+                            case InsertRelLocType.Before:
+                                {
+                                    pos.RelNode.ParentNode.InsertBefore(subj[0], pos.RelNode);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.ParentNode.InsertAfter(subj[i],subj[0]);
+                                    }
+                                }
+                                break;
+                            case InsertRelLocType.After:
+                                {
+                                    pos.RelNode.ParentNode.InsertAfter(subj[0], pos.RelNode);
+                                    if(subj.Length > 1)
+                                    {
+                                        for(int i = 1;i<subj.Length; i++)
+                                            pos.RelNode.ParentNode.InsertAfter(subj[i],subj[0]);
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
 
 
 
-        private void AddControlByTypeEditor(XmlNode container, string p)
+        private void AddControlByTypeEditor(ControlInsertionPosition insPos, string p)
         {
             throw new NotImplementedException();
         }
@@ -524,5 +693,32 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 target.Attributes[attrNm].Value = attrsToModify[attrNm];
             }
         }
+
+        private class ControlInsertionPosition
+        {
+            internal InsertRelLocType BeforeOrAfter { get; set; }
+            internal InsertChildRelLocType ChildRel { get; set; }
+            internal XmlNode RelNode { get; set; }
+        }
+
+        private enum InsertRelLocType
+        { 
+            Before,
+            After
+        }
+
+        private enum InsertChildRelLocType
+        { 
+            FirstChild,
+            LastChild,
+            NodeItself
+        }
+
+        private class ResultantControlNodesRange
+        {
+            internal XmlNode First { get; set; }
+            internal XmlNode Last { get; set; }
+        }
+
     }
 }
