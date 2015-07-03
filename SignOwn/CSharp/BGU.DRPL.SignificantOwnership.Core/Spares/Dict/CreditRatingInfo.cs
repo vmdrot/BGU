@@ -73,5 +73,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Короткотермінове значення рейтингу(якщо інше)")]
         [UIConditionalVisibility("IsShortTermRatingValueOther")]
         public string ShortTermRatingValueOther { get { return _ShortTermRatingValueOther; } set { _ShortTermRatingValueOther = value; OnPropertyChanged("ShortTermRatingValueOther"); } }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1} / {2}", IsAgencyOther ? AgencyOther.Name : WellKnownAgency.ToString(), IsLongMidTermRatingValueOther ? LongMidTermRatingValueOther : LongMidTermRatingValue.ToString(), IsShortTermRatingValueOther ? ShortTermRatingValueOther : ShortTermRatingValue.ToString());
+        }
     }
 }
