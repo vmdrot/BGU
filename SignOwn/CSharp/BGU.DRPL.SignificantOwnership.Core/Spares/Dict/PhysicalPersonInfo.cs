@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 {
@@ -13,46 +14,29 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// Інформація про фіз.особу (реквізити)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.PhysicalPersonInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class PhysicalPersonInfo
+    public class PhysicalPersonInfo : NotifyPropertyChangedBase
     {
         public PhysicalPersonInfo()
         {
             CitizenshipCountry = CountryInfo.UKRAINE;
         }
-        
-        /// <summary>
-        /// для нерезидентів
-        /// </summary>
-        [DisplayName("Прізвище (укр.)")]
-        [Description("Прізвище, українською")]
-        public string SurnameUkr { get; set; }
-        /// <summary>
-        /// для нерезидентів
-        /// </summary>
-        [DisplayName("Ім'я (укр.)")]
-        [Description("Ім'я, українською")]
-        public string NameUkr { get; set; }
-        /// <summary>
-        /// для нерезидентів
-        /// </summary>
-        [DisplayName("По-батькові/друге ім'я (укр.)")]
-        [Description("По-батькові/друге ім'я, українською")]
-        public string MiddleNameUkr { get; set; }
-        /// <summary>
-        /// для нерезидентів
-        /// </summary>
-        [DisplayName("П.І.Б (укр.)")]
-        [Description("П.І.Б., українською")]
-        public string FullNameUkr { get; set; }
+
+        private string _Surname;
         [DisplayName("Прізвище")]
         [Description("Прізвище")]
-        public string Surname { get; set; }
+        public string Surname { get { return _Surname; } set { _Surname = value; OnPropertyChanged("Surname"); } }
+
+        private string _Name;
         [DisplayName("Ім'я")]
         [Description("Ім'я")]
-        public string Name { get; set; }
+        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged("Name"); } }
+
+        private string _MiddleName;
         [DisplayName("По-батькові/друге ім'я")]
         [Description("По-батькові/друге ім'я")]
-        public string MiddleName { get; set; }
+        public string MiddleName { get { return _MiddleName; } set { _MiddleName = value; OnPropertyChanged("MiddleName"); } }
+
+        private string _FullName;
         /// <summary>
         /// Вказувати достатньо повного імені; 
         /// Якщо є натхнення (або вимагає анкета) - можна й деталізацію по полях
@@ -62,14 +46,55 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("П.І.Б.")]
         [Description("П.І.Б.")]
         [Required]
-        public string FullName { get; set; }
+        public string FullName { get { return _FullName; } set { _FullName = value; OnPropertyChanged("FullName"); } }
+
+        private string _SurnameUkr;
+        /// <summary>
+        /// для нерезидентів
+        /// </summary>
+        [DisplayName("Прізвище (укр.)")]
+        [Description("Прізвище, українською")]
+        [UIConditionalVisibility("IsNonResident")]
+        public string SurnameUkr { get { return _SurnameUkr; } set { _SurnameUkr = value; OnPropertyChanged("SurnameUkr"); } }
+
+        private string _NameUkr;
+        /// <summary>
+        /// для нерезидентів
+        /// </summary>
+        [DisplayName("Ім'я (укр.)")]
+        [Description("Ім'я, українською")]
+        [UIConditionalVisibility("IsNonResident")]
+        public string NameUkr { get { return _NameUkr; } set { _NameUkr = value; OnPropertyChanged("NameUkr"); } }
+
+        private string _MiddleNameUkr;
+        /// <summary>
+        /// для нерезидентів
+        /// </summary>
+        [DisplayName("По-батькові/друге ім'я (укр.)")]
+        [Description("По-батькові/друге ім'я, українською")]
+        [UIConditionalVisibility("IsNonResident")]
+        public string MiddleNameUkr { get { return _MiddleNameUkr; } set { _MiddleNameUkr = value; OnPropertyChanged("MiddleNameUkr"); } }
+
+        private string _FullNameUkr;
+        /// <summary>
+        /// для нерезидентів
+        /// </summary>
+        [DisplayName("П.І.Б (укр.)")]
+        [Description("П.І.Б., українською")]
+        [UIConditionalVisibility("IsNonResident")]
+        public string FullNameUkr { get { return _FullNameUkr; } set { _FullNameUkr = value; OnPropertyChanged("FullNameUkr"); } }
+
+
+        private SexType _Sex;
         /// <summary>
         /// Бажано вимагати; дивитися за контекстом конкретного поля 
         /// у конкретній анкеті
         /// </summary>
         [DisplayName("Стать")]
         [Description("Стать")]
-        public SexType Sex { get; set; }
+        public SexType Sex { get { return _Sex; } set { _Sex = value; OnPropertyChanged("Sex"); } }
+
+        private DateTime _BirthDate;
         /// <summary>
         /// Як правило, необов'язкове поле
         /// Буває, що онука називають як діда, і у ланцюжку володіння фігурують обидва
@@ -79,32 +104,50 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Дата народження")]
         [Description("Дата народження")]
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get { return _BirthDate; } set { _BirthDate = value; OnPropertyChanged("BirthDate"); } }
+
+        private string _PassportID;
         [DisplayName("Серія № паспорта")]
         [Description("Серія № паспорта")]
-        public string PassportID { get; set; }
+        public string PassportID { get { return _PassportID; } set { _PassportID = value; OnPropertyChanged("PassportID"); } }
+
+        private DateTime _PassIssuedDate;
         [DisplayName("Дата видачі паспорта")]
         [Description("Дата видачі паспорта")]
-        public DateTime PassIssuedDate { get; set; }
+        public DateTime PassIssuedDate { get { return _PassIssuedDate; } set { _PassIssuedDate = value; OnPropertyChanged("PassIssuedDate"); } }
+
+        private RegistrarAuthority _PassIssueAuthority;
         [DisplayName("Орган, що видав паспорт")]
         [Description("Орган, що видав паспорт")]
-        public RegistrarAuthority PassIssueAuthority { get; set; }
+        public RegistrarAuthority PassIssueAuthority { get { return _PassIssueAuthority; } set { _PassIssueAuthority = value; OnPropertyChanged("PassIssueAuthority"); } }
+
+        private string _TaxOrSocSecID;
         [DisplayName("ІПН")]
         [Description("ІПН/№ картки соціального страхування/тощо, дивлячись, що використовується у країні резидентства")]
-        public string TaxOrSocSecID { get; set; }
+        public string TaxOrSocSecID { get { return _TaxOrSocSecID; } set { _TaxOrSocSecID = value; OnPropertyChanged("TaxOrSocSecID"); } }
+
+        private LocationInfo _Address;
         /// <summary>
         /// Поле необхідне лише якщо вимагається у анкеті
         /// </summary>
         [DisplayName("Місце проживання/реєстрації")]
         [Description("Місце проживання/реєстрації")]
-        public LocationInfo Address { get; set; }
+        public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
+
+        private CountryInfo _CitizenshipCountry;
         /// <summary>
         /// Обов'язкове поле (окрім хіба ContactInfo)
         /// За змовчанням (пропонувати) - Україна
         /// </summary>
         [DisplayName("Громадянство")]
         [Description("Громадянство")]
-        public CountryInfo CitizenshipCountry { get; set; }
+        public CountryInfo CitizenshipCountry { get { return _CitizenshipCountry; } set { _CitizenshipCountry = value; OnPropertyChanged("CitizenshipCountry"); OnPropertyChanged("IsNonResident"); } }
+
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsNonResident { get { return CitizenshipCountry != null && CitizenshipCountry != CountryInfo.UKRAINE; } }
+
         [Browsable(false)]
         public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = CitizenshipCountry != null ? CitizenshipCountry.CountryISONr : string.Empty, PersonCode = TaxOrSocSecID ?? PassportID, PersonType = EntityType.Physical, DisplayName = ToString() }; } }
 

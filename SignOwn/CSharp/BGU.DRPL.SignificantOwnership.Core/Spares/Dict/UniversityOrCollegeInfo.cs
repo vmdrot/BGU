@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 {
@@ -11,28 +12,42 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// Інформація про навчальний заклад (університет, коледж, тощо) професійної, вищої чи неповної вищої освіти
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.UniversityOrCollegeInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class UniversityOrCollegeInfo
+    public class UniversityOrCollegeInfo : NotifyPropertyChangedBase
     {
+        private string _UniversityName;
         /// <summary>
         /// Обов'язкове поле
         /// </summary>
         [DisplayName("Назва ВНЗ")]
         [Description("Назва вищого навчального закладу оригінальною мовою")]
         [Required]
-        public string UniversityName { get; set; }
+        public string UniversityName { get { return _UniversityName; } set { _UniversityName = value; OnPropertyChanged("UniversityName"); } }
+
+
+        private string _UniversityNameUkr;
         /// <summary>
         /// Обов'язкове, якщо ВНЗ - не український, відповідно, 
         /// назва оригінальна потребує перекладу/транслітерації українською.
         /// </summary>
         [DisplayName("Назва ВНЗ (українською)")]
         [Description("Назва вищого навчального закладу оригінальною мовою українською (якщо оригінальна мова інша")]
-        public string UniversityNameUkr { get; set; }
+        [UIConditionalVisibility("IsNonResident")]
+        public string UniversityNameUkr { get { return _UniversityNameUkr; } set { _UniversityNameUkr = value; OnPropertyChanged("UniversityNameUkr"); } }
+
+        private LocationInfo _Address;
         /// <summary>
         /// Хоча б місто й країна
         /// </summary>
         [DisplayName("Адреса ВНЗ")]
         [Required]
-        public LocationInfo Address { get; set; }
+        public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); OnPropertyChanged("IsNonResident"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsNonResident { get { return (Address != null && Address.Country != null && Address.Country != CountryInfo.UKRAINE); } }
+
+
+        private string _UniversityID;
         /// <summary>
         /// Не певен, чи десь існують ці ідентифікатори - 
         /// у нас їх немає, але можуть запровадити.
@@ -40,6 +55,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Ідентифікатор ВНЗ")]
         [Description("Ідентифікатор ВНЗ - якщо є/передбачений")]
-        public string UniversityID { get; set; }
+        public string UniversityID { get { return _UniversityID; } set { _UniversityID = value; OnPropertyChanged("UniversityID"); } }
     }
 }

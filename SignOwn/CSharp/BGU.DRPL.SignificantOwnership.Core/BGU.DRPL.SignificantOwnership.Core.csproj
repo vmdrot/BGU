@@ -176,7 +176,7 @@
     <Compile Include="Spares\Dict\UniversityOrCollegeInfo.cs" />
     <Compile Include="Spares\Enums.cs" />
     <Compile Include="Spares\EnumsLister.cs" />
-    <Compile Include="Spares\NotigyPropertyChangedBase.cs" />
+    <Compile Include="Spares\NotifyPropertyChangedBase.cs" />
     <Compile Include="TypeEditors\BooleanEditor.cs" />
     <Compile Include="TypeEditors\CountryInfoLookupEditor2.cs" />
     <Compile Include="TypeEditors\CountryInfoLookupEditor.cs" />

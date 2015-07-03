@@ -42,9 +42,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
         public static bool operator ==(CountryInfo x, CountryInfo y)
         {
-            if (x == null && y == null)
+            if ((object)x == null && (object)y == null)
                 return true;
-            if (x == null || y == null)
+            if ((object)x == null || (object)y == null)
                 return false;
             return x.CountryISONr == y.CountryISONr;
         }

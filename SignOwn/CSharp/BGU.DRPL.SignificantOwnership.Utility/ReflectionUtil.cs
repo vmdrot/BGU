@@ -115,6 +115,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility
 
             foreach (PropertyInfo pi in pis)
             {
+                if (pi.GetValue(obj, null) != null)
+                    continue;
                 if (pi.PropertyType == typeof(DateTime))
                     pi.SetValue(obj, DateTime.Now, null);
                 if (pi.PropertyType.IsPrimitive || pi.PropertyType.IsEnum)
