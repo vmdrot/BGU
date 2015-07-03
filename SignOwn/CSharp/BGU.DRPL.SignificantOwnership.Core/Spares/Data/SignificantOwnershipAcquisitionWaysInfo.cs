@@ -17,7 +17,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// - набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння. 
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignificantOwnershipAcquisitionWaysInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class SignificantOwnershipAcquisitionWaysInfo : NotigyPropertyChangedBase
+    public class SignificantOwnershipAcquisitionWaysInfo : NotifyPropertyChangedBase
     {
         private bool _IsIPO;
 

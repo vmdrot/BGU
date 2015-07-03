@@ -12,7 +12,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// Універсальна інформація про особу, "обгортка" (wrapper), куди можна "запхати" як юридичну, так і фізичну особу
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class GenericPersonInfo : NotigyPropertyChangedBase
+    public class GenericPersonInfo : NotifyPropertyChangedBase
     {
         private EntityType _PersonType = EntityType.Physical;
 
