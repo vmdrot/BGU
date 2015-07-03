@@ -34,6 +34,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи")]
         [Description("")]
         [Required("HadBankruptcyInvestigation == true")]
+        [UIConditionalVisibility("HadBankruptcyInvestigation")]
         public List<BankruptcyInvestigationInfo> BankruptcyInvestigations { get; set; }
 
         /// <summary>
@@ -58,6 +59,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Невиконані  зобов'язання перед іншими особами - розшифровка")]
         [Description("(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)")]
         [Required("HasMiscNonRepaidDebts == true")]
+        [UIConditionalVisibility("HasMiscNonRepaidDebts")]
         public List<IndebtnessInfo> MiscNonRepaidDebts { get; set; }
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Порушення галузевого законодавства - деталі")]
         [Description("(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)")]
         [Required("HadIndustrySpecificBreaches == true")]
+        [UIConditionalVisibility("HadIndustrySpecificBreaches")]
         public List<BreachOfLawRecordInfo> BreachesOfLaw { get; set; }
 
         /// <summary>
@@ -96,6 +99,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Ліквідовані протягом останнього року юрособи у власності")]
         [Description("Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)")]
         [Required("HasLiquidatedSignOwnershipLastYear == true")]
+        [UIConditionalVisibility("HasLiquidatedSignOwnershipLastYear")]
         public List<LiquidatedEntityOwnershipInfo> LiquidatedSignOwnershipLastYear { get; set; }
     }
 }

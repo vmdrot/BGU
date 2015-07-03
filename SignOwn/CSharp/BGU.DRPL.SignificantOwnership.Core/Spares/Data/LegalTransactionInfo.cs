@@ -23,21 +23,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Чи правочин уже відбувся чи лише планується?")]
         [Required]
         public bool IsCommitted { get; set; }
+
         [DisplayName("Тип правочину")]
         [Description("...")]
         public LegalTransactionType TransactionType { get; set; }
+
         [DisplayName("№ правочину")]
         [Description("напр. №/серія договору, тощо - якщо правочин вже відбувся та/або цей реквізит відомий")]
         [Required("IsCommitted == true")]
+        [UIConditionalVisibility("IsCommitted")]
         public string TransactionNr { get; set; }
+        
         [DisplayName("Дата правочину")]
         [Description("якщо правочин вже відбувся та/або цей реквізит відомий")]
         [Required("IsCommitted == true")]
+        [UIConditionalVisibility("IsCommitted")]       
         public DateTime TransactionDate { get; set; }
+
         [DisplayName("Сторони")]
         [Description("Сторони правочину")]
         [Required]
         public List<LegalTransactionPartyInfo> Parties { get; set; }
+
         [DisplayName("Зміст правочину")]
         [Description("Стислий опис змісту правочину")]
         [Required]

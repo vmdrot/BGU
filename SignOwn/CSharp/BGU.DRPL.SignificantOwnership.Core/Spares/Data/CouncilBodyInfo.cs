@@ -36,6 +36,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Очільник/голова органу")]
         [Required]
+        //[UIUsageCombo(DisplayMember="Member.DisplayName", ItemsGetterMemberPath="Members", ValueMember="Member.ID", Width="200")]
         public GenericPersonID HeadMember { get; set; }
         /// <summary>
         /// Назва органу (мовою оригіналу)

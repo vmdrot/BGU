@@ -121,9 +121,29 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Орган, що видав паспорт")]
         public RegistrarAuthority PassIssueAuthority { get { return _PassIssueAuthority; } set { _PassIssueAuthority = value; OnPropertyChanged("PassIssueAuthority"); } }
 
+
+        private bool _IsIPNRefused;
+        [DisplayName("ІПН немає")]
+        [Description("Особа у встановленому порядку відмовилася від індивідувального податкового номера?")]
+        [UIConditionalVisibility("IsResident")]
+        public bool IsIPNRefused { get { return _IsIPNRefused; } set { _IsIPNRefused = value; OnPropertyChanged("IsIPNRefused"); OnPropertyChanged("HasIPN"); } }
+
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool HasIPN { get { return !IsIPNRefused; } }
+
+
+        [DisplayName("Відміка про відсутність ІПН-у")]
+        [Description("Відомості про відповідний запи/відмітку в паспорті громадянина (про відмові від ІПН та погодження такої відмови)")]
+        [UIConditionalVisibility("IsIPNRefused")]
+        public IPNRefusalRecordInfo IPNRefusalEvidence { get; set; }
+
         private string _TaxOrSocSecID;
         [DisplayName("ІПН")]
         [Description("ІПН/№ картки соціального страхування/тощо, дивлячись, що використовується у країні резидентства")]
+        [UIConditionalVisibility("HasIPN")]
+        [Required("Not IsIPNRefused")]
         public string TaxOrSocSecID { get { return _TaxOrSocSecID; } set { _TaxOrSocSecID = value; OnPropertyChanged("TaxOrSocSecID"); } }
 
         private LocationInfo _Address;
@@ -141,12 +161,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Громадянство")]
         [Description("Громадянство")]
-        public CountryInfo CitizenshipCountry { get { return _CitizenshipCountry; } set { _CitizenshipCountry = value; OnPropertyChanged("CitizenshipCountry"); OnPropertyChanged("IsNonResident"); } }
+        public CountryInfo CitizenshipCountry { get { return _CitizenshipCountry; } set { _CitizenshipCountry = value; OnPropertyChanged("CitizenshipCountry"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("IsResident"); } }
 
 
         [Browsable(false)]
         [XmlIgnore]
         public bool IsNonResident { get { return CitizenshipCountry != null && CitizenshipCountry != CountryInfo.UKRAINE; } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsResident { get { return CitizenshipCountry != null && CitizenshipCountry == CountryInfo.UKRAINE; } }
 
         [Browsable(false)]
         public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = CitizenshipCountry != null ? CitizenshipCountry.CountryISONr : string.Empty, PersonCode = TaxOrSocSecID ?? PassportID, PersonType = EntityType.Physical, DisplayName = ToString() }; } }

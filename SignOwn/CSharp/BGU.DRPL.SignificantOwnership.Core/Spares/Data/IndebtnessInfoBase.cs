@@ -25,7 +25,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Основна сума боргу")]
         [Required]
         public CurrencyAmount Principal { get; set; }
-        
+
+        [DisplayName("Предмет боргу")]
+        [Description("У зв'язку з чим виник борг; якщо позика - для чого було надано, і т.д.")]
+        [Required]
+        public string IndebtnessSubject { get; set; }
+
         /// <summary>
         /// обов'язкове, якщо передбачена дата погашення; може бути й безстрокова позика.
         /// </summary>
@@ -34,6 +39,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Залишок заборгованості")]
         [Required]
         public CurrencyAmount OutstandingPricipal { get; set; }
+
         [DisplayName("Прострочена заборгованість?")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
@@ -43,25 +49,31 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// якщо є прострочка
         /// </summary>
         [DisplayName("Прострочено з ... (дата)")]
+        [UIConditionalVisibility("IsOverdue")]
         public DateTime? OverdueSince { get; set; }
 
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>
         [DisplayName("Сума простроченої заборгованості")]
+        [UIConditionalVisibility("IsOverdue")]
         public CurrencyAmount PrincipalOverdue { get; set; }
         
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>
         [DisplayName("Деталі прострочки")]
+        [Description("Додаткова інформація (окрім дати й суми) щодо простроченої заборгованості")]
         [Multiline]
+        [UIConditionalVisibility("IsOverdue")]
         public string OverdueDetails { get; set; }
         /// <summary>
         /// Обов'язкове, якщо IsOverdue == true 
         /// </summary>
-        [DisplayName("Прични прострочки")]
+        [DisplayName("Причини прострочки")]
+        [Description("Причини виникнення простроченої заборгованості")]
         [Multiline]
+        [UIConditionalVisibility("IsOverdue")]
         public string OverdueReasons { get; set; }
 
     }

@@ -34,7 +34,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
             this.TotalCapitalSharePct = src.TotalCapitalSharePct;
             this.TotalVotes = src.TotalVotes;
             this.OwnerID = id;
-            this.OwnerDisplayName = dispName;
+            //this.OwnerDisplayName = dispName;
         }
 
         /// <summary>
@@ -43,11 +43,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("ID Власника")]
         [Required]
         public GenericPersonID OwnerID { get; set; }
-        /// <summary>
-        /// Чисто для показу на UI; окремого бізнес-значення поле не несе
-        /// </summary>
-        [DisplayName("Власник")]
-        [XmlIgnore]
-        public string OwnerDisplayName { get; set; }
+        ///// <summary>
+        ///// Чисто для показу на UI; окремого бізнес-значення поле не несе
+        ///// </summary>
+        //[DisplayName("Власник")]
+        //[XmlIgnore]
+        //public string OwnerDisplayName { get; set; }
     }
 }
