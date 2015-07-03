@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
 <CheckBox IsChecked="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" FlowDirection="LeftToRight">
-  <TextBlock FlowDirection="LeftToRight" Text="yourPropertyDispName:" ToolTip="yourPropertyDescription"/>
+  <TextBlock FlowDirection="LeftToRight" Text="yourPropertyDispName" ToolTip="yourPropertyDescription"/>
 </CheckBox>
 </Template>

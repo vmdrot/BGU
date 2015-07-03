@@ -23,6 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Валюта")]
         [Required]
         [UIUsageCombo(ItemsGetterClass=typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath="AllCurrencies", ValueMemberUsageMode=ComboUIValueUsageMode.ValueProperty, ValueMember="CCYCode", DisplayMember="CCYCode", Width="50")]
+        [DefaultValue("UAH")]
         public string CCY { get; set; }
 
         [Description("Сума")]

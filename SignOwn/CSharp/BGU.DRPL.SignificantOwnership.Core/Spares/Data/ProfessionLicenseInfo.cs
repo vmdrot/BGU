@@ -36,7 +36,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// якщо не вказана - дійсна довічно
         /// </summary>
         [DisplayName("Дійсна до")]
-        public DateTime LicenseValidTill { get; set; }
+        public DateTime? LicenseValidTill { get; set; }
         /// <summary>
         /// якщо передбачено
         /// </summary>

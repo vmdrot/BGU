@@ -38,6 +38,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// ditto
         /// </summary>
         [DisplayName("Валюта рахунку")]
+        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath = "AllCurrencies", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "CCYCode", DisplayMember = "CCYCode", Width = "50")]
+        [DefaultValue("UAH")]
         public string AccountCCY { get; set; }
         /// <summary>
         /// релевантні примітки - що за рахунок, для чого використовується (залежно від контексту), необов'язкове поле
