@@ -45,5 +45,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Ціна акцій (часток, паїв), які придбаваються ( Може зазначатися ціна, яка попередньо погоджена сторонами відповідно до проекту договору купівлі-продажу акцій банку ...)")]
         [Required]
         public CurrencyAmount ActualSharesPrice { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}", Asset, PreviousOwner, LegalTransaction, SharesPct, NominalSharesValue, ActualSharesPrice, ActualTotalSharesValue);
+        }
     }
 }

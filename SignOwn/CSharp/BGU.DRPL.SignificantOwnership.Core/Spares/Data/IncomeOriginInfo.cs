@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -24,5 +25,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         [Multiline]
         public string IncomeOriginNotes { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}\t{1}\t{2}", EnumType.GetEnumDescription(this.Origin), Income, IncomeOriginNotes);
+            
+            
+        }
     }
 }

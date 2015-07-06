@@ -6,6 +6,7 @@
         <DataGrid.Columns></DataGrid.Columns>
       </DataGrid>
       <Button HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Style="{StaticResource addNewRowBtnStyle}" Command="{x:Static local:MyCommands.AddNewRowCommand}" >
+        <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" />
         <Button.CommandParameter>
           <MultiBinding Converter="{StaticResource multiValConv}">
             <Binding Path="ItemsSource" ElementName="gridyourPropertyName"/>

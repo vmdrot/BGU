@@ -154,5 +154,25 @@ namespace BGU.DRPL.SignificantOwnership.Utility
 
             return true;
         }
+
+        public static string EnumerableToString(System.Collections.IEnumerable lst)
+        {
+            StringBuilder sb = new StringBuilder('[');
+
+            if (lst != null)
+            {
+                int i = 0;
+                foreach (object item in lst)
+                {
+                    if (i > 0)
+                        sb.Append(',');
+
+                    sb.AppendFormat("{0}", item);
+                    i++;
+                }
+            }
+            sb.Append(']');
+            return sb.ToString();
+        }
     }
 }

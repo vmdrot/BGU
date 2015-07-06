@@ -20,5 +20,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Причина відсутності інформації/неможливості її надати")]
         [Multiline]
         public string ReasonWhyMissing { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}]: {1}", PropertyName, ReasonWhyMissing);
+        }
     }
 }

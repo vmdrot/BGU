@@ -25,5 +25,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата договору")]
         [Required]
         public DateTime AgreementDt { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("№ {0} від {1}, {2}", AgreementNr, AgreementDt,  base.ToString());
+        }
     }
 }

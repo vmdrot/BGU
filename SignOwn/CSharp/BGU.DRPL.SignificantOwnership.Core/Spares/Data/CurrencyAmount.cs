@@ -14,6 +14,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [XamlExpanderWrapping(false)]
     public class CurrencyAmount
     {
+        public CurrencyAmount()
+        {
+            this.CCY = "UAH";
+        }
+
         /// <summary>
         /// Значення за змовчанням - UAH
         /// http://www.iso.org/iso/en-US/home/standards/currency_codes.htm
@@ -22,8 +27,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Валюта")]
         [DisplayName("Валюта")]
         [Required]
-        [UIUsageCombo(ItemsGetterClass=typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath="AllCurrencies", ValueMemberUsageMode=ComboUIValueUsageMode.ValueProperty, ValueMember="CCYCode", DisplayMember="CCYCode", Width="50")]
-        [DefaultValue("UAH")]
+        [UIUsageCombo(ItemsGetterClass=typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath="AllCurrencies", ValueMemberUsageMode=ComboUIValueUsageMode.ValueProperty, ValueMember="CCYCode", DisplayMember="CCYCode", Width="75")]
         public string CCY { get; set; }
 
         [Description("Сума")]

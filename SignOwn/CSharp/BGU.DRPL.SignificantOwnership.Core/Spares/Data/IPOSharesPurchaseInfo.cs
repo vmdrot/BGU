@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using BGU.DRPL.SignificantOwnership.Utility;
+using System.Collections;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -32,5 +34,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Термін оплати")]
         [Description("Запланований термін здійснення оплати")]
         public List<PaymentDeadlineInfo> PaymentDeadlines { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}\t{1}\t{2}\t{3}", SharesCount, NominalSharePrice, NominalTotalSharesValue, ActualTotalSharesValue, Tools.EnumerableToString((IEnumerable)PaymentDeadlines) );
+        }
     }
 }
