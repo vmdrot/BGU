@@ -3,7 +3,7 @@
   <StackPanel Orientation="Horizontal">
     <TextBlock x:Name="lblyourPropertyName" Height="auto" Width="auto" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription"/>
     <ComboBox x:Name="cbxyourPropertyName" DisplayMemberPath="yourComboDisplayMember" SelectedValuePath="ID" HorizontalAlignment="Stretch" SelectedValue="{Binding Acquiree, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" ToolTip="yourPropertyDescription" MinWidth="150" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"/>
-    <Button x:Name="btnAddyourPropertyName" Content=" + " Command="{x:Static yourAddComboItemCommand}">
+    <Button x:Name="btnAddyourPropertyName" Command="{x:Static yourAddComboItemCommand}" Style="{StaticResource addNewRowBtnStyle}" >
       <Button.CommandParameter>
         <MultiBinding Converter="{StaticResource multiValConv}">
           <Binding ElementName="cbxyourPropertyName" />

@@ -87,6 +87,7 @@
     <Content Include="XAMLTemplates\classstruct.xml" />
     <Content Include="XAMLTemplates\ComboAddBtn.xml" />
     <Content Include="XAMLTemplates\ComboTemplate.xml" />
+    <Content Include="XAMLTemplates\DataGridOneColumnTemplate.xml" />
     <Content Include="XAMLTemplates\RadioButton.xml" />
     <Content Include="XAMLTemplates\DataGridCommandsColumnTemplate.xml" />
     <Content Include="XAMLTemplates\DataGridTextColumnTemplate.xml" />

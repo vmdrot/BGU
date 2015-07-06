@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <DataGridTemplateColumn Header="yourDataGridOneColumnHeader" Width="*" TextBlock.TextAlignment="Left">
+    <DataGridTemplateColumn.CellTemplate>
+      <DataTemplate>
+        <TextBlock Text="{Binding}" Width="auto" TextWrapping="Wrap"/>
+      </DataTemplate>
+    </DataGridTemplateColumn.CellTemplate>
+  </DataGridTemplateColumn>
+</Template>

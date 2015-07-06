@@ -5,8 +5,7 @@
       <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False">
         <DataGrid.Columns></DataGrid.Columns>
       </DataGrid>
-      <Button Content="Add new row" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Width="75" Command="{x:Static local:MyCommands.AddNewRowCommand}" >
-        <!--todo IsEnabled="{Binding Path=AcquisitionWays.IsIPO}"-->
+      <Button HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Style="{StaticResource addNewRowBtnStyle}" Command="{x:Static local:MyCommands.AddNewRowCommand}" >
         <Button.CommandParameter>
           <MultiBinding Converter="{StaticResource multiValConv}">
             <Binding Path="ItemsSource" ElementName="gridyourPropertyName"/>

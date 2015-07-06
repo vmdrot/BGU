@@ -53,6 +53,7 @@
     <Compile Include="ComponentModelEx\UIConditionalVisibilityAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAddButtonAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAttribute.cs" />
+    <Compile Include="ComponentModelEx\UIUsageDataGridParamsAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageRadioButtonGroupAttribute.cs" />
     <Compile Include="ComponentModelEx\ValidationAttribute.cs" />
     <Compile Include="ComponentModelEx\XamlExpanderWrappingAttribute.cs" />

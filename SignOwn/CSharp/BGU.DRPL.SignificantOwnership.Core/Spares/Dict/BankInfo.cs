@@ -15,6 +15,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// Приклад реалізації Web UI (без заповнення поля LegalPerson) див. за адресою https://youtu.be/ReThZDDMsOM
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
+    [XamlExpanderWrapping(false)]
+    [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddBankCommand", DisplayMember = "Name", ItemGetterFull = "localdata:DataModule.СurrentBanks", ValueMemberUsageMode = ComboUIValueUsageMode.SelectedItem, Width = "250")]
     public class BankInfo : NotifyPropertyChangedBase
     {
         private string _MFO;
@@ -32,7 +34,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         private string _RegistryNr;
 
         /// <summary>
-        /// У Rcukru - REGN (тільки дла укр.банків)
+        /// У Rcukru - REGN (тільки для укр.банків)
         /// </summary>
         [Obsolete]
         [Description("№ у реєстрі банків (лише для головних контор)")]
@@ -125,7 +127,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         {
             return Name;
         }
-
+        
         public static BankInfo ParseFromRcuKruRow(DataRow dr)
         {
             string prb = dr["PRB"] as string;
