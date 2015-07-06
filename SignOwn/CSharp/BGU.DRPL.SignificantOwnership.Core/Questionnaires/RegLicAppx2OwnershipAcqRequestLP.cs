@@ -199,7 +199,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("9. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)")]
         [Required("AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true")]
         [UIConditionalVisibility("AcquisitionWays.IsSecondaryMarketOrImplicitOwnershipPurchase")]
-        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання вторинному ринку")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання на вторинному ринку")]
         public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get { return _SecondaryMarketPurchases; } set { _SecondaryMarketPurchases = value; OnPropertyChanged("SecondaryMarketPurchases"); } }
 
         private List<PowerOfAttorneySharesPurchaseInfo> _AquisitionByPoAttorneys;
@@ -230,6 +230,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("12. Джерела  походження коштів юридичної особи")]
         [Description("12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Джерело")]
         public List<IncomeOriginInfo> FundsOrigin { get { return _FundsOrigin; } set { _FundsOrigin = value; OnPropertyChanged("FundsOrigin"); } }
         #endregion
 
@@ -353,7 +354,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// </summary>
         [Category(CATEGORY_SignEtc)]
         [DisplayName("Підписант")]
-        [Description("Відомості по особу, що підписала анкету")]
+        [Description("Відомості про особу, що підписала анкету")]
         [Required]
         public SignatoryInfo Signatory { get { return _Signatory; } set { _Signatory = value; OnPropertyChanged("Signatory"); } }
 
@@ -378,6 +379,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Реквізити осіб-фігурантів анкети")]
         [Description("Повні реквізити юридичних та фізичних осіб, що згадуються в розділах анкети")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Особа")]
         public List<GenericPersonInfo> MentionedIdentities { get; set; }
 
         /// <summary>

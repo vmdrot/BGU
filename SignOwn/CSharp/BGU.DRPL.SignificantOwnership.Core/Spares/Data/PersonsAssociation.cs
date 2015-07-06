@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
 using System.Xml.Serialization;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -82,7 +83,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         public override string ToString()
         {
-            return string.Format("{0} vs {1}, {2} ({3}, {4}, {5})", One, Two, AssociationType, AssociationRoleOneVsTwo, AssociationRoleTwoVsOne, AssociationRolesIfOther);
+            return string.Format("{0} vs {1}, {2} ({3}, {4}, {5})", One, Two, EnumType.GetEnumDescription( AssociationType), EnumType.GetEnumDescription(AssociationRoleOneVsTwo), EnumType.GetEnumDescription(AssociationRoleTwoVsOne), AssociationRolesIfOther);
         }
     }
 }

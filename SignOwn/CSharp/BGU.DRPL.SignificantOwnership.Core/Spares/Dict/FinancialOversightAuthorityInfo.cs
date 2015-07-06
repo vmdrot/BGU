@@ -78,5 +78,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Контакти")]
         [Required]
         public ContactInfo Contacts { get { return _Contacts; } set { _Contacts = value; OnPropertyChanged("Contacts"); } }
+
+        public override string ToString()
+        {
+            return string.Format("{0} ({1})", AuthorityName, Jurisdiction);
+        }
     }
 }

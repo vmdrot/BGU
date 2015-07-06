@@ -76,5 +76,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [UIConditionalVisibility("IsOverdue")]
         public string OverdueReasons { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("позичальник: {0}, Кредитор: {1}, {2}\t{3}...", Borrower, Lender, Principal, DebtSubject);
+        }
+
     }
 }

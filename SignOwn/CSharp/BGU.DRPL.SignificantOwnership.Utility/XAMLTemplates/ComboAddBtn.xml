@@ -2,8 +2,9 @@
 <Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <StackPanel Orientation="Horizontal">
     <TextBlock x:Name="lblyourPropertyName" Height="auto" Width="auto" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription"/>
-    <ComboBox x:Name="cbxyourPropertyName" DisplayMemberPath="yourComboDisplayMember" SelectedValuePath="ID" HorizontalAlignment="Stretch" SelectedValue="{Binding Acquiree, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" ToolTip="yourPropertyDescription" MinWidth="150" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"/>
+    <ComboBox x:Name="cbxyourPropertyName" DisplayMemberPath="yourComboDisplayMember" HorizontalAlignment="Stretch" ToolTip="yourPropertyDescription" MinWidth="150" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"/>
     <Button x:Name="btnAddyourPropertyName" Command="{x:Static yourAddComboItemCommand}" Style="{StaticResource addNewRowBtnStyle}" >
+      <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" />
       <Button.CommandParameter>
         <MultiBinding Converter="{StaticResource multiValConv}">
           <Binding ElementName="cbxyourPropertyName" />

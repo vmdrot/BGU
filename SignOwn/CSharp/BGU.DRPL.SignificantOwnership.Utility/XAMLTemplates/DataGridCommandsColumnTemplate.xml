@@ -5,7 +5,7 @@
       <DataTemplate>
         <StackPanel Orientation="Horizontal">
           <Button Command="{x:Static local:MyCommands.EditRowCommand}" ToolTip="редагувати рядок">
-            <Image Source="Icons/edit_btn.png" Width="20" Height="20"/>
+            <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/edit_btn.png" Width="20" Height="20"/>
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">
                 <Binding Path="SelectedItem" ElementName="gridyourPropertyName" />
@@ -14,7 +14,7 @@
             </Button.CommandParameter>
           </Button>
           <Button Command="{x:Static local:MyCommands.DeleteRowCommand}" ToolTip="видалити рядок">
-            <Image Source="Icons/del_btn.jpg" />
+            <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/del_btn.jpg" />
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">
                 <Binding Path="SelectedItem" ElementName="gridyourPropertyName" />

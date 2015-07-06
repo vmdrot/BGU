@@ -27,5 +27,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("% голосів")]
         [Description("Відсоток голосів у банку, щодо яких передається право голосу")]
         public decimal VotesPct { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}\t{1}%\t{2}\t{3}%", PowerOfAttorney, SharesPct, Votes, VotesPct);
+        }
     }
 }
