@@ -36,6 +36,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedComboBtnAddCommandPlaceholder = "yourAddComboItemCommand";
         private static readonly string templatedEnumCurrentValueTextPlaceholder = "yourEnumCurrentValueText";
         private static readonly string templatedEnumCurrentValueDescriptionPlaceholder = "yourEnumCurrentValueDescription";
+        private static readonly string templatedDataGridOneColumnHeaderPlaceholder = "yourDataGridOneColumnHeader";
+        
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
         private static readonly string classStructControlTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.classstruct;
@@ -44,11 +46,13 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string multilineTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.multilinestring;
         private static readonly string listOfT_DataColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridTextColumnTemplate;
         private static readonly string listOfT_CMDsColumnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridCommandsColumnTemplate;
+        private static readonly string listOfT_OneColumnDataTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.DataGridOneColumnTemplate;
         private static readonly string comboTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboTemplate;
         private static readonly string categoryExpanderTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.CategoryExpander;
         private static readonly string comboAddBtnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboAddBtn;
         private static readonly string enumRadioButtonGroupTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButtonGroup;
         private static readonly string enumRadioButtonTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButton;
+        
 
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
         private static readonly Dictionary<string, string> _bguNS2XamlPfxs;
@@ -459,17 +463,47 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                     dgColDefsNode = dgNode.FirstChild;
                 if (dgColDefsNode != null)
                 {
-                    List<PropertyInfo> pis = ReflectionUtil.ListEditableProperties(itemTyp);
-                    foreach (PropertyInfo ppi in pis)
+                    UIUsageDataGridParamsAttribute dgpAttr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageDataGridParamsAttribute>(pi);
+                    if (dgpAttr == null || !dgpAttr.IsOneColumn)
+                    {
+                        List<PropertyInfo> pis = ReflectionUtil.ListEditableProperties(itemTyp);
+                        foreach (PropertyInfo ppi in pis)
+                        {
+                            XmlDocument currColDefDoc = new XmlDocument();
+                            currColDefDoc.LoadXml(listOfT_DataColumnTemplate);
+                            XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
+                            ReplacePlaceholderTexts(colDefSrc, ppi, itemTyp, true);
+                            XmlNode currColDef = insPos.RelNode.OwnerDocument.ImportNode(colDefSrc, true);
+                            dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
+                        }
+                    }
+                    else
                     {
                         XmlDocument currColDefDoc = new XmlDocument();
-                        currColDefDoc.LoadXml(listOfT_DataColumnTemplate);
+                        currColDefDoc.LoadXml(listOfT_OneColumnDataTemplate);
                         XmlNode colDefSrc = currColDefDoc.DocumentElement.FirstChild;
-                        ReplacePlaceholderTexts(colDefSrc, ppi, itemTyp, true);
+                        ReplacePlaceholderTexts(colDefSrc, pi, itemTyp, true);
+                        string oneColHeader = dgpAttr.OneDataColumnHeader;
+                        if(string.IsNullOrEmpty(oneColHeader))
+                        {
+                            DisplayNameAttribute dispAttr = ReflectionUtil.GetPropertyOrTypeAttribute<DisplayNameAttribute>(pi);
+                            if(dispAttr != null && !string.IsNullOrEmpty(dispAttr.DisplayName))
+                                oneColHeader = dispAttr.DisplayName;
+                        }
+
+                        if(string.IsNullOrEmpty(oneColHeader))
+                        {
+                            DescriptionAttribute dispAttr = ReflectionUtil.GetPropertyOrTypeAttribute<DescriptionAttribute>(pi);
+                            if (dispAttr != null && !string.IsNullOrEmpty(dispAttr.Description))
+                                oneColHeader = dispAttr.Description;
+                        }
+                        if(string.IsNullOrEmpty(oneColHeader))
+                            oneColHeader = pi.Name;
+                        ReplacePlaceholderAttrRecursively(colDefSrc, templatedDataGridOneColumnHeaderPlaceholder, oneColHeader);
                         XmlNode currColDef = insPos.RelNode.OwnerDocument.ImportNode(colDefSrc, true);
                         dgColDefsNode.InsertAfter(currColDef, dgColDefsNode.LastChild);
-                    }
 
+                    }
                     #region Insert action buttons column
                     {
                         XmlDocument currColDefDoc = new XmlDocument();

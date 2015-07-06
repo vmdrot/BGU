@@ -1,25 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <DataGridTemplateColumn Header="дії" Width="*" TextBlock.TextAlignment="Center">
-    <DataGridTemplateColumn.HeaderStyle>
-      <Style TargetType="dataprimitives:DataGridColumnHeader">
-        <Setter Property="ContentTemplate">
-          <Setter.Value>
-            <DataTemplate>
-              <ContentControl Content="{Binding}">
-                <ToolTipService.ToolTip>
-                  <ToolTip Content="Натисніть ґудзик, щоб редагувати чи видалити рядок" />
-                </ToolTipService.ToolTip>
-              </ContentControl>
-            </DataTemplate>
-          </Setter.Value>
-        </Setter>
-      </Style>
-    </DataGridTemplateColumn.HeaderStyle>
+  <DataGridTemplateColumn Header="дії" Width="75" TextBlock.TextAlignment="Center" HeaderStyle="{StaticResource dgBtnsColHdr}">
     <DataGridTemplateColumn.CellTemplate>
       <DataTemplate>
         <StackPanel Orientation="Horizontal">
-          <Button Content="..." Command="{x:Static local:MyCommands.EditRowCommand}">
+          <Button Command="{x:Static local:MyCommands.EditRowCommand}" ToolTip="редагувати рядок">
+            <Image Source="Icons/edit_btn.png" Width="20" Height="20"/>
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">
                 <Binding Path="SelectedItem" ElementName="gridyourPropertyName" />
@@ -27,7 +13,8 @@
               </MultiBinding>
             </Button.CommandParameter>
           </Button>
-          <Button Content=" - " Command="{x:Static local:MyCommands.DeleteRowCommand}">
+          <Button Command="{x:Static local:MyCommands.DeleteRowCommand}" ToolTip="видалити рядок">
+            <Image Source="Icons/del_btn.jpg" />
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">
                 <Binding Path="SelectedItem" ElementName="gridyourPropertyName" />

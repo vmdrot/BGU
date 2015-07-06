@@ -64,7 +64,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
         ///&lt;CheckBox IsChecked=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; FlowDirection=&quot;LeftToRight&quot;&gt;
-        ///  &lt;TextBlock FlowDirection=&quot;LeftToRight&quot; Text=&quot;yourPropertyDispName:&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///  &lt;TextBlock FlowDirection=&quot;LeftToRight&quot; Text=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
         ///&lt;/CheckBox&gt;
         ///&lt;/Template&gt;.
         /// </summary>
@@ -202,6 +202,24 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         public static string DataGridCommandsColumnTemplate {
             get {
                 return ResourceManager.GetString("DataGridCommandsColumnTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;DataGridTemplateColumn Header=&quot;yourDataGridOneColumnHeader&quot; Width=&quot;*&quot; TextBlock.TextAlignment=&quot;Left&quot;&gt;
+        ///    &lt;DataGridTemplateColumn.CellTemplate&gt;
+        ///      &lt;DataTemplate&gt;
+        ///        &lt;TextBlock Text=&quot;{Binding}&quot; Width=&quot;auto&quot; TextWrapping=&quot;Wrap&quot;/&gt;
+        ///      &lt;/DataTemplate&gt;
+        ///    &lt;/DataGridTemplateColumn.CellTemplate&gt;
+        ///  &lt;/DataGridTemplateColumn&gt;
+        ///&lt;/Template&gt;.
+        /// </summary>
+        public static string DataGridOneColumnTemplate {
+            get {
+                return ResourceManager.GetString("DataGridOneColumnTemplate", resourceCulture);
             }
         }
         

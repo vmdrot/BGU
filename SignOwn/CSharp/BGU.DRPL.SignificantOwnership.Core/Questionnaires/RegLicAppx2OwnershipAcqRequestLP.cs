@@ -53,6 +53,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         #endregion
 
+        private BankInfo _BankRef;
         /// <summary>
         /// стосовно участі в ___________________________________
         /// (повне офіційне найменування банку)
@@ -60,10 +61,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Повне офіційне найменування банку")]
         [Description("стосовно участі в ...")]
         [Required]
-        public BankInfo BankRef { get; set; }
+        public BankInfo BankRef { get { return _BankRef; } set { _BankRef = value; OnPropertyChanged("BankRef"); } }
+
 
         #region І. Інформація про юридичну особу
 
+        private GenericPersonID _Acquiree;
         /// <summary>
         /// І. Інформація про юридичну особу
         /// 
@@ -76,8 +79,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Юр.особа-заявник")]
         [Description("1. Інформація про юридичну особу")]
         [Required]
-        public GenericPersonID Acquiree { get; set; }
+        public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); } }
 
+
+        private List<CreditRatingInfo> _CreditRatingGrade;
         /// <summary>
         /// 1.5. Рейтингова оцінка ____________________________________________________________.
         /// (за рейтингом, який підтверджений у бюлетені, однієї  з провідних рейтингових компаній IBCA,
@@ -87,8 +92,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("2. Ідентифікаційні дані::Рейтингова оцінка")]
         [Description("(за рейтингом, який підтверджений у бюлетені, однієї з провідних рейтингових компаній IBCA,Standart & Poor's, Moody's)")]
         [Required]
-        public List<CreditRatingInfo> CreditRatingGrade { get; set; }
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Рейтингова оцінка")]
+        public List<CreditRatingInfo> CreditRatingGrade { get { return _CreditRatingGrade; } set { _CreditRatingGrade = value; OnPropertyChanged("CreditRatingGrade"); } }
 
+        private List<FinancialOversightAuthorityInfo> _StateRegulatorAuthorities;
         /// <summary>
         /// 3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
         /// Найменування іноземного державного
@@ -106,33 +113,37 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Browsable(true)]
         [DisplayName("3. (4-5) Державний(-і) наглядовий(-і) орган(-и)")]
         [Description("3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами")]
-        public List<FinancialOversightAuthorityInfo> StateRegulatorAuthorities { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Наглядовий(-і) орган(-и)")]
+        public List<FinancialOversightAuthorityInfo> StateRegulatorAuthorities { get { return _StateRegulatorAuthorities; } set { _StateRegulatorAuthorities = value; OnPropertyChanged("StateRegulatorAuthorities"); } }
 
 
+        private TotalOwnershipSummaryInfo _TotalExistingOwnershipWithBank;
         /// <summary>
         /// 3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
         /// _______________________________________________________________________________.
         ///            (найменування органу)
         /// </summary>
-        
         [Browsable(true)]
         [DisplayName("5. Наявна участь юридичної особи в банку")]
         [Description("5. Інформація про розмір наявної участі юридичної особи в банку")]
-        public TotalOwnershipSummaryInfo TotalExistingOwnershipWithBank { get; set; }
+        public TotalOwnershipSummaryInfo TotalExistingOwnershipWithBank { get { return _TotalExistingOwnershipWithBank; } set { _TotalExistingOwnershipWithBank = value; OnPropertyChanged("TotalExistingOwnershipWithBank"); } }
 
+        private List<BankInfo> _AccountsWithBanks;
         /// <summary>
         /// Поле обов'язкове, лише якщо заявник не є банком.
         /// </summary>
         [Category(CATEGORY_I)]
         [DisplayName("4. Банківські рахунки юридичної особи")]
         [Description("(не заповнюється банками)")]
-        public List<BankInfo> AccountsWithBanks { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Рахунки")]
+        public List<BankInfo> AccountsWithBanks { get { return _AccountsWithBanks; } set { _AccountsWithBanks = value; OnPropertyChanged("AccountsWithBanks"); } }
 
         #endregion
 
 
         #region ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку
 
+        private TotalOwnershipSummaryInfo _TotalOwnershipWithBankDiff;
         /// <summary>
         /// 6. Інформація про розмір участі, що набувається (збільшується):
         /// Наміри щодо набуття/збільшення участі в банку
@@ -141,8 +152,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Browsable(true)]
         [DisplayName("6. Наміри щодо набуття/збільшення участі")]
         [Description("6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку")]
-        public TotalOwnershipSummaryInfo TotalOwnershipWithBankDiff { get; set; }
+        public TotalOwnershipSummaryInfo TotalOwnershipWithBankDiff { get { return _TotalOwnershipWithBankDiff; } set { _TotalOwnershipWithBankDiff = value; OnPropertyChanged("TotalOwnershipWithBankDiff"); } }
 
+        private TotalOwnershipSummaryInfo _TotalTargetedOwnershipWithBank;
         /// <summary>
         /// 6. Інформація про розмір участі, що набувається (збільшується):
         /// Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі
@@ -151,8 +163,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Browsable(true)]
         [DisplayName("6. Майбутня участь особи в банку")]
         [Description("6. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі")]
-        public TotalOwnershipSummaryInfo TotalTargetedOwnershipWithBank { get; set; }
+        public TotalOwnershipSummaryInfo TotalTargetedOwnershipWithBank { get { return _TotalTargetedOwnershipWithBank; } set { _TotalTargetedOwnershipWithBank = value; OnPropertyChanged("TotalTargetedOwnershipWithBank"); } }
 
+        private SignificantOwnershipAcquisitionWaysInfo _AcquisitionWays;
         /// <summary>
         /// 7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне):
         /// 
@@ -166,43 +179,48 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("7. Спосіб(-оби) набуття/збільшення істотної участі в банку")]
         [Description("7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)")]
         [Required]
-        public SignificantOwnershipAcquisitionWaysInfo AcquisitionWays { get; set; }
+        public SignificantOwnershipAcquisitionWaysInfo AcquisitionWays { get { return _AcquisitionWays; } set { _AcquisitionWays = value; OnPropertyChanged("AcquisitionWays"); } }
 
+        private List<IPOSharesPurchaseInfo> _IPOPurchase;
         [Category(CATEGORY_II)]
         [DisplayName("Придбання на первинному ринку")]
         [Description("8. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:")]
         [Required("AcquisitionWays.IsIPO == true")]
         [UIConditionalVisibility("AcquisitionWays.IsIPO")]
-        public List<IPOSharesPurchaseInfo> IPOPurchase { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання на IPO")]
+        public List<IPOSharesPurchaseInfo> IPOPurchase { get { return _IPOPurchase; } set { _IPOPurchase = value; OnPropertyChanged("IPOPurchase"); } }
 
 
 
 
+        private List<SecondaryMarketSharesPurchaseInfo> _SecondaryMarketPurchases;
         [Category(CATEGORY_II)]
         [DisplayName("9. Придбання на вторинному ринку")]
         [Description("9. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)")]
         [Required("AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true")]
         [UIConditionalVisibility("AcquisitionWays.IsSecondaryMarketOrImplicitOwnershipPurchase")]
-        public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання вторинному ринку")]
+        public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get { return _SecondaryMarketPurchases; } set { _SecondaryMarketPurchases = value; OnPropertyChanged("SecondaryMarketPurchases"); } }
 
-        [Browsable(false)]
-        [NotifyParentProperty(true)]
-        public bool IsSecondaryMarketPurchasesVisible { get { return AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true; } }
-
+        private List<PowerOfAttorneySharesPurchaseInfo> _AquisitionByPoAttorneys;
         [Category(CATEGORY_II)]
         [DisplayName("10. Набуття за довіреністю")]
         [Description("10. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю")]
         [Required("AcquisitionWays.IsPurchaseByPowOfAtt == true")]
         [UIConditionalVisibility("AcquisitionWays.IsPurchaseByPowOfAtt")]
-        public List<PowerOfAttorneySharesPurchaseInfo> AquisitionByPoAttorneys { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Набуття за довіренністю")]
+        public List<PowerOfAttorneySharesPurchaseInfo> AquisitionByPoAttorneys { get { return _AquisitionByPoAttorneys; } set { _AquisitionByPoAttorneys = value; OnPropertyChanged("AquisitionByPoAttorneys"); } }
 
+        private List<SignificantOrDecisiveInfulenceInfo> _AquisitionByInfluence;
         [Category(CATEGORY_II)]
         [DisplayName("11. Набуття у зв’язку із здійсненням впливу")]
         [Description("11. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння")]
         [Required("AcquisitionWays.IsAcquireByImplicitInfluence == true")]
         [UIConditionalVisibility("AcquisitionWays.IsAcquireByImplicitInfluence")]
-        public List<SignificantOrDecisiveInfulenceInfo> AquisitionByInfluence { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Набуття за впливом")]
+        public List<SignificantOrDecisiveInfulenceInfo> AquisitionByInfluence { get { return _AquisitionByInfluence; } set { _AquisitionByInfluence = value; OnPropertyChanged("AquisitionByInfluence"); } }
 
+        private List<IncomeOriginInfo> _FundsOrigin;
         /// <summary>
         /// 12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку,
         /// _______________________________________________________________________________________________________.
@@ -212,11 +230,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("12. Джерела  походження коштів юридичної особи")]
         [Description("12. Джерела походження коштів юридичної особи, за рахунок яких набуватиметься істотна участь у банку")]
         [Required]
-        public List<IncomeOriginInfo> FundsOrigin { get; set; }
+        public List<IncomeOriginInfo> FundsOrigin { get { return _FundsOrigin; } set { _FundsOrigin = value; OnPropertyChanged("FundsOrigin"); } }
         #endregion
 
         #region ІІІ. Відносини юридичної особи з іншими особами
 
+        private List<OwnershipStructure> _ExistingOwnershipDetailsHive;
         /// <summary>
         /// 13. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником
         /// 14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи
@@ -227,10 +246,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Category(CATEGORY_III)]
         [DisplayName("13, 14, 15. Розшифровка ланцюжків власності")]
         [Description("Розшифровка ланцюжків власності усіх структур-фігурантів анкети:\n 13. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником\n 14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи\n 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи")]
-        public List<OwnershipStructure> ExistingOwnershipDetailsHive { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Ланцюжки власності")]
+        public List<OwnershipStructure> ExistingOwnershipDetailsHive { get { return _ExistingOwnershipDetailsHive; } set { _ExistingOwnershipDetailsHive = value; OnPropertyChanged("ExistingOwnershipDetailsHive"); } }
         #endregion
 
         #region IV. Ділова репутація
+        private bool _HasOutstandingLoansWithBanks;
         /// <summary>
         /// 16. Інформація про кредити, одержані юридичною особою:
         /// </summary>
@@ -238,8 +259,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("16. Чи є кредити, одержані й непогашені юридичною  особою  в  банках?")]
         [Description("(Станом на дату подання анкети)")]
         [Required]
-        public bool HasOutstandingLoansWithBanks { get; set; }
+        public bool HasOutstandingLoansWithBanks { get { return _HasOutstandingLoansWithBanks; } set { _HasOutstandingLoansWithBanks = value; OnPropertyChanged("HasOutstandingLoansWithBanks"); } }
 
+        private List<LoanInfo> _OutstandingLoansWithBanksDetails;
         /// <summary>
         /// 16. Інформація про кредити, одержані юридичною особою:
         /// </summary>
@@ -248,8 +270,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)")]
         [Required("HasOutstandingLoansWithBanks == true")]
         [UIConditionalVisibility("HasOutstandingLoansWithBanks")]
-        public List<LoanInfo> OutstandingLoansWithBanksDetails { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Деталі по кредитам")]
+        public List<LoanInfo> OutstandingLoansWithBanksDetails { get { return _OutstandingLoansWithBanksDetails; } set { _OutstandingLoansWithBanksDetails = value; OnPropertyChanged("OutstandingLoansWithBanksDetails"); } }
 
+        private bool _HasNoImperfectReputationSigns;
         /// <summary>
         /// 17. Чи є щодо юридичної особи ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
         /// актом Національного банку України про порядок реєстрації та ліцензування банків [якщо таких ознак немає, то
@@ -261,8 +285,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("17. Стверджую, що немає ознак відсутності бездоганної ділової репутації")]
         [Description("Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування юридичної особи")]
         [Required]
-        public bool HasNoImperfectReputationSigns { get; set; }
+        public bool HasNoImperfectReputationSigns { get { return _HasNoImperfectReputationSigns; } set { _HasNoImperfectReputationSigns = value; OnPropertyChanged("HasNoImperfectReputationSigns"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); } }
 
+        private ImperfectBusinessReputationInfo _ImprefectReputationDetails;
         /// <summary>
         /// 17. Якщо щодо юридичної особи є ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
         /// актом Національного банку України про порядок реєстрації та ліцензування банків, то здійснюється опис ознаки (ознак) відсутності
@@ -273,11 +298,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("Опис наявних ознак відсутності бездоганної ділової репутації")]
         [Required("HasNoImperfectReputationSigns == false")]
         [UIConditionalVisibility("IsImprefectReputationDetailsVisible")]
-        public ImperfectBusinessReputationInfo ImprefectReputationDetails { get; set; }
+        public ImperfectBusinessReputationInfo ImprefectReputationDetails { get { return _ImprefectReputationDetails; } set { _ImprefectReputationDetails = value; OnPropertyChanged("ImprefectReputationDetails"); } }
 
         [Browsable(false)]
         public bool IsImprefectReputationDetailsVisible { get { return HasNoImperfectReputationSigns == false; } }
 
+        private bool _IsAMLEtcLegislationKept;
         /// <summary>
         /// 18. Стверджую, що юридична особа _______ (зазначається повне найменування юридичної особи) належним чином
         /// виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії
@@ -287,11 +313,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("18. Вимоги законодавства дотримано")]
         [Description("18. Стверджую, що юридична особа _______ (зазначається повне найменування юридичної особи) належним чином виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.")]
         [Browsable(true)]
-        public bool IsAMLEtcLegislationKept { get; set; }
+        public bool IsAMLEtcLegislationKept { get { return _IsAMLEtcLegislationKept; } set { _IsAMLEtcLegislationKept = value; OnPropertyChanged("IsAMLEtcLegislationKept"); } }
 
         #endregion
 
         #region Trailing prop(s)
+        private bool _IsApplicationInfoAccurateAndTrue;
         /// <summary>
         /// Стверджую, що інформація, зазначена в анкеті, є правдивою і повною, та не заперечую проти перевірки
         /// Національним банком України її достовірності та повноти.
@@ -301,9 +328,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("Стверджую, що інформація, зазначена в анкеті, є правдивою і повною, та не заперечую проти перевірки Національним банком України її достовірності та повноти.")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
-        public bool IsApplicationInfoAccurateAndTrue { get; set; }
+        public bool IsApplicationInfoAccurateAndTrue { get { return _IsApplicationInfoAccurateAndTrue; } set { _IsApplicationInfoAccurateAndTrue = value; OnPropertyChanged("IsApplicationInfoAccurateAndTrue"); } }
 
-        
+
+        private List<MissingInformationResonInfo> _MissingInformationResons;
         /// <summary>
         /// Примітка. Якщо немає змоги надати інформацію за відповідними пунктами анкети, то слід зазначити причину.
         /// </summary>
@@ -312,8 +340,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("...")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
-        public List<MissingInformationResonInfo> MissingInformationResons { get; set; }
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Поля й причини")]
+        public List<MissingInformationResonInfo> MissingInformationResons { get { return _MissingInformationResons; } set { _MissingInformationResons = value; OnPropertyChanged("MissingInformationResons"); } }
 
+        private SignatoryInfo _Signatory;
         /// <summary>
         /// ____________________       __________________________    _______________________________
         ///  (дата підписання анкети) (підпис уповноваженої особи    (прізвище та ініціали уповноваженої особи
@@ -325,8 +355,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Підписант")]
         [Description("Відомості по особу, що підписала анкету")]
         [Required]
-        public SignatoryInfo Signatory { get; set; }
+        public SignatoryInfo Signatory { get { return _Signatory; } set { _Signatory = value; OnPropertyChanged("Signatory"); } }
 
+        private ContactInfo _ContactPerson;
         /// <summary>
         /// Прізвище, ім'я, по батькові контактної особи ___________________.
         /// 
@@ -336,7 +367,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Контакти")]
         [Description("Контактні дані відправника анкети")]
         [Required]
-        public ContactInfo ContactPerson { get; set; }
+        public ContactInfo ContactPerson { get { return _ContactPerson; } set { _ContactPerson = value; OnPropertyChanged("ContactPerson"); } }
         #endregion
 
 
