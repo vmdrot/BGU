@@ -2,6 +2,7 @@
 <Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <StackPanel Orientation="Horizontal">
     <TextBlock x:Name="lblyourPropertyName" Height="auto" Width="auto" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription"/>
+    <StackPanel Orientation="Horizontal">
     <ComboBox x:Name="cbxyourPropertyName" DisplayMemberPath="yourComboDisplayMember" HorizontalAlignment="Stretch" ToolTip="yourPropertyDescription" MinWidth="150" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"/>
     <Button x:Name="btnAddyourPropertyName" Command="{x:Static yourAddComboItemCommand}" Style="{StaticResource addNewRowBtnStyle}" >
       <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" />
@@ -11,5 +12,6 @@
         </MultiBinding>
       </Button.CommandParameter>
     </Button>
+    </StackPanel>
   </StackPanel>
 </Template>

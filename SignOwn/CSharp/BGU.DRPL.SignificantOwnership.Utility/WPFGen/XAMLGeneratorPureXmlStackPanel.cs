@@ -370,6 +370,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             XmlNode currSrc = sourceBucket.FirstChild;
             XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+            ApplyConditionalVisibilityAttribute(curr, pi);
+            ApplyOrientation(curr, comboAddBtnAttr.ContainerOrientation);
             XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
             ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAddBtnAttr.DisplayMember);
@@ -386,7 +388,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 ReplacePlaceholderAttrRecursively(curr, templatedComboItemsGetterPlaceholder, itemsGetter);
                 AddTemplateDataTypeNS(insPos.RelNode.OwnerDocument.DocumentElement, comboAddBtnAttr.ItemsGetterClass);
             }
-            XmlNode comboNode = curr.ChildNodes[1];
+            XmlNode comboNode = curr.ChildNodes[1].FirstChild;
             if (comboAddBtnAttr.ValueMemberUsageMode == ComboUIValueUsageMode.ValueProperty)
             {
                 XSDReflectionUtil.WriteAttribute(comboNode, "SelectedValuePath", comboAddBtnAttr.ValueMember);
@@ -444,6 +446,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode currSrc = sourceBucket.FirstChild;
             XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
             ApplyConditionalVisibilityAttribute(curr, pi);
+            ApplyOrientation(curr, comboAttr.ContainerOrientation);
             XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
             ReplacePlaceholderAttrRecursively(curr, templatedComboDisplayMemberPlaceholder, comboAttr.DisplayMember);
@@ -474,6 +477,11 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
 
             InsertNode(insPos, curr, pi);
+        }
+
+        private void ApplyOrientation(XmlNode curr, Orientation orientation)
+        {
+            XSDReflectionUtil.WriteAttribute(curr, "Orientation", orientation.ToString());
         }
 
         private void AddItemToolTipComboBinding(XmlNode comboNode, string toolTipMember)
