@@ -29,6 +29,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Предмет боргу")]
         [Description("У зв'язку з чим виник борг; якщо позика - для чого було надано, і т.д.")]
         [Required]
+        [Multiline]
         public string IndebtnessSubject { get; set; }
 
         /// <summary>

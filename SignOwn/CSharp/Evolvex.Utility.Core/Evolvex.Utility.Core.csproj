@@ -55,6 +55,7 @@
     <Compile Include="ComponentModelEx\UIUsageComboAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageDataGridParamsAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageRadioButtonGroupAttribute.cs" />
+    <Compile Include="ComponentModelEx\UIUsageTextBoxAttribute.cs" />
     <Compile Include="ComponentModelEx\ValidationAttribute.cs" />
     <Compile Include="ComponentModelEx\XamlExpanderWrappingAttribute.cs" />
     <Compile Include="ComponentModelEx\XamlTemplateNameAttribute.cs" />

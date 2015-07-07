@@ -56,6 +56,13 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             return rslt;
         }
 
+        //public static List<Type> ListMissingGridTypesToStrings(Type rootType, Assembly userAsmbly)
+        //{
+        //    List<Type> rslt = new List<Type>();
+        //    ProcessType4Lists(rootType, userAsmbly, rslt);
+        //    return rslt;
+        //}
+
         private static void ProcessType(Type typ, Assembly userAssembly, List<Type> target)
         {
             LogFormat("Processing type {0}", typ.FullName);
@@ -77,6 +84,29 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                     ProcessType(gt, userAssembly, target);
             }
         }
+
+        //private static void ProcessType4Lists(Type typ, Assembly userAssembly, List<Type> target)
+        //{
+        //    if (typ.Assembly == userAssembly && typ.IsClass && !typ.IsEnum)
+        //    {
+        //        if(!target.Contains(typ))
+        //            target.Add(typ);
+        //        PropertyInfo[] props = typ.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.SetProperty);
+        //        foreach (PropertyInfo pi in props)
+        //        {
+        //            ProcessType(pi.PropertyType, userAssembly, target);
+        //        }
+        //    }
+        //    else if (typ.IsGenericType)
+        //    {
+        //        Type[] gtyps = typ.GetGenericArguments();
+        //        foreach (Type gt in gtyps)
+        //            ProcessType(gt, userAssembly, target);
+        //    }
+                        
+        //            if (!target.Contains(typ))
+        //                CheckAddIfNoString(gtyp, target);
+        //}
 
         public static void GenerateXAMLTemplates(Type rootType, Assembly userAsmbly, string targetFolder)
         {
