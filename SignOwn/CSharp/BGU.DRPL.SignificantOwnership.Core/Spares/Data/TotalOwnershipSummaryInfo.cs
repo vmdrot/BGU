@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -15,10 +16,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [DisplayName("Опосередкована участь (%)")]
         [Description("")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline=false, MinWidth="150", MaxWidth="350", StringFormat="{}{0:N2}")]
         public decimal ImplicitPct { get; set; }
         
         [DisplayName("Сукупна участь, %")]
         [Description("")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal TotalPct { get; set; }
     }
 }

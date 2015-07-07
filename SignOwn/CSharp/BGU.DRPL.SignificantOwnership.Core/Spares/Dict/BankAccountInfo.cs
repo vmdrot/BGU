@@ -33,12 +33,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// № рахунку
         /// </summary>
         [DisplayName("№ рахунку")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline=false, MaxWidth="275")]
         public string AccountNr { get; set; }
         /// <summary>
         /// ditto
         /// </summary>
         [DisplayName("Валюта рахунку")]
-        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath = "AllCurrencies", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "CCYCode", DisplayMember = "CCYCode", Width = "50")]
+        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath = "AllCurrencies", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "CCYCode", DisplayMember = "CCYCode", Width = "85", ToolTipMember = "CCYName")]
         [DefaultValue("UAH")]
         public string AccountCCY { get; set; }
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -18,14 +19,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [DisplayName("% участі довірителя")]
         [Description("Розмір участі довірителя в банку, %")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal SharesPct { get; set; }
         
         [DisplayName("Кількість голосів")]
         [Description("Кількість голосів у банку, щодо яких передається право голосу")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int Votes { get; set; }
         
         [DisplayName("% голосів")]
         [Description("Відсоток голосів у банку, щодо яких передається право голосу")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal VotesPct { get; set; }
 
         public override string ToString()

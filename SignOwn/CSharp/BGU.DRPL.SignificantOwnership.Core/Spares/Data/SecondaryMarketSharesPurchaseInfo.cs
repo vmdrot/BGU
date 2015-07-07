@@ -34,6 +34,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("%, що набувається")]
         [Description("Відсоток у статутному капіталі юридичної особи або банку, який придбавається")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal SharesPct { get; set; }
 
         [DisplayName("Номінальна вартість")]

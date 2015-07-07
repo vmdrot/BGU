@@ -58,10 +58,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// Адреса юрособи. Поле обов'язкове, якщо контекстом не вказано інше.
         /// Мінімальне заповнення - країна та місто
         /// </summary>
-        [DisplayName("Місцезнаходження")]
-        [Description("місцезнаходження юридичної особи")]
+        [DisplayName("Юридична адреса")]
+        [Description("Юридична адреса юридичної особи")]
         [Required]
         public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
+
+        private bool _IsActualAndRegistrationAddressDifferent;
+        /// <summary>
+        /// 
+        /// </summary>
+        [DisplayName("Місце проживання й реєстрації відрізняються?")]
+        [Description("Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації")]
+        public bool IsActualAndRegistrationAddressDifferent { get { return _IsActualAndRegistrationAddressDifferent; } set { _IsActualAndRegistrationAddressDifferent = value; OnPropertyChanged("IsActualAndRegistrationAddressDifferent"); } }
+
+
+        private LocationInfo _ActualAddress;
+        /// <summary>
+        /// Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від офіційної юридичної адреси.
+        /// </summary>
+        [DisplayName("Місцезнаходження")]
+        [Description("Фактичне місцезнаходження юридичної особи")]
+        [UIConditionalVisibility("IsResidentialAndRegistrationAddressDifferent")]
+        public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
 
         private CountryInfo _ResidenceCountry;
         /// <summary>

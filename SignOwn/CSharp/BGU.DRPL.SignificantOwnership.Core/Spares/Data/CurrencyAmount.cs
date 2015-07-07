@@ -30,13 +30,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Валюта")]
         [DisplayName("Валюта")]
         [Required]
-        [UIUsageCombo(ItemsGetterClass=typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath="AllCurrencies", ValueMemberUsageMode=ComboUIValueUsageMode.ValueProperty, ValueMember="CCYCode", DisplayMember="CCYCode", Width="75")]
+        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo), ItemsGetterMemberPath = "AllCurrencies", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "CCYCode", DisplayMember = "CCYCode", Width = "75", ToolTipMember = "CCYName")]
         public string CCY { get { return _CCY; } set { _CCY = value; OnPropertyChanged("CCY"); OnPropertyChanged("CurrencyFormat"); OnPropertyChanged("CurrencyToolTip"); } }
 
         private decimal _Amt;
         [Description("Сума")]
         [DisplayName("Сума")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "350", StringFormat = "{}{0:N2}")]
         public decimal Amt { get { return _Amt; } set { _Amt = value; OnPropertyChanged("Amt"); } }
 
 

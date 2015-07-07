@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -16,6 +17,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public PhysicalPersonInfo Person { get; set; }
         [DisplayName("Часта, %")]
         [Description("Часта, %")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal SharePct { get; set; }
 
         public override string ToString()

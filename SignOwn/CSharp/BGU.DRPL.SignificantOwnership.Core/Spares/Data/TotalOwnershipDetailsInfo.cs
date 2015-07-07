@@ -41,6 +41,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Усього % у загальній власності")]
         [Description("Усього % у загальній власності")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal TotalCapitalSharePct { get; set; }
         /// <summary>
         /// Обов'язкове, навіть якщо там усе по 0-м
@@ -48,6 +49,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Усього голосів")]
         [Description("Усього голосів")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int TotalVotes { get; set; }
 
         public override string ToString()

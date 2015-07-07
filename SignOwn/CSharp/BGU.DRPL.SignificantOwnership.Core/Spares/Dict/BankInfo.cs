@@ -16,7 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     [XamlExpanderWrapping(false)]
-    [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddBankCommand", DisplayMember = "Name", ItemGetterFull = "localdata:DataModule.СurrentBanks", ValueMemberUsageMode = ComboUIValueUsageMode.SelectedItem, Width = "250")]
+    [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddBankCommand", DisplayMember = "Name", ItemGetterFull = "localdata:DataModule.СurrentBanks", ValueMemberUsageMode = ComboUIValueUsageMode.SelectedItem, Width = "250", ToolTipMember="MFO")]
     public class BankInfo : NotifyPropertyChangedBase
     {
         private string _MFO;

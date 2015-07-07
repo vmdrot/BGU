@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -10,6 +11,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         public GenericPersonID Shareholder { get; set; }
         public int ActualSharesPlaced { get; set; }
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N2}")]
         public decimal CharterCapitalPct { get; set; }
         public string PaidDocNr { get; set; }
         public DateTime PaidDate { get; set; }

@@ -16,10 +16,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("%")]
         [Description("%")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal Pct { get; set; }
         [DisplayName("Кількість голосів")]
         [Description("Кількість голосів")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int Votes { get; set; }
 
         public override string ToString()

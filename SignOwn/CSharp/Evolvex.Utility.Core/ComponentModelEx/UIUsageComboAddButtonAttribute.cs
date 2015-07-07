@@ -15,6 +15,7 @@ namespace Evolvex.Utility.Core.ComponentModelEx
         public string ItemGetterFull { get; set; }
         public string AddNewItemCommand { get; set; }
         public string Width { get; set; }
+        public string ToolTipMember { get; set; }
 
         public UIUsageComboAddButtonAttribute() : base() { }
 
