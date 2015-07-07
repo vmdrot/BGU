@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <StackPanel Orientation="Horizontal">
-    <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription"/>
-    <ComboBox ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"  DisplayMemberPath="yourComboDisplayMember" />
+  <StackPanel Orientation="Horizontal" Tag="yourPropertyName">
+    <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" Tag="yourPropertyName"/>
+    <ComboBox ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}"  DisplayMemberPath="yourComboDisplayMember" Tag="yourPropertyName"/>
   </StackPanel>
 </Template>

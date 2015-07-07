@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <StackPanel>
-    <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription"/>
+  <StackPanel Tag="yourPropertyName">
+    <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" Tag="yourPropertyName"/>
   </StackPanel>
 </Template>

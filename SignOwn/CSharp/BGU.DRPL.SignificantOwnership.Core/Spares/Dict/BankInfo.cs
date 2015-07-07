@@ -127,6 +127,50 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         {
             return Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null && this == null)
+                return true;
+            if (obj == null || this == null)
+                return false;
+            if (!(obj is BankInfo))
+                return false;
+            BankInfo bi = (BankInfo)obj;
+            if(bi.OperationCountry != this.OperationCountry)
+                return false;
+            if (bi.OperationCountry == CountryInfo.UKRAINE)
+            {
+                bool?[] pairsCmps = new bool?[] { CompareNonEmptyStringsPair(this.MFO, bi.MFO), CompareNonEmptyStringsPair(this.RegistryNr, bi.RegistryNr), CompareNonEmptyStringsPair(this.Code, bi.Code) };
+                foreach (bool? pairCmp in pairsCmps)
+                {
+                    if (pairCmp == null)
+                        continue;
+                    return (bool)pairCmp;
+                }
+            }
+            else
+            {
+                bool?[] pairsCmps = new bool?[] { CompareNonEmptyStringsPair(this.MFO, bi.MFO), CompareNonEmptyStringsPair(this.RegistryNr, bi.RegistryNr), CompareNonEmptyStringsPair(this.Code, bi.Code), CompareNonEmptyStringsPair(this.SWIFTBIC, bi.SWIFTBIC), CompareNonEmptyStringsPair(this.Name, bi.Name) };
+                foreach (bool? pairCmp in pairsCmps)
+                {
+                    if (pairCmp == null)
+                        continue;
+                    return (bool)pairCmp;
+                }
+            }
+            return false;
+            
+        }
+
+        private static bool? CompareNonEmptyStringsPair(string x, string y)
+        {
+            if (string.IsNullOrEmpty(x) && string.IsNullOrEmpty(y))
+                return null;
+            if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
+                return false;
+            return x == y;
+        }
         
         public static BankInfo ParseFromRcuKruRow(DataRow dr)
         {

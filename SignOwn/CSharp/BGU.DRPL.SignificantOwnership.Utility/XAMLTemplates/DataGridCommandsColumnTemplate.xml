@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <DataGridTemplateColumn Header="дії" Width="75" TextBlock.TextAlignment="Center" HeaderStyle="{StaticResource dgBtnsColHdr}">
+  <DataGridTemplateColumn Header="дії" Width="75" TextBlock.TextAlignment="Center" HeaderStyle="{StaticResource dgBtnsColHdr}" >
     <DataGridTemplateColumn.CellTemplate>
       <DataTemplate>
         <StackPanel Orientation="Horizontal">
@@ -10,6 +10,8 @@
               <MultiBinding Converter="{StaticResource multiValConv}">
                 <Binding Path="SelectedItem" ElementName="gridyourPropertyName" />
                 <Binding ElementName="gridyourPropertyName" />
+                <Binding ElementName="expyourPropertyName" Path="Header" />
+                <Binding ElementName="expyourPropertyName" Path="ToolTip" />
               </MultiBinding>
             </Button.CommandParameter>
           </Button>

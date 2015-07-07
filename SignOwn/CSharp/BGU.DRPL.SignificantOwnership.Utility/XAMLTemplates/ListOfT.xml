@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <Expander Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False">
+  <Expander x:Name="expyourPropertyName" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False" Tag="yourPropertyName">
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" Orientation="Vertical">
-      <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False">
+      <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False" Tag="yourPropertyName">
         <DataGrid.Columns></DataGrid.Columns>
       </DataGrid>
-      <Button HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Style="{StaticResource addNewRowBtnStyle}" Command="{x:Static local:MyCommands.AddNewRowCommand}" >
-        <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" />
+      <Button HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Bottom" Style="{StaticResource addNewRowBtnStyle}" Command="{x:Static local:MyCommands.AddNewRowCommand}" Tag="yourPropertyName">
+        <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" Tag="yourPropertyName"/>
         <Button.CommandParameter>
           <MultiBinding Converter="{StaticResource multiValConv}">
             <Binding Path="ItemsSource" ElementName="gridyourPropertyName"/>
             <Binding Path="DataContext" ElementName="gridyourPropertyName" />
             <Binding Path="yourPropertyName" />
             <Binding ElementName="gridyourPropertyName" />
+            <Binding ElementName="expyourPropertyName" Path="Header" />
+            <Binding ElementName="expyourPropertyName" Path="ToolTip" />
           </MultiBinding>
         </Button.CommandParameter>
       </Button>
