@@ -706,7 +706,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode dataTemplateNodeSrc = inlineTempl.DocumentElement.FirstChild.NextSibling;
                 dataTemplateNodeSrc.Attributes.Remove(dataTemplateNodeSrc.Attributes["DataType"]);
                 XmlNode dataTemplTarget = contentControlNode.OwnerDocument.ImportNode(dataTemplateNodeSrc, true);
-                XmlNode contentTemplateNode = contentControlNode.OwnerDocument.CreateNode(XmlNodeType.Element, "ContentControl.ContentTemplate", contentControlNode.OwnerDocument.DocumentElement.NamespaceURI);
+                XmlNode contentTemplateNode = contentControlNode.OwnerDocument.CreateNode(XmlNodeType.Element, "ContentControl.ContentTemplate", null);
                 contentTemplateNode.InsertAfter(dataTemplTarget, contentTemplateNode.LastChild);
                 contentTemplateNode.Attributes.Remove(contentTemplateNode.Attributes["xmlns"]);
                 contentControlNode.InsertAfter(contentTemplateNode, contentControlNode.LastChild);
