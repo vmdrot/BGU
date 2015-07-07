@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace Evolvex.Utility.Core.ComponentModelEx
 {
@@ -16,6 +17,8 @@ namespace Evolvex.Utility.Core.ComponentModelEx
         public string AddNewItemCommand { get; set; }
         public string Width { get; set; }
         public string ToolTipMember { get; set; }
+        [DefaultValue(Orientation.Horizontal)]
+        public Orientation ContainerOrientation { get; set; }
 
         public UIUsageComboAddButtonAttribute() : base() { }
 

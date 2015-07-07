@@ -35,8 +35,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         #region cctor(s)
         public RegLicAppx2OwnershipAcqRequestLP()
-        { 
-            this.AccountsWithBanks = new List<BankInfo>();
+        {
+            this.AccountsWithBanks = new List<BankAccountInfo>();
             this.StateRegulatorAuthorities = new List<FinancialOversightAuthorityInfo>();
             this.FundsOrigin = new List<IncomeOriginInfo>();
             this.MentionedIdentities = new List<GenericPersonInfo>();
@@ -128,7 +128,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("5. Інформація про розмір наявної участі юридичної особи в банку")]
         public TotalOwnershipSummaryInfo TotalExistingOwnershipWithBank { get { return _TotalExistingOwnershipWithBank; } set { _TotalExistingOwnershipWithBank = value; OnPropertyChanged("TotalExistingOwnershipWithBank"); } }
 
-        private List<BankInfo> _AccountsWithBanks;
+        private List<BankAccountInfo> _AccountsWithBanks;
         /// <summary>
         /// Поле обов'язкове, лише якщо заявник не є банком.
         /// </summary>
@@ -136,7 +136,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("4. Банківські рахунки юридичної особи")]
         [Description("(не заповнюється банками)")]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Рахунки")]
-        public List<BankInfo> AccountsWithBanks { get { return _AccountsWithBanks; } set { _AccountsWithBanks = value; OnPropertyChanged("AccountsWithBanks"); } }
+        public List<BankAccountInfo> AccountsWithBanks { get { return _AccountsWithBanks; } set { _AccountsWithBanks = value; OnPropertyChanged("AccountsWithBanks"); } }
 
         #endregion
 
