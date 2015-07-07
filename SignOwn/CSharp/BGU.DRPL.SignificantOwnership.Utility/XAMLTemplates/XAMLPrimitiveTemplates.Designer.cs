@@ -163,11 +163,27 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         ///&lt;Template xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
         ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
         ///    &lt;TextBlock x:Name=&quot;lblyourPropertyName&quot; Height=&quot;auto&quot; Width=&quot;auto&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
-        ///    &lt;ComboBox x:Name=&quot;cbxyourPropertyName&quot; DisplayMemberPath=&quot;yourComboDisplayMember&quot; SelectedValuePath=&quot;ID&quot; HorizontalAlignment=&quot;Stretch&quot; SelectedValue=&quot;{Binding Acquiree, Mode=TwoWay, diag [rest of string was truncated]&quot;;.
+        ///    &lt;ComboBox x:Name=&quot;cbxyourPropertyName&quot; DisplayMemberPath=&quot;yourComboDisplayMember&quot; HorizontalAlignment=&quot;Stretch&quot; ToolTip=&quot;yourPropertyDescription&quot; MinWidth=&quot;150&quot; ItemsSource=&quot;{Binding Sou [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ComboAddBtn {
             get {
                 return ResourceManager.GetString("ComboAddBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;ComboBox.ItemContainerStyle&gt;
+        ///    &lt;Style&gt;
+        ///      &lt;Setter Property=&quot;Control.ToolTip&quot; Value=&quot;{Binding yourComboItemToolTipPropertyName}&quot; /&gt;
+        ///    &lt;/Style&gt;
+        ///  &lt;/ComboBox.ItemContainerStyle&gt;
+        ///&lt;/Template&gt;.
+        /// </summary>
+        public static string ComboItemToolTip {
+            get {
+                return ResourceManager.GetString("ComboItemToolTip", resourceCulture);
             }
         }
         
@@ -189,15 +205,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot; Width=&quot;*&quot; TextBlock.TextAlignment=&quot;Center&quot;&gt;
-        ///    &lt;DataGridTemplateColumn.HeaderStyle&gt;
-        ///      &lt;Style TargetType=&quot;dataprimitives:DataGridColumnHeader&quot;&gt;
-        ///        &lt;Setter Property=&quot;ContentTemplate&quot;&gt;
-        ///          &lt;Setter.Value&gt;
-        ///            &lt;DataTemplate&gt;
-        ///              &lt;ContentControl Content=&quot;{Binding}&quot;&gt;
-        ///                &lt;ToolTipService.ToolTip&gt;
-        ///                  &lt;ToolTip Content=&quot;Натисніть ґудзик, щоб редагувати чи вида [rest of string was truncated]&quot;;.
+        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot; Width=&quot;75&quot; TextBlock.TextAlignment=&quot;Center&quot; HeaderStyle=&quot;{StaticResource dgBtnsColHdr}&quot;&gt;
+        ///    &lt;DataGridTemplateColumn.CellTemplate&gt;
+        ///      &lt;DataTemplate&gt;
+        ///        &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+        ///          &lt;Button Command=&quot;{x:Static local:MyCommands.EditRowCommand}&quot; ToolTip=&quot;редагувати рядок&quot;&gt;
+        ///            &lt;Image Source=&quot;pack://application:,,,/WpfApplication2;component/Resources/Icons/edit_btn.png&quot; Width=&quot;20&quot; H [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataGridCommandsColumnTemplate {
             get {

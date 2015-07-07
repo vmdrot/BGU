@@ -37,6 +37,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string templatedEnumCurrentValueTextPlaceholder = "yourEnumCurrentValueText";
         private static readonly string templatedEnumCurrentValueDescriptionPlaceholder = "yourEnumCurrentValueDescription";
         private static readonly string templatedDataGridOneColumnHeaderPlaceholder = "yourDataGridOneColumnHeader";
+        private static readonly string templatedComboItemToolTipPropertyNamePlaceholder = "yourComboItemToolTipPropertyName";
+        
         
             
         //private static readonly string templatedGridRowAttributeName = "Grid.Row";
@@ -52,6 +54,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private static readonly string comboAddBtnTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboAddBtn;
         private static readonly string enumRadioButtonGroupTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButtonGroup;
         private static readonly string enumRadioButtonTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.RadioButton;
+        private static readonly string comboItemTooltipTemplate = BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates.XAMLPrimitiveTemplates.ComboItemToolTip;
         
 
         private static readonly string NewElemNS = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
@@ -294,10 +297,11 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             
             UIUsageComboAttribute comboAttr;
             UIUsageComboAddButtonAttribute comboAddBtnAttr;
-
+            UIUsageTextBoxAttribute textBoxAttr;
             ControlInsertionPosition insPos = DetectControlInsertionPosition(pi, container);
             if (IsPropOrTypeAttributeDefined<UIUsageComboAttribute>(pi, out comboAttr)) AddCombo(insPos, pi, comboAttr);
-            else if (IsPropOrTypeAttributeDefined<UIUsageComboAddButtonAttribute>(pi, out comboAddBtnAttr)) AddComboAddBtn(insPos, pi, comboAddBtnAttr); 
+            else if (IsPropOrTypeAttributeDefined<UIUsageComboAddButtonAttribute>(pi, out comboAddBtnAttr)) AddComboAddBtn(insPos, pi, comboAddBtnAttr);
+            else if (IsPropOrTypeAttributeDefined<UIUsageTextBoxAttribute>(pi, out textBoxAttr)) AddTextBox(insPos, pi, textBoxAttr); 
             else if (pi.PropertyType == typeof(string) || pi.PropertyType == typeof(String)) AddStringEditControl(insPos, pi);
             else if (pi.PropertyType == typeof(int) || pi.PropertyType == typeof(int?) || pi.PropertyType == typeof(Int32) || pi.PropertyType == typeof(long) || pi.PropertyType == typeof(Int64) || pi.PropertyType == typeof(short) || pi.PropertyType == typeof(Int16)) AddIntEditControl(insPos, pi);
             else if (pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(decimal) || pi.PropertyType == typeof(float) || pi.PropertyType == typeof(double) || pi.PropertyType == typeof(Double) || pi.PropertyType == typeof(Decimal)) AddDecimalEditControl(insPos, pi);
@@ -306,6 +310,54 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             else if (pi.PropertyType.IsEnum) AddEnumEditControl(insPos, pi);
             else if (pi.PropertyType.IsGenericType) AddCollectionEditControl(insPos, pi);
             else if (pi.PropertyType.Assembly == _userAssembly) AddComplextTypeControl(insPos, pi);
+        }
+
+        private void AddTextBox(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageTextBoxAttribute textBoxAttr)
+        {
+            
+            XmlDocument controlXamlFragmentDoc = new XmlDocument();
+            string ctrlTemplate = PRIMITIVE_TYPES_TEMPLATES[typeof(string)];
+            if(textBoxAttr.IsMultiline)
+                ctrlTemplate = multilineTemplate;
+            controlXamlFragmentDoc.LoadXml(ctrlTemplate);
+            XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            List<XmlNode> targetNodes = new List<XmlNode>();
+            XmlNode textBoxNode = null;
+            foreach (XmlNode currSrc in sourceBucket.ChildNodes)
+            {
+                XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
+                ApplyConditionalVisibilityAttribute(curr, pi);
+                XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
+                ReplacePlaceholderTexts(curr, pi);
+                if (curr.Name == "TextBox")
+                    textBoxNode = curr;
+                targetNodes.Add(curr);
+            }
+
+            if (textBoxNode != null)
+            {
+                if (!string.IsNullOrEmpty(textBoxAttr.MaxWidth))
+                    XSDReflectionUtil.WriteAttribute(textBoxNode, "MaxWidth", textBoxAttr.MaxWidth);
+
+                if (!string.IsNullOrEmpty(textBoxAttr.MinWidth))
+                    XSDReflectionUtil.WriteAttribute(textBoxNode, "MinWidth", textBoxAttr.MinWidth);
+
+                if (!string.IsNullOrEmpty(textBoxAttr.HorizontalAlignment))
+                    XSDReflectionUtil.WriteAttribute(textBoxNode, "HorizontalAlignment", textBoxAttr.HorizontalAlignment);
+                
+                if (!string.IsNullOrEmpty(textBoxAttr.StringFormat))
+                {
+                    string textAttrValue = textBoxNode.Attributes["Text"].Value;
+
+                    int lastFigParPos = textAttrValue.LastIndexOf('}');
+                    if (lastFigParPos != -1)
+                    {
+                        string newTextAttrValue = textAttrValue.Substring(0, lastFigParPos) + string.Format(", StringFormat={0} }}", textBoxAttr.StringFormat);
+                        textBoxNode.Attributes["Text"].Value = newTextAttrValue;
+                    }
+                }
+            }
+            InsertNode(insPos, targetNodes.ToArray(), pi);
         }
 
         private void AddComboAddBtn(ControlInsertionPosition insPos, PropertyInfo pi, UIUsageComboAddButtonAttribute comboAddBtnAttr)
@@ -348,6 +400,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             if (!string.IsNullOrEmpty(comboAddBtnAttr.Width))
                 XSDReflectionUtil.WriteAttribute(comboNode, "Width", comboAddBtnAttr.Width);
 
+            if (!string.IsNullOrEmpty(comboAddBtnAttr.ToolTipMember))
+                AddItemToolTipComboBinding(comboNode, comboAddBtnAttr.ToolTipMember);
 
 
             InsertNode(insPos, curr, pi);
@@ -414,10 +468,21 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
             if(!string.IsNullOrEmpty(comboAttr.Width))
                 XSDReflectionUtil.WriteAttribute(comboNode, "Width", comboAttr.Width);
+            if (!string.IsNullOrEmpty(comboAttr.ToolTipMember))
+                AddItemToolTipComboBinding(comboNode, comboAttr.ToolTipMember);
 
 
 
             InsertNode(insPos, curr, pi);
+        }
+
+        private void AddItemToolTipComboBinding(XmlNode comboNode, string toolTipMember)
+        {
+            XmlDocument tooltipDoc = new XmlDocument();
+            tooltipDoc.LoadXml(comboItemTooltipTemplate);
+            XmlNode curr = comboNode.OwnerDocument.ImportNode(tooltipDoc.DocumentElement.FirstChild, true);
+            ReplacePlaceholderAttrRecursively(curr, templatedComboItemToolTipPropertyNamePlaceholder, toolTipMember);
+            comboNode.InsertAfter(curr, comboNode.LastChild);
         }
 
         private void ApplyConditionalVisibilityAttribute(XmlNode curr, PropertyInfo pi)

@@ -44,6 +44,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Частка у власності (сума)")]
         [Description("Частка (сума)")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N2}")]
         public decimal Share { get; set; }
 
         /// <summary>
@@ -51,18 +52,21 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Кількість акцій")]
         [Description("Кількість акцій, що належать Власникові в об'єкті власності")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int SharesCount { get; set; }
         /// <summary>
         /// Як правило, саме у %-х і зазначається власність
         /// </summary>
         [DisplayName("Частка (%)")]
         [Description("Частка (%)")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal SharePct { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом
         /// </summary>
         [DisplayName("Кількість голосів в управлінні")]
         [Description("Кількість голосів в управлінні")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int Votes { get; set; }
 
         public override string ToString()

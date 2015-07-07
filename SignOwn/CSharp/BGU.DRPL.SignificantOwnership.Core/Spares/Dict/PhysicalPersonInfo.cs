@@ -150,9 +150,27 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// <summary>
         /// Поле необхідне лише якщо вимагається у анкеті
         /// </summary>
-        [DisplayName("Місце проживання/реєстрації")]
-        [Description("Місце проживання/реєстрації")]
+        [DisplayName("Місце реєстрації")]
+        [Description("Місце реєстрації")]
         public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
+
+        private bool _IsResidentialAndRegistrationAddressDifferent;
+        /// <summary>
+        /// 
+        /// </summary>
+        [DisplayName("Місце проживання й реєстрації відрізняються?")]
+        [Description("Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації")]
+        public bool IsResidentialAndRegistrationAddressDifferent { get { return _IsResidentialAndRegistrationAddressDifferent; } set { _IsResidentialAndRegistrationAddressDifferent = value; OnPropertyChanged("IsResidentialAndRegistrationAddressDifferent"); } }
+
+
+        private LocationInfo _ActualAddress;
+        /// <summary>
+        /// Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від місця реєстрації.
+        /// </summary>
+        [DisplayName("Місце проживання")]
+        [Description("Місце фактичного проживання (якщо інше, ніж реєстрації)")]
+        [UIConditionalVisibility("IsResidentialAndRegistrationAddressDifferent")]
+        public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
 
         private CountryInfo _CitizenshipCountry;
         /// <summary>

@@ -16,12 +16,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         [DisplayName("кількість акцій (паїв)")]
         [Description("кількість акцій (паїв)")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "350", StringFormat = "{}{0:N0}")]
         public int SharesCount { get; set; }
         [DisplayName("номінальна вартість акцій (паїв)")]
         [Description("")]
         public CurrencyAmount SharesNominalValue { get; set; }
         [DisplayName("%")]
         [Description("%")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "250", StringFormat = "{}{0:N2}")]
         public decimal Pct { get; set; }
 
         public override string ToString()

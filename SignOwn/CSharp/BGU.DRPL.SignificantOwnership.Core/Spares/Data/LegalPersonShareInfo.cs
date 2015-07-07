@@ -19,6 +19,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Частка власності, %")]
         [Description("Частка власності, %")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal SharePct { get; set; }
 
         public override string ToString()

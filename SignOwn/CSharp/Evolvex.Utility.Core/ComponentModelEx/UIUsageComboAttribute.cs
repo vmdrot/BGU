@@ -15,6 +15,7 @@ namespace Evolvex.Utility.Core.ComponentModelEx
         public Type ItemsGetterClass {get;set;}
         public string ItemsGetterMemberPath {get;set;}
         public string Width { get; set; }
+        public string ToolTipMember { get; set; }
         public UIUsageComboAttribute() : base() { }
 
         public UIUsageComboAttribute(Type itemsGetterClass, string itemsGetterMemberPath, string displayMember, ComboUIValueUsageMode valueMemberUsageMode, string valueMember)

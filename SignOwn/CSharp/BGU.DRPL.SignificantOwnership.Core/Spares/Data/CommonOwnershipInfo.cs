@@ -30,6 +30,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Multiline]
         public string OwnershipTestimony { get; set; }
         [DisplayName("Частка власності, %")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
         public decimal OwnershipPct { get; set; }
 
         public override string ToString()

@@ -16,7 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
     /// <seealso cref="http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html"/>
     //[System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor2), typeof(System.Drawing.Design.UITypeEditor))]
-    [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMemberUsageMode=ComboUIValueUsageMode.SelectedItem, Width="175")]
+    [UIUsageComboAttribute(DisplayMember = "CountryNameUkr", ItemsGetterClass = typeof(CountryInfo), ItemsGetterMemberPath = "AllCountries", ValueMemberUsageMode = ComboUIValueUsageMode.SelectedItem, Width = "175", ToolTipMember = "CountryNameEng")]
     public class CountryInfo
     {
 
