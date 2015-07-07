@@ -5,6 +5,7 @@ using System.Text;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -16,6 +17,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         public ContactInfo()
         {
+            Person = new PhysicalPersonInfo();
+            ReflectionUtil.InstantiateAllProps(Person, Person.GetType().Assembly);
+            Person.IsResidentialAndRegistrationAddressDifferent = true;
             Phones = new List<PhoneInfo>();
             Emails = new List<EmailInfo>();
         }
@@ -25,6 +29,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Контактна особа")]
         [Description("Контактна особа (фізособа)")]
+        [UIPartialFieldsVisibility(ShowOrHide=true, PropsList="FullName,ActualAddress")]
         public PhysicalPersonInfo Person { get; set; }
         /// <summary>
         /// Бодай один телефон.

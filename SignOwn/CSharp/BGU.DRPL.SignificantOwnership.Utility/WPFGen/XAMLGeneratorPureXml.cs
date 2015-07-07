@@ -426,5 +426,30 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _propsDummyXmls.Add(propNm, dummyXml);
             _propsRealXmls.Add(propNm, realXml);
         }
+
+
+        public bool GenerateInlineTemplateOnly
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Evolvex.Utility.Core.ComponentModelEx.UIPartialFieldsVisibilityAttribute InlineTemplateParams
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

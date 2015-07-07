@@ -16,6 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 {
     public class XAMLGeneratorPureXmlStackPanel : IXAMLGenerator
     {
+        #region field(s)
         private static readonly ILog log = Logging.GetLogger(typeof(XAMLGeneratorPureXmlStackPanel));
 
         private List<Type> _referencedTypes = new List<Type>();
@@ -65,6 +66,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         private Dictionary<int, string> _indexes2PropNames = new Dictionary<int, string>();
         private Dictionary<string, ResultantControlNodesRange> _propertyNodes = new Dictionary<string, ResultantControlNodesRange>();
         private Dictionary<string, PropertyInfo> _propsByNames = new Dictionary<string,PropertyInfo>();
+        #endregion
+        #region prop(s)
+        public bool GenerateInlineTemplateOnly { get; set; }
+        public UIPartialFieldsVisibilityAttribute InlineTemplateParams{ get; set; }
+
+        #endregion
 
 
         private Dictionary<string, BGU.DRPL.SignificantOwnership.Utility.XSDReflectionUtil.PropDispDescr> GetPropDispDescrs(Type typ)
@@ -139,18 +146,84 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlDocument rslt = CreateControlWrapper(typ);
             XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
             XmlNode gridNode = dataTemplateNode.FirstChild;
-            ReplaceTemplateDataType(dataTemplateNode, typ);
-            AddTemplateDataTypeNS(rslt.DocumentElement, typ);
-            List<PropertyInfo> props = ReflectionUtil.ListEditableProperties(typ);
-            CreateCategoriesNodes(gridNode, props);
-            foreach(PropertyInfo pi in props)
+            if (!this.GenerateInlineTemplateOnly || this.InlineTemplateParams == null)
             {
-                AddControl(gridNode, pi);
+                ReplaceTemplateDataType(dataTemplateNode, typ);
+                AddTemplateDataTypeNS(rslt.DocumentElement, typ);
             }
+            List<PropertyInfo> props = FilterEditableProps(ReflectionUtil.ListEditableProperties(typ));
+            CreateCategoriesNodes(gridNode, props);
+            //if (!this.GenerateInlineTemplateOnly || this.InlineTemplateParams == null)
+            //{
+                foreach (PropertyInfo pi in props)
+                {
+                    AddControl(gridNode, pi);
+                }
+            //}
+            //else
+            //{
+            //    List<string> propNamesLst = ParsePropsList(this.InlineTemplateParams.PropsList);
+            //    foreach (PropertyInfo pi in props)
+            //    {
+            //        if (InlineTemplateParams.ShowOrHide)
+            //        {
+            //            if (!propNamesLst.Contains(pi.Name))
+            //                continue;
+
+            //        }
+            //        else
+            //        { 
+            //            if(propNamesLst.Contains(pi.Name))
+            //                continue;
+            //        }
+            //        AddControl(gridNode, pi);
+            //    }
+
+            //}
 
             //clean-up
             RemoveEmptyNSAttrs((XmlNode)rslt.DocumentElement);
 
+            return rslt;
+        }
+
+        private List<PropertyInfo> FilterEditableProps(List<PropertyInfo> list)
+        {
+            if (!this.GenerateInlineTemplateOnly)
+                return list;
+            List<string> propNamesLst = ParsePropsList(this.InlineTemplateParams.PropsList);
+            List<PropertyInfo> rslt = new List<PropertyInfo>();
+            foreach(PropertyInfo pi in list)
+            {
+                if (InlineTemplateParams.ShowOrHide)
+                {
+                    if (!propNamesLst.Contains(pi.Name))
+                        continue;
+
+                }
+                else
+                {
+                    if (propNamesLst.Contains(pi.Name))
+                        continue;
+                }
+                rslt.Add(pi);
+            }
+            return rslt;
+        }
+
+        private List<string> ParsePropsList(string propLstStr)
+        {
+            List<string> rslt = new List<string>();
+            string[] aRaw = propLstStr.Split(',');
+            foreach (string sRaw in aRaw)
+            { 
+                if(string.IsNullOrEmpty(sRaw))
+                    continue;
+                string trimmed = sRaw.Trim();
+                if (string.IsNullOrEmpty(trimmed))
+                    continue;
+                rslt.Add(trimmed);
+            }
             return rslt;
         }
 
@@ -597,16 +670,22 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddComplextTypeControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-          
+
+            UIPartialFieldsVisibilityAttribute partFldsVisAttr = ReflectionUtil.GetPropertyOrTypeAttribute<UIPartialFieldsVisibilityAttribute>(pi);
+
+
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             XamlExpanderWrappingAttribute wrapAttr = ReflectionUtil.GetPropertyOrTypeAttribute<XamlExpanderWrappingAttribute>(pi);
             string controlTemplate = null;
             if (wrapAttr == null || wrapAttr.WrapIntoExpander)
+            {
                 controlTemplate = classStructControlTemplate;
+            }
             else
                 controlTemplate = classStructNoExpanderWrapControlTemplate;
             controlXamlFragmentDoc.LoadXml(controlTemplate);
             XmlNode sourceBucket = controlXamlFragmentDoc.DocumentElement;
+            XmlNode contentControlNode = null;
             List<XmlNode> targetNodes = new List<XmlNode>();
             foreach (XmlNode currSrc in sourceBucket.ChildNodes)
             {
@@ -614,9 +693,25 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ApplyConditionalVisibilityAttribute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
-
+                if(curr.Name == "Expander")
+                    contentControlNode = curr.FirstChild;
                 targetNodes.Add(curr);
             }
+            if (partFldsVisAttr != null && contentControlNode != null)
+            {
+                IXAMLGenerator gen = XAMLGeneratorFactory.Instance.SpawnInstance();
+                gen.GenerateInlineTemplateOnly = true;
+                gen.InlineTemplateParams = partFldsVisAttr;
+                XmlDocument inlineTempl = gen.Generate(pi.PropertyType, pi.PropertyType.Assembly, _referencedControlTemplateNames);
+                XmlNode dataTemplateNodeSrc = inlineTempl.DocumentElement.FirstChild.NextSibling;
+                dataTemplateNodeSrc.Attributes.Remove(dataTemplateNodeSrc.Attributes["DataType"]);
+                XmlNode dataTemplTarget = contentControlNode.OwnerDocument.ImportNode(dataTemplateNodeSrc, true);
+                XmlNode contentTemplateNode = contentControlNode.OwnerDocument.CreateNode(XmlNodeType.Element, "ContentControl.ContentTemplate", contentControlNode.OwnerDocument.DocumentElement.NamespaceURI);
+                contentTemplateNode.InsertAfter(dataTemplTarget, contentTemplateNode.LastChild);
+                contentTemplateNode.Attributes.Remove(contentTemplateNode.Attributes["xmlns"]);
+                contentControlNode.InsertAfter(contentTemplateNode, contentControlNode.LastChild);
+            }
+
             InsertNode(insPos, targetNodes.ToArray(), pi);
 
             if (!_referencedTypes.Contains(pi.PropertyType))

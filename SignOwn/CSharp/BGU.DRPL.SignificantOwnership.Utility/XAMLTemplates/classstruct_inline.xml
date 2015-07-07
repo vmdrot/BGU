@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+  <Expander Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False" Tag="yourPropertyName">
+    <ContentControl Content="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" Margin="5,2" Tag="yourPropertyName">
+      <ContentControl.ContentTemplate>
+      </ContentControl.ContentTemplate>
+    </ContentControl>
+  </Expander>
+</Template>
