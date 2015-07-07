@@ -41,9 +41,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DefaultValue(false)]
         public bool IsActingByPowOfAttorney { get; set; }
 
-        [DisplayName("За довіреністю?")]
-        [Description("Підписант діє на підставі довіреності")]
+        [DisplayName("Довіреність")]
+        [Description("Реквізити довіреності, на підставі якої діє підписант")]
         [Required("IsActingByPowOfAttorney == true")]
+        [UIConditionalVisibility("IsActingByPowOfAttorney")]
         public PowerOfAttorneyInfo PowerOfAttorney { get; set; }
 
         public override string ToString()

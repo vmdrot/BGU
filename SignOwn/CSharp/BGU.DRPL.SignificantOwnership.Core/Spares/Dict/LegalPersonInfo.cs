@@ -22,6 +22,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             this.PrincipalActivities = new List<EconomicActivityType>();
         }
 
+        private CountryInfo _ResidenceCountry;
+        /// <summary>
+        /// Країна резидентності
+        /// Обов'язкове. За змовчанням (пропонувати) - Україна.
+        /// </summary>
+        [DisplayName("Країна юрисдикції")]
+        [Description("Країна юрисдикції юридичної особи")]
+        [Required]
+        public CountryInfo ResidenceCountry { get { return _ResidenceCountry; } set { _ResidenceCountry = value; OnPropertyChanged("ResidenceCountry"); OnPropertyChanged("IsNonResident"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsNonResident { get { return ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE; } }
         private string _TaxCodeOrHandelsRegNr;
         /// <summary>
         /// Обов'язкове поле (якщо контекстом проперті, де використовується цей тим, не визначено інакше)
@@ -67,8 +80,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// <summary>
         /// 
         /// </summary>
-        [DisplayName("Місце проживання й реєстрації відрізняються?")]
-        [Description("Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації")]
+        [DisplayName("Юридична й фактична адреси відрізняються?")]
+        [Description("(відзначте цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)")]
         public bool IsActualAndRegistrationAddressDifferent { get { return _IsActualAndRegistrationAddressDifferent; } set { _IsActualAndRegistrationAddressDifferent = value; OnPropertyChanged("IsActualAndRegistrationAddressDifferent"); } }
 
 
@@ -80,20 +93,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Фактичне місцезнаходження юридичної особи")]
         [UIConditionalVisibility("IsResidentialAndRegistrationAddressDifferent")]
         public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
-
-        private CountryInfo _ResidenceCountry;
-        /// <summary>
-        /// Країна резидентності
-        /// Обов'язкове. За змовчанням (пропонувати) - Україна.
-        /// </summary>
-        [DisplayName("Країна юрисдикції")]
-        [Description("Країна юрисдикції юридичної особи")]
-        [Required]
-        public CountryInfo ResidenceCountry { get { return _ResidenceCountry; } set { _ResidenceCountry = value; OnPropertyChanged("ResidenceCountry"); OnPropertyChanged("IsNonResident"); } }
-
-        [Browsable(false)]
-        [XmlIgnore]
-        public bool IsNonResident { get { return ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE; } }
 
         private RegistrarAuthority _Registrar;
         /// <summary>

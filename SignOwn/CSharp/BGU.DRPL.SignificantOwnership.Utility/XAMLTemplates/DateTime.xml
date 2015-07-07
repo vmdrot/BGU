@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" />
-  <DatePicker ToolTip="yourPropertyDescription"  Style="{StaticResource dtEdStyle}" SelectedDate="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}"/>
+  <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" Tag="yourPropertyName"/>
+  <DatePicker ToolTip="yourPropertyDescription"  Style="{StaticResource dtEdStyle}" SelectedDate="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" Tag="yourPropertyName"/>
 </Template>

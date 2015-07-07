@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using BGU.DRPL.SignificantOwnership.Utility;
 using System.Collections;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -21,6 +22,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [DisplayName("Кількість акцій")]
         [Description("Кількість акцій (паїв) банку, які юридична особа має намір придбати, штук")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth="150", MaxWidth = "250", StringFormat = "{}{0:N0}")]
         public int SharesCount { get; set; }
         [DisplayName("Номінальна ціна")]
         [Description("Номінальна вартість однієї акції (одного паю), грн.")]

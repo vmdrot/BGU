@@ -19,11 +19,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Актив, що набувається")]
         [Description("Банк або ж юр.особа - власник участі в банку (прямої чи опосередкованої)")]
         [Required]
+        [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddMentionedPersonCommand", DisplayMember = "DisplayName", ItemGetterFull = "localdata:DataModule.CurrentMentionedIdentities", ValueMember = "ID", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, Width = "150", ContainerOrientation=Orientation.Vertical)]
         public GenericPersonID Asset { get; set; }
 
         [DisplayName("Попередній власник")]
         [Description("Власник, від якого переходитиме власність")]
         [Required]
+        [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddMentionedPersonCommand", DisplayMember = "DisplayName", ItemGetterFull = "localdata:DataModule.CurrentMentionedIdentities", ValueMember = "ID", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, Width = "150", ContainerOrientation = Orientation.Vertical)]
         public GenericPersonID PreviousOwner { get; set; }
 
         [DisplayName("Правочин")]
