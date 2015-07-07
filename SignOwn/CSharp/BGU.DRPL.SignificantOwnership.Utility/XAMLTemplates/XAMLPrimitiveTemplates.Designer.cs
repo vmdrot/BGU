@@ -63,8 +63,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///&lt;CheckBox IsChecked=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; FlowDirection=&quot;LeftToRight&quot;&gt;
-        ///  &lt;TextBlock FlowDirection=&quot;LeftToRight&quot; Text=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///&lt;CheckBox IsChecked=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; FlowDirection=&quot;LeftToRight&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///  &lt;TextBlock FlowDirection=&quot;LeftToRight&quot; Text=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/CheckBox&gt;
         ///&lt;/Template&gt;.
         /// </summary>
@@ -77,8 +77,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; /&gt;
-        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string _decimal {
@@ -90,9 +90,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; /&gt;
-        ///  &lt;ComboBox ToolTip=&quot;yourPropertyDescription&quot; ItemsSource=&quot;{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}&quot; SelectedValue=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; DisplayMemberPath=&quot;Value&quot; SelectedValuePath=&quot;EnumValue&quot; HorizontalAlignment=&quot;Stretch&quot;/&gt;
-        ///&lt;/Template [rest of string was truncated]&quot;;.
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;ComboBox ToolTip=&quot;yourPropertyDescription&quot; ItemsSource=&quot;{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}&quot; SelectedValue=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; DisplayMemberPath=&quot;Value&quot; SelectedValuePath=&quot;EnumValue&quot; HorizontalAlignment=&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string _enum {
             get {
@@ -103,8 +102,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; /&gt;
-        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string _int {
@@ -131,8 +130,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
-        ///    &lt;ContentControl Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5,2&quot; /&gt;
+        ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///    &lt;ContentControl Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5,2&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///  &lt;/Expander&gt;
         ///&lt;/Template&gt;.
         /// </summary>
@@ -145,12 +144,28 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;Grid&gt;
+        ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///    &lt;ContentControl Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5,2&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///      &lt;ContentControl.ContentTemplate&gt;
+        ///      &lt;/ContentControl.ContentTemplate&gt;
+        ///    &lt;/ContentControl&gt;
+        ///  &lt;/Expa [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string classstruct_inline {
+            get {
+                return ResourceManager.GetString("classstruct_inline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Template&gt;
+        ///  &lt;Grid Tag=&quot;yourPropertyName&quot;&gt;
         ///    &lt;Grid.ColumnDefinitions&gt;
         ///      &lt;ColumnDefinition Width=&quot;1*&quot; /&gt;
         ///      &lt;ColumnDefinition Width=&quot;4*&quot; /&gt;
         ///    &lt;/Grid.ColumnDefinitions&gt;
-        ///    &lt;TextBlock Grid.Column=&quot;0&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Left&quot; VerticalAlignment=&quot;Top&quot; /&gt; &lt;ContentControl Grid.Column=&quot;1&quot; Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Margin=&quot;5, [rest of string was truncated]&quot;;.
+        ///    &lt;TextBlock Grid.Column=&quot;0&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Left&quot; VerticalAlignment=&quot;Top&quot; /&gt; &lt;ContentControl Grid.Column=&quot;1&quot; Content=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.Trace [rest of string was truncated]&quot;;.
         /// </summary>
         public static string classstruct_noExpander {
             get {
@@ -161,9 +176,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
-        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
-        ///    &lt;TextBlock x:Name=&quot;lblyourPropertyName&quot; Height=&quot;auto&quot; Width=&quot;auto&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
-        ///    &lt;ComboBox x:Name=&quot;cbxyourPropertyName&quot; DisplayMemberPath=&quot;yourComboDisplayMember&quot; HorizontalAlignment=&quot;Stretch&quot; ToolTip=&quot;yourPropertyDescription&quot; MinWidth=&quot;150&quot; ItemsSource=&quot;{Binding Sou [rest of string was truncated]&quot;;.
+        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///    &lt;TextBlock x:Name=&quot;lblyourPropertyName&quot; Height=&quot;auto&quot; Width=&quot;auto&quot; Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///    &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+        ///    &lt;ComboBox x:Name=&quot;cbxyourPropertyName&quot; DisplayMemberPath=&quot;yourComboDisplayMember&quot; HorizontalAlign [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ComboAddBtn {
             get {
@@ -190,11 +206,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
-        ///    &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
-        ///    &lt;ComboBox ToolTip=&quot;yourPropertyDescription&quot; ItemsSource=&quot;{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}&quot;  DisplayMemberPath=&quot;yourComboDisplayMember&quot; /&gt;
-        ///  &lt;/StackPanel&gt;
-        ///&lt;/Template&gt;.
+        ///  &lt;StackPanel Orientation=&quot;Horizontal&quot; Tag=&quot;yourPropertyName&quot;&gt;
+        ///    &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///    &lt;ComboBox ToolTip=&quot;yourPropertyDescription&quot; ItemsSource=&quot;{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}&quot;  DisplayMemberPath=&quot;yourComboDisplayMember&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;/StackPanel [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ComboTemplate {
             get {
@@ -205,12 +220,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot; Width=&quot;75&quot; TextBlock.TextAlignment=&quot;Center&quot; HeaderStyle=&quot;{StaticResource dgBtnsColHdr}&quot;&gt;
+        ///  &lt;DataGridTemplateColumn Header=&quot;дії&quot; Width=&quot;75&quot; TextBlock.TextAlignment=&quot;Center&quot; HeaderStyle=&quot;{StaticResource dgBtnsColHdr}&quot; &gt;
         ///    &lt;DataGridTemplateColumn.CellTemplate&gt;
         ///      &lt;DataTemplate&gt;
         ///        &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
         ///          &lt;Button Command=&quot;{x:Static local:MyCommands.EditRowCommand}&quot; ToolTip=&quot;редагувати рядок&quot;&gt;
-        ///            &lt;Image Source=&quot;pack://application:,,,/WpfApplication2;component/Resources/Icons/edit_btn.png&quot; Width=&quot;20&quot; H [rest of string was truncated]&quot;;.
+        ///            &lt;Image Source=&quot;pack://application:,,,/WpfApplication2;component/Resources/Icons/edit_btn.png&quot; Width=&quot;20&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataGridCommandsColumnTemplate {
             get {
@@ -255,8 +270,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; /&gt;
-        ///  &lt;DatePicker ToolTip=&quot;yourPropertyDescription&quot;  Style=&quot;{StaticResource dtEdStyle}&quot; SelectedDate=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot;/&gt;
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;DatePicker ToolTip=&quot;yourPropertyDescription&quot;  Style=&quot;{StaticResource dtEdStyle}&quot; SelectedDate=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string DateTime {
@@ -282,9 +297,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
-        ///  &lt;Expander Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot;&gt;
+        ///  &lt;Expander x:Name=&quot;expyourPropertyName&quot; Header=&quot;yourPropertyDispName&quot; ToolTip=&quot;yourPropertyDescription&quot; HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; IsExpanded=&quot;False&quot; Tag=&quot;yourPropertyName&quot;&gt;
         ///    &lt;StackPanel HorizontalAlignment=&quot;Stretch&quot; VerticalAlignment=&quot;Stretch&quot; Width=&quot;auto&quot; Height=&quot;auto&quot; Orientation=&quot;Vertical&quot;&gt;
-        ///      &lt;DataGrid x:Name=&quot;gridyourPropertyName&quot; CanUserAddRows=&quot;False&quot; CanUserDeleteRows=&quot;False&quot; I [rest of string was truncated]&quot;;.
+        ///      &lt;DataGrid x:Name=&quot;gridyourPropertyName [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ListOfT {
             get {
@@ -295,8 +310,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; /&gt;
-        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; TextWrapping=&quot;Wrap&quot; AcceptsReturn=&quot;True&quot; VerticalAlignment=&quot;Stretch&quot; Height=&quot;auto&quot; MaxHeight=&quot;60&quot; /&gt;
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; TextWrapping=&quot;Wrap&quot; AcceptsReturn=&quot;True&quot; VerticalAlignment=&quot;Stretch&quot; Height=&quot;auto&quot; MaxHeight=&quot;60&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string multilinestring {
@@ -308,8 +323,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
-        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///  &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
+        ///  &lt;TextBox Style=&quot;{StaticResource txtEdStyle}&quot; Text=&quot;{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string onelinestring {
@@ -321,7 +336,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;RadioButton Content=&quot;yourEnumCurrentValueDescription&quot; GroupName=&quot;rbgyourPropertyName&quot; ToolTip=&quot;yourEnumCurrentValueText - yourEnumCurrentValueDescription&quot; IsChecked=&quot;{Binding Path=yourPropertyName, Mode=TwoWay, Converter={StaticResource enum2BoolConv}, ConverterParameter=yourEnumCurrentValueText}&quot; /&gt;
+        ///  &lt;RadioButton Content=&quot;yourEnumCurrentValueDescription&quot; GroupName=&quot;rbgyourPropertyName&quot; ToolTip=&quot;yourEnumCurrentValueText - yourEnumCurrentValueDescription&quot; IsChecked=&quot;{Binding Path=yourPropertyName, Mode=TwoWay, Converter={StaticResource enum2BoolConv}, ConverterParameter=yourEnumCurrentValueText}&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///&lt;/Template&gt;.
         /// </summary>
         public static string RadioButton {
@@ -333,8 +348,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.XAMLTemplates {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Template&gt;
-        ///  &lt;StackPanel&gt;
-        ///    &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot;/&gt;
+        ///  &lt;StackPanel Tag=&quot;yourPropertyName&quot;&gt;
+        ///    &lt;TextBlock Text=&quot;yourPropertyDispName&quot; Style=&quot;{StaticResource dispNmStyle}&quot; ToolTip=&quot;yourPropertyDescription&quot; Tag=&quot;yourPropertyName&quot;/&gt;
         ///  &lt;/StackPanel&gt;
         ///&lt;/Template&gt;.
         /// </summary>

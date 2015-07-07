@@ -51,6 +51,7 @@
     <Compile Include="ComponentModelEx\OrientationEnum.cs" />
     <Compile Include="ComponentModelEx\RequiredAttribute.cs" />
     <Compile Include="ComponentModelEx\UIConditionalVisibilityAttribute.cs" />
+    <Compile Include="ComponentModelEx\UIPartialFieldsVisibilityAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAddButtonAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageComboAttribute.cs" />
     <Compile Include="ComponentModelEx\UIUsageDataGridParamsAttribute.cs" />
