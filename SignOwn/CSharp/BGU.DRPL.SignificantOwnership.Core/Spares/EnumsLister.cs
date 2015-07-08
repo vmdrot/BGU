@@ -89,6 +89,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> LegalTransactionTypeList { get { return EnumType.GetEnumList(typeof(LegalTransactionType)); } }
         public static List<EnumType> InfluenceTypeList { get { return EnumType.GetEnumList(typeof(InfluenceType)); } }
         public static List<EnumType> LegalTransactionPartyRoleTypeList { get { return EnumType.GetEnumList(typeof(LegalTransactionPartyRoleType)); } }
+        public static List<EnumType> MeansOfCommunicationList { get { return EnumType.GetEnumList(typeof(MeansOfCommunication)); } }
         #endregion
     }
 }

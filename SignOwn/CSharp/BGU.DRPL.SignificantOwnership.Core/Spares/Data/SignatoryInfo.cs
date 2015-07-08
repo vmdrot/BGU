@@ -13,6 +13,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignatoryInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class SignatoryInfo
     {
+        public SignatoryInfo()
+        {
+            DateSigned = DateTime.Now;
+        }
+
         /// <summary>
         /// Обов'язкове (якщо тільки контекстом не передбачено інше)
         /// </summary>
@@ -33,6 +38,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Прізвище й ініціали (підписанта)")]
         [Description("Прізвище й ініціали (підписанта)")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment="Left", IsMultiline=false, MaxWidth="350", MinWidth="250")]
         public string SurnameInitials { get; set; }
 
         [DisplayName("За довіреністю?")]

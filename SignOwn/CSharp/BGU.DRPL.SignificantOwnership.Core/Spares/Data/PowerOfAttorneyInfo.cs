@@ -13,6 +13,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.PowerOfAttorneyInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class PowerOfAttorneyInfo
     {
+        public PowerOfAttorneyInfo()
+        {
+            ValidSince = DateTime.Now;
+        }
+
+
         [DisplayName("Довірена особа")]
         [Description("Кому видано довіреність")]
         [Required]

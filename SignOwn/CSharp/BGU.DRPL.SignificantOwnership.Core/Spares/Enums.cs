@@ -821,5 +821,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    public enum MeansOfCommunication
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Телефон(-и)")]
+        Phone,
+        [Description("Ел.пошта")]
+        Email,
+        [Description("Факс")]
+        Fax,
+        [Description("Звичайна пошта")]
+        Mail
+    }
+
 }
 

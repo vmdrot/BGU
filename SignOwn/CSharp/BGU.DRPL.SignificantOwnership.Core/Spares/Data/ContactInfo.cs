@@ -29,8 +29,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Контактна особа")]
         [Description("Контактна особа (фізособа)")]
-        [UIPartialFieldsVisibility(ShowOrHide=true, PropsList="FullName,ActualAddress")]
+        [UIPartialFieldsVisibility(ShowOrHide=true, PropsList="FullName")]
         public PhysicalPersonInfo Person { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DisplayName("Бажаний засіб комунікації")]
+        [Description("Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)")]
+        [Required]
+        public MeansOfCommunication PreferrableMeansOfCommunication { get; set; }
+
         /// <summary>
         /// Бодай один телефон.
         /// Хай самі вказують стільки, скільки хочуть, залежно від того, 
@@ -52,12 +61,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Перелік адрес електронної пошти")]
         [Required]
         public List<EmailInfo> Emails { get; set; }
+
         /// <summary>
         /// Не обов'язкове (окрім банку, видавництва, тощо - де це вимагається контекстом використання цього типу).
         /// </summary>
         [DisplayName("www")]
         [Description("Веб-сайт")]
         public string www { get; set; }
+
+        [DisplayName("Адреса для листування")]
+        [Description("Адреса для звичайної пошти")]
+        public LocationInfo Address { get; set; }
 
         public override string ToString()
         {
