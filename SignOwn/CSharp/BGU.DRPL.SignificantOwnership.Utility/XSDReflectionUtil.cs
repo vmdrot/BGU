@@ -524,5 +524,12 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             node.Attributes.SetNamedItem(attr);
         }
 
+
+        public static string GetNodeAttributeSafe(XmlNode node, string attrNm)
+        {
+            if (node == null || node.Attributes == null || node.Attributes[attrNm] == null)
+                return null;
+            return node.Attributes[attrNm].Value;
+        }
     }
 }

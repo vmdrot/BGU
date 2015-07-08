@@ -13,8 +13,7 @@ namespace Evolvex.Utility.Core.ComponentModelEx
         {
         }
 
-        public XamlExpanderWrappingAttribute(bool wrap)
-            : base()
+        public XamlExpanderWrappingAttribute(bool wrap) : base ()
         {
             this.WrapIntoExpander = wrap;
         }

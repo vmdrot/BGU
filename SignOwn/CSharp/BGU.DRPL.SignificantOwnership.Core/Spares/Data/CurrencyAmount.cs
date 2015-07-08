@@ -14,6 +14,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.CurrencyAmount_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     [XamlExpanderWrapping(false)]
+    [UIUsageSuppressControlLabels(true)]
     public class CurrencyAmount : NotifyPropertyChangedBase
     {
         public CurrencyAmount()
