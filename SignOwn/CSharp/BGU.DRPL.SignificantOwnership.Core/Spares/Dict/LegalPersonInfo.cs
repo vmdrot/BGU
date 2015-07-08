@@ -20,6 +20,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         {
             ResidenceCountry = CountryInfo.UKRAINE;
             this.PrincipalActivities = new List<EconomicActivityType>();
+            this.OwnershipForm = OwnershipFormType.Private;
+            this.IsStockExchangeListed = false;
         }
 
         private CountryInfo _ResidenceCountry;
@@ -31,6 +33,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Країна юрисдикції юридичної особи")]
         [Required]
         public CountryInfo ResidenceCountry { get { return _ResidenceCountry; } set { _ResidenceCountry = value; OnPropertyChanged("ResidenceCountry"); OnPropertyChanged("IsNonResident"); } }
+
+        private OwnershipFormType _OwnershipForm;
+        [DisplayName("Форма власності")]
+        [Description("Форма власності юридичної особи")]
+        [Required]
+        [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
+        public OwnershipFormType OwnershipForm { get { return _OwnershipForm; } set { _OwnershipForm = value; OnPropertyChanged("OwnershipForm"); } }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -45,6 +54,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Податковий №")]
         [Description("ЄДРПОУ/Податковий ID/HandelsregisterNr.(для нерезидентів)")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment="Left", IsMultiline=false,MaxWidth="400", MinWidth="250")]
         public string TaxCodeOrHandelsRegNr { get { return _TaxCodeOrHandelsRegNr; } set { _TaxCodeOrHandelsRegNr = value; OnPropertyChanged("TaxCodeOrHandelsRegNr"); } }
 
         private string _Name;
@@ -66,6 +76,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [UIConditionalVisibility("IsNonResident")]
         public string NameUkr { get { return _NameUkr; } set { _NameUkr = value; OnPropertyChanged("NameUkr"); } }
 
+        private bool _IsStockExchangeListed;
+        [DisplayName("Публічна компанія")]
+        [Description("Публічна компанія згідно з визначенням пост.357")]
+        [Required]
+        public bool IsStockExchangeListed { get { return _IsStockExchangeListed; } set { _IsStockExchangeListed = value; OnPropertyChanged("IsStockExchangeListed"); } }
+
+        private StockExchangeListingInfo _StockExchangeListing;
+        [DisplayName("Лістинг")]
+        [Description("Інформація про біржовий лістинг для публічної компанії")]
+        [Required("IsStockExchangeListed")]
+        [UIConditionalVisibility("IsStockExchangeListed")]
+        public StockExchangeListingInfo StockExchangeListing { get { return _StockExchangeListing; } set { _StockExchangeListing = value; OnPropertyChanged("StockExchangeListing"); } }
+
         private LocationInfo _Address;
         /// <summary>
         /// Адреса юрособи. Поле обов'язкове, якщо контекстом не вказано інше.
@@ -76,13 +99,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Required]
         public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
 
-        private bool _IsActualAndRegistrationAddressDifferent;
+        private bool _IsRegistrationAddressActual;
         /// <summary>
         /// 
         /// </summary>
+        [DisplayName("Юридична адреса є фактичним місцезнаходженням")]
+        [Description("(зніміть цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)")]
+        public bool IsRegistrationAddressActual { get { return _IsRegistrationAddressActual; } set { _IsRegistrationAddressActual = value; OnPropertyChanged("IsRegistrationAddressActual"); OnPropertyChanged("IsActualAndRegistrationAddressDifferent"); } }
+
+
+
+        //private bool _IsActualAndRegistrationAddressDifferent;
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        [XmlIgnore]
         [DisplayName("Юридична й фактична адреси відрізняються?")]
         [Description("(відзначте цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)")]
-        public bool IsActualAndRegistrationAddressDifferent { get { return _IsActualAndRegistrationAddressDifferent; } set { _IsActualAndRegistrationAddressDifferent = value; OnPropertyChanged("IsActualAndRegistrationAddressDifferent"); } }
+        public bool IsActualAndRegistrationAddressDifferent { get { return !IsRegistrationAddressActual; } }
+        //public bool IsActualAndRegistrationAddressDifferent { get { return _IsActualAndRegistrationAddressDifferent; } set { _IsActualAndRegistrationAddressDifferent = value; OnPropertyChanged("IsActualAndRegistrationAddressDifferent"); } }
 
 
         private LocationInfo _ActualAddress;
@@ -91,7 +127,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Місцезнаходження")]
         [Description("Фактичне місцезнаходження юридичної особи")]
-        [UIConditionalVisibility("IsResidentialAndRegistrationAddressDifferent")]
+        [UIConditionalVisibility("IsActualAndRegistrationAddressDifferent")]
         public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
 
         private RegistrarAuthority _Registrar;
