@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -20,6 +22,15 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         public GenericPersonID Asset { get; set; }
 
+        [DisplayName("Суд")]
+        [Description("Суд на розгляді/у провадженні якого перебуває справа, чи котрий виніс рішення")]
+        [Required]
+        public CourtInfo Court { get; set; }
+
+        [DisplayName("Справа №")]
+        [Description("№ справи про банкрутство/ліквідацію юр.особи (з реєстру судових рішень)")]
+        public string CaseNr { get; set; }
+        
         /// <summary>
         /// Юр.особу ліквідовано, чи вона збанкрутіла/неплатоспроможна
         /// </summary>
@@ -32,6 +43,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата набуття статусу (ліквідації чи банкрутства)")]
         [Required]
         public DateTime DateEffective { get; set; }
+
         /// <summary>
         /// обов'язкове
         /// </summary>
@@ -39,6 +51,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         [Multiline]
         public string LiquidationReason { get; set; }
+
         /// <summary>
         /// обов'язкове; мається на увазі, документ, рішення, розпорядження, закон, тощо (конкретний...)
         /// </summary>
@@ -46,5 +59,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         [Multiline]
         public string LiquidationPretext { get; set; }
+
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}, {3}", Asset, Court, EnumType.GetEnumDescription(Status), DateEffective);
+        }
+
     }
 }

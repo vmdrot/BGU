@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
 using System.Xml.Serialization;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -51,5 +52,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         public List<CourtDecisionInfo> CourtDecisions { get { return _CourtDecisions; } set { _CourtDecisions = value; OnPropertyChanged("CourtDecisions"); } }
 
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Порушено справу {0:DD.MM.YYYY}",CaseFiledDt);
+            sb.AppendFormat(",статус - {0}", EnumType.GetEnumDescription(CurrentStatus));
+            if(InCurrentStatusSince != null)
+                sb.AppendFormat(" з {0:DD.MM.YYYY}",InCurrentStatusSince);
+            sb.AppendFormat(", судових рішень - {0}", CourtDecisions);
+  
+            return sb.ToString();
+        }
     }
 }

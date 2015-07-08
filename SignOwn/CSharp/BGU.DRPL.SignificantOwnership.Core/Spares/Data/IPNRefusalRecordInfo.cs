@@ -22,6 +22,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// <see cref="http://www.uazakon.com/documents/date_4f/pg_imnkxj.htm"/>
     public class IPNRefusalRecordInfo
     {
+        public IPNRefusalRecordInfo()
+        {
+            RecordDate = DateTime.Now;
+        }
+
         [DisplayName("Дата запису")]
         [Description("Дата внесення відповідного запису до паспорта")]
         public DateTime RecordDate { get; set; }

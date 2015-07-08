@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
 using System.Xml.Serialization;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -18,7 +19,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         public BreachOfLawRecordInfo()
         {
-            JurisdictionCountry = CountryInfo.UKRAINE;
+            
         }
 
         private BreachOfLawType _BreachType;
@@ -30,48 +31,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         public BreachOfLawType BreachType { get { return _BreachType; } set { _BreachType = value; OnPropertyChanged("BreachType"); } }
 
-        private string _CourtName;
-        /// <summary>
-        /// Суд, що виніс рішення, обов'язкове поле
-        /// </summary>
-        [DisplayName("Суд")]
-        [Required]
-        public string CourtName { get { return _CourtName; } set { _CourtName = value; OnPropertyChanged("CourtName"); } }
-
-        private string _CourtNameUkr;
-        /// <summary>
-        /// Суд, що виніс рішення - укр. (якщо іноземна юрисдикція)
-        /// </summary>
-        [DisplayName("Суд (укр.)")]
-        [UIConditionalVisibility("IsNonResident")]
-        public string CourtNameUkr { get { return _CourtNameUkr; } set { _CourtNameUkr = value; OnPropertyChanged("CourtNameUkr"); } }
-
-        private CountryInfo _JurisdictionCountry;
-        /// <summary>
-        /// Юрисдикція, за змовчанням - Україна
-        /// </summary>
-        [DisplayName("Країна підсудності")]
-        [Required]
-        public CountryInfo JurisdictionCountry { get { return _JurisdictionCountry; } set { _JurisdictionCountry = value; OnPropertyChanged("JurisdictionCountry"); OnPropertyChanged("IsNonResident"); } }
-
-        [Browsable(false)]
-        [XmlIgnore]
-        public bool IsNonResident { get { return JurisdictionCountry != null && JurisdictionCountry != CountryInfo.UKRAINE; } }
-
-        private DateTime _SentenceDate;
-        /// <summary>
-        /// обов'язкове
-        /// </summary>
-        [DisplayName("Дата вироку")]
-        [Required]
-        public DateTime SentenceDate { get { return _SentenceDate; } set { _SentenceDate = value; OnPropertyChanged("SentenceDate"); } }
+        private CourtDecisionInfo _CourtDecision;
+        [DisplayName("Рішення суду")]
+        [Description("Відомості про судове відповідне судове рішення")]
+        public CourtDecisionInfo CourtDecision { get { return _CourtDecision; } set { _CourtDecision = value; OnPropertyChanged("CourtDecision"); OnPropertyChanged("IsCourtDecisionSentence"); } }
 
         private string _CodeOrLaw;
         /// <summary>
         /// обов'язкове
         /// </summary>
         [DisplayName("Закон/кодекс")]
+        [Description("Закон/кодекс, згідно з  яким було засуджено")]
         [Required]
+        [Multiline]
         public string CodeOrLaw { get { return _CodeOrLaw; } set { _CodeOrLaw = value; OnPropertyChanged("CodeOrLaw"); } }
 
         private string _Articles;
@@ -79,6 +51,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// обов'язкове
         /// </summary>
         [DisplayName("Стаття(-і)")]
+        [Description("Стаття(-і), згідно з  яким було засуджено")]
         [Required]
         [Multiline]
         public string Articles { get { return _Articles; } set { _Articles = value; OnPropertyChanged("Articles"); } }
@@ -88,9 +61,29 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// обов'язкове
         /// </summary>
         [DisplayName("Тип вироку")]
+        [Description("Якщо рішення суду було прийнято у формі вироку")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public SentenceType Sentence { get { return _Sentence; } set { _Sentence = value; OnPropertyChanged("Sentence"); } }
+        [Required("IsCourtDecisionSentence == true")]
+        [UIConditionalVisibility("CourtDecision.IsCourtDecisionSentence")]
+        public SentenceType Sentence { get {  return _Sentence; } set { _Sentence = value; OnPropertyChanged("Sentence"); OnPropertyChanged("IsDurationPenalty"); OnPropertyChanged("IsFinePenalty"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsDurationPenalty { get { return Sentence == SentenceType.Jailed || Sentence == SentenceType.Probation || Sentence == SentenceType.RemedialWorks; } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsFinePenalty { get { return Sentence == SentenceType.Fined; } }
+
+        [DisplayName("Термін (років)")]
+        [Description("Термін призначеного покарання (у роках)")]
+        [UIConditionalVisibility("IsDurationPenalty")]
+        public decimal? PenaltyDurationYrs { get; set; }
+
+        [DisplayName("Штраф")]
+        [Description("Сума (і валюта) накладеного штрафу")]
+        [UIConditionalVisibility("IsFinePenalty")]
+        public CurrencyAmount FineAmount { get; set; }
 
         private string _OtherSanctionDetails;
         /// <summary>
@@ -117,5 +110,32 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [UIConditionalVisibility("IsConvictionSettled")]
         public DateTime? SettledDate { get { return _SettledDate; } set { _SettledDate = value; OnPropertyChanged("SettledDate"); } }
 
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (CourtDecision != null)
+            {
+                if (CourtDecision.IsCourtDecisionSentence)
+                    sb.AppendFormat("{0} ", EnumType.GetEnumDescription(Sentence));
+            }
+
+            if (IsDurationPenalty)
+                sb.AppendFormat("{0} років", PenaltyDurationYrs);
+            
+            else if (IsFinePenalty)
+                sb.AppendFormat("{0} штрафу", FineAmount);
+            
+            if(!string.IsNullOrEmpty(CodeOrLaw))
+                sb.AppendFormat(", {0} ", CodeOrLaw);
+            
+            if (!string.IsNullOrEmpty(Articles))
+                sb.AppendFormat(", {0} ", Articles);
+
+            if (IsConvictionSettled)
+                sb.AppendFormat(", погашено {0:DD.MM.YYYY}", SettledDate);
+
+            return sb.ToString();
+        }
     }
 }

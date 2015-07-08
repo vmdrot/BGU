@@ -30,5 +30,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         [Multiline]
         public string RepaymentPlans { get { return _RepaymentPlans; } set { _RepaymentPlans = value; OnPropertyChanged("RepaymentPlans"); } }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.AppendFormat(", {0}планую погашати", IsRepaymentPlanned ? "" : "не ");
+            if(PlannedRepaymentDate != null)
+                sb.AppendFormat("({0:DD.MM.YYYY})", (DateTime)PlannedRepaymentDate);
+            if(!string.IsNullOrEmpty(RepaymentPlans))
+                sb.AppendFormat(", {0}", RepaymentPlans);
+
+            return sb.ToString();
+        }
     }
 }
