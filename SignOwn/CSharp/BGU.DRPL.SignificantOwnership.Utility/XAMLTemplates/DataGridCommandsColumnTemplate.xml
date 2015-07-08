@@ -4,7 +4,7 @@
     <DataGridTemplateColumn.CellTemplate>
       <DataTemplate>
         <StackPanel Orientation="Horizontal">
-          <Button Command="{x:Static local:MyCommands.EditRowCommand}" ToolTip="редагувати рядок">
+          <Button Command="{x:Static local:MyCommands.EditRowCommand}" ToolTip="редагувати рядок" Background="White">
             <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/edit_btn.png" Width="20" Height="20"/>
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">
@@ -15,7 +15,7 @@
               </MultiBinding>
             </Button.CommandParameter>
           </Button>
-          <Button Command="{x:Static local:MyCommands.DeleteRowCommand}" ToolTip="видалити рядок">
+          <Button Command="{x:Static local:MyCommands.DeleteRowCommand}" ToolTip="видалити рядок" Background="White">
             <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/del_btn.jpg" />
             <Button.CommandParameter>
               <MultiBinding Converter="{StaticResource multiValConv}">

@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
-  <RadioButton Content="yourEnumCurrentValueDescription" GroupName="rbgyourPropertyName" ToolTip="yourEnumCurrentValueText - yourEnumCurrentValueDescription" IsChecked="{Binding Path=yourPropertyName, Mode=TwoWay, Converter={StaticResource enum2BoolConv}, ConverterParameter=yourEnumCurrentValueText}" Tag="yourPropertyName"/>
+  <RadioButton GroupName="rbgyourPropertyName" ToolTip="yourEnumCurrentValueText - yourEnumCurrentValueDescription" IsChecked="{Binding Path=yourPropertyName, Mode=TwoWay, Converter={StaticResource enum2BoolConv}, ConverterParameter=yourEnumCurrentValueText}" Tag="yourPropertyName" Margin="5,0">
+    <TextBlock Text="yourEnumCurrentValueDescription" Style="{StaticResource rbTextStyle}" />
+  </RadioButton>
 </Template>

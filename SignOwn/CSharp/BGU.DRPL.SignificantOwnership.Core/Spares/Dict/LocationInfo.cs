@@ -31,12 +31,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("область, район/провінція, тощо")]
         [Description("область, район/провінція, тощо")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline=false, MaxWidth="400", MinWidth="350")]
         public string Region { get; set; }
         /// <summary>
         /// Залежно від контексту, у більшості випадків - бажано
         /// </summary>
         [DisplayName("Поштовий індекс")]
         [Description("Поштовий індекс")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "150", MinWidth = "100")]
         public string ZipCode { get; set; }
         /// <summary>
         /// Обов'язкове поле (скрізь)
@@ -44,24 +46,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Населений пункт")]
         [Description("Населений пункт")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         public string City { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом
         /// </summary>
         [DisplayName("Вулиця/площа/тощо")]
         [Description("Вулиця/площа/тощо")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         public string Street { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом
         /// </summary>
         [DisplayName("№ / назва будинку")]
         [Description("№ / назва будинку")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         public string HouseNr { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом та передбачено/існує
         /// </summary>
         [DisplayName("№ кв./офісу, тощо")]
         [Description("№ кв./офісу, тощо")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         public string ApptOfficeNr { get; set; }
 
         #region inner type(s)

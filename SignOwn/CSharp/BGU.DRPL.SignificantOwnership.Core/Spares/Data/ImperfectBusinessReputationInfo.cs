@@ -35,6 +35,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("")]
         [Required("HadBankruptcyInvestigation == true")]
         [UIConditionalVisibility("HadBankruptcyInvestigation")]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Справи про банкрутство")]
         public List<BankruptcyInvestigationInfo> BankruptcyInvestigations { get; set; }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)")]
         [Required("HasMiscNonRepaidDebts == true")]
         [UIConditionalVisibility("HasMiscNonRepaidDebts")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Зобов'язання")]
         public List<IndebtnessInfo> MiscNonRepaidDebts { get; set; }
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)")]
         [Required("HadIndustrySpecificBreaches == true")]
         [UIConditionalVisibility("HadIndustrySpecificBreaches")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Порушення")]
         public List<BreachOfLawRecordInfo> BreachesOfLaw { get; set; }
 
         /// <summary>
@@ -100,6 +103,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)")]
         [Required("HasLiquidatedSignOwnershipLastYear == true")]
         [UIConditionalVisibility("HasLiquidatedSignOwnershipLastYear")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Ліквідовані юр.особи")]
         public List<LiquidatedEntityOwnershipInfo> LiquidatedSignOwnershipLastYear { get; set; }
     }
 }
