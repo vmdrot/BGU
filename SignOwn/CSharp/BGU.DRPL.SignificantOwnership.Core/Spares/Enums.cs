@@ -212,6 +212,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Не вказано")]None = 0,
         [Description("Ув'язнення")]
         Jailed,
+        [Description("Умовне ув'язнення")]
+        Probation,
         [Description("Виправні роботи")]
         RemedialWorks,
         [Description("Штраф")]
@@ -729,7 +731,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Ухвала суду")]
         CourtResolution,
         [Description("Окрема ухвала")]
-        SpecialResolution
+        SpecialResolution,
+        [Description("Окрема думка судді")]
+        JudgesMinorityReport
     }
 
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
@@ -833,6 +837,22 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Fax,
         [Description("Звичайна пошта")]
         Mail
+    }
+
+    /// <summary>
+    /// а) ДК 001:2004 – Класифікація форм власності; 
+    /// б) ДК 002:2004 – Класифікація організаційно-правових форм господарювання.
+    /// </summary>
+    public enum OwnershipFormType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Приватна")]
+        Private = 1,
+        [Description("Державна")]
+        State,
+        [Description("Комунальна (муніципальна)")]
+        Municipal
     }
 
 }
