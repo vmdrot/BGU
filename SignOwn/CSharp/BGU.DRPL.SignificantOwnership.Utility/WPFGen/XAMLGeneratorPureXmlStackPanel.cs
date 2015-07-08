@@ -70,6 +70,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
         #region prop(s)
         public bool GenerateInlineTemplateOnly { get; set; }
         public UIPartialFieldsVisibilityAttribute InlineTemplateParams{ get; set; }
+        public UIUsageSuppressControlLabelsAttribute SuppressLabelsAttr { get; set; }
 
         #endregion
 
@@ -142,7 +143,9 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _referencedControlTemplateNames = controlTemplateNames;
             _rootType = typ;
             _userAssembly = userAsmbly;
-            
+
+            SuppressLabelsAttr = ReflectionUtil.GetTypeAttribute<UIUsageSuppressControlLabelsAttribute>(typ);
+
             XmlDocument rslt = CreateControlWrapper(typ);
             XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
             XmlNode gridNode = dataTemplateNode.FirstChild;
@@ -153,33 +156,10 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             }
             List<PropertyInfo> props = FilterEditableProps(ReflectionUtil.ListEditableProperties(typ));
             CreateCategoriesNodes(gridNode, props);
-            //if (!this.GenerateInlineTemplateOnly || this.InlineTemplateParams == null)
-            //{
-                foreach (PropertyInfo pi in props)
-                {
-                    AddControl(gridNode, pi);
-                }
-            //}
-            //else
-            //{
-            //    List<string> propNamesLst = ParsePropsList(this.InlineTemplateParams.PropsList);
-            //    foreach (PropertyInfo pi in props)
-            //    {
-            //        if (InlineTemplateParams.ShowOrHide)
-            //        {
-            //            if (!propNamesLst.Contains(pi.Name))
-            //                continue;
-
-            //        }
-            //        else
-            //        { 
-            //            if(propNamesLst.Contains(pi.Name))
-            //                continue;
-            //        }
-            //        AddControl(gridNode, pi);
-            //    }
-
-            //}
+            foreach (PropertyInfo pi in props)
+            {
+                AddControl(gridNode, pi);
+            }
 
             //clean-up
             RemoveEmptyNSAttrs((XmlNode)rslt.DocumentElement);
@@ -400,6 +380,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 ApplyConditionalVisibilityAttribute(curr, pi);
+                ApplySuppressLabelsAttibute(curr, pi);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 if (curr.Name == "TextBox")
@@ -444,6 +425,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode currSrc = sourceBucket.FirstChild;
             XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
             ApplyConditionalVisibilityAttribute(curr, pi);
+            ApplySuppressLabelsAttibute(curr, pi);
             ApplyOrientation(curr, comboAddBtnAttr.ContainerOrientation);
             XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
@@ -519,6 +501,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode currSrc = sourceBucket.FirstChild;
             XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
             ApplyConditionalVisibilityAttribute(curr, pi);
+            ApplySuppressLabelsAttibute(curr, pi);
             ApplyOrientation(curr, comboAttr.ContainerOrientation);
             XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ReplacePlaceholderTexts(curr, pi);
@@ -587,6 +570,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ApplyConditionalVisibilityAttribute(curr, pi);
+                ApplySuppressLabelsAttibute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
 
                 targetNodes.Add(curr);
@@ -670,9 +654,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
 
         private void AddComplextTypeControl(ControlInsertionPosition insPos, PropertyInfo pi)
         {
-
             UIPartialFieldsVisibilityAttribute partFldsVisAttr = ReflectionUtil.GetPropertyOrTypeAttribute<UIPartialFieldsVisibilityAttribute>(pi);
-
 
             XmlDocument controlXamlFragmentDoc = new XmlDocument();
             XamlExpanderWrappingAttribute wrapAttr = ReflectionUtil.GetPropertyOrTypeAttribute<XamlExpanderWrappingAttribute>(pi);
@@ -692,6 +674,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ApplyConditionalVisibilityAttribute(curr, pi);
+                ApplySuppressLabelsAttibute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
                 if(curr.Name == "Expander")
                     contentControlNode = curr.FirstChild;
@@ -741,6 +724,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             XmlNode stackPanelNode = insPos.RelNode.OwnerDocument.ImportNode(sourceBucket.FirstChild, true);
             XSDReflectionUtil.WriteAttribute(stackPanelNode, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
             ApplyConditionalVisibilityAttribute(stackPanelNode, pi);
+            ApplySuppressLabelsAttibute(stackPanelNode, pi);
             ReplacePlaceholderTexts(stackPanelNode, pi);
             XSDReflectionUtil.WriteAttribute(stackPanelNode, "Orientation", rbgAttr.GroupOrientation.ToString());
             InsertNode(insPos, stackPanelNode, pi);
@@ -772,6 +756,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ApplyConditionalVisibilityAttribute(curr, pi);
+                ApplySuppressLabelsAttibute(curr, pi);
                 ReplacePlaceholderTexts(curr, pi);
                 ReplacePlaceholderAttrRecursively(curr, templatedEnumListerPlaceholder, string.Format("{0}List", pi.PropertyType.Name));
 
@@ -830,12 +815,58 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 XmlNode curr = insPos.RelNode.OwnerDocument.ImportNode(currSrc, true);
                 ApplyConditionalVisibilityAttribute(curr, pi);
+                ApplySuppressLabelsAttibute(curr, pi);
                 XSDReflectionUtil.WriteAttribute(curr, "xmlns", insPos.RelNode.OwnerDocument.DocumentElement.NamespaceURI);
                 ReplacePlaceholderTexts(curr, pi);
                 targetNodes.Add(curr);
             }
             InsertNode(insPos, targetNodes.ToArray(), pi);
          
+        }
+
+        private void ApplySuppressLabelsAttibute(XmlNode curr, PropertyInfo pi)
+        {
+            if (this.SuppressLabelsAttr == null || !this.SuppressLabelsAttr.SuppressControlLabels)
+                return;
+            List<XmlNode> textBlocks = new List<XmlNode>();
+            SelectNodesByNameRecursively(curr, "TextBlock", textBlocks);
+            foreach (XmlNode currLbl in textBlocks)
+            {
+                if (!CheckIsControlLabel(currLbl, pi) || (currLbl.ParentNode != null && currLbl.ParentNode.Name == "CheckBox"))
+                    continue;
+                XSDReflectionUtil.WriteAttribute(currLbl, "Visibility", "Collapsed"); 
+            }
+        }
+
+        private bool CheckIsControlLabel(XmlNode currLbl, PropertyInfo pi)
+        {
+            string text = XSDReflectionUtil.GetNodeAttributeSafe(currLbl, "Text");
+            string toolTip = XSDReflectionUtil.GetNodeAttributeSafe(currLbl, "ToolTip");
+
+            if(string.IsNullOrEmpty(text) && string.IsNullOrEmpty(toolTip))
+                return false;
+            string[] subjs = new string[] { text, toolTip };
+            foreach (string attr in subjs)
+            {
+                if (string.IsNullOrEmpty(attr))
+                    continue;
+                if (attr.IndexOf(templatedPropertyNamePlaceholder) != -1 || attr.IndexOf(templatedPropertyDispNamePlaceholder) != -1 || attr.IndexOf(templatedPropertyDescrPlaceholder) != -1)
+                    return true;
+            }
+            return false;
+
+        }
+
+        
+
+        private void SelectNodesByNameRecursively(XmlNode bucket, string elementName, List<XmlNode> target)
+        {
+            if (bucket.Name == elementName)
+                target.Add(bucket);
+            foreach (XmlNode child in bucket.ChildNodes)
+            {
+                SelectNodesByNameRecursively(child, elementName, target);
+            }
         }
 
 
