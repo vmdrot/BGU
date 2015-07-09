@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Template>
   <TextBlock Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" Tag="yourPropertyName"/>
-  <ComboBox ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedValue="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="Value" SelectedValuePath="EnumValue" HorizontalAlignment="Stretch" Tag="yourPropertyName"/>
+  <ComboBox ToolTip="yourPropertyDescription" ItemsSource="{Binding Source={x:Static bgus:EnumsLister.yourEnumListerProperty}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" SelectedValue="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" DisplayMemberPath="Value" SelectedValuePath="EnumValue" HorizontalAlignment="Left" MinWidth="250" MaxWidth="350" Tag="yourPropertyName"/>
 </Template>

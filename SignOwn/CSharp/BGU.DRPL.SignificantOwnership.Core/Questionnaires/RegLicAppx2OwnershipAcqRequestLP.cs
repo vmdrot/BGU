@@ -389,6 +389,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Зв'язки між фігурантами анкети")]
         [Description("Опис зв'язків між фізичними та юридичними особами, що згадуються в розділах анкети")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Опис зв'язку")]
         public List<PersonsAssociation> PersonsLinks { get; set; }
         #endregion
 

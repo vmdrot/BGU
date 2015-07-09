@@ -23,7 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public CurrencyAmount SharesNominalValue { get; set; }
         [DisplayName("%")]
         [Description("%")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "250", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "250", StringFormat = "{}{0:N4}")]
         public decimal Pct { get; set; }
 
         public override string ToString()

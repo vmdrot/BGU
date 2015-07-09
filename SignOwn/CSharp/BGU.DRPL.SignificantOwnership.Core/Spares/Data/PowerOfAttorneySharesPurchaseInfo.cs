@@ -19,7 +19,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [DisplayName("% участі довірителя")]
         [Description("Розмір участі довірителя в банку, %")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N4}")]
         public decimal SharesPct { get; set; }
         
         [DisplayName("Кількість голосів")]
@@ -29,7 +29,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         
         [DisplayName("% голосів")]
         [Description("Відсоток голосів у банку, щодо яких передається право голосу")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N4}")]
         public decimal VotesPct { get; set; }
 
         public override string ToString()

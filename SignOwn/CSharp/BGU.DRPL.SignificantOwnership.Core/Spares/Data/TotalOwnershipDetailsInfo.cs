@@ -41,7 +41,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Усього % у загальній власності")]
         [Description("Усього % у загальній власності")]
         [Required]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N4}")]
         public decimal TotalCapitalSharePct { get; set; }
         /// <summary>
         /// Обов'язкове, навіть якщо там усе по 0-м

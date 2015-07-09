@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -38,13 +39,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Тип володіння")]
         [Description("Тип володіння")]
         [Required]
+        //[UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "OwnershipTypeList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue")]
         public OwnershipType OwnershipKind { get; set; }
         /// <summary>
         /// Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі
         /// </summary>
         [DisplayName("Частка у власності (сума)")]
         [Description("Частка (сума)")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N2}")]
+        //[UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N2}")]
         public decimal Share { get; set; }
 
         /// <summary>
@@ -52,26 +54,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Кількість акцій")]
         [Description("Кількість акцій, що належать Власникові в об'єкті власності")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N0}")]
         public int SharesCount { get; set; }
         /// <summary>
         /// Як правило, саме у %-х і зазначається власність
         /// </summary>
         [DisplayName("Частка (%)")]
         [Description("Частка (%)")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", MinWidth = "75", StringFormat = "{}{0:N4}")]
         public decimal SharePct { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом
         /// </summary>
         [DisplayName("Кількість голосів в управлінні")]
         [Description("Кількість голосів в управлінні")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", StringFormat = "{}{0:N0}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N0}")]
         public int Votes { get; set; }
 
         public override string ToString()
         {
-            return string.Format("in {0}, by {1} ({2}) {3:N0} {4}% {5:N0}", Asset, Owner, OwnershipKind, Share, SharePct, Votes);
+            return string.Format("у {0}, власник: {1} ({2}) {3:N0} {4}% {5:N0}", Asset, Owner, EnumType.GetEnumDescription( OwnershipKind), Share, SharePct, Votes);
         }
     }
 }

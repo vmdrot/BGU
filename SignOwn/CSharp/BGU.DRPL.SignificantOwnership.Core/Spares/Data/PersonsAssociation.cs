@@ -34,14 +34,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         public GenericPersonID Two { get { return _Two; } set { _Two = value; OnPropertyChanged("Two"); } }
 
-        private OwnershipType _AssociationType;
+        private PersonAssociationType _AssociationType;
         /// <summary>
         /// обов'язково
         /// </summary>
         [DisplayName("Тип зв'язку")]
         [Description("Тип зв'язку")]
         [Required]
-        public OwnershipType AssociationType { get { return _AssociationType; } set { _AssociationType = value; OnPropertyChanged("AssociationType"); } }
+        [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
+        public PersonAssociationType AssociationType { get { return _AssociationType; } set { _AssociationType = value; OnPropertyChanged("AssociationType"); OnPropertyChanged("IsRelative"); OnPropertyChanged("IsOtherRole"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsRelative { get { return AssociationType == PersonAssociationType.Relative; } }
 
         private AssociatedPersonRole _AssociationRoleOneVsTwo;
         /// <summary>
@@ -51,6 +56,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Ким приходиться перша особа другій")]
         [Description("Назва, ким приходиться перша особа другій")]
         [Required]
+        [UIConditionalVisibility("IsRelative")]
+        //[UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue")]
         public AssociatedPersonRole AssociationRoleOneVsTwo { get { return _AssociationRoleOneVsTwo; } set { _AssociationRoleOneVsTwo = value; OnPropertyChanged("AssociationRoleOneVsTwo"); OnPropertyChanged("IsOtherRole"); } }
 
         private AssociatedPersonRole _AssociationRoleTwoVsOne;
@@ -62,11 +69,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Ким приходиться друга особа першій")]
         [Description("Назва, ким приходиться друга особа першій")]
         [Required]
+        [UIConditionalVisibility("IsRelative")]
+        //[UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue")]
         public AssociatedPersonRole AssociationRoleTwoVsOne { get { return _AssociationRoleTwoVsOne; } set { _AssociationRoleTwoVsOne = value; OnPropertyChanged("AssociationRoleTwoVsOne"); OnPropertyChanged("IsOtherRole"); } }
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsOtherRole { get { return AssociationRoleOneVsTwo ==AssociatedPersonRole.OtherRelative || AssociationRoleTwoVsOne == AssociatedPersonRole.OtherRelative; } }
+        public bool IsOtherRole { get { return (AssociationType == PersonAssociationType.Relative &&  AssociationRoleOneVsTwo ==AssociatedPersonRole.OtherRelative || AssociationRoleTwoVsOne == AssociatedPersonRole.OtherRelative) || AssociationType == PersonAssociationType.Other; } }
 
 
         private string _AssociationRolesIfOther;
@@ -78,12 +87,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Ким приходяться особи одна одній (якщо інше)")]
         [Required]
         [UIConditionalVisibility("IsOtherRole")]
+        [Multiline]
         public string AssociationRolesIfOther { get { return _AssociationRolesIfOther; } set { _AssociationRolesIfOther = value; OnPropertyChanged("AssociationRolesIfOther"); } }
 
 
         public override string ToString()
         {
-            return string.Format("{0} vs {1}, {2} ({3}, {4}, {5})", One, Two, EnumType.GetEnumDescription( AssociationType), EnumType.GetEnumDescription(AssociationRoleOneVsTwo), EnumType.GetEnumDescription(AssociationRoleTwoVsOne), AssociationRolesIfOther);
+            return string.Format("{0} vs {1}, {2} ({3}, {4}, {5})", One, Two, EnumType.GetEnumDescription( AssociationType), IsRelative ? EnumType.GetEnumDescription(AssociationRoleOneVsTwo) : string.Empty, IsRelative ? EnumType.GetEnumDescription(AssociationRoleTwoVsOne) : string.Empty, IsOtherRole ? AssociationRolesIfOther : string.Empty);
         }
     }
 }
