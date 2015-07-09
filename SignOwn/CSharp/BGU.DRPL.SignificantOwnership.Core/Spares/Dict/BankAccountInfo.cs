@@ -21,7 +21,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Власник рахунку")]
         [Required("WithMoreDetails == true")]
         [UIConditionalVisibility("WithMoreDetails")]
-        [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddMentionedPersonCommand", DisplayMember = "DisplayName", ItemGetterFull = "localdata:DataModule.CurrentMentionedIdentities", ValueMember = "ID", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, Width = "150", ContainerOrientation=Orientation.Vertical)]
+        [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddMentionedPersonCommand", DisplayMember = "DisplayName", ItemGetterFull = "localdata:DataModule.CurrentMentionedIdentities", ValueMember = "ID", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, Width = "250", ContainerOrientation = Orientation.Vertical)]
         public GenericPersonID AccountOwner { get; set; }
         /// <summary>
         /// Ідентифікація банку, де відкрито рахунок
