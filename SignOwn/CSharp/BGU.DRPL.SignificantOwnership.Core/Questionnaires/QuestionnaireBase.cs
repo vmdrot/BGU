@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
+using BGU.DRPL.SignificantOwnership.Core.Spares;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
-    public abstract class QuestionnaireBase : IQuestionnaire
+    public abstract class QuestionnaireBase : NotifyPropertyChangedBase, IQuestionnaire
     {
         protected abstract string QuestionnairePrefixForFileName {get;}
         protected abstract string BankNameForFileName { get; }
