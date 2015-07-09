@@ -24,7 +24,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// з бізнес-користувачами)
     /// </summary>
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
-    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService, INotifyPropertyChanged
+    public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
         
         private const string CATEGORY_I = "І. Інформація про юридичну особу";
@@ -427,15 +427,15 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             get { return new List<LocationInfo>(); /* todo */ }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChangedEventHandler handler = PropertyChanged;
+        //    if (handler != null)
+        //    {
+        //        handler(this, new PropertyChangedEventArgs(propertyName));
+        //    }
 
-        }
+        //}
    }
 }
