@@ -16,7 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("%")]
         [Description("%")]
         [Required]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N4}")]
         public decimal Pct { get; set; }
         [DisplayName("Кількість голосів")]
         [Description("Кількість голосів")]

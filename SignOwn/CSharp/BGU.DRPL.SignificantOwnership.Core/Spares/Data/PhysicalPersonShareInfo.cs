@@ -17,7 +17,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public PhysicalPersonInfo Person { get; set; }
         [DisplayName("Часта, %")]
         [Description("Часта, %")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N2}")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "100", StringFormat = "{}{0:N4}")]
         public decimal SharePct { get; set; }
 
         public override string ToString()

@@ -35,6 +35,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Attorney
     }
 
+    [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    public enum PersonAssociationType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Родич")]
+        Relative,
+        [Description("Довірена особа")]
+        Attorney,
+        [Description("Інший тип зв'язку")]
+        Other
+    }
+
     [Flags]
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [UIUsageRadioButtonGroup(Orientation.Horizontal, true)]

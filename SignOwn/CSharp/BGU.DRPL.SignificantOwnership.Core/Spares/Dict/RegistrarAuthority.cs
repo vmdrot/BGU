@@ -50,6 +50,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Код держоргану (якщо існує)")]
         [Description("Код держоргану (якщо існує)")]
+        [UIUsageTextBox(HorizontalAlignment="Left", IsMultiline=false, MaxWidth="350", MinWidth="150")]
         public string RegistrarCode { get { return _RegistrarCode; } set { _RegistrarCode = value; OnPropertyChanged("RegistrarCode"); } }
 
         private string _RegistrarName;
