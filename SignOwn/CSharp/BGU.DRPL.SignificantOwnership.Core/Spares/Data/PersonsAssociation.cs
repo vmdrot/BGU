@@ -57,7 +57,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Назва, ким приходиться перша особа другій")]
         [Required]
         [UIConditionalVisibility("IsRelative")]
-        //[UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue")]
+        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue", ContainerOrientation = Orientation.Vertical)]
         public AssociatedPersonRole AssociationRoleOneVsTwo { get { return _AssociationRoleOneVsTwo; } set { _AssociationRoleOneVsTwo = value; OnPropertyChanged("AssociationRoleOneVsTwo"); OnPropertyChanged("IsOtherRole"); } }
 
         private AssociatedPersonRole _AssociationRoleTwoVsOne;
@@ -70,7 +70,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Назва, ким приходиться друга особа першій")]
         [Required]
         [UIConditionalVisibility("IsRelative")]
-        //[UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue")]
+        [UIUsageCombo(ItemsGetterClass = typeof(BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister), ItemsGetterMemberPath = "AssociatedPersonRoleList", ValueMemberUsageMode = ComboUIValueUsageMode.ValueProperty, ValueMember = "EnumValue", DisplayMember = "Value", Width = "350", ToolTipMember = "EnumValue", ContainerOrientation = Orientation.Vertical)]
         public AssociatedPersonRole AssociationRoleTwoVsOne { get { return _AssociationRoleTwoVsOne; } set { _AssociationRoleTwoVsOne = value; OnPropertyChanged("AssociationRoleTwoVsOne"); OnPropertyChanged("IsOtherRole"); } }
 
         [Browsable(false)]
