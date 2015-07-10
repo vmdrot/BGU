@@ -27,6 +27,31 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             this.IsStockExchangeListed = false;
         }
 
+        private bool _IsIntFinOrIntOrg;
+        /// <summary>
+        /// 
+        /// </summary>
+        [DisplayName("Міжнародна фінансова чи міжнародна організація")]
+        [Description("Відзначити, якщо юридична особа є міжнародною організацією;\nміжнародна фінансова установа – установа, з якою Уряд України уклав угоду про співробітництво та для якої згідно із законами України встановлено привілеї та імунітети.")]
+        public bool IsIntFinOrIntOrg 
+        { 
+            get { return _IsIntFinOrIntOrg; } 
+            set 
+            { 
+                if(_IsIntFinOrIntOrg != value) 
+                {
+                    _IsIntFinOrIntOrg= value;  
+                    if(_IsIntFinOrIntOrg) 
+                        ResidenceCountry = CountryInfo.GLOBAL;
+                    OnPropertyChanged("IsIntFinOrIntOrg"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("ShowCountrySpecificControls"); 
+                } 
+            } 
+        }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool ShowCountrySpecificControls { get { return !IsIntFinOrIntOrg; } }
+
         private CountryInfo _ResidenceCountry;
         /// <summary>
         /// Країна резидентності
@@ -35,6 +60,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Країна юрисдикції")]
         [Description("Країна юрисдикції юридичної особи")]
         [Required]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public CountryInfo ResidenceCountry { get { return _ResidenceCountry; } set { _ResidenceCountry = value; OnPropertyChanged("ResidenceCountry"); OnPropertyChanged("IsNonResident"); } }
 
         private string _Name;
@@ -61,11 +87,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Форма власності юридичної особи")]
         [Required]
         [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public OwnershipFormType OwnershipForm { get { return _OwnershipForm; } set { _OwnershipForm = value; OnPropertyChanged("OwnershipForm"); } }
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsNonResident { get { return ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE; } }
+        public bool IsNonResident { get { return (ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE) || IsIntFinOrIntOrg; } }
 
         private string _TaxCodeOrHandelsRegNr;
         /// <summary>
@@ -78,6 +105,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("ЄДРПОУ (для резидентів), податковий ID / HandelsregisterNr., тощо (для нерезидентів)")]
         [Required]
         [UIUsageTextBox(HorizontalAlignment="Left", IsMultiline=false,MaxWidth="400", MinWidth="250")]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public string TaxCodeOrHandelsRegNr { get { return _TaxCodeOrHandelsRegNr; } set { _TaxCodeOrHandelsRegNr = value; OnPropertyChanged("TaxCodeOrHandelsRegNr"); } }
 
         private RegistrarAuthority _Registrar;
@@ -87,6 +115,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Category(CATEGORY_REG_INFO)]
         [DisplayName("Держорган-реєстратор")]
         [Description("Державний орган, який здійснив реєстрацію юридичної особи")]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public RegistrarAuthority Registrar { get { return _Registrar; } set { _Registrar = value; OnPropertyChanged("Registrar"); } }
 
 
@@ -97,12 +126,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Category(CATEGORY_REG_INFO)]
         [DisplayName("Дата/№ запису в держреєстрі")]
         [Description("Дата та номер запису в Єдиному державному реєстрі юридичних осіб та фізичних осіб-підприємців")]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public LPRegisteredDateRecordId RegisteredDateID { get { return _RegisteredDateID; } set { _RegisteredDateID = value; OnPropertyChanged("RegisteredDateID"); } }
 
         private bool _IsStockExchangeListed;
         [DisplayName("Публічна компанія")]
         [Description("Публічна компанія згідно з визначенням пост.357")]
         [Required]
+        [UIConditionalVisibility("ShowCountrySpecificControls")]
         public bool IsStockExchangeListed { get { return _IsStockExchangeListed; } set { _IsStockExchangeListed = value; OnPropertyChanged("IsStockExchangeListed"); } }
 
         private StockExchangeListingInfo _StockExchangeListing;
@@ -187,7 +218,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
 
         [Browsable(false)]
-        public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = ResidenceCountry.CountryISONr, PersonCode = TaxCodeOrHandelsRegNr, PersonType = EntityType.Legal, DisplayName = ToString() }; } }
+        public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = ResidenceCountry.CountryISONr, PersonCode = IsIntFinOrIntOrg? Name : TaxCodeOrHandelsRegNr, PersonType = EntityType.Legal, DisplayName = ToString() }; } }
 
         public override string ToString()
         {
