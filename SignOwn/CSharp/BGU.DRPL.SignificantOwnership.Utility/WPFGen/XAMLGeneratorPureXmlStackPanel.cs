@@ -593,7 +593,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
                 XmlNode dgNode = expanderNode.FirstChild.FirstChild;
                 XmlNode dgColDefsNode = null;
                 if (dgNode.Name == "DataGrid")
-                    dgColDefsNode = dgNode.FirstChild;
+                    dgColDefsNode = dgNode.FirstChild.NextSibling;
                 if (dgColDefsNode != null)
                 {
                     UIUsageDataGridParamsAttribute dgpAttr = ReflectionUtil.GetPropertyOrTypeAttribute<UIUsageDataGridParamsAttribute>(pi);
