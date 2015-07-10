@@ -4,7 +4,7 @@
     <TextBlock x:Name="lblyourPropertyName" Height="auto" Width="auto" Text="yourPropertyDispName" Style="{StaticResource dispNmStyle}" ToolTip="yourPropertyDescription" Tag="yourPropertyName"/>
     <StackPanel Orientation="Horizontal">
     <ComboBox x:Name="cbxyourPropertyName" DisplayMemberPath="yourComboDisplayMember" HorizontalAlignment="Stretch" ToolTip="yourPropertyDescription" MinWidth="150" ItemsSource="{Binding Source={x:Static yourComboItemsGetter}, Mode=OneWay, diag:PresentationTraceSources.TraceLevel=High}" Tag="yourPropertyName"/>
-    <Button x:Name="btnAddyourPropertyName" Command="{x:Static yourAddComboItemCommand}" Style="{StaticResource addNewRowBtnStyle}" Tag="yourPropertyName" Height="27" Width="27" Background="White">
+    <Button x:Name="btnAddyourPropertyName" Command="{x:Static yourAddComboItemCommand}" Style="{StaticResource addNewRowBtnStyle}" Tag="yourPropertyName" Height="27" Width="27" Background="White" ToolTip="додати новий до списку">
       <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn_27.png" Tag="yourPropertyName"/>
       <Button.CommandParameter>
         <MultiBinding Converter="{StaticResource multiValConv}">
@@ -12,7 +12,7 @@
         </MultiBinding>
       </Button.CommandParameter>
     </Button>
-      <Button x:Name="btnRefreshyourPropertyName" Command="{x:Static local:MyCommands.RefreshComboCommand}" Style="{StaticResource addNewRowBtnStyle}" Tag="yourPropertyName" Height="27" Width="27" Background="White">
+      <Button x:Name="btnRefreshyourPropertyName" Command="{x:Static local:MyCommands.RefreshComboCommand}" Style="{StaticResource addNewRowBtnStyle}" Tag="yourPropertyName" Height="27" Width="27" Background="White" ToolTip="освіжити список">
         <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/refresh_btn_27.png" Tag="yourPropertyName" />
         <Button.CommandParameter>
           <MultiBinding Converter="{StaticResource multiValConv}">

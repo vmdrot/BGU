@@ -145,6 +145,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             _userAssembly = userAsmbly;
 
             SuppressLabelsAttr = ReflectionUtil.GetTypeAttribute<UIUsageSuppressControlLabelsAttribute>(typ);
+            UIUsageControlOrientationAttribute orientationAttr = ReflectionUtil.GetTypeAttribute<UIUsageControlOrientationAttribute>(typ);
 
             XmlDocument rslt = CreateControlWrapper(typ);
             XmlNode dataTemplateNode = rslt.FirstChild.ChildNodes[1];//rslt.SelectSingleNode("/ResourceDictionary/DataTemplate/Grid"); //doesn't work
@@ -153,6 +154,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility.WPFGen
             {
                 ReplaceTemplateDataType(dataTemplateNode, typ);
                 AddTemplateDataTypeNS(rslt.DocumentElement, typ);
+                if (orientationAttr != null && gridNode.Name == "StackPanel")
+                    ApplyOrientation(gridNode, orientationAttr.ContainerOrientation);
             }
             List<PropertyInfo> props = FilterEditableProps(ReflectionUtil.ListEditableProperties(typ));
             CreateCategoriesNodes(gridNode, props);
