@@ -299,6 +299,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         public static readonly CountryInfo YEMEN = new CountryInfo() { CountryISO2Code = "YE", CountryISO3Code = "YEM", CountryISONr = "887", CountryNameEng = "YEMEN", CountryNameUkr = "Йємен" };
         public static readonly CountryInfo ZAMBIA = new CountryInfo() { CountryISO2Code = "ZM", CountryISO3Code = "ZMB", CountryISONr = "894", CountryNameEng = "ZAMBIA", CountryNameUkr = "Замбія" };
         public static readonly CountryInfo ZIMBABWE = new CountryInfo() { CountryISO2Code = "ZW", CountryISO3Code = "ZWE", CountryISONr = "716", CountryNameEng = "ZIMBABWE", CountryNameUkr = "Зімбабве" };
+        public static readonly CountryInfo GLOBAL = new CountryInfo() { CountryISO2Code = "", CountryISO3Code = "INT", CountryISONr = "000", CountryNameEng = "Global", CountryNameUkr = "Глобальна юрисдикція" };
 
         public static List<CountryInfo> _allCountries;
         public static List<CountryInfo> AllCountries
@@ -547,6 +548,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
                 _allCountries.Add(YEMEN);
                 _allCountries.Add(ZAMBIA);
                 _allCountries.Add(ZIMBABWE);
+                _allCountries.Add(GLOBAL);
                 #endregion
                 return _allCountries;
             }
