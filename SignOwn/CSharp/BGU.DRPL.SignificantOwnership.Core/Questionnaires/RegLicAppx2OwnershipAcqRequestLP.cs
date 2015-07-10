@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using Evolvex.Utility.Core.ComponentModelEx;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -79,7 +80,31 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Юр.особа-заявник")]
         [Description("1. Інформація про юридичну особу")]
         [Required]
-        public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); } }
+        public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); OnPropertyChanged("ShowForeignOwnAcqLicensingAuthority"); OnPropertyChanged("IsAcquireeNonResident"); OnPropertyChanged("IsAcquireeResident"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsAcquireeNonResident 
+        { 
+            get 
+            {
+                if (Acquiree == null || Acquiree == GenericPersonID.Empty)
+                    return false;
+                return !(CountryInfo.UKRAINE.Equals(Acquiree.CountryISO3Code));
+            } 
+        }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsAcquireeResident
+        {
+            get
+            {
+                if (Acquiree == null || Acquiree == GenericPersonID.Empty)
+                    return false;
+                return CountryInfo.UKRAINE.Equals(Acquiree.CountryISO3Code);
+            }
+        }
 
 
         private List<CreditRatingInfo> _CreditRatingGrade;
@@ -94,6 +119,47 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Required]
         [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Рейтингова оцінка")]
         public List<CreditRatingInfo> CreditRatingGrade { get { return _CreditRatingGrade; } set { _CreditRatingGrade = value; OnPropertyChanged("CreditRatingGrade"); } }
+
+        private bool _IsNonResidentLicenseRequired;
+        [Category(CATEGORY_I)]
+        [Browsable(true)]
+        [DisplayName("3.4. Потрібен дозвіл державного органу (для іноземців)")]
+        [Description("3.4 (Нерезидентам) Для набуття (збільшення) участі в банку потрібно отримувати дозівл іноземного державного контролюючого органу(-ів)?")]
+        [UIConditionalVisibility("IsAcquireeNonResident")]
+        public bool IsNonResidentLicenseRequired { get { return _IsNonResidentLicenseRequired; } set { _IsNonResidentLicenseRequired = value; OnPropertyChanged("IsNonResidentLicenseRequired"); OnPropertyChanged("ShowForeignOwnAcqLicensingAuthority"); } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool ShowForeignOwnAcqLicensingAuthority
+        {
+            get
+            {
+                return IsAcquireeNonResident && IsNonResidentLicenseRequired;
+            }
+        }
+
+
+        private List<FinancialOversightAuthorityInfo> _ForeignOwnAcqLicensingAuthority;
+        /// <summary>
+        /// 3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
+        /// Найменування іноземного державного
+        /// контролюючого органу, що дає дозвіл
+        /// на набуття (збільшення) участі в банку
+        /// (для іноземців)
+        /// Державний орган, що здійснює
+        /// нагляд за діяльністю юридичної
+        /// особи (для осіб, які здійснюють
+        /// регульовану діяльність)
+        /// -----
+        /// Орган, що здійснив державну реєстрацію - див. у полі Acquiree
+        /// </summary>
+        [Category(CATEGORY_I)]
+        [Browsable(true)]
+        [DisplayName("3.4. Державний дозвільний орган (для іноземців)")]
+        [Description("3. Найменування іноземного державного контролюючого органу, що дає дозвіл на набуття (збільшення) участі в банку (для іноземців)")]
+        [UIConditionalVisibility("ShowForeignOwnAcqLicensingAuthority")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Іноземний(-і) державний(-і) контролюючий(-і) орган(-и)")]
+        public List<FinancialOversightAuthorityInfo> ForeignOwnAcqLicensingAuthority { get { return _ForeignOwnAcqLicensingAuthority; } set { _ForeignOwnAcqLicensingAuthority = value; OnPropertyChanged("ForeignOwnAcqLicensingAuthority"); } }
 
         private List<FinancialOversightAuthorityInfo> _StateRegulatorAuthorities;
         /// <summary>
