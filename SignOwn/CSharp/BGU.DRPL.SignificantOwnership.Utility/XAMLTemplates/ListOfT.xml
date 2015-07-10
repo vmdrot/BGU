@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:localcmds="clr-namespace:WpfApplication2.Commands">
   <Expander x:Name="expyourPropertyName" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False" Tag="yourPropertyName">
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" Orientation="Vertical">
       <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False" Tag="yourPropertyName">
+        <i:Interaction.Behaviors>
+          <localcmds:KeyUpWithArgsBehavior KeyUpCommand="{x:Static local:MyCommands.DataGridKeyUpCommand}" />
+        </i:Interaction.Behaviors>
         <DataGrid.Columns></DataGrid.Columns>
       </DataGrid>
       <StackPanel Orientation="Horizontal" Margin="0,5">

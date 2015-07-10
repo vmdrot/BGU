@@ -9,7 +9,9 @@
                     xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
                     xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
                     xmlns:dataprimitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework"
-                    xmlns:localdata="clr-namespace:WpfApplication2.Data">
+                    xmlns:localdata="clr-namespace:WpfApplication2.Data"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+                    xmlns:localcmds="clr-namespace:WpfApplication2.Commands">
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="Styles.xaml" />
     <ResourceDictionary Source="Converters.xaml" />
