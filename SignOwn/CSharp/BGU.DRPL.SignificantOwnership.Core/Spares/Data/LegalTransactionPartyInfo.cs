@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using Evolvex.Utility.Core.ComponentModelEx;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -36,5 +37,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Роль сторони у правочині, як в полі \"Роль\" вказано інше")]
         [UIConditionalVisibility("IsRoleOther")]
         public string RoleIfOther { get { return _RoleIfOther; } set { _RoleIfOther = value; OnPropertyChanged("RoleIfOther"); } }
+
+        public override string ToString()
+        {
+            return string.Format("{0}: {1}", Party, IsRoleOther? RoleIfOther : EnumType.GetEnumDescription(Role) );
+        }
     }
 }

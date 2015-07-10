@@ -35,6 +35,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public CurrencyAmount ActualTotalSharesValue { get; set; }
         [DisplayName("Термін оплати")]
         [Description("Запланований термін здійснення оплати")]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Терміни сплати")]
         public List<PaymentDeadlineInfo> PaymentDeadlines { get; set; }
 
         public override string ToString()
