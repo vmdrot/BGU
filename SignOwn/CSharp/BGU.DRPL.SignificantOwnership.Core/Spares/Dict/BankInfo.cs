@@ -171,8 +171,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
                 return false;
             return x == y;
         }
-        
+
         public static BankInfo ParseFromRcuKruRow(DataRow dr)
+        {
+            GenericPersonInfo gpi;
+            return ParseFromRcuKruRow(dr, out gpi);
+        }
+
+        public static BankInfo ParseFromRcuKruRow(DataRow dr, out GenericPersonInfo gpi)
         {
             string prb = dr["PRB"] as string;
 
@@ -193,7 +199,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             bi.MFO = mfo;
             bi.Code = glb;
             bi.RegistryNr = prkb;
-            bi.LegalPerson = (new LegalPersonInfo() { TaxCodeOrHandelsRegNr = yedrpou, Name = dr["FULLNAME"] as string, Address = LocationInfo.Parse(address), ResidenceCountry = CountryInfo.UKRAINE }).GenericID;
+            gpi = new GenericPersonInfo() { PersonType = EntityType.Legal, LegalPerson = new LegalPersonInfo() { TaxCodeOrHandelsRegNr = yedrpou, Name = dr["FULLNAME"] as string, Address = LocationInfo.Parse(address), ResidenceCountry = CountryInfo.UKRAINE } };
+            bi.LegalPerson = gpi.ID;
             //bi.LegalPerson.Address.City = city;
             //bi.LegalPerson.Address.ZipCode = zipCode;
             return bi;
