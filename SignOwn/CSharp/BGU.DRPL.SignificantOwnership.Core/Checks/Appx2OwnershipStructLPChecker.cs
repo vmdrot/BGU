@@ -250,7 +250,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             GenericPersonInfo gpi = QuestionnaireCheckUtils.FindPersonByID(this._questio.MentionedIdentities, os.Owner);
             string ownerTxt = gpi != null ? (gpi.PersonType == Spares.EntityType.Legal ? gpi.LegalPerson.Name : gpi.PhysicalPerson.FullName) : os.Owner.HashID;
             sb.AppendFormat("{0}, {1}", ownerTxt, os.OwnershipKind);
-            if(os.Share > 0)
+            if(os.Share!= null && os.Share.Amt > 0)
                 sb.AppendFormat(", {0}", os.Share);
             if(os.SharePct > 0)
                 sb.AppendFormat(", {0}%", os.SharePct);

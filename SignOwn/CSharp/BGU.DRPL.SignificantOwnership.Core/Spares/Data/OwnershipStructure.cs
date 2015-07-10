@@ -47,7 +47,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Частка у власності (сума)")]
         [Description("Частка (сума)")]
         //[UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N2}")]
-        public decimal Share { get; set; }
+        public CurrencyAmount Share { get; set; } //todo - switch currency automatically on Asset country of jurisdiction change
 
         /// <summary>
         /// 
