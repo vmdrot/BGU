@@ -7,6 +7,8 @@ using Evolvex.Utility.Core.ComponentModelEx;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using BGU.DRPL.SignificantOwnership.Utility;
+using System.Data;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -62,8 +64,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Повне офіційне найменування банку")]
         [Description("стосовно участі в ...")]
         [Required]
-        public BankInfo BankRef { get { return _BankRef; } set { _BankRef = value; OnPropertyChanged("BankRef"); } }
-
+        public BankInfo BankRef { get { return _BankRef; } set { _BankRef = value; AddBankToMentionedIdentities(_BankRef); OnPropertyChanged("BankRef"); } }
 
         #region І. Інформація про юридичну особу
 
@@ -439,6 +440,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
 
         #region Hidden prop(s)
+        
+        private List<GenericPersonInfo> _MentionedIdentities;
         /// <summary>
         /// Реквізити осіб-фігурантів анкети
         /// </summary>
@@ -446,8 +449,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("Повні реквізити юридичних та фізичних осіб, що згадуються в розділах анкети")]
         [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Особа")]
-        public List<GenericPersonInfo> MentionedIdentities { get; set; }
+        public List<GenericPersonInfo> MentionedIdentities { get { return _MentionedIdentities; } set { _MentionedIdentities = value; OnPropertyChanged("MentionedIdentities"); OnPropertyChanged("MentionedGenericPersons"); } }
 
+        private List<PersonsAssociation> _PersonsLinks;
         /// <summary>
         /// Зв'язки між фігурантами анкети
         /// </summary>
@@ -456,7 +460,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("Опис зв'язків між фізичними та юридичними особами, що згадуються в розділах анкети")]
         [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Опис зв'язку")]
-        public List<PersonsAssociation> PersonsLinks { get; set; }
+        public List<PersonsAssociation> PersonsLinks { get { return _PersonsLinks; } set { _PersonsLinks = value; OnPropertyChanged("PersonsLinks"); } }
         #endregion
 
         #region inherited member(s)
@@ -491,6 +495,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public IEnumerable<LocationInfo> MentionedAddresses
         {
             get { return new List<LocationInfo>(); /* todo */ }
+        }
+
+        private void AddBankToMentionedIdentities(BankInfo bank)
+        {
+            GenericPersonInfo gpi = MentionedIdentities.Find(o => o.ID == bank.LegalPerson);
+            if (gpi != null)
+                return;
+            DataTable dt = RcuKruReader.Search(RcuKruReader.Read("RCUKRU.DBF"), bank.MFO);
+            BankInfo bi = BankInfo.ParseFromRcuKruRow(dt.Rows[0], out gpi);
+            MentionedIdentities.Add(gpi);
+            OnPropertyChanged("MentionedIdentities");
+            OnPropertyChanged("MentionedGenericPersons");
+            
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;
