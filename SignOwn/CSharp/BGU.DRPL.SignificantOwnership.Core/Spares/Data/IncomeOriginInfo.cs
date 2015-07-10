@@ -18,6 +18,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         private FundsOriginType _Origin;
         [DisplayName("Тип походження")]
+        [Description("Тип походження коштів / доходів ...")]
         [Required]
         public FundsOriginType Origin { get { return _Origin; } set { _Origin = value; OnPropertyChanged("Origin"); OnPropertyChanged("IsOtherOrigin"); } }
 
@@ -26,6 +27,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public bool IsOtherOrigin { get { return Origin == FundsOriginType.OtherIncomes; } }
 
         private string _OriginOther;
+        [DisplayName("Тип походження(інший)")]
+        [Description("Тип походження коштів / доходів, якщо вказано 'Інше'")]
         [UIConditionalVisibility("IsOtherOrigin")]
         public string OriginOther { get { return _OriginOther; } set { _OriginOther = value; OnPropertyChanged("OriginOther"); } }
 

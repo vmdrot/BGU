@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Xml.Serialization;
 using BGU.DRPL.SignificantOwnership.Utility;
 using System.Data;
+using Evolvex.Utility.Core.Common;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -29,7 +30,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx2OwnershipAcqRequestLP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
-        
+        private static readonly ILog log = Logging.GetLogger(typeof(RegLicAppx2OwnershipAcqRequestLP));
+
         private const string CATEGORY_I = "І. Інформація про юридичну особу";
         private const string CATEGORY_II = "ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку";
         private const string CATEGORY_III = "ІІІ. Відносини юридичної особи з іншими особами";
@@ -64,7 +66,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Повне офіційне найменування банку")]
         [Description("стосовно участі в ...")]
         [Required]
-        public BankInfo BankRef { get { return _BankRef; } set { _BankRef = value; AddBankToMentionedIdentities(_BankRef); OnPropertyChanged("BankRef"); } }
+        public BankInfo BankRef 
+        { 
+            get { return _BankRef; } 
+            set 
+            {
+                //log.Debug("set_BankRef ({0})", value);
+                //if (value != null && !string.IsNullOrEmpty(value.Name) && value.Name.IndexOf("НБУ") != -1)
+                //    return;
+                _BankRef = value; 
+                AddBankToMentionedIdentities(_BankRef); OnPropertyChanged("BankRef"); 
+            } 
+        }
 
         #region І. Інформація про юридичну особу
 
@@ -81,7 +94,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Юр.особа-заявник")]
         [Description("1. Інформація про юридичну особу")]
         [Required]
-        public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); OnPropertyChanged("ShowForeignOwnAcqLicensingAuthority"); OnPropertyChanged("IsAcquireeNonResident"); OnPropertyChanged("IsAcquireeResident"); } }
+        public GenericPersonID Acquiree 
+        { 
+            get { return _Acquiree; } 
+            set { _Acquiree = value; OnPropertyChanged("Acquiree"); OnPropertyChanged("ShowForeignOwnAcqLicensingAuthority"); OnPropertyChanged("IsAcquireeNonResident"); OnPropertyChanged("IsAcquireeResident"); } }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -499,11 +515,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         private void AddBankToMentionedIdentities(BankInfo bank)
         {
-            GenericPersonInfo gpi = MentionedIdentities.Find(o => o.ID == bank.LegalPerson);
-            if (gpi != null)
+            log.Debug("AddBankToMentionedIdentities: entering...");
+            if (bank == null || bank.LegalPerson == null || bank.LegalPerson.IsEmpty)
                 return;
-            DataTable dt = RcuKruReader.Search(RcuKruReader.Read("RCUKRU.DBF"), bank.MFO);
-            BankInfo bi = BankInfo.ParseFromRcuKruRow(dt.Rows[0], out gpi);
+            //GenericPersonInfo gpi = MentionedIdentities.Find(o => o.ID == bank.LegalPerson);
+            //if (gpi != null)
+            //    return;
+            //DataTable dt = RcuKruReader.Search(RcuKruReader.Read("RCUKRU.DBF"), bank.MFO);
+            //if (dt != null && dt.Rows != null && dt.Rows.Count > 10)
+            //    return;
+            //if (dt == null || dt.Rows != null || dt.Rows.Count == 0)
+            //    return;
+            //BankInfo bi = BankInfo.ParseFromRcuKruRow(dt.Rows[0], out gpi);
+            GenericPersonInfo gpi = new GenericPersonInfo() { PersonType = Spares.EntityType.Legal, LegalPerson = new LegalPersonInfo() { Name = bank.Name , NameUkr = bank.NameUkr, TaxCodeOrHandelsRegNr = bank.LegalPerson.PersonCode, ResidenceCountry = CountryInfo.AllCountries.Find(c => c.CountryISONr == bank.LegalPerson.CountryISO3Code)} };
             MentionedIdentities.Add(gpi);
             OnPropertyChanged("MentionedIdentities");
             OnPropertyChanged("MentionedGenericPersons");
