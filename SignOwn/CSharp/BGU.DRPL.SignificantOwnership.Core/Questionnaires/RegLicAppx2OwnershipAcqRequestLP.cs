@@ -544,5 +544,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         //    }
 
         //}
-   }
+
+
+        public void RefreshGenericPersonsDisplayNames()
+        {
+            base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[]{ this.ExistingOwnershipDetailsHive});
+        }
+    }
 }

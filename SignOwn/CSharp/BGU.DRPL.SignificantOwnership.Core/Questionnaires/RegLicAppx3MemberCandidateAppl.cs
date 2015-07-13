@@ -394,5 +394,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         {
             get { if (this.Candidate == null) return string.Empty; return Candidate.PersonCode; }
         }
+
+
+        public void RefreshGenericPersonsDisplayNames()
+        {
+            base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[] { this.OwnershipStakeWithLPAcquiree, this.ImplicitOwnershipWithBank });
+        }
     }
 }

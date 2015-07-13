@@ -253,5 +253,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         {
             get { if (Acquiree == null) return string.Empty; return Acquiree.PersonCode; }
         }
+
+
+        public void RefreshGenericPersonsDisplayNames()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
