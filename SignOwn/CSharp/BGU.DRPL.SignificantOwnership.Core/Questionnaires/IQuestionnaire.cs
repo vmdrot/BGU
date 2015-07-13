@@ -15,6 +15,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     public interface IGenericPersonsService
     {
         IEnumerable<GenericPersonInfo> MentionedGenericPersons { get; }
+        void RefreshGenericPersonsDisplayNames();
     }
 
     public interface IAddressesService

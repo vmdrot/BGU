@@ -408,12 +408,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         public IEnumerable<GenericPersonInfo> MentionedGenericPersons
         {
-            get { throw new NotImplementedException(); }
+            get { return MentionedIdentities; }
         }
 
         public IEnumerable<LocationInfo> MentionedAddresses
         {
             get { throw new NotImplementedException(); }
+        }
+
+
+        public void RefreshGenericPersonsDisplayNames()
+        {
+            base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[] { ExistingOwnershipWithBankDetails, TargetedOwnershipWithBankDiffDetails, TargetedOwnershipWithBankDetails });
         }
     }
 }
