@@ -2,13 +2,13 @@
 <Template xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:localcmds="clr-namespace:WpfApplication2.Commands">
   <Expander x:Name="expyourPropertyName" Header="yourPropertyDispName" ToolTip="yourPropertyDescription" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" IsExpanded="False" Tag="yourPropertyName">
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" Orientation="Vertical">
-      <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False" Tag="yourPropertyName">
+      <DataGrid x:Name="gridyourPropertyName" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding yourPropertyName, diag:PresentationTraceSources.TraceLevel=High}" AutoGenerateColumns="False" Tag="yourPropertyName" Margin="3,0">
         <i:Interaction.Behaviors>
           <localcmds:KeyUpWithArgsBehavior KeyUpCommand="{x:Static local:MyCommands.DataGridKeyUpCommand}" />
         </i:Interaction.Behaviors>
         <DataGrid.Columns></DataGrid.Columns>
       </DataGrid>
-      <StackPanel Orientation="Horizontal" Margin="0,5">
+      <StackPanel Orientation="Horizontal" Margin="3,5">
         <Button HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Bottom" Style="{StaticResource addNewRowBtnStyle}" Command="{x:Static local:MyCommands.AddNewRowCommand}" Tag="yourPropertyName" Background="White" ToolTip="додати новий запис">
           <Image Source="pack://application:,,,/WpfApplication2;component/Resources/Icons/add_btn.png" Tag="yourPropertyName"/>
           <Button.CommandParameter>
