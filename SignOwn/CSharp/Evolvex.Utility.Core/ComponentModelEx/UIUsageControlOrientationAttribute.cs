@@ -7,17 +7,12 @@ namespace Evolvex.Utility.Core.ComponentModelEx
 {
     public class UIUsageControlOrientationAttribute : Attribute
     {
-
         public Orientation ContainerOrientation { get; set; }
-        public UIUsageControlOrientationAttribute() :this(Orientation.Vertical)
-        {}
-
-        public UIUsageControlOrientationAttribute(Orientation contOrientation)
+        public UIUsageControlOrientationAttribute() : this(Orientation.Vertical) { }
+        public UIUsageControlOrientationAttribute(Orientation orientation)
             : base()
         {
-            this.ContainerOrientation = contOrientation;
+            ContainerOrientation = orientation;
         }
-
-
     }
 }
