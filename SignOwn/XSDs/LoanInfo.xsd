@@ -5,6 +5,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="IndebtnessInfoBase">
         <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LendingBank" type="BankInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" />
         </xs:sequence>
@@ -12,19 +13,39 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="IndebtnessInfoBase">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Lender" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Borrower" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DebtSubject" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Principal" type="CurrencyAmount" />
-      <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Lender" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Borrower" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DebtSubject" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Principal" type="CurrencyAmount" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="BankInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="GenericPersonID">
     <xs:sequence>
@@ -44,10 +65,23 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="CurrencyAmount">
+  <xs:complexType name="CountryInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 </xs:schema>

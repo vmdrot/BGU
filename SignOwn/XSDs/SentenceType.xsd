@@ -7,6 +7,7 @@
         <xs:restriction base="xs:string">
           <xs:enumeration value="None" />
           <xs:enumeration value="Jailed" />
+          <xs:enumeration value="Probation" />
           <xs:enumeration value="RemedialWorks" />
           <xs:enumeration value="Fined" />
           <xs:enumeration value="Dismissed" />

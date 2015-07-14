@@ -2,13 +2,32 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="RatingAgencyInfo" nillable="true" type="RatingAgencyInfo" />
   <xs:complexType name="RatingAgencyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="RegistrarAuthority">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="CountryInfo">
     <xs:sequence>
@@ -17,56 +36,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ContactInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="PhysicalPersonInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="SurnameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MiddleNameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FullNameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FullName" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" />
-      <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TaxOrSocSecID" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Male" />
-          <xs:enumeration value="Female" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
-  </xs:simpleType>
-  <xs:complexType name="RegistrarAuthority">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="LocationInfo">
@@ -90,6 +59,98 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="PhysicalPersonInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FullName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SurnameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MiddleNameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FullNameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIPNRefused" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPNRefusalEvidence" type="IPNRefusalRecordInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TaxOrSocSecID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsResidentialAndRegistrationAddressDifferent" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IPNRefusalRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RecordID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SignatoryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignatoryPosition" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SurnameInitials" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowerOfAttorneyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ActingPerson" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SexType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Male" />
+          <xs:enumeration value="Female" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ContactInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MeansOfCommunication">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Phone" />
+      <xs:enumeration value="Email" />
+      <xs:enumeration value="Fax" />
+      <xs:enumeration value="Mail" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfPhoneInfo">
     <xs:sequence>

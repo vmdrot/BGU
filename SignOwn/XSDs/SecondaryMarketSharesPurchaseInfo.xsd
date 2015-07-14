@@ -25,21 +25,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="CurrencyAmount">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="ArrayOfPaymentDeadlineInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentDeadlineInfo" nillable="true" type="PaymentDeadlineInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="PaymentDeadlineInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Amount" type="CurrencyAmount" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" />
-    </xs:sequence>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="LegalTransactionPartyInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="GenericPersonID">
     <xs:sequence>
@@ -59,38 +64,6 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="LegalTransactionInfo">
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TransactionText" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="LegalTransactionType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="BuySellAgreement" />
-      <xs:enumeration value="GrantAgreement" />
-      <xs:enumeration value="Inheritance" />
-      <xs:enumeration value="SwapAgreement" />
-      <xs:enumeration value="Other" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="ArrayOfLegalTransactionPartyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="LegalTransactionPartyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:simpleType name="LegalTransactionPartyRoleType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
@@ -109,4 +82,45 @@
       <xs:enumeration value="Other" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="LegalTransactionInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionTypeOther" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionText" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="LegalTransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BuySellAgreement" />
+      <xs:enumeration value="GrantAgreement" />
+      <xs:enumeration value="Inheritance" />
+      <xs:enumeration value="SwapAgreement" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfLegalTransactionPartyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPaymentDeadlineInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentDeadlineInfo" nillable="true" type="PaymentDeadlineInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentDeadlineInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Amount" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

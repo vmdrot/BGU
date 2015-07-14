@@ -3,4 +3,5 @@
   <xs:element name="OwnershipSummaryInfo" nillable="true" type="OwnershipSummaryInfo" />
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
 </xs:schema>

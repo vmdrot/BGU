@@ -9,46 +9,51 @@
 
 Див.також: http://en.wikipedia.org/wiki/List_of_company_registers</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле, за змовчанням - Україна</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місцезнаходження" description="Місцезнаходження">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місцезнаходження" description="Місцезнаходження">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             якнайповніше</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" type_ukr="текст" displayName="Код держоргану (якщо існує)" description="Код держоргану (якщо існує)">
-        <xs:annotation>
-          <xs:documentation>Якщо такий код передбачено/існує; коротше, необов'язкове поле
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" type_ukr="текст" displayName="Код держоргану (якщо існує)" description="Код держоргану (якщо існує)">
+            <xs:annotation>
+              <xs:documentation>Якщо такий код передбачено/існує; коротше, необов'язкове поле
             (напр., у наших закордонних паспортах фігурує Issuing authority ID)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="RegistrarName" type="xs:string" type_ukr="текст" displayName="Назва держоргану" description="Назва держоргану">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="RegistrarName" type="xs:string" type_ukr="текст" displayName="Назва держоргану" description="Назва держоргану">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва реєстратора (оригінальною мовою, у т.ч. українською - якщо реєстратор український).</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" type_ukr="текст" displayName="Назва держоргану українською" description="Назва держоргану українською">
-        <xs:annotation>
-          <xs:documentation>Назва реєстратора українською (якщо реєстратор не український).</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" displayName="Тип осіб, що реєструє" description="Тип осіб, що реєструє">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" type_ukr="текст" displayName="Назва держоргану українською" description="Назва держоргану українською (для органів у інших країнах)">
+            <xs:annotation>
+              <xs:documentation>Назва реєстратора українською (якщо реєстратор не український).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" displayName="Тип осіб, що реєструє" description="Тип осіб, що реєструє">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />

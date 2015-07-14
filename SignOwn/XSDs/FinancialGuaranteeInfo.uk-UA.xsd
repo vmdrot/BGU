@@ -41,4 +41,5 @@
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialGuarantorRoleType.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
 </xs:schema>

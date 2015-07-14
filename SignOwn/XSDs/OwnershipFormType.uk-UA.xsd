@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OwnershipFormType" type="OwnershipFormType" />
+  <xs:simpleType name="OwnershipFormType">
+    <xs:annotation>
+      <xs:documentation>а) ДК 001:2004 – Класифікація форм власності; 
+            б) ДК 002:2004 – Класифікація організаційно-правових форм господарювання.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Private" description="Приватна" />
+      <xs:enumeration value="State" description="Державна" />
+      <xs:enumeration value="Municipal" description="Комунальна (муніципальна)" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

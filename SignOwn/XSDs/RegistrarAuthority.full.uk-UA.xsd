@@ -2,6 +2,7 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="RegistrarAuthority" nillable="true" type="RegistrarAuthority" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />

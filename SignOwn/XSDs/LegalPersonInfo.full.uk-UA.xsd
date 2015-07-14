@@ -2,13 +2,17 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="LegalPersonInfo" nillable="true" type="LegalPersonInfo" />
   <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
-  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
 </xs:schema>

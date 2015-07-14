@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StockExchangeInfo" nillable="true" type="StockExchangeInfo" />
+  <xs:complexType name="StockExchangeInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про фондову біржу
+            Список з капіталізацією - http://www.world-exchanges.org/statistics/monthly-reports</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" description="Країна, де офіційно зареєстрована біржа">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва біржі" description="Назва біржі (мовою оригіналу)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва біржі (укр.)" description="Назва біржі українською мовою">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Член світової федерації бірж" description="Чи є біржа членом світової федерації бірж - World Federation of Exchanges" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" type_ukr="текст" displayName="Назва у переліку WFE" description="Назва біржі, як вона фігурує у переліку Світової Федерації Бірж - World Federation of Exchanges" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" displayName="Капіталізація" description="Сукупна ринкова капіталізація компаній, акції яких уключено до торгів на біржі" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" type_ukr="дата і час" displayName="Дата капіталізації" description="Дата, на яку була чинною вказана сукупна ринкова капіталізація (вище)" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+</xs:schema>

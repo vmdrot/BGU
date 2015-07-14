@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StockExchangeInfo" nillable="true" type="StockExchangeInfo" />
+  <xs:complexType name="StockExchangeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+</xs:schema>

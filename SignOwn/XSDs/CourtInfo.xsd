@@ -2,15 +2,21 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="CourtInfo" nillable="true" type="CourtInfo" />
   <xs:complexType name="CourtInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
   <xs:complexType name="CountryInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
@@ -27,4 +33,15 @@
       <xs:enumeration value="Cassation" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

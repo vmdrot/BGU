@@ -12,6 +12,11 @@
             напр. "Люда, тел. XXX-XXX-XX-XX, e-mail..."</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" displayName="Бажаний засіб комунікації" description="Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
@@ -38,8 +43,18 @@
           <xs:documentation>Не обов'язкове (окрім банку, видавництва, тощо - де це вимагається контекстом використання цього типу).</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса для листування" description="Адреса для звичайної пошти" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="MeansOfCommunication">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Phone" description="Телефон(-и)" />
+      <xs:enumeration value="Email" description="Ел.пошта" />
+      <xs:enumeration value="Fax" description="Факс" />
+      <xs:enumeration value="Mail" description="Звичайна пошта" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ArrayOfPhoneInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="PhoneInfo" nillable="true" type="PhoneInfo" />
@@ -73,10 +88,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
 </xs:schema>

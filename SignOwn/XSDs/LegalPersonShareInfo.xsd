@@ -8,17 +8,61 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="LegalPersonInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OwnershipForm" type="OwnershipFormType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TaxCodeOrHandelsRegNr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Registrar" type="RegistrarAuthority" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegisteredDateID" type="LPRegisteredDateRecordId" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStockExchangeListed" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StockExchangeListing" type="StockExchangeListingInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegistrarAuthority">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="TaxCodeOrHandelsRegNr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Registrar" type="RegistrarAuthority" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegisteredDateID" type="LPRegisteredDateRecordId" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="LocationInfo">
@@ -32,25 +76,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="CountryInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="RegistrarAuthority">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:simpleType name="EntityType">
     <xs:list>
       <xs:simpleType>
@@ -62,10 +87,36 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
+  <xs:simpleType name="OwnershipFormType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Private" />
+      <xs:enumeration value="State" />
+      <xs:enumeration value="Municipal" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="LPRegisteredDateRecordId">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="RegisteredDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="RegistryRecordId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StockExchangeListingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Exchange" type="StockExchangeInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IssuerName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MajorStockSymbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StockExchangeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="GenericPersonID">
@@ -73,12 +124,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
       <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="CurrencyAmount">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfEconomicActivityType">

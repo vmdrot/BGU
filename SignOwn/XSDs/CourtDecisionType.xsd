@@ -9,6 +9,7 @@
       <xs:enumeration value="CourtOrder" />
       <xs:enumeration value="CourtResolution" />
       <xs:enumeration value="SpecialResolution" />
+      <xs:enumeration value="JudgesMinorityReport" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

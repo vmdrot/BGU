@@ -6,41 +6,47 @@
       <xs:documentation>Інформація про правочин
             У перспективі - продумати структуру, що б покривала опису, що надається у https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%B8%D0%BD</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Правочин відбувся?" description="Чи правочин уже відбувся чи лише планується?">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" displayName="Тип правочину" description="..." />
-      <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" type_ukr="текст" displayName="№ правочину" description="напр. №/серія договору, тощо - якщо правочин вже відбувся та/або цей реквізит відомий">
-        <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Правочин відбувся?" description="Чи правочин уже відбувся чи лише планується?">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" displayName="Тип правочину" description="..." />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionTypeOther" type="xs:string" type_ukr="текст" displayName="Тип правочину (інше)" description="(Якщо було обрано тип 'Інший')" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" type_ukr="текст" displayName="№ правочину" description="напр. №/серія договору, тощо - якщо правочин вже відбувся та/або цей реквізит відомий">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsCommitted == true</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата правочину" description="якщо правочин вже відбувся та/або цей реквізит відомий">
-        <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата правочину" description="якщо правочин вже відбувся та/або цей реквізит відомий">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsCommitted == true</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" displayName="Сторони" description="Сторони правочину">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="TransactionText" type="xs:string" type_ukr="текст" displayName="Зміст правочину" description="Стислий опис змісту правочину">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" displayName="Сторони" description="Сторони правочину">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TransactionText" type="xs:string" type_ukr="текст" displayName="Зміст правочину" description="Стислий опис змісту правочину">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionPartyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
 </xs:schema>

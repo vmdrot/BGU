@@ -237,26 +237,23 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             StringBuilder sbComment = new StringBuilder();
             
             PropertyInfo pi = typ.GetProperty(prop);
-            if (Attribute.IsDefined(pi, typeof(RequiredAttribute)))
+            RequiredAttribute reqAttr = ReflectionUtil.GetPropertyAttribute<RequiredAttribute>(pi);
+            if (reqAttr != null)
             {
 
-                Attribute reqAttr0 = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(RequiredAttribute));
-                if (reqAttr0 is RequiredAttribute)
+                if (string.IsNullOrEmpty(reqAttr.Condition))
                 {
-                    RequiredAttribute reqAttr = (RequiredAttribute)reqAttr0;
-                    if (string.IsNullOrEmpty(reqAttr.Condition))
-                    {
-                        target.Attributes["minOccurs"].Value = "1";
-                        sbComment.AppendLine("ОБОВЯ'ЗКОВЕ ПОЛЕ!");
-                    }
-                    else
-                    {
-                        sbComment.AppendLine(string.Format("(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):\n   {0}", reqAttr.Condition));
-                    }
+                    target.Attributes["minOccurs"].Value = "1";
+                    sbComment.AppendLine("ОБОВЯ'ЗКОВЕ ПОЛЕ!");
+                }
+                else
+                {
+                    sbComment.AppendLine(string.Format("(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):\n   {0}", reqAttr.Condition));
                 }
             }
-            
-            if (Attribute.IsDefined(pi, typeof(ObsoleteAttribute)))
+
+            ObsoleteAttribute obsoleteAttr = ReflectionUtil.GetPropertyOrTypeAttribute<ObsoleteAttribute>(pi);
+            if (obsoleteAttr != null)
                 sbComment.AppendLine("Увага! Це поле було помічено як таке, що не використовується/застаріло (Obsolete)!");
             if (!string.IsNullOrEmpty(extraClause2Put))
                 sbComment.AppendLine(extraClause2Put);

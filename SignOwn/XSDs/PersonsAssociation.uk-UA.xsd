@@ -6,61 +6,66 @@
       <xs:documentation>Інформація про зв'язок між двома особами;
             використовується для ідентифікації пов'язаних осіб.</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="One" type="GenericPersonID" displayName="Перша особа" description="Перша особа">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="One" type="GenericPersonID" displayName="Перша особа" description="Перша особа">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Two" type="GenericPersonID" displayName="Друга особа" description="Друга особа">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Two" type="GenericPersonID" displayName="Друга особа" description="Друга особа">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково, не та ж що й One</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="OwnershipType" displayName="Тип зв'язку" description="Тип зв'язку">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="PersonAssociationType" displayName="Тип зв'язку" description="Тип зв'язку">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" displayName="Ким приходиться перша особа другій" description="Назва, ким приходиться перша особа другій">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" displayName="Ким приходиться перша особа другій" description="Назва, ким приходиться перша особа другій">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             батько, мати, дружина, кум, зять, брат, сват, і т.д.;
             якби існував кінечний перелік, доцільно було б замінити ним</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" displayName="Ким приходиться друга особа першій" description="Назва, ким приходиться друга особа першій">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" displayName="Ким приходиться друга особа першій" description="Назва, ким приходиться друга особа першій">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Віддзеркалення значення AssociationTitleOneVsTwo
             син, син, чоловік, кум/кума/похресник/похресниця, тесть/свекор/теща/свекруха, брат/сестра, ..., і т.д.
             
 
 Див.також: AssociationTitleOneVsTwo</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" type_ukr="текст" displayName="Ролі осіособи одна одній (якщо інше)" description="Ким приходяться особи одна одній (якщо інше)">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" type_ukr="текст" displayName="Ролі осіособи одна одній (якщо інше)" description="Ким приходяться особи одна одній (якщо інше)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             опис ролей пов'язаних осіб, якщо в полях AssociationTitleTwoVsOne / AssociationTitleOneVsTwo вказано "Інше..."
             
 
 Див.також: AssociationTitleOneVsTwo</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
   <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
 </xs:schema>

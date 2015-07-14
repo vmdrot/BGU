@@ -6,53 +6,58 @@
       <xs:documentation>Інформація про банк - як український, так і іноземний (якщо треба)
             Приклад реалізації Web UI (без заповнення поля LegalPerson) див. за адресою https://youtu.be/ReThZDDMsOM</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" type_ukr="текст" displayName="МФО" description="МФО">
-        <xs:annotation>
-          <xs:documentation>Для українських банків MFO (GLMFO)
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" type_ukr="текст" displayName="МФО" description="МФО - для українського банку, для іноземного банку - національний кліринговий ідентифікатор (Sorted Chaps, BLZ, Code Guichet, тощо)">
+            <xs:annotation>
+              <xs:documentation>Для українських банків MFO (GLMFO)
             Для банків-нерезидентів - національний кліринговий код (Bankleitzahl (BLZ), Sorted CHAPS code, FedWire, Codigo Bancario, Code Guichet, тощо)
             Обов'язкове поле, якщо OperationCountry == UKRAINE
             ( http://www.tgbr.com/tgbr/help/RTN.html )</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування банку" description="Найменування банку (в оригіналі)">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування банку" description="Найменування банку (в оригіналі)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Оригінальна назва банку (мовою країни резидентності)
             Для українських банків заповнюється лише ця назва</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування банку(українською)" description="Найменування банку(українською)">
-        <xs:annotation>
-          <xs:documentation>Назва банку українською (для банків-нерезидентів)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" displayName="Відомості про юрособу-банк" description="Відомості про юрособу-банк">
-        <xs:annotation>
-          <xs:documentation>Реквізити банку як юр.особи.
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування банку(українською)" description="Найменування банку(українською)">
+            <xs:annotation>
+              <xs:documentation>Назва банку українською (для банків-нерезидентів)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" displayName="Відомості про юрособу-банк" description="Відомості про юрособу-банк">
+            <xs:annotation>
+              <xs:documentation>Реквізити банку як юр.особи.
             Адреса, коди, тощо - все там. 
             Якщо у анкеті доведеться розкривати структуру власності у т.ч. й цього банку, то необхідно вказати бодай податковий код банку (чи його еквівалент)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" type_ukr="текст" displayName="SWIFT адреса" description="Див. http://www.swift.com/bsl/">
-        <xs:annotation>
-          <xs:documentation>SWIFT код (для банків нерезидентів), 
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" type_ukr="текст" displayName="SWIFT адреса" description="Див. http://www.swift.com/bsl/">
+            <xs:annotation>
+              <xs:documentation>SWIFT код (для банків нерезидентів), 
             як однозначний універсальний ідентифікатор банку
             Бажаний, якщо є; якщо немає - вимагати вказання національного клірингового ідентифікатору (поле MFO)
             http://www.swift.com/bsl/</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Країна резидентності банку
             Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />

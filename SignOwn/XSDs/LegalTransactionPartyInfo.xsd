@@ -2,12 +2,17 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="LegalTransactionPartyInfo" nillable="true" type="LegalTransactionPartyInfo" />
   <xs:complexType name="LegalTransactionPartyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
   <xs:complexType name="GenericPersonID">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />

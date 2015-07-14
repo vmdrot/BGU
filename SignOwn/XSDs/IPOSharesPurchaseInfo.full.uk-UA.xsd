@@ -19,5 +19,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
 </xs:schema>
