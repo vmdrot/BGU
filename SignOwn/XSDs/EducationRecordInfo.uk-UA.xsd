@@ -69,6 +69,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />

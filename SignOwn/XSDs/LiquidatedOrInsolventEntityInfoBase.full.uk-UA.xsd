@@ -13,6 +13,12 @@
             Ідентифікатор, обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Court" type="CourtInfo" displayName="Суд" description="Суд на розгляді/у провадженні якого перебуває справа, чи котрий виніс рішення">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CaseNr" type="xs:string" type_ukr="текст" displayName="Справа №" description="№ справи про банкрутство/ліквідацію юр.особи (з реєстру судових рішень)" />
       <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" displayName="Статус (ліквідації чи банкрутства)">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
@@ -52,4 +58,9 @@
   </xs:simpleType>
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
 </xs:schema>

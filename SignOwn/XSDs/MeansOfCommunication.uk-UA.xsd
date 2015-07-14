@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MeansOfCommunication" type="MeansOfCommunication" />
+  <xs:simpleType name="MeansOfCommunication">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="Phone" description="Телефон(-и)" />
+      <xs:enumeration value="Email" description="Ел.пошта" />
+      <xs:enumeration value="Fax" description="Факс" />
+      <xs:enumeration value="Mail" description="Звичайна пошта" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

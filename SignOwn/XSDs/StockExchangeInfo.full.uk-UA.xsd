@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StockExchangeInfo" nillable="true" type="StockExchangeInfo" />
+  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+</xs:schema>

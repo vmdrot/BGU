@@ -2,15 +2,25 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="CourtDecisionInfo" nillable="true" type="CourtDecisionInfo" />
   <xs:complexType name="CourtDecisionInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="DecisionType" type="CourtDecisionType" />
-      <xs:element minOccurs="1" maxOccurs="1" name="DecisionDate" type="xs:dateTime" type_ukr="дата і час" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DecisionText" type="xs:string" type_ukr="текст" />
-    </xs:sequence>
+    <xs:annotation>
+      <xs:documentation>Рішення суду</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" displayName="Суд" description="Суд, що виніс рішення" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionType" type="CourtDecisionType" displayName="Тип рішення" description="Тип рішення" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата рішення" description="Дата винесення судом рішення" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionRegistryID" type="xs:string" type_ukr="текст" displayName="№ рішення" description="Реєстраційний № рішення (у відповідному реєстрі судових рішень)" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionTextSummary" type="xs:string" type_ukr="текст" displayName="Зміст рішення" description="Резюме чи повний зміст рішення (залежно від того, як того вимагає контекст)" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
 </xs:schema>

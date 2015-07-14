@@ -208,7 +208,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility
         }
 
 
-        public static T GetPropertyOrTypeAttribute<T>(PropertyInfo pi) where T: Attribute
+        public static T GetPropertyAttribute<T>(PropertyInfo pi) where T : Attribute
         {
 
             if (Attribute.IsDefined(pi, typeof(T)))
@@ -219,10 +219,25 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                     return (T)attr;
                 }
             }
-            else
-                return GetTypeAttribute<T>(pi.PropertyType);
-
             return null;
+        }
+
+
+        public static T GetPropertyOrTypeAttribute<T>(PropertyInfo pi) where T: Attribute
+        {
+            return GetPropertyAttribute<T>(pi) ?? GetTypeAttribute<T>(pi.PropertyType);
+            //if (Attribute.IsDefined(pi, typeof(T)))
+            //{
+            //    Attribute attr = Attribute.GetCustomAttribute((MemberInfo)pi, typeof(T));
+            //    if (attr is T)
+            //    {
+            //        return (T)attr;
+            //    }
+            //}
+            //else
+            //    return GetTypeAttribute<T>(pi.PropertyType);
+
+            //return null;
         }
     }
 }

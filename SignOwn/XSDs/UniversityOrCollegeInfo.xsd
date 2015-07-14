@@ -2,13 +2,18 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="UniversityOrCollegeInfo" nillable="true" type="UniversityOrCollegeInfo" />
   <xs:complexType name="UniversityOrCollegeInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="UniversityName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="UniversityName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
   <xs:complexType name="LocationInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />

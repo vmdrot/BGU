@@ -112,21 +112,23 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
   <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
-  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
-  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
   <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />

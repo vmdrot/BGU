@@ -19,9 +19,14 @@
   <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
 </xs:schema>

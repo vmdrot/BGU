@@ -37,7 +37,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public bool IsPhysical { get { return PersonType == EntityType.Physical; } }
 
 
-        public LegalPersonInfo _LegalPerson;
+        private LegalPersonInfo _LegalPerson;
 
         /// <summary>
         /// Обов'язкове поле, якщо PersonType == Legal

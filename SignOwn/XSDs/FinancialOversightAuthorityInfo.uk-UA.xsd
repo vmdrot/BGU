@@ -11,54 +11,64 @@
 
 Див.також: http://en.wikipedia.org/wiki/Category:Financial_regulatory_authorities</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Jurisdiction" type="CountryInfo" displayName="Країна юрисдикції">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AuthorityName" type="xs:string" type_ukr="текст" displayName="Назва органу">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Jurisdiction" type="CountryInfo" displayName="Країна юрисдикції">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityName" type="xs:string" type_ukr="текст" displayName="Назва органу">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва органу оригінальною мовою, напр.:
              - Bundesanstalt für Finanzdienstleistungsaufsicht
              - Komisja Nadzoru Finansowego</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу(українською)">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу(українською)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва органу українською, напр.:
              - Бундесанштальт фюр фінанцдінстляйстунґзауфзіхт - Федеральний орган нагляду за фінансовими послугами (ФРН)
              - Комісія надзору фінансовеґо - Комісія фінансового нагляду (Польща)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Максимальне заповнення полів</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Контакти органу
             Поля, які бажано заповнити - www</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
-  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />

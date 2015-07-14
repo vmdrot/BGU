@@ -2,8 +2,10 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="CourtDecisionInfo" nillable="true" type="CourtDecisionInfo" />
   <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
 </xs:schema>

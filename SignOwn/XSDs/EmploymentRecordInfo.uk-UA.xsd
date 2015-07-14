@@ -6,77 +6,105 @@
       <xs:documentation>Структура для зберігання відомостей про досвід роботи
             (один "епізод" з трудової біографії)</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" displayName="Тип зайнятості">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   State == Employed
 
             Обов'язкове поле
             Посилання - реквізити в MentionedEntities</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   State == Freelance OR State == Selfemployed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   State == Freelance OR State == Selfemployed</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове, вільний формат</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове, з точністю до місяця</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи">
-        <xs:annotation>
-          <xs:documentation>з точністю до місяця
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи">
+            <xs:annotation>
+              <xs:documentation>з точністю до місяця
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" displayName="Тип зайнятості">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            обов'язкове поле</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину">
-        <xs:annotation>
-          <xs:documentation>Пояснення обов'язкове для TerminationType типів:
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину">
+            <xs:annotation>
+              <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
             - OtherLeaveType
             - VoluntaryQuit</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="EmployerContact" type="ContactInfo" displayName="Контакти роботодавця">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             тел, e-mail, якщо є - www;
             якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
-  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
-  <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
-  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />

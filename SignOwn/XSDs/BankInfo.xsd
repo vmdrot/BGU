@@ -2,15 +2,20 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="BankInfo" nillable="true" type="BankInfo" />
   <xs:complexType name="BankInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
   <xs:complexType name="GenericPersonID">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />

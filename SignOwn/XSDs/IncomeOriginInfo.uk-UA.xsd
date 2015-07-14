@@ -6,24 +6,30 @@
       <xs:documentation>Інформація про джерело отриманих доходів (за рахунок яких, 
             наприклад, буде сплачуватися набуття істотної участі)</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" displayName="Тип походження">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Income" type="CurrencyAmount" displayName="Сума доходу">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" type_ukr="текст" displayName="Опис та деталі щодо джерела доходу">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" displayName="Тип походження" description="Тип походження коштів / доходів ...">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="OriginOther" type="xs:string" type_ukr="текст" displayName="Тип походження(інший)" description="Тип походження коштів / доходів, якщо вказано 'Інше'" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Income" type="CurrencyAmount" displayName="Сума доходу">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" type_ukr="текст" displayName="Опис та деталі щодо джерела доходу">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
 </xs:schema>

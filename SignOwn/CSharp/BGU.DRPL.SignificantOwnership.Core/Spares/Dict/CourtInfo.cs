@@ -25,7 +25,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         private string _CourtRegion;
         private string _CourtID;
         private CourtInstanceType _Instance;
-        public LocationInfo _CourtAddress;
+        private LocationInfo _CourtAddress;
         #endregion
 
         public CourtInfo()

@@ -5,11 +5,23 @@
     <xs:annotation>
       <xs:documentation>Інформація про сторону правочину</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="LegalTransactionPartyRoleType">
     <xs:restriction base="xs:string">
@@ -29,6 +41,7 @@
       <xs:enumeration value="Other" description="Інше" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
 </xs:schema>

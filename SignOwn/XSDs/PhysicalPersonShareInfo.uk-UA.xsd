@@ -11,9 +11,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
 </xs:schema>

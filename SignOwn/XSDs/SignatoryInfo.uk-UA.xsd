@@ -32,7 +32,7 @@
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="За довіреністю?" description="Підписант діє на підставі довіреності">
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Довіреність" description="Реквізити довіреності, на підставі якої діє підписант">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsActingByPowOfAttorney == true</xs:documentation>

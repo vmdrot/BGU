@@ -44,7 +44,23 @@
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthorities" type="ArrayOfFinancialOversightAuthorityInfo" displayName="3. (4-5) Державний(-і) наглядовий(-і) орган(-и)" description="3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNonResidentLicenseRequired" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="3.4. Потрібен дозвіл державного органу (для іноземців)" description="3.4 (Нерезидентам) Для набуття (збільшення) участі в банку потрібно отримувати дозівл іноземного державного контролюючого органу(-ів)?" category="І. Інформація про юридичну особу" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForeignOwnAcqLicensingAuthority" type="ArrayOfFinancialOversightAuthorityInfo" displayName="3.4. Державний дозвільний орган (для іноземців)" description="3. Найменування іноземного державного контролюючого органу, що дає дозвіл на набуття (збільшення) участі в банку (для іноземців)" category="І. Інформація про юридичну особу">
+            <xs:annotation>
+              <xs:documentation>3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
+            Найменування іноземного державного
+            контролюючого органу, що дає дозвіл
+            на набуття (збільшення) участі в банку
+            (для іноземців)
+            Державний орган, що здійснює
+            нагляд за діяльністю юридичної
+            особи (для осіб, які здійснюють
+            регульовану діяльність)
+            -----
+            Орган, що здійснив державну реєстрацію - див. у полі Acquiree</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="StateRegulatorAuthorities" type="ArrayOfFinancialOversightAuthorityInfo" displayName="3. (4-5) Державний(-і) наглядовий(-і) орган(-и)" description="3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами" category="І. Інформація про юридичну особу">
             <xs:annotation>
               <xs:documentation>3. Відомості про державну реєстрацію юридичної особи та відносини з контролюючими державними органами
             Найменування іноземного державного
@@ -66,7 +82,7 @@
                        (найменування органу)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankInfo" displayName="4. Банківські рахунки юридичної особи" description="(не заповнюється банками)" category="І. Інформація про юридичну особу">
+          <xs:element minOccurs="0" maxOccurs="1" name="AccountsWithBanks" type="ArrayOfBankAccountInfo" displayName="4. Банківські рахунки юридичної особи" description="(не заповнюється банками)" category="І. Інформація про юридичну особу">
             <xs:annotation>
               <xs:documentation>Поле обов'язкове, лише якщо заявник не є банком.</xs:documentation>
             </xs:annotation>
@@ -196,7 +212,7 @@
             Примітка. Якщо немає змоги надати інформацію за відповідними пунктами анкети, то слід зазначити причину.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п.">
+          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості про особу, що підписала анкету" category="Підписи і т.п.">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -235,73 +251,89 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
-  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
+  <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfCreditRatingInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CreditRatingInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="WellKnownCreditRatingAgencyType.uk-UA.xsd" />
-  <xs:include schemaLocation="RatingAgencyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LoanInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IncomeOriginInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignificantOwnershipAcquisitionWaysInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="FinancialOversightAuthorityInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="RatingAgencyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CreditRatingInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="WellKnownCreditRatingAgencyType.uk-UA.xsd" />
   <xs:include schemaLocation="LongTermCreditRatingType.uk-UA.xsd" />
   <xs:include schemaLocation="ShortTermCreditRatingType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCreditRatingInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfFinancialOversightAuthorityInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="FinancialOversightAuthorityInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SignificantOwnershipAcquisitionWaysInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBankAccountInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalTransactionInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalTransactionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfLegalTransactionPartyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalTransactionPartyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalTransactionPartyRoleType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfSecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfSignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="InfluenceType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIncomeOriginInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="IncomeOriginInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="FundsOriginType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfLoanInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LoanInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
-  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ImperfectBusinessReputationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankruptcyInvestigationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIndebtnessInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBreachOfLawRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
-  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfLiquidatedEntityOwnershipInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LiquidatedEntityOwnershipInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
@@ -310,14 +342,6 @@
   <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfMissingInformationResonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="MissingInformationResonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
-  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonsAssociation.uk-UA.xsd" />
-  <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
-  <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
 </xs:schema>

@@ -27,7 +27,7 @@
             За змовчанням Direct (пропонувати уже введене)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Share" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка у власності (сума)" description="Частка (сума)">
+      <xs:element minOccurs="0" maxOccurs="1" name="Share" type="CurrencyAmount" displayName="Частка у власності (сума)" description="Частка (сума)">
         <xs:annotation>
           <xs:documentation>Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі</xs:documentation>
         </xs:annotation>
@@ -48,4 +48,6 @@
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
 </xs:schema>

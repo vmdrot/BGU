@@ -6,9 +6,10 @@
       <xs:documentation>Інформація про банківський рахунок (відкритий деінде)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="AccountOwner" type="GenericPersonID" displayName="Власник рахунку">
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountOwner" type="GenericPersonID" displayName="Власник рахунку">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   WithMoreDetails == true
 
             У цьому полі - лише ідентифікатор особи;
             решта реквізитів особи - десь у MentionedEntities чи його еквіваленті</xs:documentation>
@@ -23,12 +24,17 @@
             для нерезидентів - Назва, назва укр., (SWIFT або MFO), якщо ні - адреса, щоб однозначно ідентифікувати</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" default="false" name="WithMoreDetails" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вказати більше деталей" description="(відзначити за потреби вказати додаткову інформацію про рахунок)">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="AccountNr" type="xs:string" type_ukr="текст" displayName="№ рахунку">
         <xs:annotation>
           <xs:documentation>№ рахунку</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AccountCCY" type="xs:string" type_ukr="текст" displayName="Валюта рахунку">
+      <xs:element minOccurs="0" maxOccurs="1" default="UAH" name="AccountCCY" type="xs:string" type_ukr="текст" displayName="Валюта рахунку">
         <xs:annotation>
           <xs:documentation>ditto</xs:documentation>
         </xs:annotation>
@@ -45,5 +51,6 @@
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
 </xs:schema>

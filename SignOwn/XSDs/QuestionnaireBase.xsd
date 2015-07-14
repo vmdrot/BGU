@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="QuestionnaireBase" nillable="true" type="QuestionnaireBase" />
-  <xs:complexType name="QuestionnaireBase" abstract="true" />
+  <xs:complexType name="QuestionnaireBase" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
 </xs:schema>

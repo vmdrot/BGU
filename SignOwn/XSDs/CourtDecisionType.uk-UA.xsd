@@ -9,6 +9,7 @@
       <xs:enumeration value="CourtOrder" description="Судовий наказ" />
       <xs:enumeration value="CourtResolution" description="Ухвала суду" />
       <xs:enumeration value="SpecialResolution" description="Окрема ухвала" />
+      <xs:enumeration value="JudgesMinorityReport" description="Окрема думка судді" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

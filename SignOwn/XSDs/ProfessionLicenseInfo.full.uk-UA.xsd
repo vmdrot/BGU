@@ -21,7 +21,7 @@
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LicenseValidTill" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до">
+      <xs:element minOccurs="1" maxOccurs="1" name="LicenseValidTill" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до">
         <xs:annotation>
           <xs:documentation>якщо не вказана - дійсна довічно</xs:documentation>
         </xs:annotation>
@@ -49,27 +49,31 @@
             (напр. проф.комісія, що надає ліцензії для заняття 
             тим чи іншим видом професійної діяльності, чи ж видає сертифікат - галузевий чи професійний)</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва оригінальною мовою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)">
-        <xs:annotation>
-          <xs:documentation>Назва українською (якщо нерезидент)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)">
+            <xs:annotation>
+              <xs:documentation>Назва українською (якщо нерезидент)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкові поля: Назва(-и), Адреса, країна резидентності</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="ArrayOfLicenseQualificationInfo">
     <xs:sequence>
@@ -98,14 +102,18 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
-  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
 </xs:schema>

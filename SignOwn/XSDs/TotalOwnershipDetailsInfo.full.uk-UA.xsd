@@ -54,29 +54,6 @@
       <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="CurrencyAmount">
-    <xs:annotation>
-      <xs:documentation>Структура для універсальної грошової суми</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            Значення за змовчанням - UAH
-            http://www.iso.org/iso/en-US/home/standards/currency_codes.htm
-            
-
-Див.також: http://www.currency-iso.org/en/home/tables/table-a1.html</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="OwnershipVotesInfo">
     <xs:annotation>
       <xs:documentation>Спрощений варіант інформації про часту власності (де не вимагається сума в абс. виразі)</xs:documentation>
@@ -94,4 +71,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
 </xs:schema>

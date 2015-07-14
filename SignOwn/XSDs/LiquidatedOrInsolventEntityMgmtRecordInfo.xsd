@@ -13,6 +13,8 @@
   <xs:complexType name="LiquidatedOrInsolventEntityInfoBase">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Asset" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CaseNr" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" />
       <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="LiquidationReason" type="xs:string" />
@@ -37,6 +39,49 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
+  <xs:complexType name="CourtInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CourtInstanceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="First" />
+      <xs:enumeration value="Appeal" />
+      <xs:enumeration value="Cassation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:simpleType name="InsolvencyStatus">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />

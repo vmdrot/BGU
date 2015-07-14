@@ -10,54 +10,23 @@
 
 Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="CountryInfo">
-    <xs:annotation>
-      <xs:documentation>Країна 
-            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)
-            (в усіх місцях, окрім тих, де з контексту явно випливає, що буде не Україна)
-            
-
-Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст">
-        <xs:annotation>
-          <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
-            Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст">
-        <xs:annotation>
-          <xs:documentation>Назва країни англ. мовою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст">
-        <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            Назва країни українською мовою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Суд" description="Назва суду (оригінальною мовою)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна підсудності" description="(країна юрисдикції суду)" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Суд (укр.)" description="Назва суду українською (якщо іноземний суд)" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" displayName="Інстанція суду" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" displayName="Регіон юрисдикції" description="Область/регіон юрисдикції суду" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" displayName="Код суду" description="Код суду (для українських судів) або ж його еквівалент для іноземних судів (якщо існує)" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" displayName="Адреса суду" description="Адреса суду" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="CourtInstanceType">
     <xs:annotation>
@@ -72,4 +41,52 @@
       <xs:enumeration value="Cassation" description="Касаційна" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="LocationInfo">
+    <xs:annotation>
+      <xs:documentation>Відомості про адресу; використовується як реквізити юр./фіз.особи, держоргану, тощо</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryInfo" displayName="Країна" description="Країна">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            За змовчанням - Україна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область, район/провінція, тощо" description="область, район/провінція, тощо">
+        <xs:annotation>
+          <xs:documentation>Якщо потрібно</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" type_ukr="текст" displayName="Поштовий індекс" description="Поштовий індекс">
+        <xs:annotation>
+          <xs:documentation>Залежно від контексту, у більшості випадків - бажано</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="City" type="xs:string" type_ukr="текст" displayName="Населений пункт" description="Населений пункт">
+        <xs:annotation>
+          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле (скрізь)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо" description="Вулиця/площа/тощо">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" type_ukr="текст" displayName="№ / назва будинку" description="№ / назва будинку">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо" description="№ кв./офісу, тощо">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом та передбачено/існує</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
 </xs:schema>

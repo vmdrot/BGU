@@ -27,7 +27,7 @@
             За змовчанням Direct (пропонувати уже введене)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Share" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка у власності (сума)" description="Частка (сума)">
+      <xs:element minOccurs="0" maxOccurs="1" name="Share" type="CurrencyAmount" displayName="Частка у власності (сума)" description="Частка (сума)">
         <xs:annotation>
           <xs:documentation>Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі</xs:documentation>
         </xs:annotation>
@@ -63,7 +63,7 @@
             Код країни резидентності
             
 
-Див.також: CountryInfo</xs:documentation>
+Див.також: T:BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CountryInfo</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType">
@@ -107,4 +107,6 @@
       <xs:enumeration value="Attorney" description="Власність по довіреності" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
 </xs:schema>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="IPNRefusalRecordInfo" nillable="true" type="IPNRefusalRecordInfo" />
+  <xs:complexType name="IPNRefusalRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про відмітку в паспорті про право здійснювати будь-які 
+              платежі без ІПН
+             ---------------------------------------------------------
+             У паспорт серія ___ N ____________, який видано громадянину
+             _________________________________________________________________,
+                                (прізвище, ім'я та по батькові)
+             ______ внесено  відмітку  за  N  _____________ про наявність права
+              (дата)
+             здійснювати будь-які платежі без ідентифікаційного номера.
+            ____________             ________________________________________
+              (дата)                           (ПІБ, посада, підпис)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата запису" description="Дата внесення відповідного запису до паспорта" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RecordID" type="xs:string" type_ukr="текст" displayName="№ запису" description="№ відповідного запису до паспорта" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Відомості про підписанта запису" description="Відомості про підписанта запису" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+</xs:schema>

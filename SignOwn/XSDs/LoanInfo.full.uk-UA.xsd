@@ -11,6 +11,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="IndebtnessInfoBase">
         <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LendingBank" type="BankInfo" displayName="Банк-позичальник" description="Банк, що надав кредит" />
           <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" type_ukr="текст" displayName="№ договору">
             <xs:annotation>
               <xs:documentation>для банківських позик - обов'язковий</xs:documentation>
@@ -28,7 +29,10 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
 </xs:schema>

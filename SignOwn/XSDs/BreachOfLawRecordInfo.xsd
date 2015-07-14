@@ -2,20 +2,100 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="BreachOfLawRecordInfo" nillable="true" type="BreachOfLawRecordInfo" />
   <xs:complexType name="BreachOfLawRecordInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CodeOrLaw" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Articles" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PenaltyDurationYrs" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FineAmount" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CourtInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CourtNameUkr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SentenceDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CodeOrLaw" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Articles" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="CourtInstanceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="First" />
+      <xs:enumeration value="Appeal" />
+      <xs:enumeration value="Cassation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourtDecisionInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionType" type="CourtDecisionType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionRegistryID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionTextSummary" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="CourtDecisionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sentence" />
+      <xs:enumeration value="Ruling" />
+      <xs:enumeration value="Decision" />
+      <xs:enumeration value="CourtOrder" />
+      <xs:enumeration value="CourtResolution" />
+      <xs:enumeration value="SpecialResolution" />
+      <xs:enumeration value="JudgesMinorityReport" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="BreachOfLawType">
     <xs:list>
       <xs:simpleType>
@@ -33,21 +113,13 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="CountryInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:simpleType name="SentenceType">
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
           <xs:enumeration value="None" />
           <xs:enumeration value="Jailed" />
+          <xs:enumeration value="Probation" />
           <xs:enumeration value="RemedialWorks" />
           <xs:enumeration value="Fined" />
           <xs:enumeration value="Dismissed" />

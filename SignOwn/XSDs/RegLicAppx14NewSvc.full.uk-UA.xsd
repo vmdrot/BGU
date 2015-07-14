@@ -154,25 +154,28 @@
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
-  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
-  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankingLicenseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankingLicensedActivityInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankingActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialServicesType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
-  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
-  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
-  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
 </xs:schema>

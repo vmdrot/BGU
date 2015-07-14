@@ -2,11 +2,27 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="IncomeOriginInfo" nillable="true" type="IncomeOriginInfo" />
   <xs:complexType name="IncomeOriginInfo">
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Income" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OriginOther" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Income" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="FundsOriginType">
     <xs:list>
@@ -26,10 +42,4 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:complexType name="CurrencyAmount">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
 </xs:schema>

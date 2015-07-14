@@ -2,15 +2,20 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="PersonsAssociation" nillable="true" type="PersonsAssociation" />
   <xs:complexType name="PersonsAssociation">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="One" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Two" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="OwnershipType" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" />
-      <xs:element minOccurs="0" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" />
-    </xs:sequence>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="One" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Two" type="GenericPersonID" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="PersonAssociationType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
   <xs:complexType name="GenericPersonID">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
@@ -29,14 +34,12 @@
       </xs:simpleType>
     </xs:list>
   </xs:simpleType>
-  <xs:simpleType name="OwnershipType">
+  <xs:simpleType name="PersonAssociationType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
-      <xs:enumeration value="Direct" />
-      <xs:enumeration value="Implicit" />
-      <xs:enumeration value="Associated" />
-      <xs:enumeration value="Agreement" />
+      <xs:enumeration value="Relative" />
       <xs:enumeration value="Attorney" />
+      <xs:enumeration value="Other" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="AssociatedPersonRole">
