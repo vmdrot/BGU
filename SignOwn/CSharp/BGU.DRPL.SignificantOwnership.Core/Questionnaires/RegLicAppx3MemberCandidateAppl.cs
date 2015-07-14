@@ -400,5 +400,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         {
             base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[] { this.OwnershipStakeWithLPAcquiree, this.ImplicitOwnershipWithBank });
         }
+        protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
+        {
+            MentionedIdentities.Add(gpi);
+        }
     }
 }

@@ -513,27 +513,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             get { return new List<LocationInfo>(); /* todo */ }
         }
 
-        private void AddBankToMentionedIdentities(BankInfo bank)
-        {
-            log.Debug("AddBankToMentionedIdentities: entering...");
-            if (bank == null || bank.LegalPerson == null || bank.LegalPerson.IsEmpty)
-                return;
-            //GenericPersonInfo gpi = MentionedIdentities.Find(o => o.ID == bank.LegalPerson);
-            //if (gpi != null)
-            //    return;
-            //DataTable dt = RcuKruReader.Search(RcuKruReader.Read("RCUKRU.DBF"), bank.MFO);
-            //if (dt != null && dt.Rows != null && dt.Rows.Count > 10)
-            //    return;
-            //if (dt == null || dt.Rows != null || dt.Rows.Count == 0)
-            //    return;
-            //BankInfo bi = BankInfo.ParseFromRcuKruRow(dt.Rows[0], out gpi);
-            GenericPersonInfo gpi = new GenericPersonInfo() { PersonType = Spares.EntityType.Legal, LegalPerson = new LegalPersonInfo() { Name = bank.Name , NameUkr = bank.NameUkr, TaxCodeOrHandelsRegNr = bank.LegalPerson.PersonCode, ResidenceCountry = CountryInfo.AllCountries.Find(c => c.CountryISONr == bank.LegalPerson.CountryISO3Code)} };
-            MentionedIdentities.Add(gpi);
-            OnPropertyChanged("MentionedIdentities");
-            OnPropertyChanged("MentionedGenericPersons");
-            
-        }
-
         //public event PropertyChangedEventHandler PropertyChanged;
         //protected void OnPropertyChanged(string propertyName)
         //{
@@ -549,6 +528,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public void RefreshGenericPersonsDisplayNames()
         {
             base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[]{ this.ExistingOwnershipDetailsHive});
+        }
+        protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
+        {
+            MentionedIdentities.Add(gpi);
         }
     }
 }

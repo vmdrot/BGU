@@ -7,6 +7,8 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using BGU.DRPL.SignificantOwnership.Core.Spares;
 using Evolvex.Utility.Core.ComponentModelEx;
+using Evolvex.Utility.Core.Common;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -27,399 +29,401 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx4PhysPQuest_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx4OwnershipAcqRequestPP : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
+        private static readonly ILog log = Logging.GetLogger(typeof(RegLicAppx4OwnershipAcqRequestPP));
+
+        private const string CATEGORY_I = "І. Інформація про фізичну особу";
+        private const string CATEGORY_II = "ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку";
+        private const string CATEGORY_III = "ІІІ. Відносини фізичної особи з іншими особами";
+        private const string CATEGORY_IV = "IV. Ділова репутація";
+        private const string CATEGORY_SignEtc = "Підписи і т.п.";
+
         public RegLicAppx4OwnershipAcqRequestPP()
         {
             this.BankingAccounts = new List<BankAccountInfo>();
             this.EmploymentRecords = new List<EmploymentRecordInfo>();
-            this.EducationRecords = new List<EducationRecordInfo>();
-            this.ProfessionalLicenses = new List<ProfessionLicenseInfo>();
-            this.ExistingOwnershipWithBankDetails = new List<OwnershipStructure>();
-            this.TargetedOwnershipWithBankDiffDetails = new List<OwnershipStructure>();
-            this.TargetedOwnershipWithBankDetails = new List<OwnershipStructure>();
-            this.FundsOrigins = new List<IncomeOriginInfo>();
-            this.PaymentModes = new List<PaymentModeInfo>();
-            this.PaymentDeadlines = new List<PaymentDeadlineInfo>();
-            this.LoansWithBanks = new List<LoanInfo>();
-            this.LinkedBanksGoverningBodiesMembers = new List<CouncilBodyInfo>();
-            this.BreachesOfLaw = new List<BreachOfLawRecordInfo>();
-            this.OtherLiabilities = new List<IndebtnessInfo>();
-            this.LiquidatedSignOwnershipLastYear = new List<LiquidatedEntityOwnershipInfo>();
             this.MentionedIdentities = new List<GenericPersonInfo>();
             this.PersonsLinks = new List<PersonsAssociation>();
         }
+
+        private BankInfo _BankRef;
         /// <summary>
         /// Лише укр.банки, лише головні контори
         /// </summary>
         [DisplayName("Банк")]
         [Description("Банк")]
         [Required]
-        public BankInfo BankRef { get; set; }
+        public BankInfo BankRef
+        {
+            get { return _BankRef; }
+            set
+            {
+                //log.Debug("set_BankRef ({0})", value);
+                //if (value != null && !string.IsNullOrEmpty(value.Name) && value.Name.IndexOf("НБУ") != -1)
+                //    return;
+                _BankRef = value;
+                AddBankToMentionedIdentities(_BankRef); OnPropertyChanged("BankRef");
+            }
+        }
 
-
+        #region І. Інформація про фізичну особу
+        private GenericPersonID _Acquiree;
+        [Category(CATEGORY_I)]
         [DisplayName("Фізособа-заявник")]
         [Description("1. Інформація про особу")]
         [Required]
-        public PhysicalPersonInfo Acquiree { get; set; }
+        public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); } }
 
+        private List<EmploymentRecordInfo> _EmploymentRecords;
+        [Category(CATEGORY_I)]
+        [DisplayName("Досвід роботи")]
+        [Description("1.8. Займані посади за останні п'ять років")]
+        [Required]
+        public List<EmploymentRecordInfo> EmploymentRecords { get { return _EmploymentRecords; } set { _EmploymentRecords = value; OnPropertyChanged("EmploymentRecords"); } }
+
+        private List<BankAccountInfo> _BankingAccounts;
         /// <summary>
         /// Усередині кожного BankAccountInfo, обов'язково ідентифікувати хоча б банк (поки що, принаймні).
         /// Якщо він хоче вказати №№-и рахунків - не забороняти :)
         /// </summary>
+        [Category(CATEGORY_I)]
         [DisplayName("Рахунки в банках")]
         [Description("1.6. Перелік банків, у яких відкрито рахунки")]
         [Required]
-        public List<BankAccountInfo> BankingAccounts { get; set; }
+        public List<BankAccountInfo> BankingAccounts { get { return _BankingAccounts; } set { _BankingAccounts = value; OnPropertyChanged("BankingAccounts"); } }
 
+        private TotalOwnershipSummaryInfo _TotalExistingOwnershipWithBank;
+        [Category(CATEGORY_I)]
+        [DisplayName("5. Наявна участь у банку")]
+        [Description("5. Інформація про розмір наявної участі фізичної особи в банку")]
+        [Required]
+        [Browsable(true)]
+        public TotalOwnershipSummaryInfo TotalExistingOwnershipWithBank { get { return _TotalExistingOwnershipWithBank; } set { _TotalExistingOwnershipWithBank = value; OnPropertyChanged("TotalExistingOwnershipWithBank"); } }
+
+        private bool _IsBankAssociatedPerson;
+        [Category(CATEGORY_I)]
+        [DisplayName("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
+        [Description("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
+        public bool IsBankAssociatedPerson { get { return _IsBankAssociatedPerson; } set { _IsBankAssociatedPerson = value; OnPropertyChanged("IsBankAssociatedPerson"); } }
+
+
+        private BankAssociatedPeronsCode315p _BankAssociatedPersonCode;
+        [Category(CATEGORY_I)]
+        [DisplayName("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
+        [Description("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
+        [UIConditionalVisibility("IsBankAssociatedPerson")]
+        public BankAssociatedPeronsCode315p BankAssociatedPersonCode { get { return _BankAssociatedPersonCode; } set { _BankAssociatedPersonCode = value; OnPropertyChanged("BankAssociatedPersonCode"); } }
+        #endregion
+
+        #region ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку
+
+        private TotalOwnershipSummaryInfo _TotalOwnershipWithBankDiff;
         /// <summary>
-        /// Іноземний банк, обов'язкове поле якщо Acquiree.CitizenshipCountry != UKRAINE
+        /// 6. Інформація про розмір участі, що набувається (збільшується):
+        /// Наміри щодо набуття/збільшення участі в банку
         /// </summary>
-        [DisplayName("Банк, що відрекомендовує іноземця")]
-        [Description("1.7. Банк, який надає інформацію про наявні кошти і репутацію власника рахунку (для іноземців)")]
-        public BankInfo ReferenceBank { get; set; }
+        [Category(CATEGORY_II)]
+        [Browsable(true)]
+        [DisplayName("6. Наміри щодо набуття/збільшення участі")]
+        [Description("6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку")]
+        public TotalOwnershipSummaryInfo TotalOwnershipWithBankDiff { get { return _TotalOwnershipWithBankDiff; } set { _TotalOwnershipWithBankDiff = value; OnPropertyChanged("TotalOwnershipWithBankDiff"); } }
 
-
-        [DisplayName("Досвід роботи")]
-        [Description("1.8. Займані посади за останні п'ять років")]
-        [Required]
-        public List<EmploymentRecordInfo> EmploymentRecords { get; set; }
-
-        [DisplayName("Освіта")]
-        [Description("1.10. Освіта (освіта, науковий ступінь, номер, дата видачі диплома, ким виданий, спеціальність і кваліфікація)")]
-        [Required]
-        public List<EducationRecordInfo> EducationRecords { get; set; }
-
+        private TotalOwnershipSummaryInfo _TotalTargetedOwnershipWithBank;
         /// <summary>
-        /// Якщо є
+        /// 6. Інформація про розмір участі, що набувається (збільшується):
+        /// Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі
         /// </summary>
-        [DisplayName("Кваліфікація")]
-        [Description("1.10. Кваліфікація (професійна ліцензія, номер, дата видачі, ким видана, спеціальність і кваліфікація)")]
-        public List<ProfessionLicenseInfo> ProfessionalLicenses { get; set; }
+        [Category(CATEGORY_II)]
+        [Browsable(true)]
+        [DisplayName("7. Майбутня участь особи в банку")]
+        [Description("7. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі")]
+        public TotalOwnershipSummaryInfo TotalTargetedOwnershipWithBank { get { return _TotalTargetedOwnershipWithBank; } set { _TotalTargetedOwnershipWithBank = value; OnPropertyChanged("TotalTargetedOwnershipWithBank"); } }
 
+        private SignificantOwnershipAcquisitionWaysInfo _AcquisitionWays;
         /// <summary>
-        /// Якщо Acquiree.CitizenshipCountry != UKRAINE
+        /// 7. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне):
+        /// 
+        /// придбання акцій (паїв) банку на первинному ринку;
+        /// придбання акцій (паїв) банку на вторинному ринку;
+        /// набуття/збільшення істотної участі в банку опосередковано шляхом придбання корпоративних прав юридичних осіб у структурі власності банку;
+        /// набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;
+        /// набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння. 
         /// </summary>
-        [DisplayName("Чи потрібен дозвіл (для нерезидентів)")]
-        [Description("1.11. Чи потрібен дозвіл на набуття (збільшення) участі в банку, розташованому в Україні (для іноземців)")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public bool IsForeignFinOversightBodyApprovalRequired { get; set; }
+        [Category(CATEGORY_II)]
+        [DisplayName("8. Спосіб(-оби) набуття/збільшення істотної участі в банку")]
+        [Description("8. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)")]
+        [Required]
+        public SignificantOwnershipAcquisitionWaysInfo AcquisitionWays { get { return _AcquisitionWays; } set { _AcquisitionWays = value; OnPropertyChanged("AcquisitionWays"); } }
 
+        private List<IPOSharesPurchaseInfo> _IPOPurchase;
+        [Category(CATEGORY_II)]
+        [DisplayName("Придбання на первинному ринку")]
+        [Description("9. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:")]
+        [Required("AcquisitionWays.IsIPO == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsIPO")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання на IPO")]
+        public List<IPOSharesPurchaseInfo> IPOPurchase { get { return _IPOPurchase; } set { _IPOPurchase = value; OnPropertyChanged("IPOPurchase"); } }
+
+        private List<SecondaryMarketSharesPurchaseInfo> _SecondaryMarketPurchases;
+        [Category(CATEGORY_II)]
+        [DisplayName("10. Придбання на вторинному ринку")]
+        [Description("10. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)")]
+        [Required("AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsSecondaryMarketOrImplicitOwnershipPurchase")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Придбання на вторинному ринку")]
+        public List<SecondaryMarketSharesPurchaseInfo> SecondaryMarketPurchases { get { return _SecondaryMarketPurchases; } set { _SecondaryMarketPurchases = value; OnPropertyChanged("SecondaryMarketPurchases"); } }
+
+        private List<PowerOfAttorneySharesPurchaseInfo> _AquisitionByPoAttorneys;
+        [Category(CATEGORY_II)]
+        [DisplayName("11. Набуття за довіреністю")]
+        [Description("11. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю")]
+        [Required("AcquisitionWays.IsPurchaseByPowOfAtt == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsPurchaseByPowOfAtt")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Набуття за довіренністю")]
+        public List<PowerOfAttorneySharesPurchaseInfo> AquisitionByPoAttorneys { get { return _AquisitionByPoAttorneys; } set { _AquisitionByPoAttorneys = value; OnPropertyChanged("AquisitionByPoAttorneys"); } }
+
+        private List<SignificantOrDecisiveInfulenceInfo> _AquisitionByInfluence;
+        [Category(CATEGORY_II)]
+        [DisplayName("12. Набуття у зв’язку із здійсненням впливу")]
+        [Description("12. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння")]
+        [Required("AcquisitionWays.IsAcquireByImplicitInfluence == true")]
+        [UIConditionalVisibility("AcquisitionWays.IsAcquireByImplicitInfluence")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Набуття за впливом")]
+        public List<SignificantOrDecisiveInfulenceInfo> AquisitionByInfluence { get { return _AquisitionByInfluence; } set { _AquisitionByInfluence = value; OnPropertyChanged("AquisitionByInfluence"); } }
+
+        private List<IncomeOriginInfo> _FundsOrigin;
         /// <summary>
-        /// Обов'язкове, якщо IsForeignFinOversightBodyApprovalRequired == true
-        /// У перспективі, завести словники усіх таких держорганів за кордоном 
-        /// і пропонувати вибрати зі списку, лишаючи можливість увести, якщо в 
-        /// списку відсутній; Так ми, принаймні, покриємо більшість існуючих.
+        /// 13. Джерела походження коштів фізичної особи, за рахунок яких набуватиметься істотна участь у банку,
+        /// _______________________________________________________________________________________________________.
+        /// (прибуток, частина статутного капіталу, кошти фонду тощо)
         /// </summary>
-        /// <seealso cref=""/>
-        [DisplayName("Іноземний дозвільний орган (якщо потрібен дозвіл)")]
-        [Description("1.11. Іноземний державний контрольний орган, що дає дозвіл на набуття (збільшення) участі в банку, розташованому в Україні (для іноземців)")]
-        public FinancialOversightAuthorityInfo ForeignFinOversightBody { get; set; }
+        [Category(CATEGORY_II)]
+        [DisplayName("13. Джерела  походження коштів фізичної особи")]
+        [Description("13. Джерела походження коштів фізичної особи, за рахунок яких набуватиметься істотна участь у банку")]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Джерело")]
+        public List<IncomeOriginInfo> FundsOrigin { get { return _FundsOrigin; } set { _FundsOrigin = value; OnPropertyChanged("FundsOrigin"); } }
+        #endregion
 
-        [DisplayName("Офіційна публікація (IPO)")]
-        [Description("2.1. Найменування, дата і номер офіційного видання, у якому опубліковано оголошення про емісію (у разі первинного розміщення)")]
-        public PublicationInfo IssuePublication { get; set; }
+        #region ІІІ. Відносини юридичної особи з іншими особами
 
-        [DisplayName("Чи є андеррайтер")]
-        [Description("2.2. Андеррайтер ...")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public bool IsUnderwritten { get; set; }
-
+        private List<PersonsAssociation> _PersonsLinks;
         /// <summary>
-        /// Обов'язкове, якщо IsUnderwritten == true
-        /// </summary>
-        [DisplayName("Андеррайтер")]
-        [Description("2.2. Андеррайтер (якщо є) - реквізити")]
-        public GenericPersonID Underwriter { get; set; }
-
-        [DisplayName("Наявна участь у банку")]
-        [Description("2.3. Наявна участь у банку")]
-        [Required]
-        public TotalOwnershipDetailsInfo ExistingOwnershipWithBankSummary { get; set; }
-
-        /// <summary>
-        /// Агрегована розшифровка має збігатися з даними в ExistingOwnershipWithBankSummary
-        /// </summary>
-        [DisplayName("Наявна участь у банку - розшифровка")]
-        [Description("2.3. Наявна участь у банку - розшифровка прямого та опосередкованого володіння")]
-        [Required]
-        public List<OwnershipStructure> ExistingOwnershipWithBankDetails { get; set; }
-
-        [DisplayName("Наміри набуття/збільшення істотної участі")]
-        [Description("2.4. Наміри набуття/збільшення істотної участі в банку.\n (Вкажіть різницю, що набувається)")]
-        [Required]
-        public TotalOwnershipDetailsInfo TargetedOwnershipWithBankSummaryDiff { get; set; }
-
-        [DisplayName("Наміри набуття/збільшення істотної участі - розшифровка")]
-        [Description("2.4. Наміри набуття/збільшення істотної участі в банку - розшифровка прямого та опосередкованого володіння.\n (Вкажіть різницю, що набувається)")]
-        [Required]
-        public List<OwnershipStructure> TargetedOwnershipWithBankDiffDetails { get; set; }
-
-        /// <summary>
-        /// Якщо є іноземні інвестори
-        /// todo - уточнити: чи це поле, що додатково заповнюється 
-        /// для подавача-нерезидента, чи це та частка набуваної 
-        /// власності, що фінансується за рахунок іноземної інвестиції
-        /// </summary>
-        [DisplayName("Інвестиція, яку іноземний інвестор має намір здійснити")]
-        [Description("2.5. Інвестиція, яку іноземний інвестор має намір здійснити, становитиме ... відсотків статутного капіталу банку в розмірі ... гривень.")]
-        public OwnershipSummaryInfo TargetedForeignInvestmentSummaryDiff { get; set; }
-
-        [DisplayName("Майбутня істотна участь (усього)")]
-        [Description("2.6. Майбутня істотна участь з урахуванням кількості акцій (паїв), які фізична особа має намір набути,  становитиме ...")]
-        [Required]
-        public TotalOwnershipDetailsInfo TargetedOwnershipWithBankSummary { get; set; }
-
-        [DisplayName("Майбутня істотна участь (розшифровка)")]
-        [Description("2.6. Майбутня істотна участь з урахуванням кількості акцій (паїв), які фізична особа має намір набути - розшифровка")]
-        [Required]
-        public List<OwnershipStructure> TargetedOwnershipWithBankDetails { get; set; }
-
-        [DisplayName("Пов'язаність з з банком-емітентом")]
-        [Description("2.7. Чи є Ви особою, яка пов'язана з банком-емітентом?\n (Якщо так, вкажіть деталі зв'язку в полі \"Зв'язки між особами-фігурантами анкети\")")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool IsAssociatedPersonWithIssuer { get; set; }
-
-        /// <summary>
-        /// 3.1. Кількість акцій, які Ви маєте намір придбати ...
-        /// </summary>
-        [DisplayName("Акції, що придбаються")]
-        [Description("3.1. Кількість акцій, які Ви маєте намір придбати ...")]
-        [Required]
-        public SharesAcquisitionInfo SharesToBePurchased { get; set; }
-
-        /// <summary>
-        /// 3.2. Джерело походження коштів для сплати 
-        /// </summary>
-        [DisplayName("Походження коштів")]
-        [Description("3.2. Джерело походження коштів для сплати")]
-        [Required]
-        public List<IncomeOriginInfo> FundsOrigins { get; set; }
-
-        /// <summary>
-        /// 3.3. Порядок сплати 
-        /// </summary>
-        [DisplayName("Порядок сплати")]
-        [Description("3.3. Порядок сплати ")]
-        [Required]
-        public List<PaymentModeInfo> PaymentModes { get; set; }
-
-        /// <summary>
-        /// 3.4. Терміни сплати 
-        /// </summary>
-        [DisplayName("Терміни сплати")]
-        [Description("3.4. Терміни сплати")]
-        [Required]
-        public List<PaymentDeadlineInfo> PaymentDeadlines { get; set; }
-
-
-        /// <summary>
-        /// Якщо є кредити; попередження про відповідальність 
+        /// Якщо є; попередження про відповідальність 
         /// за подачу завідомо неправдивих відомостей
         /// </summary>
-        [DisplayName("Кредити, одержані в банках")]
-        [Description("3.5. Інформація про кредити, що одержані в банку-емітенті.\n3.6. Інформація про кредити, що одержані в інших банках.\n3.7. Інформація про стан виконання  зобов'язань щодо повернення кредитів, що одержані в банках.")]
-        public List<LoanInfo> LoansWithBanks { get; set; }
+        [Category(CATEGORY_III)]
+        [DisplayName("14. Асоційовані особи фізичної особи")]
+        [Description("14. Асоційовані особи фізичної особи; \nВідомості про пов'язаних осіб, що згадуються в анкеті;\nЗв'язки між особами-фігурантами анкети.")]
+        public List<PersonsAssociation> PersonsLinks { get { return _PersonsLinks; } set { _PersonsLinks = value; OnPropertyChanged("PersonsLinks"); } }
 
-        // ???!
-        
+        private List<OwnershipStructure> _ExistingOwnershipDetailsHive;
         /// <summary>
-        /// 4. Відносини власності із суб'єктами господарювання,
-        /// у тому числі іншими банками (крім банку-емітента)
-        /// </summary>
-        [DisplayName("4. Чи перебуває заявник у відносинах власності з іншими суб'єктами господарювання")]
-        [Description("4. Чи існують відносини власності фізичної особи зі суб'єктами господарювання, у тому числі іншими банками (крім банку-емітента)")]
-        [Required]
-        public bool HasAcquireeOwnershipOtherThanBankRef { get; set; }
-
-        /// <summary>
-        /// 4. Відносини власності із суб'єктами господарювання,
-        /// у тому числі іншими банками (крім банку-емітента)
-        /// 4.1. Найменування юридичної особи, код за ЄДРПОУ _________________________________.
-        /// 4.2. Місцезнаходження ___________________________________________________________.
-        /// 4.3. Основний вид діяльності ______________________________________________________.
-        /// 4.4. Відсоток власності в ній ______________________________________________________.
-        /// </summary>
-        [DisplayName("4. Відносини власності заявника з іншими суб'єктами господарювання")]
-        [Description("4. Відносини власності юридичної особи із суб'єктами господарювання, у тому числі іншими банками (крім банку, у який планується здійснення інвестиції)")]
-        [Required("HasAcquireeOwnershipOtherThanBankRef == true")]
-        public List<OwnershipStructure> AcquireeOwnershipOtherThanBankRef { get; set; }
-
-        /// <summary>
-        /// 4.5. Чи входите Ви до органів управління цієї юридичної особи?
-        /// </summary>
-        [DisplayName("4.5. Членство у органах управління інших юросіб?")]
-        [Description("4.5. Чи входите Ви до органів управління цієї юридичної особи? (крім банку-емітента)")]
-        [Required]
-        public bool IsBoardsMemberOtherThanBankRef { get; set; }
-        [DisplayName("4.5. Деталі членства у органах управління інших юросіб")]
-        [Description("4.5. Якщо Ви входите до органів управління цієї юридичної особи (крім банку-емітента), вказати, до яких саме")]
-        [Required("IsBoardsMemberOtherThanBankRef == true")]
-        public List<CouncilBodyInfo> BoardsMembershipOtherThanBankRef { get; set; }
-        
-        /// <summary>
-        /// 4.6. Чи є Ви особою, яка пов'язана з банком? _________________________________________.
-        ///                                               (якою саме особою, у якому банку)
-        /// --------------------
-        /// Деталі пов'язаності - у полі PersonsLinks
-        /// </summary>
-        [DisplayName("4.6. Чи є Ви особою, яка пов'язана з банком?")]
-        [Description("4.6. Чи є Ви особою, яка пов'язана з банком?(крім банку-емітента)")]
-        [Required]
-        public bool IsLinkedPersonOtherThanBankRef{ get; set; }
-
-        /// <summary>
-        /// Якщо є такі особи; попередження про відповідальність 
-        /// за подачу завідомо неправдивих відомостей
+        /// 1. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником
+        /// 14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи
+        /// 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи
         /// ----
+        /// Доцільно розшифровку ланцюжків власності усіх структур, що фігурують в анкеті, скласти в це одне поле, оскільки не виключено, що власники-юр.особи повторюватимуться/фігуруватимуть в різних іпостасях в усіх 3-х пунктах (себто, і 13, і 14, і 15) 
         /// </summary>
-        [DisplayName("Пов'язані особи в органах управління банків")]
-        [Description("Інформація про пов'язаних осіб у органах управління згадуваних банків")]
-        public List<CouncilBodyInfo> LinkedBanksGoverningBodiesMembers { get; set; }
+        [Category(CATEGORY_III)]
+        [DisplayName("15, 16, 17. Розшифровка ланцюжків власності")]
+        [Description("Розшифровка ланцюжків власності усіх структур-фігурантів анкети:\n 15. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником\n 17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є власниками істотної участі \n 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Ланцюжки власності")]
+        public List<OwnershipStructure> ExistingOwnershipDetailsHive { get { return _ExistingOwnershipDetailsHive; } set { _ExistingOwnershipDetailsHive = value; OnPropertyChanged("ExistingOwnershipDetailsHive"); } }
+
+        private bool _IsCurrently3rdPartyBoardMember;
+        /// <summary>
+        /// 16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа:
+        /// </summary>
+        [Category(CATEGORY_III)]
+        [DisplayName("16. Входить до складу органів управління юридичних осіб")]
+        [Description("(відзначити, якщо фізична особа-заявник або асоційовані з нею особи входять до складу органів управління юридичних осіб)")]
+        [Required]
+        public bool IsCurrently3rdPartyBoardMember { get { return _IsCurrently3rdPartyBoardMember; } set { _IsCurrently3rdPartyBoardMember = value; OnPropertyChanged("IsCurrently3rdPartyBoardMember"); } }
+
+        private List<CouncilBodyInfo> _MembershipIn3rdPartyBoards;
+        /// <summary>
+        /// ________________________________________________________________________________
+        /// 
+        ///                                                              (найменування юридичної особи, її місцезнаходження, код за ЄДРПОУ,
+        /// 
+        /// _______________________________________________________________________________.
+        /// 
+        ///                                                           контактні телефони, вид діяльності юридичної особи, опис Ваших функцій)
+        /// --------                                                          
+        /// Поле заповнюється якщо IsCurrently3rdPartyBoardMember == true
+        /// </summary>
+        [Category(CATEGORY_III)]
+        [DisplayName("16. Членство в керівних органах юр.осіб")]
+        [Description("16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа\n17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є керівниками")]
+        [UIConditionalVisibility("IsCurrently3rdPartyBoardMember")]
+        public List<CouncilBodyInfo> MembershipIn3rdPartyBoards { get { return _MembershipIn3rdPartyBoards; } set { _MembershipIn3rdPartyBoards = value; OnPropertyChanged("MembershipIn3rdPartyBoards"); } }
 
 
-        /// 4.7. Чи є Ви довіреною особою, гарантом або 
+        private bool _Is3rdPartiesGuarantor;
+        /// <summary>
+        ///18 . Чи є Ви довіреною особою, гарантом або 
         /// поручителем інших осіб з фінансових, майнових і корпоративних питань? 
         /// _______________________________________________ 
         ///  (яких саме і з яких питань)
-        [DisplayName("4.7. Чи є Ви довіреною особою, гарантом або поручителем інших осіб?")]
-        [Description("4.7. Чи є Ви довіреною особою, гарантом або поручителем інших осіб з фінансових, майнових і корпоративних питань?")]
+        /// </summary>
+        [Category(CATEGORY_III)]
+        [DisplayName("18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб?")]
+        [Description("18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб з фінансових, майнових і корпоративних питань?")]
         [Required]
-        public bool Is3rdPartiesGuarantor { get; set; }
+        public bool Is3rdPartiesGuarantor { get { return _Is3rdPartiesGuarantor; } set { _Is3rdPartiesGuarantor = value; OnPropertyChanged("Is3rdPartiesGuarantor"); } }
 
-        [DisplayName("4.7. Деталі гарантій та поручительств щодо інших осіб")]
-        [Description("4.7. Якщо Ви є довіреною особою, гарантом або поручителем інших осіб з фінансових, майнових і корпоративних питань - вказати деталі")]
+        private List<FinancialGuaranteeInfo> _FinGuaranteesDetails;
+        [Category(CATEGORY_III)]
+        [DisplayName("18. Деталі гарантій та поручительств щодо інших осіб")]
+        [Description("18. Інформація щодо правовідносин, у яких фізична особа є поручителем (гарантом)")]
         [Required("Is3rdPartiesGuarantor == true")]
-        public List<FinancialGuaranteeInfo> FinGuaranteesDetails { get; set; }
+        [UIConditionalVisibility("Is3rdPartiesGuarantor")]
+        public List<FinancialGuaranteeInfo> FinGuaranteesDetails { get { return _FinGuaranteesDetails; } set { _FinGuaranteesDetails = value; OnPropertyChanged("FinGuaranteesDetails"); } }
 
-        [DisplayName("Притягувалися до кримінальної відповідальності?")]
-        [Description("5.1. Чи притягувалися Ви до кримінальної відповідальності? Чи маєте Ви судимість не погашену, не зняту в установленому законодавством порядку?")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool HasBreachesOfLaw { get; set; }
+        #endregion
 
-        [DisplayName("Порушення господарського законодавства?")]
-        [Description("5.2. Чи притягувалися Ви до відповідальності за порушення антимонопольного, податкового, банківського, валютного законодавства, правил діяльності на ринку цінних паперів тощо?")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool HasBreachesOfBusinessLaw { get; set; }
+        #region ІV. Ділова репутація
 
+        private bool _HasOutstandingLoansWithBanks;
         /// <summary>
-        /// обов'язкове, якщо HasBreachesOfLaw == true або HasBreachesOfBusinessLaw == true,
-        /// мінімум один запис
+        /// 19. Інформація про кредити, одержані фізичною особою
         /// </summary>
-        [DisplayName("Притягнення до відповідальності")]
-        [Description("5.1. Чи притягувалися Ви до кримінальної відповідальності? Чи маєте Ви судимість не погашену, не зняту в установленому законодавством порядку?\n 5.2. Чи притягувалися Ви до відповідальності за порушення антимонопольного, податкового, банківського, валютного законодавства, правил діяльності на ринку цінних паперів тощо?\n(розшифровка)")]
-        public List<BreachOfLawRecordInfo> BreachesOfLaw { get; set; }
+        [Category(CATEGORY_IV)]
+        [DisplayName("19. Чи є кредити, одержані й непогашені фізичною особою  в  банках?")]
+        [Description("(Станом на дату подання анкети)")]
+        [Required]
+        public bool HasOutstandingLoansWithBanks { get { return _HasOutstandingLoansWithBanks; } set { _HasOutstandingLoansWithBanks = value; OnPropertyChanged("HasOutstandingLoansWithBanks"); } }
 
+        private List<LoanInfo> _OutstandingLoansWithBanksDetails;
         /// <summary>
-        /// Якщо є; попередження про відповідальність 
-        /// за подачу завідомо неправдивих відомостей
+        /// 19. Інформація про кредити, одержані фізичною особою:
         /// </summary>
-        [DisplayName("Зобов'язання перед іншими особами")]
-        [Description("5.3. Чи маєте Ви невиконані майнові (фінансові) зобов'язання перед іншими особами?")]
-        public List<IndebtnessInfo> OtherLiabilities { get; set; }
+        [Category(CATEGORY_IV)]
+        [DisplayName("19. Інформація про кредити, одержані фізичною особою")]
+        [Description("(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)")]
+        [Required("HasOutstandingLoansWithBanks == true")]
+        [UIConditionalVisibility("HasOutstandingLoansWithBanks")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Деталі за кредитами")]
+        public List<LoanInfo> OutstandingLoansWithBanksDetails { get { return _OutstandingLoansWithBanksDetails; } set { _OutstandingLoansWithBanksDetails = value; OnPropertyChanged("OutstandingLoansWithBanksDetails"); } }
 
+        private bool _HasNoImperfectReputationSigns;
         /// <summary>
-        /// Якщо є; попередження про відповідальність 
-        /// за подачу завідомо неправдивих відомостей
+        /// 20. Чи є щодо фізичної особи ознаки відсутності бездоганної ділової репутації
+        /// актом Національного банку України про порядок реєстрації та ліцензування банків [якщо таких ознак немає, то
+        /// зазначається “Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається
+        /// повне найменування юридичної особи)”; якщо такі ознаки є, то здійснюється опис ознаки (ознак) відсутності
+        /// бездоганної ділової репутації].
         /// </summary>
-        [DisplayName("Істотна участь у особах, ліквідованих останнього року")]
-        [Description("5.4. Чи були Ви протягом останнього року,  що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі  (10 і більше відсотків) у цій особі?")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public bool HasLiquidatedSignOwnershipLastYear { get; set; }
+        [Category(CATEGORY_IV)]
+        [DisplayName("20. Стверджую, що немає ознак відсутності бездоганної ділової репутації")]
+        [Description("Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування фізичної особи")]
+        [Required]
+        public bool HasNoImperfectReputationSigns { get { return _HasNoImperfectReputationSigns; } set { _HasNoImperfectReputationSigns = value; OnPropertyChanged("HasNoImperfectReputationSigns"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); } }
 
+        private ImperfectBusinessReputationInfo _ImprefectReputationDetails;
         /// <summary>
-        /// Якщо є; попередження про відповідальність 
-        /// за подачу завідомо неправдивих відомостей
+        /// 17. Якщо щодо юридичної особи є ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
+        /// актом Національного банку України про порядок реєстрації та ліцензування банків, то здійснюється опис ознаки (ознак) відсутності
+        /// бездоганної ділової репутації].
         /// </summary>
-        [DisplayName("Істотна участь у особах, ліквідованих останнього року - розшифровка")]
-        [Description("5.4. Чи були Ви протягом останнього року,  що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі  (10 і більше відсотків) у цій особі?\n(розшифровка)")]
-        public List<LiquidatedEntityOwnershipInfo> LiquidatedSignOwnershipLastYear { get; set; }
+        [Category(CATEGORY_IV)]
+        [DisplayName("20. Ознаки відсутності бездоганної ділової репутації")]
+        [Description("Опис наявних ознак відсутності бездоганної ділової репутації")]
+        [Required("HasNoImperfectReputationSigns == false")]
+        [UIConditionalVisibility("IsImprefectReputationDetailsVisible")]
+        public ImperfectBusinessReputationInfo ImprefectReputationDetails { get { return _ImprefectReputationDetails; } set { _ImprefectReputationDetails = value; OnPropertyChanged("ImprefectReputationDetails"); } }
 
-        [DisplayName("Дотримую законодавство...?")]
-        [Description("5.5. Стверджую, що я належним чином виконую вимоги законодавства України з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, або фінансуванню тероризму та до мене не застосовувалися міжнародні санкції.")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool IsMoneyLaunderingEtcLawsKept { get; set; }
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsImprefectReputationDetailsVisible { get { return HasNoImperfectReputationSigns == false; } }
 
-        [DisplayName("Підтверджую походження коштів?")]
-        [Description("5.5. Стверджую, що маю можливість підтвердити походження джерел коштів, за рахунок яких придбаю акції банку.")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool CanProveMoneyOrigins { get; set; }
-
-        [DisplayName("Підтверджую правдивість інформації?")]
-        [Description("Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,\n є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.\n")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool IsApplicationInfoAccurateAndTrue { get; set; }
-
-        [DisplayName("Зобов'язуюсь повідомляти про зміни?")]
-        [Description("У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool AmObligingToKeepUp2DateWithin10Days { get; set; }
-
-        [DisplayName("Реквізити осіб-фігурантів анкети")]
-        [Description("Повна інформація про осіб, що згадуються в анкеті")]
-        [Required]
-        public List<GenericPersonInfo> MentionedIdentities { get; set; }
-        
+        private bool _IsAMLEtcLegislationKept;
         /// <summary>
-        /// Якщо є; попередження про відповідальність 
-        /// за подачу завідомо неправдивих відомостей
+        /// Стверджую, що _______ (зазначається прізвище, ім’я та по батькові фізичної особи) належним чином виконує
+        /// вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації
+        /// (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.
         /// </summary>
-        [DisplayName("Зв'язки між особами-фігурантами анкети")]
-        [Description("Відомості про пов'язаних осіб, що згадуються в анкеті:\n1.5. Перелік асоційованих осіб")]
-        public List<PersonsAssociation> PersonsLinks { get; set; }
+        [Category(CATEGORY_IV)]
+        [DisplayName("21. Вимоги законодавства дотримано")]
+        [Description("21. Стверджую, що _______ (зазначається прізвище, ім’я та по батькові фізичної особи) належним чином виконує\nвимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації\n(відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.")]
+        [Browsable(true)]
+        public bool IsAMLEtcLegislationKept { get { return _IsAMLEtcLegislationKept; } set { _IsAMLEtcLegislationKept = value; OnPropertyChanged("IsAMLEtcLegislationKept"); } }
 
+        #endregion
+
+
+        #region Signatures, etc.
+        private SignatoryInfo _Signatory;
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Підписант")]
         [Description("Відомості по особу, що підписала анкету")]
         [Required]
-        public SignatoryInfo Signatory { get; set; }
-        
+        public SignatoryInfo Signatory { get { return _Signatory; } set { _Signatory = value; OnPropertyChanged("Signatory"); } }
+
+        private ContactInfo _ContactPerson;
         /// <summary>
         /// Звичайні вимоги до повноти заповнення подібного типу даних...
         /// </summary>
+        [Category(CATEGORY_SignEtc)]
         [DisplayName("Контакти")]
         [Description("Контактні дані відправника анкети")]
         [Required]
-        public ContactInfo ContactPerson { get; set; }
+        public ContactInfo ContactPerson { get { return _ContactPerson; } set { _ContactPerson = value; OnPropertyChanged("ContactPerson"); } }
+        #endregion
 
-        protected override string QuestionnairePrefixForFileName
-        {
-            get { return "regLicDod4FO"; }
-        }
+        #region various common members
+        private List<GenericPersonInfo> _MentionedIdentities;
+        [DisplayName("Реквізити осіб-фігурантів анкети")]
+        [Description("Повна інформація про осіб, що згадуються в анкеті")]
+        [Required]
+        public List<GenericPersonInfo> MentionedIdentities { get { return _MentionedIdentities; } set { _MentionedIdentities = value; OnPropertyChanged("MentionedIdentities"); OnPropertyChanged("MentionedGenericPersons"); } }
 
-        protected override string BankNameForFileName
-        {
-            get { return GetBankNameForFileName(BankRef); }
-        }
-
-        protected override string ApplicantNameForFileName
-        {
-            get 
-            { 
-                if (this.Acquiree != null)
-                    return this.Acquiree.FullName ?? this.Acquiree.FullNameUkr ?? this.Acquiree.Surname ?? this.Acquiree.SurnameUkr ?? string.Empty;
-                return string.Empty;
-            }
-        }
-
+        [Browsable(false)]
+        [XmlIgnore]
         public IEnumerable<GenericPersonInfo> MentionedGenericPersons
         {
             get { return MentionedIdentities; }
         }
 
+        [Browsable(false)]
+        [XmlIgnore]
         public IEnumerable<LocationInfo> MentionedAddresses
         {
-            get { throw new NotImplementedException(); }
+            get { return new List<LocationInfo>(); /* todo */ }
+        }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        protected override string QuestionnairePrefixForFileName
+        {
+            get { return "regLicDod4FO"; }
+        }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        protected override string BankNameForFileName
+        {
+            get { return GetBankNameForFileName(BankRef); }
+        }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        protected override string ApplicantNameForFileName
+        {
+            get { if (Acquiree == null) return string.Empty; return Acquiree.PersonCode; }
         }
 
 
         public void RefreshGenericPersonsDisplayNames()
         {
-            base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[] { ExistingOwnershipWithBankDetails, TargetedOwnershipWithBankDiffDetails, TargetedOwnershipWithBankDetails });
+            base.RefreshGenericPersonsDisplayNamesWorker(this.MentionedIdentities, new List<OwnershipStructure>[] { ExistingOwnershipDetailsHive });
+        }
+
+        #endregion
+
+        protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
+        {
+            MentionedIdentities.Add(gpi);
         }
     }
 }
