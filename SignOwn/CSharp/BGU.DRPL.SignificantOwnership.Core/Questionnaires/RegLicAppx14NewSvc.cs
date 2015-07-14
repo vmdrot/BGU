@@ -160,5 +160,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             get { return string.Empty; }
         }
 
+        protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
+        {
+            //todo
+        }
     }
 }

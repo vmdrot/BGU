@@ -259,5 +259,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         {
             throw new NotImplementedException();
         }
+
+        protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
+        {
+            MentionedIdentities.Add(gpi);
+        }
     }
 }
