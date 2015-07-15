@@ -78,6 +78,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Досвід роботи")]
         [Description("1.8. Займані посади за останні п'ять років")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Місце роботи")]
         public List<EmploymentRecordInfo> EmploymentRecords { get { return _EmploymentRecords; } set { _EmploymentRecords = value; OnPropertyChanged("EmploymentRecords"); } }
 
         private List<BankAccountInfo> _BankingAccounts;
@@ -89,6 +90,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Рахунки в банках")]
         [Description("1.6. Перелік банків, у яких відкрито рахунки")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Рахунки")]
         public List<BankAccountInfo> BankingAccounts { get { return _BankingAccounts; } set { _BankingAccounts = value; OnPropertyChanged("BankingAccounts"); } }
 
         private TotalOwnershipSummaryInfo _TotalExistingOwnershipWithBank;
@@ -214,6 +216,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Category(CATEGORY_III)]
         [DisplayName("14. Асоційовані особи фізичної особи")]
         [Description("14. Асоційовані особи фізичної особи; \nВідомості про пов'язаних осіб, що згадуються в анкеті;\nЗв'язки між особами-фігурантами анкети.")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Опис зв'язку")]
         public List<PersonsAssociation> PersonsLinks { get { return _PersonsLinks; } set { _PersonsLinks = value; OnPropertyChanged("PersonsLinks"); } }
 
         private List<OwnershipStructure> _ExistingOwnershipDetailsHive;
@@ -256,6 +259,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("16. Членство в керівних органах юр.осіб")]
         [Description("16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа\n17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є керівниками")]
         [UIConditionalVisibility("IsCurrently3rdPartyBoardMember")]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Членство")]
         public List<CouncilBodyInfo> MembershipIn3rdPartyBoards { get { return _MembershipIn3rdPartyBoards; } set { _MembershipIn3rdPartyBoards = value; OnPropertyChanged("MembershipIn3rdPartyBoards"); } }
 
 
@@ -278,6 +282,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("18. Інформація щодо правовідносин, у яких фізична особа є поручителем (гарантом)")]
         [Required("Is3rdPartiesGuarantor == true")]
         [UIConditionalVisibility("Is3rdPartiesGuarantor")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Поручительства")]
         public List<FinancialGuaranteeInfo> FinGuaranteesDetails { get { return _FinGuaranteesDetails; } set { _FinGuaranteesDetails = value; OnPropertyChanged("FinGuaranteesDetails"); } }
 
         #endregion
@@ -376,6 +381,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("Реквізити осіб-фігурантів анкети")]
         [Description("Повна інформація про осіб, що згадуються в анкеті")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Особа")]
         public List<GenericPersonInfo> MentionedIdentities { get { return _MentionedIdentities; } set { _MentionedIdentities = value; OnPropertyChanged("MentionedIdentities"); OnPropertyChanged("MentionedGenericPersons"); } }
 
         [Browsable(false)]

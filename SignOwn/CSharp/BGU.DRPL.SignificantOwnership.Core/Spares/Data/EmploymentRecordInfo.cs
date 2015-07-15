@@ -16,6 +16,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EmploymentRecordInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class EmploymentRecordInfo : NotifyPropertyChangedBase
     {
+
+        public EmploymentRecordInfo()
+        {
+            State = EmploymentState.Employed;
+        }
+
+
         private EmploymentState _State;
         /// <summary>
         /// обов'язкове поле
@@ -24,7 +31,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
         [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
-        public EmploymentState State { get { return _State; } set { _State = value; OnPropertyChanged("State"); OnPropertyChanged("IsEmployee"); OnPropertyChanged("IsSelfEmployedOrFreelance"); OnPropertyChanged("IsUnemployed"); } }
+        public EmploymentState State { get { return _State; } set { _State = value; OnPropertyChanged("State"); OnPropertyChanged("IsEmployee"); OnPropertyChanged("IsSelfEmployedOrFreelance"); OnPropertyChanged("IsUnemployed"); OnPropertyChanged("IsBusy"); } }
 
 
         [Browsable(false)]
@@ -39,6 +46,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [XmlIgnore]
         public bool IsUnemployed { get { return State == EmploymentState.Unemployed; } }
 
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsBusy { get { return State != EmploymentState.Unemployed; } }
       
 
         private GenericPersonID _Employer;
@@ -48,6 +58,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Роботодавець")]
         [Required("State == Employed")]
+        [UIConditionalVisibility("IsEmployee")]
         public GenericPersonID Employer { get { return _Employer; } set { _Employer = value; OnPropertyChanged("Employer"); } }
 
         private GenericPersonID _PrincipalContractor;
@@ -62,6 +73,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Основний вид діяльності - для самозайнятих/фрілансерів")]
         [Required("State == Freelance OR State == Selfemployed")]
         [UIConditionalVisibility("IsSelfEmployedOrFreelance")]
+        [UIUsageComboAddButton(AddNewItemCommand = "local:MyCommands.AddEconomicActivityTypeCommand", ContainerOrientation = Orientation.Vertical, DisplayMember = "DispName", ItemsGetterClass = (typeof(EconomicActivityType)), ItemsGetterMemberPath = "AllKVEDs", ValueMemberUsageMode = ComboUIValueUsageMode.SelectedItem, Width = "350")]
         public EconomicActivityType PrincipalFreelanceActivity { get { return _PrincipalFreelanceActivity; } set { _PrincipalFreelanceActivity = value; OnPropertyChanged("PrincipalFreelanceActivity"); } }
 
 
@@ -135,7 +147,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [UIConditionalVisibility("IsQuitDismissedOrOtherLeave")]
         public string DismissalOrUnemployedReason { get { return _DismissalOrUnemployedReason; } set { _DismissalOrUnemployedReason = value; OnPropertyChanged("DismissalOrUnemployedReason"); } }
 
-        private ContactInfo _EmployerContact;
+        private ContactInfo _EmployerOrContractorContact;
         /// <summary>
         /// тел, e-mail, якщо є - www;
         /// якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача
@@ -143,6 +155,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Контакти роботодавця / замовника")]
         [Description("Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника")]
         [Required]
-        public ContactInfo EmployerContact { get { return _EmployerContact; } set { _EmployerContact = value; OnPropertyChanged("EmployerContact"); } }
+        [UIConditionalVisibility("IsBusy")]
+        public ContactInfo EmployerOrContractorContact { get { return _EmployerOrContractorContact; } set { _EmployerOrContractorContact = value; OnPropertyChanged("EmployerOrContractorContact"); } }
     }
 }
