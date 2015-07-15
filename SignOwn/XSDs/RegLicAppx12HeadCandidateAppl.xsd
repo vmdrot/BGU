@@ -453,7 +453,7 @@
           <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
           <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="EmployerContact" type="ContactInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

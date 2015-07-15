@@ -19,7 +19,12 @@
     <xs:complexContent mixed="false">
       <xs:extension base="QuestionnaireBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Повне офіційне найменування банку" description="Ідентифікація банку, в якому подавач планує набути членство у відповідному органі управління">
+          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Юр.особа-заявник" description="(повне найменування юридичної особи)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Повне офіційне найменування банку" description="Ідентифікація банку, в якому подавачі планують набути членство у відповідному органі управління">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -29,221 +34,45 @@
             (найменування юридичної особи)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Candidate" type="GenericPersonID" displayName="Кандидат" description="Реквізити фізособи-кандидата на посаду...">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            1. Інформація про особу
-            1.1. _______________________________________________________________________________.
-                    (прізвище, ім'я, по батькові, посада в юридичній особі)
-            1.2. Паспортні дані _________________________________________________________________.
-              (серія, номер, дата видачі, ким виданий)
-            1.3. Громадянство __________________________________________________________________.
-            (країна, дата прийняття громадянства, якщо воно змінювалося)
-            1.4. Адреса постійного місця проживання ______________________________________________.
-            1.5. Реєстраційний номер облікової картки платника податків або серія та номер паспорта (для фізичних осіб, які через свої релігійні переконання відмовляються від прийняття реєстраційного
-            номера облікової картки платника податків та повідомили про це відповідний контролюючий орган і мають відмітку у  паспорті) __________________________________________________________________________________.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Last5YrsWorkExperience" type="ArrayOfEmploymentRecordInfo" displayName="1.6. Займані посади за останні п'ять років" description="Займані посади за останні п'ять років: найменування юридичної особи, найменування посади;  період перебування на посаді з _ до _, причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину.">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            1.6. Займані посади за останні п'ять років _______________________________________________
-            ___________________________________________________________________________________
-            (найменування юридичної особи, найменування посади;  період перебування на посаді з _____ до _____;
-            __________________________________________________________________________________.
-            причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="LastEmploymentRecord" type="EmploymentRecordInfo" displayName="Місце роботи" description="9. Місце роботи і посада на дату заповнення анкети ">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            1.7. Останнє місце роботи, номер телефону роботодавця _________________________________.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Education" type="ArrayOfEducationRecordInfo" displayName="1.8. Освіта та професійна кваліфікація" description="1.8. Освіта та професійна кваліфікація - науковий ступінь, номер, дата видачі диплома, ким виданий, спеціальність і кваліфікація">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            1.8. Освіта та професійна кваліфікація _________________________________________________
-                                                   (науковий ступінь,
-            __________________________________________________________________________________.
-            професійна ліцензія, номер, дата видачі диплома, ким виданий, спеціальність і кваліфікація)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasProfessionalLicenses" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="1.8. Чи має заявник професійну(-і) ліцензію(-ї)?" description="п.1.8 (у частині проф.ліцензій)">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            Покриває п.1.8 (у частині проф.ліцензій)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ProfessionalLicenses" type="ArrayOfProfessionLicenseInfo" displayName="1.8. Професійна(-і) ліцензія(-ї)" description="п.1.8 (у частині проф.ліцензій)">
-            <xs:annotation>
-              <xs:documentation>Поле обов'язкове лише якщо є професійні ліцензії ( HasProfessionalLicenses == true )
-            Покриває п.1.8 (у частині проф.ліцензій)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsAppyingForSignificantOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="1.9. Чи маєте намір набувати істотну участь?" description="Чи очікується, що заявник (напряму, чи через пов'язаних осіб) стане власником істотної участі в банку?">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OwnershipStakeWithLPAcquiree" type="ArrayOfOwnershipStructure" displayName="1.9. Розмір участі в юридичній особі, яка має намір набути або збільшити істотну участь у банку-емітенті" description="Заповнюється власниками істотної участі в банку або особами, які мають намір набути істотну участь у банку">
-            <xs:annotation>
-              <xs:documentation>1.9. Розмір участі в юридичній особі, яка має намір набути або збільшити істотну участь у банку-емітенті,*
-            ___________________________________________________________________.
-            
-            * Заповнюється власниками істотної участі в банку або особами, які мають намір набути істотну участь у банку.
-            ----
-            Вимагати, якщо IsAppyingForSignificantOwnership == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="LastYearIncome" type="CurrencyAmount" displayName="1.10. Розмір отриманих  доходів за останній звітний період (рік)" description="Заповнюється власниками істотної участі в банку або особами, які мають намір набути істотну участь у банку">
-            <xs:annotation>
-              <xs:documentation>1.10. Розмір отриманих  доходів за останній звітний період (рік)*  
-            __________________________________________________________________________________.
-            
-            * Заповнюється власниками істотної участі в банку або особами, які мають намір набути істотну участь у банку.
-            -------------
-            Обов'язкове, якщо IsAppyingForSignificantOwnership == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIssuerBankStakeholder" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="2.1. Чи є Ви учасником банку-емітента?" description="Чи є Ви учасником банку-емітента, прямо чи опосередковано (у т.ч. через пов'язаних осіб).">
-            <xs:annotation>
-              <xs:documentation>2. Відносини власності з банком-емітентом
-            2.1. Чи є Ви учасником банку-емітента? _______________________________________________:
-            (так, ні)</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnershipWithBankSummary" type="SharesAcquisitionInfo" displayName="2.1. а) Пряме володіння у банку-емітенті" description="Частка прямого володіння у банкові-емітенті">
-            <xs:annotation>
-              <xs:documentation>2. Відносини власності з банком-емітентом
-            а) пряме володіння - ____ відсотків статутного капіталу банку, що  становить ________________ 
-                                                                                           (кількість)
-            акцій (паїв),  загальною номінальною вартістю ______________ гривень;
-            ------
-            Обов'язкове, якщо IsIssuerBankStakeholder == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ImplicitOwnershipWithBankSummary" type="SharesAcquisitionInfo" displayName="2.1. б) Опосередковане володіння у банку-емітенті" description="Частка опосередкованого володіння у банкові-емітенті">
-            <xs:annotation>
-              <xs:documentation>2. Відносини власності з банком-емітентом
-            б) опосередковане володіння - ______ відсотків 
-            ------
-            Обов'язкове, якщо IsIssuerBankStakeholder == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ImplicitOwnershipWithBank" type="ArrayOfOwnershipStructure" displayName="2.1. б) Опосередковане володіння у банку-емітенті - деталі" description="Розшифровка опосередкованого володіння у банкові-емітенті">
-            <xs:annotation>
-              <xs:documentation>через _______________________
-            __________________________________________________________________________________.
-            (найменування учасника банку та розмір його прямого володіння в банку)
-            ------
-            Обов'язкове і непуста колекція, якщо ImplicitOwnershipWithBankSummary &gt; 0%</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasIntentToIncreaseEquityShareAsPhysPerson" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="2.2. Маєте намір збільшити частку в капіталі банку?" description="2.2. Чи маєте Ви (як фізична особа) намір збільшити частку в статутному капіталі банку-емітента?">
-            <xs:annotation>
-              <xs:documentation>2.2. Чи маєте Ви (як фізична особа) намір збільшити частку в статутному капіталі банку-емітента? 
-            _________________________________________________________________________.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsAssociatedPersonWithBank" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="2.3. Чи є Ви пов'язаною з банком-емітентом особою?" description="2.3. Чи є Ви пов'язаною з банком-емітентом особою? (так/ні), якщо &quot;так&quot; - то треба розкрити природу зв'язку в полі PersonsLinks">
-            <xs:annotation>
-              <xs:documentation>2.3. Чи є Ви пов'язаною з банком-емітентом особою? ____________________________________
-            __________________________________________________________________________________.
-                                                            зазначається відповідно до статті 52 Закону України "Про банки і банківську діяльність")
-            ---------------
-            Якщо "так", то треба розкрити природу зв'язку в полі PersonsLinks</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="WasCriminallyProsecuted" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="3.1. Чи притягувалися Ви до кримінальної відповідальності?" description="(так або ні)">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.1. Чи притягувалися Ви до кримінальної відповідальності? ______________________________</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingSentencesToServe" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="3.2. Чи маєте Ви судимість не погашену,  не зняту в установленому законодавством порядку?" description="(так або ні)">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.2. Чи маєте Ви судимість не погашену,  не зняту в установленому законодавством порядку?</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="3.3. Чи була відповідальніть за порушення галузевого/господарського законодавства?" description="3.3. Чи притягувалися Ви до відповідальності за порушення антимонопольного, податкового, банківського, валютного законодавства, правил діяльності на ринку цінних паперів тощо?">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.3. Чи притягувалися Ви до відповідальності за порушення антимонопольного, податкового, 
-            банківського, валютного законодавства, правил діяльності на ринку цінних паперів тощо? _____</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" displayName="п.3.1, 3.2. і 3.3. Розшифрока правопорушень/судимостей" description="Якщо були порушення законодавства, судимості (у т.ч. непогашені), галузеві правопорушення, тощо (зазначені у пп.3.1, 3.2. і 3.3.), то зазначити детальну інформацію, коли вчинено порушення, зміст порушення, які накладені санкції">
-            <xs:annotation>
-              <xs:documentation>Розшифровка пп.3.1, 3.2. і 3.3.
-            ___________________________________________________________________________________
-            __________________________________________________________________________________.
-            (якщо так, то зазначити детальну інформацію)
-            __________________________________________________________________________________.
-            (коли вчинено порушення, зміст порушення, які накладені санкції)
-            -------
-            Поле обов'язкове й непусте, якщо: 
-              HadIndustrySpecificBreaches == true 
-              АБО HasOutstandingSentencesToServe == true 
-              АБО WasCriminallyProsecuted == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="3.4. Чи маєте невиконані майнові зобов'язання  перед іншими?" description="3.4. Чи маєте Ви невиконані майнові (фінансові) зобов'язання  перед іншими особами?">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.4. Чи маєте Ви невиконані майнові (фінансові) зобов'язання  перед іншими особами?</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" displayName="3.4. Невиконані зобов'язання  перед іншими особами - розшифровка" description="якщо так, то зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань.">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            3.4. 
-            ___________________________________________________________________________________
-            (якщо так, то зазначити, які саме зобов'язання,
-            ___________________________________________________________________________________
-             у якому розмірі, перед якою особою та з яких причин не були виконані,
-            __________________________________________________________________________________.
-             а також подальші плани щодо виконання/невиконання цих зобов'язань)
-             ------------
-             Обов'язкове й непусте, якщо HasMiscNonRepaidDebts == true</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
-
-            Зв'язки між особами-фігурантами анкети
-            ----
-            Колекція має бути непустою, як мінімум, якщо:
-            IsAssociatedPersonWithBank == true
-            АБО ImplicitOwnershipWithBankSummary &gt; сума вирахуваної через непряме особисте володіння банком на особу-заявника
-            АБО якщо серед фігурантів анкети є особи з прізвищем заявника.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Наглядова (спостережна) рада юридичної особи існує" description="Чи існує наглядова (спостережна) рада юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" displayName="Особовий склад наглядової(спостережної)ради юрособи" description="Голова та члени наглядової (спостережної) ради юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutiveBodyPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Виконавчий орган юридичної особи існує" description="Чи існує виконавчий орган юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" displayName="Особовий склад виконавчого органу юрособи" description="Голова та члени виконавчого органу юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Реквізити усіх осіб-фігурантів" description="Реквізити усіх осіб, що згадуються в анкеті" category="II. Загальна інформація про осіб">
             <xs:annotation>
               <xs:documentation>Реквізити усіх осіб-фігурантів</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLLegislationKept" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+          <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою">
             <xs:annotation>
-              <xs:documentation>3.5. Стверджую, що я належним чином виконую вимоги законодавства України з питань 
-            запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, 
-            або фінансуванню тероризму.</xs:documentation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;">
+          <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи шукають здобути у банку" category="IV. Відносини особи з банком та юридичною особою">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Зв'язки між особами-фігурантами анкети
+            ----</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;" category="Підписи і т.п.">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -253,12 +82,7 @@
             Національним банком України достовірності поданих документів і персональних даних, що в них містяться.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AmObligingToKeepUp2DateWithin10Days" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Зобов'язуюсь повідомляти про зміни?" description="У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.">
-            <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету">
+          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п.">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -279,64 +103,77 @@
   </xs:complexType>
   <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
-  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="SexType.uk-UA.xsd" />
-  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
-  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
-  <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
   <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
-  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LoanInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonBusinessReputationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLoanInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ImperfectBusinessReputationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfIndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLiquidatedEntityOwnershipInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedEntityOwnershipInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
   <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
-  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
-  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
-  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
-  <xs:include schemaLocation="ProfessionLicensingBodyInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
+  <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="SexType.uk-UA.xsd" />
   <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
+  <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CouncilBodyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCouncilMemberInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CouncilMemberInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPersonEmploymentRecordsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonEmploymentRecordsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEducationRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="EducationRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />
-  <xs:include schemaLocation="DegreeHonourType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfProfessionLicenseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ProfessionLicenseInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfLicenseQualificationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="LicenseQualificationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />
-  <xs:include schemaLocation="SharesAcquisitionInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfBreachOfLawRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfIndebtnessInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonsAssociation.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPersonBankAssociationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonBankAssociationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankAssociatedPeronsCode315p.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPersonBusinessReputationInfo.uk-UA.xsd" />
 </xs:schema>

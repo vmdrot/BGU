@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PersonBankAssociationInfo" nillable="true" type="PersonBankAssociationInfo" />
+  <xs:complexType name="PersonBankAssociationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:simpleType name="BankAssociatedPeronsCode315p">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BankControllers" />
+      <xs:enumeration value="SignificantOwners" />
+      <xs:enumeration value="BankMgrsEtc" />
+      <xs:enumeration value="Affiliated" />
+      <xs:enumeration value="AffiliatedSignOwners" />
+      <xs:enumeration value="AffiliatedMgrsEtc" />
+      <xs:enumeration value="AssocPersonsArt52pp16" />
+      <xs:enumeration value="Art52MgrsSignOwnersLPs" />
+      <xs:enumeration value="AnyPersonInfluencingArt52" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

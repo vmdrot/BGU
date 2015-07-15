@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PersonBusinessReputationInfo" nillable="true" type="PersonBusinessReputationInfo" />
+  <xs:complexType name="PersonBusinessReputationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи є кредити, одержані й непогашені особою  в  банках?" description="(Станом на дату подання анкети)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            Інформація про кредити, одержані особою:</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" displayName="Інформація про кредити, одержані особою" description="(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HasOutstandingLoansWithBanks == true
+
+            Інформація про кредити, одержані особою:</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Стверджую, що немає ознак відсутності бездоганної ділової репутації" description="Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається найменування / П.І.Б. особи)">
+            <xs:annotation>
+              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+
+            17. Чи є щодо юридичної особи ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
+            актом Національного банку України про порядок реєстрації та ліцензування банків [якщо таких ознак немає, то
+            зазначається “Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається
+            повне найменування юридичної особи)”; якщо такі ознаки є, то здійснюється опис ознаки (ознак) відсутності
+            бездоганної ділової репутації.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+   HasNoImperfectReputationSigns == false
+
+            17. Якщо щодо юридичної особи є ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
+            актом Національного банку України про порядок реєстрації та ліцензування банків, то здійснюється опис ознаки (ознак) відсутності
+            бездоганної ділової репутації].</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вимоги законодавства дотримано" description="Стверджую, що особа _______ (зазначається повне найменування/П.І.Б. особи) належним чином виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.">
+            <xs:annotation>
+              <xs:documentation>18. Стверджую, що  особа _______ (зазначається повне найменування/П.І.Б. особи) належним чином
+            виконує вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії
+            легалізації (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BreachOfLawType.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtInstanceType.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CourtDecisionType.uk-UA.xsd" />
+  <xs:include schemaLocation="SentenceType.uk-UA.xsd" />
+  <xs:include schemaLocation="CurrencyAmount.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankruptcyCaseResolutionType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCourtDecisionInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="IndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LoanInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLoanInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ImperfectBusinessReputationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBankruptcyInvestigationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfIndebtnessInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBreachOfLawRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLiquidatedEntityOwnershipInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedEntityOwnershipInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LiquidatedOrInsolventEntityInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="InsolvencyStatus.uk-UA.xsd" />
+  <xs:include schemaLocation="TotalOwnershipDetailsInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="OwnershipVotesInfo.uk-UA.xsd" />
+</xs:schema>
