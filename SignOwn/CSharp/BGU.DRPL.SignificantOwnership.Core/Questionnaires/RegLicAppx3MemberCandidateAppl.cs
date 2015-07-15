@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
+using Evolvex.Utility.Core.Common;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -26,6 +27,15 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx3MemberCandidateAppl_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class RegLicAppx3MemberCandidateAppl : QuestionnaireBase, IGenericPersonsService, IAddressesService
     {
+        private static readonly ILog log = Logging.GetLogger(typeof(RegLicAppx3MemberCandidateAppl));
+
+        private const string CATEGORY_I = "I. Перелік членів виконавчого органу та наглядової ради юридичної особи";
+        private const string CATEGORY_II = "II. Загальна інформація про осіб";
+        private const string CATEGORY_III = "III. Відомості про трудову діяльність";
+        private const string CATEGORY_IV = "IV. Відносини особи з банком та юридичною особою";
+        private const string CATEGORY_V = "V. Відомості про ділову репутацію";
+        private const string CATEGORY_SignEtc = "Підписи і т.п.";
+
         #region cctor(s)
         public RegLicAppx3MemberCandidateAppl()
         { 
@@ -33,7 +43,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         }
         #endregion
 
-        #region Original fields
+        [Required]
+        public GenericPersonID Acquiree {get;set;}
+        
         /// <summary>
         /// Стосовно участі в ___________________________________________________________________
         /// (повне офіційне найменування банку)
@@ -41,11 +53,132 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// (найменування юридичної особи)
         /// </summary>
         [DisplayName("Повне офіційне найменування банку")]
-        [Description("Ідентифікація банку, в якому подавач планує набути членство у відповідному органі управління")]
+        [Description("Ідентифікація банку, в якому подавачі планують набути членство у відповідному органі управління")]
         [Browsable(true)]
         [Required]
         public BankInfo BankRef { get; set; }
+
+
+        #region I. Перелік членів виконавчого органу та наглядової ради юридичної особи
+        [Category(CATEGORY_I)]
+        public bool IsSupervisoryCouncilPresent { get; set; }
+        [Category(CATEGORY_I)]
+        [UIConditionalVisibility("IsSupervisoryCouncilPresent")]
+        public CouncilBodyInfo SupervisoryCouncil { get; set; }
+
+        [Category(CATEGORY_I)]
+        public bool IsExecutiveBodyPresent { get; set; }
+        [Category(CATEGORY_I)]
+        [UIConditionalVisibility("IsExecutiveBodyPresent")]
+        public CouncilBodyInfo ExecutiveBody { get; set; }
+        #endregion
+
+        #region II. Загальна інформація про осіб
+        /// <summary>
+        /// Реквізити усіх осіб-фігурантів
+        /// </summary>
+        [Category(CATEGORY_II)]
+        [DisplayName("Реквізити усіх осіб-фігурантів")]
+        [Description("Реквізити усіх осіб, що згадуються в анкеті")]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Особи-фігуранти")]
+        public List<GenericPersonInfo> MentionedIdentities { get; set; }
+        #endregion
+
+        #region III. Відомості про трудову діяльність
+        [Category(CATEGORY_III)]
+        [DisplayName("Займані посади за останні п’ять років")]
+        [Description("Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років.")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Трудовий стаж осіб")]
+        public List<PersonEmploymentRecordsInfo> BoardMembersEmploymentHistory5Yrs { get; set; }
+        #endregion
+
+        #region IV. Відносини особи з банком та юридичною особою
         
+        [Category(CATEGORY_IV)]
+        [DisplayName("Відомості про участь осіб в банку")]
+        [Description("Деталізація існуючих відносин власності між особами, юр.особою та банком")]
+        [Browsable(true)]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Розшифровка чинної власності осіб-фігурантів анкети")]
+        public List<OwnershipStructure> ExistingOwnershipDetailsHive {get;set;}
+
+        [Category(CATEGORY_IV)]
+        [DisplayName("Відомості про намір осіб набути або збільшити участь у банку")]
+        [Description("Власність, яку особи шукають здобути у банку")]
+        [Browsable(true)]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Розшифровка жаданої власності у банку")]
+        public List<OwnershipStructure> TargetedOwnershipDetailsHive { get; set; }
+
+        /// <summary>
+        /// Зв'язки між особами-фігурантами анкети
+        /// ----
+        /// </summary>
+        [Category(CATEGORY_IV)]
+        [DisplayName("Зв'язки між особами-фігурантами анкети")]
+        [Description("Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті")]
+        [Browsable(true)]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Зв'язки між особами")]
+        public List<PersonsAssociation> PersonsLinks { get; set; }
+
+
+        [Category(CATEGORY_IV)]
+        [DisplayName("Відомості про пов’язаність осіб із банком")]
+        [Description("Коди пов'язаності осіб")]
+        [Browsable(true)]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Особа й код пов'язаності")]
+        public List<PersonBankAssociationInfo> Person2BankAssociations { get; set; }
+        #endregion
+
+        #region V. Відомості про ділову репутацію
+
+        [Category(CATEGORY_V)]
+        [DisplayName("Ділова репутація кандидатів")]
+        [Description("Ділова репутація кандидатів та дотримання законодавства")]
+        [Browsable(true)]
+        [Required]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Особа й репутація")]
+        public List<PersonBusinessReputationInfo> CandidatesBusinessReputation { get; set; }
+        #endregion
+
+        #region Підписи і т.ін.
+
+        /// <summary>
+        /// Я, ________________________________________________________________________________,
+        ///      (прізвище, ім'я, по батькові)
+        /// стверджую, що інформація, надана в анкеті, є правдивою і повною, та не заперечую проти перевірки 
+        /// Національним банком України достовірності поданих документів і персональних даних, що в них містяться.
+        /// </summary>
+        [DisplayName("Підтверджую правдивість інформації?")]
+        [Description("стверджую, що інформація,  надана в анкеті,\n є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.\n")]
+        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        [Required]
+        public bool IsApplicationInfoAccurateAndTrue { get; set; }
+
+        /// <summary>
+        /// _______________________
+        /// (дата підписання анкети)
+        /// _____________________
+        /// (підпис фізичної особи,
+        /// засвідчений нотаріально)	
+        /// _______________________
+        /// (ініціали та прізвище
+        ///    фізичної особи
+        ///  друкованими літерами)
+        /// </summary>
+        [DisplayName("Підписант")]
+        [Description("Відомості по особу, що підписала анкету")]
+        [Required]
+        public SignatoryInfo Signatory { get; set; }
+
+        #endregion
+
+        #region legacy
+
+        #region Original fields
+
         /// <summary>
         /// 1. Інформація про особу
         /// 1.1. _______________________________________________________________________________.
@@ -297,25 +430,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
 
         /// <summary>
-        /// Зв'язки між особами-фігурантами анкети
-        /// ----
-        /// Колекція має бути непустою, як мінімум, якщо:
-        /// IsAssociatedPersonWithBank == true
-        /// АБО ImplicitOwnershipWithBankSummary > сума вирахуваної через непряме особисте володіння банком на особу-заявника
-        /// АБО якщо серед фігурантів анкети є особи з прізвищем заявника.
-        /// </summary>
-        [DisplayName("Зв'язки між особами-фігурантами анкети")]
-        [Description("Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті")]
-        [Browsable(true)]
-        [Required]
-        public List<PersonsAssociation> PersonsLinks { get; set; }
-
-        /// <summary>
-        /// Реквізити усіх осіб-фігурантів
-        /// </summary>
-        public List<GenericPersonInfo> MentionedIdentities { get; set; }
-
-        /// <summary>
         /// 3.5. Стверджую, що я належним чином виконую вимоги законодавства України з питань 
         /// запобігання та протидії легалізації (відмиванню) доходів, одержаних злочинним шляхом, 
         /// або фінансуванню тероризму.
@@ -325,17 +439,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Browsable(true)]
         public bool IsAMLLegislationKept { get; set; }
 
-        /// <summary>
-        /// Я, ________________________________________________________________________________,
-        ///      (прізвище, ім'я, по батькові)
-        /// стверджую, що інформація, надана в анкеті, є правдивою і повною, та не заперечую проти перевірки 
-        /// Національним банком України достовірності поданих документів і персональних даних, що в них містяться.
-        /// </summary>
-        [DisplayName("Підтверджую правдивість інформації?")]
-        [Description("Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,\n є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.\n")]
-        [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        [Required]
-        public bool IsApplicationInfoAccurateAndTrue { get; set; }
 
 
         /// У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.
@@ -346,29 +449,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public bool AmObligingToKeepUp2DateWithin10Days { get; set; }
 
 
-        /// <summary>
-        /// _______________________
-        /// (дата підписання анкети)
-        /// _____________________
-        /// (підпис фізичної особи,
-        /// засвідчений нотаріально)	
-        /// _______________________
-        /// (ініціали та прізвище
-        ///    фізичної особи
-        ///  друкованими літерами)
-        /// </summary>
-        [DisplayName("Підписант")]
-        [Description("Відомості по особу, що підписала анкету")]
-        [Required]
-        public SignatoryInfo Signatory { get; set; }
+        #endregion
+        
         #endregion
 
-
-
-        //public string SuggestSaveAsFileName()
-        //{
-        //    return "";
-        //}
 
         public IEnumerable<GenericPersonInfo> MentionedGenericPersons
         {

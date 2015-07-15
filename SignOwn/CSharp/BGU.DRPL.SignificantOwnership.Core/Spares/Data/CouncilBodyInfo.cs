@@ -30,6 +30,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Члени")]
         [Description("Члени органу управління")]
         [Required]
+        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Член(-и) органу")]
         public List<CouncilMemberInfo> Members { get; set; }
         /// <summary>
         /// Ідентифікатор особи-голови

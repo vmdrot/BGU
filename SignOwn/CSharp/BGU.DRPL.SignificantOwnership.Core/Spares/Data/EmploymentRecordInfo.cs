@@ -22,7 +22,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
             State = EmploymentState.Employed;
         }
 
-
         private EmploymentState _State;
         /// <summary>
         /// обов'язкове поле
