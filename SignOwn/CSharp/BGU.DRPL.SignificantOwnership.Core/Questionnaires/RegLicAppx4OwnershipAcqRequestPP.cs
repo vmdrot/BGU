@@ -323,9 +323,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("20. Стверджую, що немає ознак відсутності бездоганної ділової репутації")]
         [Description("Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування фізичної особи")]
         [Required]
-        public bool HasNoImperfectReputationSigns { get { return _HasNoImperfectReputationSigns; } set { _HasNoImperfectReputationSigns = value; OnPropertyChanged("HasNoImperfectReputationSigns"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); OnPropertyChanged("IsImprefectReputationDetailsVisible"); } }
+        public bool HasNoImperfectReputationSigns { get { return _HasNoImperfectReputationSigns; } set { _HasNoImperfectReputationSigns = value; OnPropertyChanged("HasNoImperfectReputationSigns"); OnPropertyChanged("IsImperfectReputationDetailsVisible"); OnPropertyChanged("IsImperfectReputationDetailsVisible"); } }
 
-        private ImperfectBusinessReputationInfo _ImprefectReputationDetails;
+        private ImperfectBusinessReputationInfo _ImperfectReputationDetails;
         /// <summary>
         /// 17. Якщо щодо юридичної особи є ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
         /// актом Національного банку України про порядок реєстрації та ліцензування банків, то здійснюється опис ознаки (ознак) відсутності
@@ -335,12 +335,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [DisplayName("20. Ознаки відсутності бездоганної ділової репутації")]
         [Description("Опис наявних ознак відсутності бездоганної ділової репутації")]
         [Required("HasNoImperfectReputationSigns == false")]
-        [UIConditionalVisibility("IsImprefectReputationDetailsVisible")]
-        public ImperfectBusinessReputationInfo ImprefectReputationDetails { get { return _ImprefectReputationDetails; } set { _ImprefectReputationDetails = value; OnPropertyChanged("ImprefectReputationDetails"); } }
+        [UIConditionalVisibility("IsImperfectReputationDetailsVisible")]
+        public ImperfectBusinessReputationInfo ImperfectReputationDetails { get { return _ImperfectReputationDetails; } set { _ImperfectReputationDetails = value; OnPropertyChanged("ImperfectReputationDetails"); } }
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsImprefectReputationDetailsVisible { get { return HasNoImperfectReputationSigns == false; } }
+        public bool IsImperfectReputationDetailsVisible { get { return HasNoImperfectReputationSigns == false; } }
 
         private bool _IsAMLEtcLegislationKept;
         /// <summary>
