@@ -320,6 +320,11 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ArrayOfEducationRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EducationRecordInfo" nillable="true" type="EducationRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="ArrayOfBankInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="BankInfo" nillable="true" type="BankInfo" />
@@ -374,7 +379,6 @@
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ManagementPosition.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEducationRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EducationRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />
   <xs:include schemaLocation="DegreeHonourType.uk-UA.xsd" />

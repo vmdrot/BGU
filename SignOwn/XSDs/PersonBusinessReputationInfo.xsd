@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PersonBusinessReputationInfo" nillable="true" type="PersonBusinessReputationInfo" />
+  <xs:complexType name="PersonBusinessReputationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="BreachOfLawRecordInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CodeOrLaw" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Articles" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PenaltyDurationYrs" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FineAmount" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BreachOfLawType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Criminal" />
+          <xs:enumeration value="Antitrust" />
+          <xs:enumeration value="Taxation" />
+          <xs:enumeration value="Banking" />
+          <xs:enumeration value="Financial" />
+          <xs:enumeration value="ForeignCurrency" />
+          <xs:enumeration value="StockExchange" />
+          <xs:enumeration value="OtherAdministrative" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="CourtDecisionInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionType" type="CourtDecisionType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DecisionDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionRegistryID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DecisionTextSummary" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CourtInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CourtInstanceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="First" />
+      <xs:enumeration value="Appeal" />
+      <xs:enumeration value="Cassation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CourtDecisionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sentence" />
+      <xs:enumeration value="Ruling" />
+      <xs:enumeration value="Decision" />
+      <xs:enumeration value="CourtOrder" />
+      <xs:enumeration value="CourtResolution" />
+      <xs:enumeration value="SpecialResolution" />
+      <xs:enumeration value="JudgesMinorityReport" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SentenceType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Jailed" />
+          <xs:enumeration value="Probation" />
+          <xs:enumeration value="RemedialWorks" />
+          <xs:enumeration value="Fined" />
+          <xs:enumeration value="Dismissed" />
+          <xs:enumeration value="LicenseRevoked" />
+          <xs:enumeration value="LicenseSuspended" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="CurrencyAmount">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CCY" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BankruptcyInvestigationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="CaseFiledDt" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CurrentStatus" type="BankruptcyCaseResolutionType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InCurrentStatusSince" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecisions" type="ArrayOfCourtDecisionInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BankruptcyCaseResolutionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="CaseFiled" />
+      <xs:enumeration value="DeclaredBankrupt" />
+      <xs:enumeration value="InFinRecovery" />
+      <xs:enumeration value="BankruptedRecovered" />
+      <xs:enumeration value="Liquidated" />
+      <xs:enumeration value="FinRecovered" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfCourtDecisionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CourtDecisionInfo" nillable="true" type="CourtDecisionInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BankInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="IndebtnessInfoBase">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Lender" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Borrower" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DebtSubject" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Principal" type="CurrencyAmount" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IndebtnessInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IndebtnessInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRepaymentPlanned" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PlannedRepaymentDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RepaymentPlans" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoanInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IndebtnessInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LendingBank" type="BankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLoanInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoanInfo" nillable="true" type="LoanInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImperfectBusinessReputationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="HadBankruptcyInvestigation" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BankruptcyInvestigations" type="ArrayOfBankruptcyInvestigationInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedSignOwnershipLastYear" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedSignOwnershipLastYear" type="ArrayOfLiquidatedEntityOwnershipInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBankruptcyInvestigationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BankruptcyInvestigationInfo" nillable="true" type="BankruptcyInvestigationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIndebtnessInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndebtnessInfo" nillable="true" type="IndebtnessInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBreachOfLawRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BreachOfLawRecordInfo" nillable="true" type="BreachOfLawRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLiquidatedEntityOwnershipInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LiquidatedEntityOwnershipInfo" nillable="true" type="LiquidatedEntityOwnershipInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LiquidatedEntityOwnershipInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LiquidatedOrInsolventEntityInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Stake" type="TotalOwnershipDetailsInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LiquidatedOrInsolventEntityInfoBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Asset" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Court" type="CourtInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CaseNr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationReason" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidationPretext" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="InsolvencyStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Insolvent" />
+      <xs:enumeration value="Liquidated" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TotalOwnershipDetailsInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnership" type="OwnershipSummaryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ImplicitOwnership" type="OwnershipSummaryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AcquiredVotes" type="OwnershipVotesInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCapitalSharePct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalVotes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipSummaryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharesNominalValue" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipVotesInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

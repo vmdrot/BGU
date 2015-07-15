@@ -1,6 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
+  <xs:element name="PersonEmploymentRecordsInfo" nillable="true" type="PersonEmploymentRecordsInfo" />
+  <xs:complexType name="PersonEmploymentRecordsInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentHistory" type="ArrayOfEmploymentRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Physical" />
+          <xs:enumeration value="Legal" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfEmploymentRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="EmploymentRecordInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -55,17 +84,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
-  </xs:simpleType>
   <xs:complexType name="PhysicalPersonInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -118,13 +136,6 @@
       <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="GenericPersonID">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="SexType">

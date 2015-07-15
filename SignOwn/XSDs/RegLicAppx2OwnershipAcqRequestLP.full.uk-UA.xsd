@@ -180,7 +180,7 @@
             бездоганної ділової репутації].</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ImprefectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="17. Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації" category="IV. Ділова репутація">
+          <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="17. Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації" category="IV. Ділова репутація">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasNoImperfectReputationSigns == false
@@ -260,26 +260,6 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="FinancialOversightAuthorityInfo" nillable="true" type="FinancialOversightAuthorityInfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfIPOSharesPurchaseInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPOSharesPurchaseInfo" nillable="true" type="IPOSharesPurchaseInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfSecondaryMarketSharesPurchaseInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SecondaryMarketSharesPurchaseInfo" nillable="true" type="SecondaryMarketSharesPurchaseInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfPowerOfAttorneySharesPurchaseInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PowerOfAttorneySharesPurchaseInfo" nillable="true" type="PowerOfAttorneySharesPurchaseInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfSignificantOrDecisiveInfulenceInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SignificantOrDecisiveInfulenceInfo" nillable="true" type="SignificantOrDecisiveInfulenceInfo" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="ArrayOfMissingInformationResonInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationResonInfo" nillable="true" type="MissingInformationResonInfo" />
@@ -347,11 +327,15 @@
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankAccountInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PaymentDeadlineInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfSecondaryMarketSharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneySharesPurchaseInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfSignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignificantOrDecisiveInfulenceInfo.uk-UA.xsd" />
   <xs:include schemaLocation="InfluenceType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIncomeOriginInfo.uk-UA.xsd" />
