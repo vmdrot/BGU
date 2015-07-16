@@ -68,6 +68,8 @@
     <Compile Include="FXLicensing\Questionnares\IndividualFXLicenseCancelApplAppx7.cs" />
     <Compile Include="FXLicensing\Questionnares\IndividualFXLisenceChangesApplAppx6.cs" />
     <Compile Include="Interfaces\IModule.cs" />
+    <Compile Include="Messages\BankInfo\BankInfoEnums.cs" />
+    <Compile Include="Messages\BankInfo\BkInfoChangesMessage.cs" />
     <Compile Include="Messages\DossierMessageBase.cs" />
     <Compile Include="Messages\IDossierMessageBody.cs" />
     <Compile Include="Messages\Post306RIG3p23YO_MovFundsBkAssurance.cs" />
