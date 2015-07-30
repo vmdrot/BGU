@@ -18,5 +18,12 @@ namespace BGU.DRPL.SignificantOwnership.Tests
             DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\rcukru.dbf");
             Tools.DataTableToCSV(dt, @"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\rcukru.csv", true);
         }
+
+        [Test]
+        public void ExportDeptList2CSV()
+        {
+            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\dptlist.dbf");
+            Tools.DataTableToCSV(dt, @"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\dptlist.dbf.csv", true);
+        }
     }
 }

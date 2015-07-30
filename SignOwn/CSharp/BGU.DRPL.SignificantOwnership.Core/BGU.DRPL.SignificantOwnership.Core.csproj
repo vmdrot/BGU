@@ -56,6 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
+    <Compile Include="EKDRBU\Spares\OperationsLimitInfo.cs" />
+    <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />
+    <Compile Include="EKDRBU\StateBankRegistryEntry.cs" />
     <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />
     <Compile Include="Checks\IQuestionnaireChecker.cs" />
     <Compile Include="Checks\QuestionnaireCheckUtils.cs" />
