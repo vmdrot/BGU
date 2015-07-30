@@ -15,6 +15,7 @@ using System.Xml;
 using BGU.DRPL.SignificantOwnership.Utility;
 using System.Configuration;
 using BGU.DRPL.SignificantOwnership.Utility.WPFGen;
+using BGU.DRPL.SignificantOwnership.Core.EKDRBU;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -56,7 +57,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             #region populate
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
-
+            _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
             #endregion
 
             #endregion
@@ -1098,6 +1099,12 @@ RegLicAppx9BankingLicenseAppl.xsd";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx14NewSvc), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx3MemberCandidateAppl), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx4OwnershipAcqRequestPP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+        }
+
+        public static void GenerateXAMLs4BkInfo(string[] args)
+        {
+            string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankRegistryEntry), typeof(StateBankRegistryEntry).Assembly, targetFolder);
         }
 
         #endregion

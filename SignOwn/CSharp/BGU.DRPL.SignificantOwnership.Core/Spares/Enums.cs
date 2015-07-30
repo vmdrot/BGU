@@ -868,5 +868,79 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Municipal
     }
 
+    public enum BankBranchStatusType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Працююче")]
+        Operational,
+        [Description("Призупинено")]
+        Paused,
+        [Description("Зачинено")]
+        Closed,
+    }
+
+
+    public enum ResidenceType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Резиденти")]
+        Resident,
+        [Description("Нерезиденти")]
+        NonResident
+    }
+
+
+    public enum CurrencyType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Національна валюта")]
+        NationalCurrency,
+        [Description("Іноземна валюта й банківськи метали")]
+        ForeignCurrencyAndBankingMetals
+    }
+
+    public enum BankClientType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Юридичні особи")]
+        LegalPersons,
+        [Description("Фізичні особи")]
+        PhysicalPersons,
+        [Description("СПД")]
+        IndividualEntrepreneurs
+    }
+
+    public enum BankOperationLimitType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Ліміт на одиничну операція")]
+        SingleOperation,
+        [Description("Ліміт на сумарний оборот за...")]
+        TotalTurnover,
+        [Description("Ліміт залишку")]
+        TotalBalance
+    }
+
+    public enum WorkingHoursDayType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Будній день")]
+        WorkWeekDay,
+        [Description("Вихідний")]
+        WeekEndDay,
+        [Description("Святковий день")]
+        Holiday,
+        [Description("Усі дні")]
+        AnyDay,
+        [Description("Конкретний день тижня")]
+        ParticularDay
+    }
+
 }
 

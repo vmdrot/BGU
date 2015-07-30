@@ -148,6 +148,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             {
                 //string[] fields = row.ItemArray.Select(field => "\"" + field.ToString().Replace("\"", "\"\"") + "\"").ToArray<string>();
                 string[] fields = row.ItemArray.Select(field => field.ToString()).ToArray<string>();
+                for(int i = 0; i < fields.Length; i++)
+                {
+                    //if (fields[i].IndexOf('\r') == -1 && fields[i].IndexOf('\n') == -1 && fields[i].IndexOf('"') == -1)
+                    //    continue;
+                    //fields[i] = string.Format("\"{0}\"", fields[i].Replace("\"", "\\\""));
+                    if (fields[i].IndexOf('\r') == -1 && fields[i].IndexOf('\n') == -1)
+                        continue;
+                    fields[i] = fields[i].Replace('\r', ' ').Replace('\n', ' ');
+                }
                 writer.WriteLine(String.Join("\t", fields));
                 writer.Flush();
             }
