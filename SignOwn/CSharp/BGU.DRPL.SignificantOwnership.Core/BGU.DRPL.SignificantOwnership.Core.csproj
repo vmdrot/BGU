@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
     <Compile Include="EKDRBU\Spares\OperationsLimitInfo.cs" />
+    <Compile Include="EKDRBU\Spares\TimeSpanInfo.cs" />
     <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />
     <Compile Include="EKDRBU\StateBankRegistryEntry.cs" />
     <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />
