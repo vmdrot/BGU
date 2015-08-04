@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BasicUI\QuestionnaireDataAggregationTests.cs" />
     <Compile Include="DXUI\DXPropGridTests.cs" />
+    <Compile Include="EKDRBU\BankInfoTests.cs" />
     <Compile Include="GenericParserTests.cs" />
     <Compile Include="LocationInfoTests.cs" />
     <Compile Include="PhysicalPersonInfoTests.cs" />
@@ -92,6 +93,10 @@
     <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.EmpiricalData\BGU.DRPL.SignificantOwnership.EmpiricalData.csproj">
       <Project>{E1A4FFBF-88B4-4F0A-9748-9CA3CFD2D809}</Project>
       <Name>BGU.DRPL.SignificantOwnership.EmpiricalData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Facade\BGU.DRPL.SignificantOwnership.Facade.csproj">
+      <Project>{2EA821E8-BF52-41E1-88A3-3214521EB557}</Project>
+      <Name>BGU.DRPL.SignificantOwnership.Facade</Name>
     </ProjectReference>
     <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Utility\BGU.DRPL.SignificantOwnership.Utility.csproj">
       <Project>{E7FA3686-C797-43EA-890E-5F970A54D348}</Project>

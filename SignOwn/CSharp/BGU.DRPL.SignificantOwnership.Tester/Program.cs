@@ -16,6 +16,8 @@ using BGU.DRPL.SignificantOwnership.Utility;
 using System.Configuration;
 using BGU.DRPL.SignificantOwnership.Utility.WPFGen;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU;
+using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy;
+using System.Data;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -58,6 +60,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
+            _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
             #endregion
 
             #endregion
@@ -1107,6 +1110,40 @@ RegLicAppx9BankingLicenseAppl.xsd";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankRegistryEntry), typeof(StateBankRegistryEntry).Assembly, targetFolder);
         }
 
+        #endregion
+
+        #region BankInfo-related
+
+        private static void BanksHierarchy(string[] args)
+        {
+            List<DeptListEntry> depts = ListDepts();
+
+            BGU.DRPL.SignificantOwnership.Facade.EKDRBU.DeptListUtil.BuildHierarchy(depts);
+            PrintDeptsWorker(depts);
+        }
+
+
+        private static void PrintDeptsWorker(List<DeptListEntry> depts)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            foreach (DeptListEntry dle in depts)
+            {
+                string jsonStr = JsonConvert.SerializeObject(dle, settings);
+                Console.WriteLine("{0}", jsonStr);
+            }
+        }
+
+        private static List<DeptListEntry> ListDepts()
+        {
+            List<DeptListEntry> depts = new List<DeptListEntry>();
+            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\dptlist.dbf");
+            foreach (DataRow dr in dt.Rows)
+            {
+                depts.Add(DeptListEntry.Parse(dr));
+            }
+            return depts;
+        }
         #endregion
     }
 }
