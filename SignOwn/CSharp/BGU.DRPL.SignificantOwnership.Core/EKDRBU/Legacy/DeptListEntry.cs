@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using BGU.DRPL.SignificantOwnership.Core.Spares;
 
 namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy
 {
-    public class DeptListEntry
+    public class DeptListEntry : NotifyPropertyChangedBase
     {
         private List<DeptListEntry> _hierarchySource;
 
-        public string NCKS { get; set; }
-        public string DEPCODE { get; set; }
-        public string ParentCode { get; set; }
-        public string KNB { get; set; } 
-        public string NAMEF { get; set; }
-        public DateTime D_OPEN { get; set; }
-        public DateTime? D_CLOSE { get; set; }
-        public string NKB { get; set; }
-        public string KOB { get; set; }
-        public string KK { get; set; }
-        public string TP { get; set; }
-        public string KOF { get; set; }
-        public string NF { get; set; }
-        public string KOP { get; set; }
-        public string NP { get; set; }
+        private string _NCKS; public string NCKS { get { return _NCKS; } set { _NCKS = value; OnPropertyChanged("NCKS"); } }
+        private string _DEPCODE; public string DEPCODE { get { return _DEPCODE; } set { _DEPCODE = value; OnPropertyChanged("DEPCODE"); } }
+        private string _ParentCode; public string ParentCode { get { return _ParentCode; } set { _ParentCode = value; OnPropertyChanged("ParentCode"); } }
+        private string _KNB; public string KNB { get { return _KNB; } set { _KNB = value; OnPropertyChanged("KNB"); } }
+        private string _NAMEF; public string NAMEF { get { return _NAMEF; } set { _NAMEF = value; OnPropertyChanged("NAMEF"); } }
+        private DateTime _D_OPEN; public DateTime D_OPEN { get { return _D_OPEN; } set { _D_OPEN = value; OnPropertyChanged("D_OPEN"); } }
+        private DateTime? _D_CLOSE; public DateTime? D_CLOSE { get { return _D_CLOSE; } set { _D_CLOSE = value; OnPropertyChanged("D_CLOSE"); } }
+        private string _NKB; public string NKB { get { return _NKB; } set { _NKB = value; OnPropertyChanged("NKB"); } }
+        private string _KOB; public string KOB { get { return _KOB; } set { _KOB = value; OnPropertyChanged("KOB"); } }
+        private string _KK; public string KK { get { return _KK; } set { _KK = value; OnPropertyChanged("KK"); } }
+        private string _TP; public string TP { get { return _TP; } set { _TP = value; OnPropertyChanged("TP"); } }
+        private string _KOF; public string KOF { get { return _KOF; } set { _KOF = value; OnPropertyChanged("KOF"); } }
+        private string _NF; public string NF { get { return _NF; } set { _NF = value; OnPropertyChanged("NF"); } }
+        private string _KOP; public string KOP { get { return _KOP; } set { _KOP = value; OnPropertyChanged("KOP"); } }
+        private string _NP; public string NP { get { return _NP; } set { _NP = value; OnPropertyChanged("NP"); } }
+        private bool _IsChecked; public bool IsChecked { get { return _IsChecked; } set { _IsChecked = value; OnPropertyChanged("IsChecked"); } }
+
 
         public IEnumerable<DeptListEntry> Children
         {
