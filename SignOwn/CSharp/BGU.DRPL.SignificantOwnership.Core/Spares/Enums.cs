@@ -256,6 +256,15 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    public enum LicensedOperationType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Вид банківської діяльності")]
+        BankingActivity,
+        [Description("Фінансова послуга")]
+        FinancialService,
+    }
 
     #region Financial services types
     /// <summary>
@@ -898,7 +907,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         None = 0,
         [Description("Національна валюта")]
         NationalCurrency,
-        [Description("Іноземна валюта й банківськи метали")]
+        [Description("Іноземна валюта й банківські метали")]
         ForeignCurrencyAndBankingMetals
     }
 
@@ -918,7 +927,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     {
         [Description("Не вказано")]
         None = 0,
-        [Description("Ліміт на одиничну операція")]
+        [Description("Ліміт на одиничну операцію")]
         SingleOperation,
         [Description("Ліміт на сумарний оборот за...")]
         TotalTurnover,
