@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using BGU.DRPL.SignificantOwnership.Utility;
+using System.Xml.Serialization;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 {
@@ -12,6 +14,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankingLicensedActivityInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class BankingLicensedActivityInfo
     {
+        [DisplayName("Тип")]
+        [Description("Вкажіть, це буде вид банківської діяльності чи послуга")]
+        public LicensedOperationType BankActivityOrService { get; set; }
+        
         /// <summary>
         /// Заповнювати або це поле, або ж ServiceType
         /// (але не обидва одразу).
@@ -30,6 +36,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Вид фінансових послуг")]
         [Description("Вид фінансових послуг зг. зі ст. 4 з-ну Про фінансові послуги")]
         public FinancialServicesType ServiceType { get; set; }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public String ActivityDisplayName
+        {
+            get
+            {
+                return EnumType.GetEnumDescription(BankActivityOrService == Core.Spares.LicensedOperationType.BankingActivity ? ActivityType : ServiceType);
+            }
+        }
         /// <summary>
         /// Власна вільна інтерпретація чи примітки/опис виду діяльності (якщо є чим доповнити поле ActivityType чи ServiceType
         /// </summary>
