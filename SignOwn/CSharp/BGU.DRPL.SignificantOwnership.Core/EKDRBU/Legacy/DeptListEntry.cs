@@ -40,10 +40,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy
         }
 
 
-
-        public void SetHierarchySource(List<DeptListEntry> collection)
+        public List<DeptListEntry> HierarchySource 
         {
-            _hierarchySource = collection;
+            get { return _hierarchySource; }
+            set { _hierarchySource = value; }
         }
 
         public static DeptListEntry Parse(DataRow dr)
@@ -61,9 +61,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy
             rslt.KOB = rslt.DEPCODE.Substring(3, 2);
             rslt.KK = rslt.DEPCODE.Substring(5, 3);
             rslt.TP = rslt.DEPCODE.Substring(8, 1);
-            rslt.KOF = rslt.DEPCODE.Substring(9, 3);
+            rslt.KOF = rslt.DEPCODE.Substring(9, 2);
             rslt.NF = rslt.DEPCODE.Substring(11, 3);
-            rslt.KOP = rslt.DEPCODE.Substring(14, 3);
+            rslt.KOP = rslt.DEPCODE.Substring(14, 2);
             rslt.NP = rslt.DEPCODE.Substring(16, 3);
             return rslt;
         }
