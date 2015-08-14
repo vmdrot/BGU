@@ -17,7 +17,7 @@ namespace BGU.DRPL.SignificantOwnership.Facade.EKDRBU
             var lowBranches = depts.Where(dle => dle.TP == "2");
             foreach (DeptListEntry dept in depts)
             {
-                dept.SetHierarchySource(depts);
+                dept.HierarchySource = depts;
                 switch (dept.TP)
                 {
                     case "0":
@@ -44,6 +44,41 @@ namespace BGU.DRPL.SignificantOwnership.Facade.EKDRBU
                     default: break;
                 }
             }
+        }
+
+        public static List<DeptListEntry> BuildHierarchy(List<DeptListEntry> filteredDepts, List<DeptListEntry> allDepts)
+        {
+            BuildHierarchy(allDepts);
+            List<DeptListEntry> toPreserve = new List<DeptListEntry>();
+            foreach (DeptListEntry dle in allDepts)
+            {
+                if (filteredDepts.Any(e => e.DEPCODE == dle.DEPCODE))
+                {
+                    CheckAddDepListEntry(dle, toPreserve);
+                    if (!string.IsNullOrEmpty(dle.ParentCode))
+                    {
+                        string currParentID = dle.ParentCode;
+                        do
+                        {
+                            DeptListEntry currParent = allDepts.First(e => e.DEPCODE == currParentID);
+                            CheckAddDepListEntry(currParent, toPreserve);
+                            currParentID = currParent.ParentCode;
+                        } while (!string.IsNullOrEmpty(currParentID));
+                    }
+                }
+
+            }
+            foreach (DeptListEntry dle in toPreserve)
+            {
+                dle.HierarchySource = toPreserve;
+            }
+            return toPreserve;
+        }
+
+        private static void CheckAddDepListEntry(DeptListEntry dle, List<DeptListEntry> target)
+        {
+            if (!target.Any(e => e.DEPCODE == dle.DEPCODE))
+                target.Add(dle);
         }
     }
 }

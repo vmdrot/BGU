@@ -22,16 +22,16 @@ namespace BGU.DRPL.SignificantOwnership.Facade.EKDRBU.Spares
         public List<string> SubActivities { get; set; }
 
 
-        private static Dictionary<BankingLicensedActivityInfo, string> _SubActivitiesTypes;
+        private static Dictionary<BankingLicensedActivityInfo, List<string>> _SubActivitiesTypes;
 
-        public static Dictionary<BankingLicensedActivityInfo, string> SubActivitiesTypes
+        public static Dictionary<BankingLicensedActivityInfo, List<string>> SubActivitiesTypes
         {
             get
             {
                 if (_SubActivitiesTypes == null)
                 {
-                    _SubActivitiesTypes = new Dictionary<BankingLicensedActivityInfo, string>();
-                    _SubActivitiesTypes.Add( new BankingLicensedActivityInfo() { BankActivityOrService = LicensedOperationType.BankingActivity, ActivityType = BankingActivityType.DepositsTaking }, new List<string>(new string[] {})));
+                    _SubActivitiesTypes = new Dictionary<BankingLicensedActivityInfo, List<string>>();
+                    _SubActivitiesTypes.Add( new BankingLicensedActivityInfo() { BankActivityOrService = LicensedOperationType.BankingActivity, ActivityType = BankingActivityType.DepositsTaking }, new List<string>(new string[] {}));
                 }
                 return _SubActivitiesTypes;
             }
@@ -43,7 +43,7 @@ namespace BGU.DRPL.SignificantOwnership.Facade.EKDRBU.Spares
             {
                 List<EnumType> bkacts = EnumType.GetEnumList(typeof(BankingActivityType));
                 List<EnumType> finSvcs = EnumType.GetEnumList(typeof(FinancialServicesType));
-
+                return null; //todo
             }
         }
     }

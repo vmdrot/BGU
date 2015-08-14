@@ -43,7 +43,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         {
             get
             {
-                return EnumType.GetEnumDescription(BankActivityOrService == Core.Spares.LicensedOperationType.BankingActivity ? ActivityType : ServiceType);
+                return (BankActivityOrService == Core.Spares.LicensedOperationType.BankingActivity ? EnumType.GetEnumDescription(ActivityType) : EnumType.GetEnumDescription(ServiceType));
             }
         }
         /// <summary>
