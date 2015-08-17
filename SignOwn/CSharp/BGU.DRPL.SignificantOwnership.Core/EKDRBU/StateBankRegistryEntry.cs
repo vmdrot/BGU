@@ -8,6 +8,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 using Evolvex.Utility.Core.Geo;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
 {
@@ -198,6 +199,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
         [DisplayName("ІПН")]
         [Description("ІПН")]
         public string MgrTaxID { get { return _MgrTaxID; } set { _MgrTaxID = value; OnPropertyChanged("MgrTaxID"); } }
+
+        private List<EducationRecordInfo> _MgrEducation;
+        [Category("Керівники/персонал")]
+        [DisplayName("Освіта")]
+        [Description("Дані про освіту керівника")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Освіта керівника")]
+        public List<EducationRecordInfo> MgrEducation { get { return _MgrEducation; } set { _MgrEducation = value; OnPropertyChanged("MgrEducation"); } }
+        
+        private List<EmploymentRecordInfo> _MgrWorkExperience;
+        [Category("Керівники/персонал")]
+        [DisplayName("Досвід роботи")]
+        [Description("Дані про досвід роботи керівника")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Досвід роботи керівника")]
+        public List<EmploymentRecordInfo> MgrWorkExperience { get { return _MgrWorkExperience; } set { _MgrWorkExperience = value; OnPropertyChanged("MgrWorkExperience"); } }
+        
+        private PersonBusinessReputationInfo _MgrBusinessReputation;
+        [Category("Керівники/персонал")]
+        [DisplayName("Репутація")]
+        [Description("Ділова репутація керівника")]
+        public PersonBusinessReputationInfo MgrBusinessReputation { get { return _MgrBusinessReputation; } set { _MgrBusinessReputation = value; OnPropertyChanged("MgrBusinessReputation"); } }
         
         private string _PayDocNr;
         [Category("Оплата")]

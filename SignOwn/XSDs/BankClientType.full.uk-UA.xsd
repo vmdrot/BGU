@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankClientType" type="BankClientType" />
+  <xs:simpleType name="BankClientType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="LegalPersons" description="Юридичні особи" />
+      <xs:enumeration value="PhysicalPersons" description="Фізичні особи" />
+      <xs:enumeration value="IndividualEntrepreneurs" description="СПД" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="WorkingHoursDayType" type="WorkingHoursDayType" />
+  <xs:simpleType name="WorkingHoursDayType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="WorkWeekDay" description="Будній день" />
+      <xs:enumeration value="WeekEndDay" description="Вихідний" />
+      <xs:enumeration value="Holiday" description="Святковий день" />
+      <xs:enumeration value="AnyDay" description="Усі дні" />
+      <xs:enumeration value="ParticularDay" description="Конкретний день тижня" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

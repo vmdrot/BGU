@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="WorkingHoursDayType" type="WorkingHoursDayType" />
+  <xs:simpleType name="WorkingHoursDayType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WorkWeekDay" />
+      <xs:enumeration value="WeekEndDay" />
+      <xs:enumeration value="Holiday" />
+      <xs:enumeration value="AnyDay" />
+      <xs:enumeration value="ParticularDay" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

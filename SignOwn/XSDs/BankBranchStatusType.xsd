@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankBranchStatusType" type="BankBranchStatusType" />
+  <xs:simpleType name="BankBranchStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Operational" />
+      <xs:enumeration value="Paused" />
+      <xs:enumeration value="Closed" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
