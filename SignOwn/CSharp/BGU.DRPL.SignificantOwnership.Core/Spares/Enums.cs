@@ -951,5 +951,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         ParticularDay
     }
 
+    public enum BankBranchManagerPositionType
+    { 
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Керуючий філією")]
+        BranchManager,
+        [Description("Керуючий відділенням")]
+        OutletManager,
+        [Description("Інший керівник підрозділу (вказати додатково)")]
+        OtherManager
+    }
+
 }
 

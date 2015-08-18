@@ -29,10 +29,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// <summary>
         /// Якщо потрібно
         /// </summary>
-        [DisplayName("область, район/провінція, тощо")]
-        [Description("область, район/провінція, тощо")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline=false, MaxWidth="400", MinWidth="350")]
+        [DisplayName("область/провінція, тощо")]
+        [Description("область/провінція, тощо")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "400", MinWidth = "350")]
         public string Region { get; set; }
+        /// <summary>
+        /// Якщо потрібно
+        /// </summary>
+        [DisplayName("район/графство, тощо")]
+        [Description("район/графство, тощо")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline=false, MaxWidth="400", MinWidth="350")]
+        public string Raion { get; set; }
         /// <summary>
         /// Залежно від контексту, у більшості випадків - бажано
         /// </summary>
