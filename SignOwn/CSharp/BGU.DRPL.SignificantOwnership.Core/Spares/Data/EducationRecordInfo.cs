@@ -47,6 +47,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// </summary>
         [DisplayName("Серія диплома")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "100", MaxWidth = "250")]
         public string DegreeSeries { get; set; }
         /// <summary>
         /// Якщо український диплом - обов'язкове;
@@ -55,6 +56,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <seealso cref="DegreeSeries"/>
         [DisplayName("№ диплома")]
         [Required]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "200", MaxWidth = "350")]
         public string DegreeID { get; set; }
         /// <summary>
         /// Обов'язково
