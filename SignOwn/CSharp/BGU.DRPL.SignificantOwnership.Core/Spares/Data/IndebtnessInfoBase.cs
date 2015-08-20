@@ -14,7 +14,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     public class IndebtnessInfoBase : NotifyPropertyChangedBase
     {
         private bool _IsBankDebt;
-        [DisplayName("Позичальник є банком")]
+        [DisplayName("Кредитор є банком")]
         [Description("(відзначте галочку, якщо позику було взято у банку, або ж зніміть, якщо борг виник перед особою, що не є банком)")]
         [DefaultValue(false)]
         public bool IsBankDebt { get { return _IsBankDebt; } set { _IsBankDebt = value; OnPropertyChanged("IsBankDebt"); OnPropertyChanged("IsNonBankDebt"); } }
