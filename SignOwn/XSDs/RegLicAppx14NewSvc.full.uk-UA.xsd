@@ -168,6 +168,7 @@
   <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankingLicenseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankingLicensedActivityInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LicensedOperationType.uk-UA.xsd" />
   <xs:include schemaLocation="BankingActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialServicesType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />

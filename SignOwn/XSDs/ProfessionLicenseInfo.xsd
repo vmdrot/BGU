@@ -60,6 +60,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
       <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />

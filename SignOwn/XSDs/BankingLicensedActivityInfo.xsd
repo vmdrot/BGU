@@ -3,11 +3,19 @@
   <xs:element name="BankingLicensedActivityInfo" nillable="true" type="BankingLicensedActivityInfo" />
   <xs:complexType name="BankingLicensedActivityInfo">
     <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="BankActivityOrService" type="LicensedOperationType" />
       <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" />
       <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" />
       <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="LicensedOperationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BankingActivity" />
+      <xs:enumeration value="FinancialService" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="BankingActivityType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
