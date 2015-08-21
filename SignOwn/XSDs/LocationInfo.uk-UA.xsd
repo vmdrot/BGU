@@ -13,7 +13,12 @@
             За змовчанням - Україна</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область, район/провінція, тощо" description="область, район/провінція, тощо">
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область/провінція, тощо" description="область/провінція, тощо">
+        <xs:annotation>
+          <xs:documentation>Якщо потрібно</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" type_ukr="текст" displayName="район/графство, тощо" description="район/графство, тощо">
         <xs:annotation>
           <xs:documentation>Якщо потрібно</xs:documentation>
         </xs:annotation>

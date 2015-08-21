@@ -5,7 +5,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" />
       <xs:enumeration value="NationalCurrency" description="Національна валюта" />
-      <xs:enumeration value="ForeignCurrencyAndBankingMetals" description="Іноземна валюта й банківськи метали" />
+      <xs:enumeration value="ForeignCurrencyAndBankingMetals" description="Іноземна валюта й банківські метали" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

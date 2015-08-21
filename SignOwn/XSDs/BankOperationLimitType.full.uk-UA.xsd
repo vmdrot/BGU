@@ -4,7 +4,7 @@
   <xs:simpleType name="BankOperationLimitType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="SingleOperation" description="Ліміт на одиничну операція" />
+      <xs:enumeration value="SingleOperation" description="Ліміт на одиничну операцію" />
       <xs:enumeration value="TotalTurnover" description="Ліміт на сумарний оборот за..." />
       <xs:enumeration value="TotalBalance" description="Ліміт залишку" />
     </xs:restriction>

@@ -8,7 +8,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Позичальник є банком" description="(відзначте галочку, якщо позику було взято у банку, або ж зніміть, якщо борг виник перед особою, що не є банком)" />
+          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Кредитор є банком" description="(відзначте галочку, якщо позику було взято у банку, або ж зніміть, якщо борг виник перед особою, що не є банком)" />
           <xs:element minOccurs="1" maxOccurs="1" name="Lender" type="GenericPersonID" displayName="Кредитор" description="(інший кредитор, окрім банків)">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
