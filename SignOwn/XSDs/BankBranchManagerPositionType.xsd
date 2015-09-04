@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BankBranchManagerPositionType" type="BankBranchManagerPositionType" />
+  <xs:simpleType name="BankBranchManagerPositionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="BranchManager" />
+      <xs:enumeration value="OutletManager" />
+      <xs:enumeration value="OtherManager" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

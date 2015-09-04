@@ -7,6 +7,7 @@ using System.Data;
 using Evolvex.Utility.Core.ComponentModelEx;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using System.Xml.Serialization;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 {
@@ -205,5 +206,54 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             //bi.LegalPerson.Address.ZipCode = zipCode;
             return bi;
         }
+
+        private static List<BankInfo> _allUAHeadOffices;
+        public static List<BankInfo> AllUAHeadOffices
+        {
+            get
+            {
+                if (_allUAHeadOffices == null)
+                {
+                    _allUAHeadOffices = new List<BankInfo>();
+                    DataTable dt = RcuKruReader.Filter(RcuKruReader.Read("RCUKRU.DBF"), true, new List<string>("1,2,5,6".Split(',')));
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        BankInfo bi = BankInfo.ParseFromRcuKruRow(dr);
+                        if (bi == null)
+                            continue;
+                        _allUAHeadOffices.Add(bi);
+                    }
+                    _allUAHeadOffices.Sort((bk1, bk2) => bk1.Name.CompareTo(bk2.Name));
+                }
+                return _allUAHeadOffices;
+            }
+        }
+
+
+        private static List<BankInfo> _allUABanks;
+        public static List<BankInfo> AllUABanks
+        {
+            get
+            {
+                if (_allUABanks == null)
+                {
+                    _allUABanks = new List<BankInfo>();
+                    DataTable dt = RcuKruReader.Read("RCUKRU.DBF");
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        BankInfo bi = BankInfo.ParseFromRcuKruRow(dr);
+                        if (bi == null)
+                            continue;
+                        _allUABanks.Add(bi);
+                    }
+                    _allUABanks.Sort((bk1, bk2) => bk1.Name.CompareTo(bk2.Name));
+                }
+                return _allUABanks;
+            }
+        }
+
+    
     }
 }
