@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LicensedOperationType" type="LicensedOperationType" />
+  <xs:simpleType name="LicensedOperationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" />
+      <xs:enumeration value="BankingActivity" description="Вид банківської діяльності" />
+      <xs:enumeration value="FinancialService" description="Фінансова послуга" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
