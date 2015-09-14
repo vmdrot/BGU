@@ -45,6 +45,12 @@
     <Compile Include="Examples\PolikomBank.cs" />
     <Compile Include="Examples\TKKredyt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scraping\Data\Enums.cs" />
+    <Compile Include="Scraping\Data\Post328Dod2V1FormulaRow.cs" />
+    <Compile Include="Scraping\Data\Post328Dod2V1Row.cs" />
+    <Compile Include="Scraping\Data\Post328Dod3V1Row.cs" />
+    <Compile Include="Scraping\Data\Post328DodRowBase.cs" />
+    <Compile Include="Scraping\WordPdfParsingUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BGU.DRPL.SignificantOwnership.Core\BGU.DRPL.SignificantOwnership.Core.csproj">

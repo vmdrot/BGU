@@ -74,6 +74,7 @@
     <Compile Include="GenericParserTests.cs" />
     <Compile Include="LocationInfoTests.cs" />
     <Compile Include="PdfWord\PdfReaderResearch.cs" />
+    <Compile Include="PdfWord\SignOwnStructsParsing.cs" />
     <Compile Include="PdfWord\WordReaderResearch.cs" />
     <Compile Include="PhysicalPersonInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

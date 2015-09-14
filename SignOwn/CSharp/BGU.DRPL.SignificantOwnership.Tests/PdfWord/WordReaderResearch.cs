@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using BGU.DRPL.SignificantOwnership.Utility.Office;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
+using System.IO;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -17,7 +20,8 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
         {
             Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
             object miss = System.Reflection.Missing.Value;
-            object path = @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818_cpy.rtf";
+            //object path = @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818_cpy.rtf";
+            object path = @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc";
             object readOnly = true;
             Microsoft.Office.Interop.Word.Document docs = word.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss);
             manipulator(docs);
@@ -113,7 +117,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
                 {
                     for (int c = 1; c <= cells.Count; c++)
                     {
-                        AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex, cells[c].Range.Text.ToString());
+                        WordPdfParsingUtils.AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex, cells[c].Range.Text.ToString());
                     }
                 }
                 
@@ -143,16 +147,17 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
                 {
                     for (int c = 1; c <= cells.Count; c++)
                     {
-                        AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex, cells[c].Range.Text.ToString());
+                        WordPdfParsingUtils.AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex-1, cells[c].Range.Text.ToString());
                     }
                 }
 
-                FilterOutInterestingRowsOnly(rslt, interestingRows, nonInterestingRows);
+                WordPdfParsingUtils.FilterOutInterestingRowsOnly(rslt, interestingRows, nonInterestingRows);
             }
             Console.WriteLine("Rows of interest:");
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             string jsonStr = JsonConvert.SerializeObject(interestingRows, settings);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json", jsonStr, Encoding.Unicode);
             Console.WriteLine(jsonStr);
             Console.WriteLine("----------------------------------------------------------------");
             Console.WriteLine("Wed-out rows:");
@@ -161,85 +166,6 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             
         }
 
-        private void FilterOutInterestingRowsOnly(Dictionary<int, List<string>> currDict, List<List<string>> interestingRows, List<List<string>> nonInterestingRows)
-        {
-            foreach (int key in currDict.Keys)
-            {
-                if (IsHeadingRow(currDict[key]))
-                {
-                    nonInterestingRows.Add(currDict[key]);
-                    continue;
-                }
-                interestingRows.Add(currDict[key]);
-            }
-        }
-
-        private bool IsHeadingRow(List<string> list)
-        {
-            string[] headingTexts1 = new string[] {     "",
-    "№\rз/п\r\u0007",
-    "Прізвище,  ім'я\rта по батькові фізичної  особи або повне найменування юридичної особи\r\u0007",
-    "Тип\rособи\r\u0007",
-    "Чи є\rособа власни- ком істотної участі  в банку\r\u0007",
-    "Інформація  про особу\r\u0007",
-    "Участь особи в банку,  %\r\u0007",
-    "Опис взаємозв'язку особи з банком\r\u0007",
-    "" };
-            string[] headingTexts2 = new string[] {     "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "Пряма\r\u0007",
-    "Опосеред-\rкована\r\u0007",
-    "Сукупна\r\u0007",
-    "" };
-            string[] headingTexts3 = new string[] {     "",
-    "1\r\u0007",
-    "2\r\u0007",
-    "3\r\u0007",
-    "4\r\u0007",
-    "5\r\u0007",
-    "6\r\u0007",
-    "7\r\u0007",
-    "8\r\u0007",
-    "9\r\u0007",
-    ""
-
- };
-            if (CompareList(list, headingTexts1) || CompareList(list, headingTexts2) || CompareList(list, headingTexts3))
-                return true;
-            return false;
-        }
-
-        private bool CompareList(List<string> list, string[] arr)
-        {
-            int matchedColsCount = 0;
-            foreach (string col in arr)
-            {
-                if (string.IsNullOrEmpty(col))
-                    continue;
-
-                if (list.Contains(col))
-                    matchedColsCount++;
-            }
-            return matchedColsCount >= 3;
-        }
-
-        private void AppendCellText(Dictionary<int, List<string>> target, int r, int c, string val)
-        {
-            if (!target.ContainsKey(r))
-                target.Add(r, new List<string>());
-            EnsureListCount(target[r], c);
-            target[r][c] = val;
-        }
-
-        private void EnsureListCount(List<string> list, int c)
-        {
-            while (list.Count <= c + 1)
-                list.Add(string.Empty);
-        }
 
 
         [Test]
@@ -266,5 +192,30 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator);
         }
 
+        [Test]
+        public void ReadTest5()
+        {
+            Dictionary<int, List<string>> rawDict = null;
+            List<List<string>> interestingRows = new List<List<string>>();
+            List<List<string>> nonInterestingRows = new List<List<string>>();
+
+            using (WordReader wr = new WordReader())
+            {
+                //rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc");
+                rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818_cpy.rtf");
+
+            }
+            WordPdfParsingUtils.FilterOutInterestingRowsOnly(rawDict, interestingRows, nonInterestingRows);
+
+            Console.WriteLine("Rows of interest:");
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            string jsonStr = JsonConvert.SerializeObject(interestingRows, settings);
+            Console.WriteLine(jsonStr);
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("Wed-out rows:");
+            string jsonStr2 = JsonConvert.SerializeObject(nonInterestingRows, settings);
+            Console.WriteLine(jsonStr2);
+        }
     }
 }
