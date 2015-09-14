@@ -70,29 +70,69 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
                     case Post328DodsRowType.None:
                         break;
                 }
-
-                //switch(row
-                //if (IsNewRow())
-                //{
-                //    
-                //}
-
             }
+
+            #region print-out
+            Console.WriteLine("dod2PrincipalRows:");
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            string jsonStr = JsonConvert.SerializeObject(dod2PrincipalRows, settings);
+
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\dod2PrincipalRows.json", jsonStr, Encoding.Unicode);
+            Console.WriteLine(jsonStr);
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("dod2FormulaRows:");
+            string jsonStr2 = JsonConvert.SerializeObject(dod2FormulaRows, settings);
+            Console.WriteLine(jsonStr2);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\dod2FormulaRows.json", jsonStr, Encoding.Unicode);
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("dod3PrincipalRows:");
+            string jsonStr3 = JsonConvert.SerializeObject(dod3PrincipalRows, settings);
+            Console.WriteLine(jsonStr3);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\dod3PrincipalRows.json", jsonStr, Encoding.Unicode);
+            #endregion
         }
 
         private string ExtractFirstNonEmpty(List<string> rawRow)
         {
-            throw new NotImplementedException();
+            foreach (string cell in rawRow)
+            {
+                string curr = Post328DodRowBase.TrimRawValue(cell);
+                if (!string.IsNullOrEmpty(cell.Trim()))
+                    return cell;
+            }
+            return string.Empty;
         }
 
         private Post328DodsRowType DetectRowType(List<string> rawRow)
         {
-            throw new NotImplementedException();
+            if (rawRow.Count == 10)
+            {
+                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                if (string.IsNullOrEmpty(trimmed0))
+                    return Post328DodsRowType.Dod2Continuation;
+                else
+                    return Post328DodsRowType.Dod2Principal;
+            }
+            else if (rawRow.Count == 4)
+            {
+                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                if (string.IsNullOrEmpty(trimmed0))
+                    return Post328DodsRowType.Dod2FormulaContinuation;
+                else
+                    return Post328DodsRowType.Dod2Formula;
+            }
+            else if(rawRow.Count == 7)
+            {
+                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                if (string.IsNullOrEmpty(trimmed0))
+                    return Post328DodsRowType.Dod3Continuation;
+                else
+                    return Post328DodsRowType.Dod3Principal;
+            }
+            else
+                return Post328DodsRowType.None;
         }
 
-        private bool IsNewRow(List<string> row)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
