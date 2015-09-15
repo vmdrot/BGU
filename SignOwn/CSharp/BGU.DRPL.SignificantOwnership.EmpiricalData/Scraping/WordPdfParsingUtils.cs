@@ -54,7 +54,13 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
     ""
 
  };
-            if (CompareList(list, headingTexts1) || CompareList(list, headingTexts2) || CompareList(list, headingTexts3))
+
+            string[] headingTexts4 = new string[] {"№\rз/п\r\u0007",
+    "Прізвище, ім'я  та по батькові фізичної  особи\rабо повне найменування юридичної особи\r\u0007",
+    "Розрахунок\r\u0007", ""};
+
+
+            if (CompareList(list, headingTexts1) || CompareList(list, headingTexts2) || CompareList(list, headingTexts3) || CompareList(list, headingTexts4))
                 return true;
             return false;
         }
