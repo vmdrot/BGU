@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Newtonsoft.Json;
 using System.IO;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -53,5 +54,65 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             #endregion
         }
 
+        [Test]
+        public void ParseIntoPost328Dod2RowsTest2()
+        {
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json"));
+
+
+            List<Post328Dod2V1Row> dod2PrincipalRows;
+            List<Post328Dod2V1FormulaRow> dod2FormulaRows;
+            List<Post328Dod3V1Row> dod3PrincipalRows;
+            Post328DodRowBase.ParseArkadaRows(interestingRows, out dod2PrincipalRows, out dod2FormulaRows, out dod3PrincipalRows);
+
+            List<string> descRows = new List<string>();
+            foreach (Post328Dod2V1Row row in dod2PrincipalRows)
+            { 
+                string[] aRows = row.OwnershipChainDescr.Split('\r');
+                foreach (string r in aRows)
+                {
+                    descRows.Add(r);
+                }
+            }
+
+            foreach (Post328Dod3V1Row row in dod3PrincipalRows)
+            {
+                string[] aRows = row.OwnershipChainDescr.Split('\r');
+                descRows.AddRange(aRows);
+            }
+
+            #region print-out
+            Console.WriteLine("descRows.Count = {0}", descRows.Count);
+            
+            File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);
+            #endregion
+        }
+
+        [Test]
+        public void ArkadaOwnershipChainDescriptionParserTest()
+        {
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json"));
+
+
+            List<Post328Dod2V1Row> dod2PrincipalRows;
+            List<Post328Dod2V1FormulaRow> dod2FormulaRows;
+            List<Post328Dod3V1Row> dod3PrincipalRows;
+            Post328DodRowBase.ParseArkadaRows(interestingRows, out dod2PrincipalRows, out dod2FormulaRows, out dod3PrincipalRows);
+
+            
+            foreach (Post328Dod2V1Row row in dod2PrincipalRows)
+            {
+                ArkadaOwnershipChainDescriptionParser parser = new ArkadaOwnershipChainDescriptionParser();
+                parser.SplitIntoWordings(row.OwnershipChainDescr);
+            }
+
+            #region print-out
+            //Console.WriteLine("descRows.Count = {0}", descRows.Count);
+            
+            //File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);
+            #endregion
+        }
+
+        
     }
 }

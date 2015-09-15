@@ -45,6 +45,7 @@
     <Compile Include="Examples\PolikomBank.cs" />
     <Compile Include="Examples\TKKredyt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scraping\ArkadaOwnershipChainDescriptionParser.cs" />
     <Compile Include="Scraping\Data\Enums.cs" />
     <Compile Include="Scraping\Data\Post328Dod2V1FormulaRow.cs" />
     <Compile Include="Scraping\Data\Post328Dod2V1Row.cs" />
