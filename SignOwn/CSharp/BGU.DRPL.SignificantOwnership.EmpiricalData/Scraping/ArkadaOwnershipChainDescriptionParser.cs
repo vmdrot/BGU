@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using System.Globalization;
 
 namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
 {
@@ -14,31 +16,48 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         private const string WHICH_POSSESSES_FMT = "якому  належить 44.6% акцій  ТОВ \"Будеволюція\"";
         private const string VIA_FMT = "Через ТОВ \"Бориспіль-Інвест-Перспективи\" (частка 22%) ";
 
-        private const string SHAREHOLDER_WORDING_START = "Акціонер[ ]+";
-        private const string CONTROLLER_WORDING_START = "Контролер[ ]+";
-        private const string WHICH_POSSESSES_WORDING_START = "якому[ ]+належить[ ]+";
+        private const string SHAREHOLDER_WORDING_START = "Акціонер[ ]{0,1}";
+        private const string CONTROLLER_WORDING_START = "Контролер[ ]{0,1}";
+        private const string WHICH_POSSESSES_WORDING_START = "якому[ ]+належить[ ]{0,1}";
         private const string VIA_WORDING_START = "Через[ ]+";
-        private const string ON_BEHALF_OF_WORDING_START = "від[ ]+імені[ ]+";
-        private const string ON_BEHALF_OF2_WORDING_START = "діє[ ]+від[ ]+";
-        private const string WHICH_IS_CONTROLLER_WORDING_START = "який[ ]+є[ ]+контролером[ ]+";
+        private const string ON_BEHALF_OF_WORDING_START = "від[ ]+імені[ ]{0,1}";
+        private const string ON_BEHALF_OF2_WORDING_START = "діє[ ]+від[ ]{0,1}";
+        private const string WHICH_IS_CONTROLLER_WORDING_START = "який[ ]+є[ ]+контролером[ ]{0,1}";
+        private const string PCT_RGX_PTRN = "[0-9\\.\\,]+\\%";
+        private static readonly Regex PCT_RGX = new Regex(PCT_RGX_PTRN, RegexOptions.IgnoreCase|RegexOptions.Multiline);
 
         private static readonly Dictionary<WordingType, WordingParseHandler> WORDING_PARSE_HANDLERS;
         private static readonly Dictionary<string, WordingType> WORDING_STARTS2TYPES;
+        private static readonly Dictionary<string, Regex> WORDINGS2REGEXES;
         private static readonly string WORDINGS_SPLIT_PTRN;
         #endregion
 
+        private static JsonSerializerSettings _jsonSerializationSettings;
+        private static JsonSerializerSettings JsonSerializationSettings
+        {
+            get
+            {
+                if (_jsonSerializationSettings == null)
+                {
+                    _jsonSerializationSettings = new JsonSerializerSettings();
+                    _jsonSerializationSettings.NullValueHandling = NullValueHandling.Ignore;
+                    _jsonSerializationSettings.Formatting = Formatting.Indented;
+                }
+                return _jsonSerializationSettings;
+            }
+        }
         #region cctor(s)
         static ArkadaOwnershipChainDescriptionParser()
         {
             #region parsers
             WORDING_PARSE_HANDLERS = new Dictionary<WordingType, WordingParseHandler>();
-            WORDING_PARSE_HANDLERS.Add(WordingType.Shareholder, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.Controller, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.WhichPossesses, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.Via, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.OnBehalf, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.ActsOnBehalf, null); //todo
-            WORDING_PARSE_HANDLERS.Add(WordingType.WhichIsController, null); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.Shareholder, ShareholderParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.Controller, ControllerParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.WhichPossesses, WhichPossessesParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.Via, ViaParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.OnBehalf, OnBehalfParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.ActsOnBehalf, ActsOnBehalfParseHandler); //todo
+            WORDING_PARSE_HANDLERS.Add(WordingType.WhichIsController, WhichIsControllerParseHandler); //todo
             #endregion
 
             #region wordings
@@ -51,6 +70,15 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
             WORDING_STARTS2TYPES.Add(ON_BEHALF_OF2_WORDING_START, WordingType.ActsOnBehalf);
             WORDING_STARTS2TYPES.Add(WHICH_IS_CONTROLLER_WORDING_START, WordingType.WhichIsController);
             #endregion
+
+            #region 
+            WORDINGS2REGEXES = new Dictionary<string, Regex>();
+            foreach (string key in WORDING_STARTS2TYPES.Keys)
+            {
+                WORDINGS2REGEXES.Add(key, new Regex(key,RegexOptions.Multiline | RegexOptions.IgnoreCase));
+            }
+            #endregion
+
             StringBuilder ptrn = new StringBuilder();
             ptrn.Append('(');
             int i = 0;
@@ -69,22 +97,208 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         public List<WordingItem> SplitIntoWordings(string ownChainDescr)
         {
             List<WordingItem> rslt = new List<WordingItem>();
-            //Regex r1 = new Regex(
+            //Console.WriteLine("WORDINGS_SPLIT_PTRN = '{0}'", WORDINGS_SPLIT_PTRN);
             string[] matches = Regex.Split(ownChainDescr, WORDINGS_SPLIT_PTRN, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            WordingType? lastWordingType = null;
+
+            foreach (string m in matches)
+            {
+                if(!IsContentLine(m))
+                {
+                    continue;
+                }
+                if (lastWordingType != null && (WordingType)lastWordingType != WordingType.None)
+                {
+                    decimal currPct;
+                    string currAsset;
+                    if (WORDING_PARSE_HANDLERS[(WordingType)lastWordingType]((WordingType)lastWordingType, m, out currPct, out currAsset))
+                    {
+                        WordingItem wi = new WordingItem() { WT = (WordingType)lastWordingType, WordingRaw = m, Pct = currPct, Asset = currAsset };
+                        rslt.Add(wi);
+                        lastWordingType = null;
+                    }
+                }
+                else
+                {
+                    lastWordingType = IdentifyWordingType(m);
+                }
+
+            }
+
             //int nxtWordingPos = -1;
 
             //do { 
             //    nxtWordingPos = 
             //}
             //while (nxtWordingPos != -1);
-            foreach (string match in matches)
-                Console.WriteLine(match);
+            //#region debugging-related
+            //Console.WriteLine("dod2PrincipalRows:");
+            //JsonSerializerSettings settings = new JsonSerializerSettings();
+            //settings.NullValueHandling = NullValueHandling.Ignore;
+            //settings.Formatting = Formatting.Indented;
+            //string jsonStr = JsonConvert.SerializeObject(matches, settings);
+
+            ////File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\dod2PrincipalRows.json", jsonStr, Encoding.Unicode);
+            //Console.WriteLine(jsonStr);
+            //Console.WriteLine("----------------------------------------------------------------");
+            //#endregion
+            //foreach (string match in matches)
+            //    Console.WriteLine(match);
+
+            
 
             return rslt;
         }
 
 
-        private delegate void WordingParseHandler(string wholeWording, out decimal pct, out string assetName);
+        private WordingType? IdentifyWordingType(string m)
+        {
+            foreach (string key in WORDINGS2REGEXES.Keys)
+            {
+                Match match = WORDINGS2REGEXES[key].Match(m);
+                if (!IsMatched(match))
+                    continue;
+                return WORDING_STARTS2TYPES[key];
+            }
+            return null;
+        }
+
+        private static bool IsMatched(Match match)
+        {
+            if (match.Groups.Count == 0)
+                return false;
+            if (!match.Groups[0].Success)
+                return false;
+            if (match.Groups[0].Captures == null || match.Groups[0].Captures.Count == 0)
+                return false;
+            return true;
+
+        }
+        private static bool IsContentLine(string line)
+        {
+            string trimmedLine = TrimLine(line);
+            return !string.IsNullOrEmpty(trimmedLine);
+        }
+
+        public static string TrimLine(string raw)
+        {
+            return raw.Replace("\r", " ").Replace("\u0007", " ").Trim();
+        }
+
+        private static bool MatchPct(string rawMatch, out decimal pct)
+        {
+            Match m = PCT_RGX.Match(rawMatch);
+            if (!IsMatched(m))
+            {
+                pct = 0.00M;
+                return false;
+            }
+            string trimmed = m.Groups[0].Captures[0].Value.Replace("%", string.Empty).Trim();
+            //return decimal.TryParse(trimmed, NumberStyles.Any, CultureInfo.GetCultureInfoByIetfLanguageTag("en").NumberFormat, out pct);
+            return decimal.TryParse(trimmed, NumberStyles.Any, CultureInfo.InvariantCulture.NumberFormat, out pct);
+        }
+
+        private static bool ShareholderParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 0.00M;
+            assetName = string.Empty;
+            string trimmedWording = TrimLine(wholeWording);
+            Regex sharePctRgx = new Regex(string.Format("\\(частка[ ]+{0}\\)", PCT_RGX_PTRN), RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            Match m = sharePctRgx.Match(trimmedWording);
+            if (!IsMatched(m))
+                return false;
+            if (!MatchPct(m.Groups[0].Captures[0].Value, out pct))
+                return false;
+
+            assetName = trimmedWording.Substring(0, m.Groups[0].Captures[0].Index).Trim();
+            return true; 
+        }
+
+        private static bool ControllerParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 100.00M;
+            assetName = TrimLine(wholeWording);
+            return true;
+        }
+        
+        private static bool WhichPossessesParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 0.00M;
+            assetName = string.Empty;
+
+            string trimmedWording = TrimLine(wholeWording);
+            Regex sharePctRgx = new Regex(string.Format("{0}[ ]+акцій[ ]+", PCT_RGX_PTRN), RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            Match m = sharePctRgx.Match(trimmedWording);
+
+            if (!IsMatched(m))
+                return false;
+            if (!MatchPct(m.Groups[0].Captures[0].Value, out pct))
+                return false;
+            assetName = trimmedWording.Substring(m.Groups[0].Captures[0].Index + m.Groups[0].Captures[0].Length).Trim();
+            return true;
+        }
+        
+        private static bool ViaParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 0.00M;
+            assetName = string.Empty;
+
+            string trimmedWording = TrimLine(wholeWording);
+            Regex sharePctRgx = new Regex(string.Format("\\(частка[ ]+{0}\\)", PCT_RGX_PTRN), RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            Match m = sharePctRgx.Match(trimmedWording);
+
+            if (!IsMatched(m))
+                return false;
+            if (!MatchPct(m.Groups[0].Captures[0].Value, out pct))
+                return false;
+
+            assetName = trimmedWording.Substring(0, m.Groups[0].Captures[0].Index).Trim();
+
+            return true;
+        }
+
+        private static bool OnBehalfParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 100.00M;
+            assetName = TrimLine(wholeWording);
+
+            return true;
+        }
+        
+        private static bool ActsOnBehalfParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 100.00M;
+            
+            string trimmedLine = TrimLine(wholeWording);
+            if(trimmedLine[trimmedLine.Length -1] == ')')
+                trimmedLine = trimmedLine.Substring(0,trimmedLine.Length-1);
+            assetName = trimmedLine;
+
+            return true;
+        }
+        
+        private static bool WhichIsControllerParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName)
+        {
+            pct = 100.00M;
+
+            string trimmedLine = TrimLine(wholeWording);
+            if (trimmedLine[trimmedLine.Length - 1] == ')')
+                trimmedLine = trimmedLine.Substring(0, trimmedLine.Length - 1);
+            assetName = trimmedLine;
+
+            return true;
+        }
+
+        private static void PrintMatch(Match m)
+        {
+            return;
+            string jsonStr = JsonConvert.SerializeObject(m, JsonSerializationSettings);
+            Console.WriteLine(jsonStr);
+            Console.WriteLine("----------------------------------------------------------------");
+        }
+
+        #region inner type(s)
+        private delegate bool WordingParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName);
         public enum WordingType
         { 
             None = 0,
@@ -100,8 +314,13 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         public class WordingItem
         {
             public WordingType WT {get;set;}
-            public string Wording {get;set;}
+            public string WordingRaw {get;set;}
+            public string Asset { get; set; }
+            public string Owner { get; set; }
+            public decimal Pct { get; set; }
         }
+
+        #endregion
     }
 
 }
