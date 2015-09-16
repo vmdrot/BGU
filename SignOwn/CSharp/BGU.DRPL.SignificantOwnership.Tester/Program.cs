@@ -18,6 +18,8 @@ using BGU.DRPL.SignificantOwnership.Utility.WPFGen;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy;
 using System.Data;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -61,6 +63,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
             _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
+            _cmdHandlers.Add("arkadaownershipchainparsertest", ArkadaOwnershipChainParserTest);
             #endregion
 
             #endregion
@@ -1122,7 +1125,6 @@ RegLicAppx9BankingLicenseAppl.xsd";
             PrintDeptsWorker(depts);
         }
 
-
         private static void PrintDeptsWorker(List<DeptListEntry> depts)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -1145,5 +1147,102 @@ RegLicAppx9BankingLicenseAppl.xsd";
             return depts;
         }
         #endregion
+
+
+        #region Arkada parsing-related
+        private static void ArkadaOwnershipChainParserTest(string[] args)
+        {
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json"));
+
+
+            List<Post328Dod2V1Row> dod2PrincipalRows;
+            List<Post328Dod2V1FormulaRow> dod2FormulaRows;
+            List<Post328Dod3V1Row> dod3PrincipalRows;
+            Post328DodRowBase.ParseArkadaRows(interestingRows, out dod2PrincipalRows, out dod2FormulaRows, out dod3PrincipalRows);
+
+            Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> rslt = new Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>>();
+            foreach (Post328Dod2V1Row row in dod2PrincipalRows)
+            {
+                ArkadaOwnershipChainDescriptionParser parser = new ArkadaOwnershipChainDescriptionParser();
+                List<ArkadaOwnershipChainDescriptionParser.WordingItem> lst = parser.SplitIntoWordings(row.OwnershipChainDescr);
+                rslt.Add(row.Name, lst);
+            }
+
+            Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> fillOwnersErrors;
+            FillOwners(rslt, out fillOwnersErrors);
+
+            #region print-out
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            string jsonStr = JsonConvert.SerializeObject(rslt, settings);
+            string errorsJson = JsonConvert.SerializeObject(fillOwnersErrors, settings);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_rslt.json", jsonStr, Encoding.Unicode);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_fillOwnersErrors.json", errorsJson, Encoding.Unicode);
+
+            Console.WriteLine("dod2FormulaRows.Count = {0}", dod2FormulaRows.Count);
+            Console.WriteLine("rslt.Keys.Count = {0}", rslt.Keys.Count);
+            var joint = from f in dod2FormulaRows
+                        join r in rslt on ArkadaOwnershipChainDescriptionParser.TrimLine(f.Name) equals ArkadaOwnershipChainDescriptionParser.TrimLine(r.Key)
+                        select f;
+            string jointStr = JsonConvert.SerializeObject(joint, settings);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_joint.json", errorsJson, Encoding.Unicode);
+            //Console.WriteLine("descRows.Count = {0}", descRows.Count);
+
+            //File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);
+            #endregion
+        }
+
+        private static void FillOwners(Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> rslt, out Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> errors)
+        {
+            errors = new Dictionary<string,List<ArkadaOwnershipChainDescriptionParser.WordingItem>>();
+            foreach (string key in rslt.Keys)
+            {
+                List<ArkadaOwnershipChainDescriptionParser.WordingItem> currItems = rslt[key];
+                for(int i = 0; i < currItems.Count; i++)
+                {
+                    BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.ArkadaOwnershipChainDescriptionParser.WordingItem wi = currItems[i];
+                    switch (wi.WT)
+                    {
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Shareholder:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Controller: 
+                        if (string.IsNullOrEmpty(wi.Owner))
+                                wi.Owner = key;
+                            break;
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.WhichPossesses:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Via:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.OnBehalf:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.ActsOnBehalf:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.WhichIsController:
+                            if (string.IsNullOrEmpty(wi.Owner))
+                            {
+                                if (i > 0)
+                                    wi.Owner = currItems[i - 1].Asset;
+                                else
+                                {
+                                    if (wi.WT == ArkadaOwnershipChainDescriptionParser.WordingType.Via)
+                                    {
+                                        wi.Owner = key;
+                                    }
+                                    else
+                                    {
+                                        if (!errors.ContainsKey(key))
+                                            errors.Add(key, new List<ArkadaOwnershipChainDescriptionParser.WordingItem>());
+                                        errors[key].Add(wi);
+                                    }
+                                }
+                                    
+                            }
+                            break;
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.None:
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
     }
 }
