@@ -1205,6 +1205,18 @@ RegLicAppx9BankingLicenseAppl.xsd";
             File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_rslt_vs_formulas.json", tmpJsonStr, Encoding.Unicode);
             #endregion
 
+            Appx2OwnershipStructLP qu = ArkadaOwnershipChainDescriptionParser.ConvertWordingItems2OwnershipHive(rslt, dod2PrincipalRows, "ПАТ  АКБ  \"АРКАДА\"");
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.json", JsonConvert.SerializeObject(qu, settings), Encoding.Unicode);
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_MentionedIdentities.json", JsonConvert.SerializeObject(qu.MentionedIdentities, settings), Encoding.Unicode);
+               //var pl = from r in info
+               //  orderby r.metric    
+               //  group r by r.metric into grp
+               //  select new { key = grp.Key, cnt = grp.Count()};
+            var osStats = from oh in qu.BankExistingCommonImplicitOwners
+                          orderby oh.Asset.HashID, oh.Owner.HashID, oh.SharePct
+                          group oh by string.Format("{0}-{1}-{2}", oh.Asset, oh.Owner, oh.SharePct) into grp
+                          select new { key = grp.Key, cnt = grp.Count() };
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats.json", JsonConvert.SerializeObject(osStats, settings), Encoding.Unicode);
             //Console.WriteLine("descRows.Count = {0}", descRows.Count);
 
             //File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);

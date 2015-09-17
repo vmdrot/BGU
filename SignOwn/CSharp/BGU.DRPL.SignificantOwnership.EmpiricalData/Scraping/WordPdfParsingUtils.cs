@@ -99,7 +99,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
 
         public static string NormalizeStringValue(string src)
         {
-            return RGX_2BLSPC.Replace(RGX_LFCR.Replace(TrimRawValue(src), " "), " ").Trim();
+            return RGX_2BLSPC.Replace(RGX_LFCR.Replace(TrimRawValue(src).Replace("\"", "").Replace("(", "").Replace(")", ""), " "), " ").Trim();
         }
 
         public static string TrimRawValue(string raw)

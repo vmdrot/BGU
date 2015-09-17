@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 
 namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
 {
@@ -42,6 +44,34 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
             if (decimal.TryParse(WordPdfParsingUtils.TrimRawValue(rawRow[7]), out pct2))
                 rslt.TotalOwnershipPct = pct2;
             rslt.OwnershipChainDescr = rawRow[8];
+            return rslt;
+        }
+
+        public static explicit operator GenericPersonInfo(Post328Dod2V1Row src)
+        {
+            GenericPersonInfo rslt = new GenericPersonInfo();
+
+            LocationInfo li = LocationInfo.Parse(src.PersonInfo);
+            CountryInfo resCountry = li.Country ?? CountryInfo.UKRAINE;
+            rslt.PersonType = src.PersonTypeStr == "ФО" ? Core.Spares.EntityType.Physical : Core.Spares.EntityType.Legal;
+            string normalName = WordPdfParsingUtils.NormalizeStringValue(src.Name);
+            if (rslt.PersonType == Core.Spares.EntityType.Physical)
+            {
+                rslt.PhysicalPerson = new PhysicalPersonInfo();
+                rslt.PhysicalPerson.Address = li;
+                rslt.PhysicalPerson.CitizenshipCountry = resCountry;
+                rslt.PhysicalPerson.TaxOrSocSecID = normalName;
+                rslt.PhysicalPerson.FullName = normalName;
+            }
+            else
+            {
+                rslt.LegalPerson = new LegalPersonInfo();
+                rslt.LegalPerson.Address = li;
+                rslt.LegalPerson.ResidenceCountry = resCountry;
+                rslt.LegalPerson.TaxCodeOrHandelsRegNr = normalName;
+                rslt.LegalPerson.Name = normalName;
+            }
+
             return rslt;
         }
     }
