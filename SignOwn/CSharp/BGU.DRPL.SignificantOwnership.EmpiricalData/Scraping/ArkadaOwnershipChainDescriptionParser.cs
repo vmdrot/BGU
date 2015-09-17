@@ -5,6 +5,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Globalization;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
+using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
+using System.IO;
 
 namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
 {
@@ -113,6 +118,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
                     string currAsset;
                     if (WORDING_PARSE_HANDLERS[(WordingType)lastWordingType]((WordingType)lastWordingType, m, out currPct, out currAsset))
                     {
+                        currAsset = WordPdfParsingUtils.NormalizeStringValue(currAsset);
                         WordingItem wi = new WordingItem() { WT = (WordingType)lastWordingType, WordingRaw = m, Pct = currPct, Asset = currAsset };
                         rslt.Add(wi);
                         lastWordingType = null;
@@ -360,6 +366,57 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
             WhichIsController
         }
 
+        public static BGU.DRPL.SignificantOwnership.Core.Questionnaires.Appx2OwnershipStructLP ConvertWordingItems2OwnershipHive(Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> wis, List<Post328Dod2V1Row> dod2Rows, string bankRefName)
+        {
+            Appx2OwnershipStructLP rslt = new Appx2OwnershipStructLP();
+            rslt.BankExistingCommonImplicitOwners = new List<OwnershipStructure>();
+            rslt.MentionedIdentities = new List<GenericPersonInfo>();
+            string normalBkRefName = WordPdfParsingUtils.NormalizeStringValue(bankRefName);
+            GenericPersonInfo bk = new GenericPersonInfo() { PersonType = Core.Spares.EntityType.Legal, LegalPerson = new LegalPersonInfo() { Name = normalBkRefName, TaxCodeOrHandelsRegNr = normalBkRefName, ResidenceCountry = CountryInfo.UKRAINE } };
+            rslt.BankRef = new Core.Spares.Dict.BankInfo() { Name = normalBkRefName, OperationCountry = CountryInfo.UKRAINE, LegalPerson = bk.ID };
+            Dictionary<string, GenericPersonInfo> names2GPIs = new Dictionary<string, GenericPersonInfo>();
+            names2GPIs.Add(normalBkRefName, bk);
+            foreach (Post328Dod2V1Row d2r in dod2Rows)
+            {
+                if (names2GPIs.ContainsKey(d2r.Name))
+                    continue;
+                GenericPersonInfo gpi = (GenericPersonInfo)d2r;
+                names2GPIs.Add(d2r.Name, gpi);
+            }
+
+            foreach(string key in wis.Keys)
+            {
+                foreach (WordingItem wi in wis[key])
+                {
+                    OwnershipStructure currOS = new OwnershipStructure();
+                    if (!names2GPIs.ContainsKey(wi.Owner))
+                        AddLP(wi.Owner, names2GPIs);
+                    if (!names2GPIs.ContainsKey(wi.Asset))
+                        AddLP(wi.Asset, names2GPIs);
+                    currOS.Asset = names2GPIs[wi.Asset].ID;
+                    currOS.Owner = names2GPIs[wi.Owner].ID;
+                    currOS.SharePct = wi.Pct;
+                    currOS.OwnershipKind = Core.Spares.OwnershipType.Direct;
+                    //OwnershipStructure dupl = rslt.BankExistingCommonImplicitOwners.Find(os => os.Owner == currOS.Owner && os.Asset == currOS.Asset);
+                    //if(dupl != null)
+
+                    rslt.BankExistingCommonImplicitOwners.Add(currOS);
+                }
+            }
+
+            rslt.MentionedIdentities = new List<GenericPersonInfo>(names2GPIs.Values);
+            
+            return rslt;
+        }
+
+        private static void AddLP(string name, Dictionary<string, GenericPersonInfo> names2GPIs)
+        {
+            GenericPersonInfo gpi = new GenericPersonInfo();
+            gpi.PersonType = Core.Spares.EntityType.Legal;
+            gpi.LegalPerson = new LegalPersonInfo() { Name = name, ResidenceCountry = CountryInfo.UKRAINE, TaxCodeOrHandelsRegNr = name };
+            names2GPIs.Add(name, gpi);
+        }
+
         public class WordingItem
         {
             public WordingType WT {get;set;}
@@ -367,6 +424,16 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
             public string Asset { get; set; }
             public string Owner { get; set; }
             public decimal Pct { get; set; }
+
+            //public static explicit operator OwnershipStructure(WordingItem wi)
+            //{
+            //    OwnershipStructure rslt = new OwnershipStructure();
+            //    rslt.Asset = new GenericPersonID() { wi.Asset };
+            //    rslt.Owner = wi.Owner;
+            //    rslt.OwnershipKind = Core.Spares.OwnershipType.Direct;
+            //    rslt.SharePct = wi.Pct;
+            //    return rslt;
+            //}
         }
 
         #endregion
