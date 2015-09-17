@@ -64,6 +64,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
             _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
             _cmdHandlers.Add("arkadaownershipchainparsertest", ArkadaOwnershipChainParserTest);
+            _cmdHandlers.Add("arkadaownershipchainanalysis", ArkadaOwnershipChainAnalysis);
             #endregion
 
             #endregion
@@ -72,7 +73,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         static void Main(string[] args)
         {
-            Console.Read();
+            //Console.Read();
 
             //CreateSampleAppx2OwnershipStructLP();
             //LocationInfoParser();
@@ -1164,7 +1165,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
             foreach (Post328Dod2V1Row row in dod2PrincipalRows)
             {
                 ArkadaOwnershipChainDescriptionParser parser = new ArkadaOwnershipChainDescriptionParser();
-                List<ArkadaOwnershipChainDescriptionParser.WordingItem> lst = parser.SplitIntoWordings(row.OwnershipChainDescr);
+                List<ArkadaOwnershipChainDescriptionParser.WordingItem> lst = parser.SplitIntoWordings(row.OwnershipChainDescr, row.Name);
                 rslt.Add(row.Name, lst);
             }
 
@@ -1172,6 +1173,10 @@ RegLicAppx9BankingLicenseAppl.xsd";
             ArkadaOwnershipChainDescriptionParser.FillOwners(rslt, out fillOwnersErrors);
 
             #region print-out
+            int totalWordingsCount = 0;
+            foreach (string key in rslt.Keys)
+                totalWordingsCount += rslt[key].Count;
+            Console.WriteLine("totalWordingsCount = {0}", totalWordingsCount);
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
@@ -1207,6 +1212,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
 
             Appx2OwnershipStructLP qu = ArkadaOwnershipChainDescriptionParser.ConvertWordingItems2OwnershipHive(rslt, dod2PrincipalRows, "ПАТ  АКБ  \"АРКАДА\"");
             File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.json", JsonConvert.SerializeObject(qu, settings), Encoding.Unicode);
+            BGU.DRPL.SignificantOwnership.Utility.Tools.WriteXML<Appx2OwnershipStructLP>(qu, @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.xml");
             File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_MentionedIdentities.json", JsonConvert.SerializeObject(qu.MentionedIdentities, settings), Encoding.Unicode);
                //var pl = from r in info
                //  orderby r.metric    
@@ -1217,10 +1223,78 @@ RegLicAppx9BankingLicenseAppl.xsd";
                           group oh by string.Format("{0}-{1}-{2}", oh.Asset, oh.Owner, oh.SharePct) into grp
                           select new { key = grp.Key, cnt = grp.Count() };
             File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats.json", JsonConvert.SerializeObject(osStats, settings), Encoding.Unicode);
+            var lps = from mp in qu.MentionedIdentities
+                      where mp.PersonType == EntityType.Legal
+                      select mp.ID.HashID;
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_LPs.json", JsonConvert.SerializeObject(lps, settings), Encoding.Unicode);
             //Console.WriteLine("descRows.Count = {0}", descRows.Count);
 
             //File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);
             #endregion
+        }
+
+
+        private static void ArkadaOwnershipChainAnalysis(string[] args)
+        {
+            string hashIdsFile = args.Length > 1 ? args[1] : string.Empty;
+            string selHashIdIdxStr = args.Length > 2 ? args[2] : string.Empty;
+            string selHashId = string.Empty;
+            Appx2OwnershipStructLP qu = JsonConvert.DeserializeObject<Appx2OwnershipStructLP>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.json"));
+            
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+
+            if (!string.IsNullOrEmpty(hashIdsFile) && File.Exists(hashIdsFile))
+            {
+                List<string> hashIds = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(hashIdsFile));
+                int selHashIdIdx;
+                if(int.TryParse(selHashIdIdxStr, out selHashIdIdx))
+                {
+                    if (hashIds != null && hashIds.Count > selHashIdIdx)
+                    {
+                        selHashId = hashIds[selHashIdIdx];
+                        Console.WriteLine("selHashId = '{0}'", selHashId);
+                        var os4sel = from os in qu.BankExistingCommonImplicitOwners
+                                     where os.Asset.HashID == selHashId
+                                     select os;
+                        File.WriteAllText(string.Format(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainAnalysis_selOS_{0}.json", selHashIdIdx), JsonConvert.SerializeObject(os4sel, settings), Encoding.Unicode);
+                    }
+                }
+            }
+            
+            foreach (GenericPersonInfo gpi in qu.MentionedIdentities)
+            {
+
+                if (!string.IsNullOrEmpty(selHashId))
+                {
+                    if (gpi.ID.HashID != selHashId)
+                        continue;
+                }
+                else
+                {
+                    if (gpi.PersonType != EntityType.Legal || gpi.ID == qu.BankRef.LegalPerson)
+                        continue;
+
+                }
+                try
+                {
+                    Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
+                    checker.Questionnaire = qu;
+                    //checker.IndentString = "    ";
+#if __TEMPORARILY_SKIP__
+                    checker.ListUltimateBeneficiaries(gpi.ID);
+                    Console.WriteLine("Passed for {0}", gpi.DisplayName);
+#endif
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine("failed for {0}, details: '{1}'", gpi.DisplayName, exc.Message);
+                    Console.WriteLine(exc);
+                    Console.WriteLine("-------------------------------------------------------");
+                }
+            }
         }
         #endregion
 
