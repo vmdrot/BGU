@@ -1,0 +1,1 @@
+bin\Debug\BGU.DRPL.SignificantOwnership.Tester.exe ArkadaOwnershipChainParserTest >> D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_rslt.txt

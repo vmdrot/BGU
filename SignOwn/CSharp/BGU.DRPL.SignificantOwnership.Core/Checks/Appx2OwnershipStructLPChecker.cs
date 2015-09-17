@@ -96,7 +96,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
 
             Dictionary<string, TotalOwnershipDetailsInfo> ultimateOwners = new Dictionary<string, TotalOwnershipDetailsInfo>();
 
-            UnWindUltimateOwners(_questio.BankRef.LegalPerson, _questio.BankRef.LegalPerson, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
+            //UnWindUltimateOwners(_questio.BankRef.LegalPerson, _questio.BankRef.LegalPerson, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
+            UnWindUltimateOwners(forEntity, forEntity, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
             TotalOwnershipDetailsInfo grandTotals = new TotalOwnershipDetailsInfo();
             foreach (string key in ultimateOwners.Keys)
             {

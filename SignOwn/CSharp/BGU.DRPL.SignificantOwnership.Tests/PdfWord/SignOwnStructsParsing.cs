@@ -103,7 +103,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             foreach (Post328Dod2V1Row row in dod2PrincipalRows)
             {
                 ArkadaOwnershipChainDescriptionParser parser = new ArkadaOwnershipChainDescriptionParser();
-                parser.SplitIntoWordings(row.OwnershipChainDescr);
+                parser.SplitIntoWordings(row.OwnershipChainDescr, row.Name);
             }
 
             #region print-out

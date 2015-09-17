@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define __USE_WORDING_BLOCKS__
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,38 +100,54 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         }
         #endregion
 
-        public List<WordingItem> SplitIntoWordings(string ownChainDescr)
+        public List<WordingItem> SplitIntoWordings(string ownChainDescr, string owner)
         {
             List<WordingItem> rslt = new List<WordingItem>();
-            //Console.WriteLine("WORDINGS_SPLIT_PTRN = '{0}'", WORDINGS_SPLIT_PTRN);
-            string[] matches = Regex.Split(ownChainDescr, WORDINGS_SPLIT_PTRN, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-            WordingType? lastWordingType = null;
-
-            foreach (string m in matches)
+#if __USE_WORDING_BLOCKS__
+            string[] blocks = Regex.Split(ownChainDescr, "[\r]{2,}", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            foreach (string block in blocks)
             {
-                if(!IsContentLine(m))
+#endif
+                //Console.WriteLine("WORDINGS_SPLIT_PTRN = '{0}'", WORDINGS_SPLIT_PTRN);
+                string[] matches = Regex.Split(block, WORDINGS_SPLIT_PTRN, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                WordingType? lastWordingType = null;
+#if __USE_WORDING_BLOCKS__
+                int indexWithinBlock = -1;
+#endif
+                foreach (string m in matches)
                 {
-                    continue;
-                }
-                if (lastWordingType != null && (WordingType)lastWordingType != WordingType.None)
-                {
-                    decimal currPct;
-                    string currAsset;
-                    if (WORDING_PARSE_HANDLERS[(WordingType)lastWordingType]((WordingType)lastWordingType, m, out currPct, out currAsset))
+                    if (!IsContentLine(m))
                     {
-                        currAsset = WordPdfParsingUtils.NormalizeStringValue(currAsset);
-                        WordingItem wi = new WordingItem() { WT = (WordingType)lastWordingType, WordingRaw = m, Pct = currPct, Asset = currAsset };
-                        rslt.Add(wi);
-                        lastWordingType = null;
+                        continue;
                     }
-                }
-                else
-                {
-                    lastWordingType = IdentifyWordingType(m);
-                }
+                    if (lastWordingType != null && (WordingType)lastWordingType != WordingType.None)
+                    {
+                        decimal currPct;
+                        string currAsset;
+                        if (WORDING_PARSE_HANDLERS[(WordingType)lastWordingType]((WordingType)lastWordingType, m, out currPct, out currAsset))
+                        {
+                            currAsset = WordPdfParsingUtils.NormalizeStringValue(currAsset);
+                            WordingItem wi = new WordingItem() { WT = (WordingType)lastWordingType, WordingRaw = m, Pct = currPct, Asset = currAsset };
+#if __USE_WORDING_BLOCKS__
+                            if (indexWithinBlock == 0)
+                                wi.Owner = owner; 
+#endif
+                            rslt.Add(wi);
+                            lastWordingType = null;
+                        }
+                    }
+                    else
+                    {
+                        lastWordingType = IdentifyWordingType(m);
+#if __USE_WORDING_BLOCKS__
+                        indexWithinBlock++;
+#endif
+                    }
 
+                }
+#if __USE_WORDING_BLOCKS__
             }
-
+#endif
             //int nxtWordingPos = -1;
 
             //do { 
@@ -327,7 +344,12 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
                             if (string.IsNullOrEmpty(wi.Owner))
                             {
                                 if (i > 0)
-                                    wi.Owner = currItems[i - 1].Asset;
+                                {
+                                    if(currItems[i-1].WT != WordingType.Shareholder)
+                                        wi.Owner = currItems[i - 1].Asset;
+                                    else
+                                        wi.Owner = key;
+                                }
                                 else
                                 {
                                     if (wi.WT == ArkadaOwnershipChainDescriptionParser.WordingType.Via)
@@ -397,9 +419,9 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
                     currOS.Owner = names2GPIs[wi.Owner].ID;
                     currOS.SharePct = wi.Pct;
                     currOS.OwnershipKind = Core.Spares.OwnershipType.Direct;
-                    //OwnershipStructure dupl = rslt.BankExistingCommonImplicitOwners.Find(os => os.Owner == currOS.Owner && os.Asset == currOS.Asset);
-                    //if(dupl != null)
-
+                    OwnershipStructure dupl = rslt.BankExistingCommonImplicitOwners.Find(os => os.Owner == currOS.Owner && os.Asset == currOS.Asset);
+                    if (dupl != null)
+                        continue;
                     rslt.BankExistingCommonImplicitOwners.Add(currOS);
                 }
             }
