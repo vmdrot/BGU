@@ -297,6 +297,55 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
             Console.WriteLine("----------------------------------------------------------------");
         }
 
+        public static void FillOwners(Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> rslt, out Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>> errors)
+        {
+            errors = new Dictionary<string, List<ArkadaOwnershipChainDescriptionParser.WordingItem>>();
+            foreach (string key in rslt.Keys)
+            {
+                List<ArkadaOwnershipChainDescriptionParser.WordingItem> currItems = rslt[key];
+                for (int i = 0; i < currItems.Count; i++)
+                {
+                    BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.ArkadaOwnershipChainDescriptionParser.WordingItem wi = currItems[i];
+                    switch (wi.WT)
+                    {
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Shareholder:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Controller:
+                            if (string.IsNullOrEmpty(wi.Owner))
+                                wi.Owner = key;
+                            break;
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.WhichPossesses:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.Via:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.OnBehalf:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.ActsOnBehalf:
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.WhichIsController:
+                            if (string.IsNullOrEmpty(wi.Owner))
+                            {
+                                if (i > 0)
+                                    wi.Owner = currItems[i - 1].Asset;
+                                else
+                                {
+                                    if (wi.WT == ArkadaOwnershipChainDescriptionParser.WordingType.Via)
+                                    {
+                                        wi.Owner = key;
+                                    }
+                                    else
+                                    {
+                                        if (!errors.ContainsKey(key))
+                                            errors.Add(key, new List<ArkadaOwnershipChainDescriptionParser.WordingItem>());
+                                        errors[key].Add(wi);
+                                    }
+                                }
+
+                            }
+                            break;
+                        case ArkadaOwnershipChainDescriptionParser.WordingType.None:
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
         #region inner type(s)
         private delegate bool WordingParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName);
         public enum WordingType

@@ -20,15 +20,15 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
                 return null;
             Post328Dod3V1Row rslt = new Post328Dod3V1Row();
             int rowNum;
-            if (int.TryParse(TrimRawValue(rawRow[0]), out rowNum))
+            if (int.TryParse(WordPdfParsingUtils.TrimRawValue(rawRow[0]), out rowNum))
                 rslt.RowNum = rowNum;
-            
-            rslt.Name = TrimRawValue(rawRow[1]);
-            rslt.PersonTypeStr = TrimRawValue(rawRow[2]);
 
-            rslt.SignOwnTypeStr = TrimRawValue(rawRow[3]);
+            rslt.Name = WordPdfParsingUtils.NormalizeStringValue(rawRow[1]);
+            rslt.PersonTypeStr = WordPdfParsingUtils.TrimRawValue(rawRow[2]);
 
-            rslt.PersonInfo = TrimRawValue(rawRow[4]);
+            rslt.SignOwnTypeStr = WordPdfParsingUtils.TrimRawValue(rawRow[3]);
+
+            rslt.PersonInfo = WordPdfParsingUtils.NormalizeStringValue(rawRow[4]);
 
             rslt.OwnershipChainDescr = rawRow[5];
             return rslt;

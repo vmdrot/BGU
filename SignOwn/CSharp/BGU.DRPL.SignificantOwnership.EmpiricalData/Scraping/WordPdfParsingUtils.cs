@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
 {
     public class WordPdfParsingUtils
     {
+        private static readonly Regex RGX_LFCR = new Regex("[\r\n]+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        private static readonly Regex RGX_2BLSPC = new Regex("[ ]+", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
         public static void FilterOutInterestingRowsOnly(Dictionary<int, List<string>> currDict, List<List<string>> interestingRows, List<List<string>> nonInterestingRows)
         {
             foreach (int key in currDict.Keys)
@@ -91,6 +95,16 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         {
             while (list.Count <= c + 1)
                 list.Add(string.Empty);
+        }
+
+        public static string NormalizeStringValue(string src)
+        {
+            return RGX_2BLSPC.Replace(RGX_LFCR.Replace(TrimRawValue(src), " "), " ").Trim();
+        }
+
+        public static string TrimRawValue(string raw)
+        {
+            return raw.Replace("\r\u0007", string.Empty).Trim();
         }
 
     }

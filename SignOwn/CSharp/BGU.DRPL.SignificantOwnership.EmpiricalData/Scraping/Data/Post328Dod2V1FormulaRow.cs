@@ -19,10 +19,10 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
             Post328Dod2V1FormulaRow rslt = new Post328Dod2V1FormulaRow();
             
             int rowNum;
-            if (int.TryParse(Post328Dod2V1Row.TrimRawValue(rawRow[0]), out rowNum))
+            if (int.TryParse(WordPdfParsingUtils.TrimRawValue(rawRow[0]), out rowNum))
                 rslt.RowNum = rowNum;
-            rslt.Name = Post328Dod2V1Row.TrimRawValue(rawRow[1]);
-            rslt.FormulaPath = Post328Dod2V1Row.TrimRawValue(rawRow[2]);
+            rslt.Name = WordPdfParsingUtils.NormalizeStringValue(rawRow[1]);
+            rslt.FormulaPath = WordPdfParsingUtils.NormalizeStringValue(rawRow[2]);
 
             return rslt;
         }

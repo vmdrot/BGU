@@ -12,7 +12,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
         {
             foreach (string cell in rawRow)
             {
-                string curr = Post328DodRowBase.TrimRawValue(cell);
+                string curr = WordPdfParsingUtils.TrimRawValue(cell);
                 if (!string.IsNullOrEmpty(cell.Trim()))
                     return cell;
             }
@@ -23,7 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
         {
             if (rawRow.Count == 10)
             {
-                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                string trimmed0 = WordPdfParsingUtils.TrimRawValue(rawRow[0]);
                 if (string.IsNullOrEmpty(trimmed0))
                     return Post328DodsRowType.Dod2Continuation;
                 else
@@ -31,7 +31,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
             }
             else if (rawRow.Count == 4)
             {
-                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                string trimmed0 = WordPdfParsingUtils.TrimRawValue(rawRow[0]);
                 if (string.IsNullOrEmpty(trimmed0))
                     return Post328DodsRowType.Dod2FormulaContinuation;
                 else
@@ -39,7 +39,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
             }
             else if (rawRow.Count == 7)
             {
-                string trimmed0 = Post328DodRowBase.TrimRawValue(rawRow[0]);
+                string trimmed0 = WordPdfParsingUtils.TrimRawValue(rawRow[0]);
                 if (string.IsNullOrEmpty(trimmed0))
                     return Post328DodsRowType.Dod3Continuation;
                 else
@@ -49,11 +49,6 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data
                 return Post328DodsRowType.None;
         }
 
-
-        public static string TrimRawValue(string raw)
-        {
-            return raw.Replace("\r\u0007", string.Empty).Trim();
-        }
 
         public static void ParseArkadaRows(List<List<string>> interestingRows, out List<Post328Dod2V1Row> dod2PrincipalRows, out List<Post328Dod2V1FormulaRow> dod2FormulaRows, out List<Post328Dod3V1Row> dod3PrincipalRows)
         {
