@@ -8,12 +8,12 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" displayName="Тип особи" description="Тип особи">
+          <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" displayName="Тип особи" description="Тип особи" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalPerson" type="PhysicalPersonInfo" displayName="Фізична особа" description="Фізична особа">
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalPerson" type="PhysicalPersonInfo" displayName="Фізична особа" description="Фізична особа" field_order="2">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    PersonType == EntityType.Physical
@@ -22,7 +22,7 @@
             Інакше - відсутнє!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Юридична особа" description="Юридична особа">
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Юридична особа" description="Юридична особа" field_order="3">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    PersonType == EntityType.Legal
@@ -42,8 +42,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Міжнародна фінансова чи міжнародна організація" description="Відзначити, якщо юридична особа є міжнародною організацією;&#xA;міжнародна фінансова установа – установа, з якою Уряд України уклав угоду про співробітництво та для якої згідно із законами України встановлено привілеї та імунітети." />
-          <xs:element minOccurs="1" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції юридичної особи">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Міжнародна фінансова чи міжнародна організація" description="Відзначити, якщо юридична особа є міжнародною організацією;&#xA;міжнародна фінансова установа – установа, з якою Уряд України уклав угоду про співробітництво та для якої згідно із законами України встановлено привілеї та імунітети." field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції юридичної особи" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -51,7 +51,7 @@
             Обов'язкове. За змовчанням (пропонувати) - Україна.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування" description="Найменування юридичної особи (оригінальною мовою)">
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування" description="Найменування юридичної особи (оригінальною мовою)" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -59,17 +59,17 @@
             Назва оригінальною мовою.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування українською" description="Найменування юридичної особи українською мовою (для нерезидентів)">
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування українською" description="Найменування юридичної особи українською мовою (для нерезидентів)" field_order="4">
             <xs:annotation>
               <xs:documentation>Назва українською (якщо оригінальна - іншою мовою).</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="OwnershipForm" type="OwnershipFormType" displayName="Форма власності" description="Форма власності юридичної особи">
+          <xs:element minOccurs="1" maxOccurs="1" name="OwnershipForm" type="OwnershipFormType" displayName="Форма власності" description="Форма власності юридичної особи" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TaxCodeOrHandelsRegNr" type="xs:string" type_ukr="текст" displayName="Податковий №" description="ЄДРПОУ (для резидентів), податковий ID / HandelsregisterNr., тощо (для нерезидентів)">
+          <xs:element minOccurs="1" maxOccurs="1" name="TaxCodeOrHandelsRegNr" type="xs:string" type_ukr="текст" displayName="Податковий №" description="ЄДРПОУ (для резидентів), податковий ID / HandelsregisterNr., тощо (для нерезидентів)" field_order="6">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -81,28 +81,28 @@
 Див.також: http://irc.gov.ua/ua/Poshuk-v-YeDR.html</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Registrar" type="RegistrarAuthority" displayName="Держорган-реєстратор" description="Державний орган, який здійснив реєстрацію юридичної особи" category="Реєстраційні дані">
+          <xs:element minOccurs="0" maxOccurs="1" name="Registrar" type="RegistrarAuthority" displayName="Держорган-реєстратор" description="Державний орган, який здійснив реєстрацію юридичної особи" category="Реєстраційні дані" field_order="7">
             <xs:annotation>
               <xs:documentation>Обов'язкове поле, якщо контекстом не визначено інше</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="RegisteredDateID" type="LPRegisteredDateRecordId" displayName="Дата/№ запису в держреєстрі" description="Дата та номер запису в Єдиному державному реєстрі юридичних осіб та фізичних осіб-підприємців" category="Реєстраційні дані">
+          <xs:element minOccurs="0" maxOccurs="1" name="RegisteredDateID" type="LPRegisteredDateRecordId" displayName="Дата/№ запису в держреєстрі" description="Дата та номер запису в Єдиному державному реєстрі юридичних осіб та фізичних осіб-підприємців" category="Реєстраційні дані" field_order="8">
             <xs:annotation>
               <xs:documentation>Дата та номер запису про проведення державної реєстрації фізичної особи-підприємця</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStockExchangeListed" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Публічна компанія" description="Публічна компанія згідно з визначенням пост.357">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStockExchangeListed" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Публічна компанія" description="Публічна компанія згідно з визначенням пост.357" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="StockExchangeListing" type="StockExchangeListingInfo" displayName="Лістинг" description="Інформація про біржовий лістинг для публічної компанії">
+          <xs:element minOccurs="0" maxOccurs="1" name="StockExchangeListing" type="StockExchangeListingInfo" displayName="Лістинг" description="Інформація про біржовий лістинг для публічної компанії" field_order="10">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsStockExchangeListed</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Юридична адреса" description="Юридична адреса юридичної особи" category="Адреса(-и)">
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Юридична адреса" description="Юридична адреса юридичної особи" category="Адреса(-и)" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -110,23 +110,23 @@
             Мінімальне заповнення - країна та місто</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Юридична адреса є фактичним місцезнаходженням" description="(зніміть цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)" category="Адреса(-и)" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місцезнаходження" description="Фактичне місцезнаходження юридичної особи" category="Адреса(-и)">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Юридична адреса є фактичним місцезнаходженням" description="(зніміть цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)" category="Адреса(-и)" field_order="12" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місцезнаходження" description="Фактичне місцезнаходження юридичної особи" category="Адреса(-и)" field_order="13">
             <xs:annotation>
               <xs:documentation>Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від офіційної юридичної адреси.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" displayName="Представник юрособи" description="Особа, що представляє юрособу" category="Додаткова інформація">
+          <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" displayName="Представник юрособи" description="Особа, що представляє юрособу" category="Додаткова інформація" field_order="14">
             <xs:annotation>
               <xs:documentation>Якщо передбачений представник</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" displayName="Статутний капітал" description="Статутний фонд/капітал" category="Додаткова інформація">
+          <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" displayName="Статутний капітал" description="Статутний фонд/капітал" category="Додаткова інформація" field_order="15">
             <xs:annotation>
               <xs:documentation>Якщо анкетою вимагається (див. по контексту, необов'язкове поле).</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" displayName="Основний вид діяльності" description="Основний(-і) вид(-и) діяльності юрособи" category="Додаткова інформація">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" displayName="Основний вид діяльності" description="Основний(-і) вид(-и) діяльності юрособи" category="Додаткова інформація" field_order="16">
             <xs:annotation>
               <xs:documentation>Вид діяльності - якщо вимагається в анкеті; логічно його притулити 
             було до самої структури інформації про юр.особу</xs:documentation>
@@ -142,10 +142,10 @@
             б) ДК 002:2004 – Класифікація організаційно-правових форм господарювання.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Private" description="Приватна" />
-      <xs:enumeration value="State" description="Державна" />
-      <xs:enumeration value="Municipal" description="Комунальна (муніципальна)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Private" description="Приватна" enum_value="1" />
+      <xs:enumeration value="State" description="Державна" enum_value="2" />
+      <xs:enumeration value="Municipal" description="Комунальна (муніципальна)" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfEconomicActivityType">
@@ -155,17 +155,17 @@
   </xs:complexType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="KVEDCode" type="xs:string" type_ukr="текст" displayName="Код діяльності за КВЕД">
+      <xs:element minOccurs="1" maxOccurs="1" name="KVEDCode" type="xs:string" type_ukr="текст" displayName="Код діяльності за КВЕД" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="KVEDActivityName" type="xs:string" type_ukr="текст" displayName="Назва діяльності за КВЕД">
+      <xs:element minOccurs="1" maxOccurs="1" name="KVEDActivityName" type="xs:string" type_ukr="текст" displayName="Назва діяльності за КВЕД" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ActivitySelfName" type="xs:string" type_ukr="текст" displayName="Власна фактична назва діяльності" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivitySelfName" type="xs:string" type_ukr="текст" displayName="Власна фактична назва діяльності" field_order="3" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />

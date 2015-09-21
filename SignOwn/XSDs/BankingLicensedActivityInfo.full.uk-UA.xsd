@@ -6,8 +6,8 @@
       <xs:documentation>Інформація вид банківської діяльності/фін. послугу</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="BankActivityOrService" type="LicensedOperationType" displayName="Тип" description="Вкажіть, це буде вид банківської діяльності чи послуга" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" displayName="Вид банківської діяльності" description="Вид банківської діяльності зг. зі ст.47 з-ну про Банки й банківську діяльність">
+      <xs:element minOccurs="1" maxOccurs="1" name="BankActivityOrService" type="LicensedOperationType" displayName="Тип" description="Вкажіть, це буде вид банківської діяльності чи послуга" field_order="1" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" displayName="Вид банківської діяльності" description="Вид банківської діяльності зг. зі ст.47 з-ну про Банки й банківську діяльність" field_order="2">
         <xs:annotation>
           <xs:documentation>Заповнювати або це поле, або ж ServiceType
             (але не обидва одразу).
@@ -17,7 +17,7 @@
             його прописано у законодавстві</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" displayName="Вид фінансових послуг" description="Вид фінансових послуг зг. зі ст. 4 з-ну Про фінансові послуги">
+      <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" displayName="Вид фінансових послуг" description="Вид фінансових послуг зг. зі ст. 4 з-ну Про фінансові послуги" field_order="3">
         <xs:annotation>
           <xs:documentation>Заповнювати або це поле, або ж ActivityType 
             
@@ -25,7 +25,7 @@
 Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicensedActivityInfo.ActivityType</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" type_ukr="текст" displayName="Вид діяльності - власна інтерпретація" description="Власна назва та/або опис виду діяльності">
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" type_ukr="текст" displayName="Вид діяльності - власна інтерпретація" description="Власна назва та/або опис виду діяльності" field_order="4">
         <xs:annotation>
           <xs:documentation>Власна вільна інтерпретація чи примітки/опис виду діяльності (якщо є чим доповнити поле ActivityType чи ServiceType
             

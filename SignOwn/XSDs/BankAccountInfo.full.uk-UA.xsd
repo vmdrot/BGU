@@ -6,7 +6,7 @@
       <xs:documentation>Інформація про банківський рахунок (відкритий деінде)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="AccountOwner" type="GenericPersonID" displayName="Власник рахунку">
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountOwner" type="GenericPersonID" displayName="Власник рахунку" field_order="1">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    WithMoreDetails == true
@@ -15,7 +15,7 @@
             решта реквізитів особи - десь у MentionedEntities чи його еквіваленті</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Bank" type="BankInfo" displayName="У банку...">
+      <xs:element minOccurs="1" maxOccurs="1" name="Bank" type="BankInfo" displayName="У банку..." field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -24,22 +24,22 @@
             для нерезидентів - Назва, назва укр., (SWIFT або MFO), якщо ні - адреса, щоб однозначно ідентифікувати</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" default="false" name="WithMoreDetails" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вказати більше деталей" description="(відзначити за потреби вказати додаткову інформацію про рахунок)">
+      <xs:element minOccurs="1" maxOccurs="1" default="false" name="WithMoreDetails" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вказати більше деталей" description="(відзначити за потреби вказати додаткову інформацію про рахунок)" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="AccountNr" type="xs:string" type_ukr="текст" displayName="№ рахунку">
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountNr" type="xs:string" type_ukr="текст" displayName="№ рахунку" field_order="4">
         <xs:annotation>
           <xs:documentation>№ рахунку</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" default="UAH" name="AccountCCY" type="xs:string" type_ukr="текст" displayName="Валюта рахунку">
+      <xs:element minOccurs="0" maxOccurs="1" default="UAH" name="AccountCCY" type="xs:string" type_ukr="текст" displayName="Валюта рахунку" field_order="5">
         <xs:annotation>
           <xs:documentation>ditto</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AccountDescription" type="xs:string" type_ukr="текст" displayName="Опис/примітки/призначення рахунку">
+      <xs:element minOccurs="1" maxOccurs="1" name="AccountDescription" type="xs:string" type_ukr="текст" displayName="Опис/примітки/призначення рахунку" field_order="6">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

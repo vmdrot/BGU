@@ -6,12 +6,12 @@
       <xs:documentation>Сума до сплати та спосіб сплати</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума">
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PaymentMode" type="PaymentType" displayName="Спосіб сплати">
+      <xs:element minOccurs="1" maxOccurs="1" name="PaymentMode" type="PaymentType" displayName="Спосіб сплати" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -22,10 +22,10 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Cash" description="Готівка" />
-          <xs:enumeration value="WireTransfer" description="Безготівка" />
-          <xs:enumeration value="Other" description="Інше" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Cash" description="Готівка" enum_value="1" />
+          <xs:enumeration value="WireTransfer" description="Безготівка" enum_value="2" />
+          <xs:enumeration value="Other" description="Інше" enum_value="3" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

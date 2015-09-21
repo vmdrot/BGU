@@ -9,9 +9,9 @@
 Див.також: http://www.reyestr.court.gov.ua/</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="First" description="Перша" />
-      <xs:enumeration value="Appeal" description="Апеляційна" />
-      <xs:enumeration value="Cassation" description="Касаційна" />
+      <xs:enumeration value="First" description="Перша" enum_value="0" />
+      <xs:enumeration value="Appeal" description="Апеляційна" enum_value="1" />
+      <xs:enumeration value="Cassation" description="Касаційна" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

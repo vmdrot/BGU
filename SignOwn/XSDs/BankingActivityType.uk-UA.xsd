@@ -56,17 +56,17 @@
             7) надання консультаційних та інформаційних послуг щодо банківських та інших фінансових послуг.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="DepositsTaking" description="п.1 залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб (ч.1-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="AccountsMgmt" description="п.2 відкриття та ведення поточних (кореспондентських) рахунків клієнтів, у тому числі у банківських металах (ч.1-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="DepositedFundsPlacement" description="п.3 розміщення залучених у вклади (депозити), у тому числі на поточні рахунки, коштів та банківських металів від свого імені, на власних умовах та на власний ризик (ч.1-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="Investments" description="п.1 інвестицій (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="ProprietarySecuritiesIssue" description="п.2 випуску власних цінних паперів (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="Lotteries" description="п.3 випуску, розповсюдження та проведення лотерей (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="SafeCustody" description="п.4 зберігання цінностей або надання в майновий найм (оренду) індивідуального банківського сейфа (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="CashCollectionTransportation" description="п.5 інкасації коштів та перевезення валютних цінностей (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="SecuritiesCustody" description="п.6 ведення реєстрів власників іменних цінних паперів (крім власних акцій) (ч.8-а ст.47 З-ну Про БіБД)" />
-      <xs:enumeration value="ConsultancyOnBankFinServices" description="п.7 надання консультаційних та інформаційних послуг щодо банківських та інших фінансових послуг (ч.8-а ст.47 З-ну Про БіБД)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="DepositsTaking" description="п.1 залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб (ч.1-а ст.47 З-ну Про БіБД)" enum_value="1" />
+      <xs:enumeration value="AccountsMgmt" description="п.2 відкриття та ведення поточних (кореспондентських) рахунків клієнтів, у тому числі у банківських металах (ч.1-а ст.47 З-ну Про БіБД)" enum_value="2" />
+      <xs:enumeration value="DepositedFundsPlacement" description="п.3 розміщення залучених у вклади (депозити), у тому числі на поточні рахунки, коштів та банківських металів від свого імені, на власних умовах та на власний ризик (ч.1-а ст.47 З-ну Про БіБД)" enum_value="3" />
+      <xs:enumeration value="Investments" description="п.1 інвестицій (ч.8-а ст.47 З-ну Про БіБД)" enum_value="4" />
+      <xs:enumeration value="ProprietarySecuritiesIssue" description="п.2 випуску власних цінних паперів (ч.8-а ст.47 З-ну Про БіБД)" enum_value="5" />
+      <xs:enumeration value="Lotteries" description="п.3 випуску, розповсюдження та проведення лотерей (ч.8-а ст.47 З-ну Про БіБД)" enum_value="6" />
+      <xs:enumeration value="SafeCustody" description="п.4 зберігання цінностей або надання в майновий найм (оренду) індивідуального банківського сейфа (ч.8-а ст.47 З-ну Про БіБД)" enum_value="7" />
+      <xs:enumeration value="CashCollectionTransportation" description="п.5 інкасації коштів та перевезення валютних цінностей (ч.8-а ст.47 З-ну Про БіБД)" enum_value="8" />
+      <xs:enumeration value="SecuritiesCustody" description="п.6 ведення реєстрів власників іменних цінних паперів (крім власних акцій) (ч.8-а ст.47 З-ну Про БіБД)" enum_value="9" />
+      <xs:enumeration value="ConsultancyOnBankFinServices" description="п.7 надання консультаційних та інформаційних послуг щодо банківських та інших фінансових послуг (ч.8-а ст.47 З-ну Про БіБД)" enum_value="10" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

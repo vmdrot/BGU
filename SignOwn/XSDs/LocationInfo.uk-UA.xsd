@@ -6,46 +6,46 @@
       <xs:documentation>Відомості про адресу; використовується як реквізити юр./фіз.особи, держоргану, тощо</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryInfo" displayName="Країна" description="Країна">
+      <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryInfo" displayName="Країна" description="Країна" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             За змовчанням - Україна</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область/провінція, тощо" description="область/провінція, тощо">
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область/провінція, тощо" description="область/провінція, тощо" field_order="2">
         <xs:annotation>
           <xs:documentation>Якщо потрібно</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" type_ukr="текст" displayName="район/графство, тощо" description="район/графство, тощо">
+      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" type_ukr="текст" displayName="район/графство, тощо" description="район/графство, тощо" field_order="3">
         <xs:annotation>
           <xs:documentation>Якщо потрібно</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" type_ukr="текст" displayName="Поштовий індекс" description="Поштовий індекс">
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" type_ukr="текст" displayName="Поштовий індекс" description="Поштовий індекс" field_order="4">
         <xs:annotation>
           <xs:documentation>Залежно від контексту, у більшості випадків - бажано</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="City" type="xs:string" type_ukr="текст" displayName="Населений пункт" description="Населений пункт">
+      <xs:element minOccurs="1" maxOccurs="1" name="City" type="xs:string" type_ukr="текст" displayName="Населений пункт" description="Населений пункт" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле (скрізь)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо" description="Вулиця/площа/тощо">
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо" description="Вулиця/площа/тощо" field_order="6">
         <xs:annotation>
           <xs:documentation>Якщо вимагається контекстом</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" type_ukr="текст" displayName="№ / назва будинку" description="№ / назва будинку">
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" type_ukr="текст" displayName="№ / назва будинку" description="№ / назва будинку" field_order="7">
         <xs:annotation>
           <xs:documentation>Якщо вимагається контекстом</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо" description="№ кв./офісу, тощо">
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо" description="№ кв./офісу, тощо" field_order="8">
         <xs:annotation>
           <xs:documentation>Якщо вимагається контекстом та передбачено/існує</xs:documentation>
         </xs:annotation>

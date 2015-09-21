@@ -244,11 +244,11 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                 if (string.IsNullOrEmpty(reqAttr.Condition))
                 {
                     target.Attributes["minOccurs"].Value = "1";
-                    sbComment.AppendLine("ОБОВЯ'ЗКОВЕ ПОЛЕ!");
+                    sbComment.AppendLine("ОБОВ'ЯЗКОВЕ ПОЛЕ!");
                 }
                 else
                 {
-                    sbComment.AppendLine(string.Format("(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):\n   {0}", reqAttr.Condition));
+                    sbComment.AppendLine(string.Format("(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):\n   {0}", reqAttr.Condition));
                 }
             }
 
@@ -299,6 +299,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             else
                 target.InsertBefore(annotNode, target.ChildNodes[0]);
         }
+
         private static void ProcessEnum(XmlNode node, XmlDocument assemblySummariesXml, bool xsdPutDispNmDescrIntoAnnotation)
         {
             string typNm = node.Attributes["name"].Value;
@@ -313,10 +314,15 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                 FindAddAnnotation(node, typ, assemblySummariesXml);
             List<EnumType> enmTyps = EnumType.GetEnumList(typ, false);
             Dictionary<string, string> enms2Descrs = new Dictionary<string, string>();
+            Dictionary<string, string> enms2Vals = new Dictionary<string, string>();
+
             foreach (EnumType enmTyp in enmTyps)
             {
                 if (!enms2Descrs.ContainsKey(enmTyp.EnumValue.ToString()))
                     enms2Descrs.Add(enmTyp.EnumValue.ToString(), enmTyp.Value);
+
+                if (!enms2Vals.ContainsKey(enmTyp.EnumValue.ToString()))
+                    enms2Vals.Add(enmTyp.EnumValue.ToString(), enmTyp.Key);
             }
             XmlNodeList propNodes = seqNode.ChildNodes;
             foreach (XmlNode propNode in propNodes)
@@ -334,6 +340,14 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                     else
                         WriteAttribute(propNode, "description", enms2Descrs[propNm]);
                 }
+
+                if (!string.IsNullOrEmpty(enms2Vals[propNm]))
+                {
+                    if (xsdPutDispNmDescrIntoAnnotation)
+                        AddAnnotation(propNode, string.Format("Цифрове значення: {0}", enms2Vals[propNm]), string.Empty);
+                    else
+                        WriteAttribute(propNode, "enum_value", enms2Vals[propNm]);
+                }
             }
         }
 
@@ -350,7 +364,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility
 
             if (assemblySummariesXml != null)
                 FindAddAnnotation(node, typ, assemblySummariesXml);
-
+            int i = 0;
             XmlNodeList propNodes = seqNode.ChildNodes;
             foreach (XmlNode propNode in propNodes)
             {
@@ -372,6 +386,8 @@ namespace BGU.DRPL.SignificantOwnership.Utility
                         WriteAttribute(propNode, "description", dispDescrs[propNm].Description);
                     if (dispDescrs.ContainsKey(propNm) && !string.IsNullOrEmpty(dispDescrs[propNm].Category))
                         WriteAttribute(propNode, "category", dispDescrs[propNm].Category);
+                    i++;
+                    WriteAttribute(propNode, "field_order", i.ToString());
 
                 }
                 else

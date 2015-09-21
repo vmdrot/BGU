@@ -3,10 +3,10 @@
   <xs:element name="PersonAssociationType" type="PersonAssociationType" />
   <xs:simpleType name="PersonAssociationType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Relative" description="Родич" />
-      <xs:enumeration value="Attorney" description="Довірена особа" />
-      <xs:enumeration value="Other" description="Інший тип зв'язку" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Relative" description="Родич" enum_value="1" />
+      <xs:enumeration value="Attorney" description="Довірена особа" enum_value="2" />
+      <xs:enumeration value="Other" description="Інший тип зв'язку" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

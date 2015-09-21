@@ -3,8 +3,8 @@
   <xs:element name="SignificantOrDecisiveInfulenceInfo" nillable="true" type="SignificantOrDecisiveInfulenceInfo" />
   <xs:complexType name="SignificantOrDecisiveInfulenceInfo">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfInfluence" type="InfluenceType" description="Тип впливу" />
-      <xs:element minOccurs="0" maxOccurs="1" name="InfluenceCircumstances" type="xs:string" type_ukr="текст" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfInfluence" type="InfluenceType" description="Тип впливу" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InfluenceCircumstances" type="xs:string" type_ukr="текст" field_order="2" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="InfluenceType.uk-UA.xsd" />

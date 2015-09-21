@@ -10,19 +10,19 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора">
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва оригінальною мовою</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)">
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)" field_order="2">
             <xs:annotation>
               <xs:documentation>Назва українською (якщо нерезидент)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)">
+          <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

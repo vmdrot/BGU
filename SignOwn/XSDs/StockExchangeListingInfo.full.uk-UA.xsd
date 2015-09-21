@@ -6,17 +6,17 @@
       <xs:documentation>Інформація про лістинг на біржі (для публічної компанії)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Exchange" type="StockExchangeInfo" displayName="Біржа" description="Біржа, на якій здійснюється котирування">
+      <xs:element minOccurs="1" maxOccurs="1" name="Exchange" type="StockExchangeInfo" displayName="Біржа" description="Біржа, на якій здійснюється котирування" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IssuerName" type="xs:string" type_ukr="текст" displayName="Назва емітента" description="Назва емітента, прийнята на вищевказаній біржі">
+      <xs:element minOccurs="1" maxOccurs="1" name="IssuerName" type="xs:string" type_ukr="текст" displayName="Назва емітента" description="Назва емітента, прийнята на вищевказаній біржі" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="MajorStockSymbol" type="xs:string" type_ukr="текст" displayName="Символ" description="Символ акцій (головний - якщо їх декілька), під яким торгуються акції емітента на вищевказаній біржі">
+      <xs:element minOccurs="1" maxOccurs="1" name="MajorStockSymbol" type="xs:string" type_ukr="текст" displayName="Символ" description="Символ акцій (головний - якщо їх декілька), під яким торгуються акції емітента на вищевказаній біржі" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -29,25 +29,25 @@
             Список з капіталізацією - http://www.world-exchanges.org/statistics/monthly-reports</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" description="Країна, де офіційно зареєстрована біржа">
+      <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" description="Країна, де офіційно зареєстрована біржа" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва біржі" description="Назва біржі (мовою оригіналу)">
+      <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва біржі" description="Назва біржі (мовою оригіналу)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва біржі (укр.)" description="Назва біржі українською мовою">
+      <xs:element minOccurs="1" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва біржі (укр.)" description="Назва біржі українською мовою" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Член світової федерації бірж" description="Чи є біржа членом світової федерації бірж - World Federation of Exchanges" />
-      <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" type_ukr="текст" displayName="Назва у переліку WFE" description="Назва біржі, як вона фігурує у переліку Світової Федерації Бірж - World Federation of Exchanges" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" displayName="Капіталізація" description="Сукупна ринкова капіталізація компаній, акції яких уключено до торгів на біржі" />
-      <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" type_ukr="дата і час" displayName="Дата капіталізації" description="Дата, на яку була чинною вказана сукупна ринкова капіталізація (вище)" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Член світової федерації бірж" description="Чи є біржа членом світової федерації бірж - World Federation of Exchanges" field_order="4" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" type_ukr="текст" displayName="Назва у переліку WFE" description="Назва біржі, як вона фігурує у переліку Світової Федерації Бірж - World Federation of Exchanges" field_order="5" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" displayName="Капіталізація" description="Сукупна ринкова капіталізація компаній, акції яких уключено до торгів на біржі" field_order="6" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" type_ukr="дата і час" displayName="Дата капіталізації" description="Дата, на яку була чинною вказана сукупна ринкова капіталізація (вище)" field_order="7" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="CountryInfo">
@@ -60,24 +60,24 @@
 Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст" field_order="1">
         <xs:annotation>
           <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
             Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
         <xs:annotation>
           <xs:documentation>Назва країни англ. мовою</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -93,7 +93,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта">
+          <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -104,7 +104,7 @@
 Див.також: http://www.currency-iso.org/en/home/tables/table-a1.html</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума">
+          <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

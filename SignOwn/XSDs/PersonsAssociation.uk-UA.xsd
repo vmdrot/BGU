@@ -9,28 +9,28 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="One" type="GenericPersonID" displayName="Перша особа" description="Перша особа">
+          <xs:element minOccurs="1" maxOccurs="1" name="One" type="GenericPersonID" displayName="Перша особа" description="Перша особа" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Two" type="GenericPersonID" displayName="Друга особа" description="Друга особа">
+          <xs:element minOccurs="1" maxOccurs="1" name="Two" type="GenericPersonID" displayName="Друга особа" description="Друга особа" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково, не та ж що й One</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="PersonAssociationType" displayName="Тип зв'язку" description="Тип зв'язку">
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationType" type="PersonAssociationType" displayName="Тип зв'язку" description="Тип зв'язку" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язково</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" displayName="Ким приходиться перша особа другій" description="Назва, ким приходиться перша особа другій">
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleOneVsTwo" type="AssociatedPersonRole" displayName="Ким приходиться перша особа другій" description="Назва, ким приходиться перша особа другій" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -38,7 +38,7 @@
             якби існував кінечний перелік, доцільно було б замінити ним</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" displayName="Ким приходиться друга особа першій" description="Назва, ким приходиться друга особа першій">
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRoleTwoVsOne" type="AssociatedPersonRole" displayName="Ким приходиться друга особа першій" description="Назва, ким приходиться друга особа першій" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -49,7 +49,7 @@
 Див.також: AssociationTitleOneVsTwo</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" type_ukr="текст" displayName="Ролі осіособи одна одній (якщо інше)" description="Ким приходяться особи одна одній (якщо інше)">
+          <xs:element minOccurs="1" maxOccurs="1" name="AssociationRolesIfOther" type="xs:string" type_ukr="текст" displayName="Ролі осіособи одна одній (якщо інше)" description="Ким приходяться особи одна одній (якщо інше)" field_order="6">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

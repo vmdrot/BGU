@@ -3,12 +3,12 @@
   <xs:element name="GenericPersonIDShare" nillable="true" type="GenericPersonIDShare" />
   <xs:complexType name="GenericPersonIDShare">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Власник" description="Власник">
+      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Власник" description="Власник" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Share" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка" description="Частка власності (%)">
+      <xs:element minOccurs="1" maxOccurs="1" name="Share" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка" description="Частка власності (%)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>

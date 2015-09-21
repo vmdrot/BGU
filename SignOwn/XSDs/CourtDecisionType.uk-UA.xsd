@@ -3,13 +3,13 @@
   <xs:element name="CourtDecisionType" type="CourtDecisionType" />
   <xs:simpleType name="CourtDecisionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Sentence" description="Вирок" />
-      <xs:enumeration value="Ruling" description="Постанова" />
-      <xs:enumeration value="Decision" description="Рішення" />
-      <xs:enumeration value="CourtOrder" description="Судовий наказ" />
-      <xs:enumeration value="CourtResolution" description="Ухвала суду" />
-      <xs:enumeration value="SpecialResolution" description="Окрема ухвала" />
-      <xs:enumeration value="JudgesMinorityReport" description="Окрема думка судді" />
+      <xs:enumeration value="Sentence" description="Вирок" enum_value="0" />
+      <xs:enumeration value="Ruling" description="Постанова" enum_value="1" />
+      <xs:enumeration value="Decision" description="Рішення" enum_value="2" />
+      <xs:enumeration value="CourtOrder" description="Судовий наказ" enum_value="3" />
+      <xs:enumeration value="CourtResolution" description="Ухвала суду" enum_value="4" />
+      <xs:enumeration value="SpecialResolution" description="Окрема ухвала" enum_value="5" />
+      <xs:enumeration value="JudgesMinorityReport" description="Окрема думка судді" enum_value="6" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

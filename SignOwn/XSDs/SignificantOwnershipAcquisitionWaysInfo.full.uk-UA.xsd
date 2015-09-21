@@ -14,27 +14,27 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIPO" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="придбання акцій (паїв) банку на первинному ринку" description="...">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIPO" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="придбання акцій (паїв) банку на первинному ринку" description="..." field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSecondaryMarketPurchase" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="придбання акцій (паїв) банку на вторинному ринку" description="...">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSecondaryMarketPurchase" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="придбання акцій (паїв) банку на вторинному ринку" description="..." field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByImplicitOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="опосередковане набуття" description="набуття/збільшення істотної участі в банку опосередковано шляхом придбання корпоративних прав юридичних осіб у структурі власності банку">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByImplicitOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="опосередковане набуття" description="набуття/збільшення істотної участі в банку опосередковано шляхом придбання корпоративних прав юридичних осіб у структурі власності банку" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByPowOfAtt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="набуття за довіренністю" description="набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsPurchaseByPowOfAtt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="набуття за довіренністю" description="набуття/збільшення істотної участі в банку у зв’язку з передаванням права голосу за довіреністю;" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsAcquireByImplicitInfluence" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="набуття через здійснення впливу" description="набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAcquireByImplicitInfluence" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="набуття через здійснення впливу" description="набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

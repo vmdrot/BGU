@@ -6,12 +6,12 @@
       <xs:documentation>Інформація про крайній термін сплати (deadline) якогось зобов'язання</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума">
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" type_ukr="дата і час" displayName="Дата">
+      <xs:element minOccurs="1" maxOccurs="1" name="Deadline" type="xs:dateTime" type_ukr="дата і час" displayName="Дата" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>

@@ -3,9 +3,9 @@
   <xs:element name="InsolvencyStatus" type="InsolvencyStatus" />
   <xs:simpleType name="InsolvencyStatus">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Insolvent" description="Банкрут" />
-      <xs:enumeration value="Liquidated" description="Ліквідовано" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Insolvent" description="Банкрут" enum_value="1" />
+      <xs:enumeration value="Liquidated" description="Ліквідовано" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

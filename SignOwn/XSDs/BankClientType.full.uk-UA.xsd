@@ -3,10 +3,10 @@
   <xs:element name="BankClientType" type="BankClientType" />
   <xs:simpleType name="BankClientType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="LegalPersons" description="Юридичні особи" />
-      <xs:enumeration value="PhysicalPersons" description="Фізичні особи" />
-      <xs:enumeration value="IndividualEntrepreneurs" description="СПД" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="LegalPersons" description="Юридичні особи" enum_value="1" />
+      <xs:enumeration value="PhysicalPersons" description="Фізичні особи" enum_value="2" />
+      <xs:enumeration value="IndividualEntrepreneurs" description="СПД" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

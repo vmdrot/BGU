@@ -17,7 +17,7 @@
             з бізнес-користувачами)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="у банку" description="(повне офіційне найменування банку, у який призначається/рекомендується керівник)">
+      <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="у банку" description="(повне офіційне найменування банку, у який призначається/рекомендується керівник)" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -26,14 +26,14 @@
             у який призначається/рекомендується керівник)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PositionAppliedFor" type="ManagementPosition" displayName="Посада" description="1. Посада, на яку призначається/рекомендується керівник">
+      <xs:element minOccurs="1" maxOccurs="1" name="PositionAppliedFor" type="ManagementPosition" displayName="Посада" description="1. Посада, на яку призначається/рекомендується керівник" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             1. Посада, на яку призначається/рекомендується керівник, ____________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Candidate" type="GenericPersonID" displayName="Кандидат" description="Реквізити фізособи-кандидата на посаду...">
+      <xs:element minOccurs="1" maxOccurs="1" name="Candidate" type="GenericPersonID" displayName="Кандидат" description="Реквізити фізособи-кандидата на посаду..." field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -54,7 +54,7 @@
             7. Реєстраційний номер облікової картки платника податків ___________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Education" type="ArrayOfEducationRecordInfo" displayName="8. Освіта і кваліфікація" description="8. Освіта і кваліфікація кандидата">
+      <xs:element minOccurs="1" maxOccurs="1" name="Education" type="ArrayOfEducationRecordInfo" displayName="8. Освіта і кваліфікація" description="8. Освіта і кваліфікація кандидата" field_order="4">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -64,19 +64,19 @@
              з/п	Найменування навчального закладу, у якому здобуто вищу освіту	Місцезнаходження навчального закладу	Період навчання	Здобуті спеціальність і кваліфікація</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasScientificTitle" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи має науковий ступінь, вчене звання?">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasScientificTitle" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи має науковий ступінь, вчене звання?" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ScientificTitle" type="xs:string" type_ukr="текст" displayName="Науковий ступінь, вчене звання">
+      <xs:element minOccurs="0" maxOccurs="1" name="ScientificTitle" type="xs:string" type_ukr="текст" displayName="Науковий ступінь, вчене звання" field_order="6">
         <xs:annotation>
           <xs:documentation>Науковий ступінь, вчене звання (у разі наявності): ____________________________________.
             
             Поле обов'язкове, якщо HasScientificTitle == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LastEmploymentRecord" type="EmploymentRecordInfo" displayName="Місце роботи" description="9. Місце роботи і посада на дату заповнення анкети ">
+      <xs:element minOccurs="1" maxOccurs="1" name="LastEmploymentRecord" type="EmploymentRecordInfo" displayName="Місце роботи" description="9. Місце роботи і посада на дату заповнення анкети " field_order="7">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -87,14 +87,14 @@
              час перебування на цій посаді, опис службових обов'язків за займаною посадою)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsCurrently3rdPartyBoardMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи є керівником/членом керівного органу?" description="10. Чи  виконуєте Ви на цей час функції голови/члена наглядового, виконавчого чи контрольного органу в будь-якій юридичній особі? ?">
+      <xs:element minOccurs="1" maxOccurs="1" name="IsCurrently3rdPartyBoardMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи є керівником/членом керівного органу?" description="10. Чи  виконуєте Ви на цей час функції голови/члена наглядового, виконавчого чи контрольного органу в будь-якій юридичній особі? ?" field_order="8">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             10. Чи  виконуєте Ви на цей час функції голови/члена наглядового, виконавчого чи контрольного органу в будь-якій юридичній особі?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="MembershipIn3rdPartyBoards" type="ArrayOfCouncilBodyInfo" displayName="Членство в керівних органах юр.осіб" description="(найменування юридичної особи, її місцезнаходження, код за ЄДРПОУ, контактні телефони, вид діяльності юридичної особи, опис Ваших функцій)">
+      <xs:element minOccurs="0" maxOccurs="1" name="MembershipIn3rdPartyBoards" type="ArrayOfCouncilBodyInfo" displayName="Членство в керівних органах юр.осіб" description="(найменування юридичної особи, її місцезнаходження, код за ЄДРПОУ, контактні телефони, вид діяльності юридичної особи, опис Ваших функцій)" field_order="9">
         <xs:annotation>
           <xs:documentation>________________________________________________________________________________
             
@@ -107,12 +107,12 @@
             Поле заповнюється якщо IsCurrently3rdPartyBoardMember == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasTheBankOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasTheBankOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="10">
         <xs:annotation>
           <xs:documentation>11. Чи маєте Ви участь у банку, у який призначаєтесь/рекомендуєтесь:</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="BankOwnership" type="ArrayOfOwnershipStructure">
+      <xs:element minOccurs="0" maxOccurs="1" name="BankOwnership" type="ArrayOfOwnershipStructure" field_order="11">
         <xs:annotation>
           <xs:documentation>11. Чи маєте Ви участь у банку, у який призначаєтесь/рекомендуєтесь:
             
@@ -129,7 +129,7 @@
                                                                       фізичної особи - учасника банку та розмір її прямого володіння в банку)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Has3rdPartiesOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="Has3rdPartiesOwnership" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="12">
         <xs:annotation>
           <xs:documentation>12. Чи маєте Ви участь в інших  юридичних особах (прямо або опосередковано)? _______________________________________________________________________________.
             
@@ -146,31 +146,31 @@
             відсоток власності в юридичній особі _______________________________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ThirdPartiesOwnership" type="ArrayOfOwnershipStructure" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Has3rdPartiesMgmtBodiesAttorneys" type="xs:boolean" type_ukr="логічний тип(так/ні)" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PartiesMgmtBodiesAttorneys" type="ArrayOfCouncilBodyInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Is3rdPartiesRep" type="xs:boolean" type_ukr="логічний тип(так/ні)" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ThirdPartiesBeingRepresented" type="ArrayOfGenericPersonID">
+      <xs:element minOccurs="0" maxOccurs="1" name="ThirdPartiesOwnership" type="ArrayOfOwnershipStructure" field_order="13" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Has3rdPartiesMgmtBodiesAttorneys" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="14" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PartiesMgmtBodiesAttorneys" type="ArrayOfCouncilBodyInfo" field_order="15" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Is3rdPartiesRep" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="16" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThirdPartiesBeingRepresented" type="ArrayOfGenericPersonID" field_order="17">
         <xs:annotation>
           <xs:documentation>1. у цьому полі - лише перелік ID-шників осіб, що їх представляє кандидат
             2. реквізити осіб - у MentionedEntities
             3. Деталі представництва - у PersonLinks</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherBanksSignificantOwnership" type="ArrayOfOwnershipStructure">
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherBanksSignificantOwnership" type="ArrayOfOwnershipStructure" field_order="18">
         <xs:annotation>
           <xs:documentation>14. Перелік банків, у яких Ви є власником істотної участі, ______
             _______________________________________________________________________________.
                  (зазначити конкретно: якою особою, у якому банку)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherBanksWithSignificantOwnership" type="ArrayOfBankInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherBanksWithSignificantOwnership" type="ArrayOfBankInfo" field_order="19">
         <xs:annotation>
           <xs:documentation>не певен, чи нам потрібна додаткова явна ідентифікація цих банків як банків, 
             чи ж достатньо буде кодів ЄДРПОУ з OtherBanksSignificantOwnership</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentGaps" type="ArrayOfEmploymentRecordInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentGaps" type="ArrayOfEmploymentRecordInfo" field_order="20">
         <xs:annotation>
           <xs:documentation>15. Відомості  про  перерви в трудовій діяльності (із зазначенням 
             строку перерви та причини) _____________________________________.
@@ -181,12 +181,12 @@
             Маю підозру, що нам потрібно, насправді, повний перелік усіх записів у трудовій (та поза нею), а не лише розриви у труд.діяльності.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedOrInsolventManagements" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedOrInsolventManagements" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="21">
         <xs:annotation>
           <xs:documentation>16. Чи порушувалася справа про банкрутство, чи приймалося рішення про ліквідацію банку або іншої юридичної особи, де Ви раніше працювали керівником (на день прийняття таких рішень)?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedOrInsolventManagements" type="ArrayOfLiquidatedOrInsolventEntityMgmtRecordInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedOrInsolventManagements" type="ArrayOfLiquidatedOrInsolventEntityMgmtRecordInfo" field_order="22">
         <xs:annotation>
           <xs:documentation>________________________________________________________________________
             (якщо так, то зазначити найменування юридичної особи, займану Вами в цій юридичний особі посаду,
@@ -196,7 +196,7 @@
             рішення про ліквідацію)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation">
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" field_order="23">
         <xs:annotation>
           <xs:documentation>17. Відомості про близьких родичів, чоловіка/дружину, дітей, батьків 
             ________________________________________________________________________________
@@ -213,12 +213,12 @@
             У цьому полі - не лише відомості по п.17, а й решта зв'язків з особами-фігурантами анкети</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasRelativesInBankBoards" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasRelativesInBankBoards" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="24">
         <xs:annotation>
           <xs:documentation>18. Чи  перебуваєте Ви в родинних зв'язках із членами ради та/або правління банку (батьки, діти, чоловік/дружина,  рідні брати та  сестри)?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="RelativesInBankBoards" type="ArrayOfCouncilBodyInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="RelativesInBankBoards" type="ArrayOfCouncilBodyInfo" field_order="25">
         <xs:annotation>
           <xs:documentation>_______________________________________________________________________________.
             (якщо так, то зазначити посаду, прізвище, ім'я, по батькові особи та родинний зв'язок з нею)
@@ -227,14 +227,14 @@
             доповнюється інформацією з полів MentionedEntities та PersonsLinks</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="26">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             19. Чи маєте Ви невиконані майнові (фінансові) зобов'язання перед іншими особами?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo">
+      <xs:element minOccurs="1" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" field_order="27">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -247,21 +247,21 @@
             Обов'язкове, якщо HasMiscNonRepaidDebts == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="WasCriminallyProsecuted" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="WasCriminallyProsecuted" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="28">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             20. Чи притягувалися Ви до кримінальної відповідальності? ____________________________</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingSentencesToServe" type="xs:boolean" type_ukr="логічний тип(так/ні)">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingSentencesToServe" type="xs:boolean" type_ukr="логічний тип(так/ні)" field_order="29">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             21. Чи маєте Ви судимість непогашену,  не зняту  в  установленому законодавством порядку?</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" field_order="30">
         <xs:annotation>
           <xs:documentation>п.20 :_______________________________________________________________________________.
             (якщо так, то зазначити, де і коли, за якою статтею/статтями Кримінального кодексу України)
@@ -271,7 +271,7 @@
             Обов'язкове, якщо WasCriminallyProsecuted == true або HasOutstandingSentencesToServe == true</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="BankPoliciesYourRoleVision" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="1" maxOccurs="1" name="BankPoliciesYourRoleVision" type="xs:string" type_ukr="текст" field_order="31">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -281,7 +281,7 @@
             _______________________________________________________________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;">
+      <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="Я, (прізвище, ім'я, по батькові) стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;" field_order="32">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -293,14 +293,14 @@
             даних, що в них містяться.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AmObligingToKeepUp2DateWithin10Days" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Зобов'язуюсь повідомляти про зміни?" description="У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення.">
+      <xs:element minOccurs="1" maxOccurs="1" name="AmObligingToKeepUp2DateWithin10Days" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Зобов'язуюсь повідомляти про зміни?" description="У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10-ти днів з дня їх виникнення." field_order="33">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             У разі будь-яких змін в інформації, що зазначена в цій анкеті, зобов'язуюся повідомити про них Національний банк України протягом 10 днів з дня їх виникнення.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету">
+      <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" field_order="34">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -313,7 +313,7 @@
              (ініціали, прізвище)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo">
+      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" field_order="35">
         <xs:annotation>
           <xs:documentation>Усі реквізити усіх осіб-фігурантів</xs:documentation>
         </xs:annotation>

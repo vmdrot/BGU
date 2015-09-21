@@ -17,16 +17,16 @@
             з бізнес-користувачами)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AsOfDate" type="xs:dateTime" type_ukr="дата і час" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CharterCapital" type="CurrencyAmount" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ShareholderStakes" type="ArrayOfCharterCapitalTableRecord" />
-      <xs:element minOccurs="0" maxOccurs="1" name="LegalPersonsSubtotals" type="CharterCapitalTableTotalsRecord" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PhysPersonsSubtotals" type="CharterCapitalTableTotalsRecord" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Totals" type="CharterCapitalTableTotalsRecord" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CEOSignature" type="SignatoryInfo" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ChiefBookkeeperSignature" type="SignatoryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" field_order="1" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AsOfDate" type="xs:dateTime" type_ukr="дата і час" field_order="2" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CharterCapital" type="CurrencyAmount" field_order="3" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShareholderStakes" type="ArrayOfCharterCapitalTableRecord" field_order="4" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalPersonsSubtotals" type="CharterCapitalTableTotalsRecord" field_order="5" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysPersonsSubtotals" type="CharterCapitalTableTotalsRecord" field_order="6" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Totals" type="CharterCapitalTableTotalsRecord" field_order="7" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" field_order="8" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CEOSignature" type="SignatoryInfo" field_order="9" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChiefBookkeeperSignature" type="SignatoryInfo" field_order="10" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="BankInfo.uk-UA.xsd" />

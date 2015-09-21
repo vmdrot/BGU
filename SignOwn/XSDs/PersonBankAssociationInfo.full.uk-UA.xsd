@@ -3,12 +3,12 @@
   <xs:element name="PersonBankAssociationInfo" nillable="true" type="PersonBankAssociationInfo" />
   <xs:complexType name="PersonBankAssociationInfo">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Оберіть пов'язану особу">
+      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Оберіть пов'язану особу" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи">
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>

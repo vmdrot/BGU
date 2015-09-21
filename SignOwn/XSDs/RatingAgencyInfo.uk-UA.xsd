@@ -11,29 +11,29 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва" description="Назва рейтингової аґенції (оригінальна, оригінальною мовою)">
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва" description="Назва рейтингової аґенції (оригінальна, оригінальною мовою)" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва українською" description="Назва рейтингової аґенції українською (якщо оригінальна назва - іншомовна)">
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва українською" description="Назва рейтингової аґенції українською (якщо оригінальна назва - іншомовна)" field_order="2">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    CoverageCountry != CountryInfo.UKRAINE</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Глобальне покриття?" description="Аґенція рейтингує компанії глобально, а не прив'язана до якоїсь конкретної країни">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Глобальне покриття?" description="Аґенція рейтингує компанії глобально, а не прив'язана до якоїсь конкретної країни" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" displayName="Країна покриття" description="Якщо аґенція не є глобальною, а рейтингує компанії однієї конкретної країни">
+          <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" displayName="Країна покриття" description="Якщо аґенція не є глобальною, а рейтингує компанії однієї конкретної країни" field_order="4">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsGlobal == false</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" description="Контактна інформація рейтингової аґенції (напр. веб-сайт); контакти особи/підрозділу, що відповідальні за Ваш рейтинг (якщо є).">
+          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" description="Контактна інформація рейтингової аґенції (напр. веб-сайт); контакти особи/підрозділу, що відповідальні за Ваш рейтинг (якщо є)." field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

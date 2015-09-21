@@ -13,17 +13,17 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Суд" description="Назва суду (оригінальною мовою)">
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Суд" description="Назва суду (оригінальною мовою)" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна підсудності" description="(країна юрисдикції суду)" />
-          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Суд (укр.)" description="Назва суду українською (якщо іноземний суд)" />
-          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" displayName="Інстанція суду" />
-          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" displayName="Регіон юрисдикції" description="Область/регіон юрисдикції суду" />
-          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" displayName="Код суду" description="Код суду (для українських судів) або ж його еквівалент для іноземних судів (якщо існує)" />
-          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" displayName="Адреса суду" description="Адреса суду" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна підсудності" description="(країна юрисдикції суду)" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Суд (укр.)" description="Назва суду українською (якщо іноземний суд)" field_order="3" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="CourtInstanceType" displayName="Інстанція суду" field_order="4" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtRegion" type="xs:string" type_ukr="текст" displayName="Регіон юрисдикції" description="Область/регіон юрисдикції суду" field_order="5" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtID" type="xs:string" type_ukr="текст" displayName="Код суду" description="Код суду (для українських судів) або ж його еквівалент для іноземних судів (якщо існує)" field_order="6" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtAddress" type="LocationInfo" displayName="Адреса суду" description="Адреса суду" field_order="7" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

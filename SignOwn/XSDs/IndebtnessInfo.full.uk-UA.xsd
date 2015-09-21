@@ -8,13 +8,13 @@
     <xs:complexContent mixed="false">
       <xs:extension base="IndebtnessInfoBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsRepaymentPlanned" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи планую погашення?" description="Чи планую погашення боргу/виконання зобов'язань?">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRepaymentPlanned" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи планую погашення?" description="Чи планую погашення боргу/виконання зобов'язань?" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PlannedRepaymentDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Планована дата погашення" />
-          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentPlans" type="xs:string" type_ukr="текст" displayName="Плани щодо погашення">
+          <xs:element minOccurs="1" maxOccurs="1" name="PlannedRepaymentDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Планована дата погашення" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentPlans" type="xs:string" type_ukr="текст" displayName="Плани щодо погашення" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

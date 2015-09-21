@@ -16,9 +16,9 @@
               (дата)                           (ПІБ, посада, підпис)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="RecordDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата запису" description="Дата внесення відповідного запису до паспорта" />
-      <xs:element minOccurs="0" maxOccurs="1" name="RecordID" type="xs:string" type_ukr="текст" displayName="№ запису" description="№ відповідного запису до паспорта" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Відомості про підписанта запису" description="Відомості про підписанта запису" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата запису" description="Дата внесення відповідного запису до паспорта" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RecordID" type="xs:string" type_ukr="текст" displayName="№ запису" description="№ відповідного запису до паспорта" field_order="2" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Відомості про підписанта запису" description="Відомості про підписанта запису" field_order="3" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />

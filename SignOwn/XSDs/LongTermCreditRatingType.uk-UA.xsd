@@ -3,58 +3,58 @@
   <xs:element name="LongTermCreditRatingType" type="LongTermCreditRatingType" />
   <xs:simpleType name="LongTermCreditRatingType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="A" description="A" />
-      <xs:enumeration value="A1" description="A1" />
-      <xs:enumeration value="A2" description="A2" />
-      <xs:enumeration value="A3" description="A3" />
-      <xs:enumeration value="AA" description="AA" />
-      <xs:enumeration value="Aa1" description="Aa1" />
-      <xs:enumeration value="Aa2" description="Aa2" />
-      <xs:enumeration value="Aa3" description="Aa3" />
-      <xs:enumeration value="AAA" description="AAA" />
-      <xs:enumeration value="AAAMinus" description="AAA-" />
-      <xs:enumeration value="AAAPlus" description="AAA+" />
-      <xs:enumeration value="AAMinus" description="AA-" />
-      <xs:enumeration value="AAPlus" description="AA+" />
-      <xs:enumeration value="AMinus" description="A-" />
-      <xs:enumeration value="APlus" description="A+" />
-      <xs:enumeration value="B" description="B" />
-      <xs:enumeration value="B1" description="B1" />
-      <xs:enumeration value="B2" description="B2" />
-      <xs:enumeration value="B3" description="B3" />
-      <xs:enumeration value="Ba1" description="Ba1" />
-      <xs:enumeration value="Ba2" description="Ba2" />
-      <xs:enumeration value="Ba3" description="Ba3" />
-      <xs:enumeration value="Baa1" description="Baa1" />
-      <xs:enumeration value="Baa2" description="Baa2" />
-      <xs:enumeration value="Baa3" description="Baa3" />
-      <xs:enumeration value="BB" description="BB" />
-      <xs:enumeration value="BBB" description="BBB" />
-      <xs:enumeration value="BBBMinus" description="BBB-" />
-      <xs:enumeration value="BBBPlus" description="BBB+" />
-      <xs:enumeration value="BBMinus" description="BB-" />
-      <xs:enumeration value="BBPlus" description="BB+" />
-      <xs:enumeration value="BMinus" description="B-" />
-      <xs:enumeration value="BPlus" description="B+" />
-      <xs:enumeration value="C" description="C" />
-      <xs:enumeration value="Ca" description="Ca" />
-      <xs:enumeration value="Caa1" description="Caa1" />
-      <xs:enumeration value="Caa2" description="Caa2" />
-      <xs:enumeration value="Caa3" description="Caa3" />
-      <xs:enumeration value="CC" description="CC" />
-      <xs:enumeration value="CCC" description="CCC" />
-      <xs:enumeration value="CCCMinus" description="CCC-" />
-      <xs:enumeration value="CCCPlus" description="CCC+" />
-      <xs:enumeration value="CCMinus" description="CC-" />
-      <xs:enumeration value="CCPlus" description="CC+" />
-      <xs:enumeration value="CMinus" description="C-" />
-      <xs:enumeration value="CPlus" description="C+" />
-      <xs:enumeration value="D" description="D" />
-      <xs:enumeration value="LD" description="LD" />
-      <xs:enumeration value="NR" description="NR" />
-      <xs:enumeration value="R" description="R" />
-      <xs:enumeration value="Other" description="Інше (вказати)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="A" description="A" enum_value="1" />
+      <xs:enumeration value="A1" description="A1" enum_value="2" />
+      <xs:enumeration value="A2" description="A2" enum_value="3" />
+      <xs:enumeration value="A3" description="A3" enum_value="4" />
+      <xs:enumeration value="AA" description="AA" enum_value="5" />
+      <xs:enumeration value="Aa1" description="Aa1" enum_value="6" />
+      <xs:enumeration value="Aa2" description="Aa2" enum_value="7" />
+      <xs:enumeration value="Aa3" description="Aa3" enum_value="8" />
+      <xs:enumeration value="AAA" description="AAA" enum_value="9" />
+      <xs:enumeration value="AAAMinus" description="AAA-" enum_value="10" />
+      <xs:enumeration value="AAAPlus" description="AAA+" enum_value="11" />
+      <xs:enumeration value="AAMinus" description="AA-" enum_value="12" />
+      <xs:enumeration value="AAPlus" description="AA+" enum_value="13" />
+      <xs:enumeration value="AMinus" description="A-" enum_value="14" />
+      <xs:enumeration value="APlus" description="A+" enum_value="15" />
+      <xs:enumeration value="B" description="B" enum_value="16" />
+      <xs:enumeration value="B1" description="B1" enum_value="17" />
+      <xs:enumeration value="B2" description="B2" enum_value="18" />
+      <xs:enumeration value="B3" description="B3" enum_value="19" />
+      <xs:enumeration value="Ba1" description="Ba1" enum_value="20" />
+      <xs:enumeration value="Ba2" description="Ba2" enum_value="21" />
+      <xs:enumeration value="Ba3" description="Ba3" enum_value="22" />
+      <xs:enumeration value="Baa1" description="Baa1" enum_value="23" />
+      <xs:enumeration value="Baa2" description="Baa2" enum_value="24" />
+      <xs:enumeration value="Baa3" description="Baa3" enum_value="25" />
+      <xs:enumeration value="BB" description="BB" enum_value="26" />
+      <xs:enumeration value="BBB" description="BBB" enum_value="27" />
+      <xs:enumeration value="BBBMinus" description="BBB-" enum_value="28" />
+      <xs:enumeration value="BBBPlus" description="BBB+" enum_value="29" />
+      <xs:enumeration value="BBMinus" description="BB-" enum_value="30" />
+      <xs:enumeration value="BBPlus" description="BB+" enum_value="31" />
+      <xs:enumeration value="BMinus" description="B-" enum_value="32" />
+      <xs:enumeration value="BPlus" description="B+" enum_value="33" />
+      <xs:enumeration value="C" description="C" enum_value="34" />
+      <xs:enumeration value="Ca" description="Ca" enum_value="35" />
+      <xs:enumeration value="Caa1" description="Caa1" enum_value="36" />
+      <xs:enumeration value="Caa2" description="Caa2" enum_value="37" />
+      <xs:enumeration value="Caa3" description="Caa3" enum_value="38" />
+      <xs:enumeration value="CC" description="CC" enum_value="39" />
+      <xs:enumeration value="CCC" description="CCC" enum_value="40" />
+      <xs:enumeration value="CCCMinus" description="CCC-" enum_value="41" />
+      <xs:enumeration value="CCCPlus" description="CCC+" enum_value="42" />
+      <xs:enumeration value="CCMinus" description="CC-" enum_value="43" />
+      <xs:enumeration value="CCPlus" description="CC+" enum_value="44" />
+      <xs:enumeration value="CMinus" description="C-" enum_value="45" />
+      <xs:enumeration value="CPlus" description="C+" enum_value="46" />
+      <xs:enumeration value="D" description="D" enum_value="47" />
+      <xs:enumeration value="LD" description="LD" enum_value="48" />
+      <xs:enumeration value="NR" description="NR" enum_value="49" />
+      <xs:enumeration value="R" description="R" enum_value="50" />
+      <xs:enumeration value="Other" description="Інше (вказати)" enum_value="51" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

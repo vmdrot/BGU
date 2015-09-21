@@ -3,9 +3,9 @@
   <xs:element name="TotalOwnershipSummaryInfo" nillable="true" type="TotalOwnershipSummaryInfo" />
   <xs:complexType name="TotalOwnershipSummaryInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnershipSummary" type="OwnershipSummaryInfo" displayName="Пряма участь" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ImplicitPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Опосередкована участь (%)" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сукупна участь, %" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectOwnershipSummary" type="OwnershipSummaryInfo" displayName="Пряма участь" field_order="1" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImplicitPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Опосередкована участь (%)" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сукупна участь, %" field_order="3" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="OwnershipSummaryInfo.uk-UA.xsd" />

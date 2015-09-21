@@ -6,8 +6,8 @@
       <xs:documentation>Увага! Цей тип було помічено як такий, що не використовується/застарів (Obsolete)!</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Фіз.особа" description="Фіз.особа" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Часта, %" description="Часта, %" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Фіз.особа" description="Фіз.особа" field_order="1" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Часта, %" description="Часта, %" field_order="2" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />

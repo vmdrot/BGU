@@ -3,11 +3,11 @@
   <xs:element name="MeansOfCommunication" type="MeansOfCommunication" />
   <xs:simpleType name="MeansOfCommunication">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Phone" description="Телефон(-и)" />
-      <xs:enumeration value="Email" description="Ел.пошта" />
-      <xs:enumeration value="Fax" description="Факс" />
-      <xs:enumeration value="Mail" description="Звичайна пошта" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Phone" description="Телефон(-и)" enum_value="1" />
+      <xs:enumeration value="Email" description="Ел.пошта" enum_value="2" />
+      <xs:enumeration value="Fax" description="Факс" enum_value="3" />
+      <xs:enumeration value="Mail" description="Звичайна пошта" enum_value="4" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

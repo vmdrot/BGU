@@ -3,12 +3,12 @@
   <xs:element name="LegalTransactionType" type="LegalTransactionType" />
   <xs:simpleType name="LegalTransactionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="BuySellAgreement" description="Договір купівлі-продажу" />
-      <xs:enumeration value="GrantAgreement" description="Договір дарування" />
-      <xs:enumeration value="Inheritance" description="Спадщина" />
-      <xs:enumeration value="SwapAgreement" description="Договір обміну" />
-      <xs:enumeration value="Other" description="Інше" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="BuySellAgreement" description="Договір купівлі-продажу" enum_value="1" />
+      <xs:enumeration value="GrantAgreement" description="Договір дарування" enum_value="2" />
+      <xs:enumeration value="Inheritance" description="Спадщина" enum_value="3" />
+      <xs:enumeration value="SwapAgreement" description="Договір обміну" enum_value="4" />
+      <xs:enumeration value="Other" description="Інше" enum_value="5" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

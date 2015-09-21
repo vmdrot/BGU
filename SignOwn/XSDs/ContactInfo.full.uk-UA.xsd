@@ -6,18 +6,18 @@
       <xs:documentation>Контактна інформація</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Контактна особа" description="Контактна особа (фізособа)">
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Контактна особа" description="Контактна особа (фізособа)" field_order="1">
         <xs:annotation>
           <xs:documentation>Необов'язкове поле; якщо заповнюється, то достатньо (як правило) П.І.Б.; як вони хочуть, щоб до них зверталися (хоч би й лише Name),
             напр. "Люда, тел. XXX-XXX-XX-XX, e-mail..."</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" displayName="Бажаний засіб комунікації" description="Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)">
+      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" displayName="Бажаний засіб комунікації" description="Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів">
+      <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -26,33 +26,33 @@
             наскільки вони хочуть, щоб їх знайшли, у разі потреби/питань.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" type_ukr="текст" displayName="Факс">
+      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" type_ukr="текст" displayName="Факс" field_order="4">
         <xs:annotation>
           <xs:documentation>Необов'язкове поле, як на мене - вже застарілий засіб зв'язку.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" displayName="E-mail-и" description="Перелік адрес електронної пошти">
+      <xs:element minOccurs="1" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" displayName="E-mail-и" description="Перелік адрес електронної пошти" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Мінімум одне мило - обов'язково питати.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" type_ukr="текст" displayName="www" description="Веб-сайт">
+      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" type_ukr="текст" displayName="www" description="Веб-сайт" field_order="6">
         <xs:annotation>
           <xs:documentation>Не обов'язкове (окрім банку, видавництва, тощо - де це вимагається контекстом використання цього типу).</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса для листування" description="Адреса для звичайної пошти" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса для листування" description="Адреса для звичайної пошти" field_order="7" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="MeansOfCommunication">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Phone" description="Телефон(-и)" />
-      <xs:enumeration value="Email" description="Ел.пошта" />
-      <xs:enumeration value="Fax" description="Факс" />
-      <xs:enumeration value="Mail" description="Звичайна пошта" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Phone" description="Телефон(-и)" enum_value="1" />
+      <xs:enumeration value="Email" description="Ел.пошта" enum_value="2" />
+      <xs:enumeration value="Fax" description="Факс" enum_value="3" />
+      <xs:enumeration value="Mail" description="Звичайна пошта" enum_value="4" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfPhoneInfo">
@@ -65,17 +65,17 @@
       <xs:documentation>Інформація про телефон</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="PhoneName" type="xs:string" type_ukr="текст" displayName="Тип/назва телефону" description="Тип/назва телефону">
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneName" type="xs:string" type_ukr="текст" displayName="Тип/назва телефону" description="Тип/назва телефону" field_order="1">
         <xs:annotation>
           <xs:documentation>не обов'язкове, значення (напр.) - дом., моб., роб., тощо</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PhoneNr" type="xs:string" type_ukr="текст" displayName="№ телефону" description="№ телефону">
+      <xs:element minOccurs="1" maxOccurs="1" name="PhoneNr" type="xs:string" type_ukr="текст" displayName="№ телефону" description="№ телефону" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" type_ukr="текст" displayName="Примітки щодо телефону" description="Примітки щодо телефону">
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" type_ukr="текст" displayName="Примітки щодо телефону" description="Примітки щодо телефону" field_order="3">
         <xs:annotation>
           <xs:documentation>напр. "дзвонити з 9 до 18, по вихідних, поза зоною тоді-то, тощо"</xs:documentation>
         </xs:annotation>

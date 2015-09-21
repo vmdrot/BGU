@@ -3,11 +3,11 @@
   <xs:element name="CharterCapitalTableRecord" nillable="true" type="CharterCapitalTableRecord" />
   <xs:complexType name="CharterCapitalTableRecord">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Shareholder" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPlaced" type="xs:int" type_ukr="ціле число" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CharterCapitalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PaidDocNr" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="1" maxOccurs="1" name="PaidDate" type="xs:dateTime" type_ukr="дата і час" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Shareholder" type="GenericPersonID" field_order="1" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPlaced" type="xs:int" type_ukr="ціле число" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CharterCapitalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" field_order="3" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PaidDocNr" type="xs:string" type_ukr="текст" field_order="4" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PaidDate" type="xs:dateTime" type_ukr="дата і час" field_order="5" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />

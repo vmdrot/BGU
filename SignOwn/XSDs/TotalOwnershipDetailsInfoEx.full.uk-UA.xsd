@@ -8,7 +8,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="TotalOwnershipDetailsInfo">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="OwnerID" type="GenericPersonID" displayName="ID Власника">
+          <xs:element minOccurs="1" maxOccurs="1" name="OwnerID" type="GenericPersonID" displayName="ID Власника" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

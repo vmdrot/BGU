@@ -3,9 +3,9 @@
   <xs:element name="InfluenceType" type="InfluenceType" />
   <xs:simpleType name="InfluenceType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Significant" description="Значний" />
-      <xs:enumeration value="Decisive" description="Вирішальний" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Significant" description="Значний" enum_value="1" />
+      <xs:enumeration value="Decisive" description="Вирішальний" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -6,12 +6,12 @@
       <xs:documentation>Сума до сплати та спосіб сплати</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума">
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="CurrencyAmount" displayName="Сума" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PaymentMode" type="PaymentType" displayName="Спосіб сплати">
+      <xs:element minOccurs="1" maxOccurs="1" name="PaymentMode" type="PaymentType" displayName="Спосіб сплати" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>

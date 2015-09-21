@@ -3,27 +3,27 @@
   <xs:element name="CurrencyInfo" nillable="true" type="CurrencyInfo" />
   <xs:complexType name="CurrencyInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNm" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNm" type="xs:string" type_ukr="текст" field_order="1">
         <xs:annotation>
           <xs:documentation>ENTITY за стандартом ISO</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCYName" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYName" type="xs:string" type_ukr="текст" field_order="2">
         <xs:annotation>
           <xs:documentation>ENTITY за стандартом ISO</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
           <xs:documentation>ENTITY за стандартом ISO</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode3D" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CCYCode3D" type="xs:string" type_ukr="текст" field_order="4">
         <xs:annotation>
           <xs:documentation>ENTITY за стандартом ISO</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CCYMinorUnit" nillable="true" type="xs:int" type_ukr="ціле число">
+      <xs:element minOccurs="1" maxOccurs="1" name="CCYMinorUnit" nillable="true" type="xs:int" type_ukr="ціле число" field_order="5">
         <xs:annotation>
           <xs:documentation>ENTITY за стандартом ISO</xs:documentation>
         </xs:annotation>

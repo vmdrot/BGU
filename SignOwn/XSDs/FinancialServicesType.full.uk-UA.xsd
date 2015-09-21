@@ -59,22 +59,22 @@
             14) банківські та інші фінансові послуги, що надаються відповідно до Закону України "Про банки і банківську діяльність".</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="PayDocsIssuance" description="п.1 випуск платіжних документів, платіжних карток, дорожніх чеків та/або їх обслуговування, кліринг, інші форми забезпечення розрахунків (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="Trust" description="п.2 довірче управління фінансовими активами (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="CurrencyExchange" description="п.3 діяльність з обміну валют (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="FinanceAssetsLiabilities" description="п.4 залучення фінансових активів із зобов'язанням щодо наступного їх повернення (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="FinancialLeasing" description="п.5 фінансовий лізинг (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="Lending" description="п.6 надання коштів у позику, в тому числі і на умовах фінансового кредиту (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="Guarantees" description="п.7 надання гарантій та поручительств (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="FundsTransfer" description="п.8 переказ коштів (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="InsuranceAndPensionSavings" description="п.9 послуги у сфері страхування та у системі накопичувального пенсійного забезпечення (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="StockExchangeActivities" description="п.10 професійна діяльність на ринку цінних паперів, що підлягає ліцензуванню (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="Factoring" description="п.11 факторинг (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="FinAssetsAdministeringGroupsPurchase" description="п.11.1 адміністрування фінансових активів для придбання товарів у групах (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="ConstructionAssetsManagement" description="п.12 управління майном для фінансування об'єктів будівництва та/або здійснення операцій з нерухомістю відповідно до Закону України Про фінансово-кредитні механізми і управління майном при будівництві житла та операціях з нерухомістю (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="MortgageSecuritiesMngtIssue" description="п.13 операції з іпотечними активами з метою емісії іпотечних цінних паперів (ст.4 з-ну Про фінпослуги)" />
-      <xs:enumeration value="OtherFinBankServices" description="п.14 банківські та інші фінансові послуги, що надаються відповідно до Закону України Про банки і банківську діяльність (ст.4 з-ну Про фінпослуги)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="PayDocsIssuance" description="п.1 випуск платіжних документів, платіжних карток, дорожніх чеків та/або їх обслуговування, кліринг, інші форми забезпечення розрахунків (ст.4 з-ну Про фінпослуги)" enum_value="1" />
+      <xs:enumeration value="Trust" description="п.2 довірче управління фінансовими активами (ст.4 з-ну Про фінпослуги)" enum_value="2" />
+      <xs:enumeration value="CurrencyExchange" description="п.3 діяльність з обміну валют (ст.4 з-ну Про фінпослуги)" enum_value="3" />
+      <xs:enumeration value="FinanceAssetsLiabilities" description="п.4 залучення фінансових активів із зобов'язанням щодо наступного їх повернення (ст.4 з-ну Про фінпослуги)" enum_value="4" />
+      <xs:enumeration value="FinancialLeasing" description="п.5 фінансовий лізинг (ст.4 з-ну Про фінпослуги)" enum_value="5" />
+      <xs:enumeration value="Lending" description="п.6 надання коштів у позику, в тому числі і на умовах фінансового кредиту (ст.4 з-ну Про фінпослуги)" enum_value="6" />
+      <xs:enumeration value="Guarantees" description="п.7 надання гарантій та поручительств (ст.4 з-ну Про фінпослуги)" enum_value="7" />
+      <xs:enumeration value="FundsTransfer" description="п.8 переказ коштів (ст.4 з-ну Про фінпослуги)" enum_value="8" />
+      <xs:enumeration value="InsuranceAndPensionSavings" description="п.9 послуги у сфері страхування та у системі накопичувального пенсійного забезпечення (ст.4 з-ну Про фінпослуги)" enum_value="9" />
+      <xs:enumeration value="StockExchangeActivities" description="п.10 професійна діяльність на ринку цінних паперів, що підлягає ліцензуванню (ст.4 з-ну Про фінпослуги)" enum_value="10" />
+      <xs:enumeration value="Factoring" description="п.11 факторинг (ст.4 з-ну Про фінпослуги)" enum_value="11" />
+      <xs:enumeration value="FinAssetsAdministeringGroupsPurchase" description="п.11.1 адміністрування фінансових активів для придбання товарів у групах (ст.4 з-ну Про фінпослуги)" enum_value="12" />
+      <xs:enumeration value="ConstructionAssetsManagement" description="п.12 управління майном для фінансування об'єктів будівництва та/або здійснення операцій з нерухомістю відповідно до Закону України Про фінансово-кредитні механізми і управління майном при будівництві житла та операціях з нерухомістю (ст.4 з-ну Про фінпослуги)" enum_value="13" />
+      <xs:enumeration value="MortgageSecuritiesMngtIssue" description="п.13 операції з іпотечними активами з метою емісії іпотечних цінних паперів (ст.4 з-ну Про фінпослуги)" enum_value="14" />
+      <xs:enumeration value="OtherFinBankServices" description="п.14 банківські та інші фінансові послуги, що надаються відповідно до Закону України Про банки і банківську діяльність (ст.4 з-ну Про фінпослуги)" enum_value="15" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
