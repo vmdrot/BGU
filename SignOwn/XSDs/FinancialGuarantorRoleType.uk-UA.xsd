@@ -5,10 +5,10 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Guarantor" description="Гарантор" />
-          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" />
-          <xs:enumeration value="Attorney" description="Довірена особа" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Guarantor" description="Гарантор" enum_value="1" />
+          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" enum_value="2" />
+          <xs:enumeration value="Attorney" description="Довірена особа" enum_value="3" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

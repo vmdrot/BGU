@@ -14,12 +14,12 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Jurisdiction" type="CountryInfo" displayName="Країна юрисдикції">
+          <xs:element minOccurs="1" maxOccurs="1" name="Jurisdiction" type="CountryInfo" displayName="Країна юрисдикції" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityName" type="xs:string" type_ukr="текст" displayName="Назва органу">
+          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityName" type="xs:string" type_ukr="текст" displayName="Назва органу" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -28,7 +28,7 @@
              - Komisja Nadzoru Finansowego</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу(українською)">
+          <xs:element minOccurs="1" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу(українською)" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -37,14 +37,14 @@
              - Комісія надзору фінансовеґо - Комісія фінансового нагляду (Польща)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса">
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Максимальне заповнення полів</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти">
+          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

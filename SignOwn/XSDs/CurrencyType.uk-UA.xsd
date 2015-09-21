@@ -3,9 +3,9 @@
   <xs:element name="CurrencyType" type="CurrencyType" />
   <xs:simpleType name="CurrencyType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="NationalCurrency" description="Національна валюта" />
-      <xs:enumeration value="ForeignCurrencyAndBankingMetals" description="Іноземна валюта й банківські метали" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="NationalCurrency" description="Національна валюта" enum_value="1" />
+      <xs:enumeration value="ForeignCurrencyAndBankingMetals" description="Іноземна валюта й банківські метали" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

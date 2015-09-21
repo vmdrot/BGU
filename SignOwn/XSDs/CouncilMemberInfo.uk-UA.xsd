@@ -6,21 +6,21 @@
       <xs:documentation>Інформація про особу-члена керівного колегіального органу (наглядової ради, ради директорів, тощо)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Member" type="GenericPersonID" displayName="Член органу управління" description="Член органу управління">
+      <xs:element minOccurs="1" maxOccurs="1" name="Member" type="GenericPersonID" displayName="Член органу управління" description="Член органу управління" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Як завжди, тут тільки ідентифікатор особи; самі реквізити - в MentionedEntities (чи еквіваленті)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PositionName" type="xs:string" type_ukr="текст" displayName="Посада" description="Посада">
+      <xs:element minOccurs="1" maxOccurs="1" name="PositionName" type="xs:string" type_ukr="текст" displayName="Посада" description="Посада" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             за змовчанням - просто "член"</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="FunctionsDescription" type="xs:string" type_ukr="текст" displayName="Опис функцій" description="Опис функцій">
+      <xs:element minOccurs="0" maxOccurs="1" name="FunctionsDescription" type="xs:string" type_ukr="текст" displayName="Опис функцій" description="Опис функцій" field_order="3">
         <xs:annotation>
           <xs:documentation>У декотрих анкетах вимагається;</xs:documentation>
         </xs:annotation>

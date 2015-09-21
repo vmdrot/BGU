@@ -6,41 +6,41 @@
       <xs:documentation>Інформація про ліквідовану юр.особу</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Ліквідована юрособа">
+      <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Ліквідована юрособа" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Ідентифікатор, обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Court" type="CourtInfo" displayName="Суд" description="Суд на розгляді/у провадженні якого перебуває справа, чи котрий виніс рішення">
+      <xs:element minOccurs="1" maxOccurs="1" name="Court" type="CourtInfo" displayName="Суд" description="Суд на розгляді/у провадженні якого перебуває справа, чи котрий виніс рішення" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CaseNr" type="xs:string" type_ukr="текст" displayName="Справа №" description="№ справи про банкрутство/ліквідацію юр.особи (з реєстру судових рішень)" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" displayName="Статус (ліквідації чи банкрутства)">
+      <xs:element minOccurs="0" maxOccurs="1" name="CaseNr" type="xs:string" type_ukr="текст" displayName="Справа №" description="№ справи про банкрутство/ліквідацію юр.особи (з реєстру судових рішень)" field_order="3" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="InsolvencyStatus" displayName="Статус (ліквідації чи банкрутства)" field_order="4">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Юр.особу ліквідовано, чи вона збанкрутіла/неплатоспроможна</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття статусу (ліквідації чи банкрутства)">
+      <xs:element minOccurs="1" maxOccurs="1" name="DateEffective" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття статусу (ліквідації чи банкрутства)" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationReason" type="xs:string" type_ukr="текст" displayName="Причина ліквідації/банкрутства">
+      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationReason" type="xs:string" type_ukr="текст" displayName="Причина ліквідації/банкрутства" field_order="6">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationPretext" type="xs:string" type_ukr="текст" displayName="Підстава ліквідації/банкрутства">
+      <xs:element minOccurs="1" maxOccurs="1" name="LiquidationPretext" type="xs:string" type_ukr="текст" displayName="Підстава ліквідації/банкрутства" field_order="7">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -51,9 +51,9 @@
   </xs:complexType>
   <xs:simpleType name="InsolvencyStatus">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Insolvent" description="Банкрут" />
-      <xs:enumeration value="Liquidated" description="Ліквідовано" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Insolvent" description="Банкрут" enum_value="1" />
+      <xs:enumeration value="Liquidated" description="Ліквідовано" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />

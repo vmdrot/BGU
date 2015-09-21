@@ -3,12 +3,12 @@
   <xs:element name="OwnershipType" type="OwnershipType" />
   <xs:simpleType name="OwnershipType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Direct" description="Пряма власність" />
-      <xs:enumeration value="Implicit" description="Опосередкована власність" />
-      <xs:enumeration value="Associated" description="Власність через пов'язану особу" />
-      <xs:enumeration value="Agreement" description="Власність через угоду/договір" />
-      <xs:enumeration value="Attorney" description="Власність по довіреності" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Direct" description="Пряма власність" enum_value="1" />
+      <xs:enumeration value="Implicit" description="Опосередкована власність" enum_value="2" />
+      <xs:enumeration value="Associated" description="Власність через пов'язану особу" enum_value="3" />
+      <xs:enumeration value="Agreement" description="Власність через угоду/договір" enum_value="4" />
+      <xs:enumeration value="Attorney" description="Власність по довіреності" enum_value="5" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

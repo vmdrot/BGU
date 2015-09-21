@@ -6,7 +6,7 @@
       <xs:documentation>Структура для зберігання відомостей про надану гарантію, поручительство, тощо</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо">
+      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -14,21 +14,21 @@
             обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)">
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо">
+      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="з яких питань">
+      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="з яких питань" field_order="4">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -41,10 +41,10 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Guarantor" description="Гарантор" />
-          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" />
-          <xs:enumeration value="Attorney" description="Довірена особа" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Guarantor" description="Гарантор" enum_value="1" />
+          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" enum_value="2" />
+          <xs:enumeration value="Attorney" description="Довірена особа" enum_value="3" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

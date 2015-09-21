@@ -8,37 +8,37 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину">
+          <xs:element minOccurs="1" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині">
+          <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" field_order="3" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="LegalTransactionPartyRoleType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Buyer" description="Продавець" />
-      <xs:enumeration value="Seller" description="Покупець" />
-      <xs:enumeration value="Grantor" description="Дарувач" />
-      <xs:enumeration value="Grantee" description="Дароотримувач" />
-      <xs:enumeration value="Legator" description="Заповідач" />
-      <xs:enumeration value="Inheritor" description="Спадкоємець" />
-      <xs:enumeration value="Gurantor" description="Поручитель" />
-      <xs:enumeration value="Creditor" description="Кредитор" />
-      <xs:enumeration value="Borrower" description="Позичальник" />
-      <xs:enumeration value="Obligor" description="Боржник" />
-      <xs:enumeration value="Pledger" description="Застоводавець" />
-      <xs:enumeration value="Pledgee" description="Заставоутримувач" />
-      <xs:enumeration value="Other" description="Інше" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Buyer" description="Продавець" enum_value="1" />
+      <xs:enumeration value="Seller" description="Покупець" enum_value="2" />
+      <xs:enumeration value="Grantor" description="Дарувач" enum_value="3" />
+      <xs:enumeration value="Grantee" description="Дароотримувач" enum_value="4" />
+      <xs:enumeration value="Legator" description="Заповідач" enum_value="5" />
+      <xs:enumeration value="Inheritor" description="Спадкоємець" enum_value="6" />
+      <xs:enumeration value="Gurantor" description="Поручитель" enum_value="7" />
+      <xs:enumeration value="Creditor" description="Кредитор" enum_value="8" />
+      <xs:enumeration value="Borrower" description="Позичальник" enum_value="9" />
+      <xs:enumeration value="Obligor" description="Боржник" enum_value="10" />
+      <xs:enumeration value="Pledger" description="Застоводавець" enum_value="11" />
+      <xs:enumeration value="Pledgee" description="Заставоутримувач" enum_value="12" />
+      <xs:enumeration value="Other" description="Інше" enum_value="13" />
     </xs:restriction>
   </xs:simpleType>
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />

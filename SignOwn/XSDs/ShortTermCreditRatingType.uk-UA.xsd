@@ -3,14 +3,14 @@
   <xs:element name="ShortTermCreditRatingType" type="ShortTermCreditRatingType" />
   <xs:simpleType name="ShortTermCreditRatingType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="A1" description="A-1" />
-      <xs:enumeration value="A2" description="A-2" />
-      <xs:enumeration value="A3" description="A-3" />
-      <xs:enumeration value="B" description="B" />
-      <xs:enumeration value="C" description="C" />
-      <xs:enumeration value="D" description="D" />
-      <xs:enumeration value="Other" description="Інше (вказати)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="A1" description="A-1" enum_value="1" />
+      <xs:enumeration value="A2" description="A-2" enum_value="2" />
+      <xs:enumeration value="A3" description="A-3" enum_value="3" />
+      <xs:enumeration value="B" description="B" enum_value="4" />
+      <xs:enumeration value="C" description="C" enum_value="5" />
+      <xs:enumeration value="D" description="D" enum_value="6" />
+      <xs:enumeration value="Other" description="Інше (вказати)" enum_value="7" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

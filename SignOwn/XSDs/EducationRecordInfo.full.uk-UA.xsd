@@ -9,33 +9,33 @@
 Див.також: https://osvita.net/ua/checkdoc/</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" displayName="ВНЗ" description="ВНЗ - університет, інститут, коледж, тощо">
+      <xs:element minOccurs="1" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" displayName="ВНЗ" description="ВНЗ - університет, інститут, коледж, тощо" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата закінчення">
+      <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата закінчення" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле; достатньо рік, або рік і місяць</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" displayName="Тип диплома">
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" displayName="Тип диплома" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" displayName="Тип відзнаки">
+      <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" displayName="Тип відзнаки" field_order="4">
         <xs:annotation>
           <xs:documentation>необов'язкове поле (подавачі самі зацікавлені)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома">
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -43,7 +43,7 @@
             іншої країни - на віру</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома">
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома" field_order="6">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -54,14 +54,14 @@
 Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo.DegreeSeries</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність/фах">
+      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність/фах" field_order="7">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язково</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Спеціалізація">
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Спеціалізація" field_order="8">
         <xs:annotation>
           <xs:documentation>Якщо передбачено</xs:documentation>
         </xs:annotation>
@@ -75,27 +75,27 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="UniversityName" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ" description="Назва вищого навчального закладу оригінальною мовою">
+          <xs:element minOccurs="1" maxOccurs="1" name="UniversityName" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ" description="Назва вищого навчального закладу оригінальною мовою" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ (українською)" description="Назва вищого навчального закладу оригінальною мовою українською (якщо оригінальна мова інша">
+          <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва ВНЗ (українською)" description="Назва вищого навчального закладу оригінальною мовою українською (якщо оригінальна мова інша" field_order="2">
             <xs:annotation>
               <xs:documentation>Обов'язкове, якщо ВНЗ - не український, відповідно, 
             назва оригінальна потребує перекладу/транслітерації українською.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса ВНЗ">
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса ВНЗ" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Хоча б місто й країна</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор ВНЗ" description="Ідентифікатор ВНЗ - якщо є/передбачений">
+          <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор ВНЗ" description="Ідентифікатор ВНЗ - якщо є/передбачений" field_order="4">
             <xs:annotation>
               <xs:documentation>Не певен, чи десь існують ці ідентифікатори - 
             у нас їх немає, але можуть запровадити.
@@ -110,15 +110,15 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" />
-          <xs:enumeration value="Master" description="Магістр" />
-          <xs:enumeration value="MBA" description="MBA" />
-          <xs:enumeration value="CandidateDoctor" description="Кандидат наук" />
-          <xs:enumeration value="PhD" description="PhD" />
-          <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" />
-          <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" />
-          <xs:enumeration value="Professor" description="Професор" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
+          <xs:enumeration value="Master" description="Магістр" enum_value="2" />
+          <xs:enumeration value="MBA" description="MBA" enum_value="3" />
+          <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
+          <xs:enumeration value="PhD" description="PhD" enum_value="5" />
+          <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
+          <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
+          <xs:enumeration value="Professor" description="Професор" enum_value="8" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>
@@ -127,14 +127,14 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" />
-          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" />
-          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" />
-          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" />
-          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" />
-          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" />
-          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" enum_value="1" />
+          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" enum_value="2" />
+          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" enum_value="3" />
+          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" enum_value="4" />
+          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
+          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
+          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

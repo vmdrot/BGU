@@ -19,24 +19,24 @@
     <xs:complexContent mixed="false">
       <xs:extension base="QuestionnaireBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк" description="Банк">
+          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк" description="Банк" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Лише укр.банки, лише головні контори</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про особу" category="І. Інформація про фізичну особу">
+          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про особу" category="І. Інформація про фізичну особу" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Досвід роботи" description="1.8. Займані посади за останні п'ять років" category="І. Інформація про фізичну особу">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Досвід роботи" description="1.8. Займані посади за останні п'ять років" category="І. Інформація про фізичну особу" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="1.6. Перелік банків, у яких відкрито рахунки" category="І. Інформація про фізичну особу">
+          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="1.6. Перелік банків, у яких відкрито рахунки" category="І. Інформація про фізичну особу" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -44,26 +44,26 @@
             Якщо він хоче вказати №№-и рахунків - не забороняти :)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="5. Наявна участь у банку" description="5. Інформація про розмір наявної участі фізичної особи в банку" category="І. Інформація про фізичну особу">
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="5. Наявна участь у банку" description="5. Інформація про розмір наявної участі фізичної особи в банку" category="І. Інформація про фізичну особу" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsBankAssociatedPerson" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" />
-          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPeronsCode315p" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" />
-          <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" displayName="6. Наміри щодо набуття/збільшення участі" description="6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBankAssociatedPerson" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" field_order="6" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPeronsCode315p" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" field_order="7" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" displayName="6. Наміри щодо набуття/збільшення участі" description="6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="8">
             <xs:annotation>
               <xs:documentation>6. Інформація про розмір участі, що набувається (збільшується):
             Наміри щодо набуття/збільшення участі в банку</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="7. Майбутня участь особи в банку" description="7. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" displayName="7. Майбутня участь особи в банку" description="7. Інформація про розмір участі, що набувається (збільшується): Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="9">
             <xs:annotation>
               <xs:documentation>6. Інформація про розмір участі, що набувається (збільшується):
             Майбутня участь особи в банку з урахуванням намірів щодо набуття/збільшення істотної участі</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" displayName="8. Спосіб(-оби) набуття/збільшення істотної участі в банку" description="8. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="1" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" displayName="8. Спосіб(-оби) набуття/збільшення істотної участі в банку" description="8. Набуття/збільшення істотної участі в банку відбуватиметься у спосіб (зазначити необхідне)" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="10">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -76,31 +76,31 @@
             набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" displayName="Придбання на первинному ринку" description="9. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="0" maxOccurs="1" name="IPOPurchase" type="ArrayOfIPOSharesPurchaseInfo" displayName="Придбання на первинному ринку" description="9. Інформація про намір щодо придбання акцій (паїв) банку на первинному ринку:" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="11">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    AcquisitionWays.IsIPO == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="10. Придбання на вторинному ринку" description="10. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="0" maxOccurs="1" name="SecondaryMarketPurchases" type="ArrayOfSecondaryMarketSharesPurchaseInfo" displayName="10. Придбання на вторинному ринку" description="10. Інформація про намір щодо придбання акцій (паїв) банку на вторинному ринку та/або стосовно правочинів щодо набуття (збільшення) опосередкованої участі в банку (крім набуття істотної участі в результаті передавання особі права голосу або незалежно від формального володіння)" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="12">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    AcquisitionWays.IsSecondaryMarketPurchase == true || AcquisitionWays.IsPurchaseByImplicitOwnership == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByPoAttorneys" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" displayName="11. Набуття за довіреністю" description="11. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByPoAttorneys" type="ArrayOfPowerOfAttorneySharesPurchaseInfo" displayName="11. Набуття за довіреністю" description="11. Інформація про намір щодо набуття опосередкованої істотної участі в банку за довіреністю" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="13">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    AcquisitionWays.IsPurchaseByPowOfAtt == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" displayName="12. Набуття у зв’язку із здійсненням впливу" description="12. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="0" maxOccurs="1" name="AquisitionByInfluence" type="ArrayOfSignificantOrDecisiveInfulenceInfo" displayName="12. Набуття у зв’язку із здійсненням впливу" description="12. Інформація про набуття опосередкованої істотної участі в банку у зв’язку із здійсненням значного або вирішального впливу на управління та діяльність банку незалежно від формального володіння" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="14">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    AcquisitionWays.IsAcquireByImplicitInfluence == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="13. Джерела  походження коштів фізичної особи" description="13. Джерела походження коштів фізичної особи, за рахунок яких набуватиметься істотна участь у банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку">
+          <xs:element minOccurs="1" maxOccurs="1" name="FundsOrigin" type="ArrayOfIncomeOriginInfo" displayName="13. Джерела  походження коштів фізичної особи" description="13. Джерела походження коштів фізичної особи, за рахунок яких набуватиметься істотна участь у банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="15">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -109,13 +109,13 @@
             (прибуток, частина статутного капіталу, кошти фонду тощо)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="14. Асоційовані особи фізичної особи" description="14. Асоційовані особи фізичної особи; &#xA;Відомості про пов'язаних осіб, що згадуються в анкеті;&#xA;Зв'язки між особами-фігурантами анкети." category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="0" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="14. Асоційовані особи фізичної особи" description="14. Асоційовані особи фізичної особи; &#xA;Відомості про пов'язаних осіб, що згадуються в анкеті;&#xA;Зв'язки між особами-фігурантами анкети." category="ІІІ. Відносини фізичної особи з іншими особами" field_order="16">
             <xs:annotation>
               <xs:documentation>Якщо є; попередження про відповідальність 
             за подачу завідомо неправдивих відомостей</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="15, 16, 17. Розшифровка ланцюжків власності" description="Розшифровка ланцюжків власності усіх структур-фігурантів анкети:&#xA; 15. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником&#xA; 17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є власниками істотної участі &#xA; 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи" category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="15, 16, 17. Розшифровка ланцюжків власності" description="Розшифровка ланцюжків власності усіх структур-фігурантів анкети:&#xA; 15. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником&#xA; 17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є власниками істотної участі &#xA; 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="17">
             <xs:annotation>
               <xs:documentation>1. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником
             14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи
@@ -124,14 +124,14 @@
             Доцільно розшифровку ланцюжків власності усіх структур, що фігурують в анкеті, скласти в це одне поле, оскільки не виключено, що власники-юр.особи повторюватимуться/фігуруватимуть в різних іпостасях в усіх 3-х пунктах (себто, і 13, і 14, і 15)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsCurrently3rdPartyBoardMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="16. Входить до складу органів управління юридичних осіб" description="(відзначити, якщо фізична особа-заявник або асоційовані з нею особи входять до складу органів управління юридичних осіб)" category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsCurrently3rdPartyBoardMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="16. Входить до складу органів управління юридичних осіб" description="(відзначити, якщо фізична особа-заявник або асоційовані з нею особи входять до складу органів управління юридичних осіб)" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="18">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа:</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="MembershipIn3rdPartyBoards" type="ArrayOfCouncilBodyInfo" displayName="16. Членство в керівних органах юр.осіб" description="16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа&#xA;17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є керівниками" category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="0" maxOccurs="1" name="MembershipIn3rdPartyBoards" type="ArrayOfCouncilBodyInfo" displayName="16. Членство в керівних органах юр.осіб" description="16. Перелік юридичних осіб, до складу органів управління яких входить фізична особа&#xA;17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є керівниками" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="19">
             <xs:annotation>
               <xs:documentation>________________________________________________________________________________
             
@@ -144,7 +144,7 @@
             Поле заповнюється якщо IsCurrently3rdPartyBoardMember == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Is3rdPartiesGuarantor" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб?" description="18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб з фінансових, майнових і корпоративних питань?" category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="1" maxOccurs="1" name="Is3rdPartiesGuarantor" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб?" description="18. Чи є Ви довіреною особою, гарантом або поручителем інших осіб з фінансових, майнових і корпоративних питань?" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="20">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -154,20 +154,20 @@
               (яких саме і з яких питань)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="FinGuaranteesDetails" type="ArrayOfFinancialGuaranteeInfo" displayName="18. Деталі гарантій та поручительств щодо інших осіб" description="18. Інформація щодо правовідносин, у яких фізична особа є поручителем (гарантом)" category="ІІІ. Відносини фізичної особи з іншими особами">
+          <xs:element minOccurs="0" maxOccurs="1" name="FinGuaranteesDetails" type="ArrayOfFinancialGuaranteeInfo" displayName="18. Деталі гарантій та поручительств щодо інших осіб" description="18. Інформація щодо правовідносин, у яких фізична особа є поручителем (гарантом)" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="21">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    Is3rdPartiesGuarantor == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="19. Чи є кредити, одержані й непогашені фізичною особою  в  банках?" description="(Станом на дату подання анкети)" category="IV. Ділова репутація">
+          <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="19. Чи є кредити, одержані й непогашені фізичною особою  в  банках?" description="(Станом на дату подання анкети)" category="IV. Ділова репутація" field_order="22">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             19. Інформація про кредити, одержані фізичною особою</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" displayName="19. Інформація про кредити, одержані фізичною особою" description="(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)" category="IV. Ділова репутація">
+          <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" displayName="19. Інформація про кредити, одержані фізичною особою" description="(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)" category="IV. Ділова репутація" field_order="23">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasOutstandingLoansWithBanks == true
@@ -175,7 +175,7 @@
             19. Інформація про кредити, одержані фізичною особою:</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="20. Стверджую, що немає ознак відсутності бездоганної ділової репутації" description="Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування фізичної особи" category="IV. Ділова репутація">
+          <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="20. Стверджую, що немає ознак відсутності бездоганної ділової репутації" description="Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається повне найменування фізичної особи" category="IV. Ділова репутація" field_order="24">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -186,7 +186,7 @@
             бездоганної ділової репутації].</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="20. Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації" category="IV. Ділова репутація">
+          <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="20. Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації" category="IV. Ділова репутація" field_order="25">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    HasNoImperfectReputationSigns == false
@@ -196,26 +196,26 @@
             бездоганної ділової репутації].</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="21. Вимоги законодавства дотримано" description="21. Стверджую, що _______ (зазначається прізвище, ім’я та по батькові фізичної особи) належним чином виконує&#xA;вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації&#xA;(відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму." category="IV. Ділова репутація">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="21. Вимоги законодавства дотримано" description="21. Стверджую, що _______ (зазначається прізвище, ім’я та по батькові фізичної особи) належним чином виконує&#xA;вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації&#xA;(відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму." category="IV. Ділова репутація" field_order="26">
             <xs:annotation>
               <xs:documentation>Стверджую, що _______ (зазначається прізвище, ім’я та по батькові фізичної особи) належним чином виконує
             вимоги законодавства України або законодавства країни свого громадянства з питань запобігання та протидії легалізації
             (відмиванню) доходів, одержаних злочинним шляхом, та фінансування тероризму.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п.">
+          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п." field_order="27">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети" category="Підписи і т.п.">
+          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети" category="Підписи і т.п." field_order="28">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Звичайні вимоги до повноти заповнення подібного типу даних...</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Реквізити осіб-фігурантів анкети" description="Повна інформація про осіб, що згадуються в анкеті">
+          <xs:element minOccurs="1" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Реквізити осіб-фігурантів анкети" description="Повна інформація про осіб, що згадуються в анкеті" field_order="29">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

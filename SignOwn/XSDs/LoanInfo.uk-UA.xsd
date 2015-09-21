@@ -11,13 +11,13 @@
     <xs:complexContent mixed="false">
       <xs:extension base="IndebtnessInfoBase">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="LendingBank" type="BankInfo" displayName="Банк-позичальник" description="Банк, що надав кредит" />
-          <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" type_ukr="текст" displayName="№ договору">
+          <xs:element minOccurs="0" maxOccurs="1" name="LendingBank" type="BankInfo" displayName="Банк-позичальник" description="Банк, що надав кредит" field_order="1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AgreementNr" type="xs:string" type_ukr="текст" displayName="№ договору" field_order="2">
             <xs:annotation>
               <xs:documentation>для банківських позик - обов'язковий</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата договору">
+          <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата договору" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

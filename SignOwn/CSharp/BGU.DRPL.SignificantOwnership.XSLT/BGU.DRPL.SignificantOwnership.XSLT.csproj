@@ -37,6 +37,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="ForXSDs\BGU.XSDRenderingTemplate.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ForXSDs\XSDUkrSimpleType.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ForXSDs\XSDUkrComplexType.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Samples\Appx2OwnershipStructLP.sample.xml" />
     <Content Include="Samples\Appx2OwnershipStructLP.XSLTEnabled.xml">
       <SubType>Designer</SubType>

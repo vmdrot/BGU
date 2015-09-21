@@ -3,12 +3,12 @@
   <xs:element name="WorkingHoursDayType" type="WorkingHoursDayType" />
   <xs:simpleType name="WorkingHoursDayType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="WorkWeekDay" description="Будній день" />
-      <xs:enumeration value="WeekEndDay" description="Вихідний" />
-      <xs:enumeration value="Holiday" description="Святковий день" />
-      <xs:enumeration value="AnyDay" description="Усі дні" />
-      <xs:enumeration value="ParticularDay" description="Конкретний день тижня" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="WorkWeekDay" description="Будній день" enum_value="1" />
+      <xs:enumeration value="WeekEndDay" description="Вихідний" enum_value="2" />
+      <xs:enumeration value="Holiday" description="Святковий день" enum_value="3" />
+      <xs:enumeration value="AnyDay" description="Усі дні" enum_value="4" />
+      <xs:enumeration value="ParticularDay" description="Конкретний день тижня" enum_value="5" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -12,16 +12,16 @@
 Див.також: http://en.wikipedia.org/wiki/Moody%27s_Investors_Service#Moody.27s_credit_ratings</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Moodys" description="Moody's Investor Service" />
-      <xs:enumeration value="Fitch" description="Fitch Ratings" />
-      <xs:enumeration value="SAndP" description="Не вказано" />
-      <xs:enumeration value="DRBS" description="Standard &amp; Poors" />
-      <xs:enumeration value="Dagong" description="Dagong Credit Rating (та дочірні рейтингові компанії)" />
-      <xs:enumeration value="JCR" description="Japan Credit Rating" />
-      <xs:enumeration value="ACR" description="ARC Ratings, S.A." />
-      <xs:enumeration value="UCRA" description="Українська кредитна рейтингова аґенція" />
-      <xs:enumeration value="Other" description="Інша" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Moodys" description="Moody's Investor Service" enum_value="1" />
+      <xs:enumeration value="Fitch" description="Fitch Ratings" enum_value="2" />
+      <xs:enumeration value="SAndP" description="Не вказано" enum_value="3" />
+      <xs:enumeration value="DRBS" description="Standard &amp; Poors" enum_value="4" />
+      <xs:enumeration value="Dagong" description="Dagong Credit Rating (та дочірні рейтингові компанії)" enum_value="5" />
+      <xs:enumeration value="JCR" description="Japan Credit Rating" enum_value="6" />
+      <xs:enumeration value="ACR" description="ARC Ratings, S.A." enum_value="7" />
+      <xs:enumeration value="UCRA" description="Українська кредитна рейтингова аґенція" enum_value="8" />
+      <xs:enumeration value="Other" description="Інша" enum_value="9" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

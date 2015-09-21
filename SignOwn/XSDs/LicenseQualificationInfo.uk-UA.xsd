@@ -9,12 +9,12 @@
 Див.також: http://kodeksy.com.ua/buh/kp.htm</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="QualificationCode" type="xs:string" type_ukr="текст" displayName="Код професії/діяльності (якщо існує)" description="Код професії згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)">
+      <xs:element minOccurs="0" maxOccurs="1" name="QualificationCode" type="xs:string" type_ukr="текст" displayName="Код професії/діяльності (якщо існує)" description="Код професії згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)" field_order="1">
         <xs:annotation>
           <xs:documentation>Якщо існує</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="QualificationName" type="xs:string" type_ukr="текст" displayName="Назва професії/діяльності" description="Назва професії/виду ліцензованої діяльності згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)">
+      <xs:element minOccurs="1" maxOccurs="1" name="QualificationName" type="xs:string" type_ukr="текст" displayName="Назва професії/діяльності" description="Назва професії/виду ліцензованої діяльності згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

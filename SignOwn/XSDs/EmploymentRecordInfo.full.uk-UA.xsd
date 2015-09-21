@@ -9,14 +9,14 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" displayName="Тип зайнятості">
+          <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" displayName="Тип зайнятості" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове поле</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець">
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець" field_order="2">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    State == Employed
@@ -25,51 +25,51 @@
             Посилання - реквізити в MentionedEntities</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів" field_order="3">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    State == Freelance OR State == Selfemployed</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="4">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    State == Freelance OR State == Selfemployed</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція">
+          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове, вільний формат</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="6">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове, з точністю до місяця</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="7">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="8">
             <xs:annotation>
               <xs:documentation>з точністю до місяця
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності">
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину">
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="10">
             <xs:annotation>
               <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
@@ -77,7 +77,7 @@
             - VoluntaryQuit</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -93,11 +93,11 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Employed" description="Найманий працівник" />
-          <xs:enumeration value="Selfemployed" description="Самозайнятість" />
-          <xs:enumeration value="Freelance" description="Фрілансер" />
-          <xs:enumeration value="Unemployed" description="Безробітний" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Employed" description="Найманий працівник" enum_value="1" />
+          <xs:enumeration value="Selfemployed" description="Самозайнятість" enum_value="2" />
+          <xs:enumeration value="Freelance" description="Фрілансер" enum_value="3" />
+          <xs:enumeration value="Unemployed" description="Безробітний" enum_value="4" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>
@@ -106,15 +106,15 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" />
-          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." />
-          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" />
-          <xs:enumeration value="Retired" description="Вихід на пенсію" />
-          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" />
-          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" />
-          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" />
-          <xs:enumeration value="OtherLeaveType" description="Інше" />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
+          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
+          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
+          <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
+          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
+          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
+          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
+          <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

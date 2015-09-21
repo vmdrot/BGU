@@ -11,24 +11,24 @@
 Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст" field_order="1">
         <xs:annotation>
           <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
             Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
         <xs:annotation>
           <xs:documentation>Назва країни англ. мовою</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст">
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

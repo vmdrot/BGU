@@ -9,18 +9,18 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" displayName="Тип походження" description="Тип походження коштів / доходів ...">
+          <xs:element minOccurs="1" maxOccurs="1" name="Origin" type="FundsOriginType" displayName="Тип походження" description="Тип походження коштів / доходів ..." field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OriginOther" type="xs:string" type_ukr="текст" displayName="Тип походження(інший)" description="Тип походження коштів / доходів, якщо вказано 'Інше'" />
-          <xs:element minOccurs="1" maxOccurs="1" name="Income" type="CurrencyAmount" displayName="Сума доходу">
+          <xs:element minOccurs="0" maxOccurs="1" name="OriginOther" type="xs:string" type_ukr="текст" displayName="Тип походження(інший)" description="Тип походження коштів / доходів, якщо вказано 'Інше'" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Income" type="CurrencyAmount" displayName="Сума доходу" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" type_ukr="текст" displayName="Опис та деталі щодо джерела доходу">
+          <xs:element minOccurs="1" maxOccurs="1" name="IncomeOriginNotes" type="xs:string" type_ukr="текст" displayName="Опис та деталі щодо джерела доходу" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

@@ -12,30 +12,30 @@
 Див.також: http://uba.ua/documents/doc/bevza.pdf</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Husband" description="чоловік" />
-      <xs:enumeration value="Wife" description="дружина" />
-      <xs:enumeration value="Son" description="син" />
-      <xs:enumeration value="Daughter" description="дочка" />
-      <xs:enumeration value="Father" description="батько" />
-      <xs:enumeration value="Mother" description="мати" />
-      <xs:enumeration value="Patron" description="опікун/-ка" />
-      <xs:enumeration value="Brother" description="брат" />
-      <xs:enumeration value="Sister" description="сестра" />
-      <xs:enumeration value="FatherInLaw" description="тесть/свекор" />
-      <xs:enumeration value="MotherInLaw" description="теща/свекруха" />
-      <xs:enumeration value="SonInLaw" description="зять" />
-      <xs:enumeration value="DaughterInLaw" description="невістка" />
-      <xs:enumeration value="BrotherInLaw" description="шурин/дівер/зять" />
-      <xs:enumeration value="SisterInLaw" description="сестра чоловіка" />
-      <xs:enumeration value="Cousin" description="двоюрідні брат/сестра" />
-      <xs:enumeration value="GrandFather" description="дід" />
-      <xs:enumeration value="GrandMother" description="баба" />
-      <xs:enumeration value="GrandSon" description="онук" />
-      <xs:enumeration value="GrandDaughter" description="онука" />
-      <xs:enumeration value="NephewNiece" description="племінник(-ця) / небіж / небога" />
-      <xs:enumeration value="AuncleAunt" description="дядько / тітка / дядина" />
-      <xs:enumeration value="OtherRelative" description="інший родич" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Husband" description="чоловік" enum_value="1" />
+      <xs:enumeration value="Wife" description="дружина" enum_value="2" />
+      <xs:enumeration value="Son" description="син" enum_value="3" />
+      <xs:enumeration value="Daughter" description="дочка" enum_value="4" />
+      <xs:enumeration value="Father" description="батько" enum_value="5" />
+      <xs:enumeration value="Mother" description="мати" enum_value="6" />
+      <xs:enumeration value="Patron" description="опікун/-ка" enum_value="7" />
+      <xs:enumeration value="Brother" description="брат" enum_value="8" />
+      <xs:enumeration value="Sister" description="сестра" enum_value="9" />
+      <xs:enumeration value="FatherInLaw" description="тесть/свекор" enum_value="10" />
+      <xs:enumeration value="MotherInLaw" description="теща/свекруха" enum_value="11" />
+      <xs:enumeration value="SonInLaw" description="зять" enum_value="12" />
+      <xs:enumeration value="DaughterInLaw" description="невістка" enum_value="13" />
+      <xs:enumeration value="BrotherInLaw" description="шурин/дівер/зять" enum_value="14" />
+      <xs:enumeration value="SisterInLaw" description="сестра чоловіка" enum_value="15" />
+      <xs:enumeration value="Cousin" description="двоюрідні брат/сестра" enum_value="16" />
+      <xs:enumeration value="GrandFather" description="дід" enum_value="17" />
+      <xs:enumeration value="GrandMother" description="баба" enum_value="18" />
+      <xs:enumeration value="GrandSon" description="онук" enum_value="19" />
+      <xs:enumeration value="GrandDaughter" description="онука" enum_value="20" />
+      <xs:enumeration value="NephewNiece" description="племінник(-ця) / небіж / небога" enum_value="21" />
+      <xs:enumeration value="AuncleAunt" description="дядько / тітка / дядина" enum_value="22" />
+      <xs:enumeration value="OtherRelative" description="інший родич" enum_value="23" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -5,9 +5,9 @@
     <xs:list>
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" />
-          <xs:enumeration value="Male" description="Чол." />
-          <xs:enumeration value="Female" description="Жін." />
+          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+          <xs:enumeration value="Male" description="Чол." enum_value="1" />
+          <xs:enumeration value="Female" description="Жін." enum_value="2" />
         </xs:restriction>
       </xs:simpleType>
     </xs:list>

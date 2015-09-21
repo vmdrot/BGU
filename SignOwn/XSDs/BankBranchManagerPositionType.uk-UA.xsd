@@ -3,10 +3,10 @@
   <xs:element name="BankBranchManagerPositionType" type="BankBranchManagerPositionType" />
   <xs:simpleType name="BankBranchManagerPositionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="BranchManager" description="Керуючий філією" />
-      <xs:enumeration value="OutletManager" description="Керуючий відділенням" />
-      <xs:enumeration value="OtherManager" description="Інший керівник підрозділу (вказати додатково)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="BranchManager" description="Керуючий філією" enum_value="1" />
+      <xs:enumeration value="OutletManager" description="Керуючий відділенням" enum_value="2" />
+      <xs:enumeration value="OtherManager" description="Інший керівник підрозділу (вказати додатково)" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

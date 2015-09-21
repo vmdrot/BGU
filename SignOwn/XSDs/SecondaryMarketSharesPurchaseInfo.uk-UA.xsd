@@ -11,32 +11,32 @@
     <xs:complexContent mixed="false">
       <xs:extension base="IPOSharesPurchaseInfo">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Актив, що набувається" description="Банк або ж юр.особа - власник участі в банку (прямої чи опосередкованої)">
+          <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Актив, що набувається" description="Банк або ж юр.особа - власник участі в банку (прямої чи опосередкованої)" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" displayName="Попередній власник" description="Власник, від якого переходитиме власність">
+          <xs:element minOccurs="1" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" displayName="Попередній власник" description="Власник, від якого переходитиме власність" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" displayName="Правочин" description="Інформація про відповідний правочин">
+          <xs:element minOccurs="1" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" displayName="Правочин" description="Інформація про відповідний правочин" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%, що набувається" description="Відсоток у статутному капіталі юридичної особи або банку, який придбавається">
+          <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%, що набувається" description="Відсоток у статутному капіталі юридичної особи або банку, який придбавається" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" displayName="Номінальна вартість" description="Загальна номінальна вартість акцій (часток, паїв), які придбаваються">
+          <xs:element minOccurs="1" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" displayName="Номінальна вартість" description="Загальна номінальна вартість акцій (часток, паїв), які придбаваються" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" displayName="Ціна реальної угоди" description="Ціна акцій (часток, паїв), які придбаваються ( Може зазначатися ціна, яка попередньо погоджена сторонами відповідно до проекту договору купівлі-продажу акцій банку ...)">
+          <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" displayName="Ціна реальної угоди" description="Ціна акцій (часток, паїв), які придбаваються ( Може зазначатися ціна, яка попередньо погоджена сторонами відповідно до проекту договору купівлі-продажу акцій банку ...)" field_order="6">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>

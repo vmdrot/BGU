@@ -6,12 +6,12 @@
       <xs:documentation>Особа + її/його трудова біографія</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Особа, чию трудову біографію треба розкрити">
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Особа, чию трудову біографію треба розкрити" field_order="1">
         <xs:annotation>
           <xs:documentation>Сама особа (ідентифікатор)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentHistory" type="ArrayOfEmploymentRecordInfo" displayName="Трудова біографія" description="Досвід роботи особи">
+      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentHistory" type="ArrayOfEmploymentRecordInfo" displayName="Трудова біографія" description="Досвід роботи особи" field_order="2">
         <xs:annotation>
           <xs:documentation>Трудова біографія особи</xs:documentation>
         </xs:annotation>

@@ -6,7 +6,7 @@
       <xs:documentation>Інформація про ліцензію на зайняття професійною діяльністю</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssuer" type="ProfessionLicensingBodyInfo" displayName="Ліцензор">
+      <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssuer" type="ProfessionLicensingBodyInfo" displayName="Ліцензор" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -14,29 +14,29 @@
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі">
+      <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LicenseValidTill" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до">
+      <xs:element minOccurs="1" maxOccurs="1" name="LicenseValidTill" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до" field_order="3">
         <xs:annotation>
           <xs:documentation>якщо не вказана - дійсна довічно</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="LicenseIDNr" type="xs:string" type_ukr="текст" displayName="№ ліцензії">
+      <xs:element minOccurs="0" maxOccurs="1" name="LicenseIDNr" type="xs:string" type_ukr="текст" displayName="№ ліцензії" field_order="4">
         <xs:annotation>
           <xs:documentation>якщо передбачено</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="LicenseQualifications" type="ArrayOfLicenseQualificationInfo" displayName="Кваліфікації/види діяльності за ліцензією">
+      <xs:element minOccurs="1" maxOccurs="1" name="LicenseQualifications" type="ArrayOfLicenseQualificationInfo" displayName="Кваліфікації/види діяльності за ліцензією" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="LicenseClause" type="xs:string" type_ukr="текст" displayName="Формулювання/текст ліцензії" description="Додаткові суттєві відомості про ліцензію">
+      <xs:element minOccurs="0" maxOccurs="1" name="LicenseClause" type="xs:string" type_ukr="текст" displayName="Формулювання/текст ліцензії" description="Додаткові суттєві відомості про ліцензію" field_order="6">
         <xs:annotation>
           <xs:documentation>Якщо недостатньо поля LicenseQualifications</xs:documentation>
         </xs:annotation>
@@ -52,19 +52,19 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора">
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Назва оригінальною мовою</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)">
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва ліцензіатора(укр.)" field_order="2">
             <xs:annotation>
               <xs:documentation>Назва українською (якщо нерезидент)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)">
+          <xs:element minOccurs="1" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Реквізити юрособи (ліцензіатора)" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -88,12 +88,12 @@
 Див.також: http://kodeksy.com.ua/buh/kp.htm</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="QualificationCode" type="xs:string" type_ukr="текст" displayName="Код професії/діяльності (якщо існує)" description="Код професії згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)">
+      <xs:element minOccurs="0" maxOccurs="1" name="QualificationCode" type="xs:string" type_ukr="текст" displayName="Код професії/діяльності (якщо існує)" description="Код професії згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)" field_order="1">
         <xs:annotation>
           <xs:documentation>Якщо існує</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="QualificationName" type="xs:string" type_ukr="текст" displayName="Назва професії/діяльності" description="Назва професії/виду ліцензованої діяльності згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)">
+      <xs:element minOccurs="1" maxOccurs="1" name="QualificationName" type="xs:string" type_ukr="текст" displayName="Назва професії/діяльності" description="Назва професії/виду ліцензованої діяльності згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 

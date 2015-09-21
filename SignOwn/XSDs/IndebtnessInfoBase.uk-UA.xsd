@@ -8,58 +8,58 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Кредитор є банком" description="(відзначте галочку, якщо позику було взято у банку, або ж зніміть, якщо борг виник перед особою, що не є банком)" />
-          <xs:element minOccurs="1" maxOccurs="1" name="Lender" type="GenericPersonID" displayName="Кредитор" description="(інший кредитор, окрім банків)">
+          <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsBankDebt" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Кредитор є банком" description="(відзначте галочку, якщо позику було взято у банку, або ж зніміть, якщо борг виник перед особою, що не є банком)" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Lender" type="GenericPersonID" displayName="Кредитор" description="(інший кредитор, окрім банків)" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Borrower" type="GenericPersonID" displayName="Позичальник">
+          <xs:element minOccurs="1" maxOccurs="1" name="Borrower" type="GenericPersonID" displayName="Позичальник" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DebtSubject" type="xs:string" type_ukr="текст" displayName="Суть заборгованості">
+          <xs:element minOccurs="1" maxOccurs="1" name="DebtSubject" type="xs:string" type_ukr="текст" displayName="Суть заборгованості" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Principal" type="CurrencyAmount" displayName="Основна сума боргу">
+          <xs:element minOccurs="1" maxOccurs="1" name="Principal" type="CurrencyAmount" displayName="Основна сума боргу" field_order="5">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення">
+          <xs:element minOccurs="1" maxOccurs="1" name="RepaymentDueDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення" field_order="6">
             <xs:annotation>
               <xs:documentation>обов'язкове, якщо передбачена дата погашення; може бути й безстрокова позика.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" displayName="Залишок заборгованості">
+          <xs:element minOccurs="1" maxOccurs="1" name="OutstandingPricipal" type="CurrencyAmount" displayName="Залишок заборгованості" field_order="7">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Прострочена заборгованість?">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOverdue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Прострочена заборгованість?" field_order="8">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Прострочено з ... (дата)">
+          <xs:element minOccurs="1" maxOccurs="1" name="OverdueSince" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Прострочено з ... (дата)" field_order="9">
             <xs:annotation>
               <xs:documentation>якщо є прострочка</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" displayName="Сума простроченої заборгованості">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalOverdue" type="CurrencyAmount" displayName="Сума простроченої заборгованості" field_order="10">
             <xs:annotation>
               <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" type_ukr="текст" displayName="Деталі прострочки" description="Додаткова інформація (окрім дати й суми) щодо простроченої заборгованості">
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueDetails" type="xs:string" type_ukr="текст" displayName="Деталі прострочки" description="Додаткова інформація (окрім дати й суми) щодо простроченої заборгованості" field_order="11">
             <xs:annotation>
               <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" type_ukr="текст" displayName="Причини прострочки" description="Причини виникнення простроченої заборгованості">
+          <xs:element minOccurs="0" maxOccurs="1" name="OverdueReasons" type="xs:string" type_ukr="текст" displayName="Причини прострочки" description="Причини виникнення простроченої заборгованості" field_order="12">
             <xs:annotation>
               <xs:documentation>Обов'язкове, якщо IsOverdue == true</xs:documentation>
             </xs:annotation>

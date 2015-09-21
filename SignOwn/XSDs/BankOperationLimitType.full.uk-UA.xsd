@@ -3,10 +3,10 @@
   <xs:element name="BankOperationLimitType" type="BankOperationLimitType" />
   <xs:simpleType name="BankOperationLimitType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="SingleOperation" description="Ліміт на одиничну операцію" />
-      <xs:enumeration value="TotalTurnover" description="Ліміт на сумарний оборот за..." />
-      <xs:enumeration value="TotalBalance" description="Ліміт залишку" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="SingleOperation" description="Ліміт на одиничну операцію" enum_value="1" />
+      <xs:enumeration value="TotalTurnover" description="Ліміт на сумарний оборот за..." enum_value="2" />
+      <xs:enumeration value="TotalBalance" description="Ліміт залишку" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -60,6 +60,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
             #region populate
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
+            _cmdHandlers.Add("updatexsdstranslationsex", UpdateXSDsTranslationsEx);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
             _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
@@ -964,17 +965,17 @@ namespace BGU.DRPL.SignificantOwnership.Tester
         {
             //Type[] types2Process = new Type[] { typeof(Appx2OwnershipStructLP)};
             _alreadyProcessedXSDExportTypes = new Dictionary<string, bool>();
-//            Type[] types2Process = new Type[] { typeof(Appx2OwnershipStructLP),
-//typeof(Appx3OwnershipStructPP),
-//typeof(RegLicAppx12HeadCandidateAppl),
-//typeof(RegLicAppx14NewSvc),
-//typeof(RegLicAppx17EquityChangeTable),
-//typeof(RegLicAppx2OwnershipAcqRequestLP),
-//typeof(RegLicAppx3MemberCandidateAppl),
-//typeof(RegLicAppx4OwnershipAcqRequestPP),
-//typeof(RegLicAppx6EquityFormationTable),
-//typeof(RegLicAppx7ShareAcqIntent),
-//typeof(RegLicAppx9BankingLicenseAppl)};
+            //            Type[] types2Process = new Type[] { typeof(Appx2OwnershipStructLP),
+            //typeof(Appx3OwnershipStructPP),
+            //typeof(RegLicAppx12HeadCandidateAppl),
+            //typeof(RegLicAppx14NewSvc),
+            //typeof(RegLicAppx17EquityChangeTable),
+            //typeof(RegLicAppx2OwnershipAcqRequestLP),
+            //typeof(RegLicAppx3MemberCandidateAppl),
+            //typeof(RegLicAppx4OwnershipAcqRequestPP),
+            //typeof(RegLicAppx6EquityFormationTable),
+            //typeof(RegLicAppx7ShareAcqIntent),
+            //typeof(RegLicAppx9BankingLicenseAppl)};
 
             XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(Appx2OwnershipStructLP).Assembly);
             string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares" };
@@ -996,6 +997,17 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             {
                 ProcessTypeExport2XSD(typ, assemblySummariesXml);
             }
+        }
+
+        private static void UpdateXSDsTranslationsEx(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(ActualQuestionnairesUnion).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
+
+            ProcessTypeExport2XSD(typeof(ActualQuestionnairesUnion), assemblySummariesXml);
+
         }
 
         private static void ProcessTypeExport2XSD(Type typ, XmlDocument assemblySummariesXml)
@@ -1088,7 +1100,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
         private static void ProcessXSDSingle(Type typ, XmlDocument assemblySummariesXml, string extraFileExt, bool bRemoveAllOtherTypes)
         {
             string targetPath = Path.Combine(XsdFilesOutputDir, string.Format("{0}{1}.{2}xsd", typ.Name.Trim(), (bRemoveAllOtherTypes ? "" : ".full"), extraFileExt));
-            if(!bRemoveAllOtherTypes)
+            if (!bRemoveAllOtherTypes)
                 ProcessXSDSingle(targetPath, assemblySummariesXml, null);
             else
                 ProcessXSDSingle(targetPath, assemblySummariesXml, typ);

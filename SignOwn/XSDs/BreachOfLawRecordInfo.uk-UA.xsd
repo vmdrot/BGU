@@ -8,29 +8,29 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" displayName="Тип правопорушення">
+          <xs:element minOccurs="1" maxOccurs="1" name="BreachType" type="BreachOfLawType" displayName="Тип правопорушення" field_order="1">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             Обрати з переліку, обов'язкове, хоча б Інше</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" displayName="Рішення суду" description="Відомості про судове відповідне судове рішення" />
-          <xs:element minOccurs="1" maxOccurs="1" name="CodeOrLaw" type="xs:string" type_ukr="текст" displayName="Закон/кодекс" description="Закон/кодекс, згідно з  яким було засуджено">
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" displayName="Рішення суду" description="Відомості про судове відповідне судове рішення" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CodeOrLaw" type="xs:string" type_ukr="текст" displayName="Закон/кодекс" description="Закон/кодекс, згідно з  яким було засуджено" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Articles" type="xs:string" type_ukr="текст" displayName="Стаття(-і)" description="Стаття(-і), згідно з  яким було засуджено">
+          <xs:element minOccurs="1" maxOccurs="1" name="Articles" type="xs:string" type_ukr="текст" displayName="Стаття(-і)" description="Стаття(-і), згідно з  яким було засуджено" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" displayName="Тип вироку" description="Якщо рішення суду було прийнято у формі вироку">
+          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" displayName="Тип вироку" description="Якщо рішення суду було прийнято у формі вироку" field_order="5">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
    IsCourtDecisionSentence == true
@@ -38,21 +38,21 @@
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PenaltyDurationYrs" nillable="true" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Термін (років)" description="Термін призначеного покарання (у роках)" />
-          <xs:element minOccurs="0" maxOccurs="1" name="FineAmount" type="CurrencyAmount" displayName="Штраф" description="Сума (і валюта) накладеного штрафу" />
-          <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" type_ukr="текст" displayName="Інші санкції">
+          <xs:element minOccurs="1" maxOccurs="1" name="PenaltyDurationYrs" nillable="true" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Термін (років)" description="Термін призначеного покарання (у роках)" field_order="6" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FineAmount" type="CurrencyAmount" displayName="Штраф" description="Сума (і валюта) накладеного штрафу" field_order="7" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OtherSanctionDetails" type="xs:string" type_ukr="текст" displayName="Інші санкції" field_order="8">
             <xs:annotation>
               <xs:documentation>якщо були (інші санкції)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Судимість погашена?">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Судимість погашена?" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення судимості">
+          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення судимості" field_order="10">
             <xs:annotation>
               <xs:documentation>якщо IsConvictionSettled == true, то обов'язкове</xs:documentation>
             </xs:annotation>

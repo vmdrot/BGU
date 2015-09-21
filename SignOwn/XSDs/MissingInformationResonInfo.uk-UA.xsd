@@ -6,8 +6,8 @@
       <xs:documentation>Причина відсутності відомостей</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="PropertyName" type="xs:string" type_ukr="текст" displayName="Назва поля" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ReasonWhyMissing" type="xs:string" type_ukr="текст" displayName="Причина відсутності інформації/неможливості її надати" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PropertyName" type="xs:string" type_ukr="текст" displayName="Назва поля" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReasonWhyMissing" type="xs:string" type_ukr="текст" displayName="Причина відсутності інформації/неможливості її надати" field_order="2" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

@@ -7,10 +7,10 @@
             б) ДК 002:2004 – Класифікація організаційно-правових форм господарювання.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" />
-      <xs:enumeration value="Private" description="Приватна" />
-      <xs:enumeration value="State" description="Державна" />
-      <xs:enumeration value="Municipal" description="Комунальна (муніципальна)" />
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Private" description="Приватна" enum_value="1" />
+      <xs:enumeration value="State" description="Державна" enum_value="2" />
+      <xs:enumeration value="Municipal" description="Комунальна (муніципальна)" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

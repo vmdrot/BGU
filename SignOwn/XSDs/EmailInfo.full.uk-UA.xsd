@@ -7,7 +7,7 @@
             Можна відмовитися й зберігати просто значення e-mail</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Email" type="xs:string" type_ukr="текст" displayName="Адреса ел.пошти">
+      <xs:element minOccurs="1" maxOccurs="1" name="Email" type="xs:string" type_ukr="текст" displayName="Адреса ел.пошти" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
 
@@ -15,7 +15,7 @@
             валідація як e-mail</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" type_ukr="текст" displayName="Примітки (необов'язково)">
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" type_ukr="текст" displayName="Примітки (необов'язково)" field_order="2">
         <xs:annotation>
           <xs:documentation>Необов'язкове поле, передбачено для вказання, що за мило - робоче, особисте, офіційне (юр.особи).</xs:documentation>
         </xs:annotation>
