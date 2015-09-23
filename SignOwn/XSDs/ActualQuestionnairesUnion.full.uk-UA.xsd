@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="ActualQuestionnairesUnion" nillable="true" type="ActualQuestionnairesUnion" />
-  <xs:complexType name="ActualQuestionnairesUnion">
+  <xs:complexType name="ActualQuestionnairesUnion" hideFromHtml="true">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Appx2" type="RegLicAppx2OwnershipAcqRequestLP" field_order="1" />
       <xs:element minOccurs="0" maxOccurs="1" name="Appx3" type="RegLicAppx3MemberCandidateAppl" field_order="2" />
@@ -485,15 +485,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
-          <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
+      <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfLoanInfo">
     <xs:sequence>
@@ -965,37 +961,29 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Criminal" description="Кримінальне" enum_value="1" />
-          <xs:enumeration value="Antitrust" description="Анти-монопольне" enum_value="2" />
-          <xs:enumeration value="Taxation" description="Податкове" enum_value="3" />
-          <xs:enumeration value="Banking" description="Банківське" enum_value="4" />
-          <xs:enumeration value="Financial" description="Фінансове" enum_value="5" />
-          <xs:enumeration value="ForeignCurrency" description="Валютне" enum_value="6" />
-          <xs:enumeration value="StockExchange" description="Біржове" enum_value="7" />
-          <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" enum_value="8" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Criminal" description="Кримінальне" enum_value="1" />
+      <xs:enumeration value="Antitrust" description="Анти-монопольне" enum_value="2" />
+      <xs:enumeration value="Taxation" description="Податкове" enum_value="3" />
+      <xs:enumeration value="Banking" description="Банківське" enum_value="4" />
+      <xs:enumeration value="Financial" description="Фінансове" enum_value="5" />
+      <xs:enumeration value="ForeignCurrency" description="Валютне" enum_value="6" />
+      <xs:enumeration value="StockExchange" description="Біржове" enum_value="7" />
+      <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" enum_value="8" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Jailed" description="Ув'язнення" enum_value="1" />
-          <xs:enumeration value="Probation" description="Умовне ув'язнення" enum_value="2" />
-          <xs:enumeration value="RemedialWorks" description="Виправні роботи" enum_value="3" />
-          <xs:enumeration value="Fined" description="Штраф" enum_value="4" />
-          <xs:enumeration value="Dismissed" description="Звільнення" enum_value="5" />
-          <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="6" />
-          <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="7" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Jailed" description="Ув'язнення" enum_value="1" />
+      <xs:enumeration value="Probation" description="Умовне ув'язнення" enum_value="2" />
+      <xs:enumeration value="RemedialWorks" description="Виправні роботи" enum_value="3" />
+      <xs:enumeration value="Fined" description="Штраф" enum_value="4" />
+      <xs:enumeration value="Dismissed" description="Звільнення" enum_value="5" />
+      <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="6" />
+      <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="7" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfLiquidatedEntityOwnershipInfo">
     <xs:sequence>
@@ -1258,17 +1246,13 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="EmploymentState">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Employed" description="Найманий працівник" enum_value="1" />
-          <xs:enumeration value="Selfemployed" description="Самозайнятість" enum_value="2" />
-          <xs:enumeration value="Freelance" description="Фрілансер" enum_value="3" />
-          <xs:enumeration value="Unemployed" description="Безробітний" enum_value="4" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Employed" description="Найманий працівник" enum_value="1" />
+      <xs:enumeration value="Selfemployed" description="Самозайнятість" enum_value="2" />
+      <xs:enumeration value="Freelance" description="Фрілансер" enum_value="3" />
+      <xs:enumeration value="Unemployed" description="Безробітний" enum_value="4" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
@@ -1286,21 +1270,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EmploymentTerminationType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
-          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
-          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
-          <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
-          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
-          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
-          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
-          <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
+      <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
+      <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
+      <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
+      <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
+      <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
+      <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
+      <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ContactInfo">
     <xs:annotation>
@@ -1575,15 +1555,11 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Male" description="Чол." enum_value="1" />
-          <xs:enumeration value="Female" description="Жін." enum_value="2" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Male" description="Чол." enum_value="1" />
+      <xs:enumeration value="Female" description="Жін." enum_value="2" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="MeansOfCommunication">
     <xs:restriction base="xs:string">
@@ -2001,22 +1977,18 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="FundsOriginType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="WagesSalaries" description="Зарплатня (ф.о.)" enum_value="1" />
-          <xs:enumeration value="Royalties" description="Роялті (ф.о.)" enum_value="2" />
-          <xs:enumeration value="Dividends" description="Дивіденди (ф.о.)" enum_value="3" />
-          <xs:enumeration value="PassiveIncomes" description="Пасивний дохід" enum_value="4" />
-          <xs:enumeration value="Inherited" description="Спадщина (ф.о.)" enum_value="5" />
-          <xs:enumeration value="Profit" description="Прибуток (ю.о.)" enum_value="6" />
-          <xs:enumeration value="Equity" description="Частина статутного капіталу (ю.о.)" enum_value="7" />
-          <xs:enumeration value="SpecFunds" description="Кошти фонду(-ів) (ю.о.)" enum_value="8" />
-          <xs:enumeration value="OtherIncomes" description="Інші доходи" enum_value="9" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="WagesSalaries" description="Зарплатня (ф.о.)" enum_value="1" />
+      <xs:enumeration value="Royalties" description="Роялті (ф.о.)" enum_value="2" />
+      <xs:enumeration value="Dividends" description="Дивіденди (ф.о.)" enum_value="3" />
+      <xs:enumeration value="PassiveIncomes" description="Пасивний дохід" enum_value="4" />
+      <xs:enumeration value="Inherited" description="Спадщина (ф.о.)" enum_value="5" />
+      <xs:enumeration value="Profit" description="Прибуток (ю.о.)" enum_value="6" />
+      <xs:enumeration value="Equity" description="Частина статутного капіталу (ю.о.)" enum_value="7" />
+      <xs:enumeration value="SpecFunds" description="Кошти фонду(-ів) (ю.о.)" enum_value="8" />
+      <xs:enumeration value="OtherIncomes" description="Інші доходи" enum_value="9" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="LegalTransactionPartyInfo">
     <xs:annotation>
@@ -2841,7 +2813,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsBankAssociatedPerson" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" field_order="6" />
-          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPeronsCode315p" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" field_order="7" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPersonsCode315p" displayName="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" description="6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?" category="І. Інформація про фізичну особу" field_order="7" />
           <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" displayName="6. Наміри щодо набуття/збільшення участі" description="6. Інформація про розмір участі, що набувається (збільшується): Наміри щодо набуття/збільшення участі в банку" category="ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку" field_order="8">
             <xs:annotation>
               <xs:documentation>6. Інформація про розмір участі, що набувається (збільшується):
@@ -3079,7 +3051,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="TotalPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сукупна участь, %" field_order="3" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="BankAssociatedPeronsCode315p">
+  <xs:simpleType name="BankAssociatedPersonsCode315p">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
       <xs:enumeration value="BankControllers" description="521-Контролери банку" enum_value="521" />
@@ -3402,16 +3374,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="FinancialGuarantorRoleType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Guarantor" description="Гарантор" enum_value="1" />
-          <xs:enumeration value="Pledger" description="Заставодавець/поручитель" enum_value="2" />
-          <xs:enumeration value="Attorney" description="Довірена особа" enum_value="3" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Guarantor" description="Гарантор" enum_value="1" />
+      <xs:enumeration value="Pledger" description="Заставодавець/поручитель" enum_value="2" />
+      <xs:enumeration value="Attorney" description="Довірена особа" enum_value="3" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonInfo">
     <xs:sequence>
@@ -3552,7 +3520,7 @@
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи" field_order="2">
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPersonsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
@@ -3980,37 +3948,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="HigherEducationDegreeType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
-          <xs:enumeration value="Master" description="Магістр" enum_value="2" />
-          <xs:enumeration value="MBA" description="MBA" enum_value="3" />
-          <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
-          <xs:enumeration value="PhD" description="PhD" enum_value="5" />
-          <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
-          <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
-          <xs:enumeration value="Professor" description="Професор" enum_value="8" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
+      <xs:enumeration value="Master" description="Магістр" enum_value="2" />
+      <xs:enumeration value="MBA" description="MBA" enum_value="3" />
+      <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
+      <xs:enumeration value="PhD" description="PhD" enum_value="5" />
+      <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
+      <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
+      <xs:enumeration value="Professor" description="Професор" enum_value="8" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DegreeHonourType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" enum_value="1" />
-          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" enum_value="2" />
-          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" enum_value="3" />
-          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" enum_value="4" />
-          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
-          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
-          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" enum_value="1" />
+      <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" enum_value="2" />
+      <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" enum_value="3" />
+      <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" enum_value="4" />
+      <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
+      <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
+      <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">
     <xs:sequence>

@@ -53,7 +53,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
             this.AquisitionByInfluence = new List<SignificantOrDecisiveInfulenceInfo>();
             this.ExistingOwnershipDetailsHive = new List<OwnershipStructure>();
             this.OutstandingLoansWithBanksDetails = new List<LoanInfo>();
-            this.MissingInformationResons = new List<MissingInformationResonInfo>();
+            this.MissingInformationResons = new List<MissingInformationReasonInfo>();
         }
 
         #endregion
@@ -415,7 +415,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public bool IsApplicationInfoAccurateAndTrue { get { return _IsApplicationInfoAccurateAndTrue; } set { _IsApplicationInfoAccurateAndTrue = value; OnPropertyChanged("IsApplicationInfoAccurateAndTrue"); } }
 
 
-        private List<MissingInformationResonInfo> _MissingInformationResons;
+        private List<MissingInformationReasonInfo> _MissingInformationResons;
         /// <summary>
         /// Примітка. Якщо немає змоги надати інформацію за відповідними пунктами анкети, то слід зазначити причину.
         /// </summary>
@@ -425,7 +425,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Поля й причини")]
-        public List<MissingInformationResonInfo> MissingInformationResons { get { return _MissingInformationResons; } set { _MissingInformationResons = value; OnPropertyChanged("MissingInformationResons"); } }
+        public List<MissingInformationReasonInfo> MissingInformationResons { get { return _MissingInformationResons; } set { _MissingInformationResons = value; OnPropertyChanged("MissingInformationResons"); } }
 
         private SignatoryInfo _Signatory;
         /// <summary>

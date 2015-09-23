@@ -19,7 +19,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Код пов'язаності")]
         [Description("Оберіть код пов'язаності особи")]
         [Required]
-        public BankAssociatedPeronsCode315p AssociationKind { get; set; }
+        public BankAssociatedPersonsCode315p AssociationKind { get; set; }
 
         public override string ToString()
         {

@@ -47,6 +47,7 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\Logging.cs" />
     <Compile Include="ComponentModelEx\ComponentModelExEnums.cs" />
+    <Compile Include="ComponentModelEx\HideInXSDAttribute.cs" />
     <Compile Include="ComponentModelEx\MultilineAttribute.cs" />
     <Compile Include="ComponentModelEx\OrientationEnum.cs" />
     <Compile Include="ComponentModelEx\RequiredAttribute.cs" />

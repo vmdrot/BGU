@@ -108,12 +108,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public bool IsBankAssociatedPerson { get { return _IsBankAssociatedPerson; } set { _IsBankAssociatedPerson = value; OnPropertyChanged("IsBankAssociatedPerson"); } }
 
 
-        private BankAssociatedPeronsCode315p _BankAssociatedPersonCode;
+        private BankAssociatedPersonsCode315p _BankAssociatedPersonCode;
         [Category(CATEGORY_I)]
         [DisplayName("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
         [Description("6. Чи є фізична особа пов’язаною з банком (якщо так, то зазначити код типу пов’язаності)?")]
         [UIConditionalVisibility("IsBankAssociatedPerson")]
-        public BankAssociatedPeronsCode315p BankAssociatedPersonCode { get { return _BankAssociatedPersonCode; } set { _BankAssociatedPersonCode = value; OnPropertyChanged("BankAssociatedPersonCode"); } }
+        public BankAssociatedPersonsCode315p BankAssociatedPersonCode { get { return _BankAssociatedPersonCode; } set { _BankAssociatedPersonCode = value; OnPropertyChanged("BankAssociatedPersonCode"); } }
         #endregion
 
         #region ІІ. Інформація про наміри щодо набуття (збільшення) істотної участі в банку

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="ActualQuestionnairesUnion" nillable="true" type="ActualQuestionnairesUnion" />
-  <xs:complexType name="ActualQuestionnairesUnion">
+  <xs:complexType name="ActualQuestionnairesUnion" hideFromHtml="true">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Appx2" type="RegLicAppx2OwnershipAcqRequestLP" field_order="1" />
       <xs:element minOccurs="0" maxOccurs="1" name="Appx3" type="RegLicAppx3MemberCandidateAppl" field_order="2" />
@@ -104,7 +104,7 @@
   <xs:include schemaLocation="ArrayOfBankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipSummaryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankAssociatedPeronsCode315p.uk-UA.xsd" />
+  <xs:include schemaLocation="BankAssociatedPersonsCode315p.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfIPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPOSharesPurchaseInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPaymentDeadlineInfo.uk-UA.xsd" />

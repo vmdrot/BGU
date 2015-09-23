@@ -47,7 +47,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public List<EnumType> ListBankruptcyCaseResolutionType() { return EnumType.GetEnumList(typeof(BankruptcyCaseResolutionType)); }
         public List<EnumType> ListCourtInstanceType() { return EnumType.GetEnumList(typeof(CourtInstanceType)); }
         public List<EnumType> ListCourtDecisionType() { return EnumType.GetEnumList(typeof(CourtDecisionType)); }
-        public List<EnumType> ListBankAssociatedPeronsCode315p() { return EnumType.GetEnumList(typeof(BankAssociatedPeronsCode315p)); }
+        public List<EnumType> ListBankAssociatedPeronsCode315p() { return EnumType.GetEnumList(typeof(BankAssociatedPersonsCode315p)); }
 
         //Spares2 enums
         public List<EnumType> ListFinancialInstitutionType() { return EnumType.GetEnumList(typeof(FinancialInstitutionType)); }
@@ -81,7 +81,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> BankruptcyCaseResolutionTypeList { get { return EnumType.GetEnumList(typeof(BankruptcyCaseResolutionType)); } }
         public static List<EnumType> CourtInstanceTypeList { get { return EnumType.GetEnumList(typeof(CourtInstanceType)); } }
         public static List<EnumType> CourtDecisionTypeList { get { return EnumType.GetEnumList(typeof(CourtDecisionType)); } }
-        public static List<EnumType> BankAssociatedPeronsCode315pList { get { return EnumType.GetEnumList(typeof(BankAssociatedPeronsCode315p)); } }
+        public static List<EnumType> BankAssociatedPeronsCode315pList { get { return EnumType.GetEnumList(typeof(BankAssociatedPersonsCode315p)); } }
         public static List<EnumType> FinancialInstitutionTypeList { get { return EnumType.GetEnumList(typeof(FinancialInstitutionType)); } }
         public static List<EnumType> FinancialInstitutionStatusList { get { return EnumType.GetEnumList(typeof(FinancialInstitutionStatus)); } }
         public static List<EnumType> CompanyOwnershipTypeList { get { return EnumType.GetEnumList(typeof(CompanyOwnershipType)); } }

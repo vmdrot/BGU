@@ -12,7 +12,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares2
     {
         public int Nr { get; set; }
         public GenericPersonInfo Person { get; set; }
-        public BankAssociatedPeronsCode315p AssociatedPersonCode { get; set; }
+        public BankAssociatedPersonsCode315p AssociatedPersonCode { get; set; }
         public bool HasOperationsWithBank { get; set; }
     }
 }

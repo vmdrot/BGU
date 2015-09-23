@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
+    [HideInXSD]
     public class ActualQuestionnairesUnion
     {
         public RegLicAppx2OwnershipAcqRequestLP Appx2 {get;set;}
