@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define __NO_FLAGS__
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ using Evolvex.Utility.Core.ComponentModelEx;
 namespace BGU.DRPL.SignificantOwnership.Core.Spares
 {
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum  EntityType
     {
@@ -48,7 +52,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
+
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [UIUsageRadioButtonGroup(Orientation.Horizontal, true)]
     public enum SexType
@@ -60,7 +68,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Female
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
+
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum EmploymentState
     {
@@ -75,7 +87,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Unemployed
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum EmploymentTerminationType
     {
@@ -98,7 +113,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherLeaveType
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum HigherEducationDegreeType
     {
@@ -122,7 +140,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
 
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum DegreeHonourType
     {
@@ -143,7 +164,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         MaximaCumLaude
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum FundsOriginType
     {
@@ -168,7 +192,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherIncomes
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     [UIUsageRadioButtonGroup(Orientation.Horizontal, false)]
     public enum PaymentType
@@ -182,7 +209,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum FinancialGuarantorRoleType
     {
@@ -195,7 +225,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Attorney
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum BreachOfLawType
     {
@@ -218,7 +251,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherAdministrative
     }
 
+#if __NO_FLAGS__
+#else
     [Flags]
+#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum SentenceType
     {
@@ -759,7 +795,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     }
 
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
-    public enum BankAssociatedPeronsCode315p
+    public enum BankAssociatedPersonsCode315p
     { 
         [Description("Не вказано")]
         None = 0,

@@ -108,15 +108,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfLoanInfo">
     <xs:sequence>
@@ -309,37 +305,29 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Criminal" />
-          <xs:enumeration value="Antitrust" />
-          <xs:enumeration value="Taxation" />
-          <xs:enumeration value="Banking" />
-          <xs:enumeration value="Financial" />
-          <xs:enumeration value="ForeignCurrency" />
-          <xs:enumeration value="StockExchange" />
-          <xs:enumeration value="OtherAdministrative" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Criminal" />
+      <xs:enumeration value="Antitrust" />
+      <xs:enumeration value="Taxation" />
+      <xs:enumeration value="Banking" />
+      <xs:enumeration value="Financial" />
+      <xs:enumeration value="ForeignCurrency" />
+      <xs:enumeration value="StockExchange" />
+      <xs:enumeration value="OtherAdministrative" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Jailed" />
-          <xs:enumeration value="Probation" />
-          <xs:enumeration value="RemedialWorks" />
-          <xs:enumeration value="Fined" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="LicenseRevoked" />
-          <xs:enumeration value="LicenseSuspended" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Jailed" />
+      <xs:enumeration value="Probation" />
+      <xs:enumeration value="RemedialWorks" />
+      <xs:enumeration value="Fined" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="LicenseRevoked" />
+      <xs:enumeration value="LicenseSuspended" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfLiquidatedEntityOwnershipInfo">
     <xs:sequence>
@@ -438,17 +426,13 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="EmploymentState">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Employed" />
-          <xs:enumeration value="Selfemployed" />
-          <xs:enumeration value="Freelance" />
-          <xs:enumeration value="Unemployed" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Employed" />
+      <xs:enumeration value="Selfemployed" />
+      <xs:enumeration value="Freelance" />
+      <xs:enumeration value="Unemployed" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
@@ -458,21 +442,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EmploymentTerminationType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="PromotedOrRelocated" />
-          <xs:enumeration value="VoluntaryQuit" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="Retired" />
-          <xs:enumeration value="MaternityLeave" />
-          <xs:enumeration value="MilitaryServiceLeave" />
-          <xs:enumeration value="HealthConditionLeave" />
-          <xs:enumeration value="OtherLeaveType" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="PromotedOrRelocated" />
+      <xs:enumeration value="VoluntaryQuit" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="Retired" />
+      <xs:enumeration value="MaternityLeave" />
+      <xs:enumeration value="MilitaryServiceLeave" />
+      <xs:enumeration value="HealthConditionLeave" />
+      <xs:enumeration value="OtherLeaveType" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ContactInfo">
     <xs:sequence>
@@ -554,15 +534,11 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Male" />
-          <xs:enumeration value="Female" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Male" />
+      <xs:enumeration value="Female" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="MeansOfCommunication">
     <xs:restriction base="xs:string">
@@ -731,22 +707,18 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="FundsOriginType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="WagesSalaries" />
-          <xs:enumeration value="Royalties" />
-          <xs:enumeration value="Dividends" />
-          <xs:enumeration value="PassiveIncomes" />
-          <xs:enumeration value="Inherited" />
-          <xs:enumeration value="Profit" />
-          <xs:enumeration value="Equity" />
-          <xs:enumeration value="SpecFunds" />
-          <xs:enumeration value="OtherIncomes" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WagesSalaries" />
+      <xs:enumeration value="Royalties" />
+      <xs:enumeration value="Dividends" />
+      <xs:enumeration value="PassiveIncomes" />
+      <xs:enumeration value="Inherited" />
+      <xs:enumeration value="Profit" />
+      <xs:enumeration value="Equity" />
+      <xs:enumeration value="SpecFunds" />
+      <xs:enumeration value="OtherIncomes" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="LegalTransactionPartyInfo">
     <xs:complexContent mixed="false">
@@ -1068,7 +1040,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsBankAssociatedPerson" type="xs:boolean" />
-          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPeronsCode315p" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BankAssociatedPersonCode" type="BankAssociatedPersonsCode315p" />
           <xs:element minOccurs="0" maxOccurs="1" name="TotalOwnershipWithBankDiff" type="TotalOwnershipSummaryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="TotalTargetedOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="AcquisitionWays" type="SignificantOwnershipAcquisitionWaysInfo" />
@@ -1122,7 +1094,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="TotalPct" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="BankAssociatedPeronsCode315p">
+  <xs:simpleType name="BankAssociatedPersonsCode315p">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="BankControllers" />
@@ -1287,16 +1259,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="FinancialGuarantorRoleType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Guarantor" />
-          <xs:enumeration value="Pledger" />
-          <xs:enumeration value="Attorney" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Guarantor" />
+      <xs:enumeration value="Pledger" />
+      <xs:enumeration value="Attorney" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonInfo">
     <xs:sequence>
@@ -1345,7 +1313,7 @@
   <xs:complexType name="PersonBankAssociationInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPersonsCode315p" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfPersonBusinessReputationInfo">
@@ -1431,37 +1399,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="HigherEducationDegreeType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Bachelor" />
-          <xs:enumeration value="Master" />
-          <xs:enumeration value="MBA" />
-          <xs:enumeration value="CandidateDoctor" />
-          <xs:enumeration value="PhD" />
-          <xs:enumeration value="DoctorOfSciences" />
-          <xs:enumeration value="DoctorOfLetters" />
-          <xs:enumeration value="Professor" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Bachelor" />
+      <xs:enumeration value="Master" />
+      <xs:enumeration value="MBA" />
+      <xs:enumeration value="CandidateDoctor" />
+      <xs:enumeration value="PhD" />
+      <xs:enumeration value="DoctorOfSciences" />
+      <xs:enumeration value="DoctorOfLetters" />
+      <xs:enumeration value="Professor" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DegreeHonourType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Rite" />
-          <xs:enumeration value="CumLaude" />
-          <xs:enumeration value="Honoured" />
-          <xs:enumeration value="MagnaCumLaude" />
-          <xs:enumeration value="SummaCumLaude" />
-          <xs:enumeration value="EgregiaCumLaude" />
-          <xs:enumeration value="MaximaCumLaude" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Rite" />
+      <xs:enumeration value="CumLaude" />
+      <xs:enumeration value="Honoured" />
+      <xs:enumeration value="MagnaCumLaude" />
+      <xs:enumeration value="SummaCumLaude" />
+      <xs:enumeration value="EgregiaCumLaude" />
+      <xs:enumeration value="MaximaCumLaude" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">
     <xs:sequence>

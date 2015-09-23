@@ -10,7 +10,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     /// <summary>
     /// Причина відсутності відомостей
     /// </summary>
-    public class MissingInformationResonInfo
+    public class MissingInformationReasonInfo
     {
         /// <summary>
         /// 

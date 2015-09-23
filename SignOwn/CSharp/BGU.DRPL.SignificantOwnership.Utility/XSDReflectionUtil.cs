@@ -361,7 +361,11 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             XmlNode seqNode = FindSequenseChild(node);
             if (seqNode == null)
                 return;
-
+            HideInXSDAttribute bHideFromXSD = ReflectionUtil.GetTypeAttribute<HideInXSDAttribute>(typ);
+            if (bHideFromXSD != null)
+            { 
+                WriteAttribute(node, "hideFromHtml", "true");
+            }
             if (assemblySummariesXml != null)
                 FindAddAnnotation(node, typ, assemblySummariesXml);
             int i = 0;

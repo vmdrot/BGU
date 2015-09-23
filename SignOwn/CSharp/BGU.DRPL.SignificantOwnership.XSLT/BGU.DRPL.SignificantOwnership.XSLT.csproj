@@ -40,6 +40,9 @@
     <Content Include="ForXSDs\BGU.XSDRenderingTemplate.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ForXSDs\XSDUkrArrayType.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ForXSDs\XSDUkrSimpleType.xslt">
       <SubType>Designer</SubType>
     </Content>
