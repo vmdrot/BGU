@@ -9,7 +9,7 @@
     <!--<xsl:choose>
       -->
     <!--<xsl:when test="$cmplxTyp/@hideFromHtml='true'">
-      </xsl:when>-->
+      </xsl:when> -->
     <!--
       <xsl:when test="$cmplxTyp/@nonExistingAttr='nonExistingValue'">
       </xsl:when>

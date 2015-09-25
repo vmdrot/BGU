@@ -35,8 +35,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         /// </summary>
         [DisplayName("Громадянство")]
         [Description("Громадянство")]
-        public CountryInfo CitizenshipCountry { get { return _CitizenshipCountry; } set { _CitizenshipCountry = value; OnPropertyChanged("CitizenshipCountry"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("IsResident"); } }
+        public CountryInfo CitizenshipCountry { get { return _CitizenshipCountry; } set { _CitizenshipCountry = value; OnPropertyChanged("CitizenshipCountry"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("IsResident"); OnPropertyChanged("ShowIPNRefusalEvidence"); } }
 
+        private bool _HasDoubleCitizenship;
+        [DisplayName("Має інше громадянство?")]
+        [Description("Особа має додаткове (подвійне) громадянство іншої(-их) країн(-и)")]
+        public bool HasDoubleCitizenship { get { return _HasDoubleCitizenship; } set { _HasDoubleCitizenship = value; OnPropertyChanged("HasDoubleCitizenship"); } }
+
+        private List<CountryInfo> _DoubleCitizenshipCountries;
+        [DisplayName("Додаткове(-і)/подвійне(-і) громадянство(-а)")]
+        [Description("Відомості про подвійне громадянство інших країн, ніж вказаної в полі 'Громадянство'")]
+        [UIConditionalVisibility("HasDoubleCitizenship")]
+        public List<CountryInfo> DoubleCitizenshipCountries { get { return _DoubleCitizenshipCountries; } set { _DoubleCitizenshipCountries = value; OnPropertyChanged("DoubleCitizenshipCountries"); } }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -129,13 +139,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Category(CATEGORY_IPN)]
         [DisplayName("ІПН немає")]
         [Description("Особа у встановленому порядку відмовилася від індивідувального податкового номера?")]
-        [UIConditionalVisibility("IsResident")]
-        public bool IsIPNRefused { get { return _IsIPNRefused; } set { _IsIPNRefused = value; OnPropertyChanged("IsIPNRefused"); OnPropertyChanged("HasIPN"); } }
+        public bool IsIPNRefused { get { return _IsIPNRefused; } set { _IsIPNRefused = value; OnPropertyChanged("IsIPNRefused"); OnPropertyChanged("HasIPN"); OnPropertyChanged("ShowIPNRefusalEvidence"); } }
 
 
         [Browsable(false)]
         [XmlIgnore]
         public bool HasIPN { get { return !IsIPNRefused; } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool ShowIPNRefusalEvidence { get { return IsResident && IsIPNRefused; } }
+
 
         private IPNRefusalRecordInfo _IPNRefusalEvidence;
         [Category(CATEGORY_IPN)]
