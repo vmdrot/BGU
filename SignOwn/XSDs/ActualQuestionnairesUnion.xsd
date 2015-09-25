@@ -38,7 +38,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationResonInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationReasonInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="ContactInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
@@ -470,6 +470,8 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasDoubleCitizenship" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DoubleCitizenshipCountries" type="ArrayOfCountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
@@ -492,6 +494,11 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="CountryInfo" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPNRefusalRecordInfo">
     <xs:sequence>
@@ -1331,12 +1338,12 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="FinancialOversightAuthorityInfo" nillable="true" type="FinancialOversightAuthorityInfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfMissingInformationResonInfo">
+  <xs:complexType name="ArrayOfMissingInformationReasonInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationResonInfo" nillable="true" type="MissingInformationResonInfo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationReasonInfo" nillable="true" type="MissingInformationReasonInfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="MissingInformationResonInfo">
+  <xs:complexType name="MissingInformationReasonInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="PropertyName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ReasonWhyMissing" type="xs:string" />
