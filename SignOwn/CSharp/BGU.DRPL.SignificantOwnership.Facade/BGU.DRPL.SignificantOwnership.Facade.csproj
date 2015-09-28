@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anonymizing\SensitiveDataAnonymizer.cs" />
     <Compile Include="EKDRBU\DeptListUtil.cs" />
     <Compile Include="EKDRBU\Spares\BankingActivityServiceUIInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
