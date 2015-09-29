@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anonymization\AnonymizationTests.cs" />
     <Compile Include="BasicUI\QuestionnaireDataAggregationTests.cs" />
     <Compile Include="DXUI\DXPropGridTests.cs" />
     <Compile Include="EKDRBU\BankInfoTests.cs" />
