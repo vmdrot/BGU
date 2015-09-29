@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evolvex.Utility.Core", "Evo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGU.DRPL.SignificantOwnership.Facade", "BGU.DRPL.SignificantOwnership.Facade\BGU.DRPL.SignificantOwnership.Facade.csproj", "{2EA821E8-BF52-41E1-88A3-3214521EB557}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGU.DRPL.RandomDataDicts", "BGU.DRPL.RandomDataDicts\BGU.DRPL.RandomDataDicts.csproj", "{586256D9-CED4-4923-B711-2C93D951606B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,16 @@ Global
 		{2EA821E8-BF52-41E1-88A3-3214521EB557}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2EA821E8-BF52-41E1-88A3-3214521EB557}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2EA821E8-BF52-41E1-88A3-3214521EB557}.Release|x86.ActiveCfg = Release|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{586256D9-CED4-4923-B711-2C93D951606B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +192,7 @@ Global
 		{A40B574A-5E4D-4413-AB79-3663671F6AB2} = {BAF6E6A8-6F6D-4376-8BDD-31450148805A}
 		{E7FA3686-C797-43EA-890E-5F970A54D348} = {EE4DBA6A-58FA-4F03-9062-16E87A87CDDD}
 		{80563496-BDC4-468D-A65C-58F2A1158A61} = {EE4DBA6A-58FA-4F03-9062-16E87A87CDDD}
+		{586256D9-CED4-4923-B711-2C93D951606B} = {EE4DBA6A-58FA-4F03-9062-16E87A87CDDD}
 		{02A7B75C-CC0D-4417-B0B8-29A295BD99EA} = {F7955E50-FEC4-4989-97A5-21475A49C99C}
 	EndGlobalSection
 EndGlobal
