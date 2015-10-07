@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using System.IO;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
+using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -103,7 +105,8 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             foreach (Post328Dod2V1Row row in dod2PrincipalRows)
             {
                 ArkadaOwnershipChainDescriptionParser parser = new ArkadaOwnershipChainDescriptionParser();
-                parser.SplitIntoWordings(row.OwnershipChainDescr, row.Name);
+                List<ArkadaOwnershipChainDescriptionParser.WordingItem> wordingItems = parser.SplitIntoWordings(row.OwnershipChainDescr, row.Name);
+                Console.WriteLine("wordingItems.Count = {0}", wordingItems.Count);
             }
 
             #region print-out
@@ -113,6 +116,44 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             #endregion
         }
 
-        
+        [Test]
+        public void ShowArkadaDuplicatesStats()
+        {
+            List<KeyCountPair> statsRaw = JsonConvert.DeserializeObject<List<KeyCountPair>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats_v0.json.txt"));
+            //List<KeyCountPair> statsSorted = new List<KeyCountPair>();
+            var oStatsSorted = from sr in statsRaw
+                                where sr.cnt > 1
+                                orderby sr.cnt descending
+                                select new { key = sr.key, cnt = sr.cnt };
+            //statsSorted.AddRange((IEnumerable<KeyCountPair>)oStatsSorted);
+            Console.WriteLine("Об'єкт власності-Власник-%\tКількість повторень");
+            foreach (var kcp in oStatsSorted)
+            {
+                Console.WriteLine("{0}\t{1}", kcp.key,kcp.cnt);
+            }
+
+        }
+
+        [Test]
+        public void ArkadaAppx2OwnersReport()
+        {
+            Appx2OwnershipStructLP quest = BGU.DRPL.SignificantOwnership.Utility.Tools.ReadXML<Appx2OwnershipStructLP>(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.xml");
+            Console.WriteLine("№ п/п\tОб'єкт власності\tВласник (учасник)\tЧастка власності");
+            int i = 0;
+            foreach(OwnershipStructure os in quest.BankExistingCommonImplicitOwners)
+            {
+
+                i++;
+                string currAssetName = quest.MentionedIdentities.Find(o => o.ID == os.Asset).DisplayName;
+                string currOwnerName = quest.MentionedIdentities.Find(o => o.ID == os.Owner).DisplayName;
+                Console.WriteLine("{0}\t{1}\t{2}\t{3} %", i, currAssetName, currOwnerName, os.SharePct);
+            }
+        }
+
+        public class KeyCountPair
+        {
+            public string key { get; set; }
+            public int cnt { get; set; }
+        }
     }
 }

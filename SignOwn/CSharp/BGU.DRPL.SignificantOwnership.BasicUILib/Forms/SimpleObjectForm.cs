@@ -200,7 +200,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
                 SyncRootQuestionnaire();
         }
 
-        private void ultimateOwnersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ultimateOwnersToolStripMenuItem_Click(object sender, EventArgs e, bool bIdentifyGroups)
         {
             if (!(DataSource is Appx2OwnershipStructLP))
                 return;
@@ -208,8 +208,19 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
             checker.Questionnaire = questio;
             UltimateOwnersForm frm = new UltimateOwnersForm();
-            frm.DataSource = checker.ListUltimateBeneficiaries(questio.BankRef.LegalPerson);
+            List<TotalOwnershipDetailsInfoEx> ds = checker.ListUltimateBeneficiaries(questio.BankRef.LegalPerson, bIdentifyGroups);
+            ds.Sort(CompareTotalOwnershipDetailsInfosDesc);
+            frm.DataSource = ds;
             frm.ShowDialog();
+        }
+
+        private static int CompareTotalOwnershipDetailsInfosDesc(TotalOwnershipDetailsInfoEx o1, TotalOwnershipDetailsInfoEx o2)
+        {
+            if (o1.OwnerID.IsEmpty)
+                return int.MaxValue;
+            if (o2.OwnerID.IsEmpty)
+                return int.MinValue;
+            return decimal.Compare(o2.TotalCapitalSharePct, o1.TotalCapitalSharePct);
         }
 
         private void ownershipGraphToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,6 +236,16 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             frm.CentralAssetID = questio.BankRef.LegalPerson;
             frm.DataSource = questio.BankExistingCommonImplicitOwners;
             frm.ShowDialog();
+        }
+
+        private void ultimateOwnersAsIsMnu_Click(object sender, EventArgs e)
+        {
+            ultimateOwnersToolStripMenuItem_Click(sender, e, false);
+        }
+
+        private void ultimateOwnersGroupedMnu_Click(object sender, EventArgs e)
+        {
+            ultimateOwnersToolStripMenuItem_Click(sender, e, true);
         }
     }
 }
