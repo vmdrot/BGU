@@ -89,14 +89,39 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             public decimal SharePct { get; set; }
         }
         #endregion
-
         public List<TotalOwnershipDetailsInfoEx> ListUltimateBeneficiaries(Spares.Data.GenericPersonID forEntity)
+        {
+            return ListUltimateBeneficiaries(forEntity, false);
+        }
+        public List<TotalOwnershipDetailsInfoEx> ListUltimateBeneficiaries(Spares.Data.GenericPersonID forEntity, bool bIdentifyGroups)
         {
             List<TotalOwnershipDetailsInfoEx> rslt = new List<TotalOwnershipDetailsInfoEx>();
 
             Dictionary<string, TotalOwnershipDetailsInfo> ultimateOwners = new Dictionary<string, TotalOwnershipDetailsInfo>();
 
             //UnWindUltimateOwners(_questio.BankRef.LegalPerson, _questio.BankRef.LegalPerson, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
+            if (bIdentifyGroups)
+            {
+                List<OwnershipStructure> groupedOwnerships;
+                List<OwnershipStructure> toBeDelOwnerships;
+                List<GenericPersonInfo> groupedMentionedIdentities;
+                IdentifyAssociatedPersonsGroups(_questio.BankExistingCommonImplicitOwners, _questio.MentionedIdentities, out groupedOwnerships, out groupedMentionedIdentities, out toBeDelOwnerships);
+                if (groupedOwnerships.Count > 0)
+                {
+                    List<int> idxs2Del = new List<int>();
+                    for (int i = 0; i < _questio.BankExistingCommonImplicitOwners.Count; i++)
+                    {
+                        OwnershipStructure curr = _questio.BankExistingCommonImplicitOwners[i];
+                        OwnershipStructure found = toBeDelOwnerships.Find(o => o.Owner == curr.Owner && o.Asset == curr.Asset && o.SharePct == curr.SharePct);
+                        if (found != null)
+                            idxs2Del.Add(i);
+                    }
+                    for (int j = idxs2Del.Count - 1; j >= 0; j--)
+                        _questio.BankExistingCommonImplicitOwners.RemoveAt(idxs2Del[j]);
+                    _questio.BankExistingCommonImplicitOwners.AddRange(groupedOwnerships);
+                    _questio.MentionedIdentities.AddRange(groupedMentionedIdentities);
+                }
+            }
             UnWindUltimateOwners(forEntity, forEntity, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
             TotalOwnershipDetailsInfo grandTotals = new TotalOwnershipDetailsInfo();
             foreach (string key in ultimateOwners.Keys)
@@ -116,6 +141,115 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             }
             rslt.Add(new TotalOwnershipDetailsInfoEx(grandTotals, GenericPersonID.Empty, "Всього"));
             return rslt;
+        }
+
+        private static void IdentifyAssociatedPersonsGroups(List<OwnershipStructure> ownerships, List<GenericPersonInfo> identities, out List<OwnershipStructure> groupedOwnerships, out List<GenericPersonInfo> groupedMentionedIdentities, out List<OwnershipStructure> insteadOSes)
+        {
+            groupedOwnerships = new List<OwnershipStructure>();
+            groupedMentionedIdentities = new List<GenericPersonInfo>();
+            insteadOSes = new List<OwnershipStructure>();
+            Dictionary<string,GenericPersonID> assets = new Dictionary<string,GenericPersonID>();
+            Dictionary<string,GenericPersonID> allHashes2IDs = new Dictionary<string,GenericPersonID>();
+            Dictionary<string, GenericPersonID> members2Groups = new Dictionary<string,GenericPersonID>();
+            Dictionary<string,GenericPersonInfo> groupGPIs = new Dictionary<string,GenericPersonInfo>();
+
+            foreach (OwnershipStructure os in ownerships)
+            {
+                if (!assets.ContainsKey(os.Asset.HashID))
+                    assets.Add(os.Asset.HashID, os.Asset);
+            }
+            foreach (GenericPersonID asset in assets.Values)
+            {
+                var currControllers = from o in ownerships
+                                      where o.Asset == asset && o.SharePct == 100.00M
+                                      select o.Owner;
+                decimal currTotalPct = ownerships.Where(o => o.Asset == asset).Sum(o => o.SharePct);
+
+                if (currControllers.Count() < 2 && currTotalPct <= 100.00M)
+                    continue;
+
+                var currCtrlOSes = from o in ownerships
+                               where o.Asset == asset && o.SharePct == 100.00M
+                               select o;
+
+                var currNonCtrlOSes = from o in ownerships
+                                   where o.Asset == asset && o.SharePct < 100.00M
+                                   select o;
+                if (currControllers.Count() == 1)
+                {
+                    insteadOSes.AddRange(currNonCtrlOSes);
+                }
+                if (currNonCtrlOSes.Count() > 0)
+                {
+                    Console.WriteLine("currNonCtrlOSes.Count() > 0:");
+                    foreach (OwnershipStructure os in currNonCtrlOSes)
+                        Console.WriteLine(os.ToString());
+                    Console.WriteLine("-------------------------------------------------------");
+                }
+
+                insteadOSes.AddRange(currCtrlOSes);
+
+                var existingGroups = from m2g in members2Groups
+                                     join cc in currControllers on m2g.Key equals cc.HashID
+                                     select m2g.Value;
+                if (existingGroups.Count() > 0)
+                {
+                    GenericPersonID currGrp = existingGroups.First();
+                    
+                    List<string> ctrllerNames = new List<string>();
+                    foreach (GenericPersonID ctrller in currControllers)
+                    {
+                        if (members2Groups.ContainsKey(ctrller.HashID))
+                            continue;
+                        members2Groups.Add(ctrller.HashID, currGrp);
+                        ctrllerNames.Add(identities.Find(gpi => gpi.ID == ctrller).DisplayName);
+                    }
+                    groupGPIs[currGrp.HashID].LegalPerson.Name = AppendToName(groupGPIs[currGrp.HashID].LegalPerson.Name, ctrllerNames);
+                    groupedOwnerships.Add(new OwnershipStructure() {  Asset = asset, Owner = currGrp, SharePct = 100.00M, OwnershipKind = OwnershipType.Direct });
+                }
+                else
+                {
+                    GenericPersonInfo gpiGrp = new GenericPersonInfo();
+                    var currCtrlNames = from ids in currControllers
+                                        join gpis in identities on ids.HashID equals gpis.ID.HashID
+                                        select gpis.DisplayName;
+                    string grpDispName = AppendToName(string.Empty, currCtrlNames);
+
+                    int currGroupsCnt = groupGPIs.Count;
+                    currGroupsCnt++;
+                    string grpID = string.Format("TMP_CTRLLR_GROUP_{0}", currGroupsCnt);
+
+                    gpiGrp.PersonType = EntityType.Legal;
+                    gpiGrp.LegalPerson = new LegalPersonInfo() { TaxCodeOrHandelsRegNr = grpID, ResidenceCountry = CountryInfo.UKRAINE, Name = grpDispName };
+                    groupGPIs.Add(gpiGrp.ID.HashID, gpiGrp);
+                    foreach (GenericPersonID ctrller in currControllers)
+                    {
+                        if (members2Groups.ContainsKey(ctrller.HashID))
+                            continue;
+                        members2Groups.Add(ctrller.HashID, gpiGrp.ID);
+                    }
+                    groupedOwnerships.Add(new OwnershipStructure() { Asset = asset, Owner = gpiGrp.ID, SharePct = 100.00M, OwnershipKind = OwnershipType.Direct });
+                    groupedMentionedIdentities.Add(gpiGrp);
+                }
+            }
+                         
+        }
+
+        private static string AppendToName(string oldName, IEnumerable<string> names)
+        {
+            StringBuilder rslt = new StringBuilder(oldName);
+            if (names != null && names.Count() > 0)
+            {
+                int i = 0;
+                foreach (string name in names)
+                {
+                    if((i == 0 && !string.IsNullOrEmpty(oldName)) || i > 0)
+                        rslt.Append(" + ");
+                    rslt.Append(name);
+                    i++;
+                }
+            }
+            return rslt.ToString();
         }
         #endregion
 

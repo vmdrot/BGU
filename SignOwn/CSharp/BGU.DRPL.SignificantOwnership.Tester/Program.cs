@@ -1234,7 +1234,10 @@ RegLicAppx9BankingLicenseAppl.xsd";
                           orderby oh.Asset.HashID, oh.Owner.HashID, oh.SharePct
                           group oh by string.Format("{0}-{1}-{2}", oh.Asset, oh.Owner, oh.SharePct) into grp
                           select new { key = grp.Key, cnt = grp.Count() };
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats.json", JsonConvert.SerializeObject(osStats, settings), Encoding.Unicode);
+            var osStatsSorted = from s in osStats
+                                orderby s.cnt descending
+                                select new { key = s.key, cnt = s.cnt };
+            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats.json", JsonConvert.SerializeObject(osStatsSorted, settings), Encoding.Unicode);
             var lps = from mp in qu.MentionedIdentities
                       where mp.PersonType == EntityType.Legal
                       select mp.ID.HashID;
