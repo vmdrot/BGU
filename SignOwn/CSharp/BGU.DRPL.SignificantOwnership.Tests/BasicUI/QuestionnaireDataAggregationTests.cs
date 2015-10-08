@@ -10,6 +10,8 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
 using BGU.DRPL.SignificantOwnership.Utility;
 using System.ComponentModel;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.BasicUI
 {
@@ -57,6 +59,35 @@ namespace BGU.DRPL.SignificantOwnership.Tests.BasicUI
                 Console.WriteLine(typ.Name);
             }
             
+        }
+
+        
+        private void UltimateOwnersTest_Arkada_Worker(bool bGroup)
+        {
+            Appx2OwnershipStructLP quest = BGU.DRPL.SignificantOwnership.Utility.Tools.ReadXML<Appx2OwnershipStructLP>(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.xml");
+            Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
+            checker.Questionnaire = quest;
+            
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Formatting.Indented;
+            //Console.WriteLine(JsonConvert.SerializeObject(checker.ListUltimateBeneficiaries(quest.BankRef.LegalPerson, bGroup), settings));
+            File.WriteAllText(string.Format(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_UltimateBeneficiaries_{0}.json", (bGroup ? "groupped" : "nongroupped") ), JsonConvert.SerializeObject(checker.ListUltimateBeneficiaries(quest.BankRef.LegalPerson, bGroup), settings));
+            Console.WriteLine("------------------------------------------------------------------------");
+            File.WriteAllText(string.Format(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_UltimateBeneficiaries_Dbg_{0}.json", (bGroup ? "groupped" : "nongroupped")), JsonConvert.SerializeObject(checker.LastDebugInfo, settings));
+            Console.WriteLine("------------------------------------------------------------------------");
+        }
+
+        [Test]
+        public void UltimateOwnersTest_Arkada_NonGroupped()
+        {
+            UltimateOwnersTest_Arkada_Worker(false);
+        }
+
+        [Test]
+        public void UltimateOwnersTest_Arkada_Groupped()
+        {
+            UltimateOwnersTest_Arkada_Worker(true);
         }
     }
 }

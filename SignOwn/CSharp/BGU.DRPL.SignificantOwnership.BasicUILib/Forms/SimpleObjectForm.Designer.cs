@@ -48,6 +48,8 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             this.saveFileDgl = new System.Windows.Forms.SaveFileDialog();
             this.ultimateOwnersAsIsMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.ultimateOwnersGroupedMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.asIsOwnersGraphMnu = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupedOwnersGraphMnu = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -186,10 +188,12 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             // 
             // ownershipGraphToolStripMenuItem
             // 
+            this.ownershipGraphToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asIsOwnersGraphMnu,
+            this.groupedOwnersGraphMnu});
             this.ownershipGraphToolStripMenuItem.Name = "ownershipGraphToolStripMenuItem";
             this.ownershipGraphToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.ownershipGraphToolStripMenuItem.Text = "Граф власності";
-            this.ownershipGraphToolStripMenuItem.Click += new System.EventHandler(this.ownershipGraphToolStripMenuItem_Click);
             // 
             // ultimateOwnersAsIsMnu
             // 
@@ -204,6 +208,20 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             this.ultimateOwnersGroupedMnu.Size = new System.Drawing.Size(152, 22);
             this.ultimateOwnersGroupedMnu.Text = "згруповані";
             this.ultimateOwnersGroupedMnu.Click += new System.EventHandler(this.ultimateOwnersGroupedMnu_Click);
+            // 
+            // asIsOwnersGraphMnu
+            // 
+            this.asIsOwnersGraphMnu.Name = "asIsOwnersGraphMnu";
+            this.asIsOwnersGraphMnu.Size = new System.Drawing.Size(152, 22);
+            this.asIsOwnersGraphMnu.Text = "як є";
+            this.asIsOwnersGraphMnu.Click += new System.EventHandler(this.asIsOwnersGraphMnu_Click);
+            // 
+            // groupedOwnersGraphMnu
+            // 
+            this.groupedOwnersGraphMnu.Name = "groupedOwnersGraphMnu";
+            this.groupedOwnersGraphMnu.Size = new System.Drawing.Size(152, 22);
+            this.groupedOwnersGraphMnu.Text = "згруповані";
+            this.groupedOwnersGraphMnu.Click += new System.EventHandler(this.groupedOwnersGraphMnu_Click);
             // 
             // SimpleObjectForm
             // 
@@ -253,5 +271,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         private ToolStripMenuItem ownershipGraphToolStripMenuItem;
         private ToolStripMenuItem ultimateOwnersAsIsMnu;
         private ToolStripMenuItem ultimateOwnersGroupedMnu;
+        private ToolStripMenuItem asIsOwnersGraphMnu;
+        private ToolStripMenuItem groupedOwnersGraphMnu;
     }
 }

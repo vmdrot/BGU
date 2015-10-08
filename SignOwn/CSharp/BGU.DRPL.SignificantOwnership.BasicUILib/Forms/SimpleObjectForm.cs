@@ -223,7 +223,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             return decimal.Compare(o2.TotalCapitalSharePct, o1.TotalCapitalSharePct);
         }
 
-        private void ownershipGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ownershipGraphToolStripMenuItem_Click_worker(object sender, EventArgs e, bool bGrouped)
         {
             if (!(DataSource is Appx2OwnershipStructLP))
                 return;
@@ -231,10 +231,36 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
             checker.Questionnaire = questio;
             UltimateOwnershipTreeForm frm = new UltimateOwnershipTreeForm();
-            frm.MentionedEntities = questio.MentionedIdentities;
+            frm.Questionnaire = questio;
+            List<OwnershipStructure> ownershipsHive = null;
+            List<GenericPersonInfo> identitiesHive = null;
+
+            if (bGrouped)
+            {
+                ownershipsHive = new List<OwnershipStructure>();
+                identitiesHive = new List<GenericPersonInfo>();
+
+                ownershipsHive.AddRange(questio.BankExistingCommonImplicitOwners);
+                identitiesHive.AddRange(questio.MentionedIdentities);
+
+                List<OwnershipStructure> groupedOwnerships;
+                List<OwnershipStructure> toBeDelOwnerships;
+                List<GenericPersonInfo> groupedMentionedIdentities;
+                checker.IdentifyAssociatedPersonsGroups(ownershipsHive, identitiesHive, out groupedOwnerships, out groupedMentionedIdentities, out toBeDelOwnerships);
+                Appx2OwnershipStructLPChecker.MergeIdentifiedGroups(ownershipsHive, identitiesHive, groupedOwnerships, groupedMentionedIdentities, toBeDelOwnerships);
+                questio.BankExistingCommonImplicitOwners = ownershipsHive;
+                questio.MentionedIdentities = identitiesHive;
+            }
+            else
+            {
+                ownershipsHive = questio.BankExistingCommonImplicitOwners;
+                identitiesHive = questio.MentionedIdentities;
+            }
+
+            frm.MentionedEntities = identitiesHive;
             //frm.MentionedEntities.Add(new GenericPersonInfo(questio.BankRef.LegalPerson));
             frm.CentralAssetID = questio.BankRef.LegalPerson;
-            frm.DataSource = questio.BankExistingCommonImplicitOwners;
+            frm.DataSource = ownershipsHive;
             frm.ShowDialog();
         }
 
@@ -246,6 +272,16 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         private void ultimateOwnersGroupedMnu_Click(object sender, EventArgs e)
         {
             ultimateOwnersToolStripMenuItem_Click(sender, e, true);
+        }
+
+        private void asIsOwnersGraphMnu_Click(object sender, EventArgs e)
+        {
+            ownershipGraphToolStripMenuItem_Click_worker(sender, e, false);
+        }
+
+        private void groupedOwnersGraphMnu_Click(object sender, EventArgs e)
+        {
+            ownershipGraphToolStripMenuItem_Click_worker(sender, e, true);
         }
     }
 }

@@ -31,6 +31,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             set { _indentString = value; }
         }
 
+        public object LastDebugInfo { get; private set; }
+
         public IQuestionnaire Questionnaire 
         {
             get { if (_questio == null) return null; return (IQuestionnaire)_questio; }
@@ -89,6 +91,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             public decimal SharePct { get; set; }
         }
         #endregion
+
+        public static void MergeIdentifiedGroups(List<OwnershipStructure> ownershipsHiveSrc, List<GenericPersonInfo> identitiesHiveSrc, List<OwnershipStructure> groupedOwnerships, List<GenericPersonInfo> groupedMentionedIdentities, List<OwnershipStructure> toBeDelOwnerships)
+        {
+            if (groupedOwnerships.Count > 0)
+            {
+                List<int> idxs2Del = new List<int>();
+                for (int i = 0; i < ownershipsHiveSrc.Count; i++)
+                {
+                    OwnershipStructure curr = ownershipsHiveSrc[i];
+                    OwnershipStructure found = toBeDelOwnerships.Find(o => o.Owner == curr.Owner && o.Asset == curr.Asset && o.SharePct == curr.SharePct);
+                    if (found != null)
+                        idxs2Del.Add(i);
+                }
+                for (int j = idxs2Del.Count - 1; j >= 0; j--)
+                    ownershipsHiveSrc.RemoveAt(idxs2Del[j]);
+                ownershipsHiveSrc.AddRange(groupedOwnerships);
+                identitiesHiveSrc.AddRange(groupedMentionedIdentities);
+            }
+
+        }
+
+
         public List<TotalOwnershipDetailsInfoEx> ListUltimateBeneficiaries(Spares.Data.GenericPersonID forEntity)
         {
             return ListUltimateBeneficiaries(forEntity, false);
@@ -98,31 +122,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             List<TotalOwnershipDetailsInfoEx> rslt = new List<TotalOwnershipDetailsInfoEx>();
 
             Dictionary<string, TotalOwnershipDetailsInfo> ultimateOwners = new Dictionary<string, TotalOwnershipDetailsInfo>();
-
+            List<OwnershipStructure> ownershipsHive;
+            List<GenericPersonInfo> identitiesHive;
             //UnWindUltimateOwners(_questio.BankRef.LegalPerson, _questio.BankRef.LegalPerson, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
             if (bIdentifyGroups)
             {
+                ownershipsHive = new List<OwnershipStructure>();
+                ownershipsHive.AddRange(_questio.BankExistingCommonImplicitOwners);
+                identitiesHive = new List<GenericPersonInfo>();
+                identitiesHive.AddRange(_questio.MentionedIdentities);
                 List<OwnershipStructure> groupedOwnerships;
                 List<OwnershipStructure> toBeDelOwnerships;
                 List<GenericPersonInfo> groupedMentionedIdentities;
-                IdentifyAssociatedPersonsGroups(_questio.BankExistingCommonImplicitOwners, _questio.MentionedIdentities, out groupedOwnerships, out groupedMentionedIdentities, out toBeDelOwnerships);
-                if (groupedOwnerships.Count > 0)
-                {
-                    List<int> idxs2Del = new List<int>();
-                    for (int i = 0; i < _questio.BankExistingCommonImplicitOwners.Count; i++)
-                    {
-                        OwnershipStructure curr = _questio.BankExistingCommonImplicitOwners[i];
-                        OwnershipStructure found = toBeDelOwnerships.Find(o => o.Owner == curr.Owner && o.Asset == curr.Asset && o.SharePct == curr.SharePct);
-                        if (found != null)
-                            idxs2Del.Add(i);
-                    }
-                    for (int j = idxs2Del.Count - 1; j >= 0; j--)
-                        _questio.BankExistingCommonImplicitOwners.RemoveAt(idxs2Del[j]);
-                    _questio.BankExistingCommonImplicitOwners.AddRange(groupedOwnerships);
-                    _questio.MentionedIdentities.AddRange(groupedMentionedIdentities);
-                }
+                IdentifyAssociatedPersonsGroups(ownershipsHive, identitiesHive, out groupedOwnerships, out groupedMentionedIdentities, out toBeDelOwnerships);
+                MergeIdentifiedGroups(ownershipsHive, identitiesHive, groupedOwnerships, groupedMentionedIdentities, toBeDelOwnerships);
             }
-            UnWindUltimateOwners(forEntity, forEntity, _questio.BankExistingCommonImplicitOwners, OwnershipType.Direct, 100M, ultimateOwners);
+            else
+            {
+                ownershipsHive = _questio.BankExistingCommonImplicitOwners;
+                identitiesHive = _questio.MentionedIdentities;
+            }
+
+            UnWindUltimateOwners(forEntity, forEntity, ownershipsHive, OwnershipType.Direct, 100M, ultimateOwners);
             TotalOwnershipDetailsInfo grandTotals = new TotalOwnershipDetailsInfo();
             foreach (string key in ultimateOwners.Keys)
             {
@@ -131,7 +152,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
                 decimal implPct = curr.ImplicitOwnership != null ? curr.ImplicitOwnership.Pct : 0;
                 curr.TotalCapitalSharePct = dirPct + implPct;
                 string currDispName = key;
-                GenericPersonInfo gpi = QuestionnaireCheckUtils.FindPersonByHashID(this._questio.MentionedIdentities, key);
+                GenericPersonInfo gpi = QuestionnaireCheckUtils.FindPersonByHashID(identitiesHive, key);
                 if (gpi != null)
                     currDispName = gpi.DisplayName;
                 rslt.Add(new TotalOwnershipDetailsInfoEx(curr, gpi.ID, currDispName));
@@ -143,21 +164,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             return rslt;
         }
 
-        private static void IdentifyAssociatedPersonsGroups(List<OwnershipStructure> ownerships, List<GenericPersonInfo> identities, out List<OwnershipStructure> groupedOwnerships, out List<GenericPersonInfo> groupedMentionedIdentities, out List<OwnershipStructure> insteadOSes)
+        public void IdentifyAssociatedPersonsGroups(List<OwnershipStructure> ownerships, List<GenericPersonInfo> identities, out List<OwnershipStructure> groupedOwnerships, out List<GenericPersonInfo> groupedMentionedIdentities, out List<OwnershipStructure> insteadOSes)
         {
+            #region 0. Init all outs and aux vars
             groupedOwnerships = new List<OwnershipStructure>();
             groupedMentionedIdentities = new List<GenericPersonInfo>();
             insteadOSes = new List<OwnershipStructure>();
-            Dictionary<string,GenericPersonID> assets = new Dictionary<string,GenericPersonID>();
-            Dictionary<string,GenericPersonID> allHashes2IDs = new Dictionary<string,GenericPersonID>();
+            Dictionary<string, GenericPersonID> assets = new Dictionary<string,GenericPersonID>();
+            Dictionary<string, GenericPersonID> allHashes2IDs = new Dictionary<string,GenericPersonID>();
             Dictionary<string, GenericPersonID> members2Groups = new Dictionary<string,GenericPersonID>();
-            Dictionary<string,GenericPersonInfo> groupGPIs = new Dictionary<string,GenericPersonInfo>();
-
+            Dictionary<string, GenericPersonInfo> groupGPIs = new Dictionary<string,GenericPersonInfo>();
+            Dictionary<GenericPersonID, List<OwnershipStructure>> grouppedOwnerships = new Dictionary<GenericPersonID,List<OwnershipStructure>>();
+            Dictionary<string, object> debugInfo = new Dictionary<string, object>();
+            #endregion
+            #region 1. List assets distinctively
             foreach (OwnershipStructure os in ownerships)
             {
                 if (!assets.ContainsKey(os.Asset.HashID))
                     assets.Add(os.Asset.HashID, os.Asset);
             }
+            #endregion
+
+            #region 2. Cycle through distinct assets list and detect groups
             foreach (GenericPersonID asset in assets.Values)
             {
                 var currControllers = from o in ownerships
@@ -165,7 +193,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
                                       select o.Owner;
                 decimal currTotalPct = ownerships.Where(o => o.Asset == asset).Sum(o => o.SharePct);
 
-                if (currControllers.Count() < 2 && currTotalPct <= 100.00M)
+                if (currControllers.Count() < 2 && currTotalPct <= 100.00M || (currControllers.Count() == 1 && currControllers.First().PersonType == EntityType.Legal))
                     continue;
 
                 var currCtrlOSes = from o in ownerships
@@ -189,12 +217,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
 
                 insteadOSes.AddRange(currCtrlOSes);
 
+
                 var existingGroups = from m2g in members2Groups
                                      join cc in currControllers on m2g.Key equals cc.HashID
                                      select m2g.Value;
+                GenericPersonID currGrp = null;
                 if (existingGroups.Count() > 0)
                 {
-                    GenericPersonID currGrp = existingGroups.First();
+                    currGrp = existingGroups.First();
                     
                     List<string> ctrllerNames = new List<string>();
                     foreach (GenericPersonID ctrller in currControllers)
@@ -222,6 +252,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
                     gpiGrp.PersonType = EntityType.Legal;
                     gpiGrp.LegalPerson = new LegalPersonInfo() { TaxCodeOrHandelsRegNr = grpID, ResidenceCountry = CountryInfo.UKRAINE, Name = grpDispName };
                     groupGPIs.Add(gpiGrp.ID.HashID, gpiGrp);
+                    currGrp = gpiGrp.ID;
                     foreach (GenericPersonID ctrller in currControllers)
                     {
                         if (members2Groups.ContainsKey(ctrller.HashID))
@@ -231,8 +262,41 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
                     groupedOwnerships.Add(new OwnershipStructure() { Asset = asset, Owner = gpiGrp.ID, SharePct = 100.00M, OwnershipKind = OwnershipType.Direct });
                     groupedMentionedIdentities.Add(gpiGrp);
                 }
+                if(!grouppedOwnerships.ContainsKey(currGrp))
+                    grouppedOwnerships.Add(currGrp, new List<OwnershipStructure>());
+                grouppedOwnerships[currGrp].AddRange(currCtrlOSes);
+                grouppedOwnerships[currGrp].AddRange(currNonCtrlOSes);
             }
-                         
+            #endregion
+
+            #region 3. Back-check previous for groups belonging
+            foreach (OwnershipStructure os in ownerships)
+            {
+                if ((members2Groups.ContainsKey(os.Owner.HashID) || members2Groups.ContainsKey(os.Asset.HashID)) && !insteadOSes.Contains(os))
+                {
+                    GenericPersonID correctedAsset = members2Groups.ContainsKey(os.Asset.HashID) ? members2Groups[os.Asset.HashID] : os.Asset;
+                    GenericPersonID correctedOwner = members2Groups.ContainsKey(os.Owner.HashID) ? members2Groups[os.Owner.HashID] : os.Owner;
+                    groupedOwnerships.Add(new OwnershipStructure() { Asset = correctedAsset, Owner = correctedOwner, SharePct = os.SharePct, OwnershipKind = OwnershipType.Direct });
+                    insteadOSes.Add(os);
+                    if (members2Groups.ContainsKey(os.Owner.HashID))
+                        grouppedOwnerships[members2Groups[os.Owner.HashID]].Add(os);
+                    else
+                        grouppedOwnerships[members2Groups[os.Asset.HashID]].Add(os);
+                }
+            }
+            #endregion
+
+            #region debug-related
+            debugInfo.Add("assets", (object)assets);
+            debugInfo.Add("allHashes2IDs", (object)allHashes2IDs);
+            debugInfo.Add("members2Groups", (object)members2Groups);
+            debugInfo.Add("groupGPIs", (object)groupGPIs);
+            debugInfo.Add("groupedOwnerships", (object)groupedOwnerships);
+            debugInfo.Add("groupedMentionedIdentities", (object)groupedMentionedIdentities);
+            debugInfo.Add("insteadOSes", (object)insteadOSes);
+            debugInfo.Add("grouppedOwnerships", (object)grouppedOwnerships);
+            LastDebugInfo = (object)debugInfo;
+            #endregion
         }
 
         private static string AppendToName(string oldName, IEnumerable<string> names)
@@ -241,6 +305,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Checks
             if (names != null && names.Count() > 0)
             {
                 int i = 0;
+                if (string.IsNullOrEmpty(oldName))
+                    rslt.Append("Група: ");
                 foreach (string name in names)
                 {
                     if((i == 0 && !string.IsNullOrEmpty(oldName)) || i > 0)
