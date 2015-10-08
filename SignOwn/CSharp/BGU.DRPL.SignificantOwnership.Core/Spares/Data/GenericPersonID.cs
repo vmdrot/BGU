@@ -122,6 +122,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
             return (this == (GenericPersonID)obj);
         }
 
+        public override int GetHashCode()
+        {
+            return HashID.GetHashCode();
+        }
         #endregion
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using BGU.DRPL.SignificantOwnership.Core.Spares;
 using BGU.DRPL.SignificantOwnership.Core.Checks;
+using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
 
 namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
 {
@@ -17,12 +18,15 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         public UltimateOwnershipTreeForm()
         {
             InitializeComponent();
+            DirectOrReverseBinding = true;
         }
 
         private List<OwnershipStructure> _dataSource;
 
         public List<GenericPersonInfo> MentionedEntities { get; set; }
         public GenericPersonID CentralAssetID { get; set; }
+
+        private bool DirectOrReverseBinding { get; set; }
 
         public List<OwnershipStructure> DataSource
         {
@@ -37,7 +41,21 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             }
         }
 
+        public Appx2OwnershipStructLP Questionnaire
+        {
+            get;
+            set;
+        }
+
         private void ReBindTree()
+        {
+            if (DirectOrReverseBinding)
+                ReBindTree_Direct();
+            else
+                ReBindTree_Reverse();
+        }
+
+        private void ReBindTree_Direct()
         {
             if (CentralAssetID == null || MentionedEntities == null || _dataSource == null || _dataSource.Count == 0)
                 return;
@@ -47,6 +65,25 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             UnWindOwnersGraph(CentralAssetID, _dataSource, treeView, rootNode, 100M);
         }
 
+
+        private void ReBindTree_Reverse()
+        {
+            if (CentralAssetID == null || MentionedEntities == null || _dataSource == null || _dataSource.Count == 0)
+                return;
+            treeView.Nodes.Clear();
+            Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
+            checker.Questionnaire = Questionnaire;
+            List<TotalOwnershipDetailsInfoEx> ultimateOwners = checker.ListUltimateBeneficiaries(CentralAssetID);
+            ultimateOwners.Sort((o1, o2) => o2.TotalCapitalSharePct.CompareTo(o1.TotalCapitalSharePct));
+            TreeNode rootNode = FormatNode(ultimateOwners[0].OwnerID, ultimateOwners[0].TotalCapitalSharePct, string.Empty);
+            treeView.Nodes.Add(rootNode);
+            for (int i = 1; i < ultimateOwners.Count; i++)
+            {
+                TreeNode currUltimateOwnerNode = FormatNode(ultimateOwners[i].OwnerID, ultimateOwners[i].TotalCapitalSharePct, string.Empty);
+                rootNode.Nodes.Add(currUltimateOwnerNode);
+                UnWindAssetsGraph(ultimateOwners[i].OwnerID, _dataSource, treeView, currUltimateOwnerNode, ultimateOwners[i].TotalCapitalSharePct);
+            }
+        }
 
         private TreeNode FormatNode(GenericPersonID gpid, decimal pct, string pctPath)
         {
@@ -77,10 +114,31 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             }
         }
 
+        private void UnWindAssetsGraph(GenericPersonID forOwner, List<OwnershipStructure> ownershipHaystack, TreeView rslt, TreeNode putUnderNode, decimal inPct)
+        {
+            foreach (OwnershipStructure os in ownershipHaystack)
+            {
+                if (os.Owner != forOwner)
+                    continue;
+                decimal correctedPct = 100 * ((os.SharePct / 100) * (inPct / 100));
+                TreeNode currNode = PrintOwnershipLineAsset(os, rslt, putUnderNode, correctedPct);
+                //if (os.Owner.PersonType == EntityType.Legal)
+                    UnWindAssetsGraph(os.Asset, ownershipHaystack, rslt, currNode, correctedPct);
+            }
+        }
+
         private TreeNode PrintOwnershipLine(OwnershipStructure os, TreeView rslt, TreeNode putUnderNode, decimal? ultimatePct)
         {
             string pctPath = ultimatePct != null ? string.Format("({0}%)", ((decimal)ultimatePct).ToString()) : string.Empty;
             TreeNode node = FormatNode(os.Owner, os.SharePct, pctPath);
+            putUnderNode.Nodes.Add(node);
+            return node;
+        }
+
+        private TreeNode PrintOwnershipLineAsset(OwnershipStructure os, TreeView rslt, TreeNode putUnderNode, decimal? ultimatePct)
+        {
+            string pctPath = ultimatePct != null ? string.Format("({0}%)", ((decimal)ultimatePct).ToString()) : string.Empty;
+            TreeNode node = FormatNode(os.Asset, os.SharePct, pctPath);
             putUnderNode.Nodes.Add(node);
             return node;
         }
@@ -93,6 +151,36 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         private void collapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             treeView.CollapseAll();
+        }
+
+        private void btnReverse_Click(object sender, EventArgs e)
+        {
+            DirectOrReverseBinding = !DirectOrReverseBinding;
+            ReBindTree();
+        }
+
+        private static string TreeToText(TreeView trvw, string indenter)
+        {
+            StringBuilder rslt = new StringBuilder();
+            Nodes2Text(trvw.Nodes, indenter, rslt, 0);
+            return rslt.ToString();
+        }
+
+        private static void Nodes2Text(TreeNodeCollection nodes, string indenter, StringBuilder target, int lvl)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                target.AppendLine(string.Format("{0}{1}", string.Concat(Enumerable.Repeat(indenter, lvl).ToArray()), node.Text));
+                if (node.GetNodeCount(false) > 0)
+                    Nodes2Text(node.Nodes, indenter, target, lvl + 1);
+            }
+        }
+
+
+        private void btnToTxt_Click(object sender, EventArgs e)
+        {
+            string txt = TreeToText(this.treeView, "\t");
+            Clipboard.SetText(txt);
         }
 
         /*
