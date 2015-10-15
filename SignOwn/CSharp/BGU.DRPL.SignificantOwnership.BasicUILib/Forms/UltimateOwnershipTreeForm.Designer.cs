@@ -35,6 +35,7 @@
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnReverse = new System.Windows.Forms.Button();
             this.btnToTxt = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView.ContextMenuStrip = this.contextMenuStrip1;
+            this.treeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.treeView.Location = new System.Drawing.Point(0, 1);
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(1074, 423);
@@ -93,11 +95,23 @@
             this.btnToTxt.UseVisualStyleBackColor = true;
             this.btnToTxt.Click += new System.EventHandler(this.btnToTxt_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSettings.Location = new System.Drawing.Point(12, 440);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 23);
+            this.btnSettings.TabIndex = 3;
+            this.btnSettings.Text = "Fon&t";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // UltimateOwnershipTreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 475);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnToTxt);
             this.Controls.Add(this.btnReverse);
             this.Controls.Add(this.treeView);
@@ -116,5 +130,6 @@
         private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
         private System.Windows.Forms.Button btnReverse;
         private System.Windows.Forms.Button btnToTxt;
+        private System.Windows.Forms.Button btnSettings;
     }
 }

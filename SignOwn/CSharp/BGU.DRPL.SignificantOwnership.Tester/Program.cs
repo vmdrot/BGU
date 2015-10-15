@@ -20,6 +20,7 @@ using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy;
 using System.Data;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
+using BGU.DRPL.SignificantOwnership.Core.Messages;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -61,6 +62,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             #region populate
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
             _cmdHandlers.Add("updatexsdstranslationsex", UpdateXSDsTranslationsEx);
+            _cmdHandlers.Add("updatexsds328p", UpdateXSDs328P);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
             _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
@@ -1007,6 +1009,29 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
 
             ProcessTypeExport2XSD(typeof(ActualQuestionnairesUnion), assemblySummariesXml);
+
+        }
+
+
+        private static void UpdateXSDs328P_(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(BankOwnershipStructureP328MessageBody).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.Messages" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
+
+            ProcessTypeExport2XSD(typeof(BankOwnershipStructureP328MessageBody), assemblySummariesXml);
+
+        }
+
+        private static void UpdateXSDs328P(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(BankOwnershipStructureP328).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.Messages" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
+
+            ProcessTypeExport2XSD(typeof(BankOwnershipStructureP328), assemblySummariesXml);
 
         }
 

@@ -78,12 +78,14 @@
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Messages\BankInfo\BankInfoEnums.cs" />
     <Compile Include="Messages\BankInfo\BkInfoChangesMessage.cs" />
+    <Compile Include="Messages\BankOwnershipStructureP328MessageBody.cs" />
     <Compile Include="Messages\DossierMessageBase.cs" />
     <Compile Include="Messages\IDossierMessageBody.cs" />
     <Compile Include="Messages\Post306RIG3p23YO_MovFundsBkAssurance.cs" />
     <Compile Include="Messages\Post306RIG3p28FO_FundsMovBankAssurance.cs" />
     <Compile Include="Messages\Post315AppxBankAssocPersons.cs" />
     <Compile Include="Questionnaires\ActualQuestionnairesUnion.cs" />
+    <Compile Include="Questionnaires\BankOwnershipStructureP328MessageBody.cs" />
     <Compile Include="Spares2\DossierMsgs\NbuCommonMgsTrail.cs" />
     <Compile Include="Spares2\DossierMsgs\NbuCommonMsgHead.cs" />
     <Compile Include="Spares2\Post315AppxBankAssocPerson.cs" />

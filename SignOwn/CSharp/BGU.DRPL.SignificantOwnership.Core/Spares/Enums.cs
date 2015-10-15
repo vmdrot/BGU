@@ -288,6 +288,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         PassportCopyScan,
         [Description("Копії/скан статуту")]
         CharterCopyScan,
+        [Description("Діграма структури власності")]
+        OwnershipDiagram,
         [Description("Інше (вказати додатково у деталях)")]
         Other
     }

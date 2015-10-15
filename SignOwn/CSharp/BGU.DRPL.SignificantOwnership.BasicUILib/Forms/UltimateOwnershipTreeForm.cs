@@ -100,6 +100,18 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
             return rslt;
         }
 
+        private TreeNode FormatNode2(GenericPersonID gpid, decimal pct, string pctPath)
+        {
+            if (gpid == null)
+                return null;
+            TreeNode rslt = new TreeNode();
+            GenericPersonInfo gpi = QuestionnaireCheckUtils.FindPersonByID(MentionedEntities, gpid);
+            string dispName = gpid.HashID;
+            if (gpi != null)
+                dispName = gpi.DisplayName;
+            rslt.Text = string.Format("{0}%{1} {2}", pctPath, pct, dispName);
+            return rslt;
+        }
         
         private void UnWindOwnersGraph(GenericPersonID forAsset, List<OwnershipStructure> ownershipHaystack, TreeView rslt, TreeNode putUnderNode, decimal inPct)
         {
@@ -138,7 +150,7 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         private TreeNode PrintOwnershipLineAsset(OwnershipStructure os, TreeView rslt, TreeNode putUnderNode, decimal? ultimatePct)
         {
             string pctPath = ultimatePct != null ? string.Format("({0}%)", ((decimal)ultimatePct).ToString()) : string.Empty;
-            TreeNode node = FormatNode(os.Asset, os.SharePct, pctPath);
+            TreeNode node = FormatNode2(os.Asset, os.SharePct, pctPath);
             putUnderNode.Nodes.Add(node);
             return node;
         }
@@ -181,6 +193,15 @@ namespace BGU.DRPL.SignificantOwnership.BasicUILib.Forms
         {
             string txt = TreeToText(this.treeView, "\t");
             Clipboard.SetText(txt);
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            SimpleObjectForm<Font> fontDlg = new SimpleObjectForm<System.Drawing.Font>();
+            fontDlg.DataSource = treeView.Font;
+            if (fontDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return;
+            treeView.Font = fontDlg.DataSource;
         }
 
         /*
