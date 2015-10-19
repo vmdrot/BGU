@@ -45,16 +45,16 @@
       <p>
         <b>Поля:</b>
       </p>
-      <table class="typTbl">
+      <table class="typTbl" width="100%">
         <thead>
           <tr>
             <th width="2%" class="typCell tbhd">№ п/п</th>
             <th width="15%" class="typCell tbhd">Назва поля</th>
-            <th width="15%" class="typCell tbhd">Підпис до поля</th>
+            <th width="16%" class="typCell tbhd">Підпис до поля</th>
             <th width="22%" class="typCell tbhd">Підказка до поля</th>
-            <th width="7%" class="typCell tbhd">Тип поля</th>
-            <th width="2%" class="typCell tbhd">Обов'язковість поля</th>
-            <th width="37%" class="typCell tbhd">Примітки</th>
+            <th width="12%" class="typCell tbhd">Тип поля</th>
+            <th width="3%" class="typCell tbhd">Обов'язковість поля</th>
+            <th width="30%" class="typCell tbhd">Примітки</th>
           </tr>
         </thead>
         <tbody>
@@ -75,8 +75,10 @@
               <td class="typCell">
                 <xsl:if test="not(@type_ukr)">
                   <a href="#{@type}">
-                    <xsl:value-of select="@type"/>
-                  </a>
+                    <span class="custypnm">
+                      <xsl:value-of select="@type"/>
+                    </span>
+                    </a>
                 </xsl:if>
                 <xsl:if test="@type_ukr">
                   <xsl:value-of select="@type_ukr"/>
