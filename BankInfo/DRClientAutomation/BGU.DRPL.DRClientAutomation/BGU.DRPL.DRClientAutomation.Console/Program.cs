@@ -27,9 +27,15 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("findwindowtest", FindWindowTest);
             _cmdHandlers.Add("findandclosebrancheditwindow", FindAndCloseBranchEditWindow);
             _cmdHandlers.Add("openandclosebrancheditwindow", OpenAndCloseBranchEditWindow);
-            
+            _cmdHandlers.Add("clickparameterstabltest", ClickParametersTablTest);
+            _cmdHandlers.Add("clickparameterstabtest2", ClickParametersTabTest2);
+            _cmdHandlers.Add("clickparameterstabtest3", ClickParametersTabTest3);
+            _cmdHandlers.Add("clickparameterstabtest4", ClickParametersTabTest4);
+            _cmdHandlers.Add("clickparameterstabtest5", ClickParametersTabTest5);
+            _cmdHandlers.Add("readbranchidtest", ReadBranchIDTest);
             
             #endregion
+
 
             #endregion
         }
@@ -37,7 +43,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
 
         static void Main(string[] args)
         {
-            //System.Console.Read();
+            System.Console.Read();
 
             string cmdHandlerKey = string.Empty;
             if (args.Length > 0)
@@ -66,7 +72,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 return;
             }
 
-            System.Console.WriteLine("mainEditBranchesForm = {0}", mainEditBranchesForm);
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
             //WindowInfo wi = FormAutomUtils.FindChildWindowCaptionStartsWith(mainEditBranchesForm, "Відділення  << ", "TGroupBox");
             //if (wi == null)
             //{
@@ -95,6 +101,8 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
                 System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
                 Thread.Sleep(2000);
+                string currIntBranchID = DRAutoDriver.ReadBranchID(hwndBranchEditForm);
+                System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
                 FormAutomUtils.CloseWindow(hwndBranchEditForm);
                 Thread.Sleep(300);
             }
@@ -130,7 +138,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 return;
             }
 
-            System.Console.WriteLine("mainEditBranchesForm = {0}", mainEditBranchesForm);
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X})", mainEditBranchesForm);
             IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
 
             System.Console.WriteLine("hwndGrid = {0}", hwndGrid);
@@ -154,5 +162,136 @@ namespace BGU.DRPL.DRClientAutomation.Console
             Thread.Sleep(300);
         }
 
+        private static void ClickParametersTablTest(string[] args)
+        {
+
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Параметри", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return;
+            }
+            FormAutomUtils.SetFocus(wiParamsSubTab.Handle);
+            FormAutomUtils.ClickButton2(wiParamsSubTab.Handle);
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+            
+            //FormAutomUtils.DoMouseClick();
+
+        }
+
+        private static void ClickParametersTabTest2(string[] args)
+        {
+
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Назви", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return;
+            }
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            FormAutomUtils.FocusAndClickArrowRight(wiParamsSubTab.Handle);
+            
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.DoMouseClick();
+
+        }
+
+        private static void ClickParametersTabTest3(string[] args)
+        {
+
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Параметри", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return;
+            }
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            FormAutomUtils.FocusAndClickSpace(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.DoMouseClick();
+
+        }
+
+        private static void ClickParametersTabTest4(string[] args)
+        {
+
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Параметри", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return;
+            }
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            FormAutomUtils.ClickTab(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.DoMouseClick();
+
+        }
+
+        private static void ClickParametersTabTest5(string[] args)
+        {
+            const int xCorrDefault = 0;
+            const int yCorrDefault = 0;
+
+            int xCorr; int yCorr;
+            if (args.Length >= 3)
+            {
+                string xCorrStr = args[1];
+                string yCorrStr = args[2];
+                if (!int.TryParse(xCorrStr, out xCorr))
+                    xCorr = xCorrDefault;
+                if (!int.TryParse(yCorrStr, out yCorr))
+                    yCorr = yCorrDefault;
+            }
+            else
+            {
+                xCorr = xCorrDefault; yCorr = yCorrDefault;
+            }
+
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Параметри", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return;
+            }
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            FormAutomUtils.ClickTab(wiParamsSubTab.Handle, xCorr, yCorr);
+
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+
+            //FormAutomUtils.DoMouseClick();
+
+        }
+
+        private static void ReadBranchIDTest(string[] args)
+        {
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+            Thread.Sleep(2000);
+            string currIntBranchID = DRAutoDriver.ReadBranchID(hwndBranchEditForm);
+            System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
+            FormAutomUtils.CloseWindow(hwndBranchEditForm);
+        }
     }
 }
