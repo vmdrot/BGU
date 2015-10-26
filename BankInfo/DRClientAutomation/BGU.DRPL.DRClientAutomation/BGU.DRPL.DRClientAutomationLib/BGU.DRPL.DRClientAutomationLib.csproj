@@ -43,6 +43,7 @@
     <Compile Include="AuxData\WindowInfo.cs" />
     <Compile Include="DRAutoDriver.cs" />
     <Compile Include="FormAutomUtils.cs" />
+    <Compile Include="MouseSimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

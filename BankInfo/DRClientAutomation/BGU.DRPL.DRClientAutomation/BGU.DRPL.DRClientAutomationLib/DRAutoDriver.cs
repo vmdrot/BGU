@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BGU.DRPL.DRClientAutomationLib.AuxData;
+using System.Threading;
 
 namespace BGU.DRPL.DRClientAutomationLib
 {
@@ -42,6 +43,41 @@ namespace BGU.DRPL.DRClientAutomationLib
                     return (IntPtr)0; //todo
             }
             return wiEditBtn.Handle;
+        }
+
+        public static string ReadBranchID(IntPtr hwndBranchEditForm)
+        {
+            WindowInfo wiParamsSubTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Параметри", "TTabSheet");
+            if (wiParamsSubTab == null)
+            {
+                System.Console.WriteLine("Can't find wiParamsSubTab");
+                return string.Empty;
+            }
+            System.Console.WriteLine("wiParamsSubTab.Handle = {0} ({0:X8})", wiParamsSubTab.Handle);
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+            if (!FormAutomUtils.ClickTab(wiParamsSubTab.Handle, 60, -10))
+            {
+                System.Console.WriteLine("Failed to click tab");
+                return string.Empty;
+            }
+            Thread.Sleep(1000);
+            WindowInfo wiIntBranchIDLbl = FormAutomUtils.FindChildWindowCaptionEquals(wiParamsSubTab.Handle, "Внутрішньобанківський код", "TStaticText");
+            if (wiIntBranchIDLbl == null)
+            {
+                System.Console.WriteLine("Can't find wiIntBranchIDLbl");
+                IntPtr hwndIntBranchIDLbl = FormAutomUtils.FindWindowEx(wiParamsSubTab.Handle, IntPtr.Zero, null, "Внутрішньобанківський код");
+                if(hwndIntBranchIDLbl == IntPtr.Zero)
+                    return string.Empty;
+                wiIntBranchIDLbl = new WindowInfo() { Handle = hwndIntBranchIDLbl };
+            }
+            System.Console.WriteLine("wiIntBranchIDLbl.Handle = {0} ({0:X8})", wiIntBranchIDLbl.Handle);
+
+            IntPtr hwndEdit = FormAutomUtils.FindWindowEx(wiParamsSubTab.Handle, wiIntBranchIDLbl.Handle, "TEdit", null);
+            System.Console.WriteLine("hwndEdit = {0} ({0:X8})", hwndEdit);
+
+            if(hwndEdit == IntPtr.Zero)
+                return string.Empty; //todo
+            return FormAutomUtils.GetWindowCaption(hwndEdit);
         }
     }
 }

@@ -44,7 +44,39 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         
         [DllImport("user32.dll")]
-        static extern IntPtr SetFocus(IntPtr hWnd);
+        public static extern IntPtr SetFocus(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        public static extern void mouse_event(long dwFlags, long dx, long dy, long cButtons, long dwExtraInfo);
+
+        [DllImport("user32.dll")]
+        static extern bool SetCursorPos(int X, int Y);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;        // x position of upper-left corner
+            public int Top;         // y position of upper-left corner
+            public int Right;       // x position of lower-right corner
+            public int Bottom;      // y position of lower-right corner
+        }
+
+
+
+
+        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        private const int MOUSEEVENTF_LEFTUP = 0x04;
+        private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
+        private const int MOUSEEVENTF_RIGHTUP = 0x10;
+
 
 
         private const int BN_CLICKED = 0x00F5;
@@ -56,6 +88,7 @@ namespace BGU.DRPL.DRClientAutomationLib
         private const int VK_UP = 0x26;
         private const int VK_DOWN = 0x28;
         private const int VK_RIGHT = 0x27;
+        private const int VK_SPACE = 0x20;
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_CLOSE = 0xF060;
 
@@ -151,6 +184,16 @@ namespace BGU.DRPL.DRClientAutomationLib
             PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_DOWN, IntPtr.Zero);
         }
 
+        public static void FocusAndClickArrowRight(IntPtr hwnd)
+        {
+            SetFocus(hwnd);
+            Thread.Sleep(1000);
+            //SendMessage(hwnd, VK_DOWN, IntPtr.Zero, IntPtr.Zero);
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_RIGHT, IntPtr.Zero);
+            Thread.Sleep(300);
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_RIGHT, IntPtr.Zero);
+        }
+
         public static void CloseWindow(IntPtr hwnd)
         {
             SendMessage(hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
@@ -159,6 +202,72 @@ namespace BGU.DRPL.DRClientAutomationLib
         public static void ClickButton2(IntPtr hwndButton)
         {
             PostMessage(hwndButton, BN_CLICKED, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        public static bool ClickTab(IntPtr hwndTab)
+        {
+            RECT tabRect;
+            RECT tabClientRect;
+            if (!GetWindowRect(hwndTab, out tabRect))
+                return false;
+            Console.WriteLine("tabRect = {{ {0}, {1} , {2}, {3} }}", tabRect.Left, tabRect.Top, tabRect.Right, tabRect.Bottom);
+
+            if (!GetClientRect(hwndTab, out tabClientRect))
+                return false;
+            Console.WriteLine("tabClientRect = {{ {0}, {1} , {2}, {3} }}", tabClientRect.Left, tabClientRect.Top, tabClientRect.Right, tabClientRect.Bottom);
+            
+            Console.WriteLine("About to MoveCursorToPoint");
+            Thread.Sleep(1000);
+            MoveCursorToPoint(tabRect.Left + 2, tabRect.Top + 2);
+            Thread.Sleep(1000);
+            MoveCursorToPoint(tabClientRect.Left + 2, tabClientRect.Top + 2);
+            Console.WriteLine("MoveCursorToPoint-ed, move mouse if not there:.....");
+            Console.Read();
+            DoMouseClick();
+            //PostMessage(hwndTab, BN_CLICKED, IntPtr.Zero, IntPtr.Zero);
+            return true;
+        }
+
+        public static bool ClickTab(IntPtr hwndTab, int xCorrection, int yCorrection)
+        {
+            RECT tabRect;
+            if (!GetWindowRect(hwndTab, out tabRect))
+                return false;
+            Console.WriteLine("tabRect = {{ {0}, {1} , {2}, {3} }}", tabRect.Left, tabRect.Top, tabRect.Right, tabRect.Bottom);
+
+            Console.WriteLine("About to MoveCursorToPoint");
+            Thread.Sleep(1000);
+            MoveCursorToPoint(tabRect.Left + xCorrection, tabRect.Top + yCorrection);
+            Thread.Sleep(1000);
+            
+            //Console.Read();
+            DoMouseClick();
+            //PostMessage(hwndTab, BN_CLICKED, IntPtr.Zero, IntPtr.Zero);
+            return true;
+        }
+
+        public static void DoMouseClick()
+        {
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+        }
+
+        public static void MoveCursorToPoint(int x, int y)
+        {
+            SetCursorPos(x, y);
+        }
+
+
+
+
+        public static void FocusAndClickSpace(IntPtr hwnd)
+        {
+            SetFocus(hwnd);
+            Thread.Sleep(1000);
+            //SendMessage(hwnd, VK_DOWN, IntPtr.Zero, IntPtr.Zero);
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_SPACE, IntPtr.Zero);
+            Thread.Sleep(300);
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_SPACE, IntPtr.Zero);
+
         }
     }
 }
