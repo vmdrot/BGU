@@ -79,5 +79,43 @@ namespace BGU.DRPL.DRClientAutomationLib
                 return string.Empty; //todo
             return FormAutomUtils.GetWindowCaption(hwndEdit);
         }
+
+        public static bool FillChangesSummary(IntPtr hwndBranchEditForm, string summaryText)
+        {
+            WindowInfo wiOtherTab = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Інше", "TTabSheet");
+            if (wiOtherTab == null)
+            {
+                System.Console.WriteLine("Can't find wiOtherTab");
+                return false;
+            }
+            System.Console.WriteLine("wiOtherTab.Handle = {0} ({0:X8})", wiOtherTab.Handle);
+            //FormAutomUtils.ClickButton(wiParamsSubTab.Handle);
+            if (!FormAutomUtils.ClickTab(wiOtherTab.Handle, 360, -10))
+            {
+                System.Console.WriteLine("Failed to click tab");
+                return false;
+            }
+            Thread.Sleep(1000);
+
+
+            WindowInfo wiSummaryGroupBox = FormAutomUtils.FindChildWindowCaptionEquals(wiOtherTab.Handle, "Короткий опис змін:", "TGroupBox");
+            if (wiSummaryGroupBox == null)
+            {
+                System.Console.WriteLine("Can't find wiSummaryGroupBox");
+                IntPtr hwneSummaryGroupBox = FormAutomUtils.FindWindowEx(wiOtherTab.Handle, IntPtr.Zero, null, "Короткий опис змін:");
+                if (hwneSummaryGroupBox == IntPtr.Zero)
+                    return false;
+                wiSummaryGroupBox = new WindowInfo() { Handle = hwneSummaryGroupBox };
+            }
+            System.Console.WriteLine("wiSummaryGroupBox.Handle = {0} ({0:X8})", wiSummaryGroupBox.Handle);
+
+            IntPtr hwndEdit = FormAutomUtils.FindWindowEx(wiSummaryGroupBox.Handle, IntPtr.Zero, "TRichEdit", null);
+            System.Console.WriteLine("hwndEdit = {0} ({0:X8})", hwndEdit);
+            if(hwndEdit == IntPtr.Zero)
+                return false;
+            FormAutomUtils.SetText(hwndEdit, summaryText);
+
+            return true;
+        }
     }
 }

@@ -60,6 +60,10 @@ namespace BGU.DRPL.DRClientAutomationLib
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
+
+
+
+
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -91,6 +95,7 @@ namespace BGU.DRPL.DRClientAutomationLib
         private const int VK_SPACE = 0x20;
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_CLOSE = 0xF060;
+        const int WM_SETTEXT = 0x000c;
 
         //public static IntPtr FindWindow(string caption, string wndClass)
         //{
@@ -257,6 +262,12 @@ namespace BGU.DRPL.DRClientAutomationLib
         }
 
 
+
+        public static void SetText(IntPtr hwnd, string text)
+        {
+            GCHandle handle1 = GCHandle.Alloc(text); 
+            SendMessage(hwnd, WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
+        }
 
 
         public static void FocusAndClickSpace(IntPtr hwnd)
