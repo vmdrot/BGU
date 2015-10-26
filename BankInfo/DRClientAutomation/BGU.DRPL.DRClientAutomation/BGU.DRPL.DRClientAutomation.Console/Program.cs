@@ -94,8 +94,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
 
             for (int i = 0; i < 10; i++)
             {
-                FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
-                Thread.Sleep(500);
+                FormAutomUtils.SetFocus(hwndGrid);
                 FormAutomUtils.ClickButton2(hwnEditTvbvBtn);
                 Thread.Sleep(1500);
                 IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
@@ -103,8 +102,14 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 Thread.Sleep(2000);
                 string currIntBranchID = DRAutoDriver.ReadBranchID(hwndBranchEditForm);
                 System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
+
+                if (!DRAutoDriver.FillChangesSummary(hwndBranchEditForm, String.Format("Постанова правління, зміни обсягу та переліку операцій) # {0}", i)))
+                    System.Console.WriteLine("Falied to change summary)");
+                Thread.Sleep(2000);
                 FormAutomUtils.CloseWindow(hwndBranchEditForm);
                 Thread.Sleep(300);
+                FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
+                Thread.Sleep(500);
             }
             
             
