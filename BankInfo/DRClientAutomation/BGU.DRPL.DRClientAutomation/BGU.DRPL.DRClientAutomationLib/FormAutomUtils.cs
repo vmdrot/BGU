@@ -38,6 +38,10 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         [DllImport("user32.dll")]
         static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false, EntryPoint = "SendMessage")]
+        public static extern IntPtr SendTextMessage(HandleRef hWnd, uint Msg, IntPtr wParam, string lParam);
+
         
         [DllImport("user32.dll")]
         static extern bool PostMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
@@ -95,7 +99,9 @@ namespace BGU.DRPL.DRClientAutomationLib
         private const int VK_SPACE = 0x20;
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_CLOSE = 0xF060;
-        const int WM_SETTEXT = 0x000c;
+        private const int WM_SETTEXT = 0x000c;
+        private const int WM_GETTEXT = 0x000D;
+        private const int WM_GETTEXTLENGTH = 0x000E;
 
         //public static IntPtr FindWindow(string caption, string wndClass)
         //{
@@ -126,7 +132,11 @@ namespace BGU.DRPL.DRClientAutomationLib
             GCHandle handle1 = GCHandle.Alloc(lParam);
             EnumChildWindows(parentWnd, FindWindowByCaptionContainsClassEnumProc, (IntPtr)handle1);
             if (childWindows.Count == 0)
+            {
+                handle1.Free();
                 return null;
+            }
+            handle1.Free();
             return childWindows[0];
         }
 
@@ -137,23 +147,30 @@ namespace BGU.DRPL.DRClientAutomationLib
             GCHandle handle1 = GCHandle.Alloc(lParam);
             EnumChildWindows(parentWnd, FindWindowByCaptionExactClassEnumProc, (IntPtr)handle1);
             if (childWindows.Count == 0)
+            {
+                handle1.Free();
                 return null;
+            }
+            handle1.Free();
             return childWindows[0];
         }
         private static bool FindWindowByCaptionExactClassEnumProc(IntPtr hWnd, IntPtr lParam)
         {
             GCHandle handle2 = (GCHandle)lParam;
             object[] args = (object[])(handle2.Target as object);
-
-
             List<WindowInfo> childWindows = (List<WindowInfo>)args[2];
             string currWndCaption = GetWindowCaption(hWnd);
             string currWndCls = GetWindowClassName(hWnd);
             string caption = args[0] as string;
             string wndClass = args[1] as string;
+
             if (currWndCaption != caption || wndClass != currWndCls)
+            {
+                
                 return true;
+            }
             childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            
             return true;
         }
 
@@ -169,8 +186,12 @@ namespace BGU.DRPL.DRClientAutomationLib
             string captionStart = args[0] as string;
             string wndClass = args[1] as string;
             if (currWndCaption.IndexOf(captionStart) == -1 || wndClass != currWndCls)
+            {
+                
                 return true;
+            }
             childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            
             return true;
         }
 
@@ -266,9 +287,43 @@ namespace BGU.DRPL.DRClientAutomationLib
         public static void SetText(IntPtr hwnd, string text)
         {
             GCHandle handle1 = GCHandle.Alloc(text); 
+            //PostMessage(hwnd, WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
             SendMessage(hwnd, WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
+            handle1.Free();
         }
 
+        public static void SetText2(IntPtr hwnd, string text)
+        {
+            HandleRef hrefHwnd = new HandleRef(null, hwnd);
+            SendTextMessage(hrefHwnd, WM_SETTEXT, IntPtr.Zero, text);
+        }
+
+        public static void SetTextCharByChar(IntPtr hwnd, string text)
+        {
+            SetFocus(hwnd);
+            Thread.Sleep(50);
+
+            foreach (char ch in text)
+            {
+                PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)(int)ch, IntPtr.Zero);
+                Thread.Sleep(50);
+                PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)ch, IntPtr.Zero);
+            }
+        }
+
+        public static void SetRichEditText(IntPtr hwnd, string plainText)
+        {
+            using (System.Windows.Forms.RichTextBox rtbx = new System.Windows.Forms.RichTextBox())
+            {
+                rtbx.Text = plainText;
+                SetText(hwnd, rtbx.Rtf);
+            }
+        }
+
+        public static void SetAnyEditText(IntPtr hwnd, string plainText)
+        {
+            SetTextCharByChar(hwnd, plainText);
+        }
 
         public static void FocusAndClickSpace(IntPtr hwnd)
         {
@@ -279,6 +334,40 @@ namespace BGU.DRPL.DRClientAutomationLib
             Thread.Sleep(300);
             PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_SPACE, IntPtr.Zero);
 
+        }
+
+        public static string GetControlValue(IntPtr hwnd)
+        {
+            int length = (int)SendMessage(hwnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+            StringBuilder sb = new StringBuilder(length);
+            GCHandle handle1 = GCHandle.Alloc(sb);
+            SendMessage(hwnd, WM_GETTEXT, (IntPtr)sb.Capacity, (IntPtr)handle1);
+            handle1.Free();
+            return sb.ToString();
+        }
+
+        public static void ClickGrid(IntPtr hwndGrid)
+        {
+            ClickTab(hwndGrid, 10, 20);
+        }
+
+        public static List<WindowInfo> ListChildControls(IntPtr parentWnd)
+        {
+            List<WindowInfo> childWindows = new List<WindowInfo>();
+            GCHandle handle1 = GCHandle.Alloc(childWindows);
+            EnumChildWindows(parentWnd, ListChildWindowsEnumProc, (IntPtr)handle1);
+            handle1.Free();
+            return childWindows;
+        }
+
+        private static bool ListChildWindowsEnumProc(IntPtr hWnd, IntPtr lParam)
+        {
+            GCHandle handle2 = (GCHandle)lParam;
+            List<WindowInfo> childWindows = (List<WindowInfo>)handle2.Target;
+            string currWndCaption = GetWindowCaption(hWnd);
+            string currWndCls = GetWindowClassName(hWnd);
+            childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            return true;
         }
     }
 }
