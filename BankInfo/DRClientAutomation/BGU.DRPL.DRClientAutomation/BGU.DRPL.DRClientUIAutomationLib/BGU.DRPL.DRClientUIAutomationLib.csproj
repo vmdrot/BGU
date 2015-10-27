@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D49821E-76CB-4ADC-BDB5-D20165DB34A6}</ProjectGuid>
+    <ProjectGuid>{ED2D91EF-FCDA-4433-8048-C0F0AD3822F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BGU.DRPL.DRClientAutomationLib</RootNamespace>
-    <AssemblyName>BGU.DRPL.DRClientAutomationLib</AssemblyName>
+    <RootNamespace>BGU.DRPL.DRClientUIAutomationLib</RootNamespace>
+    <AssemblyName>BGU.DRPL.DRClientUIAutomationLib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,29 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\SignOwn\CSharp\3dPartyLibraries\Newtonsoft\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuxData\EditBranchFormOtherTabControlsInfo.cs" />
-    <Compile Include="AuxData\WindowInfo.cs" />
-    <Compile Include="DRAutoDriver.cs" />
-    <Compile Include="FormAutomUtils.cs" />
-    <Compile Include="MouseSimulator.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

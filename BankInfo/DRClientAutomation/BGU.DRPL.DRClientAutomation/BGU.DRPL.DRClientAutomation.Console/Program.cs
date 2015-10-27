@@ -33,7 +33,11 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("clickparameterstabtest4", ClickParametersTabTest4);
             _cmdHandlers.Add("clickparameterstabtest5", ClickParametersTabTest5);
             _cmdHandlers.Add("readbranchidtest", ReadBranchIDTest);
-            
+            _cmdHandlers.Add("readchangessummarytest", ReadChangesSummaryTest);
+            _cmdHandlers.Add("listchildcontrolstest", ListChildControlsTest);
+            _cmdHandlers.Add("fillpaydocnrtest", FillPayDocNrTest);
+            _cmdHandlers.Add("fillchangessummarytest", FillChangesSummaryTest);
+            _cmdHandlers.Add("fillchangesdatetest", FillChangesDateTest);
             #endregion
 
 
@@ -68,18 +72,11 @@ namespace BGU.DRPL.DRClientAutomation.Console
             if (mainEditBranchesForm == (IntPtr)0)
             {
                 System.Console.WriteLine("Can't find main window");
-                //mainEditBranchesForm = FormAutomUtils.FindWindowEx((IntPtr)0, (IntPtr)0, "TBanks_modFm", "Редагування банківських установ", );
+                
                 return;
             }
 
             System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
-            //WindowInfo wi = FormAutomUtils.FindChildWindowCaptionStartsWith(mainEditBranchesForm, "Відділення  << ", "TGroupBox");
-            //if (wi == null)
-            //{
-            //    System.Console.WriteLine("Can't find TVBV's group box");
-            //    return;
-            //}
-            //IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(wi.Handle);
 
             IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
             
@@ -92,9 +89,10 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 return;
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
                 FormAutomUtils.SetFocus(hwndGrid);
+                FormAutomUtils.ClickGrid(hwndGrid);
                 FormAutomUtils.ClickButton2(hwnEditTvbvBtn);
                 Thread.Sleep(1500);
                 IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
@@ -102,14 +100,56 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 Thread.Sleep(2000);
                 string currIntBranchID = DRAutoDriver.ReadBranchID(hwndBranchEditForm);
                 System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
+                //string changesSummary = String.Format("Постанова правління, зміни обсягу та переліку операцій) # {0}", i);
+                string changesSummary = String.Format("Operations and services listing and volume change, ruling of the board # {0}", i);
+                DateTime changesDate = DateTime.Parse("2015-11-02T00:00:00");
 
-                if (!DRAutoDriver.FillChangesSummary(hwndBranchEditForm, String.Format("Постанова правління, зміни обсягу та переліку операцій) # {0}", i)))
-                    System.Console.WriteLine("Falied to change summary)");
-                Thread.Sleep(2000);
+                WindowInfo wiOtherTab = DRAutoDriver.OpenOtherTab(hwndBranchEditForm);
+                if (wiOtherTab == null)
+                    System.Console.WriteLine("wiOtherTab is null");
+                else
+                {
+                    //List<WindowInfo> wiOtherTabCtrls = FormAutomUtils.ListChildControls(wiOtherTab.Handle);
+                    //System.Console.WriteLine("wiOtherTabCtrls = {0}", DRAutoDriver.ToJson(wiOtherTabCtrls, true));
+                    //var groupBoxes = from c in wiOtherTabCtrls where c.WndClass == "TGroupBox" select c;
+                    //int g=0;
+                    //foreach (var groupBox in groupBoxes)
+                    //{
+                    //    System.Console.WriteLine("wiOtherTabCtrls.groupBoxes[{0}] = {1}", g, DRAutoDriver.ToJson(FormAutomUtils.ListChildControls(((WindowInfo)groupBox).Handle), true));
+                    //    g++;
+                    //}
+
+                    EditBranchFormOtherTabControlsInfo tabCtrlsInfo; 
+                    int otherTabCtrlsRetries = 0;
+                    do
+                    {
+                        tabCtrlsInfo = EditBranchFormOtherTabControlsInfo.Fill(wiOtherTab.Handle);
+                        if (tabCtrlsInfo != null && tabCtrlsInfo.IsChangesControlsFound)
+                            break;
+                        Thread.Sleep(250);
+                        otherTabCtrlsRetries++;
+                    } while (otherTabCtrlsRetries < 4);
+
+                    if (!DRAutoDriver.FillPayDocNr(wiOtherTab, "11/plat/3024"))
+                        System.Console.WriteLine("Failed to change payment doc nr");
+                    bool bChgsSummaryFilled = false;
+
+                    if (tabCtrlsInfo != null && tabCtrlsInfo.IsChangesControlsFound)
+                    {
+                        bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(null, tabCtrlsInfo.ChangesSummaryEdit, changesSummary);
+                        DRAutoDriver.FillChangesDate(null, tabCtrlsInfo.ChangesDate, changesDate);
+                    }
+                    else
+                        bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(wiOtherTab, changesSummary);
+                    if (!bChgsSummaryFilled)
+                        System.Console.WriteLine("Failed to change summary");
+                    Thread.Sleep(2000);
+                }
                 FormAutomUtils.CloseWindow(hwndBranchEditForm);
                 Thread.Sleep(300);
                 FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
                 Thread.Sleep(500);
+                System.Console.WriteLine("---------------------------------------------------------------------------------------------------------");
             }
             
             
@@ -298,5 +338,61 @@ namespace BGU.DRPL.DRClientAutomation.Console
             System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
             FormAutomUtils.CloseWindow(hwndBranchEditForm);
         }
+
+        private static void ReadChangesSummaryTest(string[] args)
+        {
+            IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+            System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+            Thread.Sleep(2000);
+            string smryTxt = DRAutoDriver.ReadChangesSummary(hwndBranchEditForm);
+            System.Console.WriteLine("smryTxt = '{0}'", smryTxt);
+            //FormAutomUtils.CloseWindow(hwndBranchEditForm);
+        }
+
+        private static void ListChildControlsTest(string[] args)
+        {
+            List<WindowInfo> rslt;
+
+            if (args.Length > 1)
+            {
+                long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
+                rslt = FormAutomUtils.ListChildControls((IntPtr)hwnd);
+            }
+            else
+            {
+                IntPtr mainEditBranchesForm = FormAutomUtils.FindWindow("TBanks_modFm", "Редагування банківських установ");
+                if (mainEditBranchesForm == (IntPtr)0)
+                {
+                    System.Console.WriteLine("Can't find main window");
+                    return;
+                }
+                rslt = FormAutomUtils.ListChildControls(mainEditBranchesForm);
+            }
+            System.Console.WriteLine(DRAutoDriver.ToJson(rslt , true));
+        }
+
+        private static void FillPayDocNrTest(string[] args)
+        {
+            long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
+            string txt = args[2];
+            DRAutoDriver.FillPayDocNr(new WindowInfo() { Handle = (IntPtr)hwnd }, txt);
+        }
+
+        private static void FillChangesSummaryTest(string[] args)
+        {
+            long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
+            string txt = args[2];
+            DRAutoDriver.FillChangesSummary(new WindowInfo() { Handle = (IntPtr)hwnd }, txt);
+        }
+
+
+        private static void FillChangesDateTest(string[] args)
+        {
+            long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
+            string txt = args[2];
+            DRAutoDriver.FillChangesDate(null, (IntPtr)hwnd, DateTime.Parse(txt));
+        }
+
+        
     }
 }

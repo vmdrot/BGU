@@ -1,0 +1,1 @@
+bin\Debug\BGU.DRPL.DRClientAutomation.Console.exe FillChangesSummaryTest %1 %2

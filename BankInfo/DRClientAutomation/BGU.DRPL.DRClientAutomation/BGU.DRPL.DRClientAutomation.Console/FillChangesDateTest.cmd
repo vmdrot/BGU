@@ -1,0 +1,1 @@
+bin\Debug\BGU.DRPL.DRClientAutomation.Console.exe FillChangesDateTest %1 %2
