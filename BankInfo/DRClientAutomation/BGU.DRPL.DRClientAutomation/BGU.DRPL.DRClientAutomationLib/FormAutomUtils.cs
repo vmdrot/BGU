@@ -29,6 +29,9 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         [DllImport("USER32.DLL")]
         public static extern bool EnumChildWindows(IntPtr hWndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+        
+        [DllImport("USER32.DLL")]
+        public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
         [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetWindowText(IntPtr hWnd, [Out, MarshalAs(UnmanagedType.LPTStr)] StringBuilder lpString, int nMaxCount);
@@ -64,9 +67,8 @@ namespace BGU.DRPL.DRClientAutomationLib
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
-
-
-
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out long lpdwProcessId);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -159,17 +161,16 @@ namespace BGU.DRPL.DRClientAutomationLib
             GCHandle handle2 = (GCHandle)lParam;
             object[] args = (object[])(handle2.Target as object);
             List<WindowInfo> childWindows = (List<WindowInfo>)args[2];
-            string currWndCaption = GetWindowCaption(hWnd);
-            string currWndCls = GetWindowClassName(hWnd);
+            WindowInfo currWi = WindowInfo.Fill(hWnd);
             string caption = args[0] as string;
             string wndClass = args[1] as string;
 
-            if (currWndCaption != caption || wndClass != currWndCls)
+            if (currWi.Caption != caption || currWi.WndClass != wndClass)
             {
                 
                 return true;
             }
-            childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            childWindows.Add(currWi);
             
             return true;
         }
@@ -181,16 +182,15 @@ namespace BGU.DRPL.DRClientAutomationLib
 
             
             List<WindowInfo> childWindows = (List<WindowInfo>)args[2];
-            string currWndCaption = GetWindowCaption(hWnd);
-            string currWndCls = GetWindowClassName(hWnd);
+            WindowInfo wi = WindowInfo.Fill(hWnd);
             string captionStart = args[0] as string;
             string wndClass = args[1] as string;
-            if (currWndCaption.IndexOf(captionStart) == -1 || wndClass != currWndCls)
+            if (wi.Caption.IndexOf(captionStart) == -1 || wi.WndClass != wndClass)
             {
                 
                 return true;
             }
-            childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            childWindows.Add(wi);
             
             return true;
         }
@@ -364,10 +364,74 @@ namespace BGU.DRPL.DRClientAutomationLib
         {
             GCHandle handle2 = (GCHandle)lParam;
             List<WindowInfo> childWindows = (List<WindowInfo>)handle2.Target;
-            string currWndCaption = GetWindowCaption(hWnd);
-            string currWndCls = GetWindowClassName(hWnd);
-            childWindows.Add(new WindowInfo() { Caption = currWndCaption, WndClass = currWndCls, Handle = hWnd });
+            childWindows.Add(WindowInfo.Fill(hWnd));
             return true;
+        }
+
+        public static int GetWindowProcess(IntPtr hwnd)
+        {
+            long tmp;
+            GetWindowThreadProcessId(hwnd, out tmp);
+            return (int)tmp;
+        }
+
+        public static IntPtr WaitForWindow(string wndCaption, string wndCls, int wndProcessId, int retriesCount, int sleepInterval)
+        {
+            int retries = 0;
+            while (retries < retriesCount)
+            {
+                List<WindowInfo> allWnds = FormAutomUtils.ListAllWindowsForAProcess(wndProcessId);
+                if(allWnds.Exists( w => (wndCaption == null || w.Caption == wndCaption) && (wndCls == null || w.WndClass == wndCls)))
+                {
+                    return allWnds.Find(w => (wndCaption == null || w.Caption == wndCaption) && (wndCls == null || w.WndClass == wndCls)).Handle;
+                }
+                retries++;
+                Thread.Sleep(sleepInterval);
+                
+            }
+            return IntPtr.Zero;
+        }
+
+        private static List<WindowInfo> ListAllWindowsForAProcess(int wndProcessId)
+        {
+            List<WindowInfo> childWindows = new List<WindowInfo>();
+            object[] lParam = new object[] { (object)wndProcessId, (object) childWindows};
+            GCHandle handle1 = GCHandle.Alloc((object)lParam);
+            EnumWindows(ListWindowsForAProcessEnumProc, (IntPtr)handle1);
+            handle1.Free();
+            return childWindows;
+        }
+
+        private static bool ListWindowsForAProcessEnumProc(IntPtr hWnd, IntPtr lParam)
+        {
+            GCHandle handle2 = (GCHandle)lParam;
+            object[] args = (object[])(handle2.Target as object);
+            int processId = (int)args[0];
+            List<WindowInfo> childWindows = (List<WindowInfo>)args[1];
+            WindowInfo wi = WindowInfo.Fill(hWnd);
+            if (wi.ProcessId != processId)
+                return true;
+            childWindows.Add(wi);
+            return true;
+        }
+
+
+        //internal static IntPtr WaitForChildWindow(IntPtr hwndConfirmChangesDlg, string p, string p_2, int p_3, int p_4)
+        public static IntPtr WaitForChildWindow(IntPtr hwndParent, string wndCaption, string wndCls, int retriesCount, int sleepInterval)
+        {
+            int retries = 0;
+            while (retries < retriesCount)
+            {
+                List<WindowInfo> allWnds = FormAutomUtils.ListChildControls(hwndParent);
+                if (allWnds.Exists(w => (wndCaption == null || w.Caption == wndCaption) && (wndCls == null || w.WndClass == wndCls)))
+                {
+                    return allWnds.Find(w => (wndCaption == null || w.Caption == wndCaption) && (wndCls == null || w.WndClass == wndCls)).Handle;
+                }
+                retries++;
+                Thread.Sleep(sleepInterval);
+                
+            }
+            return IntPtr.Zero;
         }
     }
 }
