@@ -421,7 +421,10 @@ namespace BGU.DRPL.DRClientAutomation.Console
         private static void ApplyBulkOpsSvcsChanges(string[] args)
         {
             string inputXmlPath = args[1];
-            int pauseBeforeClosing;
+            int pauseBeforeClosing;  //2
+            bool bEmulateOnly;       //3
+            int maxProcessCount;     //4
+            
             if(args.Length > 2)
             {
                 string pauseBeforeClosingStr = args[2];
@@ -430,6 +433,24 @@ namespace BGU.DRPL.DRClientAutomation.Console
             }
             else
                 pauseBeforeClosing = 0;
+
+            if (args.Length > 3)
+            {
+                string bEmulateOnlyStr = args[3];
+                if (!bool.TryParse(bEmulateOnlyStr, out bEmulateOnly))
+                    bEmulateOnly = true;
+            }
+            else
+                bEmulateOnly = true;
+
+            if (args.Length > 4)
+            {
+                string maxProcessCountStr = args[4];
+                if (!int.TryParse(maxProcessCountStr, out maxProcessCount))
+                    maxProcessCount = 0;
+            }
+            else
+                maxProcessCount = 0;
 
             if (!File.Exists(inputXmlPath))
             {
@@ -442,7 +463,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
 
             DateTime dtStart = DateTime.Now;
             System.Console.WriteLine("Started: {0}", dtStart);
-            if (!DRAutoDriver.ApplyBulkOpsSvcChange(inputInfo, true, pauseBeforeClosing, out rslts))
+            if (!DRAutoDriver.ApplyBulkOpsSvcChange(inputInfo, bEmulateOnly, pauseBeforeClosing, maxProcessCount, out rslts))
             {
                 System.Console.WriteLine("Failed applying bulk change as a whole");
                 return;
