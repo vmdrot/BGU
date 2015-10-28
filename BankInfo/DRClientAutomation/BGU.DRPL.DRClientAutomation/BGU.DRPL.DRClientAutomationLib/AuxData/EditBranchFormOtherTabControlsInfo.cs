@@ -39,7 +39,7 @@ namespace BGU.DRPL.DRClientAutomationLib.AuxData
                     if (wiChgsDtPnl != null)
                     {
                         List<WindowInfo> wiChgsDtPnlCtrls = FormAutomUtils.ListChildControls(wiChgsDtPnl.Handle);
-                        WindowInfo wiChgsDate = wiChgsDtPnlCtrls.Find(o => o.WndClass == "TDBDateTimeEditEh");
+                        WindowInfo wiChgsDate = wiChgsDtPnlCtrls.Find(o => o.WndClass == "TDBDateTimeEditEh" || (o.WndClass == "Edit" && o.Caption == "  .  .    "));
                         if (wiChgsDate != null)
                             rslt.ChangesDate = wiChgsDate.Handle;
                     }

@@ -5,6 +5,8 @@ using System.Text;
 using BGU.DRPL.DRClientAutomationLib;
 using BGU.DRPL.DRClientAutomationLib.AuxData;
 using System.Threading;
+using System.IO;
+using BGU.DRPL.DRClientAutomationLib.Data;
 
 namespace BGU.DRPL.DRClientAutomation.Console
 {
@@ -38,6 +40,9 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("fillpaydocnrtest", FillPayDocNrTest);
             _cmdHandlers.Add("fillchangessummarytest", FillChangesSummaryTest);
             _cmdHandlers.Add("fillchangesdatetest", FillChangesDateTest);
+            _cmdHandlers.Add("editbranchformothertabcontrolsinfofilltest", EditBranchFormOtherTabControlsInfoFillTest);
+            _cmdHandlers.Add("applybulkopssvcschanges", ApplyBulkOpsSvcsChanges);
+            _cmdHandlers.Add("createemptyopssvcschangefile", CreateEmptyOpsSvcsChangeFile);
             #endregion
 
 
@@ -129,6 +134,8 @@ namespace BGU.DRPL.DRClientAutomation.Console
                         Thread.Sleep(250);
                         otherTabCtrlsRetries++;
                     } while (otherTabCtrlsRetries < 4);
+
+                    System.Console.WriteLine("tabCtrlsInfo = {0}", DRAutoDriver.ToJson(tabCtrlsInfo, true));
 
                     if (!DRAutoDriver.FillPayDocNr(wiOtherTab, "11/plat/3024"))
                         System.Console.WriteLine("Failed to change payment doc nr");
@@ -391,6 +398,85 @@ namespace BGU.DRPL.DRClientAutomation.Console
             long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
             string txt = args[2];
             DRAutoDriver.FillChangesDate(null, (IntPtr)hwnd, DateTime.Parse(txt));
+        }
+
+
+        private static void EditBranchFormOtherTabControlsInfoFillTest(string[] args)
+        {
+            long hwnd = long.Parse(args[1],System.Globalization.NumberStyles.HexNumber);
+            EditBranchFormOtherTabControlsInfo rslt = EditBranchFormOtherTabControlsInfo.Fill((IntPtr)hwnd);
+
+            System.Console.WriteLine(DRAutoDriver.ToJson(rslt, true));
+        }
+
+        private static void CreateEmptyOpsSvcsChangeFile(string[] args)
+        {
+            string inputXmlPath = args[1];
+            TVBVsOpsSvcBulkChangeInfo rslt = new TVBVsOpsSvcBulkChangeInfo();
+            rslt.Items = new List<TVBVOpsSevicesChangeInfo>();
+            rslt.Items.Add(new TVBVOpsSevicesChangeInfo() { BranchID = "00626804103608000000" , ChangeDate = DateTime.Parse("02.11.2015"), ChangesSummary = "зміни обсягів та переліку операцій та послуг, схема A, згідно постанови правління АТ «Ощадбанк» від «07» жовтня 2015 року № 910" });
+            Tools.WriteXML<TVBVsOpsSvcBulkChangeInfo>( rslt, inputXmlPath);
+        }
+
+        private static void ApplyBulkOpsSvcsChanges(string[] args)
+        {
+            string inputXmlPath = args[1];
+            int pauseBeforeClosing;
+            if(args.Length > 2)
+            {
+                string pauseBeforeClosingStr = args[2];
+                if (!int.TryParse(pauseBeforeClosingStr, out pauseBeforeClosing))
+                    pauseBeforeClosing = 0;
+            }
+            else
+                pauseBeforeClosing = 0;
+
+            if (!File.Exists(inputXmlPath))
+            {
+                System.Console.WriteLine("File doesn't exists - '{0}'", inputXmlPath);
+                return;
+            }
+
+            TVBVsOpsSvcBulkChangeInfo inputInfo = Tools.ReadXML<TVBVsOpsSvcBulkChangeInfo>(inputXmlPath);
+            List<TBVBChangeResultInfo> rslts;
+
+            DateTime dtStart = DateTime.Now;
+            System.Console.WriteLine("Started: {0}", dtStart);
+            if (!DRAutoDriver.ApplyBulkOpsSvcChange(inputInfo, true, pauseBeforeClosing, out rslts))
+            {
+                System.Console.WriteLine("Failed applying bulk change as a whole");
+                return;
+            }
+            else
+            {
+                List<TVBVOpsSevicesChangeInfo> notFoundBranches = new List<TVBVOpsSevicesChangeInfo>();
+                foreach (TVBVOpsSevicesChangeInfo branch in inputInfo.Items)
+                {
+                    if (!rslts.Exists(b => b.BranchID == branch.BranchID))
+                        notFoundBranches.Add(branch);
+                }
+
+                var failures = from r in rslts
+                               where r.Succeeded == false
+                                   select r;
+                var succeesses= from r in rslts
+                               where r.Succeeded == true
+                                   select r;
+                System.Console.WriteLine("Succeeded = {0}, Failed = {1}, Not found = {2}", succeesses.Count(), failures.Count(), notFoundBranches.Count);
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Successful: \n {0}", DRAutoDriver.ToJson(succeesses, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Failed: \n {0}", DRAutoDriver.ToJson(failures, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Not found: \n {0}", DRAutoDriver.ToJson(notFoundBranches, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                DateTime dtEnd = DateTime.Now;
+                System.Console.WriteLine("Finished: {0}", dtEnd);
+                System.Console.WriteLine("Completed in {0}", (TimeSpan)(dtEnd-dtStart));
+                System.Console.WriteLine("===========================================================================================");
+
+                                       
+            }
         }
 
         

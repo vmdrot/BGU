@@ -5,6 +5,7 @@ using System.Text;
 using BGU.DRPL.DRClientAutomationLib.AuxData;
 using System.Threading;
 using Newtonsoft.Json;
+using BGU.DRPL.DRClientAutomationLib.Data;
 
 namespace BGU.DRPL.DRClientAutomationLib
 {
@@ -12,14 +13,14 @@ namespace BGU.DRPL.DRClientAutomationLib
     {
         public static IntPtr FindLowestBranchesGrid(IntPtr parent)
         {
-                //Window 000C0480 "Відділення  << Фiлiя - Волинське обласне управлiння публічного акцiонерного товариства "Державний ощадний банк України"" TGroupBox
-                //    Window 00050892 "" TDBGridEh
+            //Window 000C0480 "Відділення  << Фiлiя - Волинське обласне управлiння публічного акцiонерного товариства "Державний ощадний банк України"" TGroupBox
+            //    Window 00050892 "" TDBGridEh
             WindowInfo wi3rdBranchesGroupBox = FormAutomUtils.FindChildWindowCaptionContains(parent, "Відділення  << Фiлiя - ", "TGroupBox");
             if (wi3rdBranchesGroupBox == null)
                 return (IntPtr)0;
             System.Console.WriteLine("wi3rdBranchesGroupBox.Handle = {0}", wi3rdBranchesGroupBox.Handle);
             WindowInfo wiGrid = FormAutomUtils.FindChildWindowCaptionContains(wi3rdBranchesGroupBox.Handle, "", "TDBGridEh");
-            if(wiGrid == null)
+            if (wiGrid == null)
                 return (IntPtr)0; //todo
             return wiGrid.Handle;
         }
@@ -67,7 +68,7 @@ namespace BGU.DRPL.DRClientAutomationLib
             {
                 System.Console.WriteLine("Can't find wiIntBranchIDLbl");
                 IntPtr hwndIntBranchIDLbl = FormAutomUtils.FindWindowEx(wiParamsSubTab.Handle, IntPtr.Zero, null, "Внутрішньобанківський код");
-                if(hwndIntBranchIDLbl == IntPtr.Zero)
+                if (hwndIntBranchIDLbl == IntPtr.Zero)
                     return string.Empty;
                 wiIntBranchIDLbl = new WindowInfo() { Handle = hwndIntBranchIDLbl };
             }
@@ -76,7 +77,7 @@ namespace BGU.DRPL.DRClientAutomationLib
             IntPtr hwndEdit = FormAutomUtils.FindWindowEx(wiParamsSubTab.Handle, wiIntBranchIDLbl.Handle, "TEdit", null);
             System.Console.WriteLine("hwndEdit = {0} ({0:X8})", hwndEdit);
 
-            if(hwndEdit == IntPtr.Zero)
+            if (hwndEdit == IntPtr.Zero)
                 return string.Empty; //todo
             return FormAutomUtils.GetWindowCaption(hwndEdit);
         }
@@ -144,7 +145,7 @@ namespace BGU.DRPL.DRClientAutomationLib
         }
 
         public static bool FillChangesSummary(WindowInfo wiOtherTab, string summaryText)
-        { 
+        {
             return FillChangesSummary(wiOtherTab, IntPtr.Zero, summaryText);
         }
         public static bool FillChangesSummary(WindowInfo wiOtherTab, IntPtr hwndEdit, string summaryText)
@@ -185,6 +186,7 @@ namespace BGU.DRPL.DRClientAutomationLib
         {
             return FillChangesDate(wiOtherTab, IntPtr.Zero, val);
         }
+
         public static bool FillChangesDate(WindowInfo wiOtherTab, IntPtr hwndEdit, DateTime val)
         {
             if (hwndEdit == IntPtr.Zero)
@@ -259,9 +261,9 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         private static JsonSerializerSettings _jsonSettings;
 
-        private static JsonSerializerSettings JsonSettings 
+        private static JsonSerializerSettings JsonSettings
         {
-            get 
+            get
             {
                 if (_jsonSettings == null)
                 {
@@ -296,6 +298,137 @@ namespace BGU.DRPL.DRClientAutomationLib
         public static string ToJson(object obj, bool bIndent)
         {
             return JsonConvert.SerializeObject(obj, bIndent ? JsonSettingsIndent : JsonSettings);
+        }
+
+
+        public static bool ApplyBulkOpsSvcChange(TVBVsOpsSvcBulkChangeInfo changes, bool bEmulateOnly, int pauseBeforeClosing, out List<TBVBChangeResultInfo> results)
+        {
+            results= new List<TBVBChangeResultInfo>();
+
+            IntPtr mainEditBranchesForm = FormAutomUtils.FindWindow("TBanks_modFm", "Редагування банківських установ");
+            
+            if (mainEditBranchesForm == (IntPtr)0)
+            {
+                System.Console.WriteLine("Can't find main window");
+
+                return false;
+            }
+
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+
+            IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
+
+            System.Console.WriteLine("hwndGrid = {0}", hwndGrid);
+            IntPtr hwnEditTvbvBtn = DRAutoDriver.FindEditTVBVButton(mainEditBranchesForm);
+            System.Console.WriteLine("hwnEditTvbvBtn = {0}", hwnEditTvbvBtn);
+            if (hwndGrid == IntPtr.Zero || hwnEditTvbvBtn == IntPtr.Zero)
+            {
+                System.Console.WriteLine("Can't find all needed windows");
+                return false;
+            }
+            string prevBranchId = string.Empty;
+            string lastBranchId = string.Empty;
+            FormAutomUtils.SetFocus(hwndGrid);
+            FormAutomUtils.ClickGrid(hwndGrid);
+            Thread.Sleep(500);
+            do
+            {
+                TBVBChangeResultInfo currRslt= new TBVBChangeResultInfo();
+                prevBranchId = lastBranchId;
+                FormAutomUtils.ClickButton2(hwnEditTvbvBtn);
+                Thread.Sleep(1500); // todo - to shorten
+                IntPtr hwndBranchEditForm = FormAutomUtils.FindWindow("TVIDDIL_CLASSForm_2", null);
+                System.Console.WriteLine("hwndBranchEditForm = {0}", hwndBranchEditForm);
+                Thread.Sleep(2000); // todo - to shorten
+                string currIntBranchID = DRAutoDriver.ReadBranchID(hwndBranchEditForm);
+                lastBranchId = currIntBranchID.Replace(" ", string.Empty).Trim();
+                if (prevBranchId == lastBranchId)
+                    break;
+
+                currRslt.BranchID = lastBranchId;
+
+                System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
+                if (changes.Items.Exists(o => o.BranchID == lastBranchId))
+                {
+                    TVBVOpsSevicesChangeInfo currChgInfo = changes.Items.Find(o => o.BranchID == lastBranchId);
+
+                    WindowInfo wiOtherTab = DRAutoDriver.OpenOtherTab(hwndBranchEditForm);
+                    if (wiOtherTab == null)
+                        System.Console.WriteLine("wiOtherTab is null");
+                    else
+                    {
+                        EditBranchFormOtherTabControlsInfo tabCtrlsInfo;
+                        int otherTabCtrlsRetries = 0;
+                        do
+                        {
+                            tabCtrlsInfo = EditBranchFormOtherTabControlsInfo.Fill(wiOtherTab.Handle);
+                            if (tabCtrlsInfo != null && tabCtrlsInfo.IsChangesControlsFound)
+                                break;
+                            Thread.Sleep(250); //ok, already optimized
+                            otherTabCtrlsRetries++;
+                        } while (otherTabCtrlsRetries < 5);
+
+                        System.Console.WriteLine("tabCtrlsInfo = {0}", DRAutoDriver.ToJson(tabCtrlsInfo, true));
+
+                        bool bChgsSummaryFilled = false;
+                        bool bChgsDateFilled = false;
+
+                        if (tabCtrlsInfo != null && tabCtrlsInfo.IsChangesControlsFound)
+                        {
+                            bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(null, tabCtrlsInfo.ChangesSummaryEdit, currChgInfo.ChangesSummary);
+                            bChgsDateFilled = DRAutoDriver.FillChangesDate(null, tabCtrlsInfo.ChangesDate, currChgInfo.ChangeDate);
+                        }
+                        else
+                        {
+                            bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(wiOtherTab, currChgInfo.ChangesSummary);
+                            bChgsDateFilled = DRAutoDriver.FillChangesDate(wiOtherTab, currChgInfo.ChangeDate);
+                        }
+                        if (!bChgsSummaryFilled || !bChgsDateFilled)
+                        {
+                            if (bChgsSummaryFilled) { currRslt.ErrorsInfo.AppendLine("Failed to change summary"); currRslt.ErrorsCount++; }
+                            if (bChgsDateFilled) { currRslt.ErrorsInfo.AppendLine("Failed to change date"); currRslt.ErrorsCount++; }
+                        }
+                    }
+                }
+
+                WindowInfo wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "TButton");
+                if (wiSaveChangeBtn == null)
+                    wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "Button");
+                
+                if (wiSaveChangeBtn == null)
+                {
+                    currRslt.ErrorsInfo.AppendLine("Failed to find save button");
+                    currRslt.ErrorsCount++;
+                }
+                else
+                    Console.WriteLine("wiSaveChangeBtn.Handle = {0}", wiSaveChangeBtn.Handle);
+                if (pauseBeforeClosing > 0)
+                    Thread.Sleep(pauseBeforeClosing);
+                if (bEmulateOnly)
+                {
+                    if (currRslt.ErrorsCount == 0) currRslt.Succeeded = true;
+                    FormAutomUtils.CloseWindow(hwndBranchEditForm);
+                }
+                else
+                {
+                    if (currRslt.ErrorsCount == 0)
+                    {
+                        if (wiSaveChangeBtn != null)
+                        {
+                            FormAutomUtils.ClickButton(wiSaveChangeBtn.Handle);
+                            currRslt.Succeeded = true;
+                            Thread.Sleep(1500);
+                        }
+                    }
+                }
+                results.Add(currRslt);
+                Thread.Sleep(300);
+                FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
+                Thread.Sleep(500);
+                System.Console.WriteLine("---------------------------------------------------------------------------------------------------------");
+            } while (prevBranchId != lastBranchId);
+
+            return true;
         }
     }
 }
