@@ -393,7 +393,7 @@ namespace BGU.DRPL.DRClientAutomationLib
 
                         if (tabCtrlsInfo != null && tabCtrlsInfo.IsChangesControlsFound)
                         {
-                            bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(null, tabCtrlsInfo.ChangesSummaryEdit, currChgInfo.ChangesSummary);
+                            bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(null, tabCtrlsInfo.ChangesSummaryEdit, FormatChangesSummary(currChgInfo));
                             bChgsDateFilled = DRAutoDriver.FillChangesDate(null, tabCtrlsInfo.ChangesDate, currChgInfo.ChangeDate);
                         }
                         else
@@ -514,6 +514,11 @@ namespace BGU.DRPL.DRClientAutomationLib
             } while (true);
 
             return true;
+        }
+
+        public static string FormatChangesSummary(TVBVOpsSevicesChangeInfo chgInfo)
+        {
+            return string.Format("{0:dd.MM.yyyy} (набуває чинності з {1:dd.MM.yyyy}р.):{2}", DateTime.Now, chgInfo.ChangeDate, chgInfo.ChangesSummary);
         }
 
         private static string ReadBranchName(IntPtr hwndBranchEditForm)
