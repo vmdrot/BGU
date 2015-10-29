@@ -44,6 +44,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("applybulkopssvcschanges", ApplyBulkOpsSvcsChanges);
             _cmdHandlers.Add("createemptyopssvcschangefile", CreateEmptyOpsSvcsChangeFile);
             _cmdHandlers.Add("resultstabfiletimeseedtest", ResultsTabFileTimeSeedTest);
+            _cmdHandlers.Add("readbulkclosureinfostest", ReadBulkClosureInfosTest);
             #endregion
 
 
@@ -426,6 +427,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             bool bEmulateOnly;       //3
             int maxProcessCount;     //4
             string parentMFO = null;
+            string skipBranchesIDsFile = null;
             
             if(args.Length > 2)
             {
@@ -456,6 +458,10 @@ namespace BGU.DRPL.DRClientAutomation.Console
             if (args.Length > 5)
                 parentMFO = args[5];
 
+            if (args.Length > 6)
+                skipBranchesIDsFile = args[6];
+            
+
             if (!File.Exists(inputXmlPath))
             {
                 System.Console.WriteLine("File doesn't exists - '{0}'", inputXmlPath);
@@ -468,6 +474,20 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 var filtered = from ii in inputInfo.Items where ii.ParentMFO == parentMFO select ii;
                 inputInfo.Items = new List<TVBVOpsSevicesChangeInfo>();
                 inputInfo.Items.AddRange(filtered);
+            }
+            if (!string.IsNullOrEmpty(skipBranchesIDsFile) && File.Exists(skipBranchesIDsFile))
+            {
+                List<string> skipBranchIDs = new List<string>(File.ReadAllLines(skipBranchesIDsFile));
+                for(int i = 0;i<skipBranchIDs.Count; i++)
+                    skipBranchIDs[i] = skipBranchIDs[i].Trim();
+                List<TVBVOpsSevicesChangeInfo> woSkippedItems = new List<TVBVOpsSevicesChangeInfo>();
+                foreach(TVBVOpsSevicesChangeInfo ci in inputInfo.Items)
+                {
+                    if (skipBranchIDs.Contains(ci.BranchID))
+                        continue;
+                    woSkippedItems.Add(ci);
+                }
+                inputInfo.Items = woSkippedItems;
             }
 
             List<TBVBChangeResultInfo> rslts;
@@ -541,6 +561,141 @@ namespace BGU.DRPL.DRClientAutomation.Console
         {
             System.Console.WriteLine(DateTime.Now.ToString("yyyyMMdd_hhmmss"));
         }
-        
+
+        private static void ReadBulkClosureInfosTest(string[] args)
+        {
+            string inputXmlPath = args[1];
+            TVBVsBulkClosureInfo inputInfo = Tools.ReadXML<TVBVsBulkClosureInfo>(inputXmlPath);
+            System.Console.WriteLine("inputInfo.Items.Count = {0}", inputInfo.Items.Count);
+        }
+
+        private static void ApplyBulkClosure(string[] args)
+        {
+            string inputXmlPath = args[1];
+            int pauseBeforeClosing;  //2
+            bool bEmulateOnly;       //3
+            int maxProcessCount;     //4
+            string parentMFO = null;
+            string skipBranchesIDsFile = null;
+
+            #region input args read-out
+            if (args.Length > 2)
+            {
+                string pauseBeforeClosingStr = args[2];
+                if (!int.TryParse(pauseBeforeClosingStr, out pauseBeforeClosing))
+                    pauseBeforeClosing = 0;
+            }
+            else
+                pauseBeforeClosing = 0;
+
+            if (args.Length > 3)
+            {
+                string bEmulateOnlyStr = args[3];
+                if (!bool.TryParse(bEmulateOnlyStr, out bEmulateOnly))
+                    bEmulateOnly = true;
+            }
+            else
+                bEmulateOnly = true;
+
+            if (args.Length > 4)
+            {
+                string maxProcessCountStr = args[4];
+                if (!int.TryParse(maxProcessCountStr, out maxProcessCount))
+                    maxProcessCount = 0;
+            }
+            else
+                maxProcessCount = 0;
+            if (args.Length > 5)
+                parentMFO = args[5];
+
+            if (args.Length > 6)
+                skipBranchesIDsFile = args[6];
+
+            #endregion
+
+            if (!File.Exists(inputXmlPath))
+            {
+                System.Console.WriteLine("File doesn't exists - '{0}'", inputXmlPath);
+                return;
+            }
+
+            TVBVsBulkClosureInfo inputInfo = Tools.ReadXML<TVBVsBulkClosureInfo>(inputXmlPath);
+            if (!string.IsNullOrEmpty(parentMFO))
+            {
+                var filtered = from ii in inputInfo.Items where ii.ParentMFO == parentMFO select ii;
+                inputInfo.Items = new List<TVBVClosureInfo>();
+                inputInfo.Items.AddRange(filtered);
+            }
+            if (!string.IsNullOrEmpty(skipBranchesIDsFile) && File.Exists(skipBranchesIDsFile))
+            {
+                List<string> skipBranchIDs = new List<string>(File.ReadAllLines(skipBranchesIDsFile));
+                for (int i = 0; i < skipBranchIDs.Count; i++)
+                    skipBranchIDs[i] = skipBranchIDs[i].Trim();
+                List<TVBVClosureInfo> woSkippedItems = new List<TVBVClosureInfo>();
+
+                foreach (TVBVClosureInfo ci in inputInfo.Items)
+                {
+                    if (skipBranchIDs.Contains(ci.BranchID))
+                        continue;
+                    woSkippedItems.Add(ci);
+                }
+                inputInfo.Items = woSkippedItems;
+            }
+
+            List<TBVBChangeResultInfo> rslts;
+
+            DateTime dtStart = DateTime.Now;
+            System.Console.WriteLine("Started: {0}", dtStart);
+            if (!DRAutoDriver.ApplyBulkClosure(inputInfo, bEmulateOnly, pauseBeforeClosing, maxProcessCount, out rslts))
+            {
+                System.Console.WriteLine("Failed applying bulk closure as a whole");
+                return;
+            }
+            else
+            {
+                List<TVBVClosureInfo> notFoundBranches = new List<TVBVClosureInfo>();
+                foreach (TVBVClosureInfo branch in inputInfo.Items)
+                {
+                    if (!rslts.Exists(b => b.BranchID == branch.BranchID))
+                        notFoundBranches.Add(branch);
+                }
+
+                var failures = from r in rslts
+                               where r.Succeeded == false
+                               select r;
+                var succeesses = from r in rslts
+                                 where r.Succeeded == true
+                                 select r;
+                System.Console.WriteLine("Succeeded = {0}, Failed = {1}, Not found = {2}", succeesses.Count(), failures.Count(), notFoundBranches.Count);
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Successful: \n {0}", DRAutoDriver.ToJson(succeesses, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Failed: \n {0}", DRAutoDriver.ToJson(failures, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                System.Console.WriteLine("Not found: \n {0}", DRAutoDriver.ToJson(notFoundBranches, true));
+                System.Console.WriteLine("-------------------------------------------------------------------------------------------");
+                DateTime dtEnd = DateTime.Now;
+                System.Console.WriteLine("Finished: {0}", dtEnd);
+                System.Console.WriteLine("Completed in {0}", (TimeSpan)(dtEnd - dtStart));
+                System.Console.WriteLine("===========================================================================================");
+
+                string resultsTabFileTimeSeed = dtStart.ToString("yyyyMMdd_hhmmss");
+                PrintTBVBChangeResultInfo(rslts, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.rslts.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
+                PrintTBVBChangeNotFoundsInfo(notFoundBranches, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.notFound.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
+            }
+        }
+
+        private static void PrintTBVBChangeNotFoundsInfo(List<TVBVClosureInfo> notFoundBranches, string fileName)
+        {
+            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
+            {
+                sw.WriteLine("ParentMFO\tBranchID\tChangeDate\tChangesSummary");
+                foreach (TVBVClosureInfo ci in notFoundBranches)
+                {
+                    sw.WriteLine("{0}\t{1}\t{2}\t{3}", ci.ParentMFO, ci.BranchID, ci.ChangeDate, ci.ChangesSummary); //todo - other closure fields
+                }
+            }
+        }
+    
     }
 }
