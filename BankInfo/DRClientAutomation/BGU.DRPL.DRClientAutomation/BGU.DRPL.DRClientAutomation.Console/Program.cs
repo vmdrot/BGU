@@ -43,6 +43,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("editbranchformothertabcontrolsinfofilltest", EditBranchFormOtherTabControlsInfoFillTest);
             _cmdHandlers.Add("applybulkopssvcschanges", ApplyBulkOpsSvcsChanges);
             _cmdHandlers.Add("createemptyopssvcschangefile", CreateEmptyOpsSvcsChangeFile);
+            _cmdHandlers.Add("resultstabfiletimeseedtest", ResultsTabFileTimeSeedTest);
             #endregion
 
 
@@ -424,6 +425,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             int pauseBeforeClosing;  //2
             bool bEmulateOnly;       //3
             int maxProcessCount;     //4
+            string parentMFO = null;
             
             if(args.Length > 2)
             {
@@ -451,6 +453,8 @@ namespace BGU.DRPL.DRClientAutomation.Console
             }
             else
                 maxProcessCount = 0;
+            if (args.Length > 5)
+                parentMFO = args[5];
 
             if (!File.Exists(inputXmlPath))
             {
@@ -459,6 +463,13 @@ namespace BGU.DRPL.DRClientAutomation.Console
             }
 
             TVBVsOpsSvcBulkChangeInfo inputInfo = Tools.ReadXML<TVBVsOpsSvcBulkChangeInfo>(inputXmlPath);
+            if (!string.IsNullOrEmpty(parentMFO))
+            {
+                var filtered = from ii in inputInfo.Items where ii.ParentMFO == parentMFO select ii;
+                inputInfo.Items = new List<TVBVOpsSevicesChangeInfo>();
+                inputInfo.Items.AddRange(filtered);
+            }
+
             List<TBVBChangeResultInfo> rslts;
 
             DateTime dtStart = DateTime.Now;
@@ -496,10 +507,40 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 System.Console.WriteLine("Completed in {0}", (TimeSpan)(dtEnd-dtStart));
                 System.Console.WriteLine("===========================================================================================");
 
-                                       
+                string resultsTabFileTimeSeed = dtStart.ToString("yyyyMMdd_hhmmss");
+                PrintTBVBChangeResultInfo(rslts, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.rslts.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
+                PrintTBVBChangeNotFoundsInfo(notFoundBranches, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.notFound.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
             }
         }
 
+        private static void PrintTBVBChangeResultInfo(List<TBVBChangeResultInfo> rslts, string fileName)
+        {
+            using(StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
+            {
+                sw.WriteLine("ParentMFO\tBranchID\tBranchName\tSucceeded\tErrorsCount\tErrorsInfo");
+                foreach (TBVBChangeResultInfo cr in rslts)
+                {
+                    sw.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}", cr.ParentMFO, cr.BranchID, cr.BranchName, cr.Succeeded, cr.ErrorsCount, string.Join("|", cr.ErrorsInfo.ToArray()));
+                }
+            }
+        }
+
+        private static void PrintTBVBChangeNotFoundsInfo(List<TVBVOpsSevicesChangeInfo> notFoundBranches, string fileName)
+        {
+            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
+            {
+                sw.WriteLine("ParentMFO\tBranchID\tChangeDate\tChangesSummary");
+                foreach (TVBVOpsSevicesChangeInfo ci in notFoundBranches)
+                {
+                    sw.WriteLine("{0}\t{1}\t{2}\t{3}", ci.ParentMFO, ci.BranchID, ci.ChangeDate, ci.ChangesSummary);
+                }
+            }
+        }
+
+        private static void ResultsTabFileTimeSeedTest(string[] args)
+        {
+            System.Console.WriteLine(DateTime.Now.ToString("yyyyMMdd_hhmmss"));
+        }
         
     }
 }

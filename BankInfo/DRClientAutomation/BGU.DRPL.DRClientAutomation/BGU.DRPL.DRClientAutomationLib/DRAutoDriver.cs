@@ -319,6 +319,11 @@ namespace BGU.DRPL.DRClientAutomationLib
             int drClientProcessId = FormAutomUtils.GetWindowProcess(mainEditBranchesForm);
             System.Console.WriteLine("drClientProcessId = {0}", drClientProcessId);
             System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+            if (!FormAutomUtils.SetForegroundWindow(mainEditBranchesForm))
+            {
+                System.Console.WriteLine("Can't activate main window");
+                return false;
+            }
 
             IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
 
@@ -362,6 +367,8 @@ namespace BGU.DRPL.DRClientAutomationLib
                 if (changes.Items.Exists(o => o.BranchID == lastBranchId))
                 {
                     TVBVOpsSevicesChangeInfo currChgInfo = changes.Items.Find(o => o.BranchID == lastBranchId);
+                    currRslt.ParentMFO = currChgInfo.ParentMFO;
+                    currRslt.BranchName = DRAutoDriver.ReadBranchName(hwndBranchEditForm);
 
                     WindowInfo wiOtherTab = DRAutoDriver.OpenOtherTab(hwndBranchEditForm);
                     if (wiOtherTab == null)
@@ -396,8 +403,8 @@ namespace BGU.DRPL.DRClientAutomationLib
                         }
                         if (!bChgsSummaryFilled || !bChgsDateFilled)
                         {
-                            if (bChgsSummaryFilled) { currRslt.ErrorsInfo.AppendLine("Failed to change summary"); currRslt.ErrorsCount++; }
-                            if (bChgsDateFilled) { currRslt.ErrorsInfo.AppendLine("Failed to change date"); currRslt.ErrorsCount++; }
+                            if (bChgsSummaryFilled) { currRslt.ErrorsInfo.Add("Failed to change summary"); currRslt.ErrorsCount++; }
+                            if (bChgsDateFilled) { currRslt.ErrorsInfo.Add("Failed to change date"); currRslt.ErrorsCount++; }
                         }
                     }
                 }
@@ -408,7 +415,7 @@ namespace BGU.DRPL.DRClientAutomationLib
                 
                 if (wiSaveChangeBtn == null)
                 {
-                    currRslt.ErrorsInfo.AppendLine("Failed to find save button");
+                    currRslt.ErrorsInfo.Add("Failed to find save button");
                     currRslt.ErrorsCount++;
                 }
                 else
@@ -439,7 +446,7 @@ namespace BGU.DRPL.DRClientAutomationLib
                             if (hwndConfirmChangesDlg == IntPtr.Zero)
                             {
                                 currRslt.ErrorsCount++;
-                                currRslt.ErrorsInfo.AppendLine("Failed to find confirm changes save dialog");
+                                currRslt.ErrorsInfo.Add("Failed to find confirm changes save dialog");
                             }
                             else
                             {
@@ -448,7 +455,7 @@ namespace BGU.DRPL.DRClientAutomationLib
                                 if (hwndYesBtn == IntPtr.Zero)
                                 {
                                     currRslt.ErrorsCount++;
-                                    currRslt.ErrorsInfo.AppendLine("Failed to find yes button on confirm changes save dialog");
+                                    currRslt.ErrorsInfo.Add("Failed to find yes button on confirm changes save dialog");
                                 }
                                 else
                                 {
@@ -463,19 +470,21 @@ namespace BGU.DRPL.DRClientAutomationLib
                                     if (hwndChangesSavedOKDlg == IntPtr.Zero)
                                     {
                                         currRslt.ErrorsCount++;
-                                        currRslt.ErrorsInfo.AppendLine("Failed to find changes saved OK dialog");
+                                        currRslt.ErrorsInfo.Add("Failed to find changes saved OK dialog");
                                     }
                                     else
                                     {
-                                        IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "OK", "TButton", 7, 50);
+                                        IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
                                         if(hwndOKBtn == IntPtr.Zero)
-                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "OK", "Button", 7, 50);
+                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
                                         if (hwndOKBtn == IntPtr.Zero)
-                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "OK", null, 7, 50);
+                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
+                                        System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
                                         if (hwndOKBtn == IntPtr.Zero)
                                         {
                                             currRslt.ErrorsCount++;
-                                            currRslt.ErrorsInfo.AppendLine("Failed to find ok button on changes saved OK dialog");
+                                            currRslt.ErrorsInfo.Add("Failed to find ok button on changes saved OK dialog");
+                                            System.Console.WriteLine("Failed to find ok button on changes saved OK dialog");
                                         }
                                         else
                                         {
@@ -497,6 +506,11 @@ namespace BGU.DRPL.DRClientAutomationLib
             } while (prevBranchId != lastBranchId);
 
             return true;
+        }
+
+        private static string ReadBranchName(IntPtr hwndBranchEditForm)
+        {
+            return string.Empty; //todo - implement later
         }
     }
 }

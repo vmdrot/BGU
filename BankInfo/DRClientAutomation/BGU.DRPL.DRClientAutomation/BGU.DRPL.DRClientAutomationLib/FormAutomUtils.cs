@@ -70,6 +70,11 @@ namespace BGU.DRPL.DRClientAutomationLib
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out long lpdwProcessId);
 
+        //[DllImport("user32.dll")]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
