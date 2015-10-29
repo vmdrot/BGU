@@ -11,7 +11,7 @@ namespace BGU.DRPL.DRClientAutomationLib.Data
         {
             this.Succeeded = false;
             this.ErrorsCount = 0;
-            this.ErrorsInfo = new StringBuilder();
+            this.ErrorsInfo = new List<string>();
         }
 
         public string BranchID { get; set; }
@@ -19,6 +19,6 @@ namespace BGU.DRPL.DRClientAutomationLib.Data
         public string BranchName { get; set; }
         public bool Succeeded { get; set; }
         public int ErrorsCount { get; set; }
-        public StringBuilder ErrorsInfo { get; set; }
+        public List<string> ErrorsInfo { get; set; }
     }
 }
