@@ -407,103 +407,111 @@ namespace BGU.DRPL.DRClientAutomationLib
                             if (bChgsDateFilled) { currRslt.ErrorsInfo.Add("Failed to change date"); currRslt.ErrorsCount++; }
                         }
                     }
-                }
+                    WindowInfo wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "TButton");
+                    if (wiSaveChangeBtn == null)
+                        wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "Button");
 
-                WindowInfo wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "TButton");
-                if (wiSaveChangeBtn == null)
-                    wiSaveChangeBtn = FormAutomUtils.FindChildWindowCaptionEquals(hwndBranchEditForm, "Зберегти дані", "Button");
-                
-                if (wiSaveChangeBtn == null)
-                {
-                    currRslt.ErrorsInfo.Add("Failed to find save button");
-                    currRslt.ErrorsCount++;
-                }
-                else
-                    Console.WriteLine("wiSaveChangeBtn.Handle = {0}", wiSaveChangeBtn.Handle);
-                if (pauseBeforeClosing > 0)
-                    Thread.Sleep(pauseBeforeClosing);
-                if (bEmulateOnly)
-                {
-                    if (currRslt.ErrorsCount == 0) currRslt.Succeeded = true;
-                    FormAutomUtils.CloseWindow(hwndBranchEditForm);
-                }
-                else
-                {
-                    if (currRslt.ErrorsCount == 0)
+                    if (wiSaveChangeBtn == null)
                     {
-                        if (wiSaveChangeBtn != null)
+                        currRslt.ErrorsInfo.Add("Failed to find save button");
+                        currRslt.ErrorsCount++;
+                    }
+                    else
+                        Console.WriteLine("wiSaveChangeBtn.Handle = {0}", wiSaveChangeBtn.Handle);
+                    if (pauseBeforeClosing > 0)
+                        Thread.Sleep(pauseBeforeClosing);
+                    if (bEmulateOnly)
+                    {
+                        if (currRslt.ErrorsCount == 0) currRslt.Succeeded = true;
+                        FormAutomUtils.CloseWindow(hwndBranchEditForm);
+                    }
+                    else
+                    {
+                        if (currRslt.ErrorsCount == 0)
                         {
-                            System.Console.WriteLine("About to press wiSaveChangeBtn ....");
-                            //FormAutomUtils.ClickButton(wiSaveChangeBtn.Handle); //doesn't work if the app spawns any modal windows
-                            FormAutomUtils.ClickButton2(wiSaveChangeBtn.Handle);
-                            System.Console.WriteLine("wiSaveChangeBtn pressed.");
-                            
-                            Thread.Sleep(1500);
-                            IntPtr hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow("Підтвердження", "#32770 (Dialog)", drClientProcessId, 7, 250);
-                            if(hwndConfirmChangesDlg == IntPtr.Zero)
-                                hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow("Підтвердження", null, drClientProcessId, 7, 250);
-                            System.Console.WriteLine("hwndConfirmChangesDlg = {0}", hwndConfirmChangesDlg);
-                            if (hwndConfirmChangesDlg == IntPtr.Zero)
+                            if (wiSaveChangeBtn != null)
                             {
-                                currRslt.ErrorsCount++;
-                                currRslt.ErrorsInfo.Add("Failed to find confirm changes save dialog");
-                            }
-                            else
-                            {
-                                IntPtr hwndYesBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "&Так", "Button", 7, 50);
-                                System.Console.WriteLine("hwndYesBtn = {0}", hwndYesBtn);
-                                if (hwndYesBtn == IntPtr.Zero)
+                                System.Console.WriteLine("About to press wiSaveChangeBtn ....");
+                                //FormAutomUtils.ClickButton(wiSaveChangeBtn.Handle); //doesn't work if the app spawns any modal windows
+                                FormAutomUtils.ClickButton2(wiSaveChangeBtn.Handle);
+                                System.Console.WriteLine("wiSaveChangeBtn pressed.");
+
+                                Thread.Sleep(1500);
+                                IntPtr hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow("Підтвердження", "#32770 (Dialog)", drClientProcessId, 7, 250);
+                                if (hwndConfirmChangesDlg == IntPtr.Zero)
+                                    hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow("Підтвердження", null, drClientProcessId, 7, 250);
+                                System.Console.WriteLine("hwndConfirmChangesDlg = {0}", hwndConfirmChangesDlg);
+                                if (hwndConfirmChangesDlg == IntPtr.Zero)
                                 {
                                     currRslt.ErrorsCount++;
-                                    currRslt.ErrorsInfo.Add("Failed to find yes button on confirm changes save dialog");
+                                    currRslt.ErrorsInfo.Add("Failed to find confirm changes save dialog");
                                 }
                                 else
                                 {
-                                    FormAutomUtils.ClickButton(hwndYesBtn);
-                                    IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 10, 100);
-                                    if (hwndChangesSavedOKDlg == IntPtr.Zero)
-                                        hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 10, 100);
-                                    if (hwndChangesSavedOKDlg == IntPtr.Zero)
-                                        hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", null, drClientProcessId, 10, 100);
-
-                                    System.Console.WriteLine("hwndChangesSavedOKDlg = {0}", hwndChangesSavedOKDlg);
-                                    if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                                    IntPtr hwndYesBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "&Так", "Button", 7, 50);
+                                    System.Console.WriteLine("hwndYesBtn = {0}", hwndYesBtn);
+                                    if (hwndYesBtn == IntPtr.Zero)
                                     {
                                         currRslt.ErrorsCount++;
-                                        currRslt.ErrorsInfo.Add("Failed to find changes saved OK dialog");
+                                        currRslt.ErrorsInfo.Add("Failed to find yes button on confirm changes save dialog");
                                     }
                                     else
                                     {
-                                        IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
-                                        if(hwndOKBtn == IntPtr.Zero)
-                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
-                                        if (hwndOKBtn == IntPtr.Zero)
-                                            hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
-                                        System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
-                                        if (hwndOKBtn == IntPtr.Zero)
+                                        FormAutomUtils.ClickButton(hwndYesBtn);
+                                        IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 10, 100);
+                                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                                            hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 10, 100);
+                                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                                            hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", null, drClientProcessId, 10, 100);
+
+                                        System.Console.WriteLine("hwndChangesSavedOKDlg = {0}", hwndChangesSavedOKDlg);
+                                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
                                         {
                                             currRslt.ErrorsCount++;
-                                            currRslt.ErrorsInfo.Add("Failed to find ok button on changes saved OK dialog");
-                                            System.Console.WriteLine("Failed to find ok button on changes saved OK dialog");
+                                            currRslt.ErrorsInfo.Add("Failed to find changes saved OK dialog");
                                         }
                                         else
                                         {
-                                            FormAutomUtils.ClickButton(hwndOKBtn);
-                                            currRslt.Succeeded = true;
+                                            IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
+                                            if (hwndOKBtn == IntPtr.Zero)
+                                                hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
+                                            if (hwndOKBtn == IntPtr.Zero)
+                                                hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
+                                            System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
+                                            if (hwndOKBtn == IntPtr.Zero)
+                                            {
+                                                currRslt.ErrorsCount++;
+                                                currRslt.ErrorsInfo.Add("Failed to find ok button on changes saved OK dialog");
+                                                System.Console.WriteLine("Failed to find ok button on changes saved OK dialog");
+                                            }
+                                            else
+                                            {
+                                                FormAutomUtils.ClickButton(hwndOKBtn);
+                                                currRslt.Succeeded = true;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
+                    results.Add(currRslt);
+                    processIdx++;
+                    Thread.Sleep(300);
+                    FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
+                    Thread.Sleep(500);
+                    System.Console.WriteLine("---------------------------------------------------------------------------------------------------------");
                 }
-                results.Add(currRslt);
-                processIdx++;
-                Thread.Sleep(300);
-                FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
-                Thread.Sleep(500);
-                System.Console.WriteLine("---------------------------------------------------------------------------------------------------------");
-            } while (prevBranchId != lastBranchId);
+                else
+                {
+                    System.Console.WriteLine("Nothing to do with branch # {0}", lastBranchId);
+                    FormAutomUtils.CloseWindow(hwndBranchEditForm);
+                    Thread.Sleep(300);
+                    FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
+                    Thread.Sleep(500);
+                }
+
+            } while (true);
 
             return true;
         }
@@ -511,6 +519,11 @@ namespace BGU.DRPL.DRClientAutomationLib
         private static string ReadBranchName(IntPtr hwndBranchEditForm)
         {
             return string.Empty; //todo - implement later
+        }
+
+        public static bool ApplyBulkClosure(TVBVsBulkClosureInfo inputInfo, bool bEmulateOnly, int pauseBeforeClosing, int maxProcessCount, out List<TBVBChangeResultInfo> rslts)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace BGU.DRPL.DRClientAutomationLib.Data
 {
-    public class TVBVOpsSevicesChangeInfo
+    public class TVBVClosureInfo
     {
         public string ParentMFO { get; set; }
         public string BranchID { get; set; }
@@ -19,6 +19,11 @@ namespace BGU.DRPL.DRClientAutomationLib.Data
                 return BranchID.Replace(" ", string.Empty).Trim();
             }
         }
+
+        public string Status { get; set; }
+        public DateTime StatusChangeDate { get; set; }
+        public DateTime CloseDownDate { get; set; }
+        public DateTime ExlusionDate { get; set; }
         public DateTime ChangeDate { get; set; }
         public string ChangesSummary { get; set; }
     }

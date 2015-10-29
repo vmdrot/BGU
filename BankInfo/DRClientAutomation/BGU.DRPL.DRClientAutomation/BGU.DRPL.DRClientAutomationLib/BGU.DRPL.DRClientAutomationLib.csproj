@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="AuxData\EditBranchFormOtherTabControlsInfo.cs" />
     <Compile Include="AuxData\WindowInfo.cs" />
+    <Compile Include="Data\TVBVsBulkClosureInfo.cs" />
+    <Compile Include="Data\TVBVClosureInfo.cs" />
     <Compile Include="Data\TBVBChangeResultInfo.cs" />
     <Compile Include="Data\TVBVOpsSevicesChangeInfo.cs" />
     <Compile Include="Data\TVBVsOpsSvcBulkChangeInfo.cs" />
