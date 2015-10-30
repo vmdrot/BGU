@@ -27,30 +27,30 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             this.IsStockExchangeListed = false;
         }
 
-        private bool _IsIntFinOrIntOrg;
+        private bool _IsIntFinOrg;
         /// <summary>
         /// 
         /// </summary>
         [DisplayName("Міжнародна фінансова чи міжнародна організація")]
         [Description("Відзначити, якщо юридична особа є міжнародною організацією;\nміжнародна фінансова установа – установа, з якою Уряд України уклав угоду про співробітництво та для якої згідно із законами України встановлено привілеї та імунітети.")]
-        public bool IsIntFinOrIntOrg 
+        public bool IsIntFinOrg 
         { 
-            get { return _IsIntFinOrIntOrg; } 
+            get { return _IsIntFinOrg; } 
             set 
             { 
-                if(_IsIntFinOrIntOrg != value) 
+                if(_IsIntFinOrg != value) 
                 {
-                    _IsIntFinOrIntOrg= value;  
-                    if(_IsIntFinOrIntOrg) 
+                    _IsIntFinOrg= value;  
+                    if(_IsIntFinOrg) 
                         ResidenceCountry = CountryInfo.GLOBAL;
-                    OnPropertyChanged("IsIntFinOrIntOrg"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("ShowCountrySpecificControls"); 
+                    OnPropertyChanged("IsIntFinOrg"); OnPropertyChanged("IsNonResident"); OnPropertyChanged("ShowCountrySpecificControls"); 
                 } 
             } 
         }
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool ShowCountrySpecificControls { get { return !IsIntFinOrIntOrg; } }
+        public bool ShowCountrySpecificControls { get { return !IsIntFinOrg; } }
 
         private CountryInfo _ResidenceCountry;
         /// <summary>
@@ -92,7 +92,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsNonResident { get { return (ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE) || IsIntFinOrIntOrg; } }
+        public bool IsNonResident { get { return (ResidenceCountry != null && ResidenceCountry != CountryInfo.UKRAINE) || IsIntFinOrg; } }
 
         private string _TaxCodeOrHandelsRegNr;
         /// <summary>
@@ -218,7 +218,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
 
 
         [Browsable(false)]
-        public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = ResidenceCountry.CountryISONr, PersonCode = IsIntFinOrIntOrg? Name : TaxCodeOrHandelsRegNr, PersonType = EntityType.Legal, DisplayName = ToString() }; } }
+        public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = ResidenceCountry.CountryISONr, PersonCode = IsIntFinOrg? Name : TaxCodeOrHandelsRegNr, PersonType = EntityType.Legal, DisplayName = ToString() }; } }
 
         public override string ToString()
         {
