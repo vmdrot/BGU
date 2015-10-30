@@ -9,6 +9,7 @@ namespace BGU.DRPL.DRClientAutomationLib.AuxData
     {
         public string Caption { get; set; }
         public IntPtr Handle { get; set; }
+        public IntPtr Parent { get; set; }
         public string WndClass { get; set; }
         public int ProcessId { get; set; }
 
@@ -19,6 +20,7 @@ namespace BGU.DRPL.DRClientAutomationLib.AuxData
             rslt.Caption = FormAutomUtils.GetWindowCaption(hwnd);
             rslt.WndClass = FormAutomUtils.GetWindowClassName(hwnd);
             rslt.ProcessId = FormAutomUtils.GetWindowProcess(hwnd);
+            rslt.Parent = FormAutomUtils.GetWindowParent(hwnd);
             return rslt;
         }
     }

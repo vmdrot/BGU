@@ -518,7 +518,7 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static string FormatChangesSummary(TVBVOpsSevicesChangeInfo chgInfo)
         {
-            return string.Format("{0:dd.MM.yyyy} (набуває чинності з {1:dd.MM.yyyy}р.):{2}", DateTime.Now, chgInfo.ChangeDate, chgInfo.ChangesSummary);
+            return string.Format("{0:dd.MM.yyyy} {1}", chgInfo.ChangeDate, chgInfo.ChangesSummary);
         }
 
         private static string ReadBranchName(IntPtr hwndBranchEditForm)
@@ -530,5 +530,241 @@ namespace BGU.DRPL.DRClientAutomationLib
         {
             throw new NotImplementedException();
         }
+
+        public static bool ApplyBulkChangesSummaryCorrection(TVBVsOpsSvcBulkChangeInfo changes, bool bEmulateOnly, int pauseBeforeClosing, int maxProcessCount, out List<TBVBChangeResultInfo> results)
+        {
+            results = new List<TBVBChangeResultInfo>();
+
+            IntPtr mainEditBranchesForm = FormAutomUtils.FindWindow("TBanks_modFm", "Редагування банківських установ");
+
+            if (mainEditBranchesForm == (IntPtr)0)
+            {
+                System.Console.WriteLine("Can't find main window");
+
+                return false;
+            }
+            int drClientProcessId = FormAutomUtils.GetWindowProcess(mainEditBranchesForm);
+            System.Console.WriteLine("drClientProcessId = {0}", drClientProcessId);
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+            if (!FormAutomUtils.SetForegroundWindow(mainEditBranchesForm))
+            {
+                System.Console.WriteLine("Can't activate main window");
+                return false;
+            }
+
+            IntPtr hwndGrid = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
+
+            System.Console.WriteLine("hwndGrid = {0}", hwndGrid);
+            
+
+            string prevBranchId = string.Empty;
+            string lastBranchId = string.Empty;
+            int processIdx = 0;
+            FormAutomUtils.SetFocus(hwndGrid);
+            FormAutomUtils.ClickGrid(hwndGrid);
+            Thread.Sleep(500);
+            do
+            {
+                if (maxProcessCount > 0 && processIdx >= maxProcessCount)
+                    break;
+
+            
+
+
+                Thread.Sleep(1500); // todo - to shorten
+                #region debug-related
+                List<WindowInfo> allDRWindows = FormAutomUtils.ListAllWindowsForAProcess(drClientProcessId);
+                System.Console.WriteLine("allDRWindows(I):{0}", ToJson(allDRWindows, true));
+                #endregion
+
+                FormAutomUtils.PressContextMenuButton2(hwndGrid);
+
+                List<WindowInfo> allWnds = FormAutomUtils.ListAllWindowsForAProcess(drClientProcessId);
+                System.Console.WriteLine("allWnds(after contextmenu click): {0}", ToJson(allWnds, true));
+                if (changes.Items.Count == 0)
+                    break;
+                //continue;
+                bool bBreak;
+                bool bContinue;
+                TBVBChangeResultInfo currRslt;
+                bool bCurrRslt = ApplyChangesSummaryCorrectionToSingleBranch(changes, bEmulateOnly, pauseBeforeClosing, drClientProcessId, out currRslt, ref lastBranchId, ref prevBranchId, out bBreak, out bContinue);
+                if (bBreak)
+                    break;
+                if (bContinue)
+                    continue;
+                prevBranchId = lastBranchId;
+
+                results.Add(currRslt);
+                processIdx++;
+                Thread.Sleep(300);
+                FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
+                Thread.Sleep(500);
+                System.Console.WriteLine("---------------------------------------------------------------------------------------------------------");
+
+            } while (true);
+
+            return true;
+        }
+
+        public static bool CorrectChangesSummary(IntPtr hwndChangesSummaryEdit, string oldSummary, string correctedSummary)
+        {
+            string accumSummaryValue = FormAutomUtils.GetControlValue2(hwndChangesSummaryEdit);
+            System.Console.WriteLine("accumSummaryValue = '{0}'", accumSummaryValue);
+            string newAccumSummaryValue = null;
+            if (accumSummaryValue.Trim().Length > 0)
+            {
+                if (accumSummaryValue.IndexOf(oldSummary) != -1)
+                    newAccumSummaryValue = accumSummaryValue.Replace(oldSummary, correctedSummary);
+            }
+            else
+                newAccumSummaryValue = correctedSummary;
+            System.Console.WriteLine("newAccumSummaryValue = '{0}'", newAccumSummaryValue);
+            FormAutomUtils.SetText2(hwndChangesSummaryEdit, newAccumSummaryValue);
+            return true;
+        }
+
+
+        public static bool ApplyChangesSummaryCorrectionToSingleBranch(TVBVsOpsSvcBulkChangeInfo changes, bool bEmulateOnly, int pauseBeforeClosing, int drClientProcessId, out TBVBChangeResultInfo currRslt, ref string lastBranchId, ref string prevBranchId, out bool bBreak, out bool bContinue)
+        {
+            bBreak = false;
+            bContinue = false;
+
+            currRslt = new TBVBChangeResultInfo();
+
+            IntPtr hwndChgsSummaryCorrectionFrm = FormAutomUtils.FindWindow("THISTORYForm", "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
+            if (hwndChgsSummaryCorrectionFrm == IntPtr.Zero)
+                hwndChgsSummaryCorrectionFrm = FormAutomUtils.FindWindow(null, "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
+            if (hwndChgsSummaryCorrectionFrm == IntPtr.Zero)
+            {
+                System.Console.WriteLine("Failed to find changes correction form");
+                bContinue = true;
+                return false;
+            }
+
+            FormAutomUtils.SetForegroundWindow(hwndChgsSummaryCorrectionFrm);
+            System.Console.WriteLine("hwndChgsSummaryCorrectionFrm = {0}", hwndChgsSummaryCorrectionFrm);
+            Thread.Sleep(2000); // todo - to shorten
+
+            CorrectChangesSummaryFormControlsInfo ctrlsInfo = null;
+            int otherTabCtrlsRetries = 0;
+            do
+            {
+                ctrlsInfo = CorrectChangesSummaryFormControlsInfo.Fill(hwndChgsSummaryCorrectionFrm);
+                if (ctrlsInfo != null && ctrlsInfo.IsChangesControlsFound)
+                    break;
+                Thread.Sleep(250); //todo - to shorten further (try reduce sleep while increasing retries count)
+                otherTabCtrlsRetries++;
+            } while (otherTabCtrlsRetries < 5);
+
+            System.Console.WriteLine("ctrlsInfo = {0}", DRAutoDriver.ToJson(ctrlsInfo, true));
+
+            string currIntBranchID = FormAutomUtils.GetWindowCaption(ctrlsInfo.BranchIDEdit);
+
+            lastBranchId = currIntBranchID.Replace(" ", string.Empty).Trim();
+
+            if (prevBranchId == lastBranchId)
+            {
+                FormAutomUtils.CloseWindow(hwndChgsSummaryCorrectionFrm);
+                bBreak = true;
+                return false;
+            }
+
+
+            currRslt.BranchID = lastBranchId;
+            string lambdaBranchID = currRslt.BranchID;
+            System.Console.WriteLine("currIntBranchID = '{0}'", currIntBranchID);
+            if (changes.Items.Exists(o => o.BranchID == lambdaBranchID))
+            {
+                TVBVOpsSevicesChangeInfo currChgInfo = changes.Items.Find(o => o.BranchID == lambdaBranchID);
+                currRslt.ParentMFO = currChgInfo.ParentMFO;
+                //currRslt.BranchName = DRAutoDriver.ReadBranchName(hwndChgsSummaryCorrectionFrm);
+
+                bool bChgsSummaryFilled = false;
+
+
+                if (ctrlsInfo != null && ctrlsInfo.IsChangesControlsFound)
+                {
+                    //bChgsSummaryFilled = DRAutoDriver.FillChangesSummary(null, сtrlsInfo.ChangesSummaryEdit, FormatChangesSummary(currChgInfo));
+                    bChgsSummaryFilled = DRAutoDriver.CorrectChangesSummary(ctrlsInfo.ChangesSummaryEdit, currChgInfo.ChangesSummary, FormatChangesSummary(currChgInfo));
+                }
+                if (!bChgsSummaryFilled)
+                {
+                    if (bChgsSummaryFilled) { currRslt.ErrorsInfo.Add("Failed to change summary"); currRslt.ErrorsCount++; }
+                }
+
+                if (ctrlsInfo.ApplyChangesButton != IntPtr.Zero)
+                {
+
+                    currRslt.ErrorsInfo.Add("Failed to find apply changes button");
+                    currRslt.ErrorsCount++;
+                }
+                else
+                    Console.WriteLine("ctrlsInfo.ApplyChangesButton = {0}", ctrlsInfo.ApplyChangesButton);
+                if (pauseBeforeClosing > 0)
+                    Thread.Sleep(pauseBeforeClosing);
+                if (bEmulateOnly)
+                {
+                    if (currRslt.ErrorsCount == 0) currRslt.Succeeded = true;
+                    FormAutomUtils.CloseWindow(hwndChgsSummaryCorrectionFrm);
+                }
+                else
+                {
+                    if (currRslt.ErrorsCount == 0)
+                    {
+                        if (ctrlsInfo.ApplyChangesButton != IntPtr.Zero)
+                        {
+                            System.Console.WriteLine("About to press ctrlsInfo.ApplyChangesButton ....");
+                            //FormAutomUtils.ClickButton(wiSaveChangeBtn.Handle); //doesn't work if the app spawns any modal windows
+                            FormAutomUtils.ClickButton2(ctrlsInfo.ApplyChangesButton);
+                            System.Console.WriteLine("ctrlsInfo.ApplyChangesButton pressed.");
+
+                            Thread.Sleep(1500);
+                            IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 10, 100);
+                            if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                                hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 10, 100);
+                            if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                                hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", null, drClientProcessId, 10, 100);
+
+                            System.Console.WriteLine("hwndChangesSavedOKDlg = {0}", hwndChangesSavedOKDlg);
+                            if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                            {
+                                currRslt.ErrorsCount++;
+                                currRslt.ErrorsInfo.Add("Failed to find changes saved OK dialog");
+                            }
+                            else
+                            {
+                                IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
+                                if (hwndOKBtn == IntPtr.Zero)
+                                    hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
+                                if (hwndOKBtn == IntPtr.Zero)
+                                    hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
+                                System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
+                                if (hwndOKBtn == IntPtr.Zero)
+                                {
+                                    currRslt.ErrorsCount++;
+                                    currRslt.ErrorsInfo.Add("Failed to find ok button on changes saved OK dialog");
+                                    System.Console.WriteLine("Failed to find ok button on changes saved OK dialog");
+                                }
+                                else
+                                {
+                                    FormAutomUtils.ClickButton(hwndOKBtn);
+                                    currRslt.Succeeded = true;
+                                    return true;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("Nothing to do with branch # {0}", lastBranchId);
+                FormAutomUtils.CloseWindow(hwndChgsSummaryCorrectionFrm);
+                return true;
+            }
+            return false;
+        }
+        
     }
 }

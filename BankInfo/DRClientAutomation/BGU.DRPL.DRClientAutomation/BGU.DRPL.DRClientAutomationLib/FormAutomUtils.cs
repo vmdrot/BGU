@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using BGU.DRPL.DRClientAutomationLib.AuxData;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace BGU.DRPL.DRClientAutomationLib
 {
@@ -43,6 +44,9 @@ namespace BGU.DRPL.DRClientAutomationLib
         static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false, EntryPoint = "SendMessage")]
+        static extern IntPtr GetWindowTextMessage(IntPtr hWnd, int msg, IntPtr textLength, StringBuilder target);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false, EntryPoint = "SendMessage")]
         public static extern IntPtr SendTextMessage(HandleRef hWnd, uint Msg, IntPtr wParam, string lParam);
 
         
@@ -52,6 +56,9 @@ namespace BGU.DRPL.DRClientAutomationLib
         
         [DllImport("user32.dll")]
         public static extern IntPtr SetFocus(IntPtr hWnd);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, EntryPoint="GetParent")]
+        public static extern IntPtr GetWindowParent(IntPtr hWnd);
+
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(long dwFlags, long dx, long dy, long cButtons, long dwExtraInfo);
@@ -70,6 +77,9 @@ namespace BGU.DRPL.DRClientAutomationLib
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out long lpdwProcessId);
 
+        [DllImport("user32.dll")]
+        public static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
         //[DllImport("user32.dll")]
         //[return: MarshalAs(UnmanagedType.Bool)]
         //public static extern bool SetForegroundWindow(IntPtr hWnd);
@@ -84,9 +94,6 @@ namespace BGU.DRPL.DRClientAutomationLib
             public int Bottom;      // y position of lower-right corner
         }
 
-
-
-
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
@@ -97,18 +104,36 @@ namespace BGU.DRPL.DRClientAutomationLib
         private const int BN_CLICKED = 0x00F5;
         private const uint WM_KEYDOWN = 0x0100;
         private const uint WM_KEYUP = 0x0101;
+
+        private const uint WM_SYSKEYDOWN = 0x0104;
+        private const uint WM_SYSKEYUP = 0x0105;
+        private const uint WM_CONTEXTMENU = 0x007B;
         private const uint WM_CHAR = 0x0102;
+        public const uint WM_SYSCOMMAND = 0x0112;
+
+        private const uint WM_SETTEXT = 0x000c;
+        private const uint WM_GETTEXT = 0x000D;
+        private const uint WM_GETTEXTLENGTH = 0x000E;
+
         private const int VK_TAB = 0x09;
         private const int VK_ENTER = 0x0D;
         private const int VK_UP = 0x26;
         private const int VK_DOWN = 0x28;
         private const int VK_RIGHT = 0x27;
         private const int VK_SPACE = 0x20;
-        public const int WM_SYSCOMMAND = 0x0112;
+        
         public const int SC_CLOSE = 0xF060;
-        private const int WM_SETTEXT = 0x000c;
-        private const int WM_GETTEXT = 0x000D;
-        private const int WM_GETTEXTLENGTH = 0x000E;
+        private const int VK_APPS = 0x5D;
+        private const int VK_SHIFT = 0x10;
+        private const int VK_F10 = 0x79;
+        private const int VK_MENU = 0x12;
+
+
+        private static IntPtr MakeLParam(int LoWord, int HiWord)
+        {
+            return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
+        }
+
 
         //public static IntPtr FindWindow(string caption, string wndClass)
         //{
@@ -227,7 +252,7 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static void CloseWindow(IntPtr hwnd)
         {
-            SendMessage(hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
+            SendMessage(hwnd, (int)WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
         }
 
         public static void ClickButton2(IntPtr hwndButton)
@@ -293,7 +318,7 @@ namespace BGU.DRPL.DRClientAutomationLib
         {
             GCHandle handle1 = GCHandle.Alloc(text); 
             //PostMessage(hwnd, WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
-            SendMessage(hwnd, WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
+            SendMessage(hwnd, (int)WM_SETTEXT, IntPtr.Zero, (IntPtr)handle1);
             handle1.Free();
         }
 
@@ -343,11 +368,19 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static string GetControlValue(IntPtr hwnd)
         {
-            int length = (int)SendMessage(hwnd, WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
-            StringBuilder sb = new StringBuilder(length);
+            int length = (int)SendMessage(hwnd, (int)WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+            StringBuilder sb = new StringBuilder(length+1);
             GCHandle handle1 = GCHandle.Alloc(sb);
-            SendMessage(hwnd, WM_GETTEXT, (IntPtr)sb.Capacity, (IntPtr)handle1);
+            SendMessage(hwnd, (int)WM_GETTEXT, (IntPtr)sb.Capacity, (IntPtr)handle1);
             handle1.Free();
+            return sb.ToString();
+        }
+
+        public static string GetControlValue2(IntPtr hwnd)
+        {
+            int length = (int)SendMessage(hwnd, (int)WM_GETTEXTLENGTH, IntPtr.Zero, IntPtr.Zero);
+            StringBuilder sb = new StringBuilder(length);
+            GetWindowTextMessage(hwnd, (int)WM_GETTEXT, (IntPtr)sb.Capacity, sb);
             return sb.ToString();
         }
 
@@ -397,7 +430,7 @@ namespace BGU.DRPL.DRClientAutomationLib
             return IntPtr.Zero;
         }
 
-        private static List<WindowInfo> ListAllWindowsForAProcess(int wndProcessId)
+        public static List<WindowInfo> ListAllWindowsForAProcess(int wndProcessId)
         {
             List<WindowInfo> childWindows = new List<WindowInfo>();
             object[] lParam = new object[] { (object)wndProcessId, (object) childWindows};
@@ -437,6 +470,159 @@ namespace BGU.DRPL.DRClientAutomationLib
                 
             }
             return IntPtr.Zero;
+        }
+
+        public static void PressContextMenuButton(IntPtr hwnd)
+        {
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_APPS, IntPtr.Zero);
+            Thread.Sleep(50);
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_APPS, IntPtr.Zero);
+        }
+
+        public static void PressContextMenuButton2(IntPtr hwnd)
+        {
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_SHIFT, (IntPtr)1);
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_F10, (IntPtr)1);
+            //PostMessage(hwnd, (int)WM_SYSKEYDOWN, (IntPtr)VK_F10, (IntPtr)1);
+            Thread.Sleep(50);
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_F10, (IntPtr)1);
+            //PostMessage(hwnd, (int)WM_SYSKEYUP, (IntPtr)(int)VK_F10, (IntPtr)1);
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_SHIFT, (IntPtr)1);
+        }
+
+        public static void PressContextMenuButton3(IntPtr hwnd)
+        {
+            SendMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_SHIFT, (IntPtr)1);
+            SendMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_F10, (IntPtr)0);
+            //PostMessage(hwnd, (int)WM_SYSKEYDOWN, (IntPtr)VK_F10, (IntPtr)1);
+            Thread.Sleep(50);
+            SendMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_F10, (IntPtr)0);
+            //PostMessage(hwnd, (int)WM_SYSKEYUP, (IntPtr)(int)VK_F10, (IntPtr)1);
+            SendMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_SHIFT, (IntPtr)1);
+        }
+
+        public static void PressContextMenuButton4(IntPtr hwnd)
+        {
+
+            /*
+             * Need to generate equivalent sequence of events:
+             * 
+             * <00012> 00020820 P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+             * <00013> 00020820 S message:0xBD00 [User-defined:WM_APP+15616] wParam:0000005D lParam:015D0001
+             * <00014> 00020820 R message:0xBD00 [User-defined:WM_APP+15616] lResult:00000000
+             * <00015> 00020820 P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+             * <00016> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:0000005D lParam:C15D0001
+             * <00017> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000
+             * <00018> 00020820 P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+             * <00019> 00020820 P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+             * <00020> 00020820 P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+             * <00021> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:00000012 lParam:C0380001
+             * <00022> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000        }
+             */
+            //int lParam = 1; //repeat count
+            uint scanCode = MapVirtualKey((uint)VK_APPS, 0);
+            uint lParam = (0x00000001 | (scanCode << 16));
+            lParam = (lParam | 0x01000000);  //extended flag
+
+            //P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_APPS, (IntPtr)lParam);
+            Thread.Sleep(10);
+
+            //P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)(int)VK_APPS, (IntPtr)lParam); //todo how to pass fRepeat:1 fUp:1?
+
+
+            //P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+            PostMessage(hwnd, (int)WM_CONTEXTMENU, hwnd, MakeLParam(65535, 65535));
+
+            //P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+            uint scanCode1 = MapVirtualKey((uint)VK_MENU, 0);
+            uint lParam1 = (0x00000001 | (scanCode << 16));
+            PostMessage(hwnd, (int)WM_SYSKEYDOWN, (IntPtr)VK_MENU, (IntPtr)lParam1);
+
+            //P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_MENU, (IntPtr)lParam1);
+        }
+
+        public static void PressContextMenuButton5(IntPtr hwnd)
+        {
+
+            /*
+             * Need to generate equivalent sequence of events:
+             * 
+             * <00012> 00020820 P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+             * <00013> 00020820 S message:0xBD00 [User-defined:WM_APP+15616] wParam:0000005D lParam:015D0001
+             * <00014> 00020820 R message:0xBD00 [User-defined:WM_APP+15616] lResult:00000000
+             * <00015> 00020820 P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+             * <00016> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:0000005D lParam:C15D0001
+             * <00017> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000
+             * <00018> 00020820 P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+             * <00019> 00020820 P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+             * <00020> 00020820 P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+             * <00021> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:00000012 lParam:C0380001
+             * <00022> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000        }
+             */
+
+            //P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+            uint scanCode = MapVirtualKey((uint)VK_APPS, 0);
+            uint lParam = (0x00000001 | (scanCode << 16));
+            lParam = (lParam | 0x01000000);  //extended flag
+
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_APPS, (IntPtr)lParam);
+            //Thread.Sleep(10);
+
+            //P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+            uint scanCode1 = MapVirtualKey((uint)VK_APPS, 0);
+            uint lParam1 = (0x00000001 | (scanCode << 16));
+            lParam = (lParam | 0x01000000);  //extended flag
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_APPS, (IntPtr)(0xC15D0001));
+            //Thread.Sleep(10);
+
+            //P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+            PostMessage(hwnd, (int)WM_CONTEXTMENU, hwnd, MakeLParam(65535, 65535));
+            Thread.Sleep(10);
+            //P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+            PostMessage(hwnd, (int)WM_SYSKEYDOWN, (IntPtr)VK_MENU, (IntPtr)(0x00380001));
+            Thread.Sleep(10);
+            //P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_MENU, (IntPtr)(0xC0380001));
+        }
+
+        public static void PressContextMenuButton6(IntPtr hwnd)
+        {
+
+            /*
+             * Need to generate equivalent sequence of events:
+             * 
+             * <00012> 00020820 P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+             * <00013> 00020820 S message:0xBD00 [User-defined:WM_APP+15616] wParam:0000005D lParam:015D0001
+             * <00014> 00020820 R message:0xBD00 [User-defined:WM_APP+15616] lResult:00000000
+             * <00015> 00020820 P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+             * <00016> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:0000005D lParam:C15D0001
+             * <00017> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000
+             * <00018> 00020820 P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+             * <00019> 00020820 P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+             * <00020> 00020820 P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+             * <00021> 00020820 S message:0xBD01 [User-defined:WM_APP+15617] wParam:00000012 lParam:C0380001
+             * <00022> 00020820 R message:0xBD01 [User-defined:WM_APP+15617] lResult:00000000        }
+             */
+
+            //P WM_KEYDOWN nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:0 fUp:0
+            PostMessage(hwnd, (int)WM_KEYDOWN, (IntPtr)VK_APPS, (IntPtr)0);
+            //Thread.Sleep(10);
+
+            //P WM_KEYUP nVirtKey:VK_APPS cRepeat:1 ScanCode:5D fExtended:1 fAltDown:0 fRepeat:1 fUp:1
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_APPS, (IntPtr)(0xC15D0001));
+            //Thread.Sleep(10);
+
+            //P WM_CONTEXTMENU hwnd:00020820 xPos:65535 yPos:65535
+            PostMessage(hwnd, (int)WM_CONTEXTMENU, hwnd, MakeLParam(65535, 65535));
+            Thread.Sleep(10);
+            //P WM_SYSKEYDOWN nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:1 fRepeat:0 fUp:0
+            PostMessage(hwnd, (int)WM_SYSKEYDOWN, (IntPtr)VK_MENU, (IntPtr)(0x00380001));
+            Thread.Sleep(10);
+            //P WM_KEYUP nVirtKey:VK_MENU cRepeat:1 ScanCode:38 fExtended:0 fAltDown:0 fRepeat:1 fUp:1
+            PostMessage(hwnd, (int)WM_KEYUP, (IntPtr)VK_MENU, (IntPtr)(0xC0380001));
         }
     }
 }

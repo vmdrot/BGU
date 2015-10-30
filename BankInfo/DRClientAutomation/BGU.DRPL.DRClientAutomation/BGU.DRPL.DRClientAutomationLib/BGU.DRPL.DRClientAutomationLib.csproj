@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuxData\CorrectChangesSummaryFormControlsInfo.cs" />
     <Compile Include="AuxData\EditBranchFormOtherTabControlsInfo.cs" />
     <Compile Include="AuxData\WindowInfo.cs" />
     <Compile Include="Data\TVBVsBulkClosureInfo.cs" />
