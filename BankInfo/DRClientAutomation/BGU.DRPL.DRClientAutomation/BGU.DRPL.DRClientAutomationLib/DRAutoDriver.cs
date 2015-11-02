@@ -518,7 +518,10 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static string FormatChangesSummary(TVBVOpsSevicesChangeInfo chgInfo)
         {
-            return string.Format("{0:dd.MM.yyyy} {1}", chgInfo.ChangeDate, chgInfo.ChangesSummary);
+            if (chgInfo.DeclaredChangeDate == null)
+                return string.Format("{0:dd.MM.yyyy} {1}", chgInfo.ChangeDate, chgInfo.ChangesSummary);
+            else
+                return string.Format("{0:dd.MM.yyyy} (чинне з {1:dd.MM.yyyy}) {2}", chgInfo.ChangeDate, (DateTime)chgInfo.DeclaredChangeDate, chgInfo.ChangesSummary);
         }
 
         private static string ReadBranchName(IntPtr hwndBranchEditForm)
@@ -608,18 +611,19 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static bool CorrectChangesSummary(IntPtr hwndChangesSummaryEdit, string oldSummary, string correctedSummary)
         {
-            string accumSummaryValue = FormAutomUtils.GetControlValue2(hwndChangesSummaryEdit);
-            System.Console.WriteLine("accumSummaryValue = '{0}'", accumSummaryValue);
-            string newAccumSummaryValue = null;
-            if (accumSummaryValue.Trim().Length > 0)
-            {
-                if (accumSummaryValue.IndexOf(oldSummary) != -1)
-                    newAccumSummaryValue = accumSummaryValue.Replace(oldSummary, correctedSummary);
-            }
-            else
-                newAccumSummaryValue = correctedSummary;
-            System.Console.WriteLine("newAccumSummaryValue = '{0}'", newAccumSummaryValue);
-            FormAutomUtils.SetText2(hwndChangesSummaryEdit, newAccumSummaryValue);
+            //string accumSummaryValue = FormAutomUtils.GetControlValue2(hwndChangesSummaryEdit);
+            //System.Console.WriteLine("accumSummaryValue = '{0}'", accumSummaryValue);
+            //string newAccumSummaryValue = null;
+            //if (accumSummaryValue.Trim().Length > 0)
+            //{
+            //    if (accumSummaryValue.IndexOf(oldSummary) != -1)
+            //        newAccumSummaryValue = accumSummaryValue.Replace(oldSummary, correctedSummary);
+            //}
+            //else
+            //    newAccumSummaryValue = correctedSummary;
+            //System.Console.WriteLine("newAccumSummaryValue = '{0}'", newAccumSummaryValue);
+            //FormAutomUtils.SetText2(hwndChangesSummaryEdit, newAccumSummaryValue);
+            FormAutomUtils.SetText2(hwndChangesSummaryEdit, correctedSummary);
             return true;
         }
 
@@ -643,7 +647,7 @@ namespace BGU.DRPL.DRClientAutomationLib
 
             FormAutomUtils.SetForegroundWindow(hwndChgsSummaryCorrectionFrm);
             System.Console.WriteLine("hwndChgsSummaryCorrectionFrm = {0}", hwndChgsSummaryCorrectionFrm);
-            Thread.Sleep(2000); // todo - to shorten
+            Thread.Sleep(50); // todo - to shorten
 
             CorrectChangesSummaryFormControlsInfo ctrlsInfo = null;
             int otherTabCtrlsRetries = 0;
@@ -692,7 +696,7 @@ namespace BGU.DRPL.DRClientAutomationLib
                     if (bChgsSummaryFilled) { currRslt.ErrorsInfo.Add("Failed to change summary"); currRslt.ErrorsCount++; }
                 }
 
-                if (ctrlsInfo.ApplyChangesButton != IntPtr.Zero)
+                if (ctrlsInfo.ApplyChangesButton == IntPtr.Zero)
                 {
 
                     currRslt.ErrorsInfo.Add("Failed to find apply changes button");
@@ -718,12 +722,15 @@ namespace BGU.DRPL.DRClientAutomationLib
                             FormAutomUtils.ClickButton2(ctrlsInfo.ApplyChangesButton);
                             System.Console.WriteLine("ctrlsInfo.ApplyChangesButton pressed.");
 
-                            Thread.Sleep(1500);
-                            IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 10, 100);
+                            //Thread.Sleep(1500);
+                            IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 12, 50);
+                            System.Console.WriteLine("hwndChangesSavedOKDlg(I) = {0}", hwndChangesSavedOKDlg);
                             if (hwndChangesSavedOKDlg == IntPtr.Zero)
-                                hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 10, 100);
+                                hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 12, 50);
+                            System.Console.WriteLine("hwndChangesSavedOKDlg(II) = {0}", hwndChangesSavedOKDlg);
                             if (hwndChangesSavedOKDlg == IntPtr.Zero)
                                 hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", null, drClientProcessId, 10, 100);
+                            System.Console.WriteLine("hwndChangesSavedOKDlg(III) = {0}", hwndChangesSavedOKDlg);
 
                             System.Console.WriteLine("hwndChangesSavedOKDlg = {0}", hwndChangesSavedOKDlg);
                             if (hwndChangesSavedOKDlg == IntPtr.Zero)
@@ -733,11 +740,17 @@ namespace BGU.DRPL.DRClientAutomationLib
                             }
                             else
                             {
-                                IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
-                                if (hwndOKBtn == IntPtr.Zero)
-                                    hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
+                                IntPtr hwndOKBtn = 
+                                //    FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
+                                //System.Console.WriteLine("hwndOKBtn(I) = {0}", hwndOKBtn);
+                                //if (hwndOKBtn == IntPtr.Zero)
+                                //    hwndOKBtn = 
+                                        FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
+                                System.Console.WriteLine("hwndOKBtn(II) = {0}", hwndOKBtn);
                                 if (hwndOKBtn == IntPtr.Zero)
                                     hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
+                                System.Console.WriteLine("hwndOKBtn(III) = {0}", hwndOKBtn);
+
                                 System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
                                 if (hwndOKBtn == IntPtr.Zero)
                                 {

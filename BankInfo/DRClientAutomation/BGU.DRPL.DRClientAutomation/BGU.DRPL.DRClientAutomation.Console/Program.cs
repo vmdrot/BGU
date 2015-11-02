@@ -57,7 +57,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
 
         static void Main(string[] args)
         {
-            //System.Console.Read();
+            System.Console.Read();
 
             string cmdHandlerKey = string.Empty;
             if (args.Length > 0)
@@ -497,6 +497,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
 
             DateTime dtStart = DateTime.Now;
             System.Console.WriteLine("Started: {0}", dtStart);
+            TVBVOpsSevicesChangeInfo.CheckCorrectChangeDates(inputInfo.Items);
             if (!DRAutoDriver.ApplyBulkOpsSvcChange(inputInfo, bEmulateOnly, pauseBeforeClosing, maxProcessCount, out rslts))
             {
                 System.Console.WriteLine("Failed applying bulk change as a whole");
@@ -914,6 +915,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             int drClientProcessId = FormAutomUtils.GetWindowProcess(mainEditBranchesForm);
             System.Console.WriteLine("drClientProcessId = {0}", drClientProcessId);
             System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+            TVBVOpsSevicesChangeInfo.CheckCorrectChangeDates(inputInfo.Items);
             string lastBranchId = string.Empty;
             string prevBranchId = string.Empty;
             bool bBreak;
