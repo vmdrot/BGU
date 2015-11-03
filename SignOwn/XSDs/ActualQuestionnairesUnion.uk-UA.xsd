@@ -14,6 +14,7 @@
   <xs:include schemaLocation="RegLicAppx2OwnershipAcqRequestLP.uk-UA.xsd" />
   <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="EducationNostrificationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />

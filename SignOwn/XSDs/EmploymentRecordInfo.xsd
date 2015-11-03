@@ -12,12 +12,13 @@
           <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
           <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticle" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
         </xs:sequence>
       </xs:extension>

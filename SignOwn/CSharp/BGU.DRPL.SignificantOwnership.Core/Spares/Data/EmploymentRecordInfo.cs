@@ -104,6 +104,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж")]
         public bool IsSupervisedIndustryExperience { get { return _IsSupervisedIndustryExperience; } set { _IsSupervisedIndustryExperience = value; OnPropertyChanged("IsSupervisedIndustryExperience"); } }
 
+        private bool _IsManagingPosition;
+        /// <summary>
+        /// Чи є це керівною посадою?
+        /// </summary>
+        [DisplayName("Керівна посада")]
+        [Description("Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах")]
+        public bool IsManagingPosition { get { return _IsManagingPosition; } set { _IsManagingPosition = value; OnPropertyChanged("IsManagingPosition"); } }
+
         private DateTime _DateStarted;
         /// <summary>
         /// обов'язкове, з точністю до місяця
@@ -161,14 +169,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         private string _KZPPArticle;
         /// <summary>
-        /// Формальна стаття звільнення
+        /// Формальна стаття і пункт звільнення
         /// згідно з КЗпП
         /// </summary>
-        [DisplayName("Стаття звільнення")]
-        [Description("Стаття Кодексу законів про працю, за якою було припинено трудові стосунки")]
-        [Multiline]
+        [DisplayName("Стаття, пункт звільнення")]
+        [Description("Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки")]
         [UIConditionalVisibility("IsQuitDismissedOrOtherLeave")]
-        public string KZPPArticle { get { return _KZPPArticle; } set { _KZPPArticle = value; OnPropertyChanged("KZPPArticle"); } }
+        public string KZPPArticlePt { get { return _KZPPArticle; } set { _KZPPArticle = value; OnPropertyChanged("KZPPArticle"); } }
 
         private ContactInfo _EmployerOrContractorContact;
         /// <summary>
