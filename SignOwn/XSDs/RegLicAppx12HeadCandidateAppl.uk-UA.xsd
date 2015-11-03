@@ -364,6 +364,7 @@
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EducationNostrificationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ManagementPosition.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEducationRecordInfo.uk-UA.xsd" />

@@ -22,12 +22,21 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("ВНЗ - університет, інститут, коледж, тощо")]
         [Required]
         public UniversityOrCollegeInfo UniOrCollege { get; set; }
+
+        /// <summary>
+        /// Обов'язкове поле; достатньо рік, або рік і місяць
+        /// </summary>
+        [DisplayName("Дата вступу")]
+        [Required]
+        public DateTime EnteredDate { get; set; }
+
         /// <summary>
         /// Обов'язкове поле; достатньо рік, або рік і місяць
         /// </summary>
         [DisplayName("Дата закінчення")]
         [Required]
         public DateTime GraduationDate { get; set; }
+
         /// <summary>
         /// обов'язкове
         /// </summary>
@@ -75,5 +84,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Вид освіти")]
         [Description("Загальний вид освіти (юр., екон., техн., тощо)")]
         public EducationKindGros EducationKind { get; set; }
+
+        [DisplayName("Запис про нострифікацію")]
+        [Description("Реквізити нострифікаційного свідоцтва (у випадку освіти, отриманої за кордоном)")]
+        [Required("UniOrCollege.IsNonResident == true")]
+        [UIConditionalVisibility("UniOrCollege.IsNonResident")]
+        public EducationNostrificationInfo NostrificationReqs { get; set; }
     }
 }

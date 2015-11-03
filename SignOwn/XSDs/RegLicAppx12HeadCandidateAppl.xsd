@@ -454,12 +454,13 @@
           <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
           <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticle" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
         </xs:sequence>
       </xs:extension>
@@ -530,6 +531,16 @@
       <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="EducationNostrificationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CerfiticateNr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NostrificationDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="UniversityOrCollegeInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -564,6 +575,7 @@
   <xs:complexType name="EducationRecordInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EnteredDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" />
       <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" />
@@ -572,6 +584,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="Trade" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="EducationKind" type="EducationKindGros" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="HigherEducationDegreeType">

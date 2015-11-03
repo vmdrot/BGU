@@ -56,32 +56,37 @@
               <xs:documentation>Чи є дана робота досвідом роботи у регульованій галузі?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="8">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="8">
+            <xs:annotation>
+              <xs:documentation>Чи є це керівною посадою?</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове, з точністю до місяця</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="9">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="10">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="11">
             <xs:annotation>
               <xs:documentation>з точністю до місяця
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="12">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="12">
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="13">
             <xs:annotation>
               <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
@@ -89,13 +94,13 @@
             - VoluntaryQuit</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticle" type="xs:string" type_ukr="текст" displayName="Стаття звільнення" description="Стаття Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="13">
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="14">
             <xs:annotation>
-              <xs:documentation>Формальна стаття звільнення
+              <xs:documentation>Формальна стаття і пункт звільнення
             згідно з КЗпП</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="14">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="15">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 

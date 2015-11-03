@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationNostrificationInfo" nillable="true" type="EducationNostrificationInfo" />
+  <xs:complexType name="EducationNostrificationInfo">
+    <xs:annotation>
+      <xs:documentation>Запис про нострифікацію диплому чи
+            іншого свідоцтва про отриману за кордоном освіту.
+            Див. також http://www.statsilk.com/maps/where-are-worlds-top-universities-interactive-maps-comparing-three-rankings-arwu-the-qs
+            
+
+Див.також: http://zakon4.rada.gov.ua/laws/show/z0614-15</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CerfiticateNr" type="xs:string" type_ukr="текст" displayName="№ свідоцтва" description="№ нострифікаційного свідоцтва" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NostrificationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі " description="Дата видачі нострифікаційного свідоцтва" field_order="2" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+</xs:schema>

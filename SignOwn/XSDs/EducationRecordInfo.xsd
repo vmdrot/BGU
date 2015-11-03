@@ -4,6 +4,7 @@
   <xs:complexType name="EducationRecordInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="UniOrCollege" type="UniversityOrCollegeInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EnteredDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" />
       <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" />
@@ -12,6 +13,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="Trade" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="EducationKind" type="EducationKindGros" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UniversityOrCollegeInfo">
@@ -27,6 +29,16 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="EducationNostrificationInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CerfiticateNr" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NostrificationDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="LocationInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
