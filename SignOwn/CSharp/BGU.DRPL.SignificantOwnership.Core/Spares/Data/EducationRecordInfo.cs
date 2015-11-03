@@ -62,12 +62,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// Обов'язково
         /// </summary>
         [DisplayName("Спеціальність/фах")]
+        [Description("Основний фах за дипломом")]
         [Required]
         public string Trade { get; set; }
         /// <summary>
         /// Якщо передбачено
         /// </summary>
         [DisplayName("Спеціалізація")]
+        [Description("Уточнююча означення отриманого фаху - спеціалізація/кваліфікація")]
         public string Qualification { get; set; }
+
+        [DisplayName("Вид освіти")]
+        [Description("Загальний вид освіти (юр., екон., техн., тощо)")]
+        public EducationKindGros EducationKind { get; set; }
     }
 }

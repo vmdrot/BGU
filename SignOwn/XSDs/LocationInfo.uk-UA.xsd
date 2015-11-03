@@ -8,7 +8,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryInfo" displayName="Країна" description="Країна" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             За змовчанням - Україна</xs:documentation>
         </xs:annotation>
@@ -30,7 +30,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="City" type="xs:string" type_ukr="текст" displayName="Населений пункт" description="Населений пункт" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле (скрізь)</xs:documentation>
         </xs:annotation>

@@ -8,7 +8,8 @@
       <xs:enumeration value="WorkbookCopyScan" description="Копії/скан трудової книги" enum_value="2" />
       <xs:enumeration value="PassportCopyScan" description="Копії/скан паспорта" enum_value="3" />
       <xs:enumeration value="CharterCopyScan" description="Копії/скан статуту" enum_value="4" />
-      <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" enum_value="5" />
+      <xs:enumeration value="OwnershipDiagram" description="Діграма структури власності" enum_value="5" />
+      <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" enum_value="6" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

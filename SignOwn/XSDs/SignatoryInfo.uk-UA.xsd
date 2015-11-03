@@ -8,33 +8,33 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове (якщо тільки контекстом не передбачено інше)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="SignatoryPosition" type="xs:string" type_ukr="текст" displayName="Посада (підписанта)" description="Посада (підписанта)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="SurnameInitials" type="xs:string" type_ukr="текст" displayName="Прізвище й ініціали (підписанта)" description="Прізвище й ініціали (підписанта)" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="За довіреністю?" description="Підписант діє на підставі довіреності" field_order="4">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Довіреність" description="Реквізити довіреності, на підставі якої діє підписант" field_order="5">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    IsActingByPowOfAttorney == true</xs:documentation>
         </xs:annotation>
       </xs:element>

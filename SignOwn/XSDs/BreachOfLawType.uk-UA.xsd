@@ -2,20 +2,16 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="BreachOfLawType" type="BreachOfLawType" />
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Criminal" description="Кримінальне" enum_value="1" />
-          <xs:enumeration value="Antitrust" description="Анти-монопольне" enum_value="2" />
-          <xs:enumeration value="Taxation" description="Податкове" enum_value="3" />
-          <xs:enumeration value="Banking" description="Банківське" enum_value="4" />
-          <xs:enumeration value="Financial" description="Фінансове" enum_value="5" />
-          <xs:enumeration value="ForeignCurrency" description="Валютне" enum_value="6" />
-          <xs:enumeration value="StockExchange" description="Біржове" enum_value="7" />
-          <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" enum_value="8" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Criminal" description="Кримінальне" enum_value="1" />
+      <xs:enumeration value="Antitrust" description="Анти-монопольне" enum_value="2" />
+      <xs:enumeration value="Taxation" description="Податкове" enum_value="3" />
+      <xs:enumeration value="Banking" description="Банківське" enum_value="4" />
+      <xs:enumeration value="Financial" description="Фінансове" enum_value="5" />
+      <xs:enumeration value="ForeignCurrency" description="Валютне" enum_value="6" />
+      <xs:enumeration value="StockExchange" description="Біржове" enum_value="7" />
+      <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" enum_value="8" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

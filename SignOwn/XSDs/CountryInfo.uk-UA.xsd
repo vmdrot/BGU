@@ -20,7 +20,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
       <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
@@ -30,7 +30,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Назва країни українською мовою</xs:documentation>
         </xs:annotation>

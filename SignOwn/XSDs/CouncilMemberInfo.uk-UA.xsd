@@ -8,14 +8,14 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Member" type="GenericPersonID" displayName="Член органу управління" description="Член органу управління" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Як завжди, тут тільки ідентифікатор особи; самі реквізити - в MentionedEntities (чи еквіваленті)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PositionName" type="xs:string" type_ukr="текст" displayName="Посада" description="Посада" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             за змовчанням - просто "член"</xs:documentation>
         </xs:annotation>

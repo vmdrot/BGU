@@ -8,21 +8,21 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Об'єкт власності" description="Юр.особа, чия власність розкривається" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Ідентифікатор юр.особи - об'єкта власності</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Owner" type="GenericPersonID" displayName="Власник" description="Власник" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             ідентифікатор особи-власника</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="OwnershipKind" type="OwnershipType" displayName="Тип володіння" description="Тип володіння" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             За змовчанням Direct (пропонувати уже введене)</xs:documentation>
         </xs:annotation>
@@ -58,7 +58,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Код країни резидентності
             
@@ -68,14 +68,14 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Тип особи</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Код особи;
             Для юр.особи - TaxCodeOrHandelsRegNr
@@ -87,15 +87,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
-          <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
+      <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="OwnershipType">
     <xs:restriction base="xs:string">

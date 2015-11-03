@@ -19,7 +19,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="AgreementDt" type="xs:dateTime" type_ukr="дата і час" displayName="Дата договору" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>

@@ -8,17 +8,17 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Exchange" type="StockExchangeInfo" displayName="Біржа" description="Біржа, на якій здійснюється котирування" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IssuerName" type="xs:string" type_ukr="текст" displayName="Назва емітента" description="Назва емітента, прийнята на вищевказаній біржі" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="MajorStockSymbol" type="xs:string" type_ukr="текст" displayName="Символ" description="Символ акцій (головний - якщо їх декілька), під яким торгуються акції емітента на вищевказаній біржі" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -31,17 +31,17 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" description="Країна, де офіційно зареєстрована біржа" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва біржі" description="Назва біржі (мовою оригіналу)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва біржі (укр.)" description="Назва біржі українською мовою" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Член світової федерації бірж" description="Чи є біржа членом світової федерації бірж - World Federation of Exchanges" field_order="4" />
@@ -69,7 +69,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
       <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
@@ -79,7 +79,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Назва країни українською мовою</xs:documentation>
         </xs:annotation>
@@ -95,7 +95,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Значення за змовчанням - UAH
             http://www.iso.org/iso/en-US/home/standards/currency_codes.htm
@@ -106,7 +106,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>

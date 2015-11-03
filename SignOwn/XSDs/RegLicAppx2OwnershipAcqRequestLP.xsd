@@ -28,7 +28,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsAMLEtcLegislationKept" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationResonInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MissingInformationResons" type="ArrayOfMissingInformationReasonInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="ContactInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
@@ -65,15 +65,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PersonAssociationType">
     <xs:restriction base="xs:string">
@@ -115,7 +111,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrg" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
@@ -240,6 +236,8 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasDoubleCitizenship" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DoubleCitizenshipCountries" type="ArrayOfCountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
@@ -262,6 +260,11 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="CountryInfo" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPNRefusalRecordInfo">
     <xs:sequence>
@@ -290,15 +293,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Male" />
-          <xs:enumeration value="Female" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Male" />
+      <xs:enumeration value="Female" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="BreachOfLawRecordInfo">
     <xs:complexContent mixed="false">
@@ -319,21 +318,17 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Criminal" />
-          <xs:enumeration value="Antitrust" />
-          <xs:enumeration value="Taxation" />
-          <xs:enumeration value="Banking" />
-          <xs:enumeration value="Financial" />
-          <xs:enumeration value="ForeignCurrency" />
-          <xs:enumeration value="StockExchange" />
-          <xs:enumeration value="OtherAdministrative" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Criminal" />
+      <xs:enumeration value="Antitrust" />
+      <xs:enumeration value="Taxation" />
+      <xs:enumeration value="Banking" />
+      <xs:enumeration value="Financial" />
+      <xs:enumeration value="ForeignCurrency" />
+      <xs:enumeration value="StockExchange" />
+      <xs:enumeration value="OtherAdministrative" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="CourtDecisionInfo">
     <xs:complexContent mixed="false">
@@ -382,20 +377,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Jailed" />
-          <xs:enumeration value="Probation" />
-          <xs:enumeration value="RemedialWorks" />
-          <xs:enumeration value="Fined" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="LicenseRevoked" />
-          <xs:enumeration value="LicenseSuspended" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Jailed" />
+      <xs:enumeration value="Probation" />
+      <xs:enumeration value="RemedialWorks" />
+      <xs:enumeration value="Fined" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="LicenseRevoked" />
+      <xs:enumeration value="LicenseSuspended" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="BankruptcyInvestigationInfo">
     <xs:complexContent mixed="false">
@@ -494,22 +485,18 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="FundsOriginType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="WagesSalaries" />
-          <xs:enumeration value="Royalties" />
-          <xs:enumeration value="Dividends" />
-          <xs:enumeration value="PassiveIncomes" />
-          <xs:enumeration value="Inherited" />
-          <xs:enumeration value="Profit" />
-          <xs:enumeration value="Equity" />
-          <xs:enumeration value="SpecFunds" />
-          <xs:enumeration value="OtherIncomes" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WagesSalaries" />
+      <xs:enumeration value="Royalties" />
+      <xs:enumeration value="Dividends" />
+      <xs:enumeration value="PassiveIncomes" />
+      <xs:enumeration value="Inherited" />
+      <xs:enumeration value="Profit" />
+      <xs:enumeration value="Equity" />
+      <xs:enumeration value="SpecFunds" />
+      <xs:enumeration value="OtherIncomes" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="LegalTransactionPartyInfo">
     <xs:complexContent mixed="false">
@@ -972,12 +959,12 @@
       <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfMissingInformationResonInfo">
+  <xs:complexType name="ArrayOfMissingInformationReasonInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationResonInfo" nillable="true" type="MissingInformationResonInfo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MissingInformationReasonInfo" nillable="true" type="MissingInformationReasonInfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="MissingInformationResonInfo">
+  <xs:complexType name="MissingInformationReasonInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="PropertyName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ReasonWhyMissing" type="xs:string" />

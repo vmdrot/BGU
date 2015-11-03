@@ -14,7 +14,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Код країни резидентності
             
@@ -24,14 +24,14 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Тип особи</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Код особи;
             Для юр.особи - TaxCodeOrHandelsRegNr

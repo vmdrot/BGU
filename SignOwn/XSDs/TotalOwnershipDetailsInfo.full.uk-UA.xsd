@@ -8,35 +8,35 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DirectOwnership" type="OwnershipSummaryInfo" displayName="Пряма власність" description="Пряма власність" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ImplicitOwnership" type="OwnershipSummaryInfo" displayName="Опосередкована власність" description="Опосередкована власність" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="AcquiredVotes" type="OwnershipVotesInfo" displayName="Власність, що набувається" description="Власність, що набувається" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="TotalCapitalSharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Усього % у загальній власності" description="Усього % у загальній власності" field_order="4">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="TotalVotes" type="xs:int" type_ukr="ціле число" displayName="Усього голосів" description="Усього голосів" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове, навіть якщо там усе по 0-м</xs:documentation>
         </xs:annotation>
@@ -61,12 +61,12 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Pct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%" description="%" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів" description="Кількість голосів" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>

@@ -9,17 +9,17 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" description="Країна, де офіційно зареєстрована біржа" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва біржі" description="Назва біржі (мовою оригіналу)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва біржі (укр.)" description="Назва біржі українською мовою" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IsWorldExchangesMember" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Член світової федерації бірж" description="Чи є біржа членом світової федерації бірж - World Federation of Exchanges" field_order="4" />

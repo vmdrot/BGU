@@ -14,12 +14,12 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" displayName="Бажаний засіб комунікації" description="Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Бодай один телефон.
             Хай самі вказують стільки, скільки хочуть, залежно від того, 
@@ -33,7 +33,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" displayName="E-mail-и" description="Перелік адрес електронної пошти" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Мінімум одне мило - обов'язково питати.</xs:documentation>
         </xs:annotation>
@@ -52,6 +52,7 @@
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />

@@ -4,7 +4,7 @@
   <xs:complexType name="PersonBankAssociationInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPersonsCode315p" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="GenericPersonID">
@@ -15,17 +15,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="BankAssociatedPeronsCode315p">
+  <xs:simpleType name="BankAssociatedPersonsCode315p">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="BankControllers" />

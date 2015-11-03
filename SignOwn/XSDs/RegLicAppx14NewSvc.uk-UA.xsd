@@ -21,122 +21,122 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="QuestDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата заявки" description="Дата" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="Ref" type="xs:string" type_ukr="текст" displayName="№ (Ваш висх.)" description="номер" field_order="2" />
           <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк (назва та ін. реквізити)" description="Ідентифікація банку, що подає заявку" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Тільки укр. банки, лише головні</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="ExistingLicenseSpecs" type="BankingLicenseInfo" displayName="Діюча банківська ліцензія (реквізити)" description="має  банківську ліцензію" field_order="4">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="NewActivitiesList" type="ArrayOfBankingLicensedActivityInfo" displayName="Перелік нових видів фінпослуг" description="перелік нових видів діяльності або нових видів фінансових послуг" field_order="5">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Контрол для заповнення - два listbox-а, drag у один listbox</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="HasSufficientFinancialCapacity" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Фінансові можливості наявні?" description="Банк має достатні фінансові  можливості  для  початку  нового виду діяльності та/або виду фінансових послуг,  зазначених у цьому повідомленні" field_order="6">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="MonthsWOLosses" type="xs:int" type_ukr="ціле число" displayName="Тривалість беззбиткового періоду (міс.)" description="Банк не має збитків протягом останніх ... місяців" field_order="7">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="HasFormedEnoughFundsAndReserves" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Формування фондів та резервів відповідає/не відповідає...?" description="Банк сформував фонди та резерви відповідно до вимог законодавства України, у тому числі нормативно-правових актів Національного банку України" field_order="8">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="MonthsObligatoryReservesMet" type="xs:int" type_ukr="ціле число" displayName="Тривалість дотримування нормативів обов'язвкового резервування (міс.)" description="Банк дотримується нормативу обов'язкового резервування протягом останніх ... місяців" field_order="9">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="MonthsEconomicNormativesReqsMet" type="xs:int" type_ukr="ціле число" displayName="Тривалість дотримування економічних нормативів (міс.)" description="Банк дотримується економічних нормативів протягом останніх ... місяців" field_order="10">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsRegulatoryCapitalReqsMet" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Регулятивного капіталу достатньо (так/ні)?" description="Рівень регулятивного капіталу Банку відповідає вимогам Національного банку України" field_order="11">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="RegulatoryCapitalAmt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Розміри регулятивного капіталу (грн.)" description="Рівень регулятивного капіталу Банку становить ... грн." field_order="12">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="RegulatoryCapitalDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата розмірів регулятивного капіталу" description="Дата, на яку подано рівень регулятивного капіталу Банку (вище)" field_order="13">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="NoPenaltiesWithinLast3Months" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Відсутність заходів упливу" description="Банк не є об'єктом застосування заходів впливу (крім письмового застереження) упродовж останніх 3 місяців, причому:&#xA;протягом усього періоду діяльності - для банків, які отримали банківську ліцензію менше ніж за три місяці до часу повідомлення Національного банку України про початок нового виду діяльності та/або виду послуг;&#xA;протягом трьох місяців, що передують часу повідомлення Національного банку України про початок нового виду діяльності та/або виду послуг - для банків, які здійснюють банківську діяльність на підставі банківської ліцензії більше ніж три місяці." field_order="14">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="HasDeptsAllocatedForNewBusLines" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Забезпеченість відповідним персоналом та структурою" description="У Банку створено відповідні підрозділи, що здійснюватимуть зазначений в повідомленні новий вид діяльності та/або вид фінансових послуг, а також підрозділ внутрішнього аудиту та підрозділ з управління ризиками, функції та повноваження яких відповідають вимогам Закону України &quot;Про банки і банківську діяльність&quot; та нормативно-правових актів Національного банку України. Банк забезпечений спеціалістами, які відповідають вимогам нормативно-правових актів Національного банку України. Відповідні відомості додаються." field_order="15">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="HasFacilitiesForNewBusLines" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Забезпеченість відповідним обладнанням, технікою, ПЗ, тощо" description="Банк забезпечений належним банківським обладнанням, комп'ютерною технікою, програмним забезпеченням та комунікаційними засобами, що відповідають вимогам Національного банку України" field_order="16">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsGenericLawReqsMetForNewBusLines" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Дотримано вимог законодавства" description="Банком виконано спеціальні вимоги законодавства України, у тому числі нормативно-правових актів Національного банку України, щодо нового виду діяльності та/або нового виду фінансових послуг" field_order="17">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsBankIndustrySpecificLawReqsMetForNewBusLines" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Готові розпочати новий вид діяльності?" description="Банк готовий розпочати новий вид діяльності та/або вид фінансових послуг згідно з вимогами банківського законодавства України, нормативно-правових актів Національного банку України" field_order="18">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsNewBusLinesPresentInCharter" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Нову діяльність зазначено в статуті?" description="Здійснення нових видів діяльності/надання нових фінансових послуг зазначено в статуті банку." field_order="19">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsInternalRegulationCopiesAttachedForNewBusLines" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Наявність внутрішніх положень, що регламентують нову діяльність - є/немає?" description="Копії внутрішніх положень, що регулюють здійснення банком нових видів діяльності або надання нового виду фінансових  послуг, додаються" field_order="20">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsSigneePersonallyLiableForCopiesAttached" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Я персонально відповідаю за достовірність поданої інформації?" description="Я несу персональну відповідальність за достовірність усіх поданих документів" field_order="21">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" description="У разі виникнення будь-яких питань щодо цього повідомлення або документів, що додаються до нього, прошу звертатися до (прізвище, адреса, номер телефону, факсу)" field_order="22">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Attachements" type="ArrayOfAttachmentInfo" displayName="Додатки" description="Додатки" field_order="23">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Signee" type="SignatoryInfo" displayName="Підписант" description="Інформація про підписанта (Голова правління Банку)" field_order="24">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -150,6 +150,7 @@
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />

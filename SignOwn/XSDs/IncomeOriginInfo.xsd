@@ -25,21 +25,17 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="FundsOriginType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="WagesSalaries" />
-          <xs:enumeration value="Royalties" />
-          <xs:enumeration value="Dividends" />
-          <xs:enumeration value="PassiveIncomes" />
-          <xs:enumeration value="Inherited" />
-          <xs:enumeration value="Profit" />
-          <xs:enumeration value="Equity" />
-          <xs:enumeration value="SpecFunds" />
-          <xs:enumeration value="OtherIncomes" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="WagesSalaries" />
+      <xs:enumeration value="Royalties" />
+      <xs:enumeration value="Dividends" />
+      <xs:enumeration value="PassiveIncomes" />
+      <xs:enumeration value="Inherited" />
+      <xs:enumeration value="Profit" />
+      <xs:enumeration value="Equity" />
+      <xs:enumeration value="SpecFunds" />
+      <xs:enumeration value="OtherIncomes" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

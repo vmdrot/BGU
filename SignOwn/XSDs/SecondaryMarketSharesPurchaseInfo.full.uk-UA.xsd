@@ -13,32 +13,32 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Актив, що набувається" description="Банк або ж юр.особа - власник участі в банку (прямої чи опосередкованої)" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="PreviousOwner" type="GenericPersonID" displayName="Попередній власник" description="Власник, від якого переходитиме власність" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="LegalTransaction" type="LegalTransactionInfo" displayName="Правочин" description="Інформація про відповідний правочин" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="SharesPct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="%, що набувається" description="Відсоток у статутному капіталі юридичної особи або банку, який придбавається" field_order="4">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="NominalSharesValue" type="CurrencyAmount" displayName="Номінальна вартість" description="Загальна номінальна вартість акцій (часток, паїв), які придбаваються" field_order="5">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="ActualSharesPrice" type="CurrencyAmount" displayName="Ціна реальної угоди" description="Ціна акцій (часток, паїв), які придбаваються ( Може зазначатися ціна, яка попередньо погоджена сторонами відповідно до проекту договору купівлі-продажу акцій банку ...)" field_order="6">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -55,31 +55,31 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="IsCommitted" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Правочин відбувся?" description="Чи правочин уже відбувся чи лише планується?" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="TransactionType" type="LegalTransactionType" displayName="Тип правочину" description="..." field_order="2" />
           <xs:element minOccurs="0" maxOccurs="1" name="TransactionTypeOther" type="xs:string" type_ukr="текст" displayName="Тип правочину (інше)" description="(Якщо було обрано тип 'Інший')" field_order="3" />
           <xs:element minOccurs="0" maxOccurs="1" name="TransactionNr" type="xs:string" type_ukr="текст" displayName="№ правочину" description="напр. №/серія договору, тощо - якщо правочин вже відбувся та/або цей реквізит відомий" field_order="4">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    IsCommitted == true</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата правочину" description="якщо правочин вже відбувся та/або цей реквізит відомий" field_order="5">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    IsCommitted == true</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Parties" type="ArrayOfLegalTransactionPartyInfo" displayName="Сторони" description="Сторони правочину" field_order="6">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="TransactionText" type="xs:string" type_ukr="текст" displayName="Зміст правочину" description="Стислий опис змісту правочину" field_order="7">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>

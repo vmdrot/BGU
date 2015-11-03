@@ -85,6 +85,24 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [UIConditionalVisibility("IsEmployee")]
         public string JobTitle { get { return _JobTitle; } set { _JobTitle = value; OnPropertyChanged("JobTitle"); } }
 
+        private ISCO _ISCOJobSpec;
+        /// <summary>
+        /// Код професії, у ролі якого працівник був зайнятий,
+        /// згідно Міжнародного стандарту класифікації професій
+        /// та його української (ДК 003:2010) / іншої локальної адаптації
+        /// 
+        /// </summary>
+        [DisplayName("Код та назва професії за МОП")]
+        [Description("Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010")]
+        public ISCO ISCOJobSpec { get { return _ISCOJobSpec; } set { _ISCOJobSpec = value; OnPropertyChanged("ISCOJobSpec"); } }
+
+        private bool _IsSupervisedIndustryExperience;
+        /// <summary>
+        /// Чи є дана робота досвідом роботи у регульованій галузі?
+        /// </summary>
+        [DisplayName("Банківський/фінансовий досвід")]
+        [Description("Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж")]
+        public bool IsSupervisedIndustryExperience { get { return _IsSupervisedIndustryExperience; } set { _IsSupervisedIndustryExperience = value; OnPropertyChanged("IsSupervisedIndustryExperience"); } }
 
         private DateTime _DateStarted;
         /// <summary>
@@ -106,7 +124,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [XmlIgnore]
         public bool IsAlreadyFinished { get { return !IsStillWorkingThere; } }
 
-
         private DateTime? _DateQuit;
         /// <summary>
         /// з точністю до місяця
@@ -115,9 +132,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата кінця роботи")]
         [UIConditionalVisibility("IsAlreadyFinished")]
         public DateTime? DateQuit { get { return _DateQuit; } set { _DateQuit = value; OnPropertyChanged("DateQuit"); } }
-
-
-
 
         private EmploymentTerminationType _TerminationType;
         /// <summary>
@@ -132,7 +146,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [XmlIgnore]
         public bool IsQuitDismissedOrOtherLeave { get { return TerminationType == EmploymentTerminationType.Dismissed || TerminationType == EmploymentTerminationType.OtherLeaveType || TerminationType == EmploymentTerminationType.VoluntaryQuit; } }
 
-
         private string _DismissalOrUnemployedReason;
         /// <summary>
         /// Пояснення обов'язкове для TerminationType типів:
@@ -145,6 +158,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Multiline]
         [UIConditionalVisibility("IsQuitDismissedOrOtherLeave")]
         public string DismissalOrUnemployedReason { get { return _DismissalOrUnemployedReason; } set { _DismissalOrUnemployedReason = value; OnPropertyChanged("DismissalOrUnemployedReason"); } }
+
+        private string _KZPPArticle;
+        /// <summary>
+        /// Формальна стаття звільнення
+        /// згідно з КЗпП
+        /// </summary>
+        [DisplayName("Стаття звільнення")]
+        [Description("Стаття Кодексу законів про працю, за якою було припинено трудові стосунки")]
+        [Multiline]
+        [UIConditionalVisibility("IsQuitDismissedOrOtherLeave")]
+        public string KZPPArticle { get { return _KZPPArticle; } set { _KZPPArticle = value; OnPropertyChanged("KZPPArticle"); } }
 
         private ContactInfo _EmployerOrContractorContact;
         /// <summary>

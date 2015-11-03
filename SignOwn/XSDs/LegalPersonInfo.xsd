@@ -5,7 +5,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrg" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
@@ -72,15 +72,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="OwnershipFormType">
     <xs:restriction base="xs:string">

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationKindGros" type="EducationKindGros" />
+  <xs:simpleType name="EducationKindGros">
+    <xs:annotation>
+      <xs:documentation>Підвид освіти: 
+            У базі доцільно завести динамічний довідник, бо для цілей 
+            реєстрації, ліцензування чи пруденційного нагляду перелік 
+            може бути розширено чи уточнено.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="BankingFinance" description="Фінансова/банківська" enum_value="1" />
+      <xs:enumeration value="OtherEconomics" description="Інша економічна" enum_value="2" />
+      <xs:enumeration value="Legal" description="Юридична" enum_value="3" />
+      <xs:enumeration value="OtherHumanitarian" description="Інша гуманітарна" enum_value="4" />
+      <xs:enumeration value="Engineering" description="Технічна" enum_value="5" />
+      <xs:enumeration value="Miscellaneous" description="Інша" enum_value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

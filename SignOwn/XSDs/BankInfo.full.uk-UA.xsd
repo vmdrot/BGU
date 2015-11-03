@@ -19,7 +19,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування банку" description="Найменування банку (в оригіналі)" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Оригінальна назва банку (мовою країни резидентності)
             Для українських банків заповнюється лише ця назва</xs:documentation>
@@ -47,7 +47,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" field_order="6">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Країна резидентності банку
             Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)</xs:documentation>

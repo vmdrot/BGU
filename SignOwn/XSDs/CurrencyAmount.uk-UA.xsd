@@ -10,7 +10,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="CCY" type="xs:string" type_ukr="текст" displayName="Валюта" description="Валюта" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Значення за змовчанням - UAH
             http://www.iso.org/iso/en-US/home/standards/currency_codes.htm
@@ -21,7 +21,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Amt" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Сума" description="Сума" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>

@@ -2,20 +2,16 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="EmploymentTerminationType" type="EmploymentTerminationType" />
   <xs:simpleType name="EmploymentTerminationType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
-          <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
-          <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
-          <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
-          <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
-          <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
-          <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
-          <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
+      <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
+      <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
+      <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
+      <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
+      <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
+      <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
+      <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

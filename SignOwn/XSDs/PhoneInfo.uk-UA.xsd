@@ -13,7 +13,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PhoneNr" type="xs:string" type_ukr="текст" displayName="№ телефону" description="№ телефону" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" type_ukr="текст" displayName="Примітки щодо телефону" description="Примітки щодо телефону" field_order="3">

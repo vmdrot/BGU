@@ -8,12 +8,12 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Person" type="LegalPersonInfo" displayName="Юр.особа-власник" description="Юр.особа-власник" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка власності, %" description="Частка власності, %" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>

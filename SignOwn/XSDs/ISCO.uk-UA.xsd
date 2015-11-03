@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ISCO" nillable="true" type="ISCO" />
+  <xs:complexType name="ISCO">
+    <xs:annotation>
+      <xs:documentation>Запис типу міжнародного класифікатора професій 
+            (ISCO - international standard classification of occupations)
+            Список вибудовано за резолюцією від 3-6.12.2007 - 
+            http://www.ilo.org/public/english/bureau/stat/isco/docs/resol08.pdf
+            Професія за версією українського класифікатора професій
+            Джерело: КЛАСИФІКАТОР ПРОФЕСІЙ
+            ДК 003:2010 
+            ЗАТВЕРДЖЕНО ТА НАДАНО ЧИННОСТІ
+            Наказ Держспоживстандарту України
+            28.07.2010 N 327 
+            Чинний від 01.11.2010 р.
+            Оригінал стандарту: http://www.ilo.org/public/english/bureau/stat/isco/
+            
+
+Див.також: http://hrliga.com/docs/327_KP.htm</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupID" type="xs:string" type_ukr="текст" displayName="Код професії/групи" description="Код професії чи групи професій" field_order="1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentOccupID" type="xs:string" type_ukr="текст" displayName="Код групи" description="Код групи професій, до якої відноситься дана професія" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupName" type="xs:string" type_ukr="текст" displayName="Назва професії/групи" description="Назва професії чи групи професій (оригінальне написання англ., згідно стандарту)" field_order="3" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupNameUkr" type="xs:string" type_ukr="текст" displayName="Назва професії/групи (укр.)" description="Переклад назви професії чи групи професій українською" field_order="4" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+</xs:schema>

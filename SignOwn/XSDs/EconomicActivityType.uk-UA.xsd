@@ -5,12 +5,12 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="KVEDCode" type="xs:string" type_ukr="текст" displayName="Код діяльності за КВЕД" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="KVEDActivityName" type="xs:string" type_ukr="текст" displayName="Назва діяльності за КВЕД" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="ActivitySelfName" type="xs:string" type_ukr="текст" displayName="Власна фактична назва діяльності" field_order="3" />

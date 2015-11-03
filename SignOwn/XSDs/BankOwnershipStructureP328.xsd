@@ -29,7 +29,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrg" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
