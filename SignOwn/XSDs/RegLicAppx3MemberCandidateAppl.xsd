@@ -49,21 +49,17 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Criminal" />
-          <xs:enumeration value="Antitrust" />
-          <xs:enumeration value="Taxation" />
-          <xs:enumeration value="Banking" />
-          <xs:enumeration value="Financial" />
-          <xs:enumeration value="ForeignCurrency" />
-          <xs:enumeration value="StockExchange" />
-          <xs:enumeration value="OtherAdministrative" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Criminal" />
+      <xs:enumeration value="Antitrust" />
+      <xs:enumeration value="Taxation" />
+      <xs:enumeration value="Banking" />
+      <xs:enumeration value="Financial" />
+      <xs:enumeration value="ForeignCurrency" />
+      <xs:enumeration value="StockExchange" />
+      <xs:enumeration value="OtherAdministrative" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="CourtDecisionInfo">
     <xs:complexContent mixed="false">
@@ -133,20 +129,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Jailed" />
-          <xs:enumeration value="Probation" />
-          <xs:enumeration value="RemedialWorks" />
-          <xs:enumeration value="Fined" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="LicenseRevoked" />
-          <xs:enumeration value="LicenseSuspended" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Jailed" />
+      <xs:enumeration value="Probation" />
+      <xs:enumeration value="RemedialWorks" />
+      <xs:enumeration value="Fined" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="LicenseRevoked" />
+      <xs:enumeration value="LicenseSuspended" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="CurrencyAmount">
     <xs:complexContent mixed="false">
@@ -214,15 +206,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="IndebtnessInfo">
     <xs:complexContent mixed="false">
@@ -410,6 +398,18 @@
       <xs:enumeration value="OtherRelative" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="ISCO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentOccupID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupNameUkr" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="EmploymentRecordInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -419,28 +419,27 @@
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
           <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
           <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticle" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="EmploymentState">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Employed" />
-          <xs:enumeration value="Selfemployed" />
-          <xs:enumeration value="Freelance" />
-          <xs:enumeration value="Unemployed" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Employed" />
+      <xs:enumeration value="Selfemployed" />
+      <xs:enumeration value="Freelance" />
+      <xs:enumeration value="Unemployed" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
@@ -450,21 +449,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EmploymentTerminationType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="PromotedOrRelocated" />
-          <xs:enumeration value="VoluntaryQuit" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="Retired" />
-          <xs:enumeration value="MaternityLeave" />
-          <xs:enumeration value="MilitaryServiceLeave" />
-          <xs:enumeration value="HealthConditionLeave" />
-          <xs:enumeration value="OtherLeaveType" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="PromotedOrRelocated" />
+      <xs:enumeration value="VoluntaryQuit" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="Retired" />
+      <xs:enumeration value="MaternityLeave" />
+      <xs:enumeration value="MilitaryServiceLeave" />
+      <xs:enumeration value="HealthConditionLeave" />
+      <xs:enumeration value="OtherLeaveType" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ContactInfo">
     <xs:sequence>
@@ -482,6 +477,8 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasDoubleCitizenship" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DoubleCitizenshipCountries" type="ArrayOfCountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
@@ -504,6 +501,11 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="CountryInfo" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPNRefusalRecordInfo">
     <xs:sequence>
@@ -546,15 +548,11 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Male" />
-          <xs:enumeration value="Female" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Male" />
+      <xs:enumeration value="Female" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="MeansOfCommunication">
     <xs:restriction base="xs:string">
@@ -592,7 +590,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrIntOrg" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIntFinOrg" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ResidenceCountry" type="CountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
@@ -741,10 +739,10 @@
   <xs:complexType name="PersonBankAssociationInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPersonsCode315p" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="BankAssociatedPeronsCode315p">
+  <xs:simpleType name="BankAssociatedPersonsCode315p">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="BankControllers" />

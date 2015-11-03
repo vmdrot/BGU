@@ -10,7 +10,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="OwnerID" type="GenericPersonID" displayName="ID Власника" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Тут лише ідентифікатор особи; як завше, решта її реквізитів - десь у MentionedIdentities</xs:documentation>
             </xs:annotation>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ISCO" nillable="true" type="ISCO" />
+  <xs:complexType name="ISCO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentOccupID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OccupNameUkr" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+</xs:schema>

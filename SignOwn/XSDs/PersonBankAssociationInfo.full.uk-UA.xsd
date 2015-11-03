@@ -5,17 +5,17 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Оберіть пов'язану особу" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPeronsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи" field_order="2">
+      <xs:element minOccurs="1" maxOccurs="1" name="AssociationKind" type="BankAssociatedPersonsCode315p" displayName="Код пов'язаності" description="Оберіть код пов'язаності особи" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="BankAssociatedPeronsCode315p.uk-UA.xsd" />
+  <xs:include schemaLocation="BankAssociatedPersonsCode315p.uk-UA.xsd" />
 </xs:schema>

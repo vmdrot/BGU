@@ -8,21 +8,21 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Asset" type="GenericPersonID" displayName="Об'єкт власності" description="Юр.особа, чия власність розкривається" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Ідентифікатор юр.особи - об'єкта власності</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Owner" type="GenericPersonID" displayName="Власник" description="Власник" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             ідентифікатор особи-власника</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="OwnershipKind" type="OwnershipType" displayName="Тип володіння" description="Тип володіння" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             За змовчанням Direct (пропонувати уже введене)</xs:documentation>
         </xs:annotation>

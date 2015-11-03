@@ -8,14 +8,14 @@
           <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" field_order="1" />
           <xs:element minOccurs="1" maxOccurs="1" name="HasOutstandingLoansWithBanks" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи є кредити, одержані й непогашені особою  в  банках?" description="(Станом на дату подання анкети)" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Інформація про кредити, одержані особою:</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="OutstandingLoansWithBanksDetails" type="ArrayOfLoanInfo" displayName="Інформація про кредити, одержані особою" description="(номер і дата договору про надання кредиту, сума кредиту, термін погашення кредиту, сума заборгованості за договором на дату подання анкети)" field_order="3">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HasOutstandingLoansWithBanks == true
 
             Інформація про кредити, одержані особою:</xs:documentation>
@@ -23,7 +23,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="HasNoImperfectReputationSigns" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Стверджую, що немає ознак відсутності бездоганної ділової репутації" description="Стверджую, що немає ознак відсутності бездоганної ділової репутації стосовно _______ (зазначається найменування / П.І.Б. особи)" field_order="4">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             17. Чи є щодо юридичної особи ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим
             актом Національного банку України про порядок реєстрації та ліцензування банків [якщо таких ознак немає, то
@@ -34,7 +34,7 @@
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="ImperfectReputationDetails" type="ImperfectBusinessReputationInfo" displayName="Ознаки відсутності бездоганної ділової репутації" description="Опис наявних ознак відсутності бездоганної ділової репутації" field_order="5">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HasNoImperfectReputationSigns == false
 
             17. Якщо щодо юридичної особи є ознаки відсутності бездоганної ділової репутації, визначені нормативно-правовим

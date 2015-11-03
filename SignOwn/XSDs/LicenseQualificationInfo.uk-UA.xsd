@@ -16,7 +16,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="QualificationName" type="xs:string" type_ukr="текст" displayName="Назва професії/діяльності" description="Назва професії/виду ліцензованої діяльності згідно відповідного класифікатору/довідника професій (напр.http://kodeksy.com.ua/buh/kp.htm)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>

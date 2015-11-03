@@ -5,12 +5,12 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="HadBankruptcyInvestigation" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Чи порушувалася справа про банкрутство юридичної особи?" description="Чи порушувалася справа про банкрутство юридичної особи?" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="BankruptcyInvestigations" type="ArrayOfBankruptcyInvestigationInfo" displayName="Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи" field_order="2">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HadBankruptcyInvestigation == true
 
             6.1. Деталі порушуваної(-их) справи(справ) про банкрутство юридичної особи</xs:documentation>
@@ -18,7 +18,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="HasMiscNonRepaidDebts" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є невиконані  зобов'язання перед іншими особами?" description="Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?
             _______________________________________________________________________</xs:documentation>
@@ -26,7 +26,7 @@
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="MiscNonRepaidDebts" type="ArrayOfIndebtnessInfo" displayName="Невиконані  зобов'язання перед іншими особами - розшифровка" description="(зазначити, які саме зобов'язання, у якому розмірі, перед якою особою та з яких причин не були виконані, а також подальші плани щодо виконання/невиконання цих зобов'язань)" field_order="4">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HasMiscNonRepaidDebts == true
 
             6.2. Чи  має   юридична  особа  невиконані  майнові  (фінансові)  зобов'язання перед іншими особами?
@@ -40,14 +40,14 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="HadIndustrySpecificBreaches" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Були порушення галузевого законодавства?" description="Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             6.3. Чи  притягувалася  юридична  особа  до  відповідальності  за  порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо?</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="BreachesOfLaw" type="ArrayOfBreachOfLawRecordInfo" displayName="Порушення галузевого законодавства - деталі" description="(зазначити, коли вчинено порушення антимонопольного,  податкового, банківського, валютного  законодавства, правил діяльності на ринку цінних паперів тощо, зміст порушення, накладені санкції)" field_order="6">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HadIndustrySpecificBreaches == true
 
             6.3. ________________________________________________________________________________
@@ -56,7 +56,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="HasLiquidatedSignOwnershipLastYear" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Були власником ліквідованих юросіб протягом останнього року?" description="Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власником істотної участі (10 і більше відсотків) у цій особі?" field_order="7">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             6.4. Чи була юридична особа протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи,  
             власником істотної участі (10 і більше відсотків) у цій особі?</xs:documentation>
@@ -64,7 +64,7 @@
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="LiquidatedSignOwnershipLastYear" type="ArrayOfLiquidatedEntityOwnershipInfo" displayName="Ліквідовані протягом останнього року юрособи у власності" description="Протягом останнього року, що передував прийняттю рішення про ліквідацію юридичної особи, власник істотної участі (10 і більше відсотків) у ... (найменування юридичної особи, код за ЄДРПОУ, відсоток володіння в ній, докладна інформація про причини та підстави ліквідації)" field_order="8">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    HasLiquidatedSignOwnershipLastYear == true
 
             6.4. __________________________________________________________________________
@@ -102,7 +102,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Stake" type="TotalOwnershipDetailsInfo" displayName="Частки власності" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове; заповнення секцій - за фактом власності подавача (чи кого там в анкеті вимагають, за контекстом)</xs:documentation>
             </xs:annotation>

@@ -35,21 +35,17 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="BreachOfLawType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Criminal" />
-          <xs:enumeration value="Antitrust" />
-          <xs:enumeration value="Taxation" />
-          <xs:enumeration value="Banking" />
-          <xs:enumeration value="Financial" />
-          <xs:enumeration value="ForeignCurrency" />
-          <xs:enumeration value="StockExchange" />
-          <xs:enumeration value="OtherAdministrative" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Criminal" />
+      <xs:enumeration value="Antitrust" />
+      <xs:enumeration value="Taxation" />
+      <xs:enumeration value="Banking" />
+      <xs:enumeration value="Financial" />
+      <xs:enumeration value="ForeignCurrency" />
+      <xs:enumeration value="StockExchange" />
+      <xs:enumeration value="OtherAdministrative" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="CourtDecisionInfo">
     <xs:complexContent mixed="false">
@@ -119,20 +115,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Jailed" />
-          <xs:enumeration value="Probation" />
-          <xs:enumeration value="RemedialWorks" />
-          <xs:enumeration value="Fined" />
-          <xs:enumeration value="Dismissed" />
-          <xs:enumeration value="LicenseRevoked" />
-          <xs:enumeration value="LicenseSuspended" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Jailed" />
+      <xs:enumeration value="Probation" />
+      <xs:enumeration value="RemedialWorks" />
+      <xs:enumeration value="Fined" />
+      <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="LicenseRevoked" />
+      <xs:enumeration value="LicenseSuspended" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="CurrencyAmount">
     <xs:complexContent mixed="false">
@@ -194,15 +186,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="IndebtnessInfoBase">
     <xs:complexContent mixed="false">

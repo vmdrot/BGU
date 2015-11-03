@@ -15,7 +15,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Суд" description="Назва суду (оригінальною мовою)" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна підсудності" description="(країна юрисдикції суду)" field_order="2" />

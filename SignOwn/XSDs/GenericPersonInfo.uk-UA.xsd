@@ -10,12 +10,12 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" displayName="Тип особи" description="Тип особи" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="PhysicalPerson" type="PhysicalPersonInfo" displayName="Фізична особа" description="Фізична особа" field_order="2">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    PersonType == EntityType.Physical
 
             Обов'язкове поле, якщо PersonType == Physical
@@ -24,7 +24,7 @@
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="LegalPersonInfo" displayName="Юридична особа" description="Юридична особа" field_order="3">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    PersonType == EntityType.Legal
 
             Обов'язкове поле, якщо PersonType == Legal
@@ -50,6 +50,7 @@
   <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />

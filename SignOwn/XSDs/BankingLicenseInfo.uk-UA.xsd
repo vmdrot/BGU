@@ -8,14 +8,14 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="LicenseNr" type="xs:string" type_ukr="текст" displayName="№ ліцензії" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі ліцензії" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове</xs:documentation>
         </xs:annotation>

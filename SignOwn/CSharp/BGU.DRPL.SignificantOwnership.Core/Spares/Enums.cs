@@ -120,7 +120,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum HigherEducationDegreeType
     {
-        [Description("Не вказано")]None = 0,
+        [Description("Не вказано")]
+        None = 0,
         [Description("Бакалавр/Спеціаліст")]
         Bachelor,
         [Description("Магістр")]
@@ -138,6 +139,30 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Професор")]
         Professor
 
+    }
+
+    /// <summary>
+    /// Підвид освіти: 
+    /// У базі доцільно завести динамічний довідник, бо для цілей 
+    /// реєстрації, ліцензування чи пруденційного нагляду перелік 
+    /// може бути розширено чи уточнено.
+    /// </summary>
+    public enum EducationKindGros
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Фінансова/банківська")]
+        BankingFinance,
+        [Description("Інша економічна")]
+        OtherEconomics,
+        [Description("Юридична")]
+        Legal,
+        [Description("Інша гуманітарна")]
+        OtherHumanitarian,
+        [Description("Технічна")]
+        Engineering,
+        [Description("Інша")]
+        Miscellaneous
     }
 
 #if __NO_FLAGS__

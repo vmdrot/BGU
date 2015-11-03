@@ -9,7 +9,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Transferror" type="GenericPersonID" displayName="Передавач власності" description="Особа, що передає/передає право голосу/частку власності" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Від кого передаються голоси;
             Реквізити - у MentionedEntities</xs:documentation>
@@ -17,12 +17,12 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PurchaseVotes" type="OwnershipVotesInfo" displayName="Набувані голоси/частка" description="Голоси/частка у власності, що купується/отримується" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="VotesTransferPath" type="xs:string" type_ukr="текст" displayName="Шлях передачі/купівлі голосів/власності" description="Шлях передачі/купівлі голосів/власності" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             напр. "довіреність ... від ..., угода про купівлю/продаж ...", тощо</xs:documentation>
         </xs:annotation>

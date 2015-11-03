@@ -8,28 +8,28 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="GovernedEntityID" type="GenericPersonID" displayName="Керована організація" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Повні реквізити самої організації "житимуть", як правило, у MentionedEntities (або його еквіваленті)</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Members" type="ArrayOfCouncilMemberInfo" displayName="Члени" description="Члени органу управління" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Перелік членів органу</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="HeadMember" type="GenericPersonID" displayName="Очільник/голова органу" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Ідентифікатор особи-голови</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="CouncilBodyName" type="xs:string" type_ukr="текст" displayName="Назва органу" description="Назва органу (мовою оригіналу)" field_order="4">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Назва органу (мовою оригіналу)</xs:documentation>
         </xs:annotation>

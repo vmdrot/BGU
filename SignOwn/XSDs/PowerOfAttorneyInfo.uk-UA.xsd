@@ -8,22 +8,22 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="ActingPerson" type="GenericPersonID" displayName="Довірена особа" description="Кому видано довіреність" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" displayName="Від імені" description="Особа, яку представляють (від імені якої діє довірена особа)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Title" type="xs:string" type_ukr="текст" displayName="Назва/титул довіреності" description="Короткий зміст предмету довіреності" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна з" description="Дата початку дії довіреності" field_order="4">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до" description="Дата закінчення дії довіреності" field_order="5" />

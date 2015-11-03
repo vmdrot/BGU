@@ -8,7 +8,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssuer" type="ProfessionLicensingBodyInfo" displayName="Ліцензор" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             хто надав/екзаменував ліцензію
             обов'язкове</xs:documentation>
@@ -16,7 +16,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="LicenseIssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
@@ -33,7 +33,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="LicenseQualifications" type="ArrayOfLicenseQualificationInfo" displayName="Кваліфікації/види діяльності за ліцензією" field_order="5">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" maxOccurs="1" name="LicenseClause" type="xs:string" type_ukr="текст" displayName="Формулювання/текст ліцензії" description="Додаткові суттєві відомості про ліцензію" field_order="6">

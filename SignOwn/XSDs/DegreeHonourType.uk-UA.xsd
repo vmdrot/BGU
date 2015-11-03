@@ -2,19 +2,15 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="DegreeHonourType" type="DegreeHonourType" />
   <xs:simpleType name="DegreeHonourType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" enum_value="1" />
-          <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" enum_value="2" />
-          <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" enum_value="3" />
-          <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" enum_value="4" />
-          <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
-          <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
-          <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Rite" description="Звичайний (без відзнаки)" enum_value="1" />
+      <xs:enumeration value="CumLaude" description="З відзнакою (Cum laude)" enum_value="2" />
+      <xs:enumeration value="Honoured" description="З відзнакою (&quot;червоний&quot;), до-болонська система" enum_value="3" />
+      <xs:enumeration value="MagnaCumLaude" description="Зі значною відзнакою (magna cum laude)" enum_value="4" />
+      <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
+      <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
+      <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -2,16 +2,12 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="EmploymentState" type="EmploymentState" />
   <xs:simpleType name="EmploymentState">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Employed" />
-          <xs:enumeration value="Selfemployed" />
-          <xs:enumeration value="Freelance" />
-          <xs:enumeration value="Unemployed" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Employed" />
+      <xs:enumeration value="Selfemployed" />
+      <xs:enumeration value="Freelance" />
+      <xs:enumeration value="Unemployed" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

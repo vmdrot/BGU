@@ -9,7 +9,7 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Publisher" type="PublishingHouseInfo" displayName="Видавництво" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле</xs:documentation>
         </xs:annotation>
@@ -30,7 +30,7 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="PubDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата публікації" field_order="4">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле</xs:documentation>
         </xs:annotation>

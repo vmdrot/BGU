@@ -2,14 +2,10 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="SexType" type="SexType" />
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Male" description="Чол." enum_value="1" />
-          <xs:enumeration value="Female" description="Жін." enum_value="2" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Male" description="Чол." enum_value="1" />
+      <xs:enumeration value="Female" description="Жін." enum_value="2" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

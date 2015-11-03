@@ -8,17 +8,17 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Exchange" type="StockExchangeInfo" displayName="Біржа" description="Біржа, на якій здійснюється котирування" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="IssuerName" type="xs:string" type_ukr="текст" displayName="Назва емітента" description="Назва емітента, прийнята на вищевказаній біржі" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="MajorStockSymbol" type="xs:string" type_ukr="текст" displayName="Символ" description="Символ акцій (головний - якщо їх декілька), під яким торгуються акції емітента на вищевказаній біржі" field_order="3">
         <xs:annotation>
-          <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>

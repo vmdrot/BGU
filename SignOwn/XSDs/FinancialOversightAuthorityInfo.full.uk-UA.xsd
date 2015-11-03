@@ -16,12 +16,12 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Jurisdiction" type="CountryInfo" displayName="Країна юрисдикції" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="AuthorityName" type="xs:string" type_ukr="текст" displayName="Назва органу" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Назва органу оригінальною мовою, напр.:
              - Bundesanstalt für Finanzdienstleistungsaufsicht
@@ -30,7 +30,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="AuthorityNameUkr" type="xs:string" type_ukr="текст" displayName="Назва органу(українською)" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Назва органу українською, напр.:
              - Бундесанштальт фюр фінанцдінстляйстунґзауфзіхт - Федеральний орган нагляду за фінансовими послугами (ФРН)
@@ -39,14 +39,14 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса" field_order="4">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Максимальне заповнення полів</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" field_order="5">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Контакти органу
             Поля, які бажано заповнити - www</xs:documentation>
@@ -62,6 +62,7 @@
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />

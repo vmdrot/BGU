@@ -21,12 +21,12 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Юр.особа-заявник" description="(повне найменування юридичної особи)" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Повне офіційне найменування банку" description="Ідентифікація банку, в якому подавачі планують набути членство у відповідному органі управління" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Стосовно участі в ___________________________________________________________________
             (повне офіційне найменування банку)
@@ -46,17 +46,17 @@
           <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" field_order="8" />
           <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою" field_order="9">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи шукають здобути у банку" category="IV. Відносини особи з банком та юридичною особою" field_order="10">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою" field_order="11">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Зв'язки між особами-фігурантами анкети
             ----</xs:documentation>
@@ -64,17 +64,17 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою" field_order="12">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію" field_order="13">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;" category="Підписи і т.п." field_order="14">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Я, ________________________________________________________________________________,
                  (прізвище, ім'я, по батькові)
@@ -84,7 +84,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п." field_order="15">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             _______________________
             (дата підписання анкети)
@@ -138,12 +138,14 @@
   <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
   <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
+  <xs:include schemaLocation="ISCO.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
@@ -174,6 +176,6 @@
   <xs:include schemaLocation="ArrayOfPersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonBankAssociationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PersonBankAssociationInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="BankAssociatedPeronsCode315p.uk-UA.xsd" />
+  <xs:include schemaLocation="BankAssociatedPersonsCode315p.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonBusinessReputationInfo.uk-UA.xsd" />
 </xs:schema>

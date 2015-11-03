@@ -7,7 +7,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Stake" type="TotalOwnershipDetailsInfo" displayName="Частки власності" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове; заповнення секцій - за фактом власності подавача (чи кого там в анкеті вимагають, за контекстом)</xs:documentation>
             </xs:annotation>

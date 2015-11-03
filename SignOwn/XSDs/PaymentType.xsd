@@ -2,15 +2,11 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="PaymentType" type="PaymentType" />
   <xs:simpleType name="PaymentType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Cash" />
-          <xs:enumeration value="WireTransfer" />
-          <xs:enumeration value="Other" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Cash" />
+      <xs:enumeration value="WireTransfer" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

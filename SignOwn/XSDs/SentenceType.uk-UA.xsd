@@ -2,19 +2,15 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="SentenceType" type="SentenceType" />
   <xs:simpleType name="SentenceType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-          <xs:enumeration value="Jailed" description="Ув'язнення" enum_value="1" />
-          <xs:enumeration value="Probation" description="Умовне ув'язнення" enum_value="2" />
-          <xs:enumeration value="RemedialWorks" description="Виправні роботи" enum_value="3" />
-          <xs:enumeration value="Fined" description="Штраф" enum_value="4" />
-          <xs:enumeration value="Dismissed" description="Звільнення" enum_value="5" />
-          <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="6" />
-          <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="7" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Jailed" description="Ув'язнення" enum_value="1" />
+      <xs:enumeration value="Probation" description="Умовне ув'язнення" enum_value="2" />
+      <xs:enumeration value="RemedialWorks" description="Виправні роботи" enum_value="3" />
+      <xs:enumeration value="Fined" description="Штраф" enum_value="4" />
+      <xs:enumeration value="Dismissed" description="Звільнення" enum_value="5" />
+      <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="6" />
+      <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="7" />
+    </xs:restriction>
   </xs:simpleType>
 </xs:schema>

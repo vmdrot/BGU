@@ -10,12 +10,12 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Party" type="GenericPersonID" displayName="Сторона" description="Ідентифікація сторони правочину" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Role" type="LegalTransactionPartyRoleType" displayName="Роль" description="Роль сторони у правочині" field_order="2">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="RoleIfOther" type="xs:string" type_ukr="текст" displayName="Роль (інше)" description="Роль сторони у правочині, як в полі &quot;Роль&quot; вказано інше" field_order="3" />

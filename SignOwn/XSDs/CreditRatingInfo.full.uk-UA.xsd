@@ -16,7 +16,7 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="WellKnownAgency" type="WellKnownCreditRatingAgencyType" displayName="Рейтингова аґенція (добре знана)" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="AgencyOther" type="RatingAgencyInfo" displayName="Рейтингова аґенція (інша)" field_order="2">
@@ -26,7 +26,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="LongMidTermRatingValue" type="LongTermCreditRatingType" displayName="Довго- та середньотермінове значення рейтингу(стандартне)" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="LongMidTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Довго- та середньотермінове значення рейтингу(якщо інше)" field_order="4">
@@ -36,7 +36,7 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="ShortTermRatingValue" type="ShortTermCreditRatingType" displayName="Короткотермінове значення рейтингу(стандартне)" field_order="5">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="ShortTermRatingValueOther" type="xs:string" type_ukr="текст" displayName="Короткотермінове значення рейтингу(якщо інше)" field_order="6">
@@ -60,29 +60,29 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Назва" description="Назва рейтингової аґенції (оригінальна, оригінальною мовою)" field_order="1">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Назва українською" description="Назва рейтингової аґенції українською (якщо оригінальна назва - іншомовна)" field_order="2">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    CoverageCountry != CountryInfo.UKRAINE</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Глобальне покриття?" description="Аґенція рейтингує компанії глобально, а не прив'язана до якоїсь конкретної країни" field_order="3">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="CoverageCountry" type="CountryInfo" displayName="Країна покриття" description="Якщо аґенція не є глобальною, а рейтингує компанії однієї конкретної країни" field_order="4">
             <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВЯ'ЗКОВЕ ЗА УМОВИ(!):
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    IsGlobal == false</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Контакти" description="Контактна інформація рейтингової аґенції (напр. веб-сайт); контакти особи/підрозділу, що відповідальні за Ваш рейтинг (якщо є)." field_order="5">
             <xs:annotation>
-              <xs:documentation>ОБОВЯ'ЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -186,6 +186,7 @@
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
   <xs:include schemaLocation="PhysicalPersonInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfCountryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IPNRefusalRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />

@@ -183,6 +183,8 @@
     <Compile Include="Spares\Dict\CurrencyInfo.cs" />
     <Compile Include="Spares\Dict\EconomicActivityType.cs" />
     <Compile Include="Spares\Dict\FinancialOversightAuthorityInfo.cs" />
+    <Compile Include="Spares\Dict\ISCO.cs" />
+    <Compile Include="Spares\Dict\JobClassificationInfo.cs" />
     <Compile Include="Spares\Dict\LegalPersonInfo.cs" />
     <Compile Include="Spares\Dict\ProfessionLicensingBodyInfo.cs" />
     <Compile Include="Spares\Dict\PublicationInfo.cs" />

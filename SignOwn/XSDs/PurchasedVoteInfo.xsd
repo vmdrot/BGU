@@ -16,15 +16,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="OwnershipVotesInfo">
     <xs:sequence>

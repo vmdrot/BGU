@@ -75,21 +75,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="EntityType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Physical" />
-          <xs:enumeration value="Legal" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="PhysicalPersonInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasDoubleCitizenship" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DoubleCitizenshipCountries" type="ArrayOfCountryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" />
@@ -112,6 +110,11 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="CountryInfo" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPNRefusalRecordInfo">
     <xs:sequence>
@@ -147,15 +150,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="SexType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="None" />
-          <xs:enumeration value="Male" />
-          <xs:enumeration value="Female" />
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Male" />
+      <xs:enumeration value="Female" />
+    </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="BankInfo">
     <xs:complexContent mixed="false">
@@ -295,6 +294,7 @@
       <xs:enumeration value="WorkbookCopyScan" />
       <xs:enumeration value="PassportCopyScan" />
       <xs:enumeration value="CharterCopyScan" />
+      <xs:enumeration value="OwnershipDiagram" />
       <xs:enumeration value="Other" />
     </xs:restriction>
   </xs:simpleType>
