@@ -97,6 +97,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> WorkingHoursDayTypeList { get { return EnumType.GetEnumList(typeof(WorkingHoursDayType)); } }
         public static List<EnumType> LicensedOperationTypeList { get { return EnumType.GetEnumList(typeof(LicensedOperationType)); } }
         public static List<EnumType> BankBranchManagerPositionTypeList { get { return EnumType.GetEnumList(typeof(BankBranchManagerPositionType)); } }
+        public static List<EnumType> EducationKindGrosList { get { return EnumType.GetEnumList(typeof(EducationKindGros)); } }
+        public static List<EnumType> BankAssociatedPersonsCode315pList { get { return EnumType.GetEnumList(typeof(BankAssociatedPersonsCode315p)); } }
         #endregion
     }
 }

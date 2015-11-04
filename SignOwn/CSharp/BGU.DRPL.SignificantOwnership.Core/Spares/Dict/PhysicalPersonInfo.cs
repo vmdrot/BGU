@@ -63,6 +63,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "250")]
         public string Surname { get { return _Surname; } set { _Surname = value; OnPropertyChanged("Surname"); } }
 
+        private string _SurnameAtBirth;
+        [Category(CATEGORY_NAMES)]
+        [DisplayName("Прізвище при народженні")]
+        [Description("Прізвище при народженні - дівоче чи у інших випадках, якщо мала місце зміна прізвища")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "250")]
+        public string SurnameAtBirth { get { return _SurnameAtBirth; } set { _SurnameAtBirth = value; OnPropertyChanged("SurnameAtBirth"); } }
+
         private string _Name;
         [Category(CATEGORY_NAMES)]
         [DisplayName("Ім'я")]

@@ -32,6 +32,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
         public EmploymentState State { get { return _State; } set { _State = value; OnPropertyChanged("State"); OnPropertyChanged("IsEmployee"); OnPropertyChanged("IsSelfEmployedOrFreelance"); OnPropertyChanged("IsUnemployed"); OnPropertyChanged("IsBusy"); } }
 
+        private bool _IsEmploymentBookRegistered;
+        /// <summary>
+        /// обов'язкове поле
+        /// </summary>
+        [DisplayName("Є в трудовій книзі")]
+        [Description("Чи відображено запис у трудовій книзі?")]
+        [Required]
+        public bool IsEmploymentBookRegistered { get { return _IsEmploymentBookRegistered; } set { _IsEmploymentBookRegistered = value; OnPropertyChanged("IsEmploymentBookRegistered"); } }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -68,6 +76,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public GenericPersonID PrincipalContractor { get { return _PrincipalContractor; } set { _PrincipalContractor = value; OnPropertyChanged("PrincipalContractor"); } }
 
         private EconomicActivityType _PrincipalFreelanceActivity;
+        /// <summary>
+        /// Заповнюється через випадаючий список КВЕД-ів.
+        /// </summary>
         [DisplayName("Основний вид діяльності")]
         [Description("Основний вид діяльності - для самозайнятих/фрілансерів")]
         [Required("State == Freelance OR State == Selfemployed")]
@@ -181,6 +192,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// тел, e-mail, якщо є - www;
         /// якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача
+        /// Якщо той же самий роботодавець уже фігурує у вже заповнених раніше записах, вказувати не потрібно;
+        /// Якщо роботодавець той же, але рекомендувач - інший, заповнюємо контакти рекомендувача 
+        /// (наприклад, при зміні посади, підрозділу / 
+        /// проекту в рамках тієї ж організації-роботодавця)
         /// </summary>
         [DisplayName("Контакти роботодавця / замовника")]
         [Description("Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника")]
