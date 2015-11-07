@@ -1,23 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="PersonEmploymentRecordsInfo" nillable="true" type="PersonEmploymentRecordsInfo" />
-  <xs:complexType name="PersonEmploymentRecordsInfo">
+  <xs:element name="EmploymentHistoryInfo" nillable="true" type="EmploymentHistoryInfo" />
+  <xs:complexType name="EmploymentHistoryInfo">
     <xs:annotation>
-      <xs:documentation>Особа + її/його трудова біографія</xs:documentation>
+      <xs:documentation>Тип даних, що енкапсулює відомості про трудовий стаж:
+             реквізити трудової книги + колекцію записів про епізоди трудової біографії.</xs:documentation>
     </xs:annotation>
     <xs:complexContent mixed="false">
-      <xs:extension base="EmploymentHistoryInfo">
+      <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Особа, чию трудову біографію треба розкрити" field_order="1">
+          <xs:element minOccurs="1" maxOccurs="1" name="HasEmploymentBook" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є трудова книга?" description="Чи існує трудова книга особи" field_order="1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentBook" type="EmploymentBookInfo" displayName="Трудова книга" description="Реквізити трудової книги (якщо є)" field_order="2">
             <xs:annotation>
-              <xs:documentation>Сама особа (ідентифікатор)</xs:documentation>
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   HasEmploymentBook == true</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Записи" description="Записи про досвід роботи особи" field_order="3">
+            <xs:annotation>
+              <xs:documentation>Власне, записи про досвід роботи особи</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:include schemaLocation="EmploymentHistoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />

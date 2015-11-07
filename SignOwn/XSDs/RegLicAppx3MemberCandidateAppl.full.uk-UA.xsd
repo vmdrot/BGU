@@ -57,6 +57,10 @@
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentHistoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentBookInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonEmploymentRecordsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
   <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
@@ -69,8 +73,6 @@
   <xs:include schemaLocation="CouncilMemberInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonEmploymentRecordsInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PersonEmploymentRecordsInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfOwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipStructure.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipType.uk-UA.xsd" />

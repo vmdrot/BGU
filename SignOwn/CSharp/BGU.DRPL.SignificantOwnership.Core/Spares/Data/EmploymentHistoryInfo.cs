@@ -14,21 +14,24 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     public class EmploymentHistoryInfo : NotifyPropertyChangedBase
     {
 
-        private string _CerfiticateNr;
+        private bool _HasEmploymentBook;
         [DisplayName("Є трудова книга?")]
         [Description("Чи існує трудова книга особи")]
-        public string CerfiticateNr { get { return _CerfiticateNr; } set { _CerfiticateNr = value; OnPropertyChanged("CerfiticateNr"); } }
+        public bool HasEmploymentBook { get { return _HasEmploymentBook; } set { _HasEmploymentBook = value; OnPropertyChanged("HasEmploymentBook"); } }
 
-        private DateTime _NostrificationDate;
+        private EmploymentBookInfo _EmploymentBook;
         [DisplayName("Трудова книга")]
         [Description("Реквізити трудової книги (якщо є)")]
         [Required("HasEmploymentBook == true")]
         [UIConditionalVisibility("HasEmploymentBook")]
-        public DateTime NostrificationDate { get { return _NostrificationDate; } set { _NostrificationDate = value; OnPropertyChanged("NostrificationDate"); } }
+        public EmploymentBookInfo EmploymentBook { get { return _EmploymentBook; } set { _EmploymentBook = value; OnPropertyChanged("EmploymentBook"); } }
 
-        private string _OccupName;
-        [DisplayName("Досвід роботи")]
-        [Description("Записи про досвід роботи")]
-        public string OccupName { get { return _OccupName; } set { _OccupName = value; OnPropertyChanged("OccupName"); } }
+        /// <summary>
+        /// Власне, записи про досвід роботи особи
+        /// </summary>
+        [DisplayName("Записи")]
+        [Description("Записи про досвід роботи особи")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Місце роботи")]
+        public List<EmploymentRecordInfo> EmploymentRecords { get; set; }
     }
 }

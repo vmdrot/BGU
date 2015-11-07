@@ -40,7 +40,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         public RegLicAppx4OwnershipAcqRequestPP()
         {
             this.BankingAccounts = new List<BankAccountInfo>();
-            this.EmploymentRecords = new List<EmploymentRecordInfo>();
+            //this.EmploymentRecords = new List<EmploymentRecordInfo>();
             this.MentionedIdentities = new List<GenericPersonInfo>();
             this.PersonsLinks = new List<PersonsAssociation>();
         }
@@ -69,17 +69,16 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         private GenericPersonID _Acquiree;
         [Category(CATEGORY_I)]
         [DisplayName("Фізособа-заявник")]
-        [Description("1. Інформація про особу")]
+        [Description("1. Інформація про фізичну особу - Прізвище, ім’я, по батькові...")]
         [Required]
         public GenericPersonID Acquiree { get { return _Acquiree; } set { _Acquiree = value; OnPropertyChanged("Acquiree"); } }
 
-        private List<EmploymentRecordInfo> _EmploymentRecords;
+        private EmploymentHistoryInfo _EmploymentHistory;
         [Category(CATEGORY_I)]
         [DisplayName("Досвід роботи")]
-        [Description("1.8. Займані посади за останні п'ять років")]
+        [Description("3. Відомості про трудову діяльність")]
         [Required]
-        [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Місце роботи")]
-        public List<EmploymentRecordInfo> EmploymentRecords { get { return _EmploymentRecords; } set { _EmploymentRecords = value; OnPropertyChanged("EmploymentRecords"); } }
+        public EmploymentHistoryInfo EmploymentHistory { get { return _EmploymentHistory; } set { _EmploymentHistory = value; OnPropertyChanged("EmploymentHistory"); } }
 
         private List<BankAccountInfo> _BankingAccounts;
         /// <summary>
@@ -88,7 +87,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// </summary>
         [Category(CATEGORY_I)]
         [DisplayName("Рахунки в банках")]
-        [Description("1.6. Перелік банків, у яких відкрито рахунки")]
+        [Description("4. Банківські рахунки фізичної особи")]
         [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Рахунки")]
         public List<BankAccountInfo> BankingAccounts { get { return _BankingAccounts; } set { _BankingAccounts = value; OnPropertyChanged("BankingAccounts"); } }

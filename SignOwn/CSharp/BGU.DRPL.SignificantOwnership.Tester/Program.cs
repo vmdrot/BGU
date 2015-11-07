@@ -1143,6 +1143,22 @@ RegLicAppx9BankingLicenseAppl.xsd";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx14NewSvc), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx3MemberCandidateAppl), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx4OwnershipAcqRequestPP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            
+            string[] allIncludeFiles = Directory.GetFiles(targetFolder, "*_includes.xaml");
+            List<string> includesDistinct = new List<string>();
+            foreach (string inclFile in allIncludeFiles)
+            {
+                string[] currLns = File.ReadAllLines(inclFile);
+                foreach (string ln in currLns)
+                {
+                    if (string.IsNullOrEmpty(ln) || ln.Trim().Length == 0)
+                        continue;
+                    if(includesDistinct.Contains(ln.Trim()))
+                        continue;
+                    includesDistinct.Add(ln.Trim());
+                }
+            }
+            File.WriteAllLines(Path.Combine(targetFolder, "all_includes.xaml"), includesDistinct.ToArray());
         }
 
         public static void GenerateXAMLs4BkInfo(string[] args)

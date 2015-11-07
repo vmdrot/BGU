@@ -26,17 +26,17 @@
             Лише укр.банки, лише головні контори</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про особу" category="І. Інформація про фізичну особу" field_order="2">
+          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про фізичну особу - Прізвище, ім’я, по батькові..." category="І. Інформація про фізичну особу" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Досвід роботи" description="1.8. Займані посади за останні п'ять років" category="І. Інформація про фізичну особу" field_order="3">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentHistory" type="EmploymentHistoryInfo" displayName="Досвід роботи" description="3. Відомості про трудову діяльність" category="І. Інформація про фізичну особу" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="1.6. Перелік банків, у яких відкрито рахунки" category="І. Інформація про фізичну особу" field_order="4">
+          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="4. Банківські рахунки фізичної особи" category="І. Інформація про фізичну особу" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -281,6 +281,8 @@
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentHistoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentBookInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankAccountInfo.uk-UA.xsd" />

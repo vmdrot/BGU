@@ -1,26 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
-  <xs:complexType name="EmploymentRecordInfo">
+  <xs:element name="EmploymentHistoryInfo" nillable="true" type="EmploymentHistoryInfo" />
+  <xs:complexType name="EmploymentHistoryInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
-          <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" />
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" />
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasEmploymentBook" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentBook" type="EmploymentBookInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -156,6 +143,30 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="EmploymentRecordInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:simpleType name="EmploymentState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
@@ -226,6 +237,18 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmploymentBookInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BookSeries" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BookNr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FilledDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfEmploymentRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
