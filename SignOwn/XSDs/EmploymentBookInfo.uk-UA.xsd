@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EmploymentBookInfo" nillable="true" type="EmploymentBookInfo" />
+  <xs:complexType name="EmploymentBookInfo">
+    <xs:annotation>
+      <xs:documentation>Відомості про трудову книгу</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BookSeries" type="xs:string" type_ukr="текст" displayName="Серія" description="Серія трудової книги" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BookNr" type="xs:string" type_ukr="текст" displayName="№" description="№ трудової книги" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FilledDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата заповнення" description="Дата видачі (першого заповнення) трудової книги" field_order="3" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1219,7 +1219,14 @@
             обов'язкове поле</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець" field_order="2">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є в трудовій книзі" description="Чи відображено запис у трудовій книзі?" field_order="2">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець" field_order="3">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    State == Employed
@@ -1228,68 +1235,70 @@
             Посилання - реквізити в MentionedEntities</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів" field_order="3">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів" field_order="4">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    State == Freelance OR State == Selfemployed</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="4">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="5">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
-   State == Freelance OR State == Selfemployed</xs:documentation>
+   State == Freelance OR State == Selfemployed
+
+            Заповнюється через випадаючий список КВЕД-ів.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція" field_order="5">
+          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція" field_order="6">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове, вільний формат</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" displayName="Код та назва професії за МОП" description="Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010" field_order="6">
+          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" displayName="Код та назва професії за МОП" description="Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010" field_order="7">
             <xs:annotation>
               <xs:documentation>Код професії, у ролі якого працівник був зайнятий,
             згідно Міжнародного стандарту класифікації професій
             та його української (ДК 003:2010) / іншої локальної адаптації</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський/фінансовий досвід" description="Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж" field_order="7">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський/фінансовий досвід" description="Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж" field_order="8">
             <xs:annotation>
               <xs:documentation>Чи є дана робота досвідом роботи у регульованій галузі?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="8">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="9">
             <xs:annotation>
               <xs:documentation>Чи є це керівною посадою?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="9">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="10">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове, з точністю до місяця</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="12">
             <xs:annotation>
               <xs:documentation>з точністю до місяця
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="12">
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="13">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="13">
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="14">
             <xs:annotation>
               <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
@@ -1297,18 +1306,22 @@
             - VoluntaryQuit</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="14">
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="15">
             <xs:annotation>
               <xs:documentation>Формальна стаття і пункт звільнення
             згідно з КЗпП</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="15">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="16">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             тел, e-mail, якщо є - www;
-            якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача</xs:documentation>
+            якщо вказується особа, то вона сприймається як рекомендувач; чим повніше цю особу ідентифіковано, тим краще для подавача
+            Якщо той же самий роботодавець уже фігурує у вже заповнених раніше записах, вказувати не потрібно;
+            Якщо роботодавець той же, але рекомендувач - інший, заповнюємо контакти рекомендувача 
+            (наприклад, при зміні посади, підрозділу / 
+            проекту в рамках тієї ж організації-роботодавця)</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -1700,6 +1713,61 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmploymentHistoryInfo">
+    <xs:annotation>
+      <xs:documentation>Тип даних, що енкапсулює відомості про трудовий стаж:
+             реквізити трудової книги + колекцію записів про епізоди трудової біографії.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="HasEmploymentBook" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є трудова книга?" description="Чи існує трудова книга особи" field_order="1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentBook" type="EmploymentBookInfo" displayName="Трудова книга" description="Реквізити трудової книги (якщо є)" field_order="2">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   HasEmploymentBook == true</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Записи" description="Записи про досвід роботи особи" field_order="3">
+            <xs:annotation>
+              <xs:documentation>Власне, записи про досвід роботи особи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EmploymentBookInfo">
+    <xs:annotation>
+      <xs:documentation>Відомості про трудову книгу</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BookSeries" type="xs:string" type_ukr="текст" displayName="Серія" description="Серія трудової книги" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BookNr" type="xs:string" type_ukr="текст" displayName="№" description="№ трудової книги" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FilledDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата заповнення" description="Дата видачі (першого заповнення) трудової книги" field_order="3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfEmploymentRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonEmploymentRecordsInfo">
+    <xs:annotation>
+      <xs:documentation>Особа + її/його трудова біографія</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="EmploymentHistoryInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Особа, чию трудову біографію треба розкрити" field_order="1">
+            <xs:annotation>
+              <xs:documentation>Сама особа (ідентифікатор)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="PersonsAssociation">
     <xs:annotation>
@@ -2868,17 +2936,17 @@
             Лише укр.банки, лише головні контори</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про особу" category="І. Інформація про фізичну особу" field_order="2">
+          <xs:element minOccurs="1" maxOccurs="1" name="Acquiree" type="GenericPersonID" displayName="Фізособа-заявник" description="1. Інформація про фізичну особу - Прізвище, ім’я, по батькові..." category="І. Інформація про фізичну особу" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" displayName="Досвід роботи" description="1.8. Займані посади за останні п'ять років" category="І. Інформація про фізичну особу" field_order="3">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmploymentHistory" type="EmploymentHistoryInfo" displayName="Досвід роботи" description="3. Відомості про трудову діяльність" category="І. Інформація про фізичну особу" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="1.6. Перелік банків, у яких відкрито рахунки" category="І. Інформація про фізичну особу" field_order="4">
+          <xs:element minOccurs="1" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" displayName="Рахунки в банках" description="4. Банківські рахунки фізичної особи" category="І. Інформація про фізичну особу" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3065,11 +3133,6 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfEmploymentRecordInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmploymentRecordInfo" nillable="true" type="EmploymentRecordInfo" />
-    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBankAccountInfo">
     <xs:sequence>
@@ -3568,23 +3631,6 @@
   <xs:complexType name="ArrayOfPersonEmploymentRecordsInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonEmploymentRecordsInfo" nillable="true" type="PersonEmploymentRecordsInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="PersonEmploymentRecordsInfo">
-    <xs:annotation>
-      <xs:documentation>Особа + її/його трудова біографія</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа" description="Особа, чию трудову біографію треба розкрити" field_order="1">
-        <xs:annotation>
-          <xs:documentation>Сама особа (ідентифікатор)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="EmploymentHistory" type="ArrayOfEmploymentRecordInfo" displayName="Трудова біографія" description="Досвід роботи особи" field_order="2">
-        <xs:annotation>
-          <xs:documentation>Трудова біографія особи</xs:documentation>
-        </xs:annotation>
-      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfPersonBankAssociationInfo">

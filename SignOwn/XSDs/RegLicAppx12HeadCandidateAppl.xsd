@@ -449,6 +449,7 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />

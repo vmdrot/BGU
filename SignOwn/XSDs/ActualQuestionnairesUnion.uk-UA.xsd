@@ -68,6 +68,10 @@
   <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentHistoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentBookInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PersonEmploymentRecordsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
   <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
@@ -103,7 +107,6 @@
   <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
   <xs:include schemaLocation="RegLicAppx4OwnershipAcqRequestPP.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfEmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankAccountInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TotalOwnershipSummaryInfo.uk-UA.xsd" />
@@ -134,7 +137,6 @@
   <xs:include schemaLocation="ArrayOfGenericPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="RegLicAppx3MemberCandidateAppl.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonEmploymentRecordsInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PersonEmploymentRecordsInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonBankAssociationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PersonBankAssociationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPersonBusinessReputationInfo.uk-UA.xsd" />

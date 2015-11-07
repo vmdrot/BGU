@@ -7,7 +7,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Acquiree" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentHistory" type="EmploymentHistoryInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="BankingAccounts" type="ArrayOfBankAccountInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="TotalExistingOwnershipWithBank" type="TotalOwnershipSummaryInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsBankAssociatedPerson" type="xs:boolean" />
@@ -589,6 +589,7 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
@@ -670,6 +671,24 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmploymentHistoryInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="HasEmploymentBook" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentBook" type="EmploymentBookInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmploymentRecords" type="ArrayOfEmploymentRecordInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EmploymentBookInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BookSeries" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BookNr" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FilledDate" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfEmploymentRecordInfo">
