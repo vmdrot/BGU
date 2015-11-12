@@ -3,9 +3,12 @@
   <xs:element name="FinancialGuaranteeInfo" nillable="true" type="FinancialGuaranteeInfo" />
   <xs:complexType name="FinancialGuaranteeInfo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Debtor" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Creditor" type="GenericPersonID" />
       <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" />
       <xs:element minOccurs="0" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IssueDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UnderlyingObligationSettlementDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="GuaranteeDetails" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

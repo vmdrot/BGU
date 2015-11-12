@@ -6,29 +6,51 @@
       <xs:documentation>Структура для зберігання відомостей про надану гарантію, поручительство, тощо</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="Debtor" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
-            Ідентифікатор особи;
+            Ідентифікатор особи, за яку ручаються;
             обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="2">
+      <xs:element minOccurs="1" maxOccurs="1" name="Creditor" type="GenericPersonID" displayName="Особа, на користь якої порука" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор особи, на користь якої виписана порука/гарантія;
+            обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо" field_order="3">
+      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо" field_order="4">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="з яких питань" field_order="4">
+      <xs:element minOccurs="1" maxOccurs="1" name="IssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата надання гарантії/поруки/тощо" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="UnderlyingObligationSettlementDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення зобов'язання, щодо якого надається гарантія/порука" field_order="6">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="Деталі наданої гарантії/поруки" field_order="7">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 

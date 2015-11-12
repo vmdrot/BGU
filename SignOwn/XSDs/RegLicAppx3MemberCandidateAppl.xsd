@@ -20,6 +20,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="ContactInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

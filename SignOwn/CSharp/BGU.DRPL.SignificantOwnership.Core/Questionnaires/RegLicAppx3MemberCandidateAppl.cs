@@ -57,7 +57,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// (найменування юридичної особи)
         /// </summary>
         [DisplayName("Повне офіційне найменування банку")]
-        [Description("Ідентифікація банку, в якому подавачі планують набути членство у відповідному органі управління")]
+        [Description("Ідентифікація банку, в якому подавачі планують набути\nчленство у відповідному органі управління\n[стосовно участі в(повне найменування банку)]")]
         [Browsable(true)]
         [Required]
         public BankInfo BankRef
@@ -75,26 +75,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         #region I. Перелік членів виконавчого органу та наглядової ради юридичної особи
         private bool _IsSupervisoryCouncilPresent;
         [Category(CATEGORY_I)]
-        [DisplayName("Наглядова (спостережна) рада юридичної особи існує")]
-        [Description("Чи існує наглядова (спостережна) рада юридичної особи?")]
+        [DisplayName("I. Наглядова (спостережна) рада юридичної особи існує")]
+        [Description("(I) Чи існує наглядова (спостережна) рада юридичної особи?")]
         public bool IsSupervisoryCouncilPresent { get { return _IsSupervisoryCouncilPresent; } set { _IsSupervisoryCouncilPresent = value; OnPropertyChanged("IsSupervisoryCouncilPresent"); } }
 
         private CouncilBodyInfo _SupervisoryCouncil;
         [Category(CATEGORY_I)]
-        [DisplayName("Особовий склад наглядової(спостережної)ради юрособи")]
+        [DisplayName("I. Особовий склад наглядової(спостережної)ради юрособи")]
         [Description("Голова та члени наглядової (спостережної) ради юридичної особи")]
         [UIConditionalVisibility("IsSupervisoryCouncilPresent")]
         public CouncilBodyInfo SupervisoryCouncil { get { return _SupervisoryCouncil; } set { _SupervisoryCouncil = value; OnPropertyChanged("SupervisoryCouncil"); } }
 
         private bool _IsExecutiveBodyPresent;
         [Category(CATEGORY_I)]
-        [DisplayName("Виконавчий орган юридичної особи існує")]
+        [DisplayName("I. Виконавчий орган юридичної особи існує")]
         [Description("Чи існує виконавчий орган юридичної особи?")]
         public bool IsExecutiveBodyPresent { get { return _IsExecutiveBodyPresent; } set { _IsExecutiveBodyPresent = value; OnPropertyChanged("IsExecutiveBodyPresent"); } }
 
         private CouncilBodyInfo _ExecutiveBody;
         [Category(CATEGORY_I)]
-        [DisplayName("Особовий склад виконавчого органу юрособи")]
+        [DisplayName("I. Особовий склад виконавчого органу юрособи")]
         [Description("Голова та члени виконавчого органу юридичної особи")]
         [UIConditionalVisibility("IsExecutiveBodyPresent")]
         public CouncilBodyInfo ExecutiveBody { get { return _ExecutiveBody; } set { _ExecutiveBody = value; OnPropertyChanged("ExecutiveBody"); } }
@@ -106,7 +106,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// Реквізити усіх осіб-фігурантів
         /// </summary>
         [Category(CATEGORY_II)]
-        [DisplayName("Реквізити усіх осіб-фігурантів")]
+        [DisplayName("II. Реквізити усіх осіб-фігурантів")]
         [Description("Реквізити усіх осіб, що згадуються в анкеті")]
         [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Особи-фігуранти")]
         public List<GenericPersonInfo> MentionedIdentities { get { return _MentionedIdentities; } set { _MentionedIdentities = value; OnPropertyChanged("MentionedIdentities"); OnPropertyChanged("MentionedGenericPersons"); } }
@@ -115,7 +115,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         #region III. Відомості про трудову діяльність
         private List<PersonEmploymentRecordsInfo> _BoardMembersEmploymentHistory5Yrs;
         [Category(CATEGORY_III)]
-        [DisplayName("Займані посади за останні п’ять років")]
+        [DisplayName("III. Займані посади за останні п’ять років")]
         [Description("Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років.")]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Трудовий стаж осіб")]
         public List<PersonEmploymentRecordsInfo> BoardMembersEmploymentHistory5Yrs { get { return _BoardMembersEmploymentHistory5Yrs; } set { _BoardMembersEmploymentHistory5Yrs = value; OnPropertyChanged("BoardMembersEmploymentHistory5Yrs"); } }
@@ -125,7 +125,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         private List<OwnershipStructure> _ExistingOwnershipDetailsHive;
         [Category(CATEGORY_IV)]
-        [DisplayName("Відомості про участь осіб в банку")]
+        [DisplayName("IV. Відомості про участь осіб в банку")]
         [Description("Деталізація існуючих відносин власності між особами, юр.особою та банком")]
         [Browsable(true)]
         [Required]
@@ -134,7 +134,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         private List<OwnershipStructure> _TargetedOwnershipDetailsHive;
         [Category(CATEGORY_IV)]
-        [DisplayName("Відомості про намір осіб набути або збільшити участь у банку")]
+        [DisplayName("IV. Відомості про намір осіб набути або збільшити участь у банку")]
         [Description("Власність, яку особи шукають здобути у банку")]
         [Browsable(true)]
         [Required]
@@ -147,7 +147,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// ----
         /// </summary>
         [Category(CATEGORY_IV)]
-        [DisplayName("Зв'язки між особами-фігурантами анкети")]
+        [DisplayName("IV. Зв'язки між особами-фігурантами анкети")]
         [Description("Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті")]
         [Browsable(true)]
         [Required]
@@ -156,7 +156,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         private List<PersonBankAssociationInfo> _Person2BankAssociations;
         [Category(CATEGORY_IV)]
-        [DisplayName("Відомості про пов’язаність осіб із банком")]
+        [DisplayName("IV. Відомості про пов’язаність осіб із банком")]
         [Description("Коди пов'язаності осіб")]
         [Browsable(true)]
         [Required]
@@ -168,7 +168,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 
         private List<PersonBusinessReputationInfo> _CandidatesBusinessReputation;
         [Category(CATEGORY_V)]
-        [DisplayName("Ділова репутація кандидатів")]
+        [DisplayName("V. Ділова репутація кандидатів")]
         [Description("Ділова репутація кандидатів та дотримання законодавства")]
         [Browsable(true)]
         [Required]
@@ -209,6 +209,18 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Description("Відомості по особу, що підписала анкету")]
         [Required]
         public SignatoryInfo Signatory { get { return _Signatory; } set { _Signatory = value; OnPropertyChanged("Signatory"); } }
+
+        private ContactInfo _ContactPerson;
+        /// <summary>
+        /// Прізвище, ім'я, по батькові контактної особи ___________________.
+        /// 
+        /// Номер телефону та факсу ________________________________________.
+        /// </summary>
+        [Category(CATEGORY_SignEtc)]
+        [DisplayName("Контакти")]
+        [Description("Контактні дані відправника анкети")]
+        [Required]
+        public ContactInfo ContactPerson { get { return _ContactPerson; } set { _ContactPerson = value; OnPropertyChanged("ContactPerson"); } }
         #endregion
 
 

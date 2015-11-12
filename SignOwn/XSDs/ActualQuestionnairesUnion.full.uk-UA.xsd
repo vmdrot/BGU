@@ -3025,7 +3025,7 @@
             за подачу завідомо неправдивих відомостей</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="15, 16, 17. Розшифровка ланцюжків власності" description="Розшифровка ланцюжків власності усіх структур-фігурантів анкети:&#xA; 15. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником&#xA; 17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є власниками істотної участі &#xA; 15. Інформація про юридичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи" category="ІІІ. Відносини фізичної особи з іншими особами" field_order="17">
+          <xs:element minOccurs="0" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="15, 17. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником" description="Розшифровка ланцюжків власності усіх структур-фігурантів анкети:&#xA; 15. Перелік юридичних осіб, у тому числі банків, в яких фізична особа має істотну участь або є ключовим учасником&#xA; 17. Інформація про юридичних осіб, у яких асоційовані особи фізичної особи є власниками істотної участі " category="ІІІ. Відносини фізичної особи з іншими особами" field_order="17">
             <xs:annotation>
               <xs:documentation>1. Перелік юридичних осіб, у тому числі банків, в яких юридична особа має істотну участь або є ключовим учасником
             14. Інформація про фізичних осіб, які володіють істотною участю в цій юридичній особі або є ключовими учасниками юридичної особи
@@ -3484,29 +3484,51 @@
       <xs:documentation>Структура для зберігання відомостей про надану гарантію, поручительство, тощо</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Person" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="Debtor" type="GenericPersonID" displayName="Особа, щодо якої гарантую/ручаюся,тощо" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
-            Ідентифікатор особи;
+            Ідентифікатор особи, за яку ручаються;
             обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="2">
+      <xs:element minOccurs="1" maxOccurs="1" name="Creditor" type="GenericPersonID" displayName="Особа, на користь якої порука" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Ідентифікатор особи, на користь якої виписана порука/гарантія;
+            обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо" field_order="3">
+      <xs:element minOccurs="1" maxOccurs="1" name="PledgeAmt" type="CurrencyAmount" displayName="Сума гарантії/поруки/тощо" field_order="4">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="з яких питань" field_order="4">
+      <xs:element minOccurs="1" maxOccurs="1" name="IssueDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата надання гарантії/поруки/тощо" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="UnderlyingObligationSettlementDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення зобов'язання, щодо якого надається гарантія/порука" field_order="6">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="GuaranteeDetails" type="xs:string" type_ukr="текст" displayName="Деталі" description="Деталі наданої гарантії/поруки" field_order="7">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3551,7 +3573,7 @@
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Повне офіційне найменування банку" description="Ідентифікація банку, в якому подавачі планують набути членство у відповідному органі управління" field_order="2">
+          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Повне офіційне найменування банку" description="Ідентифікація банку, в якому подавачі планують набути&#xA;членство у відповідному органі управління&#xA;[стосовно участі в(повне найменування банку)]" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3561,27 +3583,27 @@
             (найменування юридичної особи)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Наглядова (спостережна) рада юридичної особи існує" description="Чи існує наглядова (спостережна) рада юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="3" />
-          <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" displayName="Особовий склад наглядової(спостережної)ради юрособи" description="Голова та члени наглядової (спостережної) ради юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="4" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutiveBodyPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Виконавчий орган юридичної особи існує" description="Чи існує виконавчий орган юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="5" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" displayName="Особовий склад виконавчого органу юрособи" description="Голова та члени виконавчого органу юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="6" />
-          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="Реквізити усіх осіб-фігурантів" description="Реквізити усіх осіб, що згадуються в анкеті" category="II. Загальна інформація про осіб" field_order="7">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="I. Наглядова (спостережна) рада юридичної особи існує" description="(I) Чи існує наглядова (спостережна) рада юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="3" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" displayName="I. Особовий склад наглядової(спостережної)ради юрособи" description="Голова та члени наглядової (спостережної) ради юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="4" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutiveBodyPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="I. Виконавчий орган юридичної особи існує" description="Чи існує виконавчий орган юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="5" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" displayName="I. Особовий склад виконавчого органу юрособи" description="Голова та члени виконавчого органу юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="6" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="II. Реквізити усіх осіб-фігурантів" description="Реквізити усіх осіб, що згадуються в анкеті" category="II. Загальна інформація про осіб" field_order="7">
             <xs:annotation>
               <xs:documentation>Реквізити усіх осіб-фігурантів</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" field_order="8" />
-          <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою" field_order="9">
+          <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="III. Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" field_order="8" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи шукають здобути у банку" category="IV. Відносини особи з банком та юридичною особою" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи шукають здобути у банку" category="IV. Відносини особи з банком та юридичною особою" field_order="10">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="IV. Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3589,12 +3611,12 @@
             ----</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою" field_order="12">
+          <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="IV. Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою" field_order="12">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію" field_order="13">
+          <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="V. Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію" field_order="13">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
@@ -3622,6 +3644,15 @@
             (ініціали та прізвище
                фізичної особи
              друкованими літерами)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети" category="Підписи і т.п." field_order="16">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Прізвище, ім'я, по батькові контактної особи ___________________.
+            
+            Номер телефону та факсу ________________________________________.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
