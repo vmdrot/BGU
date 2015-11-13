@@ -1,0 +1,2724 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Checks.Appx2OwnershipStructLPChecker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="217.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAMCABAAEABkABEAADAAAAAEAAACAUAAEBAQQkAAAo=</HashCode>
+      <FileName>Checks\Appx2OwnershipStructLPChecker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Checks.QuestionnaireCheckUtils" Collapsed="true">
+    <Position X="222.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAgAAABAAIA=</HashCode>
+      <FileName>Checks\QuestionnaireCheckUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy.DeptListEntry" Collapsed="true">
+    <Position X="15.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgAACEACABAAFABBgEBQCAEgQgAgIAAAQWAAFAAiA=</HashCode>
+      <FileName>EKDRBU\Legacy\DeptListEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy.RcuKruEntry" Collapsed="true">
+    <Position X="224.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EKDRBU\Legacy\RcuKruEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.BankBranchOperationInfo" Collapsed="true">
+    <Position X="224.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAAAAAAABAAAAAAAIAAAAAAAAAAAAAgAACAAAAA=</HashCode>
+      <FileName>EKDRBU\Spares\BankBranchOperationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.OperationsLimitInfo" Collapsed="true">
+    <Position X="224.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>EKDRBU\Spares\OperationsLimitInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TimeSpanInfo" Collapsed="true">
+    <Position X="227.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAEQAAAAAAAAAA=</HashCode>
+      <FileName>EKDRBU\Spares\TimeSpanInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.WorkHoursInfo" Collapsed="true">
+    <Position X="31.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACEAAIAAAAQAAAAAEAAAAIAEgAAAAAIAAAAAAAAE=</HashCode>
+      <FileName>EKDRBU\Spares\WorkHoursInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.EKDRBU.StateBankRegistryEntry" Collapsed="true">
+    <Position X="36" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>WABDAKCEp2oYgxwRAQCoQUwQAAEKFAKWARGbpCKAATA=</HashCode>
+      <FileName>EKDRBU\StateBankRegistryEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Messages.IndividualFXLicenseAnnulMsgAppx9" Collapsed="true">
+    <Position X="231.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Messages\IndividualFXLicenseAnnulMsgAppx9.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Messages.IndividualFXLicenseAppx3" Collapsed="true">
+    <Position X="217.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Messages\IndividualFXLicenseAppx3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Messages.IndividualFXLicenseChangesAppx4" Collapsed="true">
+    <Position X="220.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Messages\IndividualFXLicenseChangesAppx4.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares.ForeignAccountOpenMsgAppx1" Collapsed="true">
+    <Position X="217.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Questionnares\ForeignAccountOpenMsgAppx1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares.FXFundsMovesRptAppx10" Collapsed="true">
+    <Position X="219" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Questionnares\FXFundsMovesRptAppx10.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares.IndividualFXLicenseApplAppx5" Collapsed="true">
+    <Position X="215.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Questionnares\IndividualFXLicenseApplAppx5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares.IndividualFXLicenseCancelApplAppx7" Collapsed="true">
+    <Position X="219" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Questionnares\IndividualFXLicenseCancelApplAppx7.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares.IndividualFXLisenceChangesApplAppx6" Collapsed="true">
+    <Position X="222.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FXLicensing\Questionnares\IndividualFXLisenceChangesApplAppx6.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo.BkInfoChangesMessage" Collapsed="true">
+    <Position X="231.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messages\BankInfo\BkInfoChangesMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.BankOwnershipStructureP328MessageBody" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="229.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAEAVAQAIAAAAAAAEAAIAAAAAABAAAA=</HashCode>
+      <FileName>Messages\BankOwnershipStructureP328MessageBody.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.DossierMessageBase" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Messages\DossierMessageBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.Post306RIG3p23YO_MovFundsBkAssurance" Collapsed="true">
+    <Position X="222.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messages\Post306RIG3p23YO_MovFundsBkAssurance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.Post306RIG3p28FO_FundsMovBankAssurance" Collapsed="true">
+    <Position X="224.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messages\Post306RIG3p28FO_FundsMovBankAssurance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.Post315AppxBankAssocPersons" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAA=</HashCode>
+      <FileName>Messages\Post315AppxBankAssocPersons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Messages.RegLicAppx2OwnershipAcqRequestLP_MoneyOriginsLtr" Collapsed="true">
+    <Position X="229.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Messages\RegLicAppx2OwnershipAcqRequestLP_MoneyOriginsLtr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Misc.Utils" Collapsed="true">
+    <Position X="217.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Misc\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.PropertyNames" Collapsed="true">
+    <Position X="215.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAQAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.ActualQuestionnairesUnion" Collapsed="true">
+    <Position X="215.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAIBAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Questionnaires\ActualQuestionnairesUnion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.Appx2OwnershipStructLP" Collapsed="true">
+    <Position X="74.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAAAEAiBABAAQARgAANQBAAsBAAAAIAAAAAABAAAA=</HashCode>
+      <FileName>Questionnaires\Appx2OwnershipStructLP.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.Appx3OwnershipStructPP" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="219" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\Appx3OwnershipStructPP.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.BankOwnershipStructureP328" Collapsed="true">
+    <Position X="76.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAABAAAAEAVgQAMAAAAEAAEAAIAAAAAABAAAA=</HashCode>
+      <FileName>Questionnaires\BankOwnershipStructureP328MessageBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.QuestionnaireBase" Collapsed="true">
+    <Position X="70.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFBAAAAAAAgAAGAAAAEEAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\QuestionnaireBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx12HeadCandidateAppl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="226" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAMAAABIBAFgAAAAUABIYggAgACBAQE4AEAggQBQADA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx12HeadCandidateAppl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx14NewSvc" Collapsed="true">
+    <Position X="65.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAEAgAIIABAEAxAAQgAAEACAEEgACEAAAAAAAAAUAEo=</HashCode>
+      <FileName>Questionnaires\RegLicAppx14NewSvc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx17EquityChangeTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="227.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx17EquityChangeTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx2OwnershipAcqRequestLP" Collapsed="true">
+    <Position X="67.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQFEMAEGGzECJABo1wAQPUBBgEJCBgmODAoIwDhEATA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx2OwnershipAcqRequestLP.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx3MemberCandidateAppl" Collapsed="true">
+    <Position X="69.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SANABAQAChEAEQEgVgAQPUBAhEpAAAGICAIAAAhEAKA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx3MemberCandidateAppl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx4OwnershipAcqRequestPP" Collapsed="true">
+    <Position X="72" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQNEIAAGG7EJIAhoxwEwPUBBgEBAAEmODAIAwhhEiLA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx4OwnershipAcqRequestPP.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx6EquityFormationTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="231.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCEAAAACBAAAQAAAAAAAAAAAAQAQQAAIAAAgAAAAAAA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx6EquityFormationTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx7ShareAcqIntent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="215.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAAIBAIBAAAAUAAAIAAAAAAAgAAIAAAAAAAAAAg=</HashCode>
+      <FileName>Questionnaires\RegLicAppx7ShareAcqIntent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.RegLicAppx9BankingLicenseAppl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="217.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\RegLicAppx9BankingLicenseAppl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.AttachmentInfo" Collapsed="true">
+    <Position X="220.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAAAQAABAAAA=</HashCode>
+      <FileName>Spares\Data\AttachmentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicensedActivityInfo" Collapsed="true">
+    <Position X="226" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAEgAAAAgAAAAAAAAAAAAAAAAgQAAA=</HashCode>
+      <FileName>Spares\Data\BankingLicensedActivityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicenseInfo" Collapsed="true">
+    <Position X="227.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAgAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\BankingLicenseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankruptcyInvestigationInfo" Collapsed="true">
+    <Position X="38.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABABAAIAAEAIEIAAAAAAACAAAAIAAAAQAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\BankruptcyInvestigationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.BreachOfLawRecordInfo" Collapsed="true">
+    <Position X="45" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAAAJAABAAAAEQCAJAAgAAAAAQMAACAAAEACIAMA=</HashCode>
+      <FileName>Spares\Data\BreachOfLawRecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CharterCapitalTableRecord" Collapsed="true">
+    <Position X="217.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAAAEAAAAAAAAAAAAAAAAAAAAABAAAAAAABAA=</HashCode>
+      <FileName>Spares\Data\CharterCapitalTableRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CharterCapitalTableTotalsRecord" Collapsed="true">
+    <Position X="219" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Spares\Data\CharterCapitalTableTotalsRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CommonOwnershipInfo" Collapsed="true">
+    <Position X="220.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAEAAAAAAAAAAAAAgEEAAAAAQAAAAA=</HashCode>
+      <FileName>Spares\Data\CommonOwnershipInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.ContactInfo" Collapsed="true">
+    <Position X="222.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAgCAAAAAEAAAAAAAAAAAAEAACAEAAIAAAAAA=</HashCode>
+      <FileName>Spares\Data\ContactInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CouncilBodyInfo" Collapsed="true">
+    <Position X="224.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAIAAAAAEAIAAAAAAAAAAAAAQAAAEAAAAAAA=</HashCode>
+      <FileName>Spares\Data\CouncilBodyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CouncilMemberInfo" Collapsed="true">
+    <Position X="226" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAAAAIEAAAAA=</HashCode>
+      <FileName>Spares\Data\CouncilMemberInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CourtDecisionInfo" Collapsed="true">
+    <Position X="81" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIIAAAIAAAAAAAAAgBCAAAAAAgAAQAAAAAABAAACAA=</HashCode>
+      <FileName>Spares\Data\CourtDecisionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CreditHistoryInfo" Collapsed="true">
+    <Position X="215.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\CreditHistoryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.CurrencyAmount" Collapsed="true">
+    <Position X="9" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAABUAAAAAAAAIAAAAABAAAAAgAAAAAA=</HashCode>
+      <FileName>Spares\Data\CurrencyAmount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationNostrificationInfo" Collapsed="true">
+    <Position X="13.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAEAAAAQAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\EducationNostrificationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo" Collapsed="true">
+    <Position X="222.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAQQAAAAAAYAAIAAAAAAAAAAIAIgAAAAAEAAAIA=</HashCode>
+      <FileName>Spares\Data\EducationRecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EmailInfo" Collapsed="true">
+    <Position X="224.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\EmailInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EmploymentBookInfo" Collapsed="true">
+    <Position X="226" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAEAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\EmploymentBookInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EmploymentHistoryInfo" Collapsed="true">
+    <Position X="22.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAIAAAAAAAAAAAAkAAAAAAAAAAABAA=</HashCode>
+      <FileName>Spares\Data\EmploymentHistoryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.EmploymentRecordInfo" Collapsed="true">
+    <Position X="24.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QUEEHABAIACDRRAAQAKABABIAAABIDAIRAAIBCAIAII=</HashCode>
+      <FileName>Spares\Data\EmploymentRecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.FinancialGuaranteeInfo" Collapsed="true">
+    <Position X="231.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgBAAAEAAAAAECAAAAAAAABAAAAAIAAAA=</HashCode>
+      <FileName>Spares\Data\FinancialGuaranteeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.GenericPersonID" Collapsed="true">
+    <Position X="222.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABAEAAAAAABgAAEoAIAAAAAAAAAAIAAAAAAAAAAAiQ=</HashCode>
+      <FileName>Spares\Data\GenericPersonID.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.GenericPersonIDShare" Collapsed="true">
+    <Position X="224.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\GenericPersonIDShare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.GenericPersonInfo" Collapsed="true">
+    <Position X="40.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAEAAAAAAAgAAEIAAAAACAAAAAAAAiAAEAABAAAAA=</HashCode>
+      <FileName>Spares\Data\GenericPersonInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.ImperfectBusinessReputationInfo" Collapsed="true">
+    <Position X="229.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAIAAEAAABAAAAIAAAggAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\ImperfectBusinessReputationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.IncomeOriginInfo" Collapsed="true">
+    <Position X="49.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAACAAAEAACAAEAAAAAAAAAAACAQAAAgAACAgAAAA=</HashCode>
+      <FileName>Spares\Data\IncomeOriginInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.IndebtnessInfo">
+    <Position X="59.5" Y="9.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAACAgAACAAABACEA=</HashCode>
+      <FileName>Spares\Data\IndebtnessInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.IndebtnessInfoBase">
+    <Position X="56.75" Y="9.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAQQAAgAQBhAAAAEBGFAAFAIAACAAAGIAAASAAAIABA=</HashCode>
+      <FileName>Spares\Data\IndebtnessInfoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.IPNRefusalRecordInfo" Collapsed="true">
+    <Position X="224.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAABAAAA=</HashCode>
+      <FileName>Spares\Data\IPNRefusalRecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.IPOSharesPurchaseInfo" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAIABAAAEAAA=</HashCode>
+      <FileName>Spares\Data\IPOSharesPurchaseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LegalPersonShareInfo" Collapsed="true">
+    <Position X="226" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Spares\Data\LegalPersonShareInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LegalTransactionInfo" Collapsed="true">
+    <Position X="83.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAEAAAAEIAAQBAAAAAJEAAAAAFAADAAEgAAAAA=</HashCode>
+      <FileName>Spares\Data\LegalTransactionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LegalTransactionPartyInfo" Collapsed="true">
+    <Position X="4.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAAAAAAAQAACAAEEAAAAAAAAQAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Spares\Data\LegalTransactionPartyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LicenseQualificationInfo" Collapsed="true">
+    <Position X="227.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LicenseQualificationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LiquidatedEntityOwnershipInfo" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LiquidatedEntityOwnershipInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LiquidatedOrInsolventEntityInfoBase" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAEAAAAEAABAAACAAAAAECAAAAAgAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LiquidatedOrInsolventEntityInfoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LiquidatedOrInsolventEntityMgmtRecordInfo" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LiquidatedOrInsolventEntityMgmtRecordInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LoanInfo">
+    <Position X="54.5" Y="9.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAQAAAEAIAAAAAAAAAAAAAAAIACAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LoanInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.LPRegisteredDateRecordId" Collapsed="true">
+    <Position X="231.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\LPRegisteredDateRecordId.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.MissingInformationReasonInfo" Collapsed="true">
+    <Position X="215.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Spares\Data\MissingInformationResonInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.OwnershipStructure" Collapsed="true">
+    <Position X="226" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAACAAAAAAAAFAAAAAAAAAAAAAAAAAAEgAAAgAAA=</HashCode>
+      <FileName>Spares\Data\OwnershipStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.OwnershipSummaryInfo" Collapsed="true">
+    <Position X="227.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Spares\Data\OwnershipSummaryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.OwnershipVotesInfo" Collapsed="true">
+    <Position X="229.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Spares\Data\OwnershipVotesInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PaymentDeadlineInfo" Collapsed="true">
+    <Position X="231.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PaymentDeadlineInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PaymentModeInfo" Collapsed="true">
+    <Position X="215.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PaymentModeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PersonBankAssociationInfo" Collapsed="true">
+    <Position X="217.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PersonBankAssociationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PersonBusinessReputationInfo" Collapsed="true">
+    <Position X="51.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAEIAACCgAAAAAMAQAAEAAAAAAAAAACAAAAABAAABA=</HashCode>
+      <FileName>Spares\Data\PersonBusinessReputationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PersonEmploymentRecordsInfo" Collapsed="true">
+    <Position X="22.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PersonEmploymentRecordsInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PersonsAssociation" Collapsed="true">
+    <Position X="63" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAgIAEAAABAhAAwAAAIAIQAAgAIAAAAIA=</HashCode>
+      <FileName>Spares\Data\PersonsAssociation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PhoneInfo" Collapsed="true">
+    <Position X="219" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAEAAAAAAAAAAAAgAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PhoneInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PhysicalPersonShareInfo" Collapsed="true">
+    <Position X="220.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Spares\Data\PhysicalPersonShareInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PowerOfAttorneyInfo" Collapsed="true">
+    <Position X="227.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGAAAAAAAAAAEAAABAAAAAAAAAAAAAEAAAAEAAAAAA=</HashCode>
+      <FileName>Spares\Data\PowerOfAttorneyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PowerOfAttorneySharesPurchaseInfo" Collapsed="true">
+    <Position X="229.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAEIAA=</HashCode>
+      <FileName>Spares\Data\PowerOfAttorneySharesPurchaseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.ProfessionLicenseInfo" Collapsed="true">
+    <Position X="231.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABIAAAAAAAAABABAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\ProfessionLicenseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.PurchasedVoteInfo" Collapsed="true">
+    <Position X="220.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAEAAAAAAAAAAAAAAAAQAACAAAAAAA=</HashCode>
+      <FileName>Spares\Data\PurchasedVoteInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.SecondaryMarketSharesPurchaseInfo" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEBAAQAAAAAAAAACAAAAAgAAAAEAA=</HashCode>
+      <FileName>Spares\Data\SecondaryMarketSharesPurchaseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.SharesAcquisitionInfo" Collapsed="true">
+    <Position X="219" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAABAAAAAAAQAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Spares\Data\SharesAcquisitionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.SignatoryInfo" Collapsed="true">
+    <Position X="220.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAAAEAAAAAAAAAAAAAAgAAAAgAAAAIAA=</HashCode>
+      <FileName>Spares\Data\SignatoryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.SignificantOrDecisiveInfulenceInfo" Collapsed="true">
+    <Position X="222.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Spares\Data\SignificantOrDecisiveInfulenceInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.SignificantOwnershipAcquisitionWaysInfo" Collapsed="true">
+    <Position X="27" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQBBgAAAAAAAAEAAAAAAAAAAAAAAAAAAQgAAAgBAQAA=</HashCode>
+      <FileName>Spares\Data\SignificantOwnershipAcquisitionWaysInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.TotalOwnershipDetailsInfo" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAEAAAAAAgAAAAAAAAAAAAAAEgIAAA=</HashCode>
+      <FileName>Spares\Data\TotalOwnershipDetailsInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.TotalOwnershipDetailsInfoEx" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\TotalOwnershipDetailsInfoEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Data.TotalOwnershipSummaryInfo" Collapsed="true">
+    <Position X="229.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Data\TotalOwnershipSummaryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankAccountInfo" Collapsed="true">
+    <Position X="222.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAEAAAAAAAAAQAAAAAgAEAAAAAAAQA=</HashCode>
+      <FileName>Spares\Dict\BankAccountInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankInfo" Collapsed="true">
+    <Position X="47.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAKAAAAAAMAAAEkECkICRAAIAAgAgAAAEBAAADAiA=</HashCode>
+      <FileName>Spares\Dict\BankInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CountryInfo" Collapsed="true">
+    <Position X="227.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>HT6d2dOQdU4yr3l8zonov7Sz9F31lpXzHt/1n8Z2+7o=</HashCode>
+      <FileName>Spares\Dict\CountryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CourtInfo" Collapsed="true">
+    <Position X="54" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQABAIEEAwEIAQAAAAAgABAQAEAAAAFAAA=</HashCode>
+      <FileName>Spares\Dict\CourtInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CreditRatingInfo" Collapsed="true">
+    <Position X="60.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgBIIAAAAEAQAAAAABEAAABQECAAQUAAgAAAA=</HashCode>
+      <FileName>Spares\Dict\CreditRatingInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CurrencyInfo" Collapsed="true">
+    <Position X="217.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABwAAgAAAAAAQAAAAAAAABAAAAAAAAAAAAQAAAICA=</HashCode>
+      <FileName>Spares\Dict\CurrencyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.EconomicActivityType" Collapsed="true">
+    <Position X="220.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAAAAAAAAAAACAgAAAAAAKAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\EconomicActivityType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.FinancialOversightAuthorityInfo" Collapsed="true">
+    <Position X="78.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIgAAAAAAAAAAAAEEAAAAECAEAAAAgACAAAAAAEABAA=</HashCode>
+      <FileName>Spares\Dict\FinancialOversightAuthorityInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.ISCO" Collapsed="true">
+    <Position X="85.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACgAAAAAgAQACAAAQAgAAIAAACBAAAAA=</HashCode>
+      <FileName>Spares\Dict\ISCO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.JobClassificationInfo" Collapsed="true">
+    <Position X="6.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgIAQAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\JobClassificationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.LegalPersonInfo" Collapsed="true">
+    <Position X="11.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAQAQgECIAAAIEEAABsEaEgiIggMECAiCQSIADAAQ=</HashCode>
+      <FileName>Spares\Dict\LegalPersonInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.LocationInfo" Collapsed="true">
+    <Position X="229.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAgAgAAAAMABAAEAAAkBJJAEAFAAIAAAAACQA=</HashCode>
+      <FileName>Spares\Dict\LocationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.PhysicalPersonInfo" Collapsed="true">
+    <Position X="18" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gggAIKIgQhIIhIFFEABQJkQCJg4khMAKgCABBA0BAGA=</HashCode>
+      <FileName>Spares\Dict\PhysicalPersonInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.ProfessionLicensingBodyInfo" Collapsed="true">
+    <Position X="20.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAEAAAIAQAAAAAgAAAAAEAAAABAAA=</HashCode>
+      <FileName>Spares\Dict\ProfessionLicensingBodyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.PublicationInfo" Collapsed="true">
+    <Position X="217.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAEAACAIAAAAAABAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\PublicationInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.PublishingHouseInfo" Collapsed="true">
+    <Position X="219" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\PublishingHouseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.RatingAgencyInfo" Collapsed="true">
+    <Position X="29.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAAAAAAAAAAAEAAAIAQEAAAAgAAAEAAAAAIBEAA=</HashCode>
+      <FileName>Spares\Dict\RatingAgencyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.RegistrarAuthority" Collapsed="true">
+    <Position X="33.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAASAAAAAAAAAAAEUAwIAEAAAAAAAAACAAAAABAAAAg=</HashCode>
+      <FileName>Spares\Dict\RegistrarAuthority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.StockExchangeInfo" Collapsed="true">
+    <Position X="224.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkAAAAAAACAAEAAAACQAQAAAgAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\StockExchangeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.StockExchangeListingInfo" Collapsed="true">
+    <Position X="226" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAQAAA=</HashCode>
+      <FileName>Spares\Dict\StockExchangeListingInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.Dict.UniversityOrCollegeInfo" Collapsed="true">
+    <Position X="42.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAAAAAAACAAIAAAEAAIAEAAAAAAAAACAEAAAAAAAAA=</HashCode>
+      <FileName>Spares\Dict\UniversityOrCollegeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.EnumsLister" Collapsed="true">
+    <Position X="229.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wjIENBpAJZAADIYAAIsMBTCAALFAPBSgQCFSG4GYBQA=</HashCode>
+      <FileName>Spares\EnumsLister.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares.NotifyPropertyChangedBase" Collapsed="true">
+    <Position X="45" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares\NotifyPropertyChangedBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.BankingLicenseInfoEx" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Spares2\BankingLicenseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.FinancialInstitutionRating" Collapsed="true">
+    <Position X="215.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Spares2\FinancialInstitutionRating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.GeneralForexLicenseInfo" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares2\GeneralForexLicenseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.GenericFinancialInstitutionInfo" Collapsed="true">
+    <Position X="220.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAgAAAAABAAAAAAAAAQAAAAAAAAAAEAAAAAAIAI=</HashCode>
+      <FileName>Spares2\GenericFinancialInstitutionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.NonBankFinInstitutionRawInfo" Collapsed="true">
+    <Position X="222.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAGAGAEABAAEjhAsQIAAQAAIAAEAAAABAGAAgE=</HashCode>
+      <FileName>Spares2\NonBankFinInstitutionInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.NonBankingFinInstLicenseInfo" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAQAAIAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Spares2\NonBankingFinInstLicenseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.Post315AppxBankAssocPerson" Collapsed="true">
+    <Position X="226" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAQAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Spares2\Post315AppxBankAssocPerson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.DossierMsgs.NbuCommonMgsTrail" Collapsed="true">
+    <Position X="217.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAEAAAAgACAAAAAAAIAAAA=</HashCode>
+      <FileName>Spares2\DossierMsgs\NbuCommonMgsTrail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.Spares2.DossierMsgs.NbuCommonMsgHead" Collapsed="true">
+    <Position X="219" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAABAAAAAAAAAACAAAAABEAAASAEEKAAAABAAAA=</HashCode>
+      <FileName>Spares2\DossierMsgs\NbuCommonMsgHead.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor" Collapsed="true">
+    <Position X="215.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAAABAAAAAAABAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TypeEditors\BooleanEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor" Collapsed="true">
+    <Position X="229.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAAABAAAAAAABAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TypeEditors\CountryInfoLookupEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfoLookupEditor2" Collapsed="true">
+    <Position X="231.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAAABAAAAAAABAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TypeEditors\CountryInfoLookupEditor2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor" Collapsed="true">
+    <Position X="227.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAAABAAAAAAABAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TypeEditors\EnumLookupEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonInfoEditor" Collapsed="true">
+    <Position X="226" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\GenericPersonInfoEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonLookupEditor" Collapsed="true">
+    <Position X="227.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAAAABAAAAAAABAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>TypeEditors\GenericPersonLookupEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericTypeEditor&lt;T&gt;" Collapsed="true">
+    <Position X="110.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\GenericTypeEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.DataSoucedFormCloseArgs&lt;T&gt;" Collapsed="true">
+    <Position X="219" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\IDataSourcedForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.Appx2OwnershipStructLP_Editor" Collapsed="true">
+    <Position X="190.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx14NewSvc_Editor" Collapsed="true">
+    <Position X="201.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx2OwnershipAcqRequestLP_Editor" Collapsed="true">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx4PhysPQuest_Editor" Collapsed="true">
+    <Position X="21.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx7ShareAcqIntent_Editor" Collapsed="true">
+    <Position X="33" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.AttachmentInfo_Editor" Collapsed="true">
+    <Position X="44.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankingLicensedActivityInfo_Editor" Collapsed="true">
+    <Position X="55.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankingLicenseInfo_Editor" Collapsed="true">
+    <Position X="66.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CommonOwnershipInfo_Editor" Collapsed="true">
+    <Position X="78" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ContactInfo_Editor" Collapsed="true">
+    <Position X="89.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CouncilBodyInfo_Editor" Collapsed="true">
+    <Position X="100.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CouncilMemberInfo_Editor" Collapsed="true">
+    <Position X="109.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CurrencyAmount_Editor" Collapsed="true">
+    <Position X="118.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonID_Editor" Collapsed="true">
+    <Position X="127.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonIDShare_Editor" Collapsed="true">
+    <Position X="136.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.GenericPersonInfo_Editor" Collapsed="true">
+    <Position X="145.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalPersonShareInfo_Editor" Collapsed="true">
+    <Position X="154.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.OwnershipStructure_Editor" Collapsed="true">
+    <Position X="163.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.OwnershipSummaryInfo_Editor" Collapsed="true">
+    <Position X="172.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.OwnershipVotesInfo_Editor" Collapsed="true">
+    <Position X="181.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PersonsAssociation_Editor" Collapsed="true">
+    <Position X="192.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PhoneInfo_Editor" Collapsed="true">
+    <Position X="204" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PhysicalPersonShareInfo_Editor" Collapsed="true">
+    <Position X="12.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PurchasedVoteInfo_Editor" Collapsed="true">
+    <Position X="24" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignatoryInfo_Editor" Collapsed="true">
+    <Position X="35.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.TotalOwnershipDetailsInfo_Editor" Collapsed="true">
+    <Position X="46.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankInfo_Editor" Collapsed="true">
+    <Position X="57.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CountryInfo_Editor" Collapsed="true">
+    <Position X="69" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalPersonInfo_Editor" Collapsed="true">
+    <Position X="80.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LocationInfo_Editor" Collapsed="true">
+    <Position X="91.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PhysicalPersonInfo_Editor" Collapsed="true">
+    <Position X="102.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegistrarAuthority_Editor" Collapsed="true">
+    <Position X="111.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BreachOfLawRecordInfo_Editor" Collapsed="true">
+    <Position X="120.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.EducationRecordInfo_Editor" Collapsed="true">
+    <Position X="129.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.EmploymentRecordInfo_Editor" Collapsed="true">
+    <Position X="138.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.FinancialGuaranteeInfo_Editor" Collapsed="true">
+    <Position X="147.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IncomeOriginInfo_Editor" Collapsed="true">
+    <Position X="156.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IndebtnessInfo_Editor" Collapsed="true">
+    <Position X="165.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IndebtnessInfoBase_Editor" Collapsed="true">
+    <Position X="174.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LiquidatedEntityOwnershipInfo_Editor" Collapsed="true">
+    <Position X="183.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LoanInfo_Editor" Collapsed="true">
+    <Position X="195" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PaymentDeadlineInfo_Editor" Collapsed="true">
+    <Position X="206.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PaymentModeInfo_Editor" Collapsed="true">
+    <Position X="15" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ProfessionLicenseInfo_Editor" Collapsed="true">
+    <Position X="26.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.SharesAcquisitionInfo_Editor" Collapsed="true">
+    <Position X="37.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankAccountInfo_Editor" Collapsed="true">
+    <Position X="48.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ProfessionLicensingBodyInfo_Editor" Collapsed="true">
+    <Position X="60" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PublicationInfo_Editor" Collapsed="true">
+    <Position X="71.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PublishingHouseInfo_Editor" Collapsed="true">
+    <Position X="82.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.UniversityOrCollegeInfo_Editor" Collapsed="true">
+    <Position X="93.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.FinancialOversightAuthorityInfo_Editor" Collapsed="true">
+    <Position X="105" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CourtInfo_Editor" Collapsed="true">
+    <Position X="114" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LPRegisteredDateRecordId_Editor" Collapsed="true">
+    <Position X="123" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.EmailInfo_Editor" Collapsed="true">
+    <Position X="132" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CreditRatingInfo_Editor" Collapsed="true">
+    <Position X="141" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx12HeadCandidateAppl_Editor" Collapsed="true">
+    <Position X="150" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankruptcyInvestigationInfo_Editor" Collapsed="true">
+    <Position X="159" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LiquidatedOrInsolventEntityInfoBase_Editor" Collapsed="true">
+    <Position X="168" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx9BankingLicenseAppl_Editor" Collapsed="true">
+    <Position X="177" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ManagementPosition_Editor" Collapsed="true">
+    <Position X="186" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.InsolvencyStatus_Editor" Collapsed="true">
+    <Position X="197.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.WellKnownCreditRatingAgencyType_Editor" Collapsed="true">
+    <Position X="208.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LongTermCreditRatingType_Editor" Collapsed="true">
+    <Position X="17.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ShortTermCreditRatingType_Editor" Collapsed="true">
+    <Position X="28.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankruptcyCaseResolutionType_Editor" Collapsed="true">
+    <Position X="39.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CourtInstanceType_Editor" Collapsed="true">
+    <Position X="51" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CourtDecisionType_Editor" Collapsed="true">
+    <Position X="62.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.BankAssociatedPeronsCode315p_Editor" Collapsed="true">
+    <Position X="73.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalTransactionType_Editor" Collapsed="true">
+    <Position X="84.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.InfluenceType_Editor" Collapsed="true">
+    <Position X="96" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LiquidatedOrInsolventEntityMgmtRecordInfo_Editor" Collapsed="true">
+    <Position X="107.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CharterCapitalTableRecord_Editor" Collapsed="true">
+    <Position X="116.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx6EquityFormationTable_Editor" Collapsed="true">
+    <Position X="125.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RatingAgencyInfo_Editor" Collapsed="true">
+    <Position X="134.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.EconomicActivityType_Editor" Collapsed="true">
+    <Position X="143.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CharterCapitalTableTotalsRecord_Editor" Collapsed="true">
+    <Position X="152.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.CourtDecisionInfo_Editor" Collapsed="true">
+    <Position X="161.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LicenseQualificationInfo_Editor" Collapsed="true">
+    <Position X="170.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPOSharesPurchaseInfo_Editor" Collapsed="true">
+    <Position X="179.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.SecondaryMarketSharesPurchaseInfo_Editor" Collapsed="true">
+    <Position X="188.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx17EquityChangeTable_Editor" Collapsed="true">
+    <Position X="199.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.Appx3OwnershipStructPP_Editor" Collapsed="true">
+    <Position X="210.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.RegLicAppx3MemberCandidateAppl_Editor" Collapsed="true">
+    <Position X="19.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.LegalTransactionInfo_Editor" Collapsed="true">
+    <Position X="30.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PowerOfAttorneySharesPurchaseInfo_Editor" Collapsed="true">
+    <Position X="42" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignificantOrDecisiveInfulenceInfo_Editor" Collapsed="true">
+    <Position X="53.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.SignificantOwnershipAcquisitionWaysInfo_Editor" Collapsed="true">
+    <Position X="64.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.TotalOwnershipSummaryInfo_Editor" Collapsed="true">
+    <Position X="75.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ImperfectBusinessReputationInfo_Editor" Collapsed="true">
+    <Position X="87" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.PowerOfAttorneyInfo_Editor" Collapsed="true">
+    <Position X="98.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.NeedToCompareTypesArgs&lt;T&gt;" Collapsed="true">
+    <Position X="220.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAgAAAAAAIA=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.TypeEditorsDispatcher" Collapsed="true">
+    <Position X="231.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQABAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsDispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.TypeEditorTools" Collapsed="true">
+    <Position X="215.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGU.DRPL.SignificantOwnership.Core.ValidationSchemes.ValidationSchemeBaseAttribute" Collapsed="true">
+    <Position X="219" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidationSchemes\ValidationSchemeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Checks.IQuestionnaireChecker" Collapsed="true">
+    <Position X="227.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAECAAAAAAAAAAAAACAAAAAAAAACAQAAEBAAAAAAAg=</HashCode>
+      <FileName>Checks\IQuestionnaireChecker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Interfaces.IAnonymizeable" Collapsed="true">
+    <Position X="217.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAnonymizeable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Interfaces.IModule" Collapsed="true">
+    <Position X="224.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IModule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Messages.IDossierMessageBody" Collapsed="true">
+    <Position X="220.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Messages\IDossierMessageBody.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.IQuestionnaire" Collapsed="true">
+    <Position X="226" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\IQuestionnaire.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.IGenericPersonsService" Collapsed="true">
+    <Position X="222.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\IQuestionnaire.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.Questionnaires.IAddressesService" Collapsed="true">
+    <Position X="215.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Questionnaires\IQuestionnaire.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IDataSourcedForm&lt;T&gt;" Collapsed="true">
+    <Position X="219" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\IDataSourcedForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ITypeEditorForm&lt;T&gt;" Collapsed="true">
+    <Position X="229.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\ITypeEditorForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ITypeEditorFormFactoryBase" Collapsed="true">
+    <Position X="111.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IAppx2OwnershipStructLPEditFormFactory" Collapsed="true">
+    <Position X="125.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx14NewSvcEditFormFactory" Collapsed="true">
+    <Position X="136.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx2OwnershipAcqRequestLPEditFormFactory" Collapsed="true">
+    <Position X="147.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx4PhysPQuestEditFormFactory" Collapsed="true">
+    <Position X="159" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx7ShareAcqIntentEditFormFactory" Collapsed="true">
+    <Position X="170.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IAttachmentInfoEditFormFactory" Collapsed="true">
+    <Position X="181.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankingLicensedActivityInfoEditFormFactory" Collapsed="true">
+    <Position X="192.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankingLicenseInfoEditFormFactory" Collapsed="true">
+    <Position X="204" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICommonOwnershipInfoEditFormFactory" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IContactInfoEditFormFactory" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICouncilBodyInfoEditFormFactory" Collapsed="true">
+    <Position X="33" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICouncilMemberInfoEditFormFactory" Collapsed="true">
+    <Position X="44.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICurrencyAmountEditFormFactory" Collapsed="true">
+    <Position X="53.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IGenericPersonIDEditFormFactory" Collapsed="true">
+    <Position X="62.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IGenericPersonIDShareEditFormFactory" Collapsed="true">
+    <Position X="71.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IGenericPersonInfoEditFormFactory" Collapsed="true">
+    <Position X="80.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILegalPersonShareInfoEditFormFactory" Collapsed="true">
+    <Position X="89.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IOwnershipStructureEditFormFactory" Collapsed="true">
+    <Position X="98.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IOwnershipSummaryInfoEditFormFactory" Collapsed="true">
+    <Position X="107.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IOwnershipVotesInfoEditFormFactory" Collapsed="true">
+    <Position X="116.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPersonsAssociationEditFormFactory" Collapsed="true">
+    <Position X="127.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPhoneInfoEditFormFactory" Collapsed="true">
+    <Position X="138.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPhysicalPersonShareInfoEditFormFactory" Collapsed="true">
+    <Position X="150" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPurchasedVoteInfoEditFormFactory" Collapsed="true">
+    <Position X="161.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ISignatoryInfoEditFormFactory" Collapsed="true">
+    <Position X="172.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ITotalOwnershipDetailsInfoEditFormFactory" Collapsed="true">
+    <Position X="183.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankInfoEditFormFactory" Collapsed="true">
+    <Position X="195" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICountryInfoEditFormFactory" Collapsed="true">
+    <Position X="206.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILegalPersonInfoEditFormFactory" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILocationInfoEditFormFactory" Collapsed="true">
+    <Position X="24" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPhysicalPersonInfoEditFormFactory" Collapsed="true">
+    <Position X="35.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegistrarAuthorityEditFormFactory" Collapsed="true">
+    <Position X="46.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBreachOfLawRecordInfoEditFormFactory" Collapsed="true">
+    <Position X="55.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IEducationRecordInfoEditFormFactory" Collapsed="true">
+    <Position X="64.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IEmploymentRecordInfoEditFormFactory" Collapsed="true">
+    <Position X="73.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IFinancialGuaranteeInfoEditFormFactory" Collapsed="true">
+    <Position X="82.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IIncomeOriginInfoEditFormFactory" Collapsed="true">
+    <Position X="91.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IIndebtnessInfoEditFormFactory" Collapsed="true">
+    <Position X="100.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IIndebtnessInfoBaseEditFormFactory" Collapsed="true">
+    <Position X="109.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILiquidatedEntityOwnershipInfoEditFormFactory" Collapsed="true">
+    <Position X="118.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILoanInfoEditFormFactory" Collapsed="true">
+    <Position X="129.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPaymentDeadlineInfoEditFormFactory" Collapsed="true">
+    <Position X="141" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPaymentModeInfoEditFormFactory" Collapsed="true">
+    <Position X="152.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IProfessionLicenseInfoEditFormFactory" Collapsed="true">
+    <Position X="163.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ISharesAcquisitionInfoEditFormFactory" Collapsed="true">
+    <Position X="174.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankAccountInfoEditFormFactory" Collapsed="true">
+    <Position X="186" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IProfessionLicensingBodyInfoEditFormFactory" Collapsed="true">
+    <Position X="197.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPublicationInfoEditFormFactory" Collapsed="true">
+    <Position X="208.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPublishingHouseInfoEditFormFactory" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IUniversityOrCollegeInfoEditFormFactory" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IFinancialOversightAuthorityInfoEditFormFactory" Collapsed="true">
+    <Position X="37.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICourtInfoEditFormFactory" Collapsed="true">
+    <Position X="48.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILPRegisteredDateRecordIdEditFormFactory" Collapsed="true">
+    <Position X="57.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IEmailInfoEditFormFactory" Collapsed="true">
+    <Position X="66.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICreditRatingInfoEditFormFactory" Collapsed="true">
+    <Position X="75.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx12HeadCandidateApplEditFormFactory" Collapsed="true">
+    <Position X="84.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankruptcyInvestigationInfoEditFormFactory" Collapsed="true">
+    <Position X="93.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILiquidatedOrInsolventEntityInfoBaseEditFormFactory" Collapsed="true">
+    <Position X="102.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx9BankingLicenseApplEditFormFactory" Collapsed="true">
+    <Position X="111.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IManagementPositionEditFormFactory" Collapsed="true">
+    <Position X="120.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IInsolvencyStatusEditFormFactory" Collapsed="true">
+    <Position X="132" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IWellKnownCreditRatingAgencyTypeEditFormFactory" Collapsed="true">
+    <Position X="143.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILongTermCreditRatingTypeEditFormFactory" Collapsed="true">
+    <Position X="154.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IShortTermCreditRatingTypeEditFormFactory" Collapsed="true">
+    <Position X="165.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankruptcyCaseResolutionTypeEditFormFactory" Collapsed="true">
+    <Position X="177" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICourtInstanceTypeEditFormFactory" Collapsed="true">
+    <Position X="188.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICourtDecisionTypeEditFormFactory" Collapsed="true">
+    <Position X="199.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IBankAssociatedPeronsCode315pEditFormFactory" Collapsed="true">
+    <Position X="210.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILegalTransactionTypeEditFormFactory" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IInfluenceTypeEditFormFactory" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILiquidatedOrInsolventEntityMgmtRecordInfoEditFormFactory" Collapsed="true">
+    <Position X="39.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICharterCapitalTableRecordEditFormFactory" Collapsed="true">
+    <Position X="51" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx6EquityFormationTableEditFormFactory" Collapsed="true">
+    <Position X="60" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IEnumsListerEditFormFactory" Collapsed="true">
+    <Position X="69" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRatingAgencyInfoEditFormFactory" Collapsed="true">
+    <Position X="78" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IEconomicActivityTypeEditFormFactory" Collapsed="true">
+    <Position X="87" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICharterCapitalTableTotalsRecordEditFormFactory" Collapsed="true">
+    <Position X="96" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ICourtDecisionInfoEditFormFactory" Collapsed="true">
+    <Position X="105" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILicenseQualificationInfoEditFormFactory" Collapsed="true">
+    <Position X="114" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IIPOSharesPurchaseInfoEditFormFactory" Collapsed="true">
+    <Position X="123" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ISecondaryMarketSharesPurchaseInfoEditFormFactory" Collapsed="true">
+    <Position X="134.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx17EquityChangeTableEditFormFactory" Collapsed="true">
+    <Position X="145.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IAppx3OwnershipStructPPEditFormFactory" Collapsed="true">
+    <Position X="156.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IRegLicAppx3MemberCandidateApplEditFormFactory" Collapsed="true">
+    <Position X="168" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ILegalTransactionInfoEditFormFactory" Collapsed="true">
+    <Position X="179.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPowerOfAttorneySharesPurchaseInfoEditFormFactory" Collapsed="true">
+    <Position X="190.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ISignificantOrDecisiveInfulenceInfoEditFormFactory" Collapsed="true">
+    <Position X="201.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ISignificantOwnershipAcquisitionWaysInfoEditFormFactory" Collapsed="true">
+    <Position X="213" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.ITotalOwnershipSummaryInfoEditFormFactory" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IImperfectBusinessReputationInfoEditFormFactory" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.IPowerOfAttorneyInfoEditFormFactory" Collapsed="true">
+    <Position X="42" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditorsInterfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo.BankInfoMessageField" Collapsed="true">
+    <Position X="224.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SAACACCEomAAACABAAAoAAwAAAACEEBDARCIIAPAABA=</HashCode>
+      <FileName>Messages\BankInfo\BankInfoEnums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.EntityType" Collapsed="true">
+    <Position X="229.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.OwnershipType" Collapsed="true">
+    <Position X="224.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACAABAAQAAAAAAAAACAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.PersonAssociationType" Collapsed="true">
+    <Position X="227.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.SexType" Collapsed="true">
+    <Position X="215.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.EmploymentState" Collapsed="true">
+    <Position X="226" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAIAABAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.EmploymentTerminationType" Collapsed="true">
+    <Position X="227.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAIAACABIAAAAAAAAAAABAAAAAAAAAAQEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.HigherEducationDegreeType" Collapsed="true">
+    <Position X="222.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAJAAAAAAAAAACAAAAAAACAAAAAAAAAAIBAAAEAIAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.EducationKindGros" Collapsed="true">
+    <Position X="224.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAEAAAAAAAAAAAAABAAAAgAAAQAAAAAAGAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.DegreeHonourType" Collapsed="true">
+    <Position X="222.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAAAAAAARAAAAAAQBAAAAAAAAABAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.FundsOriginType" Collapsed="true">
+    <Position X="220.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAIEAABCAAgAAAAAAACCAAEAAEA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.PaymentType" Collapsed="true">
+    <Position X="226" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.FinancialGuarantorRoleType" Collapsed="true">
+    <Position X="231.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BreachOfLawType" Collapsed="true">
+    <Position X="231.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIBAAAgAQAAAAAAAAEAAAAAAAQAAQAAEAEAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.SentenceType" Collapsed="true">
+    <Position X="231.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAACAIACAAIBAAAAAAAAAAAAAAAAAAAAAAFAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.TypicalApplicationAttachement" Collapsed="true">
+    <Position X="219" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DACACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.LicensedOperationType" Collapsed="true">
+    <Position X="215.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.FinancialServicesType" Collapsed="true">
+    <Position X="219" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAACAAAAAIAAMAAAAIAAAAAEACAwABAACAAAECAAQ=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankingActivityType" Collapsed="true">
+    <Position X="226" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wIAAAIAAAAAAAAAAAAAAACAAQAAABYAAAAAAEAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.AssociatedPersonRole" Collapsed="true">
+    <Position X="215.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACEAIAAAAICAAAAQAAAAEAAAAwEQIIgABJQgGAEAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.ManagementPosition" Collapsed="true">
+    <Position X="219" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAABAAgAAAAAACAAAIAAAAAAIAAAAAIEAAgQ=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.InsolvencyStatus" Collapsed="true">
+    <Position X="226" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.WellKnownCreditRatingAgencyType" Collapsed="true">
+    <Position X="220.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAgAAAAAAgAAAhAAAAAAAAAAgAAFAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.LongTermCreditRatingType" Collapsed="true">
+    <Position X="217.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAmCABBQR0ABwQQAAABCEACAgQEACAjAIABpAELwQg=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.ShortTermCreditRatingType" Collapsed="true">
+    <Position X="217.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEAAAAAAAAAAAAAAAAAAACAAAAAAABAAAAhAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankruptcyCaseResolutionType" Collapsed="true">
+    <Position X="229.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAEAAAAAAAAAAQIAAAEAAEAAAg=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.CourtInstanceType" Collapsed="true">
+    <Position X="219" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.CourtDecisionType" Collapsed="true">
+    <Position X="217.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAIAAAAAAAAAAAAAAAAABAAAAARAAAAIAAAAAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankAssociatedPersonsCode315p" Collapsed="true">
+    <Position X="217.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgQAAAgEAACAAAAIAAAAAAAAAAAAAAAAAGAggA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.LegalTransactionType" Collapsed="true">
+    <Position X="231.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAEQAAGAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.InfluenceType" Collapsed="true">
+    <Position X="224.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.LegalTransactionPartyRoleType" Collapsed="true">
+    <Position X="229.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAgAAAAAAAAAAIIQBQACAAEAIAAAAAAAAAUACAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.MeansOfCommunication" Collapsed="true">
+    <Position X="220.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAIQEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.OwnershipFormType" Collapsed="true">
+    <Position X="222.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAABAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankBranchStatusType" Collapsed="true">
+    <Position X="220.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.ResidenceType" Collapsed="true">
+    <Position X="229.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.CurrencyType" Collapsed="true">
+    <Position X="220.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankClientType" Collapsed="true">
+    <Position X="222.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAACAABAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankOperationLimitType" Collapsed="true">
+    <Position X="227.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAgABAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.WorkingHoursDayType" Collapsed="true">
+    <Position X="222.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAQAAAAAAAAgBAAAAQAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares.BankBranchManagerPositionType" Collapsed="true">
+    <Position X="219" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAIAAAAACAAEAAAA=</HashCode>
+      <FileName>Spares\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares2.FinancialInstitutionType" Collapsed="true">
+    <Position X="217.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Spares2\Enums2.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares2.FinancialInstitutionStatus" Collapsed="true">
+    <Position X="215.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAIAAAAAgBAAAAAAAAAAAAAQAgAAAEAQEAAAA=</HashCode>
+      <FileName>Spares2\Enums2.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares2.CompanyOwnershipType" Collapsed="true">
+    <Position X="215.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAEAAAAAAAAAAABAEAAAA=</HashCode>
+      <FileName>Spares2\Enums2.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGU.DRPL.SignificantOwnership.Core.Spares2.InstitutionLevel" Collapsed="true">
+    <Position X="227.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAEAAQA=</HashCode>
+      <FileName>Spares2\Enums2.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.FormCloseHandler&lt;T&gt;" Collapsed="true">
+    <Position X="215.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\IDataSourcedForm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="BGU.DRPL.SignificantOwnership.Core.TypeEditors.NeedToCompareTypesHandler&lt;T&gt;" Collapsed="true">
+    <Position X="217.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TypeEditors\TypeEditors.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
