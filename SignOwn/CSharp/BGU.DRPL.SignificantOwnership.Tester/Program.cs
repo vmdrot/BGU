@@ -1141,6 +1141,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx2OwnershipAcqRequestLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(Appx2OwnershipStructLP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx14NewSvc), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx12HeadCandidateAppl), typeof(RegLicAppx12HeadCandidateAppl).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx3MemberCandidateAppl), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(RegLicAppx4OwnershipAcqRequestPP), typeof(RegLicAppx2OwnershipAcqRequestLP).Assembly, targetFolder);
             
