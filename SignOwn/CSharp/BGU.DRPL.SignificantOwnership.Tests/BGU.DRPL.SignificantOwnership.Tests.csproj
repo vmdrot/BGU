@@ -74,6 +74,7 @@
     <Compile Include="EKDRBU\BankInfoTests.cs" />
     <Compile Include="GenericParserTests.cs" />
     <Compile Include="LocationInfoTests.cs" />
+    <Compile Include="Misc\MiscellaneousTests.cs" />
     <Compile Include="PdfWord\BGUSiteReaderTests.cs" />
     <Compile Include="PdfWord\PdfReaderResearch.cs" />
     <Compile Include="PdfWord\SignOwnStructsParsing.cs" />
