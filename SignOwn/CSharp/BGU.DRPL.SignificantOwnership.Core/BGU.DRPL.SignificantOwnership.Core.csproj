@@ -59,6 +59,7 @@
     <Compile Include="EKDRBU\Legacy\DeptListEntry.cs" />
     <Compile Include="EKDRBU\Legacy\RcuKruEntry.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
+    <Compile Include="EKDRBU\Spares\FinActivitySvcInstrumentInfo.cs" />
     <Compile Include="EKDRBU\Spares\OperationsLimitInfo.cs" />
     <Compile Include="EKDRBU\Spares\TimeSpanInfo.cs" />
     <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />

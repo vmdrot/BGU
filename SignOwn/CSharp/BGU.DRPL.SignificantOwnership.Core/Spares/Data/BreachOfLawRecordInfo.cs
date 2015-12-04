@@ -33,7 +33,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         private CourtDecisionInfo _CourtDecision;
         [DisplayName("Рішення суду")]
-        [Description("Відомості про судове відповідне судове рішення")]
+        [Description("Відомості про рішення щодо притягнення до відповідальності")]
         public CourtDecisionInfo CourtDecision { get { return _CourtDecision; } set { _CourtDecision = value; OnPropertyChanged("CourtDecision"); OnPropertyChanged("IsCourtDecisionSentence"); } }
 
         private string _CodeOrLaw;
@@ -41,7 +41,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// обов'язкове
         /// </summary>
         [DisplayName("Закон/кодекс")]
-        [Description("Закон/кодекс, згідно з  яким було засуджено")]
+        [Description("Закон/кодекс, згідно з яким було притягнуто до відповідальності")]
         [Required]
         [Multiline]
         public string CodeOrLaw { get { return _CodeOrLaw; } set { _CodeOrLaw = value; OnPropertyChanged("CodeOrLaw"); } }
@@ -51,7 +51,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// обов'язкове
         /// </summary>
         [DisplayName("Стаття(-і)")]
-        [Description("Стаття(-і), згідно з  яким було засуджено")]
+        [Description("Стаття(-і), згідно з якою(-ими) було притягнуто до відповідальності")]
         [Required]
         [Multiline]
         public string Articles { get { return _Articles; } set { _Articles = value; OnPropertyChanged("Articles"); } }
@@ -60,8 +60,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// обов'язкове
         /// </summary>
-        [DisplayName("Тип вироку")]
-        [Description("Якщо рішення суду було прийнято у формі вироку")]
+        [DisplayName("Тип рішення")]
+        [Description("Тип рішення про притягнення до відповідальності")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required("IsCourtDecisionSentence == true")]
         [UIConditionalVisibility("CourtDecision.IsCourtDecisionSentence")]
@@ -97,7 +97,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// обов'язкове
         /// </summary>
-        [DisplayName("Судимість погашена?")]
+        [DisplayName("Правопорушення погашене?")]
+        [Description("Чи закінчився строк після якого особа вважається такою, що не притягувалася до відповідальності?")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.BooleanEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
         public bool IsConvictionSettled { get { return _IsConvictionSettled; } set { _IsConvictionSettled = value; OnPropertyChanged("IsConvictionSettled"); } }
@@ -106,7 +107,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// якщо IsConvictionSettled == true, то обов'язкове
         /// </summary>
-        [DisplayName("Дата погашення судимості")]
+        [DisplayName("Дата погашення правопорушення")]
+        [DisplayName("Дата закінчення строку після якого особа вважається такою, що не притягувалася до відповідальності")]
         [UIConditionalVisibility("IsConvictionSettled")]
         public DateTime? SettledDate { get { return _SettledDate; } set { _SettledDate = value; OnPropertyChanged("SettledDate"); } }
 
