@@ -73,4 +73,21 @@ namespace BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo
         [Description("Рішення, на підставі якого вносяться зміни")]
         Attachement_Resolution,
     }
+
+    public enum FinActivitySvcInstrumentType
+    {
+        None = 0,
+        DebitCard,
+        CreditCard,
+        TravellerChecks,
+        //todo
+    }
+
+    public enum FinActivitySvcInstrumentActionType
+    {
+        None = 0,
+        Issuance,
+        Servicing,
+        //todo
+    }
 }
