@@ -13,7 +13,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public BankingLicensedActivityInfo LawActivityOrService { get; set; }
         public FinActivitySvcInstrumentType Instrument { get; set; }
         public FinActivitySvcInstrumentActionType Action { get; set; }
-        public string PartialActivityOrService { get; set; }
         public List<ResidenceType> ResidenceDimensions { get; set; }
         public List<CurrencyType> CCYDimensions { get; set; }
         public List<BankClientType> ClientTypeDimensions { get; set; }

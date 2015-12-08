@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Examples\AlfaBankSamples.cs" />
     <Compile Include="Examples\GrantBank.cs" />
     <Compile Include="Examples\PolikomBank.cs" />
     <Compile Include="Examples\TKKredyt.cs" />

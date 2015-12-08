@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anonymization\AnonymizationTests.cs" />
+    <Compile Include="BankInfoTests\TextualFinBkOpsSvcTests.cs" />
     <Compile Include="BasicUI\QuestionnaireDataAggregationTests.cs" />
     <Compile Include="DXUI\DXPropGridTests.cs" />
     <Compile Include="EKDRBU\BankInfoTests.cs" />

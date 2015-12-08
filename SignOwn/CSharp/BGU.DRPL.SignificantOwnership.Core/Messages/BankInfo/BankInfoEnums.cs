@@ -80,6 +80,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo
         DebitCard,
         CreditCard,
         TravellerChecks,
+        InterbankDeposit,
+        PreciousMetal,
+        PreciousMetalWithPhysDelivery
         //todo
     }
 

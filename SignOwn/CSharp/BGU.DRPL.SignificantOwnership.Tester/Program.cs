@@ -21,6 +21,8 @@ using System.Data;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 using BGU.DRPL.SignificantOwnership.Core.Messages;
+using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc;
+using System.Text.RegularExpressions;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -68,6 +70,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("bankshierarchy", BanksHierarchy);
             _cmdHandlers.Add("arkadaownershipchainparsertest", ArkadaOwnershipChainParserTest);
             _cmdHandlers.Add("arkadaownershipchainanalysis", ArkadaOwnershipChainAnalysis);
+            _cmdHandlers.Add("bankinfoparseresearch", BankInfoParseResearch);
             #endregion
 
             #endregion
@@ -76,7 +79,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         static void Main(string[] args)
         {
-            //Console.Read();
+            Console.Read();
 
             //CreateSampleAppx2OwnershipStructLP();
             //LocationInfoParser();
@@ -1200,6 +1203,29 @@ RegLicAppx9BankingLicenseAppl.xsd";
                 depts.Add(DeptListEntry.Parse(dr));
             }
             return depts;
+        }
+
+        private static void BankInfoParseResearch(string[] args)
+        {
+            string bankName = "АТ \"УКРСИББАНК\""; // "ПАТ \"КРЕДІ АГРІКОЛЬ БАНК\"" // "ПАТ \"ДІАМАНТБАНК\""  // "ПАТ КБ \"ПРИВАТБАНК\"" //"ПАТ \"АЛЬФА-БАНК\""
+            Console.WriteLine(bankName);
+            Regex NR_LTR_BLT_SPLITTER_RGX = new Regex("([0-9]+[\\.]){1,}|([0-9]+[\\)]){1}|([ ]+[a-z]{1}[\\)]{1}){1}|([ ]+[а-я]{1}[\\)]{1}){1}", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            TextualFinBankOpsSvcSourceDataWrapper src = Tools.ReadXML<TextualFinBankOpsSvcSourceDataWrapper>(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\BGU-DRPL_-_Row9Appx15_Distinctive_list_ALL.xml");
+            var recs = from sd in src.SourceData
+                        where sd.BankName == bankName
+                        select sd;
+            Console.WriteLine("Found {0} records", recs.Count());
+            foreach (TextualFinBankOpsSvcSourceData sd in recs)
+            {
+                MatchCollection ms = NR_LTR_BLT_SPLITTER_RGX.Matches(sd.OpsSvcsRawText);
+                Console.WriteLine("ms.Count = {0}", ms.Count);
+                //List<string> curr = new List<string>();
+                for (int i = 0; i < ms.Count; i++)
+                {
+                    Console.Write("[{0}]: '{1}'", i, ms[i].ToString());
+                }
+                Console.WriteLine();
+            }
         }
         #endregion
 
