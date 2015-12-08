@@ -108,7 +108,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// якщо IsConvictionSettled == true, то обов'язкове
         /// </summary>
         [DisplayName("Дата погашення правопорушення")]
-        [DisplayName("Дата закінчення строку після якого особа вважається такою, що не притягувалася до відповідальності")]
+        [Description("Дата закінчення строку після якого особа вважається такою, що не притягувалася до відповідальності")]
         [UIConditionalVisibility("IsConvictionSettled")]
         public DateTime? SettledDate { get { return _SettledDate; } set { _SettledDate = value; OnPropertyChanged("SettledDate"); } }
 
