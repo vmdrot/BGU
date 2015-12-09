@@ -77,20 +77,44 @@ namespace BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo
     public enum FinActivitySvcInstrumentType
     {
         None = 0,
+        //Поточні рахунки клієнтів
+        CurrentAccount,
+        //Дебітові картки
         DebitCard,
+        //Кредитні картки
         CreditCard,
+        //Дорожні чеки
         TravellerChecks,
+        //Міжбанківські депозити
         InterbankDeposit,
+        //Банківські метали
         PreciousMetal,
-        PreciousMetalWithPhysDelivery
+        //Банківські метали з фізичною доставкою
+        PreciousMetalWithPhysDelivery,
+        //Міжбанківські кредити
+        InterbankLoans,
+        //Банківські сейфи
+        BankSafe,
         //todo
     }
 
     public enum FinActivitySvcInstrumentActionType
     {
         None = 0,
+        //Випуск, емісія
         Issuance,
+        //Обслуговування
         Servicing,
+        //Зарахування, внесення
+        Installment,
+        //Зняття
+        Withdrawal,
+        //Відкриття
+        Opening,
+        //Надання в оренду
+        Rental,
+        //Зняття готівки за допомогою POS-терміналу
+        CashAdvancePOS
         //todo
     }
 }

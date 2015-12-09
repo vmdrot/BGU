@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AllowedOpsSvcs>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositsTaking</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>CurrentAccount</Instrument>
+      <Action>Opening</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>CurrentAccount</Instrument>
+      <Action>Servicing</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositedFundsPlacement</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+  </AllowedOpsSvcs>
+  <ExceptOpsSvcs>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositedFundsPlacement</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>InterbankLoans</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+  </ExceptOpsSvcs>
+  <OptionalOpsSvcs />
+</BankBranchOpsFinSvcCompleteInfo>

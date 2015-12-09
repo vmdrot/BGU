@@ -970,8 +970,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         None = 0,
         [Description("Національна валюта")]
         NationalCurrency,
-        [Description("Іноземна валюта й банківські метали")]
-        ForeignCurrencyAndBankingMetals
+        [Description("Іноземна валюта")]
+        ForeignCurrency,
+        [Description("Банківські метали")]
+        BankingMetals
     }
 
     public enum BankClientType
@@ -986,6 +988,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         IndividualEntrepreneurs
     }
 
+    public enum OtherBankOpsSvcDimension
+    { 
+        None = 0,
+        //Клієнти свого банку
+        OwnClients,
+        //Клієнти інших банків
+        OtherBanksClients
+    }
     public enum BankOperationLimitType
     {
         [Description("Не вказано")]

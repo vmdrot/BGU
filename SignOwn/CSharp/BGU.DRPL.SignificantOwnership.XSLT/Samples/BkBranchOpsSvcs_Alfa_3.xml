@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AllowedOpsSvcs>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositsTaking</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>CurrentAccount</Instrument>
+      <Action>Opening</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>CurrentAccount</Instrument>
+      <Action>Servicing</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>FundsTransfer</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>PayDocsIssuance</ServiceType>
+      </LawActivityOrService>
+      <Instrument>DebitCard</Instrument>
+      <Action>Servicing</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>PayDocsIssuance</ServiceType>
+      </LawActivityOrService>
+      <Instrument>CreditCard</Instrument>
+      <Action>Servicing</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>ConsultancyOnBankFinServices</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>SafeCustody</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>BankSafe</Instrument>
+      <Action>Rental</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+  </AllowedOpsSvcs>
+  <ExceptOpsSvcs />
+  <OptionalOpsSvcs />
+</BankBranchOpsFinSvcCompleteInfo>
