@@ -10,6 +10,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
 {
     public class BankBranchOperationInfo
     {
+        public BankBranchOperationInfo()
+        {
+            ResidenceDimensions = new List<ResidenceType>();
+            CCYDimensions = new List<CurrencyType>();
+            ClientTypeDimensions = new List<BankClientType>();
+            LimitsDimensions = new List<OperationsLimitInfo>();
+            OtherDimensions = new List<OtherBankOpsSvcDimension>();
+        }
         public BankingLicensedActivityInfo LawActivityOrService { get; set; }
         public FinActivitySvcInstrumentType Instrument { get; set; }
         public FinActivitySvcInstrumentActionType Action { get; set; }
@@ -17,5 +25,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public List<CurrencyType> CCYDimensions { get; set; }
         public List<BankClientType> ClientTypeDimensions { get; set; }
         public List<OperationsLimitInfo> LimitsDimensions { get; set; }
+        public List<OtherBankOpsSvcDimension> OtherDimensions { get; set; }
     }
 }

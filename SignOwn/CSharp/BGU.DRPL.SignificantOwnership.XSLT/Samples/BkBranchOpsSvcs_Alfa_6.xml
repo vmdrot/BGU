@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AllowedOpsSvcs>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositsTaking</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>Opening</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>AccountsMgmt</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>Servicing</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositedFundsPlacement</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>PayDocsIssuance</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>Trust</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>CurrencyExchange</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>FinancialLeasing</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>Guarantees</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>FundsTransfer</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>Factoring</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>Investments</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>ProprietarySecuritiesIssue</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>Lotteries</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>SafeCustody</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>CashCollectionTransportation</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>ConsultancyOnBankFinServices</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>Lotteries</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>ForeignCurrency</CurrencyType>
+        <CurrencyType>BankingMetals</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>OtherFinBankServices</ServiceType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>ForeignCurrency</CurrencyType>
+        <CurrencyType>BankingMetals</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+  </AllowedOpsSvcs>
+  <ExceptOpsSvcs>
+    <BankBranchOperationInfo>
+      <LawActivityOrService>
+        <BankActivityOrService>BankingActivity</BankActivityOrService>
+        <ActivityType>DepositedFundsPlacement</ActivityType>
+        <ServiceType>None</ServiceType>
+      </LawActivityOrService>
+      <Instrument>InterbankLoans</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+  </ExceptOpsSvcs>
+  <OptionalOpsSvcs />
+</BankBranchOpsFinSvcCompleteInfo>
