@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Anonymization\AnonymizationTests.cs" />
     <Compile Include="BankInfoTests\BankOpsSvcStructuringTests.cs" />
+    <Compile Include="BankInfoTests\GenLicenseWordParsingTools.cs" />
     <Compile Include="BankInfoTests\TextualFinBkOpsSvcTests.cs" />
     <Compile Include="BasicUI\QuestionnaireDataAggregationTests.cs" />
     <Compile Include="DXUI\DXPropGridTests.cs" />

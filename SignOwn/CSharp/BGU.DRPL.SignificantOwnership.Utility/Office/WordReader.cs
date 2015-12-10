@@ -48,13 +48,39 @@ namespace BGU.DRPL.SignificantOwnership.Utility.Office
                 Console.WriteLine(tbl.Range.Text.ToString());
                 Console.WriteLine("--------------------------------------");
                 Microsoft.Office.Interop.Word.Cells cells = tbl.Range.Cells;
-                
+
                 {
                     for (int c = 1; c <= cells.Count; c++)
                     {
-                        AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex-1, cells[c].Range.Text.ToString());
+                        AppendCellText(rslt, cells[c].RowIndex, cells[c].ColumnIndex - 1, cells[c].Range.Text.ToString());
                     }
                 }
+
+            }
+            return rslt;
+        }
+        
+        public Dictionary<int, Dictionary<int, List<string>>> ReadAllTablesEx(string docPath)
+        {
+            Dictionary<int, Dictionary<int, List<string>>> rslt = new Dictionary<int, Dictionary<int, List<string>>>();
+            _docPath = docPath;
+
+            for (int i = 0; i < Doc.Tables.Count; i++)
+            {
+                int tIdx = i + 1;
+                Microsoft.Office.Interop.Word.Table tbl = Doc.Tables[tIdx];
+                //Console.WriteLine(tbl.Range.Text.ToString());
+                //Console.WriteLine("--------------------------------------");
+                Dictionary<int, List<string>> currTbl = new Dictionary<int, List<string>>();
+                Microsoft.Office.Interop.Word.Cells cells = tbl.Range.Cells;
+
+                {
+                    for (int c = 1; c <= cells.Count; c++)
+                    {
+                        AppendCellText(currTbl, cells[c].RowIndex, cells[c].ColumnIndex - 1, cells[c].Range.Text.ToString());
+                    }
+                }
+                rslt.Add(tIdx, currTbl);
 
             }
             return rslt;

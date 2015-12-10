@@ -508,6 +508,20 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     }
     #endregion
 
+
+    #region Type of FX licensed activities
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum GeneralFXLicenseActivityType
+    {
+        [Description("Не вказано")]
+        None = 0,
+
+    }
+    #endregion
+
     /// <summary>
     /// Близький до вичерпного перелік ролей пов'язаних осіб-родичів
     /// Додаткові посилання:

@@ -290,14 +290,16 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Examples
 
             #region #6 FX 1)
             //1). неторговельні операції з валютними цінностями;
-            bbpfs06.AllowedOpsSvcs.Add(new BankBranchOperationInfo() { LawActivityOrService = BankingLicensedActivityInfo.Lotteries, CCYDimensions = foreignCCYplusMetalsOnly});
+            bbpfs06.AllowedOpsSvcs.Add(new BankBranchOperationInfo() { LawActivityOrService = BankingLicensedActivityInfo.Lotteries, CCYDimensions = foreignCCYplusMetalsOnly}); //todo - ???!
             #endregion
             #region #6 FX 2)
             //2). операції з готівковою іноземною валютою та чеками (купівля, продаж, обмін, прийняття на інкасо), що здійснюються в касах відділення; 
             bbpfs06.AllowedOpsSvcs.Add(new BankBranchOperationInfo() { LawActivityOrService = BankingLicensedActivityInfo.OtherFinBankServices, CCYDimensions = foreignCCYplusMetalsOnly }); //todo ???!
             #endregion
+
             #region #6 FX 3)
             //3). ведення рахунків клієнтів (резидентів і нерезидентів) в іноземній валюті та клієнтів-нерезидентів у грошовій одиниці України;
+
             #endregion
             #region #6 FX 4)
             //4). залучення та розміщення іноземної валюти на валютному ринку України;

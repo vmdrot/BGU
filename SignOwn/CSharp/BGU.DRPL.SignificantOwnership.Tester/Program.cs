@@ -23,6 +23,7 @@ using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 using BGU.DRPL.SignificantOwnership.Core.Messages;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc;
 using System.Text.RegularExpressions;
+using BGU.DRPL.SignificantOwnership.Utility.Office;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -71,6 +72,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("arkadaownershipchainparsertest", ArkadaOwnershipChainParserTest);
             _cmdHandlers.Add("arkadaownershipchainanalysis", ArkadaOwnershipChainAnalysis);
             _cmdHandlers.Add("bankinfoparseresearch", BankInfoParseResearch);
+            _cmdHandlers.Add("parsegfxlicdoc", ParseGFXLicDoc);
             #endregion
 
             #endregion
@@ -1378,6 +1380,32 @@ RegLicAppx9BankingLicenseAppl.xsd";
                     Console.WriteLine("-------------------------------------------------------");
                 }
             }
+        }
+        #endregion
+
+        #region Gen FX Licenses Ops parsing
+        private static void ParseGFXLicDoc(string[] args)
+        {
+            Dictionary<int, List<string>> rawDict = null;
+            List<List<string>> interestingRows = new List<List<string>>();
+            List<List<string>> nonInterestingRows = new List<List<string>>();
+
+            using (WordReader wr = new WordReader())
+            {
+                //rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc");
+                rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank.doc");
+
+            }
+            //WordPdfParsingUtils.FilterOutInterestingRowsOnly(rawDict, interestingRows, nonInterestingRows); //todo
+
+
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            Console.WriteLine("rawDict:");
+            string jsonStr = JsonConvert.SerializeObject(rawDict, settings);
+            Console.WriteLine(jsonStr);
+            Console.WriteLine("----------------------------------------------------------------");
         }
         #endregion
 
