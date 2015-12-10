@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using BGU.DRPL.SignificantOwnership.Utility.Office;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 using System.IO;
+using BGU.DRPL.SignificantOwnership.Tests.BankInfoTests;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -217,5 +218,38 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             string jsonStr2 = JsonConvert.SerializeObject(nonInterestingRows, settings);
             Console.WriteLine(jsonStr2);
         }
+
+        [Test]
+        public void ReadGFXNFULicensesDocTest()
+        {
+            Dictionary<int, Dictionary<int, List<string>>> rawDict = null;
+            List<List<string>> interestingRows = new List<List<string>>();
+            List<List<string>> nonInterestingRows = new List<List<string>>();
+
+            using (WordReader wr = new WordReader())
+            {
+                //rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc");
+                rawDict = wr.ReadAllTablesEx(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank.doc");
+
+            }
+            (new GenLicenseWordParsingTools()).FilterOutInterestingRowsOnly(rawDict, interestingRows, nonInterestingRows); //todo
+
+            
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Formatting.Indented;
+            Console.WriteLine("rawDict:");
+            string jsonStr = JsonConvert.SerializeObject(rawDict, settings);
+            Console.WriteLine(jsonStr);
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("Rows of interest:");
+            string jsonStr1 = JsonConvert.SerializeObject(interestingRows, settings);
+            Console.WriteLine(jsonStr1);
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("Wed-out rows:");
+            string jsonStr2 = JsonConvert.SerializeObject(nonInterestingRows, settings);
+            Console.WriteLine(jsonStr2);
+        }
+
     }
 }
