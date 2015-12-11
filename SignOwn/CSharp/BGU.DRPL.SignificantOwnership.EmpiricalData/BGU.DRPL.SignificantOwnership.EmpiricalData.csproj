@@ -54,6 +54,7 @@
     <Compile Include="Scraping\Data\BankOwnStructVersionInfo.cs" />
     <Compile Include="Scraping\Data\BGUBankOwnStructInfo.cs" />
     <Compile Include="Scraping\Data\Enums.cs" />
+    <Compile Include="Scraping\Data\GenLicNonBankInfo.cs" />
     <Compile Include="Scraping\Data\Post328Dod2V1FormulaRow.cs" />
     <Compile Include="Scraping\Data\Post328Dod2V1Row.cs" />
     <Compile Include="Scraping\Data\Post328Dod3V1Row.cs" />

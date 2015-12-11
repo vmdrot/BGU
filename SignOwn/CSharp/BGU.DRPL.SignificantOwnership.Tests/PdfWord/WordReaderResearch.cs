@@ -8,6 +8,8 @@ using BGU.DRPL.SignificantOwnership.Utility.Office;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping;
 using System.IO;
 using BGU.DRPL.SignificantOwnership.Tests.BankInfoTests;
+using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
+using BGU.DRPL.SignificantOwnership.Utility;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -251,5 +253,18 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             Console.WriteLine(jsonStr2);
         }
 
+        [Test]
+        public void ParseGenLicNonBanksTest()
+        { 
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank_parsed_02_interest.txt"));
+            List<GenLicNonBankInfo> lics = GenLicNonBankInfo.Parse(interestingRows);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Formatting.Indented;
+            Console.WriteLine("lics:");
+            string jsonStr = JsonConvert.SerializeObject(lics, settings);
+            Console.WriteLine(jsonStr);
+            Tools.WriteXML<List<GenLicNonBankInfo>>(lics, @"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\GenLicNebank_final.xml");
+        }
     }
 }
