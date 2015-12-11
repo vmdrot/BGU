@@ -319,6 +319,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Other
     }
 
+    /// <summary>
+    /// Види ліцензій
+    /// </summary>
     public enum LicensedOperationType
     {
         [Description("Не вказано")]
@@ -327,6 +330,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         BankingActivity,
         [Description("Фінансова послуга")]
         FinancialService,
+        [Description("Діяльність за генліцензією (банк)")]
+        FXGLBkActivity,
+        [Description("Діяльність за генліцензією (не-банк)")]
+        FXGLNBkActivity
     }
 
     #region Financial services types
@@ -512,13 +519,86 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     #region Type of FX licensed activities
 
     /// <summary>
-    /// 
+    /// Види ліцензованої діяльності за генеральною банківською валютною ліцензією
     /// </summary>
     public enum GeneralFXLicenseActivityType
     {
         [Description("Не вказано")]
         None = 0,
+        [Description("неторговельні операції з валютними цінностями")]
+        GFX_NonTrade,
+        [Description("операції з готівковою іноземною валютою та чеками (купівля, продаж, обмін, прийняття на інкасо), що здійснюються в касах і пунктах обміну іноземної валюти банків")]
+        GFX_CashBankOps,
+        [Description("операції з готівковою іноземною валютою (купівля, продаж, обмін), що здійснюються в пунктах обміну іноземної валюти, які працюють на підставі укладених банками агентських договорів з юридичними особами-резидентами")]
+        GFX_CashAgentOps,
+        [Description("ведення рахунків клієнтів (резидентів і нерезидентів) в іноземній валюті та клієнтів-нерезидентів у грошовій одиниці України")]
+        GFX_AcctMgmt,
+        [Description("ведення кореспондентських рахунків банків (резидентів і нерезидентів) в іноземній валюті")]
+        GFX_CorrBkAcctMgmtFCCY,
+        [Description("ведення кореспондентських рахунків банків (нерезидентів) у грошовій одиниці України")]
+        GFX_CorrBkAcctMgmtLCCY,
+        [Description("відкриття кореспондентських рахунків в уповноважених банках України в іноземній валюті та здійснення операцій за ними")]
+        GFX_CorrAcctHaveInUABksFCCY,
+        [Description("відкриття кореспондентських рахунків у банках (нерезидентах) в іноземній валюті та здійснення операцій за ними")]
+        GFX_CorrAcctHaveInNonUABksFCCY,
+        [Description("залучення та розміщення іноземної валюти на валютному ринку України")]
+        GFX_FCCYBorrNPlaceLocalMarket,
+        [Description("залучення та розміщення іноземної валюти на міжнародних ринках")]
+        GFX_FCCYBorrNPlaceWorldMarket,
+        [Description("торгівля іноземною валютою на валютному ринку України [за винятком операцій з готівковою іноземною валютою та чеками (купівля, продаж, обмін), що здійснюється в касах і пунктах обміну іноземної валюти банків і агентів]")]
+        GFX_FCCYTradingNonCashLocalMarket,
+        [Description("торгівля іноземною валютою на міжнародних ринках")]
+        GFX_FCCYTradingNonCashWorldMarket,
+        [Description("залучення та розміщення банківських металів на валютному ринку України")]
+        GFX_BkMetalBorrNPlaceLocalMarket,
+        [Description("залучення та розміщення банківських металів на міжнародних ринках")]
+        GFX_BkMetalBorrNPlaceWorldMarket,
+        [Description("торгівля банківськими металами на валютному ринку України")]
+        GFX_BkMetalTradingLocalMarket,
+        [Description("торгівля банківськими металами на міжнародних ринках")]
+        GFX_BkMetalTradingWorldMarket,
+        [Description("валютні операції на валютному ринку України, які належать до фінансових послуг згідно зі статтею 4 ЗУпФПтДРРФП та не зазначені в абзацах 2-17 розділу 2 Положення про порядок надання банкам і філіям іноземних банків генеральних ліцензій на здійснення валютних операцій, затвердженого постановою Правління Національного банку України від 15.08.2011 № 281")]
+        GFX_FinSvcLocalMarket,
+        [Description("валютні операції на міжнародних ринках, які належать до фінансових послуг згідно зі статтею 4 ЗУпФПтДРРФП та не зазначені в абзацах 2-17 розділу 2 Положення про  порядок надання банкам і філіям іноземних банків генеральних ліцензій на здійснення валютних операцій, затвердженого постановою Правління Національного банку України від 15.08.2011 № 281")]
+        GFX_FinSvcWorldMarket,
+    }
+    #endregion
 
+    #region Stock market licensed activities:
+    /// <summary>
+    /// Види професійної діяльності на фондовому ринку
+    /// </summary>
+    public enum ProfessionalStockMarketActivityType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("діяльність з торгівлі цінними паперами (пп.1 ч.2 ст.16 ЗпЦПіФР)")]
+        SMSecuritiesTrading,
+        [Description("діяльність з управління активами інституційних інвесторів (пп.2 ч.2 ст.16 ЗпЦПіФР)")]
+        SMInstInvAssetsMgmt,
+        [Description("депозитарна діяльність (пп.3 ч.2 ст.16 ЗпЦПіФР)")]
+        SMDepositoryActivities,
+        [Description("діяльність з організації торгівлі на фондовому ринку (пп.4 ч.2 ст.16 ЗпЦПіФР)")]
+        SMTradeOrganization,
+        [Description("клірингова діяльність (пп.5 ч.2 ст.16 ЗпЦПіФР)")]
+        SMClearing,
+    }
+
+    /// <summary>
+    /// Під-види професійної діяльності на ринку цінних паперів та фондовому ринку
+    /// </summary>
+    public enum ProfessionalStockMarketActivitySubType
+    {
+        [Description("Не вказано")]
+        None = 0,
+        [Description("брокерська діяльність (пп.1 ч.2, п.1, ст.17 ЗпЦПіФР)")]
+        SMTBrokerage,
+        [Description("дилерська діяльність (пп.2 ч.2, п.1, ст.17 ЗпЦПіФР)")]
+        SMTDealership,
+        [Description("андеррайтинг (пп.3 ч.2, п.1, ст.17 ЗпЦПіФР)")]
+        SMTUnderwriting,
+        [Description("діяльність з управління цінними паперами (пп.4 ч.2, п.1, ст.17 ЗпЦПіФР)")]
+        SMTSecuritiesMgmt,
     }
     #endregion
 
