@@ -73,6 +73,8 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("arkadaownershipchainanalysis", ArkadaOwnershipChainAnalysis);
             _cmdHandlers.Add("bankinfoparseresearch", BankInfoParseResearch);
             _cmdHandlers.Add("parsegfxlicdoc", ParseGFXLicDoc);
+            _cmdHandlers.Add("parsegenlicnonbankstest", ParseGenLicNonBanksTest);
+            
             #endregion
 
             #endregion
@@ -1386,17 +1388,17 @@ RegLicAppx9BankingLicenseAppl.xsd";
         #region Gen FX Licenses Ops parsing
         private static void ParseGFXLicDoc(string[] args)
         {
-            Dictionary<int, List<string>> rawDict = null;
+            Dictionary<int, Dictionary<int, List<string>>> rawDict = null;
             List<List<string>> interestingRows = new List<List<string>>();
             List<List<string>> nonInterestingRows = new List<List<string>>();
 
             using (WordReader wr = new WordReader())
             {
                 //rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc");
-                rawDict = wr.ReadAllTables(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank.doc");
+                rawDict = wr.ReadAllTablesEx(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank.doc");
 
             }
-            //WordPdfParsingUtils.FilterOutInterestingRowsOnly(rawDict, interestingRows, nonInterestingRows); //todo
+            //(new GenLicenseWordParsingTools()).FilterOutInterestingRowsOnly(rawDict, interestingRows, nonInterestingRows); //todo
 
 
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -1406,7 +1408,59 @@ RegLicAppx9BankingLicenseAppl.xsd";
             string jsonStr = JsonConvert.SerializeObject(rawDict, settings);
             Console.WriteLine(jsonStr);
             Console.WriteLine("----------------------------------------------------------------");
+            //Console.WriteLine("Rows of interest:");
+            //string jsonStr1 = JsonConvert.SerializeObject(interestingRows, settings);
+            //Console.WriteLine(jsonStr1);
+            //Console.WriteLine("----------------------------------------------------------------");
+            //Console.WriteLine("Wed-out rows:");
+            //string jsonStr2 = JsonConvert.SerializeObject(nonInterestingRows, settings);
+            //Console.WriteLine(jsonStr2);
         }
+
+        private static void ParseGenLicNonBanksTest(string[] args)
+        {
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\OpsFinSvcs\genlicnebank_parsed_02_interest.txt"));
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+            //#region analyze inputs
+
+            //List<List<string>> countsDistinct = interestingRows.GroupBy(p => p.Count).Select(g => g.First()).ToList();
+            //foreach (List<string> lst in countsDistinct)
+            //{
+
+            //    var currLsts = from ir in interestingRows
+            //                   where ir.Count == lst.Count
+            //                   select ir;
+            //    Console.WriteLine("Length: {0}, Count: {1}", lst.Count, currLsts.Count());
+
+            //}
+            //Console.WriteLine("-------------------------------------------------------------------------------");
+
+            //foreach(List<string> lst in countsDistinct)
+            //{
+            //    var currLsts = from ir in interestingRows
+            //                   where ir.Count == lst.Count
+            //                   select ir;
+
+            //    Console.WriteLine("Length: {0}, Count: {1}", lst.Count, currLsts.Count());
+            //    string currLstsJson = JsonConvert.SerializeObject(currLsts, settings);
+            //    Console.WriteLine(currLstsJson);
+            //    Console.WriteLine("-------------------------------------------------------------------------------");
+
+            //}
+            //#endregion
+            //return; //todo - remove
+            #region parse
+            List<GenLicNonBankInfo> lics = GenLicNonBankInfo.Parse(interestingRows);
+            Console.WriteLine("lics:");
+            string jsonStr = JsonConvert.SerializeObject(lics, settings);
+            Console.WriteLine(jsonStr);
+            #endregion
+
+        }
+
         #endregion
 
     }
