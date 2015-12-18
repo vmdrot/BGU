@@ -60,6 +60,7 @@
     <Compile Include="EKDRBU\Legacy\RcuKruEntry.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOpsFinSvcCompleteInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
+    <Compile Include="EKDRBU\Spares\EKDRBUVariableEntryPartV1.cs" />
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\BranchFinOpSvcTextualInfo.cs" />
     <Compile Include="EKDRBU\Spares\FinActivitySvcInstrumentInfo.cs" />
     <Compile Include="EKDRBU\Spares\OperationsLimitInfo.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\TextualFinBankOpsSvcSourceData.cs" />
     <Compile Include="EKDRBU\Spares\TimeSpanInfo.cs" />
     <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />
+    <Compile Include="EKDRBU\StateBankBranchRegistryEntryV1.cs" />
     <Compile Include="EKDRBU\StateBankRegistryEntry.cs" />
     <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />
     <Compile Include="Checks\IQuestionnaireChecker.cs" />
