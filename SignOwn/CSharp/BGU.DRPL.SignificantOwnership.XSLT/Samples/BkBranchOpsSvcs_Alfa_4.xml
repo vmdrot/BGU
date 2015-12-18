@@ -6,6 +6,8 @@
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -20,6 +22,8 @@
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Opening</Action>
@@ -34,6 +38,8 @@
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Servicing</Action>
@@ -48,6 +54,8 @@
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>FundsTransfer</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -62,6 +70,8 @@
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>PayDocsIssuance</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>DebitCard</Instrument>
       <Action>Servicing</Action>
@@ -76,6 +86,8 @@
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>PayDocsIssuance</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CreditCard</Instrument>
       <Action>Servicing</Action>
@@ -90,6 +102,8 @@
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>ConsultancyOnBankFinServices</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -102,4 +116,5 @@
   </AllowedOpsSvcs>
   <ExceptOpsSvcs />
   <OptionalOpsSvcs />
+  <Textuals />
 </BankBranchOpsFinSvcCompleteInfo>

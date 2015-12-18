@@ -37,6 +37,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="ForBankInfo\BGU.BankOpsSvcsRenderingTemplate.xslt" />
     <Content Include="ForXSDs\BGU.XSDRenderingTemplate.xslt">
       <SubType>Designer</SubType>
     </Content>
@@ -49,12 +50,25 @@
     <Content Include="ForXSDs\XSDUkrComplexType.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="GenericXSLTemplate.xslt" />
     <Content Include="Samples\Appx2OwnershipStructLP.sample.xml" />
     <Content Include="Samples\Appx2OwnershipStructLP.XSLTEnabled.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Samples\Appx2OwnershipStructLP.XSLTEnabled.noCouncils.xml" />
     <Content Include="Samples\Appx2OwnershipStructLP.XSLTEnabled.noPhysCommonOwnership.xml" />
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_1.xml" />
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_2.xml" />
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_3.xml" />
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_4.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_5.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Samples\BkBranchOpsSvcs_Alfa_6.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Samples\Questionnaire_Files\Questionnaire_print.css" />
     <Content Include="Samples\UpgradeLog.XML" />
     <Content Include="Samples\_UpgradeReport_Files\UpgradeReport.css" />

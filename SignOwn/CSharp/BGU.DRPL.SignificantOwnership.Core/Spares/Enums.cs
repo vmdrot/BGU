@@ -333,7 +333,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Діяльність за генліцензією (банк)")]
         FXGLBkActivity,
         [Description("Діяльність за генліцензією (не-банк)")]
-        FXGLNBkActivity
+        SMActivityType
     }
 
     #region Financial services types

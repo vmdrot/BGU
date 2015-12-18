@@ -2,10 +2,13 @@
 <BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AllowedOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -16,10 +19,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -32,10 +38,13 @@
   </AllowedOpsSvcs>
   <ExceptOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>InterbankDeposit</Instrument>
       <Action>None</Action>
@@ -46,10 +55,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>PreciousMetalWithPhysDelivery</Instrument>
       <Action>None</Action>
@@ -60,10 +72,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>PreciousMetalWithPhysDelivery</Instrument>
       <Action>Installment</Action>
@@ -74,10 +89,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>InterbankDeposit</Instrument>
       <Action>None</Action>
@@ -88,10 +106,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>PreciousMetalWithPhysDelivery</Instrument>
       <Action>None</Action>
@@ -103,4 +124,14 @@
     </BankBranchOperationInfo>
   </ExceptOpsSvcs>
   <OptionalOpsSvcs />
+  <Textuals>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
+      <Text>Залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб, окрім міжбанківських депозитів, окрім банківських металів з фізичною поставкою</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>2.</NrLtrBullet>
+      <Text>Відкриття та ведення поточних (кореспондентських) рахунків клієнтів, у тому числі у банківських металах, в частині відкриття та ведення поточних рахунків клієнтів, у тому числі у банківських металах, окрім зарахування на ці рахунки банківських металів, унесених клієнтами з фізичною поставкою.</Text>
+    </FinBankOpSvcTextualInfo>
+  </Textuals>
 </BankBranchOpsFinSvcCompleteInfo>

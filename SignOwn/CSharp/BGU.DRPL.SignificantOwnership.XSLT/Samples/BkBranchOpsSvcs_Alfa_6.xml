@@ -2,10 +2,13 @@
 <BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AllowedOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -18,10 +21,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>Opening</Action>
@@ -34,10 +40,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>Servicing</Action>
@@ -50,10 +59,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>3)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositedFundsPlacement</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -66,10 +78,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а1)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>PayDocsIssuance</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -82,10 +97,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>Trust</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -98,10 +116,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а3)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>CurrencyExchange</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -112,10 +133,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а4)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>FinancialLeasing</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -128,10 +152,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а5)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>Guarantees</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -144,10 +171,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а6)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>FundsTransfer</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -160,10 +190,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>а7)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>Factoring</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -176,10 +209,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б1)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>Investments</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -192,10 +228,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>ProprietarySecuritiesIssue</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -208,10 +247,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б3)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>Lotteries</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -224,10 +266,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б4)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>SafeCustody</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -238,10 +283,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б5)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>CashCollectionTransportation</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -252,10 +300,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>б6)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>ConsultancyOnBankFinServices</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -266,10 +317,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>в1)</NrLtrBullet>
       <LawActivityOrService>
-        <BankActivityOrService>BankingActivity</BankActivityOrService>
-        <ActivityType>Lotteries</ActivityType>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_NonTrade</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -283,10 +337,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>в2)</NrLtrBullet>
       <LawActivityOrService>
-        <BankActivityOrService>FinancialService</BankActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
         <ActivityType>None</ActivityType>
-        <ServiceType>OtherFinBankServices</ServiceType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_CashBankOps</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -295,6 +352,118 @@
         <CurrencyType>ForeignCurrency</CurrencyType>
         <CurrencyType>BankingMetals</CurrencyType>
       </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в3)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_AcctMgmt</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions>
+        <ResidenceType>Resident</ResidenceType>
+        <ResidenceType>NonResident</ResidenceType>
+      </ResidenceDimensions>
+      <CCYDimensions>
+        <CurrencyType>ForeignCurrency</CurrencyType>
+        <CurrencyType>BankingMetals</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в3)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_AcctMgmt</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions>
+        <ResidenceType>NonResident</ResidenceType>
+      </ResidenceDimensions>
+      <CCYDimensions>
+        <CurrencyType>NationalCurrency</CurrencyType>
+      </CCYDimensions>
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в4)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_FCCYBorrNPlaceLocalMarket</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в5)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_FCCYTradingNonCashLocalMarket</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в6)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_BkMetalBorrNPlaceLocalMarket</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
+      <ClientTypeDimensions />
+      <LimitsDimensions />
+      <OtherDimensions />
+    </BankBranchOperationInfo>
+    <BankBranchOperationInfo>
+      <NrLtrBullet>в7)</NrLtrBullet>
+      <LawActivityOrService>
+        <BankActivityOrService>FXGLBkActivity</BankActivityOrService>
+        <ActivityType>None</ActivityType>
+        <ServiceType>None</ServiceType>
+        <GFXActivityType>GFX_FinSvcLocalMarket</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
+      </LawActivityOrService>
+      <Instrument>None</Instrument>
+      <Action>None</Action>
+      <ResidenceDimensions />
+      <CCYDimensions />
       <ClientTypeDimensions />
       <LimitsDimensions />
       <OtherDimensions />
@@ -302,10 +471,13 @@
   </AllowedOpsSvcs>
   <ExceptOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>3)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositedFundsPlacement</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>InterbankLoans</Instrument>
       <Action>None</Action>
@@ -319,4 +491,98 @@
     </BankBranchOperationInfo>
   </ExceptOpsSvcs>
   <OptionalOpsSvcs />
+  <Textuals>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>1).</NrLtrBullet>
+      <Text>залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>2).</NrLtrBullet>
+      <Text>відкриття та ведення поточних рахунків клієнтів, у тому числі у банківських металах</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>3).</NrLtrBullet>
+      <Text>розміщення залучених у вклади (депозити) у тому числі на поточні рахунки, коштів та банківських металів від свого імені, на власних умовах та на власний ризик, у частині розміщення залучених коштів від імені Банку, на умовах, визначених Банком, та на ризик Банку (крім міжбанківських кредитів)</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а1).</NrLtrBullet>
+      <Text>випуск платіжних документів, платіжних карток, дорожніх чеків та/або їх обслуговування, кліринг, інші форми забезпечення розрахунків</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а2).</NrLtrBullet>
+      <Text>довірче управління фінансовими активами</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а3).</NrLtrBullet>
+      <Text>діяльність з обміну валют</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а4).</NrLtrBullet>
+      <Text>фінансовий лізинг</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а5).</NrLtrBullet>
+      <Text>надання гарантій та поручительств</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а6).</NrLtrBullet>
+      <Text>переказ коштів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>а7).</NrLtrBullet>
+      <Text>факторинг</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б1).</NrLtrBullet>
+      <Text>інвестицій</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б2).</NrLtrBullet>
+      <Text>випуску власних цінних паперів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б3).</NrLtrBullet>
+      <Text>випуску, розповсюдження та проведення лотерей</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б4).</NrLtrBullet>
+      <Text>зберігання цінностей або надання в майновий найм (оренду) індивідуального банківського сейфа</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б5).</NrLtrBullet>
+      <Text>інкасації коштів та перевезення валютних цінностей</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>б6).</NrLtrBullet>
+      <Text>надання консультаційних та інформаційних послуг щодо банківських та інших фінансових послуг</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>в1).</NrLtrBullet>
+      <Text>неторговельні операції з валютними цінностями</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>в2).</NrLtrBullet>
+      <Text>операції з готівковою іноземною валютою та чеками (купівля, продаж, обмін, прийняття на інкасо), що здійснюються в касах відділення</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>в3).</NrLtrBullet>
+      <Text>ведення рахунків клієнтів (резидентів і нерезидентів) в іноземній валюті та клієнтів-нерезидентів у грошовій одиниці України</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>в4).</NrLtrBullet>
+      <Text>залучення та розміщення іноземної валюти на валютному ринку України</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>5).</NrLtrBullet>
+      <Text>торгівля іноземною валютою на валютному ринку України [за винятком операцій з готівковою іноземною валютою та чеками (купівля, продаж, обмін), що здійснюється в касах відділення]</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>в6).</NrLtrBullet>
+      <Text>залучення та розміщення банківських металів на валютному ринку України</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>7).</NrLtrBullet>
+      <Text>валютні операції на валютному ринку України, які належать до фінансових послуг згідно зі статтею 4 Закону України «Про фінансові послуги та державне регулювання ринків фінансових послуг» та не зазначені в абзацах другому-сімнадцятому розділу другого Положення про порядок надання банкам і філіям іноземних банків генеральних ліцензій на здійснення валютних операцій, затвердженого постановою Правління Національного банку України від 15.08.2011 №281</Text>
+    </FinBankOpSvcTextualInfo>
+  </Textuals>
 </BankBranchOpsFinSvcCompleteInfo>

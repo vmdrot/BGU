@@ -18,6 +18,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
             LimitsDimensions = new List<OperationsLimitInfo>();
             OtherDimensions = new List<OtherBankOpsSvcDimension>();
         }
+
+        public string NrLtrBullet { get; set; }
         public BankingLicensedActivityInfo LawActivityOrService { get; set; }
         public FinActivitySvcInstrumentType Instrument { get; set; }
         public FinActivitySvcInstrumentActionType Action { get; set; }

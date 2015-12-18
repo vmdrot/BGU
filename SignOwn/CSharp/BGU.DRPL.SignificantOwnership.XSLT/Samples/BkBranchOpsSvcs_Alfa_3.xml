@@ -2,10 +2,13 @@
 <BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AllowedOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -16,10 +19,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Opening</Action>
@@ -30,10 +36,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Servicing</Action>
@@ -44,10 +53,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>3)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>FundsTransfer</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -58,10 +70,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>4)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>PayDocsIssuance</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>DebitCard</Instrument>
       <Action>Servicing</Action>
@@ -72,10 +87,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>4)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>FinancialService</BankActivityOrService>
         <ActivityType>None</ActivityType>
         <ServiceType>PayDocsIssuance</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CreditCard</Instrument>
       <Action>Servicing</Action>
@@ -86,10 +104,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>5)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>ConsultancyOnBankFinServices</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -100,10 +121,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>6)</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>SafeCustody</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>BankSafe</Instrument>
       <Action>Rental</Action>
@@ -116,4 +140,34 @@
   </AllowedOpsSvcs>
   <ExceptOpsSvcs />
   <OptionalOpsSvcs />
+  <Textuals>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
+      <Text>Залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб, окрім міжбанківських депозитів, окрім банківських металів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>1)</NrLtrBullet>
+      <Text>Залучення у вклади (депозити) коштів від необмеженого кола юридичних і фізичних осіб</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>2)</NrLtrBullet>
+      <Text>Відкриття та ведення поточних (кореспондентських) рахунків клієнтів, у частині відкриття та ведення поточних рахунків клієнтів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>3)</NrLtrBullet>
+      <Text>Переказ коштів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>4)</NrLtrBullet>
+      <Text>Обслуговування платіжних карток</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>5)</NrLtrBullet>
+      <Text>Надання консультаційних та інформаційних послуг щодо банківських послуг</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>6)</NrLtrBullet>
+      <Text>Надання в оренду сейфів для зберігання цінностей та документів</Text>
+    </FinBankOpSvcTextualInfo>
+  </Textuals>
 </BankBranchOpsFinSvcCompleteInfo>

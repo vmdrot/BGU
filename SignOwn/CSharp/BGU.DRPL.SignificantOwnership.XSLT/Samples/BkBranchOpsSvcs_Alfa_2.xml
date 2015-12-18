@@ -2,10 +2,13 @@
 <BankBranchOpsFinSvcCompleteInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AllowedOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositsTaking</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -16,10 +19,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Opening</Action>
@@ -30,10 +36,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>2.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>AccountsMgmt</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>CurrentAccount</Instrument>
       <Action>Servicing</Action>
@@ -44,10 +53,13 @@
       <OtherDimensions />
     </BankBranchOperationInfo>
     <BankBranchOperationInfo>
+      <NrLtrBullet>3.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositedFundsPlacement</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>None</Instrument>
       <Action>None</Action>
@@ -60,10 +72,13 @@
   </AllowedOpsSvcs>
   <ExceptOpsSvcs>
     <BankBranchOperationInfo>
+      <NrLtrBullet>3.</NrLtrBullet>
       <LawActivityOrService>
         <BankActivityOrService>BankingActivity</BankActivityOrService>
         <ActivityType>DepositedFundsPlacement</ActivityType>
         <ServiceType>None</ServiceType>
+        <GFXActivityType>None</GFXActivityType>
+        <SMActivityType>None</SMActivityType>
       </LawActivityOrService>
       <Instrument>InterbankLoans</Instrument>
       <Action>None</Action>
@@ -75,4 +90,18 @@
     </BankBranchOperationInfo>
   </ExceptOpsSvcs>
   <OptionalOpsSvcs />
+  <Textuals>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>1.</NrLtrBullet>
+      <Text>Залучення у вклади (депозити) коштів та банківських металів від необмеженого кола юридичних і фізичних осіб, окрім міжбанківських депозитів, окрім банківських металів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>2.</NrLtrBullet>
+      <Text>Відкриття та ведення поточних (кореспондентських) рахунків клієнтів, у тому числі у банківських металах, в частині відкриття та ведення поточних рахунків клієнтів</Text>
+    </FinBankOpSvcTextualInfo>
+    <FinBankOpSvcTextualInfo>
+      <NrLtrBullet>3.</NrLtrBullet>
+      <Text>Розміщення залучених у вклади (депозити), у тому числі на поточні рахунки, коштів та банківських металів від свого імені, на власних умовах та на власний ризик, в частині розміщення залучених у вклади (депозити), у тому числі на поточні рахунки, коштів від імені банку, на умовах, встановлених банком, та на ризик банку, окрім міжбанківських кредитів</Text>
+    </FinBankOpSvcTextualInfo>
+  </Textuals>
 </BankBranchOpsFinSvcCompleteInfo>
