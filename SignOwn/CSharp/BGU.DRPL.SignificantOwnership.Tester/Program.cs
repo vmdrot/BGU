@@ -1173,6 +1173,23 @@ RegLicAppx9BankingLicenseAppl.xsd";
         {
             string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankRegistryEntry), typeof(StateBankRegistryEntry).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankBranchRegistryEntryV1), typeof(StateBankBranchRegistryEntryV1).Assembly, targetFolder);
+
+            string[] allIncludeFiles = Directory.GetFiles(targetFolder, "*_includes.xaml");
+            List<string> includesDistinct = new List<string>();
+            foreach (string inclFile in allIncludeFiles)
+            {
+                string[] currLns = File.ReadAllLines(inclFile);
+                foreach (string ln in currLns)
+                {
+                    if (string.IsNullOrEmpty(ln) || ln.Trim().Length == 0)
+                        continue;
+                    if (includesDistinct.Contains(ln.Trim()))
+                        continue;
+                    includesDistinct.Add(ln.Trim());
+                }
+            }
+            File.WriteAllLines(Path.Combine(targetFolder, "ekdrbu_all_includes.xaml"), includesDistinct.ToArray());
         }
 
         #endregion

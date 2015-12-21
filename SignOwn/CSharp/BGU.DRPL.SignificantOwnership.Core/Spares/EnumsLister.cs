@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BGU.DRPL.SignificantOwnership.Utility;
 using BGU.DRPL.SignificantOwnership.Core.Spares2;
+using BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Spares
 {
@@ -99,6 +100,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> BankBranchManagerPositionTypeList { get { return EnumType.GetEnumList(typeof(BankBranchManagerPositionType)); } }
         public static List<EnumType> EducationKindGrosList { get { return EnumType.GetEnumList(typeof(EducationKindGros)); } }
         public static List<EnumType> BankAssociatedPersonsCode315pList { get { return EnumType.GetEnumList(typeof(BankAssociatedPersonsCode315p)); } }
+        public static List<EnumType> GeneralFXLicenseActivityTypeList { get { return EnumType.GetEnumList(typeof(GeneralFXLicenseActivityType)); } }
+        public static List<EnumType> ProfessionalStockMarketActivityTypeList { get { return EnumType.GetEnumList(typeof(ProfessionalStockMarketActivityType)); } }
+        public static List<EnumType> FinActivitySvcInstrumentActionTypeList { get { return EnumType.GetEnumList(typeof(FinActivitySvcInstrumentActionType)); } }
+        public static List<EnumType> FinActivitySvcInstrumentTypeList { get { return EnumType.GetEnumList(typeof(FinActivitySvcInstrumentType)); } }
+
         #endregion
     }
 }
