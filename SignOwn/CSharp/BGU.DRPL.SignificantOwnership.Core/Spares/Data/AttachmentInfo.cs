@@ -13,12 +13,23 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     [System.ComponentModel.Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.AttachmentInfo_Editor), typeof(System.Drawing.Design.UITypeEditor))]
     public class AttachmentInfo
     {
+        
+        /// <summary>
+        /// Обов'язкове поле
+        /// </summary>
+        [DisplayName("ID додатку")]
+        [Description("Ідентифікатор додатку (унікальний в межах пакету)")]
+        [Required]
+        public string AttachmentID { get; set; }
+        
         /// <summary>
         /// Обов'язкове поле
         /// </summary>
         [DisplayName("Файл")]
+        [Description("Назва файлу")]
         [Required]
         public string FileName { get; set; }
+        
         /// <summary>
         /// Обов'язкове поле, за змовчанням - Інше
         /// </summary>
@@ -26,8 +37,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Тип додатку із переліку типових долучень; якщо \"Інше\" - обов'язково вказати, що саме у полі \"Опис файлу\".")]
         [Required]
         public TypicalApplicationAttachement AttachmentType { get; set; }
-        //[DisplayName("Назва")]
-        //public string Title { get; set; }
+
         /// <summary>
         /// Необов'язкове поле, якщо в AttachmentType != Інше
         /// </summary>
@@ -35,6 +45,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Що у файлі?")]
         [Multiline]
         public string Description { get; set; }
+        
         /// <summary>
         /// Заповнювати самостійно з розширення FileName
         /// Давати можливість користувачу змінити

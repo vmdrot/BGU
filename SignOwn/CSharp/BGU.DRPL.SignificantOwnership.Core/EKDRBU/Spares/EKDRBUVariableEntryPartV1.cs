@@ -14,8 +14,29 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
     {
         public EKDRBUVariableEntryPartV1()
         {
-            InputDate = DateTime.Now;
         }
+
+        #region Вид
+        
+        private bool _IsBranchTypeChanged;
+        [Category("Вид")]
+        [DisplayName("Вид - змінився?")]
+        [Description("Чи змінився вид/тип відділення?")]
+        public bool IsBranchTypeChanged { get { return _IsBranchTypeChanged; } set { _IsBranchTypeChanged = value; OnPropertyChanged("IsBranchTypeChanged"); } }
+        
+        private BankBranchType _BranchTypeNew;
+        [Category("Вид")]
+        [DisplayName("Вид - новий")]
+        [Description("Нове значення поля Вид відокремленого підрозділу")]
+        public BankBranchType BranchTypeNew { get { return _BranchTypeNew; } set { _BranchTypeNew = value; OnPropertyChanged("BranchTypeNew"); } }
+        
+        private BankBranchType _BranchTypeOld;
+        [Category("Вид")]
+        [DisplayName("Вид - старий")]
+        [Description("Старе значення поля Вид відокремленого підрозділу")]
+        public BankBranchType BranchTypeOld { get { return _BranchTypeOld; } set { _BranchTypeOld = value; OnPropertyChanged("BranchTypeOld"); } }
+
+        #endregion
 
 
         #region Стан
@@ -43,8 +64,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         #endregion
 
         #region Ієрархія
+
         private bool _IsParentIDChanged;
-        [Category("Ієрархія")]
+        [Category("Ієрархія (підпорядкованість)")]
         [DisplayName("Батьківський підрозділ міняється?")]
         [Description("Чи міняється значення поля Батьківський підрозділ")]
         public bool IsParentIDChanged { get { return _IsParentIDChanged; } set { _IsParentIDChanged = value; OnPropertyChanged("IsParentIDChanged"); } }
@@ -55,18 +77,19 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// Наприклад: 00626804103608000000 для підрозділу 
         /// "Філія - Дніпропетровське обласне управління публічного акціонерного товариства "Державний ощадний банк України"")
         /// </summary>
-        [Category("Ієрархія")]
+        [Category("Ієрархія (підпорядкованість)")]
         [DisplayName("Батьківський підрозділ новий")]
         [Description("Батьківський підрозділ - нове значення")]
         [UIConditionalVisibility("IsParentIDChanged")]
         public string ParentIDNew { get { return _ParentIDNew; } set { _ParentIDNew = value; OnPropertyChanged("ParentIDNew"); } }
         
         private string _ParentIDOld;
-        [Category("Ієрархія")]
+        [Category("Ієрархія (підпорядкованість)")]
         [DisplayName("Батьківський підрозділ старий")]
         [Description("Батьківський підрозділ - попереднє значення")]
         [UIConditionalVisibility("IsParentIDChanged")]
         public string ParentIDOld { get { return _ParentIDOld; } set { _ParentIDOld = value; OnPropertyChanged("ParentIDOld"); } }
+
         #endregion
 
         #region Назви
@@ -174,6 +197,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "125", MaxWidth = "150")]
         [UIConditionalVisibility("IsNameStatsChanged")]
         public string NameStatsOld { get { return _NameStatsOld; } set { _NameStatsOld = value; OnPropertyChanged("NameStatsOld"); } }
+
         #endregion
 
         #region Номери й коди
@@ -291,34 +315,55 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         #endregion
 
         #region Розташування
+
         private bool _IsKOATUUChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("КОАТУУ змінився?")]
         [Description("Чи змінився код КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)?")]
         public bool IsKOATUUChanged { get { return _IsKOATUUChanged; } set { _IsKOATUUChanged = value; OnPropertyChanged("IsKOATUUChanged"); } }
 
         private string _KOATUUNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("КОАТУУ - новий")]
         [Description("Нове значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)")]
         [UIConditionalVisibility("IsKOATUUChanged")]
         public string KOATUUNew { get { return _KOATUUNew; } set { _KOATUUNew = value; OnPropertyChanged("KOATUUNew"); } }
 
         private string _KOATUUOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("КОАТУУ - старий")]
         [Description("Старе значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)")]
         [UIConditionalVisibility("IsKOATUUChanged")]
         public string KOATUUOld { get { return _KOATUUOld; } set { _KOATUUOld = value; OnPropertyChanged("KOATUUOld"); } }
 
+        private bool _IsGeoCoordinatesChanged;
+        [Category("Адреса/розташування")]
+        [DisplayName("Координати - змінилися?")]
+        [Description("Чи змінилося значення поля Координати (географічні)?")]
+        public bool IsGeoCoordinatesChanged { get { return _IsGeoCoordinatesChanged; } set { _IsGeoCoordinatesChanged = value; OnPropertyChanged("IsGeoCoordinatesChanged"); } }
+
+        private string _GeoCoordinatesNew;
+        [Category("Адреса/розташування")]
+        [DisplayName("Координати - нові")]
+        [Description("Нове значення поля Географічні координати")]
+        [UIConditionalVisibility("IsGeoCoordinatesChanged")]
+        public string GeoCoordinatesNew { get { return _GeoCoordinatesNew; } set { _GeoCoordinatesNew = value; OnPropertyChanged("GeoCoordinatesNew"); } }
+
+        private string _GeoCoordinatesOld;
+        [Category("Адреса/розташування")]
+        [DisplayName("Координати - старі")]
+        [Description("Старе значення поля Географічні координати")]
+        [UIConditionalVisibility("IsGeoCoordinatesChanged")]
+        public string GeoCoordinatesOld { get { return _GeoCoordinatesOld; } set { _GeoCoordinatesOld = value; OnPropertyChanged("GeoCoordinatesOld"); } }
+
         private bool _IsOblastChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Область змінилася?")]
         [Description("Чи змінилося значення області?")]
         public bool IsOblastChanged { get { return _IsOblastChanged; } set { _IsOblastChanged = value; OnPropertyChanged("IsOblastChanged"); } }
         
         private string _OblastNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Область (нова)")]
         [Description("Область - нове значення")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "400", MinWidth = "350")]
@@ -326,7 +371,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string OblastNew { get { return _OblastNew; } set { _OblastNew = value; OnPropertyChanged("OblastNew"); } }
         
         private string _OblastOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Область (стара)")]
         [Description("Область - старе значення")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "400", MinWidth = "350")]
@@ -334,20 +379,20 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string OblastOld { get { return _OblastOld; } set { _OblastOld = value; OnPropertyChanged("OblastOld"); } }
 
         private bool _IsRaionChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Змінився район?")]
         [Description("Чи змінилося значення району")]
         public bool IsRaionChanged { get { return _IsRaionChanged; } set { _IsRaionChanged = value; OnPropertyChanged("IsRaionChanged"); } }
         
         private string _RaionNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Район (новий)")]
         [Description("Нове значення поля район")]
         [UIConditionalVisibility("IsRaionChanged")]
         public string RaionNew { get { return _RaionNew; } set { _RaionNew = value; OnPropertyChanged("RaionNew"); } }
         
         private string _RaionOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Район (старий)")]
         [Description("Старе значення поля район")]
         [UIConditionalVisibility("IsRaionChanged")]
@@ -355,13 +400,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
 
 
         private bool _IsZipCodeChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Поштовий індекс змінився?")]
         [Description("Чи змінився поштовий індекс?")]
         public bool IsZipCodeChanged { get { return _IsZipCodeChanged; } set { _IsZipCodeChanged = value; OnPropertyChanged("IsZipCodeChanged"); } }
 
         private string _ZipCodeNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Поштовий індекс - новий")]
         [Description("Нове значення поштового індексу")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "150", MinWidth = "100")]
@@ -369,7 +414,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string ZipCodeNew { get { return _ZipCodeNew; } set { _ZipCodeNew = value; OnPropertyChanged("ZipCodeNew"); } }
 
         private string _ZipCodeOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Поштовий індекс")]
         [Description("Поштовий індекс")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "150", MinWidth = "100")]
@@ -377,13 +422,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string ZipCodeOld { get { return _ZipCodeOld; } set { _ZipCodeOld = value; OnPropertyChanged("ZipCodeOld"); } }
 
         private bool _IsCityChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Населений пункт змінився?")]
         [Description("Чи змінилося значення населеного пункту")]
         public bool IsCityChanged { get { return _IsCityChanged; } set { _IsCityChanged = value; OnPropertyChanged("IsCityChanged"); } }
         
         private string _CityNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Населений пункт - новий")]
         [Description("Нове значення населеного пункту")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
@@ -391,7 +436,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string CityNew { get { return _CityNew; } set { _CityNew = value; OnPropertyChanged("CityNew"); } }
         
         private string _CityOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Населений пункт - старий")]
         [Description("Старе значення населеного пункту")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
@@ -399,13 +444,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string CityOld { get { return _CityOld; } set { _CityOld = value; OnPropertyChanged("CityOld"); } }
 
         private bool _IsStreetChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Вулиця/площа/тощо - змінилася?")]
         [Description("Чи змінилося значення вулиці/площі/тощо?")]
         public bool IsStreetChanged { get { return _IsStreetChanged; } set { _IsStreetChanged = value; OnPropertyChanged("IsStreetChanged"); } }
 
         private string _StreetNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Вулиця/площа/тощо - нова")]
         [Description("Нове значення вулиці/площі/тощо")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
@@ -413,7 +458,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string StreetNew { get { return _StreetNew; } set { _StreetNew = value; OnPropertyChanged("StreetNew"); } }
         
         private string _StreetOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("Вулиця/площа/тощо - нова")]
         [Description("Нове значення вулиці/площі/тощо")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
@@ -421,13 +466,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string StreetOld { get { return _StreetOld; } set { _StreetOld = value; OnPropertyChanged("StreetOld"); } }
 
         private bool _IsHouseNrChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ / назва будинку - змінився?")]
         [Description("Чи змінився № / назва будинку?")]
         public bool IsHouseNrChanged { get { return _IsHouseNrChanged; } set { _IsHouseNrChanged = value; OnPropertyChanged("IsHouseNrChanged"); } }
 
         private string _HouseNrNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ / назва будинку - нова")]
         [Description("Нове значення № / назва будинку")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
@@ -435,7 +480,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string HouseNrNew { get { return _HouseNrNew; } set { _HouseNrNew = value; OnPropertyChanged("HouseNrNew"); } }
 
         private string _HouseNrOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ / назва будинку - старий")]
         [Description("Старе значення № / назва будинку")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
@@ -443,13 +488,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string HouseNrOld { get { return _HouseNrOld; } set { _HouseNrOld = value; OnPropertyChanged("HouseNrOld"); } }
 
         private bool _IsApptOfficeNrChanged;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ кв./офісу, тощо - змінився?")]
         [Description("Чи змінився № кв./офісу, тощо?")]
         public bool IsApptOfficeNrChanged { get { return _IsApptOfficeNrChanged; } set { _IsApptOfficeNrChanged = value; OnPropertyChanged("IsApptOfficeNrChanged"); } }
         
         private string _ApptOfficeNrNew;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ кв./офісу, тощо - новий")]
         [Description("Нове значення № кв./офісу, тощо")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
@@ -457,12 +502,78 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         public string ApptOfficeNrNew { get { return _ApptOfficeNrNew; } set { _ApptOfficeNrNew = value; OnPropertyChanged("ApptOfficeNrNew"); } }
         
         private string _ApptOfficeNrOld;
-        [Category("Адреса")]
+        [Category("Адреса/розташування")]
         [DisplayName("№ кв./офісу, тощо - старий")]
         [Description("Старе значення № кв./офісу, тощо")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         [UIConditionalVisibility("IsApptOfficeNrChanged")]
         public string ApptOfficeNrOld { get { return _ApptOfficeNrOld; } set { _ApptOfficeNrOld = value; OnPropertyChanged("ApptOfficeNrOld"); } }
+        #endregion
+
+        #region Перелік операцій
+
+        private bool _IsOperationsListingChanged;
+        [Category("Діяльність")]
+        [DisplayName("Перелік операцій - змінився?")]
+        [Description("Чи змінилося поле Перелік і обсяг операцій відокремленого підрозділу?")]
+        public bool IsOperationsListingChanged { get { return _IsOperationsListingChanged; } set { _IsOperationsListingChanged = value; OnPropertyChanged("IsOperationsListingChanged"); } }
+
+        private string _OperationsListingNew;
+        /// <summary>
+        /// Буквальне значення поля перелік та обсяги операцій
+        /// (текст як є зараз у 15-му додатку)
+        /// </summary>
+        [Category("Діяльність")]
+        [DisplayName("Перелік операцій - новий")]
+        [Description("Нове значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
+        [UIConditionalVisibility("IsOperationsListingChanged")]
+        public string OperationsListingNew { get { return _OperationsListingNew; } set { _OperationsListingNew = value; OnPropertyChanged("OperationsListingNew"); } }
+
+        private string _OperationsListingOld;
+        /// <summary>
+        /// Буквальне значення поля перелік та обсяги операцій
+        /// (текст як є зараз у 15-му додатку)
+        /// </summary>
+        [Category("Діяльність")]
+        [DisplayName("Перелік операцій - старий")]
+        [Description("Старе значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
+        [UIConditionalVisibility("IsOperationsListingChanged")]
+        public string OperationsListingOld { get { return _OperationsListingOld; } set { _OperationsListingOld = value; OnPropertyChanged("OperationsListingOld"); } }
+
+        private bool _IsOperationsListingRefChanged;
+        [Category("Діяльність")]
+        [DisplayName("Перелік операцій (код схеми)- змінився?")]
+        [Description("Чи змінилося поле Код схеми переліку і обсягу операцій відокремленого підрозділу?")]
+        public bool IsOperationsListingRefChanged { get { return _IsOperationsListingRefChanged; } set { _IsOperationsListingRefChanged = value; OnPropertyChanged("IsOperationsListingRefChanged"); } }
+
+        private string _OperationsListingRefNew;
+        /// <summary>
+        /// Значення з полів SchemeID 
+        /// колекції OperationsListingSchemes
+        /// </summary>
+        /// <seealso cref="#BankBranchOpsSvcsSchemeInfo"/>
+        [Category("Діяльність")]
+        [DisplayName("Код схеми переліку операцій - новий")]
+        [Description("Нове значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
+        [UIConditionalVisibility("IsOperationsListingRefChanged")]
+        public string OperationsListingRefNew { get { return _OperationsListingRefNew; } set { _OperationsListingRefNew = value; OnPropertyChanged("OperationsListingRefNew"); } }
+
+        private string _OperationsListingRefOld;
+        /// <summary>
+        /// Значення з полів SchemeID 
+        /// колекції OperationsListingSchemes
+        /// </summary>
+        /// <seealso cref="#BankBranchOpsSvcsSchemeInfo"/>
+        [Category("Діяльність")]
+        [DisplayName("Код схеми переліку операцій - старий")]
+        [Description("Старе значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
+        [UIConditionalVisibility("IsOperationsListingRefChanged")]
+        public string OperationsListingRefOld { get { return _OperationsListingRefOld; } set { _OperationsListingRefOld = value; OnPropertyChanged("OperationsListingRefOld"); } }
+
         #endregion
 
         #region Контакти
@@ -782,52 +893,5 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
        
         #endregion
 
-        #region Службові поля
-
-
-        private DateTime _InputDate;
-        [Category("Службові")]
-        [DisplayName("дата внесення")]
-        [Description("дата внесення")]
-        public DateTime InputDate { get { return _InputDate; } set { _InputDate = value; OnPropertyChanged("InputDate"); } }
-
-        private string _ShortChangesLog;
-        [Category("Інше")]
-        [DisplayName("короткий опис змін")]
-        [Description("короткий опис змін")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true)]
-        public string ShortChangesLog { get { return _ShortChangesLog; } set { _ShortChangesLog = value; OnPropertyChanged("ShortChangesLog"); } }
-        
-        private bool _IsOperationsListingChanged;
-        [Category("Діяльність")]
-        [DisplayName("Перелік операцій - змінився?")]
-        [Description("Чи змінилося поле Перелік і обсяг операцій відокремленого підрозділу?")]
-        public bool IsOperationsListingChanged { get { return _IsOperationsListingChanged; } set { _IsOperationsListingChanged = value; OnPropertyChanged("IsOperationsListingChanged"); } }
-        
-        private string _OperationsListingNew;
-        [Category("Діяльність")]
-        [DisplayName("Перелік операцій - новий")]
-        [Description("Нове значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
-        [UIConditionalVisibility("IsOperationsListingChanged")]
-        public string OperationsListingNew { get { return _OperationsListingNew; } set { _OperationsListingNew = value; OnPropertyChanged("OperationsListingNew"); } }
-
-        private string _OperationsListingOld;
-        [Category("Діяльність")]
-        [DisplayName("Перелік операцій - старий")]
-        [Description("Старе значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
-        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
-        [UIConditionalVisibility("IsOperationsListingChanged")]
-        public string OperationsListingOld { get { return _OperationsListingOld; } set { _OperationsListingOld = value; OnPropertyChanged("OperationsListingOld"); } }
-        #endregion
-
-        #region Документи, на підставі яких вносяться зміни
-        private List<AttachmentInfo> _Attachment_Resolution;
-        [Category("Додатки")]
-        [DisplayName("Рішення, на підставі якого вносяться зміни")]
-        [Description("Рішення, на підставі якого вносяться зміни")]
-        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Додатки")]
-        public List<AttachmentInfo> Attachment_Resolution { get { return _Attachment_Resolution; } set { _Attachment_Resolution = value; OnPropertyChanged("Attachment_Resolution"); } }
-        #endregion
     }
 }

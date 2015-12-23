@@ -16,12 +16,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
     {
         public StateBankBranchRegistryEntryV1()
         {
+            InputDate = DateTime.Now;
             OpenDate = DateTime.Now;
             RegisteredDate = DateTime.Now;
             PayDocDate = DateTime.Now;
             
         }
-        
+
+    
         private EKDRBUVariableEntryPartV1 _VariablePart;
         [DisplayName("Змінна частина")]
         [Description("Змінна частина реквізитів повідомлення")]
@@ -65,6 +67,34 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
         [DisplayName("Дата виключення з Державного реєстру банків")]
         [Description("Дата виключення з Державного реєстру банків")]
         public DateTime? UnregisteredDate { get { return _UnregisteredDate; } set { _UnregisteredDate = value; OnPropertyChanged("UnregisteredDate"); } }
-        
+
+        #region Службові поля
+
+        private DateTime _InputDate;
+        [Category("Службові")]
+        [DisplayName("дата внесення")]
+        [Description("дата внесення")]
+        public DateTime InputDate { get { return _InputDate; } set { _InputDate = value; OnPropertyChanged("InputDate"); } }
+
+        private string _ShortChangesLog;
+        [Category("Інше")]
+        [DisplayName("короткий опис змін")]
+        [Description("короткий опис змін")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true)]
+        public string ShortChangesLog { get { return _ShortChangesLog; } set { _ShortChangesLog = value; OnPropertyChanged("ShortChangesLog"); } }
+
+
+
+        #endregion
+
+        #region Документи, на підставі яких вносяться зміни
+        private List<AttachmentInfo> _Attachment_Resolution;
+        [Category("Додатки")]
+        [DisplayName("Рішення, на підставі якого вносяться зміни")]
+        [Description("Рішення, на підставі якого вносяться зміни")]
+        [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Додатки")]
+        public List<AttachmentInfo> Attachment_Resolution { get { return _Attachment_Resolution; } set { _Attachment_Resolution = value; OnPropertyChanged("Attachment_Resolution"); } }
+        #endregion
+
     }
 }

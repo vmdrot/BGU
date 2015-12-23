@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ActualEKDRBUStructsUnion" nillable="true" type="ActualEKDRBUStructsUnion" />
+  <xs:complexType name="ActualEKDRBUStructsUnion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgV1" type="StateBankBranchRegistryChangePackageV1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateBankBranchRegistryChangePackageV1">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingSchemes" type="ArrayOfBankBranchOpsSvcsSchemeInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="ArrayOfAttachmentInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RequirementsKept" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequirementsKeptDetails" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signor" type="SignatoryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="EKDRBUVariableEntryPartV1">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBranchTypeChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вид - змінився?" description="Чи змінився вид/тип відділення?" category="Вид" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BranchTypeNew" type="BankBranchType" displayName="Вид - новий" description="Нове значення поля Вид відокремленого підрозділу" category="Вид" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BranchTypeOld" type="BankBranchType" displayName="Вид - старий" description="Старе значення поля Вид відокремленого підрозділу" category="Вид" field_order="3" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStatusChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Стан - змінився?" description="Чи змінився стан?" category="Статус" field_order="4" />
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusNew" type="BankBranchStatusType" displayName="Стан - новий" description="Нове значення поля Стан" category="Статус" field_order="5" />
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusOld" type="BankBranchStatusType" displayName="Стан - старий" description="Старе значення поля Стан" category="Статус" field_order="6" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsParentIDChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Батьківський підрозділ міняється?" description="Чи міняється значення поля Батьківський підрозділ" category="Ієрархія (підпорядкованість)" field_order="7" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentIDNew" type="xs:string" type_ukr="текст" displayName="Батьківський підрозділ новий" description="Батьківський підрозділ - нове значення" category="Ієрархія (підпорядкованість)" field_order="8">
+            <xs:annotation>
+              <xs:documentation>Значення - внутрішній код підрозділу 
+            Наприклад: 00626804103608000000 для підрозділу 
+            "Філія - Дніпропетровське обласне управління публічного акціонерного товариства "Державний ощадний банк України"")</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentIDOld" type="xs:string" type_ukr="текст" displayName="Батьківський підрозділ старий" description="Батьківський підрозділ - попереднє значення" category="Ієрархія (підпорядкованість)" field_order="9" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameFullChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Назва (254 символів) - змінилася?" description="Чи змінилася повна назва (254 символів)?" category="Назви" field_order="10" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameFullNew" type="xs:string" type_ukr="текст" displayName="Назва (254 символів) - нова" description="Нове значення поля Повна назва (254 символів)" category="Назви" field_order="11" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameFullOld" type="xs:string" type_ukr="текст" displayName="Назва (254 символів) - стара" description="Старе значення поля Повна назва (254 символів)" category="Назви" field_order="12" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameShortChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Скорочена назва (80 символів) - змінилася?" description="Чи змінилася скорочена назва (80 символів)?" category="Назви" field_order="13" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameShortNew" type="xs:string" type_ukr="текст" displayName="Скорочена назва (80 символів) - нова" description="Нове значення поля скорочена назва (80 символів)" category="Назви" field_order="14" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameShortOld" type="xs:string" type_ukr="текст" displayName="Скорочена назва (80 символів) - стара" description="Старе значення поля скорочена назва (80 символів)" category="Назви" field_order="15" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNamePrintChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Назва для друку (40 символів) - змінилася?" description="Чи змінилася назва для друку (40 символів)?" category="Назви" field_order="16" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NamePrintNew" type="xs:string" type_ukr="текст" displayName="Назва для друку (40 символів) - нова" description="Нова значення поля Назва для друку (40 символів)" category="Назви" field_order="17" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NamePrintOld" type="xs:string" type_ukr="текст" displayName="Назва для друку (40 символів) - стара" description="Старе значення поля Назва для друку (40 символів)" category="Назви" field_order="18" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameSEPChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Назва для СЕП (38 символів) - змінилася?" description="Чи змінилася назва для СЕП (38 символів)?" category="Назви" field_order="19" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameSEPNew" type="xs:string" type_ukr="текст" displayName="Назва для СЕП (38 символів) - нова" description="Нове значення поля Назва для СЕП (38 символів)" category="Назви" field_order="20" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameSEPOld" type="xs:string" type_ukr="текст" displayName="Назва для СЕП (38 символів) - стара" description="Старе значення поля Назва для СЕП (38 символів)" category="Назви" field_order="21" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameStatsChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Назва для СТАТЗВІТНОСТІ (27 символів) - змінилася?" description="Чи змінилася Назва для СТАТЗВІТНОСТІ (27 символів)?" category="Назви" field_order="22" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameStatsNew" type="xs:string" type_ukr="текст" displayName="Назва для СТАТЗВІТНОСТІ (27 символів) - нова" description="Нове значення поля Назва для СТАТЗВІТНОСТІ (27 символів)" category="Назви" field_order="23" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameStatsOld" type="xs:string" type_ukr="текст" displayName="Назва для СТАТЗВІТНОСТІ (27 символів) - стара" description="Старе значення поля Назва для СТАТЗВІТНОСТІ (27 символів)" category="Назви" field_order="24" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMFOChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="МФО - змінилося?" description="Чи змінилося МФО?" category="Номери" field_order="25" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MFONew" type="xs:string" type_ukr="текст" displayName="МФО - нове" description="Нове значення МФО" category="Номери" field_order="26" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MFOOld" type="xs:string" type_ukr="текст" displayName="МФО - старе" description="Старе значення МФО" category="Номери" field_order="27" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsYeDRPOUChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="ЄДРПОУ - змінився?" description="Чи змінився ЄДРПОУ?" category="Номери" field_order="28" />
+          <xs:element minOccurs="0" maxOccurs="1" name="YeDRPOUNew" type="xs:string" type_ukr="текст" displayName="ЄДРПОУ - новий" description="Нове значення ЄДРПОУ" category="Номери" field_order="29" />
+          <xs:element minOccurs="0" maxOccurs="1" name="YeDRPOUOld" type="xs:string" type_ukr="текст" displayName="ЄДРПОУ - старий" description="Старе значення ЄДРПОУ" category="Номери" field_order="30" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRegNrChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Реєстраційний номер - змінився?" description="Чи змінився реєстраційний номер?" category="Номери" field_order="31" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegNrNew" type="xs:string" type_ukr="текст" displayName="Реєстраційний номер - новий" description="Нове значення поля Реєстраційний номер" category="Номери" field_order="32" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegNrOld" type="xs:string" type_ukr="текст" displayName="Реєстраційний номер - новий" description="Нове значення поля Реєстраційний номер" category="Номери" field_order="33" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsInternalNrChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Внутрішньобанківський номер - змінився?" description="Чи змінився внутрішньобанківський номер?" category="Номери" field_order="34" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InternalNrNew" type="xs:string" type_ukr="текст" displayName="Внутрішньобанківський номер - новий" description="Нове значення поля Внутрішньобанківський номер" category="Номери" field_order="35" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InternalNrOld" type="xs:string" type_ukr="текст" displayName="Внутрішньобанківський номер - старий" description="Старе значення поля Внутрішньобанківський номер" category="Номери" field_order="36" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBranchNrInternalChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Номер підрозділу за внутрішньобанківським номером - змінився?" description="Чи змінився номер підрозділу за внутрішньобанківським номером?" category="Номери" field_order="37" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BranchNrInternalNew" type="xs:string" type_ukr="текст" displayName="Номер підрозділу за внутрішньобанківським номером - новий" description="Нове значення поля Номер підрозділу за внутрішньобанківським номером" category="Номери" field_order="38" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BranchNrInternalOld" type="xs:string" type_ukr="текст" displayName="Номер підрозділу за внутрішньобанківським номером - старий" description="Старе значення поля Номер підрозділу за внутрішньобанківським номером" category="Номери" field_order="39" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsKOATUUChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="КОАТУУ змінився?" description="Чи змінився код КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)?" category="Адреса/розташування" field_order="40" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KOATUUNew" type="xs:string" type_ukr="текст" displayName="КОАТУУ - новий" description="Нове значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)" category="Адреса/розташування" field_order="41" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KOATUUOld" type="xs:string" type_ukr="текст" displayName="КОАТУУ - старий" description="Старе значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)" category="Адреса/розташування" field_order="42" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsGeoCoordinatesChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Координати - змінилися?" description="Чи змінилося значення поля Координати (географічні)?" category="Адреса/розташування" field_order="43" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GeoCoordinatesNew" type="xs:string" type_ukr="текст" displayName="Координати - нові" description="Нове значення поля Географічні координати" category="Адреса/розташування" field_order="44" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GeoCoordinatesOld" type="xs:string" type_ukr="текст" displayName="Координати - старі" description="Старе значення поля Географічні координати" category="Адреса/розташування" field_order="45" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOblastChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Область змінилася?" description="Чи змінилося значення області?" category="Адреса/розташування" field_order="46" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OblastNew" type="xs:string" type_ukr="текст" displayName="Область (нова)" description="Область - нове значення" category="Адреса/розташування" field_order="47" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OblastOld" type="xs:string" type_ukr="текст" displayName="Область (стара)" description="Область - старе значення" category="Адреса/розташування" field_order="48" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRaionChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Змінився район?" description="Чи змінилося значення району" category="Адреса/розташування" field_order="49" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RaionNew" type="xs:string" type_ukr="текст" displayName="Район (новий)" description="Нове значення поля район" category="Адреса/розташування" field_order="50" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RaionOld" type="xs:string" type_ukr="текст" displayName="Район (старий)" description="Старе значення поля район" category="Адреса/розташування" field_order="51" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsZipCodeChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Поштовий індекс змінився?" description="Чи змінився поштовий індекс?" category="Адреса/розташування" field_order="52" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ZipCodeNew" type="xs:string" type_ukr="текст" displayName="Поштовий індекс - новий" description="Нове значення поштового індексу" category="Адреса/розташування" field_order="53" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ZipCodeOld" type="xs:string" type_ukr="текст" displayName="Поштовий індекс" description="Поштовий індекс" category="Адреса/розташування" field_order="54" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsCityChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Населений пункт змінився?" description="Чи змінилося значення населеного пункту" category="Адреса/розташування" field_order="55" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CityNew" type="xs:string" type_ukr="текст" displayName="Населений пункт - новий" description="Нове значення населеного пункту" category="Адреса/розташування" field_order="56" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CityOld" type="xs:string" type_ukr="текст" displayName="Населений пункт - старий" description="Старе значення населеного пункту" category="Адреса/розташування" field_order="57" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStreetChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Вулиця/площа/тощо - змінилася?" description="Чи змінилося значення вулиці/площі/тощо?" category="Адреса/розташування" field_order="58" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StreetNew" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо - нова" description="Нове значення вулиці/площі/тощо" category="Адреса/розташування" field_order="59" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StreetOld" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо - нова" description="Нове значення вулиці/площі/тощо" category="Адреса/розташування" field_order="60" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsHouseNrChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="№ / назва будинку - змінився?" description="Чи змінився № / назва будинку?" category="Адреса/розташування" field_order="61" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HouseNrNew" type="xs:string" type_ukr="текст" displayName="№ / назва будинку - нова" description="Нове значення № / назва будинку" category="Адреса/розташування" field_order="62" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HouseNrOld" type="xs:string" type_ukr="текст" displayName="№ / назва будинку - старий" description="Старе значення № / назва будинку" category="Адреса/розташування" field_order="63" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsApptOfficeNrChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="№ кв./офісу, тощо - змінився?" description="Чи змінився № кв./офісу, тощо?" category="Адреса/розташування" field_order="64" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrNew" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо - новий" description="Нове значення № кв./офісу, тощо" category="Адреса/розташування" field_order="65" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrOld" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо - старий" description="Старе значення № кв./офісу, тощо" category="Адреса/розташування" field_order="66" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOperationsListingChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Перелік операцій - змінився?" description="Чи змінилося поле Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="67" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingNew" type="xs:string" type_ukr="текст" displayName="Перелік операцій - новий" description="Нове значення поля Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="68">
+            <xs:annotation>
+              <xs:documentation>Буквальне значення поля перелік та обсяги операцій
+            (текст як є зараз у 15-му додатку)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingOld" type="xs:string" type_ukr="текст" displayName="Перелік операцій - старий" description="Старе значення поля Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="69">
+            <xs:annotation>
+              <xs:documentation>Буквальне значення поля перелік та обсяги операцій
+            (текст як є зараз у 15-му додатку)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOperationsListingRefChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Перелік операцій (код схеми)- змінився?" description="Чи змінилося поле Код схеми переліку і обсягу операцій відокремленого підрозділу?" category="Діяльність" field_order="70" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingRefNew" type="xs:string" type_ukr="текст" displayName="Код схеми переліку операцій - новий" description="Нове значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу" category="Діяльність" field_order="71">
+            <xs:annotation>
+              <xs:documentation>Значення з полів SchemeID 
+            колекції OperationsListingSchemes
+            
+
+Див.також: #BankBranchOpsSvcsSchemeInfo</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingRefOld" type="xs:string" type_ukr="текст" displayName="Код схеми переліку операцій - старий" description="Старе значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу" category="Діяльність" field_order="72">
+            <xs:annotation>
+              <xs:documentation>Значення з полів SchemeID 
+            колекції OperationsListingSchemes
+            
+
+Див.також: #BankBranchOpsSvcsSchemeInfo</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsDialCodeChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Код телефонного зв’язку - змінився?" description="Чи змінилося значення поля Код телефонного зв’язку?" category="Контактні дані" field_order="73" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DialCodeNew" type="xs:string" type_ukr="текст" displayName="Код телефонного зв’язку - новий" description="Нове значення поля Код телефонного зв’язку" category="Контактні дані" field_order="74" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DialCodeOld" type="xs:string" type_ukr="текст" displayName="Код телефонного зв’язку - старий" description="Старе значення поля Код телефонного зв’язку" category="Контактні дані" field_order="75" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsPhoneChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Телефон(-и) - змінив(-ли)ся?" description="Чи змінив(-ли)ся телефон(-и)?" category="Контактні дані" field_order="76" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PhoneNew" type="xs:string" type_ukr="текст" displayName="Телефон(-и) - новий(-і)" description="Нове значення поля Телефон(-и)" category="Контактні дані" field_order="77" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PhoneOld" type="xs:string" type_ukr="текст" displayName="Телефон(-и) - старий(-і)" description="Старе значення поля Телефон(-и)" category="Контактні дані" field_order="78" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsFaxChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="факс(-и) - змінив(-ли)ся?" description="Чи змінив(-ли)ся факс(-и)?" category="Контактні дані" field_order="79" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FaxNew" type="xs:string" type_ukr="текст" displayName="факс(-и) - новий(-і)" description="Нове значення поля факс(-и)" category="Контактні дані" field_order="80" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FaxOld" type="xs:string" type_ukr="текст" displayName="факс(-и) - старий(-і)" description="Старе значення поля факс(-и)" category="Контактні дані" field_order="81" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmailChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="e-mail(-и) - змінив(-ли)ся?" description="Чи змінив(-ли)ся e-mail(-и)?" category="Контактні дані" field_order="82" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmailNew" type="xs:string" type_ukr="текст" displayName="e-mail(-и) - новий(-і)" description="Нове значення поля e-mail(-и)" category="Контактні дані" field_order="83" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmailOld" type="xs:string" type_ukr="текст" displayName="e-mail(-и) - старий(-і)" description="Старе значення поля e-mail(-и)" category="Контактні дані" field_order="84" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IswwwChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="веб-сайт - змінився?" description="Чи змінився веб-сайт?" category="Контактні дані" field_order="85" />
+          <xs:element minOccurs="0" maxOccurs="1" name="wwwNew" type="xs:string" type_ukr="текст" displayName="веб-сайт - новий(-і)" description="Нове значення поля веб-сайт" category="Контактні дані" field_order="86" />
+          <xs:element minOccurs="0" maxOccurs="1" name="wwwOld" type="xs:string" type_ukr="текст" displayName="веб-сайт - старий(-і)" description="Старе значення поля веб-сайт" category="Контактні дані" field_order="87" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPositionChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Посада - змінилася?" description="Чи змінилася посада керівника?" category="Керівники/персонал" field_order="88" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPositionNew" type="xs:string" type_ukr="текст" displayName="Посада - нова" description="Нова посада керівника" category="Керівники/персонал" field_order="89" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPositionOld" type="xs:string" type_ukr="текст" displayName="Посада - стара" description="Стара посада керівника" category="Керівники/персонал" field_order="90" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrCountryISO3CodeChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Код країни громадянства - змінився?" description="Чи змінився код країни громадянства керівника?" category="Керівники/персонал" field_order="91" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryISO3CodeNew" type="xs:string" type_ukr="текст" displayName="Код країни громадянства - новий" description="Нове значення поля Код країни громадянства керівника" category="Керівники/персонал" field_order="92" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryISO3CodeOld" type="xs:string" type_ukr="текст" displayName="Код країни громадянства - старий" description="Старе значення поля Код країни громадянства керівника" category="Керівники/персонал" field_order="93" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrCountryNameUkrChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Країна громадянства - змінився?" description="Чи змінилася назва країни громадянства керівника?" category="Керівники/персонал" field_order="94" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryNameUkrNew" type="xs:string" type_ukr="текст" displayName="Країна громадянства - нова" description="Нове значення поля Країна громадянства керівника" category="Керівники/персонал" field_order="95" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryNameUkrOld" type="xs:string" type_ukr="текст" displayName="Країна громадянства - стара" description="Старе значення поля Країна громадянства керівника" category="Керівники/персонал" field_order="96" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrSurnameChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Прізвище керівника - змінилося?" description="Чи змінилося прізвище керівника?" category="Керівники/персонал" field_order="97" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameNew" type="xs:string" type_ukr="текст" displayName="Прізвище керівника - нове" description="Нове значення поля Прізвище керівника" category="Керівники/персонал" field_order="98" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameOld" type="xs:string" type_ukr="текст" displayName="Прізвище керівника - старе" description="Старе значення поля Прізвище керівника" category="Керівники/персонал" field_order="99" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrNameChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Ім'я керівника - змінилося?" description="Чи змінилося ім'я керівника?" category="Керівники/персонал" field_order="100" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrNameNew" type="xs:string" type_ukr="текст" displayName="Ім'я керівника - нове" description="Нове значення поля Ім'я керівника" category="Керівники/персонал" field_order="101" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrNameOld" type="xs:string" type_ukr="текст" displayName="Ім'я керівника - старе" description="Старе значення поля Ім'я керівника" category="Керівники/персонал" field_order="102" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrMiddleNameChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Ім'я по батькові керівника - змінилося?" description="Чи змінилося Ім'я по батькові керівника?" category="Керівники/персонал" field_order="103" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrMiddleNameNew" type="xs:string" type_ukr="текст" displayName="Ім'я по батькові керівника - нове" description="Нове значення поля Ім'я по батькові керівника" category="Керівники/персонал" field_order="104" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrMiddleNameOld" type="xs:string" type_ukr="текст" displayName="Ім'я по батькові керівника - старе" description="Старе значення поля Ім'я по батькові керівника" category="Керівники/персонал" field_order="105" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrSurnameAtBirthChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Дівоче прізвище керівника - змінилося?" description="Чи змінилося Дівоче прізвище керівника?" category="Керівники/персонал" field_order="106" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameAtBirthNew" type="xs:string" type_ukr="текст" displayName="Дівоче прізвище керівника - нове" description="Нове значення поля Дівоче прізвище керівника" category="Керівники/персонал" field_order="107" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameAtBirthOld" type="xs:string" type_ukr="текст" displayName="Дівоче прізвище керівника - старе" description="Старе значення поля Дівоче прізвище керівника" category="Керівники/персонал" field_order="108" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrTaxOrSocSecIDChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="ІПН керівника - змінився?" description="Чи змінився ІПН керівника?" category="Керівники/персонал" field_order="109" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrTaxOrSocSecIDNew" type="xs:string" type_ukr="текст" displayName="ІПН керівника - новий" description="Нове значення поля ІПН керівника" category="Керівники/персонал" field_order="110" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrTaxOrSocSecIDOld" type="xs:string" type_ukr="текст" displayName="ІПН керівника - старий" description="Старе значення поля ІПН керівника" category="Керівники/персонал" field_order="111" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPassportIDChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Серія № паспорта керівника - змінилися?" description="Чи змінилися Серія № паспорта керівника?" category="Керівники/персонал" field_order="112" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPassportIDNew" type="xs:string" type_ukr="текст" displayName="Серія № паспорта керівника - нові" description="Нове значення поля Серія № паспорта керівника" category="Керівники/персонал" field_order="113" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPassportIDOld" type="xs:string" type_ukr="текст" displayName="Серія № паспорта керівника - старі" description="Старе значення поля Серія № паспорта керівника" category="Керівники/персонал" field_order="114" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPassIssuedDateChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Дата видачі паспорта керівника - змінилася?" description="Чи змінилася Дата видачі паспорта керівника?" category="Керівники/персонал" field_order="115" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MgrPassIssuedDateNew" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта керівника - нова" description="Нове значення поля Дата видачі паспорта керівника" category="Керівники/персонал" field_order="116" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MgrPassIssuedDateOld" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта керівника - стара" description="Старе значення поля Дата видачі паспорта керівника" category="Керівники/персонал" field_order="117" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BankBranchType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Filia" description="філія" enum_value="1" />
+      <xs:enumeration value="Viddilennia" description="відділення" enum_value="2" />
+      <xs:enumeration value="Dyrektsia" description="дирекція" enum_value="3" />
+      <xs:enumeration value="RegUpr" description="регіональне управління" enum_value="4" />
+      <xs:enumeration value="RepOffice" description="представництво" enum_value="5" />
+      <xs:enumeration value="Other" description="інше" enum_value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BankBranchStatusType">
+    <xs:annotation>
+      <xs:documentation>Нормальний
+            Виключено з Держ.реєстру
+            Режим ліквідації
+            Тимчасовоо призупинено
+            Реорганізація</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Operational" description="Нормальний" enum_value="1" />
+      <xs:enumeration value="Deleted" description="Виключено з Держ.реєстру" enum_value="2" />
+      <xs:enumeration value="InLiquidation" description="Режим ліквідації" enum_value="3" />
+      <xs:enumeration value="Paused" description="Тимчасовоо призупинено" enum_value="4" />
+      <xs:enumeration value="InReorganization" description="Реорганізація" enum_value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BankInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про банк - як український, так і іноземний (якщо треба)
+            Приклад реалізації Web UI (без заповнення поля LegalPerson) див. за адресою https://youtu.be/ReThZDDMsOM</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" type_ukr="текст" displayName="МФО" description="МФО - для українського банку, для іноземного банку - національний кліринговий ідентифікатор (Sorted Chaps, BLZ, Code Guichet, тощо)" field_order="1">
+            <xs:annotation>
+              <xs:documentation>Для українських банків MFO (GLMFO)
+            Для банків-нерезидентів - національний кліринговий код (Bankleitzahl (BLZ), Sorted CHAPS code, FedWire, Codigo Bancario, Code Guichet, тощо)
+            Обов'язкове поле, якщо OperationCountry == UKRAINE
+            ( http://www.tgbr.com/tgbr/help/RTN.html )</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Найменування банку" description="Найменування банку (в оригіналі)" field_order="2">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Оригінальна назва банку (мовою країни резидентності)
+            Для українських банків заповнюється лише ця назва</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Найменування банку(українською)" description="Найменування банку(українською)" field_order="3">
+            <xs:annotation>
+              <xs:documentation>Назва банку українською (для банків-нерезидентів)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" displayName="Відомості про юрособу-банк" description="Відомості про юрособу-банк" field_order="4">
+            <xs:annotation>
+              <xs:documentation>Реквізити банку як юр.особи.
+            Адреса, коди, тощо - все там. 
+            Якщо у анкеті доведеться розкривати структуру власності у т.ч. й цього банку, то необхідно вказати бодай податковий код банку (чи його еквівалент)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" type_ukr="текст" displayName="SWIFT адреса" description="Див. http://www.swift.com/bsl/" field_order="5">
+            <xs:annotation>
+              <xs:documentation>SWIFT код (для банків нерезидентів), 
+            як однозначний універсальний ідентифікатор банку
+            Бажаний, якщо є; якщо немає - вимагати вказання національного клірингового ідентифікатору (поле MFO)
+            http://www.swift.com/bsl/</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="OperationCountry" type="CountryInfo" displayName="Країна діяльності" field_order="6">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Країна резидентності банку
+            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:annotation>
+      <xs:documentation>Універсальний ідентифікатор особи (як юр., так і фізичної)
+            (щоб не "таскати", себто, не дублювати, усі реквізити особи там, де потребується просто послатися на ту особу).
+            Використовується (зокрема) для ідентифікації:
+             - об'єкту власності та власника - при розкритті ланцюжка кінцевих власників
+             - членів колегіального керівного органу;
+             - виданої гарантії/поручительства);
+             - тощо.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Код країни резидентності
+            
+
+Див.також: T:BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CountryInfo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Тип особи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Код особи;
+            Для юр.особи - TaxCodeOrHandelsRegNr
+            Для фіз.особи:
+            якщо (не пустий TaxOrSocSecID ) - то TaxOrSocSecID 
+            інакше - PassportID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
+      <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CountryInfo">
+    <xs:annotation>
+      <xs:documentation>Країна 
+            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)
+            (в усіх місцях, окрім тих, де з контексту явно випливає, що буде не Україна)
+            
+
+Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст" field_order="1">
+        <xs:annotation>
+          <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
+            Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Назва країни англ. мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Назва країни українською мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfStateBankRegistrySingleBranchChangeRecV1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StateBankRegistrySingleBranchChangeRecV1" nillable="true" type="StateBankRegistrySingleBranchChangeRecV1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateBankRegistrySingleBranchChangeRecV1">
+    <xs:annotation>
+      <xs:documentation>Частина форми-додатку 15
+            - одне відділення</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeType" type="BankBranchChangeType" displayName="Тип зміни" description="(відкриття, зміни реквізитів, припинення діяльності, тощо)" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BankBranchRegID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор підрозділу" description="Чинне значення унікального ідентифікатора&#xA; відокремленого підрозділу (внутрішньобанківський код)" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeEffectiveDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття чинності" description="Дата, з якої набуває чинності нинішня зміна" field_order="3" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Changes" type="EKDRBUVariableEntryPartV1" displayName="Зміни" description="Значення змінюваних реквізитів" field_order="4" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfString" displayName="Відповідне(-і) рішення банку" description="Ідентифікатор(-и) додатку(-ів), яким(-и) долучається відповідне рішення, згідно з яким(-и) вносяться зміни до відокремленого підрозділу" field_order="5">
+        <xs:annotation>
+          <xs:documentation>Якщо у цій зміні, наприклад, відображено результати 
+            більше, ніж одного рішення</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BankBranchChangeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Opening" description="відкриття" enum_value="1" />
+      <xs:enumeration value="Change" description="зміни реквізитів" enum_value="2" />
+      <xs:enumeration value="Pause" description="призупинення діяльності" enum_value="3" />
+      <xs:enumeration value="Resume" description="відновлення діяльності" enum_value="4" />
+      <xs:enumeration value="Closure" description="припинення діяльності" enum_value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBankBranchOpsSvcsSchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BankBranchOpsSvcsSchemeInfo" nillable="true" type="BankBranchOpsSvcsSchemeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BankBranchOpsSvcsSchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SchemeID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор/код схеми" description="Унікальний (в межах пакету) ідентифікатор схеми переліку й обсягу операцій відокремленого підрозділу" field_order="1">
+        <xs:annotation>
+          <xs:documentation>Ідентифікатор, на який можна буде посилатися для конкретного відділення
+            (у полях OperationsListingRefNew та OperationsListingRefOld)
+            
+
+Див.також: #EKDRBUVariableEntryPartV1</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingText" type="xs:string" type_ukr="текст" displayName="Перелік та обсяг операцій" description="Перелік та обсяг операцій (текст)" field_order="2">
+        <xs:annotation>
+          <xs:documentation>Власне, саме значення поля
+            (текст із переліком та обсягом операцій)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAttachmentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttachmentInfo" nillable="true" type="AttachmentInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttachmentInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про долучення до анкет</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentID" type="xs:string" type_ukr="текст" displayName="ID додатку" description="Ідентифікатор додатку (унікальний в межах пакету)" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="FileName" type="xs:string" type_ukr="текст" displayName="Файл" description="Назва файлу" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" displayName="Тип (з переліку)" description="Тип додатку із переліку типових долучень; якщо &quot;Інше&quot; - обов'язково вказати, що саме у полі &quot;Опис файлу&quot;." field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле, за змовчанням - Інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" type_ukr="текст" displayName="Опис файлу" description="Що у файлі?" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле, якщо в AttachmentType != Інше</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentType" type="xs:string" type_ukr="текст" displayName="Формат" description="Тип MIME, напр. pdf, xls, xlsx, doc, docs, rtf, тощо" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Заповнювати самостійно з розширення FileName
+            Давати можливість користувачу змінити</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypicalApplicationAttachement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="InternalReglementCopiesScans" description="Копії/скан внутрішніх положень" enum_value="1" />
+      <xs:enumeration value="WorkbookCopyScan" description="Копії/скан трудової книги" enum_value="2" />
+      <xs:enumeration value="PassportCopyScan" description="Копії/скан паспорта" enum_value="3" />
+      <xs:enumeration value="CharterCopyScan" description="Копії/скан статуту" enum_value="4" />
+      <xs:enumeration value="OwnershipDiagram" description="Діграма структури власності" enum_value="5" />
+      <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" enum_value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SignatoryInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове (якщо тільки контекстом не передбачено інше)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SignatoryPosition" type="xs:string" type_ukr="текст" displayName="Посада (підписанта)" description="Посада (підписанта)" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SurnameInitials" type="xs:string" type_ukr="текст" displayName="Прізвище й ініціали (підписанта)" description="Прізвище й ініціали (підписанта)" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="За довіреністю?" description="Підписант діє на підставі довіреності" field_order="4">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Довіреність" description="Реквізити довіреності, на підставі якої діє підписант" field_order="5">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   IsActingByPowOfAttorney == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowerOfAttorneyInfo">
+    <xs:annotation>
+      <xs:documentation>Реквізити довіреності</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ActingPerson" type="GenericPersonID" displayName="Довірена особа" description="Кому видано довіреність" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" displayName="Від імені" description="Особа, яку представляють (від імені якої діє довірена особа)" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Title" type="xs:string" type_ukr="текст" displayName="Назва/титул довіреності" description="Короткий зміст предмету довіреності" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна з" description="Дата початку дії довіреності" field_order="4">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до" description="Дата закінчення дії довіреності" field_order="5" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" type_ukr="текст" displayName="Інші відомості" description="Додаткові (значущі) відомості про довіреність" field_order="6" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

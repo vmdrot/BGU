@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BGU.DRPL.SignificantOwnership.Core.Spares;
+using System.ComponentModel;
+
+namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
+{
+    /// <summary>
+    /// Частина форми-додатку 15
+    /// - одне відділення
+    /// </summary>
+    public class StateBankRegistrySingleBranchChangeRecV1
+    {
+        public StateBankRegistrySingleBranchChangeRecV1()
+        {
+            ChangeEffectiveDate = DateTime.Now;
+        }
+
+        private BankBranchChangeType _ChangeType;
+        [DisplayName("Тип зміни")]
+        [Description("(відкриття, зміни реквізитів, припинення діяльності, тощо)")]
+        public BankBranchChangeType ChangeType { get { return _ChangeType; } set { _ChangeType = value; /* OnPropertyChanged("ChangeType");*/ } }
+
+
+        [DisplayName("Ідентифікатор підрозділу")]
+        [Description("Чинне значення унікального ідентифікатора\n відокремленого підрозділу (внутрішньобанківський код)")]
+        public string BankBranchRegID { get; set; }
+
+        [DisplayName("Дата набуття чинності")]
+        [Description("Дата, з якої набуває чинності нинішня зміна")]
+        public DateTime ChangeEffectiveDate { get; set; }
+
+        [DisplayName("Зміни")]
+        [Description("Значення змінюваних реквізитів")]
+        public EKDRBUVariableEntryPartV1 Changes { get; set; }
+
+        /// <summary>
+        /// Якщо у цій зміні, наприклад, відображено результати 
+        /// більше, ніж одного рішення
+        /// </summary>
+        [DisplayName("Відповідне(-і) рішення банку")]
+        [Description("Ідентифікатор(-и) додатку(-ів), яким(-и) долучається відповідне рішення, згідно з яким(-и) вносяться зміни до відокремленого підрозділу")]
+        public List<string> HeadBankDecisionRefs { get; set; }
+    }
+}
