@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StateBankBranchRegistryChangePackageV1" nillable="true" type="StateBankBranchRegistryChangePackageV1" />
+  <xs:complexType name="StateBankBranchRegistryChangePackageV1">
+    <xs:annotation>
+      <xs:documentation>Електронний аналог додатку 15
+            (для першого, проміжного варіанту,
+            з мінімальними змінами відносно класичного (чинного), паперового
+            формату)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="BankRef" type="BankInfo" displayName="Банк-подавач" description="Ідентифікація головного банку-подавача" field_order="1">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="PackageID" type="xs:string" type_ukr="текст" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" type_ukr="дата і час" field_order="3" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" displayName="Пакет змін" description="Відомості про змінну частину реквізитів відокремлених підрозділів, що становить цей пакет" field_order="4">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingSchemes" type="ArrayOfBankBranchOpsSvcsSchemeInfo" displayName="Схеми переліку операцій" description="Значення поля Перелік та обсяги операцій відокремлених підрозділів" field_order="5" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Attachments" type="ArrayOfAttachmentInfo" displayName="Додатки" description="Документи-додатки (рішення, долучення, копії, тощо)" field_order="6">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="RequirementsKept" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджуємо відповідність?" description="Банк підтверджує відповідність відокремленого підрозділу банку вимогам,&#xA; установленим Законом України &quot;Про банки і банківську діяльність&quot; та &#xA;нормативно-правовими актами Національного банку України,&#xA; у тому числі щодо приміщення, обладнання, придатності та ділової репутації&#xA; керівників відокремленого підрозділу (виконуючих їх обов'язки)" field_order="7">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="RequirementsKeptDetails" type="xs:string" type_ukr="текст" displayName="Деталі відповідності вимогам" description="Банк підтверджує (у деталях) відповідність відокремленого підрозділу банку вимогам,&#xA; установленим Законом України &quot;Про банки і банківську діяльність&quot; та &#xA;нормативно-правовими актами Національного банку України,&#xA; у тому числі щодо приміщення, обладнання, придатності та ділової репутації&#xA; керівників відокремленого підрозділу (виконуючих їх обов'язки)" field_order="8">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Signor" type="SignatoryInfo" displayName="Підписант" description="Реквізити підпису" field_order="9">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="EKDRBUVariableEntryPartV1.uk-UA.xsd" />
+  <xs:include schemaLocation="BankBranchType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankBranchStatusType.uk-UA.xsd" />
+  <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
+  <xs:include schemaLocation="EntityType.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfStateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
+  <xs:include schemaLocation="StateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
+  <xs:include schemaLocation="BankBranchChangeType.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfString.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfBankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="BankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfAttachmentInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+</xs:schema>

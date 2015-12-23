@@ -56,11 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EKDRBU\ActualEKDRBUStructsUnion.cs" />
     <Compile Include="EKDRBU\Legacy\DeptListEntry.cs" />
     <Compile Include="EKDRBU\Legacy\RcuKruEntry.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOpsFinSvcCompleteInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
+    <Compile Include="EKDRBU\Spares\BankBranchOpsSvcsSchemeInfo.cs" />
     <Compile Include="EKDRBU\Spares\EKDRBUVariableEntryPartV1.cs" />
+    <Compile Include="EKDRBU\Spares\StateBankRegistrySingleBranchChangeRecV1.cs" />
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\BranchFinOpSvcTextualInfo.cs" />
     <Compile Include="EKDRBU\Spares\FinActivitySvcInstrumentInfo.cs" />
     <Compile Include="EKDRBU\Spares\OperationsLimitInfo.cs" />
@@ -71,6 +74,7 @@
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\TextualFinBankOpsSvcSourceData.cs" />
     <Compile Include="EKDRBU\Spares\TimeSpanInfo.cs" />
     <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />
+    <Compile Include="EKDRBU\StateBankBranchRegistryChangePackageV1.cs" />
     <Compile Include="EKDRBU\StateBankBranchRegistryEntryV1.cs" />
     <Compile Include="EKDRBU\StateBankRegistryEntry.cs" />
     <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />

@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ActualEKDRBUStructsUnion" nillable="true" type="ActualEKDRBUStructsUnion" />
+  <xs:complexType name="ActualEKDRBUStructsUnion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgV1" type="StateBankBranchRegistryChangePackageV1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateBankBranchRegistryChangePackageV1">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingSchemes" type="ArrayOfBankBranchOpsSvcsSchemeInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="ArrayOfAttachmentInfo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RequirementsKept" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequirementsKeptDetails" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signor" type="SignatoryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="EKDRBUVariableEntryPartV1">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBranchTypeChanged" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BranchTypeNew" type="BankBranchType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BranchTypeOld" type="BankBranchType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStatusChanged" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusNew" type="BankBranchStatusType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="StatusOld" type="BankBranchStatusType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsParentIDChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentIDNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParentIDOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameFullChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameFullNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameFullOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameShortChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameShortNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameShortOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNamePrintChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NamePrintNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NamePrintOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameSEPChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameSEPNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameSEPOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNameStatsChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameStatsNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameStatsOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMFOChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MFONew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MFOOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsYeDRPOUChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="YeDRPOUNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="YeDRPOUOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRegNrChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegNrNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegNrOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsInternalNrChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InternalNrNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InternalNrOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsBranchNrInternalChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BranchNrInternalNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BranchNrInternalOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsKOATUUChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KOATUUNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KOATUUOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsGeoCoordinatesChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GeoCoordinatesNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GeoCoordinatesOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOblastChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OblastNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OblastOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRaionChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RaionNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RaionOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsZipCodeChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ZipCodeNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ZipCodeOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsCityChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CityNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CityOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStreetChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StreetNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StreetOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsHouseNrChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HouseNrNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HouseNrOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsApptOfficeNrChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOperationsListingChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsOperationsListingRefChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingRefNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingRefOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsDialCodeChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DialCodeNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DialCodeOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsPhoneChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PhoneNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PhoneOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsFaxChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FaxNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FaxOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmailChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmailNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EmailOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IswwwChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="wwwNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="wwwOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPositionChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPositionNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPositionOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrCountryISO3CodeChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryISO3CodeNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryISO3CodeOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrCountryNameUkrChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryNameUkrNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrCountryNameUkrOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrSurnameChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrNameChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrNameNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrNameOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrMiddleNameChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrMiddleNameNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrMiddleNameOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrSurnameAtBirthChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameAtBirthNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrSurnameAtBirthOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrTaxOrSocSecIDChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrTaxOrSocSecIDNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrTaxOrSocSecIDOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPassportIDChanged" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPassportIDNew" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MgrPassportIDOld" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsMgrPassIssuedDateChanged" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MgrPassIssuedDateNew" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MgrPassIssuedDateOld" nillable="true" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BankBranchType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Filia" />
+      <xs:enumeration value="Viddilennia" />
+      <xs:enumeration value="Dyrektsia" />
+      <xs:enumeration value="RegUpr" />
+      <xs:enumeration value="RepOffice" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BankBranchStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Operational" />
+      <xs:enumeration value="Deleted" />
+      <xs:enumeration value="InLiquidation" />
+      <xs:enumeration value="Paused" />
+      <xs:enumeration value="InReorganization" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BankInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MFO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalPerson" type="GenericPersonID" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SWIFTBIC" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationCountry" type="CountryInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Physical" />
+      <xs:enumeration value="Legal" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfStateBankRegistrySingleBranchChangeRecV1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StateBankRegistrySingleBranchChangeRecV1" nillable="true" type="StateBankRegistrySingleBranchChangeRecV1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateBankRegistrySingleBranchChangeRecV1">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeType" type="BankBranchChangeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BankBranchRegID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeEffectiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Changes" type="EKDRBUVariableEntryPartV1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BankBranchChangeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Opening" />
+      <xs:enumeration value="Change" />
+      <xs:enumeration value="Pause" />
+      <xs:enumeration value="Resume" />
+      <xs:enumeration value="Closure" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBankBranchOpsSvcsSchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BankBranchOpsSvcsSchemeInfo" nillable="true" type="BankBranchOpsSvcsSchemeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BankBranchOpsSvcsSchemeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SchemeID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingText" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAttachmentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AttachmentInfo" nillable="true" type="AttachmentInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttachmentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AttachmentID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ContentType" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypicalApplicationAttachement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="InternalReglementCopiesScans" />
+      <xs:enumeration value="WorkbookCopyScan" />
+      <xs:enumeration value="PassportCopyScan" />
+      <xs:enumeration value="CharterCopyScan" />
+      <xs:enumeration value="OwnershipDiagram" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SignatoryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignatoryPosition" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SurnameInitials" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowerOfAttorneyInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ActingPerson" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

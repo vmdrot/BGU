@@ -104,6 +104,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         public static List<EnumType> ProfessionalStockMarketActivityTypeList { get { return EnumType.GetEnumList(typeof(ProfessionalStockMarketActivityType)); } }
         public static List<EnumType> FinActivitySvcInstrumentActionTypeList { get { return EnumType.GetEnumList(typeof(FinActivitySvcInstrumentActionType)); } }
         public static List<EnumType> FinActivitySvcInstrumentTypeList { get { return EnumType.GetEnumList(typeof(FinActivitySvcInstrumentType)); } }
+        public static List<EnumType> BankBranchChangeTypeList { get { return EnumType.GetEnumList(typeof(BankBranchChangeType)); } }
+        public static List<EnumType> BankBranchTypeList { get { return EnumType.GetEnumList(typeof(BankBranchType)); } }
 
         #endregion
     }

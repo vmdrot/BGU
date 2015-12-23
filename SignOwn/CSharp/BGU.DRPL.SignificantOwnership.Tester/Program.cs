@@ -65,6 +65,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             #region populate
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
             _cmdHandlers.Add("updatexsdstranslationsex", UpdateXSDsTranslationsEx);
+            _cmdHandlers.Add("updatexsdstranslationsbankinfo", UpdateXSDsTranslationsBankInfo);
             _cmdHandlers.Add("updatexsds328p", UpdateXSDs328P);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
@@ -1020,6 +1021,18 @@ namespace BGU.DRPL.SignificantOwnership.Tester
         }
 
 
+        private static void UpdateXSDsTranslationsBankInfo(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(StateBankBranchRegistryChangePackageV1).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.EKDRBU" };
+
+            //ProcessTypeExport2XSD(typeof(ActualEKDRBUStructsUnion), assemblySummariesXml);
+            ProcessTypeExport2XSD(typeof(StateBankBranchRegistryChangePackageV1), assemblySummariesXml);
+        }
+
+
         private static void UpdateXSDs328P_(string[] args)
         {
 
@@ -1174,6 +1187,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
             string targetFolder = @"D:\home\vmdrot\TMP\XAMLTemplates";
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankRegistryEntry), typeof(StateBankRegistryEntry).Assembly, targetFolder);
             XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankBranchRegistryEntryV1), typeof(StateBankBranchRegistryEntryV1).Assembly, targetFolder);
+            XAMLTemplatesGenerationManager.GenerateXAMLTemplates(typeof(StateBankBranchRegistryChangePackageV1), typeof(StateBankBranchRegistryChangePackageV1).Assembly, targetFolder);
 
             string[] allIncludeFiles = Directory.GetFiles(targetFolder, "*_includes.xaml");
             List<string> includesDistinct = new List<string>();

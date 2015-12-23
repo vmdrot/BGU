@@ -1034,18 +1034,62 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Municipal
     }
 
+    /// <summary>
+    /// Нормальний
+    /// Виключено з Держ.реєстру
+    /// Режим ліквідації
+    /// Тимчасовоо призупинено
+    /// Реорганізація
+    /// </summary>
     public enum BankBranchStatusType
     {
         [Description("Не вказано")]
         None = 0,
-        [Description("Працююче")]
+        [Description("Нормальний")]
         Operational,
-        [Description("Призупинено")]
+        [Description("Виключено з Держ.реєстру")]
+        Deleted,
+        [Description("Режим ліквідації")]
+        InLiquidation,
+        [Description("Тимчасовоо призупинено")]
         Paused,
-        [Description("Зачинено")]
-        Closed,
+        [Description("Реорганізація")]
+        InReorganization
     }
 
+    public enum BankBranchChangeType
+    { 
+        [Description("Не вказано")]
+        None = 0,
+        [Description("відкриття")]
+        Opening,
+        [Description("зміни реквізитів")]
+        Change,
+        [Description("призупинення діяльності")]
+        Pause,
+        [Description("відновлення діяльності")]
+        Resume,
+        [Description("припинення діяльності")]
+        Closure
+    }
+
+    public enum BankBranchType
+    { 
+        [Description("Не вказано")]
+        None = 0,
+        [Description("філія")]
+        Filia,
+        [Description("відділення")]
+        Viddilennia,
+        [Description("дирекція")]
+        Dyrektsia,
+        [Description("регіональне управління")]
+        RegUpr,
+        [Description("представництво")]
+        RepOffice,
+        [Description("інше")]
+        Other
+    }
 
     public enum ResidenceType
     {

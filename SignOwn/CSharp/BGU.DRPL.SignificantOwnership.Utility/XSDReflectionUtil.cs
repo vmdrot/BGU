@@ -13,7 +13,25 @@ namespace BGU.DRPL.SignificantOwnership.Utility
     public class XSDReflectionUtil
     {
         private static readonly string AssemblyName = "BGU.DRPL.SignificantOwnership.Core";
-        public static readonly string[] SearchNamespaces = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires", "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares" };
+        public static readonly string[] SearchNamespaces = new string[] 
+            { 
+                "BGU.DRPL.SignificantOwnership.Core.Questionnaires",
+                "BGU.DRPL.SignificantOwnership.Core.Spares.Data",
+                "BGU.DRPL.SignificantOwnership.Core.Spares.Dict",
+                "BGU.DRPL.SignificantOwnership.Core.Spares",
+                "BGU.DRPL.SignificantOwnership.Core.EKDRBU",
+                "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy",
+                "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares",
+                "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc",
+                "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc.Parsers",
+                "BGU.DRPL.SignificantOwnership.Core.FXLicensing.Messages",
+                "BGU.DRPL.SignificantOwnership.Core.FXLicensing",
+                "BGU.DRPL.SignificantOwnership.Core.FXLicensing.Questionnares",
+                "BGU.DRPL.SignificantOwnership.Core.Messages",
+                "BGU.DRPL.SignificantOwnership.Core.Messages.BankInfo",
+                "BGU.DRPL.SignificantOwnership.Core.Spares2",
+                "BGU.DRPL.SignificantOwnership.Core.Spares2.DossierMsgs"
+            };
 
         public static Dictionary<string, PropDispDescr> FetchPropDispsDescrs(Type typ)
         {
@@ -288,6 +306,7 @@ namespace BGU.DRPL.SignificantOwnership.Utility
             {
                 if (i > 0)
                     sbInnerTxt.AppendLine();
+                //sbInnerTxt.AppendFormat("Див.також: <a href=\"{0}\">{0}</a>", seeAlso); i++;
                 sbInnerTxt.AppendFormat("Див.також: {0}", seeAlso); i++;
             }
 
