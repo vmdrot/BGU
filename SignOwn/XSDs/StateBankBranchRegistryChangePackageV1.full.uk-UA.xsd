@@ -41,7 +41,20 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="Signor" type="SignatoryInfo" displayName="Підписант" description="Реквізити підпису" field_order="9">
             <xs:annotation>
-              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Примітки:
+            Дата підпису - необов'язкова, за її 
+            відсутності презюмується дата подачі пакету</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PreparedBy" type="ContactInfo" displayName="Виконавець" description="Особа, що значиться як виконавець на супровідному листі до пакету" field_order="10">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            У полі Person достатньо вказати прізвище й ініціали в під-полі FullName
+            Як правило, вказують телефон (1 запис у колекції Phones, під-поле PhoneNr
+            Слід заохочувати вказувати e-mail (колекція Emails) та мобільний телефон (ще один запис у колекції Phones)</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -49,6 +62,383 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="RegistrarAuthority">
+    <xs:annotation>
+      <xs:documentation>Державний (чи як там заведено у відповідній країні) 
+            орган реєстрації осіб (як юридичних, так і фізичних)
+            
+
+Див.також: http://en.wikipedia.org/wiki/List_of_company_registers</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="JurisdictionCountry" type="CountryInfo" displayName="Країна юрисдикції" description="Країна юрисдикції" field_order="1">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле, за змовчанням - Україна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місцезнаходження" description="Місцезнаходження" field_order="2">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            якнайповніше</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarCode" type="xs:string" type_ukr="текст" displayName="Код держоргану (якщо існує)" description="Код держоргану (якщо існує)" field_order="3">
+            <xs:annotation>
+              <xs:documentation>Якщо такий код передбачено/існує; коротше, необов'язкове поле
+            (напр., у наших закордонних паспортах фігурує Issuing authority ID)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="RegistrarName" type="xs:string" type_ukr="текст" displayName="Назва держоргану" description="Назва держоргану" field_order="4">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Назва реєстратора (оригінальною мовою, у т.ч. українською - якщо реєстратор український).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" type_ukr="текст" displayName="Назва держоргану українською" description="Назва держоргану українською (для органів у інших країнах)" field_order="5">
+            <xs:annotation>
+              <xs:documentation>Назва реєстратора українською (якщо реєстратор не український).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" displayName="Тип осіб, що реєструє" description="Тип осіб, що реєструє" field_order="6">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:annotation>
+      <xs:documentation>Країна 
+            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)
+            (в усіх місцях, окрім тих, де з контексту явно випливає, що буде не Україна)
+            
+
+Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст" field_order="1">
+        <xs:annotation>
+          <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
+            Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Назва країни англ. мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Назва країни українською мовою</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationInfo">
+    <xs:annotation>
+      <xs:documentation>Відомості про адресу; використовується як реквізити юр./фіз.особи, держоргану, тощо</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Country" type="CountryInfo" displayName="Країна" description="Країна" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            За змовчанням - Україна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" type_ukr="текст" displayName="область/провінція, тощо" description="область/провінція, тощо" field_order="2">
+        <xs:annotation>
+          <xs:documentation>Якщо потрібно</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" type_ukr="текст" displayName="район/графство, тощо" description="район/графство, тощо" field_order="3">
+        <xs:annotation>
+          <xs:documentation>Якщо потрібно</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" type_ukr="текст" displayName="Поштовий індекс" description="Поштовий індекс" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Залежно від контексту, у більшості випадків - бажано</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="City" type="xs:string" type_ukr="текст" displayName="Населений пункт" description="Населений пункт" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле (скрізь)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" type_ukr="текст" displayName="Вулиця/площа/тощо" description="Вулиця/площа/тощо" field_order="6">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" type_ukr="текст" displayName="№ / назва будинку" description="№ / назва будинку" field_order="7">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо" description="№ кв./офісу, тощо" field_order="8">
+        <xs:annotation>
+          <xs:documentation>Якщо вимагається контекстом та передбачено/існує</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
+      <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PhysicalPersonInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про фіз.особу (реквізити)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CitizenshipCountry" type="CountryInfo" displayName="Громадянство" description="Громадянство" field_order="1">
+            <xs:annotation>
+              <xs:documentation>Обов'язкове поле (окрім хіба ContactInfo)
+            За змовчанням (пропонувати) - Україна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="HasDoubleCitizenship" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Має інше громадянство?" description="Особа має додаткове (подвійне) громадянство іншої(-их) країн(-и)" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DoubleCitizenshipCountries" type="ArrayOfCountryInfo" displayName="Додаткове(-і)/подвійне(-і) громадянство(-а)" description="Відомості про подвійне громадянство інших країн, ніж вказаної в полі 'Громадянство'" field_order="3" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Surname" type="xs:string" type_ukr="текст" displayName="Прізвище" description="Прізвище" category="Ім'я" field_order="4" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SurnameAtBirth" type="xs:string" type_ukr="текст" displayName="Прізвище при народженні" description="Прізвище при народженні - дівоче чи у інших випадках, якщо мала місце зміна прізвища" category="Ім'я" field_order="5" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" type_ukr="текст" displayName="Ім'я" description="Ім'я" category="Ім'я" field_order="6" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MiddleName" type="xs:string" type_ukr="текст" displayName="По-батькові/друге ім'я" description="По-батькові/друге ім'я" category="Ім'я" field_order="7" />
+          <xs:element minOccurs="1" maxOccurs="1" name="FullName" type="xs:string" type_ukr="текст" displayName="П.І.Б." description="П.І.Б." category="Ім'я" field_order="8">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Вказувати достатньо повного імені; 
+            Якщо є натхнення (або вимагає анкета) - можна й деталізацію по полях
+            Для нерезидентів бажано вимагати як окремих частин імені, 
+            так і повного (повністю) (бо хто його там зна, як до нього звертатися)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="SurnameUkr" type="xs:string" type_ukr="текст" displayName="Прізвище (укр.)" description="Прізвище, українською" category="Ім'я" field_order="9">
+            <xs:annotation>
+              <xs:documentation>для нерезидентів</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="NameUkr" type="xs:string" type_ukr="текст" displayName="Ім'я (укр.)" description="Ім'я, українською" category="Ім'я" field_order="10">
+            <xs:annotation>
+              <xs:documentation>для нерезидентів</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="MiddleNameUkr" type="xs:string" type_ukr="текст" displayName="По-батькові/друге ім'я (укр.)" description="По-батькові/друге ім'я, українською" category="Ім'я" field_order="11">
+            <xs:annotation>
+              <xs:documentation>для нерезидентів</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="FullNameUkr" type="xs:string" type_ukr="текст" displayName="П.І.Б (укр.)" description="П.І.Б., українською" category="Ім'я" field_order="12">
+            <xs:annotation>
+              <xs:documentation>для нерезидентів</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIPNRefused" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="ІПН немає" description="Особа у встановленому порядку відмовилася від індивідувального податкового номера?" category="Індивідуальний податковий номер" field_order="13" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPNRefusalEvidence" type="IPNRefusalRecordInfo" displayName="Відміка про відсутність ІПН-у" description="Відомості про відповідний запи/відмітку в паспорті громадянина (про відмові від ІПН та погодження такої відмови)" category="Індивідуальний податковий номер" field_order="14" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TaxOrSocSecID" type="xs:string" type_ukr="текст" displayName="ІПН" description="ІПН/№ картки соціального страхування/тощо, дивлячись, що використовується у країні резидентства" category="Індивідуальний податковий номер" field_order="15">
+            <xs:annotation>
+              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   Not IsIPNRefused</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" type_ukr="текст" displayName="Серія № паспорта" description="Серія № паспорта" category="Паспортні дані" field_order="16" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта" description="Дата видачі паспорта" category="Паспортні дані" field_order="17" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" displayName="Орган, що видав паспорт" description="Орган, що видав паспорт" category="Паспортні дані" field_order="18" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місце реєстрації" description="Місце реєстрації" category="Адреса(-и)" field_order="19">
+            <xs:annotation>
+              <xs:documentation>Поле необхідне лише якщо вимагається у анкеті</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsResidentialAndRegistrationAddressDifferent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Місце проживання й реєстрації відрізняються" description="Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації" category="Адреса(-и)" field_order="20" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місце проживання" description="Місце фактичного проживання (якщо інше, ніж реєстрації)" category="Адреса(-и)" field_order="21">
+            <xs:annotation>
+              <xs:documentation>Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від місця реєстрації.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" displayName="Стать" description="Стать" category="Додаткова інформація" field_order="22">
+            <xs:annotation>
+              <xs:documentation>Бажано вимагати; дивитися за контекстом конкретного поля 
+            у конкретній анкеті</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата народження" description="Дата народження" category="Додаткова інформація" field_order="23">
+            <xs:annotation>
+              <xs:documentation>Як правило, необов'язкове поле
+            Буває, що онука називають як діда, і у ланцюжку володіння фігурують обидва
+            Тоді корисно мати ще й дату народження, щоб відрізняти; 
+            буває, що онук ще неповнолітній та не має паспорта/кода
+            (реальний випадок - банк "Грант", щоправда, там, був код ІПН)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryInfo" nillable="true" type="CountryInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPNRefusalRecordInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про відмітку в паспорті про право здійснювати будь-які 
+              платежі без ІПН
+             ---------------------------------------------------------
+             У паспорт серія ___ N ____________, який видано громадянину
+             _________________________________________________________________,
+                                (прізвище, ім'я та по батькові)
+             ______ внесено  відмітку  за  N  _____________ про наявність права
+              (дата)
+             здійснювати будь-які платежі без ідентифікаційного номера.
+            ____________             ________________________________________
+              (дата)                           (ПІБ, посада, підпис)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата запису" description="Дата внесення відповідного запису до паспорта" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RecordID" type="xs:string" type_ukr="текст" displayName="№ запису" description="№ відповідного запису до паспорта" field_order="2" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Відомості про підписанта запису" description="Відомості про підписанта запису" field_order="3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SignatoryInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове (якщо тільки контекстом не передбачено інше)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SignatoryPosition" type="xs:string" type_ukr="текст" displayName="Посада (підписанта)" description="Посада (підписанта)" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SurnameInitials" type="xs:string" type_ukr="текст" displayName="Прізвище й ініціали (підписанта)" description="Прізвище й ініціали (підписанта)" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="За довіреністю?" description="Підписант діє на підставі довіреності" field_order="4">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Довіреність" description="Реквізити довіреності, на підставі якої діє підписант" field_order="5">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   IsActingByPowOfAttorney == true</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowerOfAttorneyInfo">
+    <xs:annotation>
+      <xs:documentation>Реквізити довіреності</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ActingPerson" type="GenericPersonID" displayName="Довірена особа" description="Кому видано довіреність" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" displayName="Від імені" description="Особа, яку представляють (від імені якої діє довірена особа)" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Title" type="xs:string" type_ukr="текст" displayName="Назва/титул довіреності" description="Короткий зміст предмету довіреності" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна з" description="Дата початку дії довіреності" field_order="4">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до" description="Дата закінчення дії довіреності" field_order="5" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" type_ukr="текст" displayName="Інші відомості" description="Додаткові (значущі) відомості про довіреність" field_order="6" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonID">
+    <xs:annotation>
+      <xs:documentation>Універсальний ідентифікатор особи (як юр., так і фізичної)
+            (щоб не "таскати", себто, не дублювати, усі реквізити особи там, де потребується просто послатися на ту особу).
+            Використовується (зокрема) для ідентифікації:
+             - об'єкту власності та власника - при розкритті ланцюжка кінцевих власників
+             - членів колегіального керівного органу;
+             - виданої гарантії/поручительства);
+             - тощо.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="1">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Код країни резидентності
+            
+
+Див.також: T:BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CountryInfo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Тип особи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст" field_order="3">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Код особи;
+            Для юр.особи - TaxCodeOrHandelsRegNr
+            Для фіз.особи:
+            якщо (не пустий TaxOrSocSecID ) - то TaxOrSocSecID 
+            інакше - PassportID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SexType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Male" description="Чол." enum_value="1" />
+      <xs:enumeration value="Female" description="Жін." enum_value="2" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="EKDRBUVariableEntryPartV1">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -290,90 +680,6 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="GenericPersonID">
-    <xs:annotation>
-      <xs:documentation>Універсальний ідентифікатор особи (як юр., так і фізичної)
-            (щоб не "таскати", себто, не дублювати, усі реквізити особи там, де потребується просто послатися на ту особу).
-            Використовується (зокрема) для ідентифікації:
-             - об'єкту власності та власника - при розкритті ланцюжка кінцевих власників
-             - членів колегіального керівного органу;
-             - виданої гарантії/поручительства);
-             - тощо.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="1">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Код країни резидентності
-            
-
-Див.також: T:BGU.DRPL.SignificantOwnership.Core.Spares.Dict.CountryInfo</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PersonType" type="EntityType" field_order="2">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Тип особи</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="PersonCode" type="xs:string" type_ukr="текст" field_order="3">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Код особи;
-            Для юр.особи - TaxCodeOrHandelsRegNr
-            Для фіз.особи:
-            якщо (не пустий TaxOrSocSecID ) - то TaxOrSocSecID 
-            інакше - PassportID</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:simpleType name="EntityType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="Physical" description="Фізична особа" enum_value="1" />
-      <xs:enumeration value="Legal" description="Юридична особа" enum_value="2" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="CountryInfo">
-    <xs:annotation>
-      <xs:documentation>Країна 
-            Значення за змовчанням - Україна (UA, UKR, 804, Ukraine)
-            (в усіх місцях, окрім тих, де з контексту явно випливає, що буде не Україна)
-            
-
-Див.також: http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" type_ukr="текст" field_order="1">
-        <xs:annotation>
-          <xs:documentation>this and other fields as per http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
-            Див. вищевказаний урл для специфікації (для усіх полів)</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" type_ukr="текст" field_order="2" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryISONr" type="xs:string" type_ukr="текст" field_order="3">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" type_ukr="текст" field_order="4">
-        <xs:annotation>
-          <xs:documentation>Назва країни англ. мовою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="CountryNameUkr" type="xs:string" type_ukr="текст" field_order="5">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Назва країни українською мовою</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="ArrayOfStateBankRegistrySingleBranchChangeRecV1">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="StateBankRegistrySingleBranchChangeRecV1" nillable="true" type="StateBankRegistrySingleBranchChangeRecV1" />
@@ -493,72 +799,111 @@
       <xs:enumeration value="Other" description="Інше (вказати додатково у деталях)" enum_value="6" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="SignatoryInfo">
+  <xs:complexType name="ContactInfo">
     <xs:annotation>
-      <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
+      <xs:documentation>Контактна інформація</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
+      <xs:element minOccurs="0" maxOccurs="1" name="Person" type="PhysicalPersonInfo" displayName="Контактна особа" description="Контактна особа (фізособа)" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Обов'язкове (якщо тільки контекстом не передбачено інше)</xs:documentation>
+          <xs:documentation>Необов'язкове поле; якщо заповнюється, то достатньо (як правило) П.І.Б.; як вони хочуть, щоб до них зверталися (хоч би й лише Name),
+            напр. "Люда, тел. XXX-XXX-XX-XX, e-mail..."</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SignatoryPosition" type="xs:string" type_ukr="текст" displayName="Посада (підписанта)" description="Посада (підписанта)" field_order="2">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            обов'язкове</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SurnameInitials" type="xs:string" type_ukr="текст" displayName="Прізвище й ініціали (підписанта)" description="Прізвище й ініціали (підписанта)" field_order="3">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            обов'язкове</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="За довіреністю?" description="Підписант діє на підставі довіреності" field_order="4">
+      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" displayName="Бажаний засіб комунікації" description="Оберіть той засіб комунікації, котрий є для Вас бажаним (і заповніть відповідні поля)" field_order="2">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" displayName="Довіреність" description="Реквізити довіреності, на підставі якої діє підписант" field_order="5">
+      <xs:element minOccurs="1" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" displayName="Телефони" description="Перелік телефонів" field_order="3">
         <xs:annotation>
-          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
-   IsActingByPowOfAttorney == true</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Бодай один телефон.
+            Хай самі вказують стільки, скільки хочуть, залежно від того, 
+            наскільки вони хочуть, щоб їх знайшли, у разі потреби/питань.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" type_ukr="текст" displayName="Факс" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Необов'язкове поле, як на мене - вже застарілий засіб зв'язку.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" displayName="E-mail-и" description="Перелік адрес електронної пошти" field_order="5">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Мінімум одне мило - обов'язково питати.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" type_ukr="текст" displayName="www" description="Веб-сайт" field_order="6">
+        <xs:annotation>
+          <xs:documentation>Не обов'язкове (окрім банку, видавництва, тощо - де це вимагається контекстом використання цього типу).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса для листування" description="Адреса для звичайної пошти" field_order="7" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MeansOfCommunication">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Phone" description="Телефон(-и)" enum_value="1" />
+      <xs:enumeration value="Email" description="Ел.пошта" enum_value="2" />
+      <xs:enumeration value="Fax" description="Факс" enum_value="3" />
+      <xs:enumeration value="Mail" description="Звичайна пошта" enum_value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPhoneInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhoneInfo" nillable="true" type="PhoneInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhoneInfo">
+    <xs:annotation>
+      <xs:documentation>Інформація про телефон</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneName" type="xs:string" type_ukr="текст" displayName="Тип/назва телефону" description="Тип/назва телефону" field_order="1">
+        <xs:annotation>
+          <xs:documentation>не обов'язкове, значення (напр.) - дом., моб., роб., тощо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="PhoneNr" type="xs:string" type_ukr="текст" displayName="№ телефону" description="№ телефону" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" type_ukr="текст" displayName="Примітки щодо телефону" description="Примітки щодо телефону" field_order="3">
+        <xs:annotation>
+          <xs:documentation>напр. "дзвонити з 9 до 18, по вихідних, поза зоною тоді-то, тощо"</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="PowerOfAttorneyInfo">
+  <xs:complexType name="ArrayOfEmailInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmailInfo" nillable="true" type="EmailInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmailInfo">
     <xs:annotation>
-      <xs:documentation>Реквізити довіреності</xs:documentation>
+      <xs:documentation>Структура для зберігання інформації про e-mail
+            Можна відмовитися й зберігати просто значення e-mail</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="ActingPerson" type="GenericPersonID" displayName="Довірена особа" description="Кому видано довіреність" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="Email" type="xs:string" type_ukr="текст" displayName="Адреса ел.пошти" field_order="1">
         <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове поле
+            валідація як e-mail</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" displayName="Від імені" description="Особа, яку представляють (від імені якої діє довірена особа)" field_order="2">
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" type_ukr="текст" displayName="Примітки (необов'язково)" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+          <xs:documentation>Необов'язкове поле, передбачено для вказання, що за мило - робоче, особисте, офіційне (юр.особи).</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Title" type="xs:string" type_ukr="текст" displayName="Назва/титул довіреності" description="Короткий зміст предмету довіреності" field_order="3">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна з" description="Дата початку дії довіреності" field_order="4">
-        <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дійсна до" description="Дата закінчення дії довіреності" field_order="5" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" type_ukr="текст" displayName="Інші відомості" description="Додаткові (значущі) відомості про довіреність" field_order="6" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

@@ -124,11 +124,81 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
             Name = le.Name;
         }
 
+        #region overridden method(s)
+        
         public override string ToString()
         {
             return Name;
         }
 
+        public static bool operator ==(BankInfo x, BankInfo y)
+        {
+            if (((object)x) == null && ((object)y) == null)
+                return true;
+            if (((object)x) == null || ((object)y) == null)
+                return false;
+            if (x.OperationCountry != y.OperationCountry)
+                    return false;
+
+            if (!(string.IsNullOrEmpty(x.MFO) && string.IsNullOrEmpty(y.MFO)))
+            {
+                if (string.IsNullOrEmpty(x.MFO) || string.IsNullOrEmpty(y.MFO))
+                    return false;
+                return x.MFO == y.MFO;
+            }
+
+            if (!(string.IsNullOrEmpty(x.SWIFTBIC) && string.IsNullOrEmpty(y.SWIFTBIC)))
+            {
+                if (string.IsNullOrEmpty(x.SWIFTBIC) || string.IsNullOrEmpty(y.SWIFTBIC))
+                    return false;
+                return x.SWIFTBIC == y.SWIFTBIC;
+            }
+            return false;
+        }
+
+        public static bool operator !=(BankInfo x, BankInfo y)
+        {
+            if (((object)x) == null && ((object)y) == null)
+                return false;
+            if (((object)x) == null || ((object)y) == null)
+                return true;
+
+            if (x.OperationCountry != y.OperationCountry)
+                return true;
+
+            if (!(string.IsNullOrEmpty(x.MFO) && string.IsNullOrEmpty(y.MFO)))
+            {
+                if (string.IsNullOrEmpty(x.MFO) || string.IsNullOrEmpty(y.MFO))
+                    return true;
+                return x.MFO != y.MFO;
+            }
+
+            if (!(string.IsNullOrEmpty(x.SWIFTBIC) && string.IsNullOrEmpty(y.SWIFTBIC)))
+            {
+                if (string.IsNullOrEmpty(x.SWIFTBIC) || string.IsNullOrEmpty(y.SWIFTBIC))
+                    return true;
+                return x.SWIFTBIC != y.SWIFTBIC;
+            }
+
+            if (!(string.IsNullOrEmpty(x.Name) && string.IsNullOrEmpty(y.Name)))
+            {
+                if (string.IsNullOrEmpty(x.Name) || string.IsNullOrEmpty(y.Name))
+                    return true;
+                return x.Name != y.Name;
+            }
+
+
+            if (!(string.IsNullOrEmpty(x.RegistryNr) && string.IsNullOrEmpty(y.RegistryNr)))
+            {
+                if (string.IsNullOrEmpty(x.RegistryNr) || string.IsNullOrEmpty(y.RegistryNr))
+                    return true;
+                return x.RegistryNr != y.RegistryNr;
+            }
+
+            return false;
+        }
+
+        #endregion
         public override bool Equals(object obj)
         {
             if (obj == null && this == null)
