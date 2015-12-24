@@ -72,6 +72,7 @@
     <Compile Include="BankInfoTests\BankOpsSvcStructuringTests.cs" />
     <Compile Include="BankInfoTests\GenLicenseWordParsingTools.cs" />
     <Compile Include="BankInfoTests\TextualFinBkOpsSvcTests.cs" />
+    <Compile Include="BankInfoTests\V1GoTests.cs" />
     <Compile Include="BasicUI\QuestionnaireDataAggregationTests.cs" />
     <Compile Include="DXUI\DXPropGridTests.cs" />
     <Compile Include="EKDRBU\BankInfoTests.cs" />
