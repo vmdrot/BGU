@@ -15,7 +15,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
     {
         public SignatoryInfo()
         {
-            DateSigned = DateTime.Now;
         }
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Дата підпису")]
         [Description("Дата підпису")]
         [Required]
-        public DateTime DateSigned { get; set; }
+        public DateTime? DateSigned { get; set; }
         /// <summary>
         /// обов'язкове
         /// </summary>

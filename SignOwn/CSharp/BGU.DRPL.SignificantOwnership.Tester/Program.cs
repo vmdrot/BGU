@@ -75,6 +75,8 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("bankinfoparseresearch", BankInfoParseResearch);
             _cmdHandlers.Add("parsegfxlicdoc", ParseGFXLicDoc);
             _cmdHandlers.Add("parsegenlicnonbankstest", ParseGenLicNonBanksTest);
+            _cmdHandlers.Add("oshchadzhytomyropsbulkchange", OshchadZhytomyrOpsBulkChange);
+            
             
             #endregion
 
@@ -1492,6 +1494,13 @@ RegLicAppx9BankingLicenseAppl.xsd";
 
         }
 
+        #endregion
+
+        #region Bank-Info V1 items
+        private static void OshchadZhytomyrOpsBulkChange(string[] args)
+        {
+            StateBankBranchRegistryChangePackageV1 pkg = (new Oshchad()).ZhytomyrOblastBulkChanges;
+        }
         #endregion
 
     }

@@ -43,6 +43,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Examples
         {
             StateBankBranchRegistryChangePackageV1 rslt = new StateBankBranchRegistryChangePackageV1();
             rslt.BankRef = BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankInfo.AllUABanks.Find(b => b.MFO == "300465");
+            //rslt.BankRef = BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankInfo.AllUABanks.Find(b => b.MFO == "328209");
             rslt.PackageID = "11/4-16/3031-10895";
             rslt.PackageDate = DateTime.Parse("2015-10-20T00:00:00");
             rslt.OperationsListingSchemes = new List<Core.EKDRBU.Spares.BankBranchOpsSvcsSchemeInfo>();
@@ -73,6 +74,12 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Examples
             #region fill attachments
             rslt.Attachments.Add(new AttachmentInfo() { AttachmentID = headBankDecisionID, AttachmentType = Core.Spares.TypicalApplicationAttachement.InternalReglementCopiesScans, ContentType = "pdf", FileName = "RishNBU_40-111_1151-3506.pdf" });
             #endregion
+
+            #region Signature etc.
+            rslt.Signor = new SignatoryInfo() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
+            rslt.PreparedBy = new ContactInfo() { Person = new Core.Spares.Dict.PhysicalPersonInfo() { FullName = "Ткач В.Д." }, Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() { PhoneNr = "249-31-15" } }) };
+            #endregion
+
             return rslt;
         }
         #endregion
@@ -83,6 +90,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Examples
         {
             StateBankBranchRegistryChangePackageV1 rslt = new StateBankBranchRegistryChangePackageV1();
             rslt.BankRef = BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankInfo.AllUABanks.Find(b => b.MFO == "300465");
+            //rslt.BankRef = BGU.DRPL.SignificantOwnership.Core.Spares.Dict.BankInfo.AllUABanks.Find(b => b.MFO == "328209");
             rslt.PackageID = "11/4-16/3031-10895";
             rslt.PackageDate = DateTime.Parse("2015-10-20T00:00:00");
             rslt.OperationsListingSchemes = new List<Core.EKDRBU.Spares.BankBranchOpsSvcsSchemeInfo>();
@@ -315,6 +323,11 @@ rslt.OperationsListingSchemes.Add(new Core.EKDRBU.Spares.BankBranchOpsSvcsScheme
             rslt.Attachments = new List<Core.Spares.Data.AttachmentInfo>();
             #region fill attachments
             rslt.Attachments.Add(new AttachmentInfo() { AttachmentID = headBankDecisionID, AttachmentType = Core.Spares.TypicalApplicationAttachement.InternalReglementCopiesScans, ContentType = "pdf", FileName = "PostPravlN910_07102015.pdf" });
+            #endregion
+
+            #region Signature etc.
+            rslt.Signor = new SignatoryInfo() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
+            rslt.PreparedBy = new ContactInfo() { Person = new Core.Spares.Dict.PhysicalPersonInfo() { FullName = "Кравець Н.М." }, Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() {PhoneNr = "(044) 247-86-52" }}) };
             #endregion
             return rslt;
         }

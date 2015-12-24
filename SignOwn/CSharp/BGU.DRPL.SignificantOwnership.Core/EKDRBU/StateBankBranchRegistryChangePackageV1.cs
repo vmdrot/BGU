@@ -59,9 +59,26 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
         public string RequirementsKeptDetails { get { return _RequirementsKeptDetails; } set { _RequirementsKeptDetails = value; OnPropertyChanged("RequirementsKeptDetails"); } }
 
         private SignatoryInfo _Signor;
+        /// <summary>
+        /// Примітки:
+        /// Дата підпису - необов'язкова, за її 
+        /// відсутності презюмується дата подачі пакету
+        /// </summary>
         [DisplayName("Підписант")]
         [Description("Реквізити підпису")]
         [Required]
         public SignatoryInfo Signor { get { return _Signor; } set { _Signor = value; OnPropertyChanged("Signor"); } }
+
+        private ContactInfo _PreparedBy;
+        /// <summary>
+        /// У полі Person достатньо вказати прізвище й ініціали в під-полі FullName
+        /// Як правило, вказують телефон (1 запис у колекції Phones, під-поле PhoneNr
+        /// Слід заохочувати вказувати e-mail (колекція Emails) та мобільний телефон (ще один запис у колекції Phones)
+        /// </summary>
+        [DisplayName("Виконавець")]
+        [Description("Особа, що значиться як виконавець на супровідному листі до пакету")]
+        [Required]
+        public ContactInfo PreparedBy { get { return _PreparedBy; } set { _PreparedBy = value; OnPropertyChanged("PreparedBy"); } }
+
     }
 }

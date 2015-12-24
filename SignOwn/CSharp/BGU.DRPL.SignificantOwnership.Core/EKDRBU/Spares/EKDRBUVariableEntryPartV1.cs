@@ -28,12 +28,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Вид")]
         [DisplayName("Вид - новий")]
         [Description("Нове значення поля Вид відокремленого підрозділу")]
+        [UIConditionalVisibility("IsBranchTypeChanged")]
         public BankBranchType BranchTypeNew { get { return _BranchTypeNew; } set { _BranchTypeNew = value; OnPropertyChanged("BranchTypeNew"); } }
         
         private BankBranchType _BranchTypeOld;
         [Category("Вид")]
         [DisplayName("Вид - старий")]
         [Description("Старе значення поля Вид відокремленого підрозділу")]
+        [UIConditionalVisibility("IsBranchTypeChanged")]
         public BankBranchType BranchTypeOld { get { return _BranchTypeOld; } set { _BranchTypeOld = value; OnPropertyChanged("BranchTypeOld"); } }
 
         #endregion
