@@ -107,7 +107,7 @@
   </xs:complexType>
   <xs:complexType name="SignatoryInfo">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="SignatoryPosition" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SurnameInitials" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" />
@@ -138,6 +138,15 @@
       <xs:enumeration value="Female" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="DocumentID">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ID" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="EKDRBUVariableEntryPartV1">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -309,7 +318,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="BankBranchRegID" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="ChangeEffectiveDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="Changes" type="EKDRBUVariableEntryPartV1" />
-      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfDocumentID" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="BankBranchChangeType">
@@ -322,9 +331,9 @@
       <xs:enumeration value="Closure" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="ArrayOfString">
+  <xs:complexType name="ArrayOfDocumentID">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentID" nillable="true" type="DocumentID" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBankBranchOpsSvcsSchemeInfo">

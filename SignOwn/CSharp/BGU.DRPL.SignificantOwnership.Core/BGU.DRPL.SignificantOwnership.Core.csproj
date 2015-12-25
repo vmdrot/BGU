@@ -62,6 +62,7 @@
     <Compile Include="EKDRBU\Spares\BankBranchOpsFinSvcCompleteInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOpsSvcsSchemeInfo.cs" />
+    <Compile Include="EKDRBU\Spares\DocumentID.cs" />
     <Compile Include="EKDRBU\Spares\EKDRBUVariableEntryPartV1.cs" />
     <Compile Include="EKDRBU\Spares\StateBankRegistrySingleBranchChangeRecV1.cs" />
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\BranchFinOpSvcTextualInfo.cs" />

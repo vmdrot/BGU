@@ -50,5 +50,16 @@ namespace BGU.DRPL.SignificantOwnership.Tests.EKDRBU
             }
             return depts;
         }
+
+
+        [Test]
+        public void ListNFUs()
+        {
+            
+            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\BGU\Var\Unsorted\COMPVAL_nfu\compval.dbf");
+            
+            Tools.DataTableToCSV(dt, @"D:\home\vmdrot\BGU\Var\Unsorted\COMPVAL_nfu\COMPVAL_nfu.csv", true);
+        }
+
     }
 }

@@ -42,6 +42,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// </summary>
         [DisplayName("Відповідне(-і) рішення банку")]
         [Description("Ідентифікатор(-и) додатку(-ів), яким(-и) долучається відповідне рішення, згідно з яким(-и) вносяться зміни до відокремленого підрозділу")]
-        public List<string> HeadBankDecisionRefs { get; set; }
+        public List<DocumentID> HeadBankDecisionRefs { get; set; }
     }
 }
