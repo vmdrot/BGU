@@ -25,8 +25,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
         [Required]
         public BankInfo BankRef { get { return _BankRef; } set { _BankRef = value; OnPropertyChanged("BankRef"); } }
 
-        public string PackageID { get; set; }
-        public DateTime PackageDate { get; set; }
+        private string _PackageID;
+        [DisplayName("№ пакету")]
+        [Description("Вихідний номер документу, за яким пакет дійшов до НБУ та на котрий слід посилатися в усій подальшій комунікації з цього приводу")]
+        [Required]
+        public string PackageID { get { return _PackageID; } set { _PackageID = value; OnPropertyChanged("PackageID"); } }
+
+        private DateTime _PackageDate;
+        [DisplayName("Дата подачі пакету")]
+        [Description("Дата вихідного документу, яким було оформлено пакет\nЯкщо не вказано, то ця ж дата використовується як дата підпису, і т.д.")]
+        [Required]
+        public DateTime PackageDate { get { return _PackageDate; } set { _PackageDate = value; OnPropertyChanged("PackageDate"); } }
 
         private List<StateBankRegistrySingleBranchChangeRecV1> _ChangingBranches;
         [DisplayName("Пакет змін")]

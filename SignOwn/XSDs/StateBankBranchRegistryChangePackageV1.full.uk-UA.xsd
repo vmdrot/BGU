@@ -16,8 +16,16 @@
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PackageID" type="xs:string" type_ukr="текст" field_order="2" />
-          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" type_ukr="дата і час" field_order="3" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageID" type="xs:string" type_ukr="текст" displayName="№ пакету" description="Вихідний номер документу, за яким пакет дійшов до НБУ та на котрий слід посилатися в усій подальшій комунікації з цього приводу" field_order="2">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата подачі пакету" description="Дата вихідного документу, яким було оформлено пакет&#xA;Якщо не вказано, то ця ж дата використовується як дата підпису, і т.д." field_order="3">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" displayName="Пакет змін" description="Відомості про змінну частину реквізитів відокремлених підрозділів, що становить цей пакет" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
@@ -328,7 +336,7 @@
       <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -439,6 +447,15 @@
       <xs:enumeration value="Female" description="Жін." enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="DocumentID">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор документа" description="Ідентифікатор документа (додатку, тощо)" field_order="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="EKDRBUVariableEntryPartV1">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -695,7 +712,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="BankBranchRegID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор підрозділу" description="Чинне значення унікального ідентифікатора&#xA; відокремленого підрозділу (внутрішньобанківський код)" field_order="2" />
       <xs:element minOccurs="1" maxOccurs="1" name="ChangeEffectiveDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата набуття чинності" description="Дата, з якої набуває чинності нинішня зміна" field_order="3" />
       <xs:element minOccurs="0" maxOccurs="1" name="Changes" type="EKDRBUVariableEntryPartV1" displayName="Зміни" description="Значення змінюваних реквізитів" field_order="4" />
-      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfString" displayName="Відповідне(-і) рішення банку" description="Ідентифікатор(-и) додатку(-ів), яким(-и) долучається відповідне рішення, згідно з яким(-и) вносяться зміни до відокремленого підрозділу" field_order="5">
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfDocumentID" displayName="Відповідне(-і) рішення банку" description="Ідентифікатор(-и) додатку(-ів), яким(-и) долучається відповідне рішення, згідно з яким(-и) вносяться зміни до відокремленого підрозділу" field_order="5">
         <xs:annotation>
           <xs:documentation>Якщо у цій зміні, наприклад, відображено результати 
             більше, ніж одного рішення</xs:documentation>
@@ -713,9 +730,9 @@
       <xs:enumeration value="Closure" description="припинення діяльності" enum_value="5" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="ArrayOfString">
+  <xs:complexType name="ArrayOfDocumentID">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentID" nillable="true" type="DocumentID" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBankBranchOpsSvcsSchemeInfo">

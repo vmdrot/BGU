@@ -16,8 +16,16 @@
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PackageID" type="xs:string" type_ukr="текст" field_order="2" />
-          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" type_ukr="дата і час" field_order="3" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageID" type="xs:string" type_ukr="текст" displayName="№ пакету" description="Вихідний номер документу, за яким пакет дійшов до НБУ та на котрий слід посилатися в усій подальшій комунікації з цього приводу" field_order="2">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата подачі пакету" description="Дата вихідного документу, яким було оформлено пакет&#xA;Якщо не вказано, то ця ж дата використовується як дата підпису, і т.д." field_order="3">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" displayName="Пакет змін" description="Відомості про змінну частину реквізитів відокремлених підрозділів, що становить цей пакет" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
@@ -73,6 +81,7 @@
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="SexType.uk-UA.xsd" />
+  <xs:include schemaLocation="DocumentID.uk-UA.xsd" />
   <xs:include schemaLocation="EKDRBUVariableEntryPartV1.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchType.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchStatusType.uk-UA.xsd" />
@@ -80,7 +89,7 @@
   <xs:include schemaLocation="ArrayOfStateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
   <xs:include schemaLocation="StateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchChangeType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfString.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfDocumentID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfAttachmentInfo.uk-UA.xsd" />
