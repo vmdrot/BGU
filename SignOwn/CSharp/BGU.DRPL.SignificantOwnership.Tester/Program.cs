@@ -66,6 +66,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("updatexsdstranslations", UpdateXSDsTranslations);
             _cmdHandlers.Add("updatexsdstranslationsex", UpdateXSDsTranslationsEx);
             _cmdHandlers.Add("updatexsdstranslationsbankinfo", UpdateXSDsTranslationsBankInfo);
+            _cmdHandlers.Add("updatexsdstranslationsdeptlist", UpdateXSDsTranslationsDeptList);
             _cmdHandlers.Add("updatexsds328p", UpdateXSDs328P);
             _cmdHandlers.Add("generatexamls4reglicappx2", GenerateXAMLs4RegLicAppx2);
             _cmdHandlers.Add("generatexamls4bkinfo", GenerateXAMLs4BkInfo);
@@ -1034,6 +1035,17 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             ProcessTypeExport2XSD(typeof(StateBankBranchRegistryChangePackageV1), assemblySummariesXml);
         }
 
+
+
+        private static void UpdateXSDsTranslationsDeptList(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(DeptListEntry).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy"};
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy" };
+
+            ProcessTypeExport2XSD(typeof(DeptListEntry), assemblySummariesXml);
+        }
 
         private static void UpdateXSDs328P_(string[] args)
         {

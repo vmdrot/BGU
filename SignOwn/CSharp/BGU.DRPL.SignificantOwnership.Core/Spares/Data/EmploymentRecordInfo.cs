@@ -30,7 +30,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
         [Required]
         [UIUsageRadioButtonGroup(GroupOrientation=Orientation.Horizontal, ShowNoneItem=false)]
-        public EmploymentState State { get { return _State; } set { _State = value; OnPropertyChanged("State"); OnPropertyChanged("IsEmployee"); OnPropertyChanged("IsSelfEmployedOrFreelance"); OnPropertyChanged("IsUnemployed"); OnPropertyChanged("IsBusy"); } }
+        public EmploymentState State { get { return _State; } set { _State = value; OnPropertyChanged("State"); OnPropertyChanged("IsEmployee"); OnPropertyChanged("IsSelfEmployedOrFreelance"); OnPropertyChanged("IsUnemployed"); OnPropertyChanged("IsBusy"); OnPropertyChanged("IsEmployeeSelfEmployedOrFreelance"); } }
 
         private bool _IsEmploymentBookRegistered;
         /// <summary>
@@ -47,7 +47,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsSelfEmployedOrFreelance { get { return State == EmploymentState.Freelance || State == EmploymentState.Selfemployed; } }
+        public bool IsSelfEmployedOrFreelance { get { return State == EmploymentState.SelfemployedFreelance ; } }
+
+        [Browsable(false)]
+        [XmlIgnore]
+        public bool IsEmployeeSelfEmployedOrFreelance { get { return State == EmploymentState.Employed || State == EmploymentState.SelfemployedFreelance; } }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -56,24 +60,28 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Browsable(false)]
         [XmlIgnore]
         public bool IsBusy { get { return State != EmploymentState.Unemployed; } }
-      
+
+        private EmploymentTimeType _FullOrPartTime;
+        /// <summary>
+        /// Повна (основна) чи часткова (за сумісництвом) зайнятість
+        /// </summary>
+        /// 
+        [DisplayName("Вид зайнятості")]
+        [Description("Зайнятість повна/сумісництво")]
+        [Required]
+        public EmploymentTimeType FullOrPartTime { get { return _FullOrPartTime; } set { _FullOrPartTime = value; OnPropertyChanged("FullOrPartTime"); } }
+
 
         private GenericPersonID _Employer;
         /// <summary>
         /// Обов'язкове поле
         /// Посилання - реквізити в MentionedEntities
         /// </summary>
-        [DisplayName("Роботодавець")]
+        [DisplayName("Роботодавець/основний замовник")]
+        [Description("Роботодавець (для найманих працівників)\n чи основний замовник (для самозайнятих/фрілансерів)")]
         [Required("State == Employed")]
-        [UIConditionalVisibility("IsEmployee")]
+        [UIConditionalVisibility("IsEmployeeSelfEmployedOrFreelance")]
         public GenericPersonID Employer { get { return _Employer; } set { _Employer = value; OnPropertyChanged("Employer"); } }
-
-        private GenericPersonID _PrincipalContractor;
-        [DisplayName("Основний замовник")]
-        [Description("Основний замовник - для самозайнятих/фрілансерів")]
-        [Required("State == Freelance OR State == Selfemployed")]
-        [UIConditionalVisibility("IsSelfEmployedOrFreelance")]
-        public GenericPersonID PrincipalContractor { get { return _PrincipalContractor; } set { _PrincipalContractor = value; OnPropertyChanged("PrincipalContractor"); } }
 
         private EconomicActivityType _PrincipalFreelanceActivity;
         /// <summary>
@@ -101,18 +109,25 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// Код професії, у ролі якого працівник був зайнятий,
         /// згідно Міжнародного стандарту класифікації професій
         /// та його української (ДК 003:2010) / іншої локальної адаптації
-        /// 
+        /// (якщо відомий/передбачено для даної посади)
         /// </summary>
         [DisplayName("Код та назва професії за МОП")]
         [Description("Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010")]
         public ISCO ISCOJobSpec { get { return _ISCOJobSpec; } set { _ISCOJobSpec = value; OnPropertyChanged("ISCOJobSpec"); } }
 
+        private string _JobDutiesDescription;
+        [DisplayName("Службові обов'язки")]
+        [Description("Опис службових обов'язків за займаною посадою")]
+        [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
+        public string JobDutiesDescription { get { return _JobDutiesDescription; } set { _JobDutiesDescription = value; OnPropertyChanged("JobDutiesDescription"); } }
+
+
         private bool _IsSupervisedIndustryExperience;
         /// <summary>
         /// Чи є дана робота досвідом роботи у регульованій галузі?
         /// </summary>
-        [DisplayName("Банківський/фінансовий досвід")]
-        [Description("Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж")]
+        [DisplayName("Банківський досвід")]
+        [Description("Чи враховується описуване місце роботи у загальний банкіський стаж")]
         public bool IsSupervisedIndustryExperience { get { return _IsSupervisedIndustryExperience; } set { _IsSupervisedIndustryExperience = value; OnPropertyChanged("IsSupervisedIndustryExperience"); } }
 
         private bool _IsManagingPosition;
@@ -125,7 +140,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         private DateTime _DateStarted;
         /// <summary>
-        /// обов'язкове, з точністю до місяця
+        /// обов'язкове, для резидентів - з точністю до дня, 
+        /// для нерезидентів - з точністю до місяця (за змовчанням - 1 число)
         /// </summary>
         [DisplayName("Дата початку роботи")]
         [Description("Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)")]
@@ -133,9 +149,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public DateTime DateStarted { get { return _DateStarted; } set { _DateStarted = value; OnPropertyChanged("DateStarted"); } }
 
         private bool _IsStillWorkingThere;
-
-        [DisplayName("чинне місце роботи/статус")]
-        [Description("(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)")]
+        [DisplayName("Статус місця роботи: чинне чи ні")]
+        [Description("Відзначити, якщо це - чинне місце роботи на дату заповнення анкети (чи й досі тут працює?)")]
         [Required]
         public bool IsStillWorkingThere { get { return _IsStillWorkingThere; } set { _IsStillWorkingThere = value; OnPropertyChanged("IsStillWorkingThere"); OnPropertyChanged("IsAlreadyFinished"); } }
 
@@ -145,7 +160,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         private DateTime? _DateQuit;
         /// <summary>
-        /// з точністю до місяця
+        /// , для резидентів - з точністю до дня, 
+        /// для нерезидентів - з точністю до місяця (за змовчанням - 1 число)
         /// якщо не заповнене, значить він/вона/воно там ще досі працює
         /// </summary>
         [DisplayName("Дата кінця роботи")]

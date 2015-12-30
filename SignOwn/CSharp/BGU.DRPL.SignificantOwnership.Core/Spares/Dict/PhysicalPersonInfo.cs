@@ -193,6 +193,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Орган, що видав паспорт")]
         public RegistrarAuthority PassIssueAuthority { get { return _PassIssueAuthority; } set { _PassIssueAuthority = value; OnPropertyChanged("PassIssueAuthority"); } }
 
+        private List<PassportHistoryRecord> _PassportsHistory;
+        [Category(CATEGORY_PASSPORT_DATA)]
+        [DisplayName("Паспортна історія")]
+        [Description("Попередні/інші паспорти, що були/є у особи")]
+        public List<PassportHistoryRecord> PassportsHistory { get { return _PassportsHistory; } set { _PassportsHistory = value; OnPropertyChanged("PassportsHistory"); } }
+
         private LocationInfo _Address;
         /// <summary>
         /// Поле необхідне лише якщо вимагається у анкеті
@@ -201,6 +207,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Місце реєстрації")]
         [Description("Місце реєстрації")]
         public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
+
+        private List<LocationHistoryRecord> _RegistrationAddressHistory;
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Історія місць реєстрації")]
+        [Description("Історія місць реєстрації (якщо змінювалися упродовж життя)")]
+        public List<LocationHistoryRecord> RegistrationAddressHistory { get { return _RegistrationAddressHistory; } set { _RegistrationAddressHistory = value; OnPropertyChanged("RegistrationAddressHistory"); } }
 
         private bool _IsResidentialAndRegistrationAddressDifferent;
         /// <summary>
@@ -221,6 +233,12 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Місце фактичного проживання (якщо інше, ніж реєстрації)")]
         [UIConditionalVisibility("IsResidentialAndRegistrationAddressDifferent")]
         public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
+
+        private List<LocationHistoryRecord> _ActualAddressHistory;
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Історія місць проживання")]
+        [Description("Історія місць фактичного проживання (якщо інше, ніж реєстрації, вказаного у відповідному полі історії за відповідний період)")]
+        public List<LocationHistoryRecord> ActualAddressHistory { get { return _ActualAddressHistory; } set { _ActualAddressHistory = value; OnPropertyChanged("ActualAddressHistory"); } }
 
         private SexType _Sex;
         /// <summary>
@@ -244,6 +262,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [DisplayName("Дата народження")]
         [Description("Дата народження")]
         public DateTime? BirthDate { get { return _BirthDate; } set { _BirthDate = value; OnPropertyChanged("BirthDate"); } }
+        
+        private LocationInfo _BirthPlace;
+        /// <summary>
+        /// Точність заповнення - до населеного пункту 
+        /// (як і заведено для місця народження)
+        /// </summary>
+        [Category(CATEGORY_EXTRA_DATA)]
+        [DisplayName("Місце народження")]
+        [Description("Місце народження")]
+        public LocationInfo BirthPlace { get { return _BirthPlace; } set { _BirthPlace = value; OnPropertyChanged("BirthPlace"); } }
+
 
         [Browsable(false)]
         public GenericPersonID GenericID { get { return new GenericPersonID() { CountryISO3Code = CitizenshipCountry != null ? CitizenshipCountry.CountryISONr : string.Empty, PersonCode = TaxOrSocSecID ?? PassportID, PersonType = EntityType.Physical, DisplayName = ToString() }; } }

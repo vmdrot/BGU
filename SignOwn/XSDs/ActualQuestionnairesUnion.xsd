@@ -59,10 +59,36 @@
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CerfiticateNr" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="NostrificationDate" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DomesticDegreeTypeEquivalent" type="HigherEducationDegreeType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DomesticTradeEquivalent" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DomesticQualificationEquivalent" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DomesticEducationKindEquivalent" type="EducationKindGros" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:simpleType name="HigherEducationDegreeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Bachelor" />
+      <xs:enumeration value="Master" />
+      <xs:enumeration value="MBA" />
+      <xs:enumeration value="CandidateDoctor" />
+      <xs:enumeration value="PhD" />
+      <xs:enumeration value="DoctorOfSciences" />
+      <xs:enumeration value="DoctorOfLetters" />
+      <xs:enumeration value="Professor" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EducationKindGros">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Economics" />
+      <xs:enumeration value="Management" />
+      <xs:enumeration value="Jurisprudence" />
+      <xs:enumeration value="Miscellaneous" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="UniversityOrCollegeInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -70,7 +96,6 @@
           <xs:element minOccurs="0" maxOccurs="1" name="UniversityName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="UniversityNameUkr" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
-          <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -283,7 +308,6 @@
       <xs:enumeration value="CourtOrder" />
       <xs:enumeration value="CourtResolution" />
       <xs:enumeration value="SpecialResolution" />
-      <xs:enumeration value="JudgesMinorityReport" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfIndebtnessInfo">
@@ -318,6 +342,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="Criminal" />
+      <xs:enumeration value="Administrative" />
       <xs:enumeration value="Antitrust" />
       <xs:enumeration value="Taxation" />
       <xs:enumeration value="Banking" />
@@ -335,6 +360,7 @@
       <xs:enumeration value="RemedialWorks" />
       <xs:enumeration value="Fined" />
       <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="ProfessionalBan" />
       <xs:enumeration value="LicenseRevoked" />
       <xs:enumeration value="LicenseSuspended" />
     </xs:restriction>
@@ -434,11 +460,12 @@
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="FullOrPartTime" type="EmploymentTimeType" />
           <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
           <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" />
+          <xs:element minOccurs="0" maxOccurs="1" name="JobDutiesDescription" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" />
@@ -456,9 +483,16 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="Employed" />
-      <xs:enumeration value="Selfemployed" />
-      <xs:enumeration value="Freelance" />
+      <xs:enumeration value="SelfemployedFreelance" />
       <xs:enumeration value="Unemployed" />
+      <xs:enumeration value="Retired" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EmploymentTimeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="FullTime" />
+      <xs:enumeration value="PartTime" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
@@ -471,9 +505,15 @@
   <xs:simpleType name="EmploymentTerminationType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
+      <xs:enumeration value="PartiesConsent" />
       <xs:enumeration value="PromotedOrRelocated" />
       <xs:enumeration value="VoluntaryQuit" />
+      <xs:enumeration value="ContractExpiry" />
+      <xs:enumeration value="RefusedToRelocate" />
+      <xs:enumeration value="Conviction" />
+      <xs:enumeration value="ContractualConditions" />
       <xs:enumeration value="Dismissed" />
+      <xs:enumeration value="TradeUnionDemand" />
       <xs:enumeration value="Retired" />
       <xs:enumeration value="MaternityLeave" />
       <xs:enumeration value="MilitaryServiceLeave" />
@@ -514,11 +554,15 @@
           <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportsHistory" type="ArrayOfPassportHistoryRecord" />
           <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrationAddressHistory" type="ArrayOfLocationHistoryRecord" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsResidentialAndRegistrationAddressDifferent" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddressHistory" type="ArrayOfLocationHistoryRecord" />
           <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" />
           <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="LocationInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -537,7 +581,7 @@
   </xs:complexType>
   <xs:complexType name="SignatoryInfo">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="SignatoryPosition" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SurnameInitials" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" />
@@ -564,6 +608,38 @@
           <xs:element minOccurs="0" maxOccurs="1" name="RegistrarName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="RegistrarNameUkr" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="EntitiesHandled" type="EntityType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPassportHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PassportHistoryRecord" nillable="true" type="PassportHistoryRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PassportHistoryRecord">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLocationHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationHistoryRecord" nillable="true" type="LocationHistoryRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationHistoryRecord">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Since" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Until" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -689,6 +765,17 @@
       <xs:enumeration value="OtherRelative" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="ContactInfoHistoryRec">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Since" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Until" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="LegalPersonInfo">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -704,8 +791,12 @@
           <xs:element minOccurs="1" maxOccurs="1" name="IsStockExchangeListed" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="StockExchangeListing" type="StockExchangeListingInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OfficialAddressesHistory" type="ArrayOfLocationHistoryRecord" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddressesHistory" type="ArrayOfLocationHistoryRecord" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ContactsHistory" type="ArrayOfContactInfoHistoryRec" />
           <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" />
@@ -743,6 +834,11 @@
       <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" />
       <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfContactInfoHistoryRec">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInfoHistoryRec" nillable="true" type="ContactInfoHistoryRec" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfEconomicActivityType">
@@ -1029,6 +1125,8 @@
       <xs:element minOccurs="1" maxOccurs="1" name="BankActivityOrService" type="LicensedOperationType" />
       <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" />
       <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GFXActivityType" type="GeneralFXLicenseActivityType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SMActivityType" type="ProfessionalStockMarketActivityType" />
       <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -1037,6 +1135,8 @@
       <xs:enumeration value="None" />
       <xs:enumeration value="BankingActivity" />
       <xs:enumeration value="FinancialService" />
+      <xs:enumeration value="FXGLBkActivity" />
+      <xs:enumeration value="SMActivityType" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="BankingActivityType">
@@ -1074,6 +1174,39 @@
       <xs:enumeration value="OtherFinBankServices" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="GeneralFXLicenseActivityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="GFX_NonTrade" />
+      <xs:enumeration value="GFX_CashBankOps" />
+      <xs:enumeration value="GFX_CashAgentOps" />
+      <xs:enumeration value="GFX_AcctMgmt" />
+      <xs:enumeration value="GFX_CorrBkAcctMgmtFCCY" />
+      <xs:enumeration value="GFX_CorrBkAcctMgmtLCCY" />
+      <xs:enumeration value="GFX_CorrAcctHaveInUABksFCCY" />
+      <xs:enumeration value="GFX_CorrAcctHaveInNonUABksFCCY" />
+      <xs:enumeration value="GFX_FCCYBorrNPlaceLocalMarket" />
+      <xs:enumeration value="GFX_FCCYBorrNPlaceWorldMarket" />
+      <xs:enumeration value="GFX_FCCYTradingNonCashLocalMarket" />
+      <xs:enumeration value="GFX_FCCYTradingNonCashWorldMarket" />
+      <xs:enumeration value="GFX_BkMetalBorrNPlaceLocalMarket" />
+      <xs:enumeration value="GFX_BkMetalBorrNPlaceWorldMarket" />
+      <xs:enumeration value="GFX_BkMetalTradingLocalMarket" />
+      <xs:enumeration value="GFX_BkMetalTradingWorldMarket" />
+      <xs:enumeration value="GFX_FinSvcLocalMarket" />
+      <xs:enumeration value="GFX_FinSvcWorldMarket" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ProfessionalStockMarketActivityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="SMSecuritiesTrading" />
+      <xs:enumeration value="SMInstInvAssetsMgmt" />
+      <xs:enumeration value="SMDepositoryActivities" />
+      <xs:enumeration value="SMTradeOrganization" />
+      <xs:enumeration value="SMClearing" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ArrayOfAttachmentInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AttachmentInfo" nillable="true" type="AttachmentInfo" />
@@ -1081,6 +1214,7 @@
   </xs:complexType>
   <xs:complexType name="AttachmentInfo">
     <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AttachmentID" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" />
       <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
@@ -1267,9 +1401,9 @@
       <xs:element minOccurs="0" maxOccurs="1" name="Owner" type="GenericPersonID" />
       <xs:element minOccurs="1" maxOccurs="1" name="OwnershipKind" type="OwnershipType" />
       <xs:element minOccurs="0" maxOccurs="1" name="Share" type="CurrencyAmount" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:decimal" />
       <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="OwnershipType">
@@ -1345,7 +1479,6 @@
           <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutiveBodyPresent" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" />
@@ -1462,19 +1595,6 @@
       <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="HigherEducationDegreeType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="Bachelor" />
-      <xs:enumeration value="Master" />
-      <xs:enumeration value="MBA" />
-      <xs:enumeration value="CandidateDoctor" />
-      <xs:enumeration value="PhD" />
-      <xs:enumeration value="DoctorOfSciences" />
-      <xs:enumeration value="DoctorOfLetters" />
-      <xs:enumeration value="Professor" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="DegreeHonourType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
@@ -1485,17 +1605,6 @@
       <xs:enumeration value="SummaCumLaude" />
       <xs:enumeration value="EgregiaCumLaude" />
       <xs:enumeration value="MaximaCumLaude" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="EducationKindGros">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="BankingFinance" />
-      <xs:enumeration value="OtherEconomics" />
-      <xs:enumeration value="Legal" />
-      <xs:enumeration value="OtherHumanitarian" />
-      <xs:enumeration value="Engineering" />
-      <xs:enumeration value="Miscellaneous" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">

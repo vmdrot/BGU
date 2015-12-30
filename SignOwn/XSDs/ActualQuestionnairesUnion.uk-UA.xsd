@@ -15,6 +15,8 @@
   <xs:include schemaLocation="QuestionnaireBase.uk-UA.xsd" />
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
   <xs:include schemaLocation="EducationNostrificationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />
+  <xs:include schemaLocation="EducationKindGros.uk-UA.xsd" />
   <xs:include schemaLocation="UniversityOrCollegeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
   <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
@@ -53,6 +55,7 @@
   <xs:include schemaLocation="ISCO.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
+  <xs:include schemaLocation="EmploymentTimeType.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
@@ -62,6 +65,10 @@
   <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
   <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
   <xs:include schemaLocation="RegistrarAuthority.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPassportHistoryRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="PassportHistoryRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfLocationHistoryRecord.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationHistoryRecord.uk-UA.xsd" />
   <xs:include schemaLocation="SexType.uk-UA.xsd" />
   <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
@@ -75,11 +82,13 @@
   <xs:include schemaLocation="PersonsAssociation.uk-UA.xsd" />
   <xs:include schemaLocation="PersonAssociationType.uk-UA.xsd" />
   <xs:include schemaLocation="AssociatedPersonRole.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfoHistoryRec.uk-UA.xsd" />
   <xs:include schemaLocation="LegalPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="OwnershipFormType.uk-UA.xsd" />
   <xs:include schemaLocation="LPRegisteredDateRecordId.uk-UA.xsd" />
   <xs:include schemaLocation="StockExchangeListingInfo.uk-UA.xsd" />
   <xs:include schemaLocation="StockExchangeInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfContactInfoHistoryRec.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonInfo.uk-UA.xsd" />
   <xs:include schemaLocation="IncomeOriginInfo.uk-UA.xsd" />
@@ -103,6 +112,8 @@
   <xs:include schemaLocation="LicensedOperationType.uk-UA.xsd" />
   <xs:include schemaLocation="BankingActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="FinancialServicesType.uk-UA.xsd" />
+  <xs:include schemaLocation="GeneralFXLicenseActivityType.uk-UA.xsd" />
+  <xs:include schemaLocation="ProfessionalStockMarketActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfAttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
@@ -147,9 +158,7 @@
   <xs:include schemaLocation="RegLicAppx12HeadCandidateAppl.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfEducationRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EducationRecordInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="HigherEducationDegreeType.uk-UA.xsd" />
   <xs:include schemaLocation="DegreeHonourType.uk-UA.xsd" />
-  <xs:include schemaLocation="EducationKindGros.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfLiquidatedOrInsolventEntityMgmtRecordInfo.uk-UA.xsd" />

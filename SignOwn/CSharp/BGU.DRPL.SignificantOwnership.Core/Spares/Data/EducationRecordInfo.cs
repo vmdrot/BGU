@@ -50,6 +50,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [DisplayName("Тип відзнаки")]
         [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public DegreeHonourType HonourType { get; set; }
+
+
+        [DisplayName("Має вчене звання?")]
+        public bool HasScientificDegree { get; set; }
+
+        [DisplayName("Вчене звання")]
+        [Description("Вчене звання - вітчизняне чи еквівалент зарубіжного (якщо є)")]
+        [Required("HasScientificDegree")]
+        [UIConditionalVisibility("HasScientificDegree")]
+        public ScientificDegreeType? ScientificDegree { get; set; }
+
         /// <summary>
         /// Якщо український диплом - обов'язкове; 
         /// іншої країни - на віру
@@ -70,14 +81,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// Обов'язково
         /// </summary>
-        [DisplayName("Спеціальність/фах")]
+        [DisplayName("Спеціальність")]
         [Description("Основний фах за дипломом")]
         [Required]
         public string Trade { get; set; }
         /// <summary>
         /// Якщо передбачено
         /// </summary>
-        [DisplayName("Спеціалізація")]
+        [DisplayName("Кваліфікація")]
         [Description("Уточнююча означення отриманого фаху - спеціалізація/кваліфікація")]
         public string Qualification { get; set; }
 
@@ -85,10 +96,17 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Description("Загальний вид освіти (юр., екон., техн., тощо)")]
         public EducationKindGros EducationKind { get; set; }
 
+
+        [DisplayName("Потребує нострифікації?")]
+        [Description("Чи потребує нострифікації відповідний диплом?")]
+        public bool IsNostrificationRequired {get;set;}
+
         [DisplayName("Запис про нострифікацію")]
-        [Description("Реквізити нострифікаційного свідоцтва (у випадку освіти, отриманої за кордоном)")]
-        [Required("UniOrCollege.IsNonResident == true")]
-        [UIConditionalVisibility("UniOrCollege.IsNonResident")]
+        [Description("Реквізити нострифікаційного свідоцтва (у випадку освіти, отриманої за кордоном, де потребується нострифікація диплому)")]
+        //[Required("UniOrCollege.IsNonResident == true")]
+        [Required("IsNostrificationRequired")]
+        //[UIConditionalVisibility("UniOrCollege.IsNonResident")]
+        [UIConditionalVisibility("IsNostrificationRequired")]
         public EducationNostrificationInfo NostrificationReqs { get; set; }
     }
 }

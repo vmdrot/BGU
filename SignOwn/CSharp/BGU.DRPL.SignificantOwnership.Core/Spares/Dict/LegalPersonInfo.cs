@@ -154,6 +154,13 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Required]
         public LocationInfo Address { get { return _Address; } set { _Address = value; OnPropertyChanged("Address"); } }
 
+        private List<LocationHistoryRecord> _OfficialAddressesHistory;
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Історія юридичних адрес")]
+        [Description("Історія юридичних (офіційних) адрес юридичної особи")]
+        [Required]
+        public List<LocationHistoryRecord> OfficialAddressesHistory { get { return _OfficialAddressesHistory; } set { _OfficialAddressesHistory = value; OnPropertyChanged("OfficialAddressesHistory"); } }
+
         private bool _IsRegistrationAddressActual;
         /// <summary>
         /// 
@@ -187,6 +194,32 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Dict
         [Description("Фактичне місцезнаходження юридичної особи")]
         [UIConditionalVisibility("IsActualAndRegistrationAddressDifferent")]
         public LocationInfo ActualAddress { get { return _ActualAddress; } set { _ActualAddress = value; OnPropertyChanged("ActualAddress"); } }
+
+        private List<LocationHistoryRecord> _ActualAddressesHistory;
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Історія місцезнаходжень")]
+        [Description("Історія фактичних місцезнаходжень юридичної особи")]
+        [Required]
+        public List<LocationHistoryRecord> ActualAddressesHistory { get { return _ActualAddressesHistory; } set { _ActualAddressesHistory = value; OnPropertyChanged("ActualAddressesHistory"); } }
+
+        private ContactInfo _Contacts;
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Котакти")]
+        [Description("Контактні дані ")]
+        [Required]
+        public ContactInfo Contacts { get { return _Contacts; } set { _Contacts = value; OnPropertyChanged("Contacts"); } }
+
+        private List<ContactInfoHistoryRec> _ContactsHistory;
+        /// <summary>
+        /// Вказувати лише ту частину, що втатила чинність 
+        /// і не відображена у чинних контактах (але колись була).
+        /// В першу чергу (і як правило) цікавлять телефони.
+        /// </summary>
+        [Category(CATEGORY_ADDRESSES)]
+        [DisplayName("Котакти - історія")]
+        [Description("Історія контактних даних")]
+        [Required]
+        public List<ContactInfoHistoryRec> ContactsHistory { get { return _ContactsHistory; } set { _ContactsHistory = value; OnPropertyChanged("ContactsHistory"); } }
 
         private GenericPersonID _RepresentedBy;
         /// <summary>

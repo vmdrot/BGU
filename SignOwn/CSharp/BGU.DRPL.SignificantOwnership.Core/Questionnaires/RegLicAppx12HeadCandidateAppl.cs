@@ -85,8 +85,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         /// 
         /// 7. Реєстраційний номер облікової картки платника податків ___________________________.
         /// </summary>
-        [DisplayName("Кандидат")]
-        [Description("Реквізити фізособи-кандидата на посаду...")]
+        [DisplayName("Кандидат/керівник")]
+        [Description("Ідентифікатор фізособи-кандидата на посаду чи вже призначеного керівника...")]
         [Required]
         public GenericPersonID Candidate { get; set; }
 

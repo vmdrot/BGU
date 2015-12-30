@@ -280,13 +280,64 @@
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="CerfiticateNr" type="xs:string" type_ukr="текст" displayName="№ свідоцтва" description="№ нострифікаційного свідоцтва" field_order="1" />
           <xs:element minOccurs="1" maxOccurs="1" name="NostrificationDate" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі " description="Дата видачі нострифікаційного свідоцтва" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DomesticDegreeTypeEquivalent" type="HigherEducationDegreeType" displayName="Визнаний тип диплома - вітчизняний еквівалент" field_order="3">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            обов'язкове</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="DomesticTradeEquivalent" type="xs:string" type_ukr="текст" displayName="Визнана спеціальність - вітчизняний еквівалент" description="Основний фах за дипломом - вітчизняний еквівалент" field_order="4">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язково</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="DomesticQualificationEquivalent" type="xs:string" type_ukr="текст" displayName="Визнана кваліфікація - вітчизняний еквівалент" description="Уточнююча означення отриманого фаху - спеціалізація/кваліфікація, - вітчизняний еквівалент" field_order="5">
+            <xs:annotation>
+              <xs:documentation>Якщо передбачено</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="DomesticEducationKindEquivalent" type="EducationKindGros" displayName="Вид освіти - вітчизняний еквівалент" description="Загальний вид освіти (юр., екон., техн., тощо) - вітчизняний еквівалент" field_order="6" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:simpleType name="HigherEducationDegreeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
+      <xs:enumeration value="Master" description="Магістр" enum_value="2" />
+      <xs:enumeration value="MBA" description="MBA" enum_value="3" />
+      <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
+      <xs:enumeration value="PhD" description="PhD" enum_value="5" />
+      <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
+      <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
+      <xs:enumeration value="Professor" description="Професор" enum_value="8" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EducationKindGros">
+    <xs:annotation>
+      <xs:documentation>Підвид освіти: 
+            У базі доцільно завести динамічний довідник, бо для цілей 
+            реєстрації, ліцензування чи пруденційного нагляду перелік 
+            може бути розширено чи уточнено.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="Economics" description="галузь економіки" enum_value="1" />
+      <xs:enumeration value="Management" description="галузь менеджменту" enum_value="2" />
+      <xs:enumeration value="Jurisprudence" description="галузь права" enum_value="3" />
+      <xs:enumeration value="Miscellaneous" description="інше" enum_value="4" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="UniversityOrCollegeInfo">
     <xs:annotation>
-      <xs:documentation>Інформація про навчальний заклад (університет, коледж, тощо) професійної, вищої чи неповної вищої освіти</xs:documentation>
+      <xs:documentation>Інформація про навчальний заклад (університет, коледж, тощо) професійної, вищої чи неповної вищої освіти
+            ---
+            UPD: Ідентифікатор ВНЗ (поле UniversityID) видалено - 
+            поки що не існує в жодній країні; по Україні достатньо ідентифікатора диплому.</xs:documentation>
     </xs:annotation>
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -304,18 +355,11 @@
             назва оригінальна потребує перекладу/транслітерації українською.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса ВНЗ" field_order="3">
+          <xs:element minOccurs="1" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місцезнаходження ВНЗ" description="Країна й місто, де знаходиться ВНЗ" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Хоча б місто й країна</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="UniversityID" type="xs:string" type_ukr="текст" displayName="Ідентифікатор ВНЗ" description="Ідентифікатор ВНЗ - якщо є/передбачений" field_order="4">
-            <xs:annotation>
-              <xs:documentation>Не певен, чи десь існують ці ідентифікатори - 
-            у нас їх немає, але можуть запровадити.
-            Необов'зкове поле; заповнювати, якщо ідентифікатор існує.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -905,7 +949,6 @@
       <xs:enumeration value="CourtOrder" description="Судовий наказ" enum_value="3" />
       <xs:enumeration value="CourtResolution" description="Ухвала суду" enum_value="4" />
       <xs:enumeration value="SpecialResolution" description="Окрема ухвала" enum_value="5" />
-      <xs:enumeration value="JudgesMinorityReport" description="Окрема думка судді" enum_value="6" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfIndebtnessInfo">
@@ -932,22 +975,22 @@
             Обрати з переліку, обов'язкове, хоча б Інше</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" displayName="Рішення суду" description="Відомості про судове відповідне судове рішення" field_order="2" />
-          <xs:element minOccurs="1" maxOccurs="1" name="CodeOrLaw" type="xs:string" type_ukr="текст" displayName="Закон/кодекс" description="Закон/кодекс, згідно з  яким було засуджено" field_order="3">
+          <xs:element minOccurs="0" maxOccurs="1" name="CourtDecision" type="CourtDecisionInfo" displayName="Рішення про притягнення" description="Відомості про рішення щодо притягнення до відповідальності" field_order="2" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CodeOrLaw" type="xs:string" type_ukr="текст" displayName="Закон/кодекс" description="Закон/кодекс, згідно з яким було притягнуто до відповідальності" field_order="3">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Articles" type="xs:string" type_ukr="текст" displayName="Стаття(-і)" description="Стаття(-і), згідно з  яким було засуджено" field_order="4">
+          <xs:element minOccurs="1" maxOccurs="1" name="Articles" type="xs:string" type_ukr="текст" displayName="Стаття(-і)" description="Стаття(-і), згідно з якою(-ими) було притягнуто до відповідальності" field_order="4">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" displayName="Тип вироку" description="Якщо рішення суду було прийнято у формі вироку" field_order="5">
+          <xs:element minOccurs="1" maxOccurs="1" name="Sentence" type="SentenceType" displayName="Тип рішення" description="Тип рішення про притягнення до відповідальності" field_order="5">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    IsCourtDecisionSentence == true
@@ -962,14 +1005,14 @@
               <xs:documentation>якщо були (інші санкції)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Судимість погашена?" field_order="9">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsConvictionSettled" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Правопорушення погашене?" description="Чи закінчився строк після якого особа вважається такою, що не притягувалася до відповідальності?" field_order="9">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення судимості" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="SettledDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата погашення правопорушення" description="Дата закінчення строку після якого особа вважається такою, що не притягувалася до відповідальності" field_order="10">
             <xs:annotation>
               <xs:documentation>якщо IsConvictionSettled == true, то обов'язкове</xs:documentation>
             </xs:annotation>
@@ -981,14 +1024,15 @@
   <xs:simpleType name="BreachOfLawType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="Criminal" description="Кримінальне" enum_value="1" />
-      <xs:enumeration value="Antitrust" description="Анти-монопольне" enum_value="2" />
-      <xs:enumeration value="Taxation" description="Податкове" enum_value="3" />
-      <xs:enumeration value="Banking" description="Банківське" enum_value="4" />
-      <xs:enumeration value="Financial" description="Фінансове" enum_value="5" />
-      <xs:enumeration value="ForeignCurrency" description="Валютне" enum_value="6" />
-      <xs:enumeration value="StockExchange" description="Біржове" enum_value="7" />
-      <xs:enumeration value="OtherAdministrative" description="Інше адміністративне" enum_value="8" />
+      <xs:enumeration value="Criminal" description="Кримінальна відповідальність" enum_value="1" />
+      <xs:enumeration value="Administrative" description="Адміністративна відповідальність" enum_value="2" />
+      <xs:enumeration value="Antitrust" description="За порушення антимонопольного законодавства" enum_value="3" />
+      <xs:enumeration value="Taxation" description="За порушення податкового законодавства" enum_value="4" />
+      <xs:enumeration value="Banking" description="За порушення банківського  законодавства" enum_value="5" />
+      <xs:enumeration value="Financial" description="За порушення законодавства про фінансові послуги" enum_value="6" />
+      <xs:enumeration value="ForeignCurrency" description="За порушення валютного законодавства" enum_value="7" />
+      <xs:enumeration value="StockExchange" description="За порушення на ринку цінних паперів (фондовому ринку)" enum_value="8" />
+      <xs:enumeration value="OtherAdministrative" description="Інша адміністративна відповідальність" enum_value="9" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="SentenceType">
@@ -999,8 +1043,9 @@
       <xs:enumeration value="RemedialWorks" description="Виправні роботи" enum_value="3" />
       <xs:enumeration value="Fined" description="Штраф" enum_value="4" />
       <xs:enumeration value="Dismissed" description="Звільнення" enum_value="5" />
-      <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="6" />
-      <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="7" />
+      <xs:enumeration value="ProfessionalBan" description="Позбавлення права займатися певною діяльністю/займати певні посади" enum_value="6" />
+      <xs:enumeration value="LicenseRevoked" description="Відкликання/позбавлення ліцензії" enum_value="7" />
+      <xs:enumeration value="LicenseSuspended" description="Призупинення ліцензії" enum_value="8" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfLiquidatedEntityOwnershipInfo">
@@ -1226,19 +1271,20 @@
             обов'язкове поле</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець" field_order="3">
+          <xs:element minOccurs="1" maxOccurs="1" name="FullOrPartTime" type="EmploymentTimeType" displayName="Вид зайнятості" description="Зайнятість повна/сумісництво" field_order="3">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Повна (основна) чи часткова (за сумісництвом) зайнятість</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець/основний замовник" description="Роботодавець (для найманих працівників)&#xA; чи основний замовник (для самозайнятих/фрілансерів)" field_order="4">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    State == Employed
 
             Обов'язкове поле
             Посилання - реквізити в MentionedEntities</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalContractor" type="GenericPersonID" displayName="Основний замовник" description="Основний замовник - для самозайнятих/фрілансерів" field_order="4">
-            <xs:annotation>
-              <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
-   State == Freelance OR State == Selfemployed</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="5">
@@ -1260,45 +1306,49 @@
             <xs:annotation>
               <xs:documentation>Код професії, у ролі якого працівник був зайнятий,
             згідно Міжнародного стандарту класифікації професій
-            та його української (ДК 003:2010) / іншої локальної адаптації</xs:documentation>
+            та його української (ДК 003:2010) / іншої локальної адаптації
+            (якщо відомий/передбачено для даної посади)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський/фінансовий досвід" description="Чи враховується описуване місце роботи у загальний банкісько-фінансовий стаж" field_order="8">
+          <xs:element minOccurs="0" maxOccurs="1" name="JobDutiesDescription" type="xs:string" type_ukr="текст" displayName="Службові обов'язки" description="Опис службових обов'язків за займаною посадою" field_order="8" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський досвід" description="Чи враховується описуване місце роботи у загальний банкіський стаж" field_order="9">
             <xs:annotation>
               <xs:documentation>Чи є дана робота досвідом роботи у регульованій галузі?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="9">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="10">
             <xs:annotation>
               <xs:documentation>Чи є це керівною посадою?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
-            обов'язкове, з точністю до місяця</xs:documentation>
+            обов'язкове, для резидентів - з точністю до дня, 
+            для нерезидентів - з точністю до місяця (за змовчанням - 1 число)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="чинне місце роботи/статус" description="(відзначити, якщо це - чинне місце роботи на дату заповнення анкети)" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Статус місця роботи: чинне чи ні" description="Відзначити, якщо це - чинне місце роботи на дату заповнення анкети (чи й досі тут працює?)" field_order="12">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="12">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="13">
             <xs:annotation>
-              <xs:documentation>з точністю до місяця
+              <xs:documentation>, для резидентів - з точністю до дня, 
+            для нерезидентів - з точністю до місяця (за змовчанням - 1 число)
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="13">
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="14">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="14">
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="15">
             <xs:annotation>
               <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
@@ -1306,13 +1356,13 @@
             - VoluntaryQuit</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="15">
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="16">
             <xs:annotation>
               <xs:documentation>Формальна стаття і пункт звільнення
             згідно з КЗпП</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="16">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="17">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -1332,9 +1382,19 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
       <xs:enumeration value="Employed" description="Найманий працівник" enum_value="1" />
-      <xs:enumeration value="Selfemployed" description="Самозайнятість" enum_value="2" />
-      <xs:enumeration value="Freelance" description="Фрілансер" enum_value="3" />
-      <xs:enumeration value="Unemployed" description="Безробітний" enum_value="4" />
+      <xs:enumeration value="SelfemployedFreelance" description="Самозайнятість/Фрілансер" enum_value="2" />
+      <xs:enumeration value="Unemployed" description="Безробітний" enum_value="3" />
+      <xs:enumeration value="Retired" description="Пенсіонер" enum_value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EmploymentTimeType">
+    <xs:annotation>
+      <xs:documentation>Вид зайнятості - повна, часткова, тощо</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="None" enum_value="0" />
+      <xs:enumeration value="FullTime" description="Повна (основна) зайнятість" enum_value="1" />
+      <xs:enumeration value="PartTime" description="Часткова (за сумісництвом) зайнятість" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
@@ -1355,14 +1415,20 @@
   <xs:simpleType name="EmploymentTerminationType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="PromotedOrRelocated" description="Підвищення/переміщення" enum_value="1" />
-      <xs:enumeration value="VoluntaryQuit" description="Звільнення за вл.баж." enum_value="2" />
-      <xs:enumeration value="Dismissed" description="Звільнення (з ініціативи працедавця" enum_value="3" />
-      <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="4" />
-      <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="5" />
-      <xs:enumeration value="MilitaryServiceLeave" description="Військова служба" enum_value="6" />
-      <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="7" />
-      <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="8" />
+      <xs:enumeration value="PartiesConsent" description="За угодою сторін" enum_value="1" />
+      <xs:enumeration value="PromotedOrRelocated" description="Переведення працівника, за його згодою, на інше підприємство, в установу, організацію або перехід на виборну посаду" enum_value="2" />
+      <xs:enumeration value="VoluntaryQuit" description="Звільнення з ініціативи працівника" enum_value="3" />
+      <xs:enumeration value="ContractExpiry" description="Закінчення строку трудового договору" enum_value="4" />
+      <xs:enumeration value="RefusedToRelocate" description="Через відмову працівника від переведення на роботу в іншу місцевість разом з підприємством, установою, організацією, а також відмова від продовження роботи у зв'язку із зміною істотних умов праці" enum_value="5" />
+      <xs:enumeration value="Conviction" description="набрання законної сили вироком суду, яким працівника засуджено (крім випадків звільнення від відбування покарання з випробуванням) до позбавлення волі або до іншого покарання, яке виключає можливість продовження даної роботи" enum_value="6" />
+      <xs:enumeration value="ContractualConditions" description="З підстав, передбачених контрактом" enum_value="7" />
+      <xs:enumeration value="Dismissed" description="Звільнення з ініціативи власника або уповноваженого ним органу" enum_value="8" />
+      <xs:enumeration value="TradeUnionDemand" description="Звільнення на вимогу профспілкового чи іншого уповноваженого на представництво трудовим колективом органу" enum_value="9" />
+      <xs:enumeration value="Retired" description="Вихід на пенсію" enum_value="10" />
+      <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="11" />
+      <xs:enumeration value="MilitaryServiceLeave" description="У зв’язку із призовом або вступом працівника на військову службу, направленням на альтернативну (невійськову) службу" enum_value="12" />
+      <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="13" />
+      <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="14" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ContactInfo">
@@ -1470,30 +1536,39 @@
           <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" type_ukr="текст" displayName="Серія № паспорта" description="Серія № паспорта" category="Паспортні дані" field_order="16" />
           <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта" description="Дата видачі паспорта" category="Паспортні дані" field_order="17" />
           <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" displayName="Орган, що видав паспорт" description="Орган, що видав паспорт" category="Паспортні дані" field_order="18" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місце реєстрації" description="Місце реєстрації" category="Адреса(-и)" field_order="19">
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportsHistory" type="ArrayOfPassportHistoryRecord" displayName="Паспортна історія" description="Попередні/інші паспорти, що були/є у особи" category="Паспортні дані" field_order="19" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Місце реєстрації" description="Місце реєстрації" category="Адреса(-и)" field_order="20">
             <xs:annotation>
               <xs:documentation>Поле необхідне лише якщо вимагається у анкеті</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsResidentialAndRegistrationAddressDifferent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Місце проживання й реєстрації відрізняються" description="Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації" category="Адреса(-и)" field_order="20" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місце проживання" description="Місце фактичного проживання (якщо інше, ніж реєстрації)" category="Адреса(-и)" field_order="21">
+          <xs:element minOccurs="0" maxOccurs="1" name="RegistrationAddressHistory" type="ArrayOfLocationHistoryRecord" displayName="Історія місць реєстрації" description="Історія місць реєстрації (якщо змінювалися упродовж життя)" category="Адреса(-и)" field_order="21" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsResidentialAndRegistrationAddressDifferent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Місце проживання й реєстрації відрізняються" description="Відзначте цю галочку, якщо місце фактичного проживання цієї особи відрізняються від адреси її офіційної реєстрації" category="Адреса(-и)" field_order="22" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місце проживання" description="Місце фактичного проживання (якщо інше, ніж реєстрації)" category="Адреса(-и)" field_order="23">
             <xs:annotation>
               <xs:documentation>Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від місця реєстрації.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" displayName="Стать" description="Стать" category="Додаткова інформація" field_order="22">
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddressHistory" type="ArrayOfLocationHistoryRecord" displayName="Історія місць проживання" description="Історія місць фактичного проживання (якщо інше, ніж реєстрації, вказаного у відповідному полі історії за відповідний період)" category="Адреса(-и)" field_order="24" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Sex" type="SexType" displayName="Стать" description="Стать" category="Додаткова інформація" field_order="25">
             <xs:annotation>
               <xs:documentation>Бажано вимагати; дивитися за контекстом конкретного поля 
             у конкретній анкеті</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата народження" description="Дата народження" category="Додаткова інформація" field_order="23">
+          <xs:element minOccurs="1" maxOccurs="1" name="BirthDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата народження" description="Дата народження" category="Додаткова інформація" field_order="26">
             <xs:annotation>
               <xs:documentation>Як правило, необов'язкове поле
             Буває, що онука називають як діда, і у ланцюжку володіння фігурують обидва
             Тоді корисно мати ще й дату народження, щоб відрізняти; 
             буває, що онук ще неповнолітній та не має паспорта/кода
             (реальний випадок - банк "Грант", щоправда, там, був код ІПН)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="BirthPlace" type="LocationInfo" displayName="Місце народження" description="Місце народження" category="Додаткова інформація" field_order="27">
+            <xs:annotation>
+              <xs:documentation>Точність заповнення - до населеного пункту 
+            (як і заведено для місця народження)</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -1530,7 +1605,7 @@
       <xs:documentation>Інформація про підписанта (документу, анкети)</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата підпису" description="Дата підпису" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -1641,6 +1716,46 @@
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPassportHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PassportHistoryRecord" nillable="true" type="PassportHistoryRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PassportHistoryRecord">
+    <xs:annotation>
+      <xs:documentation>Відомості про виданий паспорт
+            (для історії, якщо у особи було понад один паспорт, 
+            окрім чинного)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PassportID" type="xs:string" type_ukr="текст" displayName="Серія № паспорта" description="Серія № паспорта" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PassIssuedDate" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата видачі паспорта" description="Дата видачі паспорта" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PassIssueAuthority" type="RegistrarAuthority" displayName="Орган, що видав паспорт" description="Орган, що видав паспорт" field_order="3" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLocationHistoryRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationHistoryRecord" nillable="true" type="LocationHistoryRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationHistoryRecord">
+    <xs:annotation>
+      <xs:documentation>Запис про історію місця/адреси (реєстрації, проживання, тощо)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Since" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="З..." description="Дата, від якої адреса була чинною" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Until" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="По..." description="Дата, по котру адреса була чинною" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" displayName="Адреса" field_order="3" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -1876,6 +1991,20 @@
       <xs:enumeration value="OtherRelative" description="інший родич" enum_value="23" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:complexType name="ContactInfoHistoryRec">
+    <xs:annotation>
+      <xs:documentation>Запис про історію контактних даних</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Since" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="З..." description="Дата, від якої контакти були чинними" field_order="1" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Until" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="По..." description="Дата, по котру контакти були чинними" field_order="2" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Котакти" field_order="3" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="LegalPersonInfo">
     <xs:annotation>
       <xs:documentation>Реквізити юридичної особи</xs:documentation>
@@ -1951,23 +2080,47 @@
             Мінімальне заповнення - країна та місто</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Юридична адреса є фактичним місцезнаходженням" description="(зніміть цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)" category="Адреса(-и)" field_order="12" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місцезнаходження" description="Фактичне місцезнаходження юридичної особи" category="Адреса(-и)" field_order="13">
+          <xs:element minOccurs="1" maxOccurs="1" name="OfficialAddressesHistory" type="ArrayOfLocationHistoryRecord" displayName="Історія юридичних адрес" description="Історія юридичних (офіційних) адрес юридичної особи" category="Адреса(-и)" field_order="12">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="IsRegistrationAddressActual" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Юридична адреса є фактичним місцезнаходженням" description="(зніміть цю галочку, якщо фактична адреса юр.особи відрізняються від її юридичної адреси)" category="Адреса(-и)" field_order="13" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActualAddress" type="LocationInfo" displayName="Місцезнаходження" description="Фактичне місцезнаходження юридичної особи" category="Адреса(-и)" field_order="14">
             <xs:annotation>
               <xs:documentation>Поле необхідне лише якщо вимагається у анкеті, та якщо відрізняється від офіційної юридичної адреси.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" displayName="Представник юрособи" description="Особа, що представляє юрособу" category="Додаткова інформація" field_order="14">
+          <xs:element minOccurs="1" maxOccurs="1" name="ActualAddressesHistory" type="ArrayOfLocationHistoryRecord" displayName="Історія місцезнаходжень" description="Історія фактичних місцезнаходжень юридичної особи" category="Адреса(-и)" field_order="15">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="Contacts" type="ContactInfo" displayName="Котакти" description="Контактні дані " category="Адреса(-и)" field_order="16">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="ContactsHistory" type="ArrayOfContactInfoHistoryRec" displayName="Котакти - історія" description="Історія контактних даних" category="Адреса(-и)" field_order="17">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Вказувати лише ту частину, що втатила чинність 
+            і не відображена у чинних контактах (але колись була).
+            В першу чергу (і як правило) цікавлять телефони.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="RepresentedBy" type="GenericPersonID" displayName="Представник юрособи" description="Особа, що представляє юрособу" category="Додаткова інформація" field_order="18">
             <xs:annotation>
               <xs:documentation>Якщо передбачений представник</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" displayName="Статутний капітал" description="Статутний фонд/капітал" category="Додаткова інформація" field_order="15">
+          <xs:element minOccurs="0" maxOccurs="1" name="Equity" type="CurrencyAmount" displayName="Статутний капітал" description="Статутний фонд/капітал" category="Додаткова інформація" field_order="19">
             <xs:annotation>
               <xs:documentation>Якщо анкетою вимагається (див. по контексту, необов'язкове поле).</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" displayName="Основний вид діяльності" description="Основний(-і) вид(-и) діяльності юрособи" category="Додаткова інформація" field_order="16">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalActivities" type="ArrayOfEconomicActivityType" displayName="Основний вид діяльності" description="Основний(-і) вид(-и) діяльності юрособи" category="Додаткова інформація" field_order="20">
             <xs:annotation>
               <xs:documentation>Вид діяльності - якщо вимагається в анкеті; логічно його притулити 
             було до самої структури інформації про юр.особу</xs:documentation>
@@ -2053,6 +2206,11 @@
       <xs:element minOccurs="0" maxOccurs="1" name="WorldExchangesID" type="xs:string" type_ukr="текст" displayName="Назва у переліку WFE" description="Назва біржі, як вона фігурує у переліку Світової Федерації Бірж - World Federation of Exchanges" field_order="5" />
       <xs:element minOccurs="0" maxOccurs="1" name="MarketCap" type="CurrencyAmount" displayName="Капіталізація" description="Сукупна ринкова капіталізація компаній, акції яких уключено до торгів на біржі" field_order="6" />
       <xs:element minOccurs="1" maxOccurs="1" name="MarketCapAsOf" type="xs:dateTime" type_ukr="дата і час" displayName="Дата капіталізації" description="Дата, на яку була чинною вказана сукупна ринкова капіталізація (вище)" field_order="7" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfContactInfoHistoryRec">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInfoHistoryRec" nillable="true" type="ContactInfoHistoryRec" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfEconomicActivityType">
@@ -2163,8 +2321,8 @@
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
       <xs:enumeration value="Buyer" description="Продавець" enum_value="1" />
       <xs:enumeration value="Seller" description="Покупець" enum_value="2" />
-      <xs:enumeration value="Grantor" description="Дарувач" enum_value="3" />
-      <xs:enumeration value="Grantee" description="Дароотримувач" enum_value="4" />
+      <xs:enumeration value="Grantor" description="Дарувальник" enum_value="3" />
+      <xs:enumeration value="Grantee" description="Обдаровуваний" enum_value="4" />
       <xs:enumeration value="Legator" description="Заповідач" enum_value="5" />
       <xs:enumeration value="Inheritor" description="Спадкоємець" enum_value="6" />
       <xs:enumeration value="Gurantor" description="Поручитель" enum_value="7" />
@@ -2172,7 +2330,7 @@
       <xs:enumeration value="Borrower" description="Позичальник" enum_value="9" />
       <xs:enumeration value="Obligor" description="Боржник" enum_value="10" />
       <xs:enumeration value="Pledger" description="Застоводавець" enum_value="11" />
-      <xs:enumeration value="Pledgee" description="Заставоутримувач" enum_value="12" />
+      <xs:enumeration value="Pledgee" description="Заставодержатель" enum_value="12" />
       <xs:enumeration value="Other" description="Інше" enum_value="13" />
     </xs:restriction>
   </xs:simpleType>
@@ -2431,8 +2589,8 @@
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
       <xs:enumeration value="Moodys" description="Moody's Investor Service" enum_value="1" />
       <xs:enumeration value="Fitch" description="Fitch Ratings" enum_value="2" />
-      <xs:enumeration value="SAndP" description="Не вказано" enum_value="3" />
-      <xs:enumeration value="DRBS" description="Standard &amp; Poors" enum_value="4" />
+      <xs:enumeration value="SAndP" description="Standard &amp; Poors" enum_value="3" />
+      <xs:enumeration value="DRBS" description="DRBS" enum_value="4" />
       <xs:enumeration value="Dagong" description="Dagong Credit Rating (та дочірні рейтингові компанії)" enum_value="5" />
       <xs:enumeration value="JCR" description="Japan Credit Rating" enum_value="6" />
       <xs:enumeration value="ACR" description="ARC Ratings, S.A." enum_value="7" />
@@ -2684,8 +2842,8 @@
       <xs:element minOccurs="1" maxOccurs="1" name="BankActivityOrService" type="LicensedOperationType" displayName="Тип" description="Вкажіть, це буде вид банківської діяльності чи послуга" field_order="1" />
       <xs:element minOccurs="1" maxOccurs="1" name="ActivityType" type="BankingActivityType" displayName="Вид банківської діяльності" description="Вид банківської діяльності зг. зі ст.47 з-ну про Банки й банківську діяльність" field_order="2">
         <xs:annotation>
-          <xs:documentation>Заповнювати або це поле, або ж ServiceType
-            (але не обидва одразу).
+          <xs:documentation>Заповнювати одне з полів: ActivityType, ServiceType, GFXActivityType SMActivityType
+            (але не більше одного одразу).
             Одне з цих полів, де жорстко обмежується фантазія банку, є обов'язковим; 
             У текстовому полі хай пишуть власну інтерпретацію (якщо захочуть), але первинною
             є ідентифікація виду діяльності чи послуг згідно з однозначним переліком, що
@@ -2694,13 +2852,32 @@
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="ServiceType" type="FinancialServicesType" displayName="Вид фінансових послуг" description="Вид фінансових послуг зг. зі ст. 4 з-ну Про фінансові послуги" field_order="3">
         <xs:annotation>
-          <xs:documentation>Заповнювати або це поле, або ж ActivityType 
+          <xs:documentation>Заповнювати одне з полів: ActivityType, ServiceType, GFXActivityType SMActivityType
+            (але не більше одного одразу).
             
 
 Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicensedActivityInfo.ActivityType</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" type_ukr="текст" displayName="Вид діяльності - власна інтерпретація" description="Власна назва та/або опис виду діяльності" field_order="4">
+      <xs:element minOccurs="1" maxOccurs="1" name="GFXActivityType" type="GeneralFXLicenseActivityType" displayName="Вид діяльності (ген.ліцензія)" description="Вид банківської діяльності зг. з генеральною банківською діяльністю" field_order="4">
+        <xs:annotation>
+          <xs:documentation>Заповнювати одне з полів: ActivityType, ServiceType, GFXActivityType SMActivityType
+            (але не більше одного одразу).
+            
+
+Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicensedActivityInfo.ActivityType</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="SMActivityType" type="ProfessionalStockMarketActivityType" displayName="Вид проф.д-ті на ФР" description="Вид професійної діяльності на фондовому ринку" field_order="5">
+        <xs:annotation>
+          <xs:documentation>Заповнювати одне з полів: ActivityType, ServiceType, GFXActivityType SMActivityType
+            (але не більше одного одразу).
+            
+
+Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.BankingLicensedActivityInfo.ActivityType</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivityName" type="xs:string" type_ukr="текст" displayName="Вид діяльності - власна інтерпретація" description="Власна назва та/або опис виду діяльності" field_order="6">
         <xs:annotation>
           <xs:documentation>Власна вільна інтерпретація чи примітки/опис виду діяльності (якщо є чим доповнити поле ActivityType чи ServiceType
             
@@ -2711,10 +2888,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="LicensedOperationType">
+    <xs:annotation>
+      <xs:documentation>Види ліцензій</xs:documentation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
       <xs:enumeration value="BankingActivity" description="Вид банківської діяльності" enum_value="1" />
       <xs:enumeration value="FinancialService" description="Фінансова послуга" enum_value="2" />
+      <xs:enumeration value="FXGLBkActivity" description="Діяльність за генліцензією (банк)" enum_value="3" />
+      <xs:enumeration value="SMActivityType" description="Діяльність за генліцензією (не-банк)" enum_value="4" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="BankingActivityType">
@@ -2861,6 +3043,45 @@
       <xs:enumeration value="OtherFinBankServices" description="п.14 банківські та інші фінансові послуги, що надаються відповідно до Закону України Про банки і банківську діяльність (ст.4 з-ну Про фінпослуги)" enum_value="15" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="GeneralFXLicenseActivityType">
+    <xs:annotation>
+      <xs:documentation>Види ліцензованої діяльності за генеральною банківською валютною ліцензією</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="GFX_NonTrade" description="неторговельні операції з валютними цінностями" enum_value="1" />
+      <xs:enumeration value="GFX_CashBankOps" description="операції з готівковою іноземною валютою та чеками (купівля, продаж, обмін, прийняття на інкасо), що здійснюються в касах і пунктах обміну іноземної валюти банків" enum_value="2" />
+      <xs:enumeration value="GFX_CashAgentOps" description="операції з готівковою іноземною валютою (купівля, продаж, обмін), що здійснюються в пунктах обміну іноземної валюти, які працюють на підставі укладених банками агентських договорів з юридичними особами-резидентами" enum_value="3" />
+      <xs:enumeration value="GFX_AcctMgmt" description="ведення рахунків клієнтів (резидентів і нерезидентів) в іноземній валюті та клієнтів-нерезидентів у грошовій одиниці України" enum_value="4" />
+      <xs:enumeration value="GFX_CorrBkAcctMgmtFCCY" description="ведення кореспондентських рахунків банків (резидентів і нерезидентів) в іноземній валюті" enum_value="5" />
+      <xs:enumeration value="GFX_CorrBkAcctMgmtLCCY" description="ведення кореспондентських рахунків банків (нерезидентів) у грошовій одиниці України" enum_value="6" />
+      <xs:enumeration value="GFX_CorrAcctHaveInUABksFCCY" description="відкриття кореспондентських рахунків в уповноважених банках України в іноземній валюті та здійснення операцій за ними" enum_value="7" />
+      <xs:enumeration value="GFX_CorrAcctHaveInNonUABksFCCY" description="відкриття кореспондентських рахунків у банках (нерезидентах) в іноземній валюті та здійснення операцій за ними" enum_value="8" />
+      <xs:enumeration value="GFX_FCCYBorrNPlaceLocalMarket" description="залучення та розміщення іноземної валюти на валютному ринку України" enum_value="9" />
+      <xs:enumeration value="GFX_FCCYBorrNPlaceWorldMarket" description="залучення та розміщення іноземної валюти на міжнародних ринках" enum_value="10" />
+      <xs:enumeration value="GFX_FCCYTradingNonCashLocalMarket" description="торгівля іноземною валютою на валютному ринку України [за винятком операцій з готівковою іноземною валютою та чеками (купівля, продаж, обмін), що здійснюється в касах і пунктах обміну іноземної валюти банків і агентів]" enum_value="11" />
+      <xs:enumeration value="GFX_FCCYTradingNonCashWorldMarket" description="торгівля іноземною валютою на міжнародних ринках" enum_value="12" />
+      <xs:enumeration value="GFX_BkMetalBorrNPlaceLocalMarket" description="залучення та розміщення банківських металів на валютному ринку України" enum_value="13" />
+      <xs:enumeration value="GFX_BkMetalBorrNPlaceWorldMarket" description="залучення та розміщення банківських металів на міжнародних ринках" enum_value="14" />
+      <xs:enumeration value="GFX_BkMetalTradingLocalMarket" description="торгівля банківськими металами на валютному ринку України" enum_value="15" />
+      <xs:enumeration value="GFX_BkMetalTradingWorldMarket" description="торгівля банківськими металами на міжнародних ринках" enum_value="16" />
+      <xs:enumeration value="GFX_FinSvcLocalMarket" description="валютні операції на валютному ринку України, які належать до фінансових послуг згідно зі статтею 4 ЗУпФПтДРРФП та не зазначені в абзацах 2-17 розділу 2 Положення про порядок надання банкам і філіям іноземних банків генеральних ліцензій на здійснення валютних операцій, затвердженого постановою Правління Національного банку України від 15.08.2011 № 281" enum_value="17" />
+      <xs:enumeration value="GFX_FinSvcWorldMarket" description="валютні операції на міжнародних ринках, які належать до фінансових послуг згідно зі статтею 4 ЗУпФПтДРРФП та не зазначені в абзацах 2-17 розділу 2 Положення про  порядок надання банкам і філіям іноземних банків генеральних ліцензій на здійснення валютних операцій, затвердженого постановою Правління Національного банку України від 15.08.2011 № 281" enum_value="18" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ProfessionalStockMarketActivityType">
+    <xs:annotation>
+      <xs:documentation>Види професійної діяльності на фондовому ринку</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
+      <xs:enumeration value="SMSecuritiesTrading" description="діяльність з торгівлі цінними паперами (пп.1 ч.2 ст.16 ЗпЦПіФР)" enum_value="1" />
+      <xs:enumeration value="SMInstInvAssetsMgmt" description="діяльність з управління активами інституційних інвесторів (пп.2 ч.2 ст.16 ЗпЦПіФР)" enum_value="2" />
+      <xs:enumeration value="SMDepositoryActivities" description="депозитарна діяльність (пп.3 ч.2 ст.16 ЗпЦПіФР)" enum_value="3" />
+      <xs:enumeration value="SMTradeOrganization" description="діяльність з організації торгівлі на фондовому ринку (пп.4 ч.2 ст.16 ЗпЦПіФР)" enum_value="4" />
+      <xs:enumeration value="SMClearing" description="клірингова діяльність (пп.5 ч.2 ст.16 ЗпЦПіФР)" enum_value="5" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ArrayOfAttachmentInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="AttachmentInfo" nillable="true" type="AttachmentInfo" />
@@ -2871,26 +3092,33 @@
       <xs:documentation>Інформація про долучення до анкет</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="FileName" type="xs:string" type_ukr="текст" displayName="Файл" field_order="1">
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentID" type="xs:string" type_ukr="текст" displayName="ID додатку" description="Ідентифікатор додатку (унікальний в межах пакету)" field_order="1">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" displayName="Тип (з переліку)" description="Тип додатку із переліку типових долучень; якщо &quot;Інше&quot; - обов'язково вказати, що саме у полі &quot;Опис файлу&quot;." field_order="2">
+      <xs:element minOccurs="1" maxOccurs="1" name="FileName" type="xs:string" type_ukr="текст" displayName="Файл" description="Назва файлу" field_order="2">
+        <xs:annotation>
+          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Обов'язкове поле</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AttachmentType" type="TypicalApplicationAttachement" displayName="Тип (з переліку)" description="Тип додатку із переліку типових долучень; якщо &quot;Інше&quot; - обов'язково вказати, що саме у полі &quot;Опис файлу&quot;." field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язкове поле, за змовчанням - Інше</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" type_ukr="текст" displayName="Опис файлу" description="Що у файлі?" field_order="3">
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" type_ukr="текст" displayName="Опис файлу" description="Що у файлі?" field_order="4">
         <xs:annotation>
           <xs:documentation>Необов'язкове поле, якщо в AttachmentType != Інше</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="ContentType" type="xs:string" type_ukr="текст" displayName="Формат" description="Тип MIME, напр. pdf, xls, xlsx, doc, docs, rtf, тощо" field_order="4">
+      <xs:element minOccurs="1" maxOccurs="1" name="ContentType" type="xs:string" type_ukr="текст" displayName="Формат" description="Тип MIME, напр. pdf, xls, xlsx, doc, docs, rtf, тощо" field_order="5">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3375,15 +3603,31 @@
           <xs:documentation>Якщо відомий загальний статутний капітал, або якщо частку визначено в абсолютному виразі</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:int" type_ukr="ціле число" displayName="Кількість акцій" description="Кількість акцій, що належать Власникові в об'єкті власності" field_order="5" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SharesCount" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Кількість акцій" description="Кількість акцій, що належать Власникові в об'єкті власності" field_order="5">
+        <xs:annotation>
+          <xs:documentation>Мельничук М.О.: 
+            Для випадку ТОВ та інших юр.осіб, статутами яких не передбачено 
+            випуск акцій, дане поле не повинно заповнюватись. 
+            Думаю варто позначити як необов’язковий для заповнення параметр.
+            ----------------
+            В продовження: за українським законодавством статутний капітал ТОВ 
+            не ділиться на частки однакової номінальної вартості, що 
+            розподіляються певним чином між акціонерами за посередництвом 
+            акцій. Тому тут може бути не тільки ціле число.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="SharePct" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Частка (%)" description="Частка (%)" field_order="6">
         <xs:annotation>
           <xs:documentation>Як правило, саме у %-х і зазначається власність</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:int" type_ukr="ціле число" displayName="Кількість голосів в управлінні" description="Кількість голосів в управлінні" field_order="7">
+      <xs:element minOccurs="1" maxOccurs="1" name="Votes" type="xs:decimal" type_ukr="десяткове число, у т.ч. дрібне" displayName="Кількість голосів в управлінні" description="Кількість голосів в управлінні" field_order="7">
         <xs:annotation>
-          <xs:documentation>Якщо вимагається контекстом</xs:documentation>
+          <xs:documentation>Якщо вимагається контекстом
+            + Мельничук М.О.: статутний капітал ТОВ 
+            не ділиться на частки однакової номінальної вартості, що 
+            розподіляються певним чином між акціонерами за посередництвом 
+            акцій. Тому тут може бути не тільки ціле число.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -3492,12 +3736,15 @@
             обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Creditor" type="GenericPersonID" displayName="Особа, на користь якої порука" field_order="2">
+      <xs:element minOccurs="0" maxOccurs="1" name="Creditor" type="GenericPersonID" displayName="Особа, на користь якої порука" field_order="2">
         <xs:annotation>
-          <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
-
-            Ідентифікатор особи, на користь якої виписана порука/гарантія;
-            обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.</xs:documentation>
+          <xs:documentation>Ідентифікатор особи, на користь якої виписана порука/гарантія;
+            обирається зі списку, джерело - MentionedEntities, або ж уводиться (тут же) й "кладеться" у MentionedEntities.
+            ---
+            UPD: обов'язковість поля прибрано, на підставі зауваження М.Мельничука:
+              Існують гарантійні зобов’язання з умовою «платити наказу…» чи аналогічними, 
+              де визначити кредитора певний час неможливо. Думаю варто ознаку виставити як 
+              необов’язкову, або зазначати у разі наявності</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="1" maxOccurs="1" name="Role" type="FinancialGuarantorRoleType" displayName="Роль" description="Роль (гарантор, довірена особа, тощо)" field_order="3">
@@ -3540,7 +3787,7 @@
   <xs:simpleType name="FinancialGuarantorRoleType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="Guarantor" description="Гарантор" enum_value="1" />
+      <xs:enumeration value="Guarantor" description="Гарант" enum_value="1" />
       <xs:enumeration value="Pledger" description="Заставодавець/поручитель" enum_value="2" />
       <xs:enumeration value="Attorney" description="Довірена особа" enum_value="3" />
     </xs:restriction>
@@ -3585,25 +3832,39 @@
           </xs:element>
           <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisoryCouncilPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="I. Наглядова (спостережна) рада юридичної особи існує" description="(I) Чи існує наглядова (спостережна) рада юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="3" />
           <xs:element minOccurs="0" maxOccurs="1" name="SupervisoryCouncil" type="CouncilBodyInfo" displayName="I. Особовий склад наглядової(спостережної)ради юрособи" description="Голова та члени наглядової (спостережної) ради юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="4" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsExecutiveBodyPresent" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="I. Виконавчий орган юридичної особи існує" description="Чи існує виконавчий орган юридичної особи?" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="5" />
-          <xs:element minOccurs="0" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" displayName="I. Особовий склад виконавчого органу юрособи" description="Голова та члени виконавчого органу юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="6" />
-          <xs:element minOccurs="0" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="II. Реквізити усіх осіб-фігурантів" description="Реквізити усіх осіб, що згадуються в анкеті" category="II. Загальна інформація про осіб" field_order="7">
+          <xs:element minOccurs="1" maxOccurs="1" name="ExecutiveBody" type="CouncilBodyInfo" displayName="I. Особовий склад виконавчого органу юрособи" description="Голова та члени виконавчого органу юридичної особи" category="I. Перелік членів виконавчого органу та наглядової ради юридичної особи" field_order="5">
             <xs:annotation>
-              <xs:documentation>Реквізити усіх осіб-фігурантів</xs:documentation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            (щодо обов'язковості поля)
+            Мельничук М.О.: Мені не відомі ситуації, коли б навіть теоретично 
+            у юридичної особи був відсутній виконавчий орган 
+            (одноособовий чи колегіальний).</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="III. Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" field_order="8" />
-          <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою" field_order="9">
+          <xs:element minOccurs="1" maxOccurs="1" name="MentionedIdentities" type="ArrayOfGenericPersonInfo" displayName="II. Реквізити усіх осіб-фігурантів" description="Реквізити усіх осіб, що згадуються в анкеті" category="II. Загальна інформація про осіб" field_order="6">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
+
+            Реквізити усіх осіб-фігурантів</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="BoardMembersEmploymentHistory5Yrs" type="ArrayOfPersonEmploymentRecordsInfo" displayName="III. Займані посади за останні п’ять років" description="Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років." category="III. Відомості про трудову діяльність" field_order="7">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи шукають здобути у банку" category="IV. Відносини особи з банком та юридичною особою" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="ExistingOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про участь осіб в банку" description="Деталізація існуючих відносин власності між особами, юр.особою та банком" category="IV. Відносини особи з банком та юридичною особою" field_order="8">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="IV. Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="TargetedOwnershipDetailsHive" type="ArrayOfOwnershipStructure" displayName="IV. Відомості про намір осіб набути або збільшити участь у банку" description="Власність, яку особи мають намір здобути у банку" category="IV. Відносини особи з банком та юридичною особою" field_order="9">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" maxOccurs="1" name="PersonsLinks" type="ArrayOfPersonsAssociation" displayName="IV. Зв'язки між особами-фігурантами анкети" description="Природа зв'язків між усіма пов'язанами особами, що згадуються в анкеті" category="IV. Відносини особи з банком та юридичною особою" field_order="10">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3611,17 +3872,17 @@
             ----</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="IV. Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою" field_order="12">
+          <xs:element minOccurs="1" maxOccurs="1" name="Person2BankAssociations" type="ArrayOfPersonBankAssociationInfo" displayName="IV. Відомості про пов’язаність осіб із банком" description="Коди пов'язаності осіб" category="IV. Відносини особи з банком та юридичною особою" field_order="11">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="V. Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію" field_order="13">
+          <xs:element minOccurs="1" maxOccurs="1" name="CandidatesBusinessReputation" type="ArrayOfPersonBusinessReputationInfo" displayName="V. Ділова репутація кандидатів" description="Ділова репутація кандидатів та дотримання законодавства" category="V. Відомості про ділову репутацію" field_order="12">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;" category="Підписи і т.п." field_order="14">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsApplicationInfoAccurateAndTrue" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Підтверджую правдивість інформації?" description="стверджую, що інформація,  надана в анкеті,&#xA; є правдивою і повною, та не заперечую проти перевірки Національним банком України достовірності поданих документів і персональних даних, що в них містяться.&#xA;" category="Підписи і т.п." field_order="13">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3631,7 +3892,7 @@
             Національним банком України достовірності поданих документів і персональних даних, що в них містяться.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п." field_order="15">
+          <xs:element minOccurs="1" maxOccurs="1" name="Signatory" type="SignatoryInfo" displayName="Підписант" description="Відомості по особу, що підписала анкету" category="Підписи і т.п." field_order="14">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3646,7 +3907,7 @@
              друкованими літерами)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети" category="Підписи і т.п." field_order="16">
+          <xs:element minOccurs="1" maxOccurs="1" name="ContactPerson" type="ContactInfo" displayName="Контакти" description="Контактні дані відправника анкети" category="Підписи і т.п." field_order="15">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -3744,7 +4005,7 @@
             1. Посада, на яку призначається/рекомендується керівник, ____________________________.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Candidate" type="GenericPersonID" displayName="Кандидат" description="Реквізити фізособи-кандидата на посаду..." field_order="3">
+      <xs:element minOccurs="1" maxOccurs="1" name="Candidate" type="GenericPersonID" displayName="Кандидат/керівник" description="Ідентифікатор фізособи-кандидата на посаду чи вже призначеного керівника..." field_order="3">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -4096,14 +4357,14 @@
 Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo.DegreeSeries</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність/фах" description="Основний фах за дипломом" field_order="8">
+      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність" description="Основний фах за дипломом" field_order="8">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язково</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Спеціалізація" description="Уточнююча означення отриманого фаху - спеціалізація/кваліфікація" field_order="9">
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Кваліфікація" description="Уточнююча означення отриманого фаху - спеціалізація/кваліфікація" field_order="9">
         <xs:annotation>
           <xs:documentation>Якщо передбачено</xs:documentation>
         </xs:annotation>
@@ -4117,19 +4378,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:simpleType name="HigherEducationDegreeType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
-      <xs:enumeration value="Master" description="Магістр" enum_value="2" />
-      <xs:enumeration value="MBA" description="MBA" enum_value="3" />
-      <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
-      <xs:enumeration value="PhD" description="PhD" enum_value="5" />
-      <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
-      <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
-      <xs:enumeration value="Professor" description="Професор" enum_value="8" />
-    </xs:restriction>
-  </xs:simpleType>
   <xs:simpleType name="DegreeHonourType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" description="Не вказано" enum_value="0" />
@@ -4140,23 +4388,6 @@
       <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
       <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
       <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="EducationKindGros">
-    <xs:annotation>
-      <xs:documentation>Підвид освіти: 
-            У базі доцільно завести динамічний довідник, бо для цілей 
-            реєстрації, ліцензування чи пруденційного нагляду перелік 
-            може бути розширено чи уточнено.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="BankingFinance" description="Фінансова/банківська" enum_value="1" />
-      <xs:enumeration value="OtherEconomics" description="Інша економічна" enum_value="2" />
-      <xs:enumeration value="Legal" description="Юридична" enum_value="3" />
-      <xs:enumeration value="OtherHumanitarian" description="Інша гуманітарна" enum_value="4" />
-      <xs:enumeration value="Engineering" description="Технічна" enum_value="5" />
-      <xs:enumeration value="Miscellaneous" description="Інша" enum_value="6" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">

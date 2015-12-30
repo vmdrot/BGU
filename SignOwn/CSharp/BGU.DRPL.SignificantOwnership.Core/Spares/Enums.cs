@@ -79,12 +79,25 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         [Description("Не вказано")]None = 0,
         [Description("Найманий працівник")]
         Employed,
-        [Description("Самозайнятість")]
-        Selfemployed,
-        [Description("Фрілансер")]
-        Freelance,
+        [Description("Самозайнятість/Фрілансер")]
+        SelfemployedFreelance,
         [Description("Безробітний")]
-        Unemployed
+        Unemployed,
+        [Description("Пенсіонер")]
+        Retired
+    }
+
+    /// <summary>
+    /// Вид зайнятості - повна, часткова, тощо
+    /// </summary>
+    public enum EmploymentTimeType
+    { 
+        [Description("None")]
+        None = 0,
+        [Description("Повна (основна) зайнятість")]
+        FullTime,
+        [Description("Часткова (за сумісництвом) зайнятість")]
+        PartTime,
     }
 
 #if __NO_FLAGS__
@@ -94,18 +107,31 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum EmploymentTerminationType
     {
-        [Description("Не вказано")]None = 0,
-        [Description("Підвищення/переміщення")]
+        [Description("Не вказано")]
+        None = 0,
+        [Description("За угодою сторін")]
+        PartiesConsent,
+        [Description("Переведення працівника, за його згодою, на інше підприємство, в установу, організацію або перехід на виборну посаду")]
         PromotedOrRelocated,
-        [Description("Звільнення за вл.баж.")]
+        [Description("Звільнення з ініціативи працівника")]
         VoluntaryQuit,
-        [Description("Звільнення (з ініціативи працедавця")]
+        [Description("Закінчення строку трудового договору")]
+        ContractExpiry,
+        [Description("Через відмову працівника від переведення на роботу в іншу місцевість разом з підприємством, установою, організацією, а також відмова від продовження роботи у зв'язку із зміною істотних умов праці")]
+        RefusedToRelocate,
+        [Description("набрання законної сили вироком суду, яким працівника засуджено (крім випадків звільнення від відбування покарання з випробуванням) до позбавлення волі або до іншого покарання, яке виключає можливість продовження даної роботи")]
+        Conviction,
+        [Description("З підстав, передбачених контрактом")]
+        ContractualConditions,
+        [Description("Звільнення з ініціативи власника або уповноваженого ним органу")]
         Dismissed,
+        [Description("Звільнення на вимогу профспілкового чи іншого уповноваженого на представництво трудовим колективом органу")]
+        TradeUnionDemand,
         [Description("Вихід на пенсію")]
         Retired,
         [Description("Декретна відпустка")]
         MaternityLeave,
-        [Description("Військова служба")]
+        [Description("У зв’язку із призовом або вступом працівника на військову службу, направленням на альтернативну (невійськову) службу")]
         MilitaryServiceLeave,
         [Description("За станом здоров'я")]
         HealthConditionLeave,
@@ -113,6 +139,10 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherLeaveType
     }
 
+    /// <summary>
+    /// Тип диплому про освіту / освітньо-кваліфікаційний рівень та ступінь
+    /// (зг.п.2. ст.30 З-ну про Освіту)
+    /// </summary>
 #if __NO_FLAGS__
 #else
     [Flags]
@@ -120,25 +150,39 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum HigherEducationDegreeType
     {
-        [Description("Не вказано")]
+        [Description("не вказано")]
         None = 0,
-        [Description("Бакалавр/Спеціаліст")]
-        Bachelor,
-        [Description("Магістр")]
-        Master,
-        [Description("MBA")]
-        MBA,
-        [Description("Кандидат наук")]
-        CandidateDoctor,
-        [Description("PhD")]
-        PhD,
-        [Description("Доктор наук (техн.)")]
-        DoctorOfSciences,
-        [Description("Доктор наук (гум.)")]
-        DoctorOfLetters,
+        [Description("кваліфікований робітник (або еквівалент)")]
+        QualifiedWorkerOrEquiv,
+        [Description("молодший спеціаліст (або еквівалент)")]
+        JuniorSpecialistOrEquiv,
+        [Description("молодший бакалавр (або еквівалент)")]
+        JuniorBachelorOrEquiv,
+        [Description("бакалавр (або еквівалент)")]
+        BachelorOrEquiv,
+        [Description("магістр (або еквівалент)")]
+        MasterOrEquiv,
+        //[Description("MBA")]
+        //MBA,
+        [Description("доктор філософії (або еквівалент)")]
+        PhDOrEquiv,
+        [Description("доктор наук (або еквівалент)")]
+        SciencesDoctorOrEquiv,
+    }
+
+    /// <summary>
+    /// Вчене звання (та його еквіваленти)
+    /// (зг.п.1 ст.32 З-ну про Освіту)
+    /// </summary>
+    public enum ScientificDegreeType
+    { 
+        None = 0,
+        [Description("старший дослідник (або еквівалент)")]
+        SeniorResearcherOrEquiv,
+        [Description("доцент")]
+        Docent,
         [Description("Професор")]
         Professor
-
     }
 
     /// <summary>
@@ -149,26 +193,34 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     /// </summary>
     public enum EducationKindGros
     {
+        //[Description("Не вказано")]
+        //None = 0,
+        //[Description("Фінансова/банківська")]
+        //BankingFinance,
+        //[Description("Інша економічна")]
+        //OtherEconomics,
+        //[Description("Юридична")]
+        //Legal,
+        //[Description("Управлінська")]
+        //Management,
+        //[Description("Інша гуманітарна")]
+        //OtherHumanitarian,
+        //[Description("Технічна")]
+        //Engineering,
+        //[Description("Інша")]
+        //Miscellaneous
         [Description("Не вказано")]
         None = 0,
-        [Description("Фінансова/банківська")]
-        BankingFinance,
-        [Description("Інша економічна")]
-        OtherEconomics,
-        [Description("Юридична")]
-        Legal,
-        [Description("Інша гуманітарна")]
-        OtherHumanitarian,
-        [Description("Технічна")]
-        Engineering,
-        [Description("Інша")]
+        [Description("галузь економіки")]
+        Economics,
+        [Description("галузь менеджменту")]
+        Management,
+        [Description("галузь права")]
+        Jurisprudence,
+        [Description("інше")]
         Miscellaneous
     }
 
-#if __NO_FLAGS__
-#else
-    [Flags]
-#endif
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum DegreeHonourType
     {
@@ -242,7 +294,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     public enum FinancialGuarantorRoleType
     {
         [Description("Не вказано")]None = 0,
-        [Description("Гарантор")]
+        [Description("Гарант")]
         Guarantor,
         [Description("Заставодавець/поручитель")]
         Pledger,
@@ -257,22 +309,25 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
     public enum BreachOfLawType
     {
-        [Description("Не вказано")]None = 0,
-        [Description("Кримінальне")]
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Кримінальна відповідальність")]
         Criminal,
-        [Description("Анти-монопольне")]
+        [Description("Адміністративна відповідальність")]
+        Administrative,
+        [Description("За порушення антимонопольного законодавства")]
         Antitrust,
-        [Description("Податкове")]
+        [Description("За порушення податкового законодавства")]
         Taxation,
-        [Description("Банківське")]
+        [Description("За порушення банківського  законодавства")]
         Banking,
-        [Description("Фінансове")]
+        [Description("За порушення законодавства про фінансові послуги")]
         Financial,
-        [Description("Валютне")]
+        [Description("За порушення валютного законодавства")]
         ForeignCurrency,
-        [Description("Біржове")]
+        [Description("За порушення на ринку цінних паперів (фондовому ринку)")]
         StockExchange,
-        [Description("Інше адміністративне")]
+        [Description("Інша адміністративна відповідальність")]
         OtherAdministrative
     }
 
@@ -294,6 +349,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Fined,
         [Description("Звільнення")]
         Dismissed,
+        [Description("Позбавлення права займатися певною діяльністю/займати певні посади")]
+        ProfessionalBan,
         [Description("Відкликання/позбавлення ліцензії")]
         LicenseRevoked,
         [Description("Призупинення ліцензії")]
@@ -715,9 +772,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Moodys,
         [Description("Fitch Ratings")]
         Fitch,
-        [Description("Не вказано")]
-        SAndP,
         [Description("Standard & Poors")]
+        SAndP,
+        [Description("DRBS")]
         DRBS,
         [Description("Dagong Credit Rating (та дочірні рейтингові компанії)")]
         Dagong,
@@ -911,8 +968,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         CourtResolution,
         [Description("Окрема ухвала")]
         SpecialResolution,
-        [Description("Окрема думка судді")]
-        JudgesMinorityReport
+        //[Description("Окрема думка судді")]
+        //JudgesMinorityReport
     }
 
     [Editor(typeof(BGU.DRPL.SignificantOwnership.Core.TypeEditors.EnumLookupEditor), typeof(System.Drawing.Design.UITypeEditor))]
@@ -980,9 +1037,9 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Buyer,
         [Description("Покупець")]
         Seller,
-        [Description("Дарувач")]
+        [Description("Дарувальник")]
         Grantor,
-        [Description("Дароотримувач")]
+        [Description("Обдаровуваний")]
         Grantee,
         [Description("Заповідач")]
         Legator,
@@ -998,7 +1055,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Obligor,
         [Description("Застоводавець")]
         Pledger,
-        [Description("Заставоутримувач")]
+        [Description("Заставодержатель")]
         Pledgee,
         [Description("Інше")]
         Other
