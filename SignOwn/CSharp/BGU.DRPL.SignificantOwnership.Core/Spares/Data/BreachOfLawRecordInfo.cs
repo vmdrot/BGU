@@ -32,7 +32,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public BreachOfLawType BreachType { get { return _BreachType; } set { _BreachType = value; OnPropertyChanged("BreachType"); } }
 
         private CourtDecisionInfo _CourtDecision;
-        [DisplayName("Рішення суду")]
+        [DisplayName("Рішення про притягнення")]
         [Description("Відомості про рішення щодо притягнення до відповідальності")]
         public CourtDecisionInfo CourtDecision { get { return _CourtDecision; } set { _CourtDecision = value; OnPropertyChanged("CourtDecision"); OnPropertyChanged("IsCourtDecisionSentence"); } }
 
@@ -69,7 +69,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
 
         [Browsable(false)]
         [XmlIgnore]
-        public bool IsDurationPenalty { get { return Sentence == SentenceType.Jailed || Sentence == SentenceType.Probation || Sentence == SentenceType.RemedialWorks; } }
+        public bool IsDurationPenalty { get { return Sentence == SentenceType.Jailed || Sentence == SentenceType.Probation || Sentence == SentenceType.RemedialWorks || Sentence == SentenceType.ProfessionalBan; } }
 
         [Browsable(false)]
         [XmlIgnore]

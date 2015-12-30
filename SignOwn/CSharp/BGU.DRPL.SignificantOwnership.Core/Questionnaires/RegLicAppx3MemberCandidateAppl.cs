@@ -86,17 +86,24 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [UIConditionalVisibility("IsSupervisoryCouncilPresent")]
         public CouncilBodyInfo SupervisoryCouncil { get { return _SupervisoryCouncil; } set { _SupervisoryCouncil = value; OnPropertyChanged("SupervisoryCouncil"); } }
 
-        private bool _IsExecutiveBodyPresent;
-        [Category(CATEGORY_I)]
-        [DisplayName("I. Виконавчий орган юридичної особи існує")]
-        [Description("Чи існує виконавчий орган юридичної особи?")]
-        public bool IsExecutiveBodyPresent { get { return _IsExecutiveBodyPresent; } set { _IsExecutiveBodyPresent = value; OnPropertyChanged("IsExecutiveBodyPresent"); } }
+        //private bool _IsExecutiveBodyPresent;
+        //[Category(CATEGORY_I)]
+        //[DisplayName("I. Виконавчий орган юридичної особи існує")]
+        //[Description("Чи існує виконавчий орган юридичної особи?")]
+        //public bool IsExecutiveBodyPresent { get { return _IsExecutiveBodyPresent; } set { _IsExecutiveBodyPresent = value; OnPropertyChanged("IsExecutiveBodyPresent"); } }
 
         private CouncilBodyInfo _ExecutiveBody;
+        /// <summary>
+        /// (щодо обов'язковості поля)
+        /// Мельничук М.О.: Мені не відомі ситуації, коли б навіть теоретично 
+        /// у юридичної особи був відсутній виконавчий орган 
+        /// (одноособовий чи колегіальний). 
+        /// </summary>
         [Category(CATEGORY_I)]
         [DisplayName("I. Особовий склад виконавчого органу юрособи")]
         [Description("Голова та члени виконавчого органу юридичної особи")]
-        [UIConditionalVisibility("IsExecutiveBodyPresent")]
+        //[UIConditionalVisibility("IsExecutiveBodyPresent")]
+        [Required]
         public CouncilBodyInfo ExecutiveBody { get { return _ExecutiveBody; } set { _ExecutiveBody = value; OnPropertyChanged("ExecutiveBody"); } }
         #endregion
 
@@ -108,6 +115,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Category(CATEGORY_II)]
         [DisplayName("II. Реквізити усіх осіб-фігурантів")]
         [Description("Реквізити усіх осіб, що згадуються в анкеті")]
+        [Required]
         [UIUsageDataGridParams(IsOneColumn=true, OneDataColumnHeader="Особи-фігуранти")]
         public List<GenericPersonInfo> MentionedIdentities { get { return _MentionedIdentities; } set { _MentionedIdentities = value; OnPropertyChanged("MentionedIdentities"); OnPropertyChanged("MentionedGenericPersons"); } }
         #endregion
@@ -117,6 +125,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         [Category(CATEGORY_III)]
         [DisplayName("III. Займані посади за останні п’ять років")]
         [Description("Деталі трудової біографії погоджуваних членів наглядового та/або виконавчого органів, за останні 5 років.")]
+        [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Трудовий стаж осіб")]
         public List<PersonEmploymentRecordsInfo> BoardMembersEmploymentHistory5Yrs { get { return _BoardMembersEmploymentHistory5Yrs; } set { _BoardMembersEmploymentHistory5Yrs = value; OnPropertyChanged("BoardMembersEmploymentHistory5Yrs"); } }
         #endregion
@@ -135,7 +144,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         private List<OwnershipStructure> _TargetedOwnershipDetailsHive;
         [Category(CATEGORY_IV)]
         [DisplayName("IV. Відомості про намір осіб набути або збільшити участь у банку")]
-        [Description("Власність, яку особи шукають здобути у банку")]
+        [Description("Власність, яку особи мають намір здобути у банку")]
         [Browsable(true)]
         [Required]
         [UIUsageDataGridParams(IsOneColumn = true, OneDataColumnHeader = "Розшифровка жаданої власності у банку")]

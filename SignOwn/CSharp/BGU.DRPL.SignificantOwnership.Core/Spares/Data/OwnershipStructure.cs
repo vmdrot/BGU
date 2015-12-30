@@ -50,12 +50,20 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public CurrencyAmount Share { get; set; } //todo - switch currency automatically on Asset country of jurisdiction change
 
         /// <summary>
-        /// 
+        /// Мельничук М.О.: 
+        /// Для випадку ТОВ та інших юр.осіб, статутами яких не передбачено 
+        /// випуск акцій, дане поле не повинно заповнюватись. 
+        /// Думаю варто позначити як необов’язковий для заповнення параметр.
+        /// ----------------
+        /// В продовження: за українським законодавством статутний капітал ТОВ 
+        /// не ділиться на частки однакової номінальної вартості, що 
+        /// розподіляються певним чином між акціонерами за посередництвом 
+        /// акцій. Тому тут може бути не тільки ціле число.
         /// </summary>
         [DisplayName("Кількість акцій")]
         [Description("Кількість акцій, що належать Власникові в об'єкті власності")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N0}")]
-        public int SharesCount { get; set; }
+        public decimal SharesCount { get; set; }
         /// <summary>
         /// Як правило, саме у %-х і зазначається власність
         /// </summary>
@@ -65,11 +73,15 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         public decimal SharePct { get; set; }
         /// <summary>
         /// Якщо вимагається контекстом
+        /// + Мельничук М.О.: статутний капітал ТОВ 
+        /// не ділиться на частки однакової номінальної вартості, що 
+        /// розподіляються певним чином між акціонерами за посередництвом 
+        /// акцій. Тому тут може бути не тільки ціле число.
         /// </summary>
         [DisplayName("Кількість голосів в управлінні")]
         [Description("Кількість голосів в управлінні")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "250", MinWidth = "150", StringFormat = "{}{0:N0}")]
-        public int Votes { get; set; }
+        public decimal Votes { get; set; }
 
         public override string ToString()
         {

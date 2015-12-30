@@ -527,7 +527,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// </summary>
         [Category("Діяльність")]
         [DisplayName("Перелік операцій - новий")]
-        [Description("Нове значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
+        [Description("Нове значення поля Перелік і обсяг операцій відокремленого підрозділу")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingChanged")]
         public string OperationsListingNew { get { return _OperationsListingNew; } set { _OperationsListingNew = value; OnPropertyChanged("OperationsListingNew"); } }
@@ -539,7 +539,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// </summary>
         [Category("Діяльність")]
         [DisplayName("Перелік операцій - старий")]
-        [Description("Старе значення поля Перелік і обсяг операцій відокремленого підрозділу?")]
+        [Description("Старе значення поля Перелік і обсяг операцій відокремленого підрозділу")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingChanged")]
         public string OperationsListingOld { get { return _OperationsListingOld; } set { _OperationsListingOld = value; OnPropertyChanged("OperationsListingOld"); } }

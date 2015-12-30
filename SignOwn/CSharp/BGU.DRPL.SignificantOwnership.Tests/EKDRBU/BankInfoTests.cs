@@ -29,6 +29,13 @@ namespace BGU.DRPL.SignificantOwnership.Tests.EKDRBU
             PrintDeptsWorker(depts);
         }
 
+        [Test]
+        public void ParseDeptListSaveXml()
+        {
+            List<DeptListEntry> depts = ListDepts();
+            Tools.WriteXML<List<DeptListEntry>>(depts, @"D:\home\vmdrot\BGU\Var\eGov\OpenData\DeptList\sample.xml");
+        }
+
         private void PrintDeptsWorker(List<DeptListEntry> depts)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();

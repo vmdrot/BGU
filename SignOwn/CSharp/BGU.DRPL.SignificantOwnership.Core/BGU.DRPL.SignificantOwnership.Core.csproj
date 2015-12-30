@@ -124,6 +124,7 @@
     <Compile Include="Spares\Data\BankruptcyInvestigationInfo.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableRecord.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableTotalsRecord.cs" />
+    <Compile Include="Spares\Data\ContactInfoHistoryRec.cs" />
     <Compile Include="Spares\Data\CreditHistoryInfo.cs" />
     <Compile Include="Spares\Data\EducationNostrificationInfo.cs" />
     <Compile Include="Spares\Data\EmploymentBookInfo.cs" />
@@ -131,7 +132,9 @@
     <Compile Include="Spares\Data\ImperfectBusinessReputationInfo.cs" />
     <Compile Include="Spares\Data\IPNRefusalRecordInfo.cs" />
     <Compile Include="Spares\Data\LegalTransactionPartyInfo.cs" />
+    <Compile Include="Spares\Data\LocationHistoryRecord.cs" />
     <Compile Include="Spares\Data\MissingInformationResonInfo.cs" />
+    <Compile Include="Spares\Data\PassportHistoryRecord.cs" />
     <Compile Include="Spares\Data\PersonBankAssociationInfo.cs" />
     <Compile Include="Spares\Data\PersonBusinessReputationInfo.cs" />
     <Compile Include="Spares\Data\PersonEmploymentRecordsInfo.cs" />

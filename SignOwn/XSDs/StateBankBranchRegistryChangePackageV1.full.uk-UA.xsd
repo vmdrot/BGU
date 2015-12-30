@@ -533,13 +533,13 @@
           <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrNew" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо - новий" description="Нове значення № кв./офісу, тощо" category="Адреса/розташування" field_order="65" />
           <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNrOld" type="xs:string" type_ukr="текст" displayName="№ кв./офісу, тощо - старий" description="Старе значення № кв./офісу, тощо" category="Адреса/розташування" field_order="66" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsOperationsListingChanged" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Перелік операцій - змінився?" description="Чи змінилося поле Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="67" />
-          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingNew" type="xs:string" type_ukr="текст" displayName="Перелік операцій - новий" description="Нове значення поля Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="68">
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingNew" type="xs:string" type_ukr="текст" displayName="Перелік операцій - новий" description="Нове значення поля Перелік і обсяг операцій відокремленого підрозділу" category="Діяльність" field_order="68">
             <xs:annotation>
               <xs:documentation>Буквальне значення поля перелік та обсяги операцій
             (текст як є зараз у 15-му додатку)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingOld" type="xs:string" type_ukr="текст" displayName="Перелік операцій - старий" description="Старе значення поля Перелік і обсяг операцій відокремленого підрозділу?" category="Діяльність" field_order="69">
+          <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingOld" type="xs:string" type_ukr="текст" displayName="Перелік операцій - старий" description="Старе значення поля Перелік і обсяг операцій відокремленого підрозділу" category="Діяльність" field_order="69">
             <xs:annotation>
               <xs:documentation>Буквальне значення поля перелік та обсяги операцій
             (текст як є зараз у 15-му додатку)</xs:documentation>
