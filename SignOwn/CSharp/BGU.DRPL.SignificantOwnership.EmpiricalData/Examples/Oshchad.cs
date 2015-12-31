@@ -77,8 +77,8 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Examples
             #endregion
 
             #region Signature etc.
-            rslt.Signor = new SignatoryInfo() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
-            rslt.PreparedBy = new ContactInfo() { Person = new Core.Spares.Dict.PhysicalPersonInfo() { FullName = "Ткач В.Д." }, Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() { PhoneNr = "249-31-15" } }) };
+            rslt.Signor = new SignatoryInfoBase() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
+            rslt.PreparedBy = new ContactInfoSimple() { Person = "Ткач В.Д." , Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() { PhoneNr = "249-31-15" } }) };
             #endregion
 
             return rslt;
@@ -327,8 +327,8 @@ rslt.OperationsListingSchemes.Add(new Core.EKDRBU.Spares.BankBranchOpsSvcsScheme
             #endregion
 
             #region Signature etc.
-            rslt.Signor = new SignatoryInfo() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
-            rslt.PreparedBy = new ContactInfo() { Person = new Core.Spares.Dict.PhysicalPersonInfo() { FullName = "Кравець Н.М." }, Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() {PhoneNr = "(044) 247-86-52" }}) };
+            rslt.Signor = new SignatoryInfoBase() { SignatoryPosition = "Заступник голови правління", SurnameInitials = "А.О.Тютюн" };
+            rslt.PreparedBy = new ContactInfoSimple() { Person = "Кравець Н.М.", Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() {PhoneNr = "(044) 247-86-52" }}) };
             #endregion
             return rslt;
         }

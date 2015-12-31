@@ -62,8 +62,10 @@
     <Compile Include="EKDRBU\Spares\BankBranchOpsFinSvcCompleteInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOperationInfo.cs" />
     <Compile Include="EKDRBU\Spares\BankBranchOpsSvcsSchemeInfo.cs" />
+    <Compile Include="EKDRBU\Spares\ContactInfoSimple.cs" />
     <Compile Include="EKDRBU\Spares\DocumentID.cs" />
     <Compile Include="EKDRBU\Spares\EKDRBUVariableEntryPartV1.cs" />
+    <Compile Include="EKDRBU\Spares\StateBankRegistryProcessingErrorInfo.cs" />
     <Compile Include="EKDRBU\Spares\StateBankRegistrySingleBranchChangeRecV1.cs" />
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\BranchFinOpSvcTextualInfo.cs" />
     <Compile Include="EKDRBU\Spares\FinActivitySvcInstrumentInfo.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="EKDRBU\Spares\TextualFinBankOpsSvc\TextualFinBankOpsSvcSourceData.cs" />
     <Compile Include="EKDRBU\Spares\TimeSpanInfo.cs" />
     <Compile Include="EKDRBU\Spares\WorkHoursInfo.cs" />
+    <Compile Include="EKDRBU\StateBankBranchRegistryChangePackageResponseV1.cs" />
     <Compile Include="EKDRBU\StateBankBranchRegistryChangePackageV1.cs" />
     <Compile Include="EKDRBU\StateBankBranchRegistryEntryV1.cs" />
     <Compile Include="EKDRBU\StateBankRegistryEntry.cs" />
@@ -124,6 +127,7 @@
     <Compile Include="Spares\Data\BankruptcyInvestigationInfo.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableRecord.cs" />
     <Compile Include="Spares\Data\CharterCapitalTableTotalsRecord.cs" />
+    <Compile Include="Spares\Data\ContactInfoBase.cs" />
     <Compile Include="Spares\Data\ContactInfoHistoryRec.cs" />
     <Compile Include="Spares\Data\CreditHistoryInfo.cs" />
     <Compile Include="Spares\Data\EducationNostrificationInfo.cs" />
@@ -139,6 +143,7 @@
     <Compile Include="Spares\Data\PersonBusinessReputationInfo.cs" />
     <Compile Include="Spares\Data\PersonEmploymentRecordsInfo.cs" />
     <Compile Include="Spares\Data\PowerOfAttorneyInfo.cs" />
+    <Compile Include="Spares\Data\SignatoryInfoBase.cs" />
     <Compile Include="Spares\Data\SignificantOrDecisiveInfulenceInfo.cs" />
     <Compile Include="Spares\Data\LegalTransactionInfo.cs" />
     <Compile Include="Spares\Data\PowerOfAttorneySharesPurchaseInfo.cs" />

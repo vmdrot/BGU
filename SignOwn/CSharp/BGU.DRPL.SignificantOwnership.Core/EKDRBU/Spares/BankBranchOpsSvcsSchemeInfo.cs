@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Evolvex.Utility.Core.ComponentModelEx;
 
 namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
 {
@@ -15,6 +16,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// <seealso cref="#EKDRBUVariableEntryPartV1"/>
         [DisplayName("Ідентифікатор/код схеми")]
         [Description("Унікальний (в межах пакету) ідентифікатор схеми переліку й обсягу операцій відокремленого підрозділу")]
+        [Required]
         public string SchemeID { get; set; }
 
         /// <summary>
@@ -23,6 +25,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         /// </summary>
         [DisplayName("Перелік та обсяг операцій")]
         [Description("Перелік та обсяг операцій (текст)")]
+        [Required]
         public string OperationsListingText { get; set; }
     }
 }

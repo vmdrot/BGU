@@ -1,29 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="ActualEKDRBUStructsUnion" nillable="true" type="ActualEKDRBUStructsUnion" />
-  <xs:complexType name="ActualEKDRBUStructsUnion">
+  <xs:complexType name="ActualEKDRBUStructsUnion" hideFromHtml="true">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgV1" type="StateBankBranchRegistryChangePackageV1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgV1" type="StateBankBranchRegistryChangePackageV1" field_order="1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgResponseV1" type="StateBankBranchRegistryChangePackageResponseV1" field_order="2" />
     </xs:sequence>
   </xs:complexType>
   <xs:include schemaLocation="StateBankBranchRegistryChangePackageV1.uk-UA.xsd" />
   <xs:include schemaLocation="NotifyPropertyChangedBase.uk-UA.xsd" />
+  <xs:include schemaLocation="StateBankRegistryProcessingErrorInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ValidationType.uk-UA.xsd" />
+  <xs:include schemaLocation="StateBankBranchRegistryChangePackageResponseV1.uk-UA.xsd" />
+  <xs:include schemaLocation="EKDRBUChangePackageResponseStatus.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfStateBankRegistryProcessingErrorInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfoSimple.uk-UA.xsd" />
+  <xs:include schemaLocation="ContactInfoBase.uk-UA.xsd" />
+  <xs:include schemaLocation="MeansOfCommunication.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfPhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="PhoneInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfEmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EmailInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="LocationInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="DocumentID.uk-UA.xsd" />
   <xs:include schemaLocation="EKDRBUVariableEntryPartV1.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchType.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchStatusType.uk-UA.xsd" />
   <xs:include schemaLocation="BankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="GenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="EntityType.uk-UA.xsd" />
-  <xs:include schemaLocation="CountryInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="EKDRBUPackageType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfStateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
   <xs:include schemaLocation="StateBankRegistrySingleBranchChangeRecV1.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchChangeType.uk-UA.xsd" />
-  <xs:include schemaLocation="ArrayOfString.uk-UA.xsd" />
+  <xs:include schemaLocation="ArrayOfDocumentID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="BankBranchOpsSvcsSchemeInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfAttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="AttachmentInfo.uk-UA.xsd" />
   <xs:include schemaLocation="TypicalApplicationAttachement.uk-UA.xsd" />
-  <xs:include schemaLocation="SignatoryInfo.uk-UA.xsd" />
-  <xs:include schemaLocation="PowerOfAttorneyInfo.uk-UA.xsd" />
+  <xs:include schemaLocation="SignatoryInfoBase.uk-UA.xsd" />
 </xs:schema>

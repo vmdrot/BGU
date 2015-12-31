@@ -305,16 +305,19 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:simpleType name="HigherEducationDegreeType">
+    <xs:annotation>
+      <xs:documentation>Тип диплому про освіту / освітньо-кваліфікаційний рівень та ступінь
+            (зг.п.2. ст.30 З-ну про Освіту)</xs:documentation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="None" description="Не вказано" enum_value="0" />
-      <xs:enumeration value="Bachelor" description="Бакалавр/Спеціаліст" enum_value="1" />
-      <xs:enumeration value="Master" description="Магістр" enum_value="2" />
-      <xs:enumeration value="MBA" description="MBA" enum_value="3" />
-      <xs:enumeration value="CandidateDoctor" description="Кандидат наук" enum_value="4" />
-      <xs:enumeration value="PhD" description="PhD" enum_value="5" />
-      <xs:enumeration value="DoctorOfSciences" description="Доктор наук (техн.)" enum_value="6" />
-      <xs:enumeration value="DoctorOfLetters" description="Доктор наук (гум.)" enum_value="7" />
-      <xs:enumeration value="Professor" description="Професор" enum_value="8" />
+      <xs:enumeration value="None" description="не вказано" enum_value="0" />
+      <xs:enumeration value="QualifiedWorkerOrEquiv" description="кваліфікований робітник (або еквівалент)" enum_value="1" />
+      <xs:enumeration value="JuniorSpecialistOrEquiv" description="молодший спеціаліст (або еквівалент)" enum_value="2" />
+      <xs:enumeration value="JuniorBachelorOrEquiv" description="молодший бакалавр (або еквівалент)" enum_value="3" />
+      <xs:enumeration value="BachelorOrEquiv" description="бакалавр (або еквівалент)" enum_value="4" />
+      <xs:enumeration value="MasterOrEquiv" description="магістр (або еквівалент)" enum_value="5" />
+      <xs:enumeration value="PhDOrEquiv" description="доктор філософії (або еквівалент)" enum_value="6" />
+      <xs:enumeration value="SciencesDoctorOrEquiv" description="доктор наук (або еквівалент)" enum_value="7" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="EducationKindGros">
@@ -1264,7 +1267,7 @@
             обов'язкове поле</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Є в трудовій книзі" description="Чи відображено запис у трудовій книзі?" field_order="2">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Оформлено офіційно?" description="Чи оформлено належним чином це місце роботи&#xA;(відображено запис у трудовій книзі, контракті,&#xA; є рекомендації чи інші докази перебування&#xA; на даній роботі/посаді)?" field_order="2">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -1278,7 +1281,12 @@
             Повна (основна) чи часткова (за сумісництвом) зайнятість</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець/основний замовник" description="Роботодавець (для найманих працівників)&#xA; чи основний замовник (для самозайнятих/фрілансерів)" field_order="4">
+          <xs:element minOccurs="1" maxOccurs="1" name="AgreementType" type="LaborAgreementType" displayName="Тип дововірних відносин" description="Тип угоди/стосунків, на підставі якої(яких) здійснювалася трудова діяльність" field_order="4">
+            <xs:annotation>
+              <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" displayName="Роботодавець/основний замовник" description="Роботодавець (для найманих працівників)&#xA; чи основний замовник (для самозайнятих/фрілансерів)" field_order="5">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    State == Employed
@@ -1287,7 +1295,7 @@
             Посилання - реквізити в MentionedEntities</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="5">
+          <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" displayName="Основний вид діяльності" description="Основний вид діяльності - для самозайнятих/фрілансерів" field_order="6">
             <xs:annotation>
               <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
    State == Freelance OR State == Selfemployed
@@ -1295,14 +1303,14 @@
             Заповнюється через випадаючий список КВЕД-ів.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція" field_order="6">
+          <xs:element minOccurs="1" maxOccurs="1" name="JobTitle" type="xs:string" type_ukr="текст" displayName="Посада/функція" field_order="7">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове, вільний формат</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" displayName="Код та назва професії за МОП" description="Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010" field_order="7">
+          <xs:element minOccurs="0" maxOccurs="1" name="ISCOJobSpec" type="ISCO" displayName="Код та назва професії за МОП" description="Код та назва професії за класифікатором Міжнародної організації праці / ДК 003:2010" field_order="8">
             <xs:annotation>
               <xs:documentation>Код професії, у ролі якого працівник був зайнятий,
             згідно Міжнародного стандарту класифікації професій
@@ -1310,18 +1318,18 @@
             (якщо відомий/передбачено для даної посади)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="JobDutiesDescription" type="xs:string" type_ukr="текст" displayName="Службові обов'язки" description="Опис службових обов'язків за займаною посадою" field_order="8" />
-          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський досвід" description="Чи враховується описуване місце роботи у загальний банкіський стаж" field_order="9">
+          <xs:element minOccurs="0" maxOccurs="1" name="JobDutiesDescription" type="xs:string" type_ukr="текст" displayName="Службові обов'язки" description="Опис службових обов'язків за займаною посадою" field_order="9" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSupervisedIndustryExperience" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Банківський досвід" description="Чи враховується описуване місце роботи у загальний банкіський стаж" field_order="10">
             <xs:annotation>
               <xs:documentation>Чи є дана робота досвідом роботи у регульованій галузі?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="10">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsManagingPosition" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Керівна посада" description="Чи враховується описуване місце роботи у загальний стаж роботи на керівних посадах" field_order="11">
             <xs:annotation>
               <xs:documentation>Чи є це керівною посадою?</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="11">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateStarted" type="xs:dateTime" type_ukr="дата і час" displayName="Дата початку роботи" description="Дата початку роботи чи переходу в нинішній статус (фрілансер, безробітний, тощо)" field_order="12">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -1329,26 +1337,26 @@
             для нерезидентів - з точністю до місяця (за змовчанням - 1 число)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Статус місця роботи: чинне чи ні" description="Відзначити, якщо це - чинне місце роботи на дату заповнення анкети (чи й досі тут працює?)" field_order="12">
+          <xs:element minOccurs="1" maxOccurs="1" name="IsStillWorkingThere" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Статус місця роботи: чинне чи ні" description="Відзначити, якщо це - чинне місце роботи на дату заповнення анкети (чи й досі тут працює?)" field_order="13">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="13">
+          <xs:element minOccurs="1" maxOccurs="1" name="DateQuit" nillable="true" type="xs:dateTime" type_ukr="дата і час" displayName="Дата кінця роботи" field_order="14">
             <xs:annotation>
               <xs:documentation>, для резидентів - з точністю до дня, 
             для нерезидентів - з точністю до місяця (за змовчанням - 1 число)
             якщо не заповнене, значить він/вона/воно там ще досі працює</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="14">
+          <xs:element minOccurs="1" maxOccurs="1" name="TerminationType" type="EmploymentTerminationType" displayName="Тип закінчення діяльності" field_order="15">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             обов'язкове поле (хіба ще досі там працює)</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="15">
+          <xs:element minOccurs="0" maxOccurs="1" name="DismissalOrUnemployedReason" type="xs:string" type_ukr="текст" displayName="Причина звільнення" description="причина звільнення; якщо трудовий стаж переривався, то слід зазначити причину" field_order="16">
             <xs:annotation>
               <xs:documentation>Пояснення обов'язкове для TerminationType типів:
             - Dismissed
@@ -1356,13 +1364,13 @@
             - VoluntaryQuit</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="16">
+          <xs:element minOccurs="0" maxOccurs="1" name="KZPPArticlePt" type="xs:string" type_ukr="текст" displayName="Стаття, пункт звільнення" description="Стаття і пункт Кодексу законів про працю, за якою було припинено трудові стосунки" field_order="17">
             <xs:annotation>
               <xs:documentation>Формальна стаття і пункт звільнення
             згідно з КЗпП</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="17">
+          <xs:element minOccurs="1" maxOccurs="1" name="EmployerOrContractorContact" type="ContactInfo" displayName="Контакти роботодавця / замовника" description="Для найманих працівників - контакти роботодавця, для фрілансерів і самозайнятих - основного замовника" field_order="18">
             <xs:annotation>
               <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -1397,6 +1405,17 @@
       <xs:enumeration value="PartTime" description="Часткова (за сумісництвом) зайнятість" enum_value="2" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="LaborAgreementType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="None" enum_value="0" />
+      <xs:enumeration value="LaborAgreement" description="Трудовий договір" enum_value="1" />
+      <xs:enumeration value="ServicesOrOtherContract" description="Договір про надання послуг чи еквівалент" enum_value="2" />
+      <xs:enumeration value="Partnership" description="Партнерство" enum_value="3" />
+      <xs:enumeration value="BusinessOwnershipShare" description="На підставі власності у відповідному бізнесі" enum_value="4" />
+      <xs:enumeration value="TrusteeEtc" description="На підставі договору довірчого керування чи його різновиди" enum_value="5" />
+      <xs:enumeration value="Other" description="На підставі іншого типу угоди" enum_value="6" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="KVEDCode" type="xs:string" type_ukr="текст" displayName="Код діяльності за КВЕД" field_order="1">
@@ -1428,7 +1447,14 @@
       <xs:enumeration value="MaternityLeave" description="Декретна відпустка" enum_value="11" />
       <xs:enumeration value="MilitaryServiceLeave" description="У зв’язку із призовом або вступом працівника на військову службу, направленням на альтернативну (невійськову) службу" enum_value="12" />
       <xs:enumeration value="HealthConditionLeave" description="За станом здоров'я" enum_value="13" />
-      <xs:enumeration value="OtherLeaveType" description="Інше" enum_value="14" />
+      <xs:enumeration value="AntiCorruptionContradiction" description="Найом усупереч вимогам Закону України Про запобігання корупції" enum_value="14" />
+      <xs:enumeration value="Lustration" description="Люстрація (&quot;з підстав, передбачених Законом України Про очищення влади&quot;)" enum_value="15" />
+      <xs:enumeration value="ReorganizationInsolvencyEtc" description="Реорганізація, банкрутство або перепрофілювання підприємства, установи, організації, скорочення чисельності або штату працівників" enum_value="16" />
+      <xs:enumeration value="Underqualified" description="Недостатність кваліфікації" enum_value="17" />
+      <xs:enumeration value="Truancy" description="Прогул, порушення трудової дисципліни, тощо" enum_value="18" />
+      <xs:enumeration value="AlcoNarcoEtc" description="Поява на роботі в стані наркотичного, алкогольного, іншого сп'яніння" enum_value="19" />
+      <xs:enumeration value="Stealing" description="Розкрадання" enum_value="20" />
+      <xs:enumeration value="OtherLeaveType" description="Інша причина" enum_value="21" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ContactInfo">
@@ -4338,7 +4364,14 @@
           <xs:documentation>необов'язкове поле (подавачі самі зацікавлені)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома" field_order="6">
+      <xs:element minOccurs="1" maxOccurs="1" name="HasScientificDegree" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Має вчене звання?" field_order="6" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ScientificDegree" nillable="true" type="ScientificDegreeType" displayName="Вчене звання" description="Вчене звання - вітчизняне чи еквівалент зарубіжного (якщо є)" field_order="7">
+        <xs:annotation>
+          <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
+   HasScientificDegree</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeSeries" type="xs:string" type_ukr="текст" displayName="Серія диплома" field_order="8">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -4346,7 +4379,7 @@
             іншої країни - на віру</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома" field_order="7">
+      <xs:element minOccurs="1" maxOccurs="1" name="DegreeID" type="xs:string" type_ukr="текст" displayName="№ диплома" field_order="9">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
@@ -4357,23 +4390,24 @@
 Див.також: P:BGU.DRPL.SignificantOwnership.Core.Spares.Data.EducationRecordInfo.DegreeSeries</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність" description="Основний фах за дипломом" field_order="8">
+      <xs:element minOccurs="1" maxOccurs="1" name="Trade" type="xs:string" type_ukr="текст" displayName="Спеціальність" description="Основний фах за дипломом" field_order="10">
         <xs:annotation>
           <xs:documentation>ОБОВ'ЯЗКОВЕ ПОЛЕ!
 
             Обов'язково</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Кваліфікація" description="Уточнююча означення отриманого фаху - спеціалізація/кваліфікація" field_order="9">
+      <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" type_ukr="текст" displayName="Кваліфікація" description="Уточнююча означення отриманого фаху - спеціалізація/кваліфікація" field_order="11">
         <xs:annotation>
           <xs:documentation>Якщо передбачено</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="1" maxOccurs="1" name="EducationKind" type="EducationKindGros" displayName="Вид освіти" description="Загальний вид освіти (юр., екон., техн., тощо)" field_order="10" />
-      <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" displayName="Запис про нострифікацію" description="Реквізити нострифікаційного свідоцтва (у випадку освіти, отриманої за кордоном)" field_order="11">
+      <xs:element minOccurs="1" maxOccurs="1" name="EducationKind" type="EducationKindGros" displayName="Вид освіти" description="Загальний вид освіти (юр., екон., техн., тощо)" field_order="12" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsNostrificationRequired" type="xs:boolean" type_ukr="логічний тип(так/ні)" displayName="Потребує нострифікації?" description="Чи потребує нострифікації відповідний диплом?" field_order="13" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" displayName="Запис про нострифікацію" description="Реквізити нострифікаційного свідоцтва (у випадку освіти, отриманої за кордоном, де потребується нострифікація диплому)" field_order="14">
         <xs:annotation>
           <xs:documentation>(!)ПОЛЕ ОБОВ'ЯЗКОВЕ ЗА УМОВИ(!):
-   UniOrCollege.IsNonResident == true</xs:documentation>
+   IsNostrificationRequired</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -4388,6 +4422,18 @@
       <xs:enumeration value="SummaCumLaude" description="З найвищою відзнакою (summa cum laude)" enum_value="5" />
       <xs:enumeration value="EgregiaCumLaude" description="З вийнятковою відзнакою (egregia cum laude)" enum_value="6" />
       <xs:enumeration value="MaximaCumLaude" description="З максимальною відзнакою (maxima cum laude)" enum_value="7" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ScientificDegreeType">
+    <xs:annotation>
+      <xs:documentation>Вчене звання (та його еквіваленти)
+            (зг.п.1 ст.32 З-ну про Освіту)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" description="None" enum_value="0" />
+      <xs:enumeration value="SeniorResearcherOrEquiv" description="старший дослідник (або еквівалент)" enum_value="1" />
+      <xs:enumeration value="Docent" description="доцент" enum_value="2" />
+      <xs:enumeration value="Professor" description="Професор" enum_value="3" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">

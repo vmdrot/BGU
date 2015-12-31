@@ -70,14 +70,13 @@
   <xs:simpleType name="HigherEducationDegreeType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
-      <xs:enumeration value="Bachelor" />
-      <xs:enumeration value="Master" />
-      <xs:enumeration value="MBA" />
-      <xs:enumeration value="CandidateDoctor" />
-      <xs:enumeration value="PhD" />
-      <xs:enumeration value="DoctorOfSciences" />
-      <xs:enumeration value="DoctorOfLetters" />
-      <xs:enumeration value="Professor" />
+      <xs:enumeration value="QualifiedWorkerOrEquiv" />
+      <xs:enumeration value="JuniorSpecialistOrEquiv" />
+      <xs:enumeration value="JuniorBachelorOrEquiv" />
+      <xs:enumeration value="BachelorOrEquiv" />
+      <xs:enumeration value="MasterOrEquiv" />
+      <xs:enumeration value="PhDOrEquiv" />
+      <xs:enumeration value="SciencesDoctorOrEquiv" />
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="EducationKindGros">
@@ -461,6 +460,7 @@
           <xs:element minOccurs="1" maxOccurs="1" name="State" type="EmploymentState" />
           <xs:element minOccurs="1" maxOccurs="1" name="IsEmploymentBookRegistered" type="xs:boolean" />
           <xs:element minOccurs="1" maxOccurs="1" name="FullOrPartTime" type="EmploymentTimeType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AgreementType" type="LaborAgreementType" />
           <xs:element minOccurs="0" maxOccurs="1" name="Employer" type="GenericPersonID" />
           <xs:element minOccurs="0" maxOccurs="1" name="PrincipalFreelanceActivity" type="EconomicActivityType" />
           <xs:element minOccurs="0" maxOccurs="1" name="JobTitle" type="xs:string" />
@@ -495,6 +495,17 @@
       <xs:enumeration value="PartTime" />
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="LaborAgreementType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="LaborAgreement" />
+      <xs:enumeration value="ServicesOrOtherContract" />
+      <xs:enumeration value="Partnership" />
+      <xs:enumeration value="BusinessOwnershipShare" />
+      <xs:enumeration value="TrusteeEtc" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="EconomicActivityType">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="KVEDCode" type="xs:string" />
@@ -518,6 +529,13 @@
       <xs:enumeration value="MaternityLeave" />
       <xs:enumeration value="MilitaryServiceLeave" />
       <xs:enumeration value="HealthConditionLeave" />
+      <xs:enumeration value="AntiCorruptionContradiction" />
+      <xs:enumeration value="Lustration" />
+      <xs:enumeration value="ReorganizationInsolvencyEtc" />
+      <xs:enumeration value="Underqualified" />
+      <xs:enumeration value="Truancy" />
+      <xs:enumeration value="AlcoNarcoEtc" />
+      <xs:enumeration value="Stealing" />
       <xs:enumeration value="OtherLeaveType" />
     </xs:restriction>
   </xs:simpleType>
@@ -1587,11 +1605,14 @@
       <xs:element minOccurs="1" maxOccurs="1" name="GraduationDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="DegreeType" type="HigherEducationDegreeType" />
       <xs:element minOccurs="1" maxOccurs="1" name="HonourType" type="DegreeHonourType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HasScientificDegree" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ScientificDegree" nillable="true" type="ScientificDegreeType" />
       <xs:element minOccurs="0" maxOccurs="1" name="DegreeSeries" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="DegreeID" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Trade" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Qualification" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="EducationKind" type="EducationKindGros" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsNostrificationRequired" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="NostrificationReqs" type="EducationNostrificationInfo" />
     </xs:sequence>
   </xs:complexType>
@@ -1605,6 +1626,14 @@
       <xs:enumeration value="SummaCumLaude" />
       <xs:enumeration value="EgregiaCumLaude" />
       <xs:enumeration value="MaximaCumLaude" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ScientificDegreeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="SeniorResearcherOrEquiv" />
+      <xs:enumeration value="Docent" />
+      <xs:enumeration value="Professor" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ArrayOfGenericPersonID">

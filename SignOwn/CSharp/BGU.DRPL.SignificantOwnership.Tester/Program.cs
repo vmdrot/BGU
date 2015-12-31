@@ -1027,12 +1027,13 @@ namespace BGU.DRPL.SignificantOwnership.Tester
         private static void UpdateXSDsTranslationsBankInfo(string[] args)
         {
 
-            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(StateBankBranchRegistryChangePackageV1).Assembly);
+            //XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(StateBankBranchRegistryChangePackageV1).Assembly);
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(ActualEKDRBUStructsUnion).Assembly);
             string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares" };
             string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.EKDRBU" };
 
-            //ProcessTypeExport2XSD(typeof(ActualEKDRBUStructsUnion), assemblySummariesXml);
-            ProcessTypeExport2XSD(typeof(StateBankBranchRegistryChangePackageV1), assemblySummariesXml);
+            ProcessTypeExport2XSD(typeof(ActualEKDRBUStructsUnion), assemblySummariesXml);
+            //ProcessTypeExport2XSD(typeof(StateBankBranchRegistryChangePackageV1), assemblySummariesXml);
         }
 
 

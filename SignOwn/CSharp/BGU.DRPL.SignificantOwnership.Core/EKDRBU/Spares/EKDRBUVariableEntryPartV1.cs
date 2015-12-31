@@ -28,6 +28,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Вид")]
         [DisplayName("Вид - новий")]
         [Description("Нове значення поля Вид відокремленого підрозділу")]
+        [Required("IsBranchTypeChanged")]
         [UIConditionalVisibility("IsBranchTypeChanged")]
         public BankBranchType BranchTypeNew { get { return _BranchTypeNew; } set { _BranchTypeNew = value; OnPropertyChanged("BranchTypeNew"); } }
         
@@ -35,6 +36,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Вид")]
         [DisplayName("Вид - старий")]
         [Description("Старе значення поля Вид відокремленого підрозділу")]
+        [Required("IsBranchTypeChanged")]
         [UIConditionalVisibility("IsBranchTypeChanged")]
         public BankBranchType BranchTypeOld { get { return _BranchTypeOld; } set { _BranchTypeOld = value; OnPropertyChanged("BranchTypeOld"); } }
 
@@ -53,6 +55,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Статус")]
         [DisplayName("Стан - новий")]
         [Description("Нове значення поля Стан")]
+        [Required("IsStatusChanged")]
         [UIConditionalVisibility("IsStatusChanged")]
         public BankBranchStatusType StatusNew { get { return _StatusNew; } set { _StatusNew = value; OnPropertyChanged("StatusNew"); } }
         
@@ -60,6 +63,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Статус")]
         [DisplayName("Стан - старий")]
         [Description("Старе значення поля Стан")]
+        [Required("IsStatusChanged")]
         [UIConditionalVisibility("IsStatusChanged")]
         public BankBranchStatusType StatusOld { get { return _StatusOld; } set { _StatusOld = value; OnPropertyChanged("StatusOld"); } }
 
@@ -82,6 +86,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Ієрархія (підпорядкованість)")]
         [DisplayName("Батьківський підрозділ новий")]
         [Description("Батьківський підрозділ - нове значення")]
+        [Required("IsParentIDChanged")]
         [UIConditionalVisibility("IsParentIDChanged")]
         public string ParentIDNew { get { return _ParentIDNew; } set { _ParentIDNew = value; OnPropertyChanged("ParentIDNew"); } }
         
@@ -89,6 +94,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Ієрархія (підпорядкованість)")]
         [DisplayName("Батьківський підрозділ старий")]
         [Description("Батьківський підрозділ - попереднє значення")]
+        [Required("IsParentIDChanged")]
         [UIConditionalVisibility("IsParentIDChanged")]
         public string ParentIDOld { get { return _ParentIDOld; } set { _ParentIDOld = value; OnPropertyChanged("ParentIDOld"); } }
 
@@ -189,6 +195,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [DisplayName("Назва для СТАТЗВІТНОСТІ (27 символів) - нова")]
         [Description("Нове значення поля Назва для СТАТЗВІТНОСТІ (27 символів)")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "125", MaxWidth = "150")]
+        [Required("IsNameStatsChanged")]
         [UIConditionalVisibility("IsNameStatsChanged")]
         public string NameStatsNew { get { return _NameStatsNew; } set { _NameStatsNew = value; OnPropertyChanged("NameStatsNew"); } }
 
@@ -197,6 +204,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [DisplayName("Назва для СТАТЗВІТНОСТІ (27 символів) - стара")]
         [Description("Старе значення поля Назва для СТАТЗВІТНОСТІ (27 символів)")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "125", MaxWidth = "150")]
+        [Required("IsNameStatsChanged")]
         [UIConditionalVisibility("IsNameStatsChanged")]
         public string NameStatsOld { get { return _NameStatsOld; } set { _NameStatsOld = value; OnPropertyChanged("NameStatsOld"); } }
 
@@ -214,6 +222,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("МФО - нове")]
         [Description("Нове значення МФО")]
+        [Required("IsMFOChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "100")]
         [UIConditionalVisibility("IsMFOChanged")]
         public string MFONew { get { return _MFONew; } set { _MFONew = value; OnPropertyChanged("MFONew"); } }
@@ -222,6 +231,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("МФО - старе")]
         [Description("Старе значення МФО")]
+        [Required("IsMFOChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "100")]
         [UIConditionalVisibility("IsMFOChanged")]
         public string MFOOld { get { return _MFOOld; } set { _MFOOld = value; OnPropertyChanged("MFOOld"); } }
@@ -237,6 +247,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("ЄДРПОУ - новий")]
         [Description("Нове значення ЄДРПОУ")]
+        [Required("IsYeDRPOUChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "100")]
         [UIConditionalVisibility("IsYeDRPOUChanged")]
         public string YeDRPOUNew { get { return _YeDRPOUNew; } set { _YeDRPOUNew = value; OnPropertyChanged("YeDRPOUNew"); } }
@@ -245,6 +256,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("ЄДРПОУ - старий")]
         [Description("Старе значення ЄДРПОУ")]
+        [Required("IsYeDRPOUChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "100")]
         [UIConditionalVisibility("IsYeDRPOUChanged")]
         public string YeDRPOUOld { get { return _YeDRPOUOld; } set { _YeDRPOUOld = value; OnPropertyChanged("YeDRPOUOld"); } }
@@ -259,6 +271,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Реєстраційний номер - новий")]
         [Description("Нове значення поля Реєстраційний номер")]
+        [Required("IsRegNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsRegNrChanged")]
         public string RegNrNew { get { return _RegNrNew; } set { _RegNrNew = value; OnPropertyChanged("RegNrNew"); } }
@@ -267,6 +280,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Реєстраційний номер - новий")]
         [Description("Нове значення поля Реєстраційний номер")]
+        [Required("IsRegNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsRegNrChanged")]
         public string RegNrOld { get { return _RegNrOld; } set { _RegNrOld = value; OnPropertyChanged("RegNrOld"); } }
@@ -281,6 +295,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Внутрішньобанківський номер - новий")]
         [Description("Нове значення поля Внутрішньобанківський номер")]
+        [Required("IsInternalNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsInternalNrChanged")]
         public string InternalNrNew { get { return _InternalNrNew; } set { _InternalNrNew = value; OnPropertyChanged("InternalNrNew"); } }
@@ -289,6 +304,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Внутрішньобанківський номер - старий")]
         [Description("Старе значення поля Внутрішньобанківський номер")]
+        [Required("IsInternalNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsInternalNrChanged")]
         public string InternalNrOld { get { return _InternalNrOld; } set { _InternalNrOld = value; OnPropertyChanged("InternalNrOld"); } }
@@ -303,6 +319,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Номер підрозділу за внутрішньобанківським номером - новий")]
         [Description("Нове значення поля Номер підрозділу за внутрішньобанківським номером")]
+        [Required("IsBranchNrInternalChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsBranchNrInternalChanged")]
         public string BranchNrInternalNew { get { return _BranchNrInternalNew; } set { _BranchNrInternalNew = value; OnPropertyChanged("BranchNrInternalNew"); } }
@@ -311,6 +328,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Номери")]
         [DisplayName("Номер підрозділу за внутрішньобанківським номером - старий")]
         [Description("Старе значення поля Номер підрозділу за внутрішньобанківським номером")]
+        [Required("IsBranchNrInternalChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "65", MaxWidth = "85")]
         [UIConditionalVisibility("IsBranchNrInternalChanged")]
         public string BranchNrInternalOld { get { return _BranchNrInternalOld; } set { _BranchNrInternalOld = value; OnPropertyChanged("BranchNrInternalOld"); } }
@@ -328,6 +346,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("КОАТУУ - новий")]
         [Description("Нове значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)")]
+        [Required("IsKOATUUChanged")]
         [UIConditionalVisibility("IsKOATUUChanged")]
         public string KOATUUNew { get { return _KOATUUNew; } set { _KOATUUNew = value; OnPropertyChanged("KOATUUNew"); } }
 
@@ -335,6 +354,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("КОАТУУ - старий")]
         [Description("Старе значення коду КОАТУУ (Класифікатор об'єктів адміністративно-територіального устрою України)")]
+        [Required("IsKOATUUChanged")]
         [UIConditionalVisibility("IsKOATUUChanged")]
         public string KOATUUOld { get { return _KOATUUOld; } set { _KOATUUOld = value; OnPropertyChanged("KOATUUOld"); } }
 
@@ -348,6 +368,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Координати - нові")]
         [Description("Нове значення поля Географічні координати")]
+        [Required("IsGeoCoordinatesChanged")]
         [UIConditionalVisibility("IsGeoCoordinatesChanged")]
         public string GeoCoordinatesNew { get { return _GeoCoordinatesNew; } set { _GeoCoordinatesNew = value; OnPropertyChanged("GeoCoordinatesNew"); } }
 
@@ -355,6 +376,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Координати - старі")]
         [Description("Старе значення поля Географічні координати")]
+        [Required("IsGeoCoordinatesChanged")]
         [UIConditionalVisibility("IsGeoCoordinatesChanged")]
         public string GeoCoordinatesOld { get { return _GeoCoordinatesOld; } set { _GeoCoordinatesOld = value; OnPropertyChanged("GeoCoordinatesOld"); } }
 
@@ -368,6 +390,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Область (нова)")]
         [Description("Область - нове значення")]
+        [Required("IsOblastChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "400", MinWidth = "350")]
         [UIConditionalVisibility("IsOblastChanged")]
         public string OblastNew { get { return _OblastNew; } set { _OblastNew = value; OnPropertyChanged("OblastNew"); } }
@@ -376,6 +399,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Область (стара)")]
         [Description("Область - старе значення")]
+        [Required("IsOblastChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "400", MinWidth = "350")]
         [UIConditionalVisibility("IsOblastChanged")]
         public string OblastOld { get { return _OblastOld; } set { _OblastOld = value; OnPropertyChanged("OblastOld"); } }
@@ -390,6 +414,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Район (новий)")]
         [Description("Нове значення поля район")]
+        [Required("IsRaionChanged")]
         [UIConditionalVisibility("IsRaionChanged")]
         public string RaionNew { get { return _RaionNew; } set { _RaionNew = value; OnPropertyChanged("RaionNew"); } }
         
@@ -397,6 +422,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Район (старий)")]
         [Description("Старе значення поля район")]
+        [Required("IsRaionChanged")]
         [UIConditionalVisibility("IsRaionChanged")]
         public string RaionOld { get { return _RaionOld; } set { _RaionOld = value; OnPropertyChanged("RaionOld"); } }
 
@@ -411,6 +437,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Поштовий індекс - новий")]
         [Description("Нове значення поштового індексу")]
+        [Required("IsZipCodeChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "150", MinWidth = "100")]
         [UIConditionalVisibility("IsZipCodeChanged")]
         public string ZipCodeNew { get { return _ZipCodeNew; } set { _ZipCodeNew = value; OnPropertyChanged("ZipCodeNew"); } }
@@ -419,6 +446,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Поштовий індекс")]
         [Description("Поштовий індекс")]
+        [Required("IsZipCodeChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "150", MinWidth = "100")]
         [UIConditionalVisibility("IsZipCodeChanged")]
         public string ZipCodeOld { get { return _ZipCodeOld; } set { _ZipCodeOld = value; OnPropertyChanged("ZipCodeOld"); } }
@@ -433,6 +461,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Населений пункт - новий")]
         [Description("Нове значення населеного пункту")]
+        [Required("IsCityChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         [UIConditionalVisibility("IsCityChanged")]
         public string CityNew { get { return _CityNew; } set { _CityNew = value; OnPropertyChanged("CityNew"); } }
@@ -441,6 +470,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Населений пункт - старий")]
         [Description("Старе значення населеного пункту")]
+        [Required("IsCityChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         [UIConditionalVisibility("IsCityChanged")]
         public string CityOld { get { return _CityOld; } set { _CityOld = value; OnPropertyChanged("CityOld"); } }
@@ -455,6 +485,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Вулиця/площа/тощо - нова")]
         [Description("Нове значення вулиці/площі/тощо")]
+        [Required("IsStreetChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         [UIConditionalVisibility("IsStreetChanged")]
         public string StreetNew { get { return _StreetNew; } set { _StreetNew = value; OnPropertyChanged("StreetNew"); } }
@@ -463,6 +494,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("Вулиця/площа/тощо - нова")]
         [Description("Нове значення вулиці/площі/тощо")]
+        [Required("IsStreetChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "150")]
         [UIConditionalVisibility("IsStreetChanged")]
         public string StreetOld { get { return _StreetOld; } set { _StreetOld = value; OnPropertyChanged("StreetOld"); } }
@@ -477,6 +509,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("№ / назва будинку - нова")]
         [Description("Нове значення № / назва будинку")]
+        [Required("IsHouseNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         [UIConditionalVisibility("IsHouseNrChanged")]
         public string HouseNrNew { get { return _HouseNrNew; } set { _HouseNrNew = value; OnPropertyChanged("HouseNrNew"); } }
@@ -485,6 +518,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("№ / назва будинку - старий")]
         [Description("Старе значення № / назва будинку")]
+        [Required("IsHouseNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         [UIConditionalVisibility("IsHouseNrChanged")]
         public string HouseNrOld { get { return _HouseNrOld; } set { _HouseNrOld = value; OnPropertyChanged("HouseNrOld"); } }
@@ -499,6 +533,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("№ кв./офісу, тощо - новий")]
         [Description("Нове значення № кв./офісу, тощо")]
+        [Required("IsApptOfficeNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         [UIConditionalVisibility("IsApptOfficeNrChanged")]
         public string ApptOfficeNrNew { get { return _ApptOfficeNrNew; } set { _ApptOfficeNrNew = value; OnPropertyChanged("ApptOfficeNrNew"); } }
@@ -507,6 +542,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Адреса/розташування")]
         [DisplayName("№ кв./офісу, тощо - старий")]
         [Description("Старе значення № кв./офісу, тощо")]
+        [Required("IsApptOfficeNrChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MaxWidth = "300", MinWidth = "75")]
         [UIConditionalVisibility("IsApptOfficeNrChanged")]
         public string ApptOfficeNrOld { get { return _ApptOfficeNrOld; } set { _ApptOfficeNrOld = value; OnPropertyChanged("ApptOfficeNrOld"); } }
@@ -528,6 +564,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Діяльність")]
         [DisplayName("Перелік операцій - новий")]
         [Description("Нове значення поля Перелік і обсяг операцій відокремленого підрозділу")]
+        [Required("IsOperationsListingChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingChanged")]
         public string OperationsListingNew { get { return _OperationsListingNew; } set { _OperationsListingNew = value; OnPropertyChanged("OperationsListingNew"); } }
@@ -540,6 +577,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Діяльність")]
         [DisplayName("Перелік операцій - старий")]
         [Description("Старе значення поля Перелік і обсяг операцій відокремленого підрозділу")]
+        [Required("IsOperationsListingChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingChanged")]
         public string OperationsListingOld { get { return _OperationsListingOld; } set { _OperationsListingOld = value; OnPropertyChanged("OperationsListingOld"); } }
@@ -559,6 +597,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Діяльність")]
         [DisplayName("Код схеми переліку операцій - новий")]
         [Description("Нове значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу")]
+        [Required("IsOperationsListingRefChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingRefChanged")]
         public string OperationsListingRefNew { get { return _OperationsListingRefNew; } set { _OperationsListingRefNew = value; OnPropertyChanged("OperationsListingRefNew"); } }
@@ -572,6 +611,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Діяльність")]
         [DisplayName("Код схеми переліку операцій - старий")]
         [Description("Старе значення поля Код схеми переліку і обсягу операцій відокремленого підрозділу")]
+        [Required("IsOperationsListingRefChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = true, MinWidth = "450", MaxWidth = "650")]
         [UIConditionalVisibility("IsOperationsListingRefChanged")]
         public string OperationsListingRefOld { get { return _OperationsListingRefOld; } set { _OperationsListingRefOld = value; OnPropertyChanged("OperationsListingRefOld"); } }
@@ -590,6 +630,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("Код телефонного зв’язку - новий")]
         [Description("Нове значення поля Код телефонного зв’язку")]
+        [Required("IsDialCodeChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "50", MaxWidth = "75")]
         [UIConditionalVisibility("IsDialCodeChanged")]
         public string DialCodeNew { get { return _DialCodeNew; } set { _DialCodeNew = value; OnPropertyChanged("DialCodeNew"); } }
@@ -598,6 +639,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("Код телефонного зв’язку - старий")]
         [Description("Старе значення поля Код телефонного зв’язку")]
+        [Required("IsDialCodeChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "50", MaxWidth = "75")]
         [UIConditionalVisibility("IsDialCodeChanged")]
         public string DialCodeOld { get { return _DialCodeOld; } set { _DialCodeOld = value; OnPropertyChanged("DialCodeOld"); } }
@@ -612,6 +654,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("Телефон(-и) - новий(-і)")]
         [Description("Нове значення поля Телефон(-и)")]
+        [Required("IsPhoneChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "150")]
         [UIConditionalVisibility("IsPhoneChanged")]
         public string PhoneNew { get { return _PhoneNew; } set { _PhoneNew = value; OnPropertyChanged("PhoneNew"); } }
@@ -620,6 +663,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("Телефон(-и) - старий(-і)")]
         [Description("Старе значення поля Телефон(-и)")]
+        [Required("IsPhoneChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "150")]
         [UIConditionalVisibility("IsPhoneChanged")]
         public string PhoneOld { get { return _PhoneOld; } set { _PhoneOld = value; OnPropertyChanged("PhoneOld"); } }
@@ -634,6 +678,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("факс(-и) - новий(-і)")]
         [Description("Нове значення поля факс(-и)")]
+        [Required("IsFaxChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "150")]
         [UIConditionalVisibility("IsFaxChanged")]
         public string FaxNew { get { return _FaxNew; } set { _FaxNew = value; OnPropertyChanged("FaxNew"); } }
@@ -642,6 +687,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("факс(-и) - старий(-і)")]
         [Description("Старе значення поля факс(-и)")]
+        [Required("IsFaxChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "75", MaxWidth = "150")]
         [UIConditionalVisibility("IsFaxChanged")]
         public string FaxOld { get { return _FaxOld; } set { _FaxOld = value; OnPropertyChanged("FaxOld"); } }
@@ -656,6 +702,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("e-mail(-и) - новий(-і)")]
         [Description("Нове значення поля e-mail(-и)")]
+        [Required("IsEmailChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "100", MaxWidth = "250")]
         [UIConditionalVisibility("IsEmailChanged")]
         public string EmailNew { get { return _EmailNew; } set { _EmailNew = value; OnPropertyChanged("EmailNew"); } }
@@ -664,6 +711,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("e-mail(-и) - старий(-і)")]
         [Description("Старе значення поля e-mail(-и)")]
+        [Required("IsEmailChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "100", MaxWidth = "250")]
         [UIConditionalVisibility("IsEmailChanged")]
         public string EmailOld { get { return _EmailOld; } set { _EmailOld = value; OnPropertyChanged("EmailOld"); } }
@@ -678,6 +726,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("веб-сайт - новий(-і)")]
         [Description("Нове значення поля веб-сайт")]
+        [Required("IswwwChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "250")]
         [UIConditionalVisibility("IswwwChanged")]
         public string wwwNew { get { return _wwwNew; } set { _wwwNew = value; OnPropertyChanged("wwwNew"); } }
@@ -686,6 +735,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Контактні дані")]
         [DisplayName("веб-сайт - старий(-і)")]
         [Description("Старе значення поля веб-сайт")]
+        [Required("IswwwChanged")]
         [UIUsageTextBox(HorizontalAlignment = "Left", IsMultiline = false, MinWidth = "150", MaxWidth = "250")]
         [UIConditionalVisibility("IswwwChanged")]
         public string wwwOld { get { return _wwwOld; } set { _wwwOld = value; OnPropertyChanged("wwwOld"); } }
@@ -703,6 +753,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Посада - нова")]
         [Description("Нова посада керівника")]
+        [Required("IsMgrPositionChanged")]
         [UIConditionalVisibility("IsMgrPositionChanged")]
         public string MgrPositionNew { get { return _MgrPositionNew; } set { _MgrPositionNew = value; OnPropertyChanged("MgrPositionNew"); } }
 
@@ -710,6 +761,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Посада - стара")]
         [Description("Стара посада керівника")]
+        [Required("IsMgrPositionChanged")]
         [UIConditionalVisibility("IsMgrPositionChanged")]
         public string MgrPositionOld { get { return _MgrPositionOld; } set { _MgrPositionOld = value; OnPropertyChanged("MgrPositionOld"); } }
 
@@ -723,6 +775,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Код країни громадянства - новий")]
         [Description("Нове значення поля Код країни громадянства керівника")]
+        [Required("IsMgrCountryISO3CodeChanged")]
         [UIConditionalVisibility("IsMgrCountryISO3CodeChanged")]
         public string MgrCountryISO3CodeNew { get { return _MgrCountryISO3CodeNew; } set { _MgrCountryISO3CodeNew = value; OnPropertyChanged("MgrCountryISO3CodeNew"); } }
 
@@ -730,6 +783,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Код країни громадянства - старий")]
         [Description("Старе значення поля Код країни громадянства керівника")]
+        [Required("IsMgrCountryISO3CodeChanged")]
         [UIConditionalVisibility("IsMgrCountryISO3CodeChanged")]
         public string MgrCountryISO3CodeOld { get { return _MgrCountryISO3CodeOld; } set { _MgrCountryISO3CodeOld = value; OnPropertyChanged("MgrCountryISO3CodeOld"); } }
 
@@ -743,6 +797,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Країна громадянства - нова")]
         [Description("Нове значення поля Країна громадянства керівника")]
+        [Required("IsMgrCountryNameUkrChanged")]
         [UIConditionalVisibility("IsMgrCountryNameUkrChanged")]
         public string MgrCountryNameUkrNew { get { return _MgrCountryNameUkrNew; } set { _MgrCountryNameUkrNew = value; OnPropertyChanged("MgrCountryNameUkrNew"); } }
 
@@ -750,6 +805,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Країна громадянства - стара")]
         [Description("Старе значення поля Країна громадянства керівника")]
+        [Required("IsMgrCountryNameUkrChanged")]
         [UIConditionalVisibility("IsMgrCountryNameUkrChanged")]
         public string MgrCountryNameUkrOld { get { return _MgrCountryNameUkrOld; } set { _MgrCountryNameUkrOld = value; OnPropertyChanged("MgrCountryNameUkrOld"); } }
 
@@ -763,6 +819,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Прізвище керівника - нове")]
         [Description("Нове значення поля Прізвище керівника")]
+        [Required("IsMgrSurnameChanged")]
         [UIConditionalVisibility("IsMgrSurnameChanged")]
         public string MgrSurnameNew { get { return _MgrSurnameNew; } set { _MgrSurnameNew = value; OnPropertyChanged("MgrSurnameNew"); } }
         
@@ -770,6 +827,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Прізвище керівника - старе")]
         [Description("Старе значення поля Прізвище керівника")]
+        [Required("IsMgrSurnameChanged")]
         [UIConditionalVisibility("IsMgrSurnameChanged")]
         public string MgrSurnameOld { get { return _MgrSurnameOld; } set { _MgrSurnameOld = value; OnPropertyChanged("MgrSurnameOld"); } }
 
@@ -783,6 +841,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Ім'я керівника - нове")]
         [Description("Нове значення поля Ім'я керівника")]
+        [Required("IsMgrNameChanged")]
         [UIConditionalVisibility("IsMgrNameChanged")]
         public string MgrNameNew { get { return _MgrNameNew; } set { _MgrNameNew = value; OnPropertyChanged("MgrNameNew"); } }
 
@@ -790,6 +849,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Ім'я керівника - старе")]
         [Description("Старе значення поля Ім'я керівника")]
+        [Required("IsMgrNameChanged")]
         [UIConditionalVisibility("IsMgrNameChanged")]
         public string MgrNameOld { get { return _MgrNameOld; } set { _MgrNameOld = value; OnPropertyChanged("MgrNameOld"); } }
 
@@ -803,6 +863,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Ім'я по батькові керівника - нове")]
         [Description("Нове значення поля Ім'я по батькові керівника")]
+        [Required("IsMgrMiddleNameChanged")]
         [UIConditionalVisibility("IsMgrMiddleNameChanged")]
         public string MgrMiddleNameNew { get { return _MgrMiddleNameNew; } set { _MgrMiddleNameNew = value; OnPropertyChanged("MgrMiddleNameNew"); } }
         
@@ -810,6 +871,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Ім'я по батькові керівника - старе")]
         [Description("Старе значення поля Ім'я по батькові керівника")]
+        [Required("IsMgrMiddleNameChanged")]
         [UIConditionalVisibility("IsMgrMiddleNameChanged")]
         public string MgrMiddleNameOld { get { return _MgrMiddleNameOld; } set { _MgrMiddleNameOld = value; OnPropertyChanged("MgrMiddleNameOld"); } }
 
@@ -823,6 +885,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Дівоче прізвище керівника - нове")]
         [Description("Нове значення поля Дівоче прізвище керівника")]
+        [Required("IsMgrSurnameAtBirthChanged")]
         [UIConditionalVisibility("IsMgrSurnameAtBirthChanged")]
         public string MgrSurnameAtBirthNew { get { return _MgrSurnameAtBirthNew; } set { _MgrSurnameAtBirthNew = value; OnPropertyChanged("MgrSurnameAtBirthNew"); } }
         
@@ -830,6 +893,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Дівоче прізвище керівника - старе")]
         [Description("Старе значення поля Дівоче прізвище керівника")]
+        [Required("IsMgrSurnameAtBirthChanged")]
         [UIConditionalVisibility("IsMgrSurnameAtBirthChanged")]
         public string MgrSurnameAtBirthOld { get { return _MgrSurnameAtBirthOld; } set { _MgrSurnameAtBirthOld = value; OnPropertyChanged("MgrSurnameAtBirthOld"); } }
 
@@ -843,6 +907,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("ІПН керівника - новий")]
         [Description("Нове значення поля ІПН керівника")]
+        [Required("IsMgrTaxOrSocSecIDChanged")]
         [UIConditionalVisibility("IsMgrTaxOrSocSecIDChanged")]
         public string MgrTaxOrSocSecIDNew { get { return _MgrTaxOrSocSecIDNew; } set { _MgrTaxOrSocSecIDNew = value; OnPropertyChanged("MgrTaxOrSocSecIDNew"); } }
         
@@ -850,6 +915,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("ІПН керівника - старий")]
         [Description("Старе значення поля ІПН керівника")]
+        [Required("IsMgrTaxOrSocSecIDChanged")]
         [UIConditionalVisibility("IsMgrTaxOrSocSecIDChanged")]
         public string MgrTaxOrSocSecIDOld { get { return _MgrTaxOrSocSecIDOld; } set { _MgrTaxOrSocSecIDOld = value; OnPropertyChanged("MgrTaxOrSocSecIDOld"); } }
 
@@ -863,6 +929,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Серія № паспорта керівника - нові")]
         [Description("Нове значення поля Серія № паспорта керівника")]
+        [Required("IsMgrPassportIDChanged")]
         [UIConditionalVisibility("IsMgrPassportIDChanged")]
         public string MgrPassportIDNew { get { return _MgrPassportIDNew; } set { _MgrPassportIDNew = value; OnPropertyChanged("MgrPassportIDNew"); } }
         
@@ -870,6 +937,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Серія № паспорта керівника - старі")]
         [Description("Старе значення поля Серія № паспорта керівника")]
+        [Required("IsMgrPassportIDChanged")]
         [UIConditionalVisibility("IsMgrPassportIDChanged")]
         public string MgrPassportIDOld { get { return _MgrPassportIDOld; } set { _MgrPassportIDOld = value; OnPropertyChanged("MgrPassportIDOld"); } }
 
@@ -883,6 +951,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Дата видачі паспорта керівника - нова")]
         [Description("Нове значення поля Дата видачі паспорта керівника")]
+        [Required("IsMgrPassIssuedDateChanged")]
         [UIConditionalVisibility("IsMgrPassIssuedDateChanged")]
         public DateTime? MgrPassIssuedDateNew { get { return _MgrPassIssuedDateNew; } set { _MgrPassIssuedDateNew = value; OnPropertyChanged("MgrPassIssuedDateNew"); } }
         
@@ -890,6 +959,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares
         [Category("Керівники/персонал")]
         [DisplayName("Дата видачі паспорта керівника - стара")]
         [Description("Старе значення поля Дата видачі паспорта керівника")]
+        [Required("IsMgrPassIssuedDateChanged")]
         [UIConditionalVisibility("IsMgrPassIssuedDateChanged")]
         public DateTime? MgrPassIssuedDateOld { get { return _MgrPassIssuedDateOld; } set { _MgrPassIssuedDateOld = value; OnPropertyChanged("MgrPassIssuedDateOld"); } }
        

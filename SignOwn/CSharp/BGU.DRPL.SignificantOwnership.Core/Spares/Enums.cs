@@ -100,6 +100,25 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         PartTime,
     }
 
+    public enum LaborAgreementType
+    {
+        [Description("None")]
+        None =0,
+        [Description("Трудовий договір")]
+        LaborAgreement,
+        [Description("Договір про надання послуг чи еквівалент")]
+        ServicesOrOtherContract,
+        [Description("Партнерство")]
+        Partnership,
+        [Description("На підставі власності у відповідному бізнесі")]
+        BusinessOwnershipShare,
+        [Description("На підставі договору довірчого керування чи його різновиди")]
+        TrusteeEtc,
+        [Description("На підставі іншого типу угоди")]
+        Other
+    }
+
+
 #if __NO_FLAGS__
 #else
     [Flags]
@@ -135,7 +154,21 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         MilitaryServiceLeave,
         [Description("За станом здоров'я")]
         HealthConditionLeave,
-        [Description("Інше")]
+        [Description("Найом усупереч вимогам Закону України Про запобігання корупції")]
+        AntiCorruptionContradiction,
+        [Description("Люстрація (\"з підстав, передбачених Законом України Про очищення влади\")")]
+        Lustration,
+        [Description("Реорганізація, банкрутство або перепрофілювання підприємства, установи, організації, скорочення чисельності або штату працівників")]
+        ReorganizationInsolvencyEtc,
+        [Description("Недостатність кваліфікації")]
+        Underqualified,
+        [Description("Прогул, порушення трудової дисципліни, тощо")]
+        Truancy,
+        [Description("Поява на роботі в стані наркотичного, алкогольного, іншого сп'яніння")]
+        AlcoNarcoEtc,
+        [Description("Розкрадання")]
+        Stealing,
+        [Description("Інша причина")]
         OtherLeaveType
     }
 
@@ -370,7 +403,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         PassportCopyScan,
         [Description("Копії/скан статуту")]
         CharterCopyScan,
-        [Description("Діграма структури власності")]
+        [Description("Діаграма структури власності")]
         OwnershipDiagram,
         [Description("Інше (вказати додатково у деталях)")]
         Other
@@ -1128,6 +1161,52 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         Resume,
         [Description("припинення діяльності")]
         Closure
+    }
+
+    /// <summary>
+    /// Вид пакетного повідомлення в ЕКДРБУ
+    /// (звичайні зміни, виправлення/уточнення, скасування попередньо поданого пакету змін)
+    /// </summary>
+    public enum EKDRBUPackageType
+    { 
+        [Description("Не вказано")]
+        None = 0,
+        [Description("Звичайний")]
+        Normal,
+        [Description("Уточнення (попередньо поданого пакету - повне або часткове)")]
+        ErrorCorrection,
+        [Description("Скасування (попередньо поданого пакету - повне або часткове)")]
+        Cancellation,
+    }
+
+    /// <summary>
+    /// Статуси результату обробки поданого 
+    /// до ЕКДРБУ пакету змін
+    /// </summary>
+    public enum EKDRBUChangePackageResponseStatus
+    { 
+        [Description("Не визначено")]
+        None = 0,
+        [Description("Прийнято в обробку повністю")]
+        CompleteSuccess,
+        [Description("Частково прийнято в обробку (помилки за частиною відділень)")]
+        PartialSuccess,
+        [Description("Пакет відбраковано повністю (не прийнято)")]
+        Fail
+    }
+
+    /// <summary>
+    /// Види валідації (обробки)
+    /// електронних повідомлень (анкет, тощо)
+    /// </summary>
+    public enum ValidationType
+    {
+        [Description("Не визначено")]
+        None = 0,
+        [Description("Автоматична валідація")]
+        Automatic,
+        [Description("Ручна обробка оператором")]
+        Manual,
     }
 
     public enum BankBranchType
