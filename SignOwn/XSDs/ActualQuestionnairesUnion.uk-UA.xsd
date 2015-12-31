@@ -56,6 +56,7 @@
   <xs:include schemaLocation="EmploymentRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentState.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentTimeType.uk-UA.xsd" />
+  <xs:include schemaLocation="LaborAgreementType.uk-UA.xsd" />
   <xs:include schemaLocation="EconomicActivityType.uk-UA.xsd" />
   <xs:include schemaLocation="EmploymentTerminationType.uk-UA.xsd" />
   <xs:include schemaLocation="ContactInfo.uk-UA.xsd" />
@@ -159,6 +160,7 @@
   <xs:include schemaLocation="ArrayOfEducationRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="EducationRecordInfo.uk-UA.xsd" />
   <xs:include schemaLocation="DegreeHonourType.uk-UA.xsd" />
+  <xs:include schemaLocation="ScientificDegreeType.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfGenericPersonID.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfBankInfo.uk-UA.xsd" />
   <xs:include schemaLocation="ArrayOfLiquidatedOrInsolventEntityMgmtRecordInfo.uk-UA.xsd" />

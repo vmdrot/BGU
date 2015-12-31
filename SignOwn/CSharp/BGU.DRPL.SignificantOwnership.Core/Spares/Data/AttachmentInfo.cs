@@ -51,7 +51,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// Давати можливість користувачу змінити
         /// </summary>
         [DisplayName("Формат")]
-        [Description("Тип MIME, напр. pdf, xls, xlsx, doc, docs, rtf, тощо")]
+        [Description("Тип MIME, напр. pdf, xls, xlsx, doc, docx, rtf, тощо")]
         [Required]
         public string ContentType { get; set; }
 

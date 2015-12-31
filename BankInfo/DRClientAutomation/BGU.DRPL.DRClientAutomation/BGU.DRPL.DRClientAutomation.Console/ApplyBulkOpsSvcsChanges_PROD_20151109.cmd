@@ -1,0 +1,1 @@
+CALL ApplyBulkOpsSvcsChanges.cmd D:\home\vmdrot\BGU\Var\DerzhReiestr\OshchadBulkChange\RealPackages\BGU-DRPL_-_OshchadBulkChanges_20151109_PROD.xml 0 false 0 352457 > ApplyBulkOpsSvcsChanges_PROD_20151109.352457.cmd.txt 

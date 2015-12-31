@@ -4,6 +4,7 @@
   <xs:complexType name="ActualEKDRBUStructsUnion">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgV1" type="StateBankBranchRegistryChangePackageV1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangePkgResponseV1" type="StateBankBranchRegistryChangePackageResponseV1" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="StateBankBranchRegistryChangePackageV1">
@@ -11,17 +12,153 @@
       <xs:extension base="NotifyPropertyChangedBase">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="BankRef" type="BankInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PackageID" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageDate" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PackageType" type="EKDRBUPackageType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RelPackageRef" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RelPackageDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AllowPartialFails" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="ChangingBranches" type="ArrayOfStateBankRegistrySingleBranchChangeRecV1" />
           <xs:element minOccurs="0" maxOccurs="1" name="OperationsListingSchemes" type="ArrayOfBankBranchOpsSvcsSchemeInfo" />
           <xs:element minOccurs="0" maxOccurs="1" name="Attachments" type="ArrayOfAttachmentInfo" />
           <xs:element minOccurs="1" maxOccurs="1" name="RequirementsKept" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="RequirementsKeptDetails" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="Signor" type="SignatoryInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signor" type="SignatoryInfoBase" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PreparedBy" type="ContactInfoSimple" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="NotifyPropertyChangedBase" />
+  <xs:complexType name="StateBankRegistryProcessingErrorInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ValidationKind" type="ValidationType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SubjectBranchID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SubjectField" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ValidationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Automatic" />
+      <xs:enumeration value="Manual" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="StateBankBranchRegistryChangePackageResponseV1">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MessageID" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MessageDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RelRef" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RelDate" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ResponseStatus" type="EKDRBUChangePackageResponseStatus" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Errors" type="ArrayOfStateBankRegistryProcessingErrorInfo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CheckedBy" type="ContactInfoSimple" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="EKDRBUChangePackageResponseStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="CompleteSuccess" />
+      <xs:enumeration value="PartialSuccess" />
+      <xs:enumeration value="Fail" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfStateBankRegistryProcessingErrorInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StateBankRegistryProcessingErrorInfo" nillable="true" type="StateBankRegistryProcessingErrorInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContactInfoSimple">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ContactInfoBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Person" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ContactInfoBase">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PreferrableMeansOfCommunication" type="MeansOfCommunication" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Phones" type="ArrayOfPhoneInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Fax" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Emails" type="ArrayOfEmailInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="www" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="LocationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MeansOfCommunication">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Phone" />
+      <xs:enumeration value="Email" />
+      <xs:enumeration value="Fax" />
+      <xs:enumeration value="Mail" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPhoneInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhoneInfo" nillable="true" type="PhoneInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhoneInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhoneNotes" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfEmailInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmailInfo" nillable="true" type="EmailInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmailInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EmailDescription" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Country" type="CountryInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Region" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Raion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZipCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Street" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HouseNr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ApptOfficeNr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentID">
+    <xs:complexContent mixed="false">
+      <xs:extension base="NotifyPropertyChangedBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ID" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="EKDRBUVariableEntryPartV1">
     <xs:complexContent mixed="false">
       <xs:extension base="NotifyPropertyChangedBase">
@@ -196,15 +333,14 @@
       <xs:enumeration value="Legal" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="CountryInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO2Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISO3Code" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryISONr" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameEng" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CountryNameUkr" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
+  <xs:simpleType name="EKDRBUPackageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="ErrorCorrection" />
+      <xs:enumeration value="Cancellation" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ArrayOfStateBankRegistrySingleBranchChangeRecV1">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="StateBankRegistrySingleBranchChangeRecV1" nillable="true" type="StateBankRegistrySingleBranchChangeRecV1" />
@@ -216,7 +352,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="BankBranchRegID" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="ChangeEffectiveDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="Changes" type="EKDRBUVariableEntryPartV1" />
-      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HeadBankDecisionRefs" type="ArrayOfDocumentID" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="BankBranchChangeType">
@@ -229,9 +365,9 @@
       <xs:enumeration value="Closure" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="ArrayOfString">
+  <xs:complexType name="ArrayOfDocumentID">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentID" nillable="true" type="DocumentID" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfBankBranchOpsSvcsSchemeInfo">
@@ -270,23 +406,11 @@
       <xs:enumeration value="Other" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="SignatoryInfo">
+  <xs:complexType name="SignatoryInfoBase">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateSigned" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="SignatoryPosition" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SurnameInitials" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" default="false" name="IsActingByPowOfAttorney" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PowerOfAttorney" type="PowerOfAttorneyInfo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="PowerOfAttorneyInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="ActingPerson" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OnBehalfOfPerson" type="GenericPersonID" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Title" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ValidSince" type="xs:dateTime" />
-      <xs:element minOccurs="1" maxOccurs="1" name="ValidThru" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OtherInfo" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

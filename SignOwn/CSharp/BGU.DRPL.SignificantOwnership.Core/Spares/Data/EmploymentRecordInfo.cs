@@ -36,8 +36,8 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         /// <summary>
         /// обов'язкове поле
         /// </summary>
-        [DisplayName("Є в трудовій книзі")]
-        [Description("Чи відображено запис у трудовій книзі?")]
+        [DisplayName("Оформлено офіційно?")]
+        [Description("Чи оформлено належним чином це місце роботи\n(відображено запис у трудовій книзі, контракті,\n є рекомендації чи інші докази перебування\n на даній роботі/посаді)?")]
         [Required]
         public bool IsEmploymentBookRegistered { get { return _IsEmploymentBookRegistered; } set { _IsEmploymentBookRegistered = value; OnPropertyChanged("IsEmploymentBookRegistered"); } }
 
@@ -71,6 +71,11 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares.Data
         [Required]
         public EmploymentTimeType FullOrPartTime { get { return _FullOrPartTime; } set { _FullOrPartTime = value; OnPropertyChanged("FullOrPartTime"); } }
 
+        private LaborAgreementType _AgreementType;
+        [DisplayName("Тип дововірних відносин")]
+        [Description("Тип угоди/стосунків, на підставі якої(яких) здійснювалася трудова діяльність")]
+        [Required]
+        public LaborAgreementType AgreementType { get { return _AgreementType; } set { _AgreementType = value; OnPropertyChanged("AgreementType"); } }
 
         private GenericPersonID _Employer;
         /// <summary>

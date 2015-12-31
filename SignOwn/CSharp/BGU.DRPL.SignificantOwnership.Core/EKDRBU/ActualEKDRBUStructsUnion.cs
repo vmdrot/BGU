@@ -10,5 +10,6 @@ namespace BGU.DRPL.SignificantOwnership.Core.EKDRBU
     public class ActualEKDRBUStructsUnion
     {
         public StateBankBranchRegistryChangePackageV1 ChangePkgV1 { get; set; }
+        public StateBankBranchRegistryChangePackageResponseV1 ChangePkgResponseV1 { get; set; }
     }
 }
