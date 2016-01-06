@@ -87,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionnaireCheckUtilsTests.cs" />
     <Compile Include="WebUIRelated\JsonGenerators.cs" />
+    <Compile Include="www2\BGUWeb2NavTests.cs" />
     <Compile Include="XAMLGenerationTests.cs" />
     <Compile Include="XSDUtilTests.cs" />
   </ItemGroup>
