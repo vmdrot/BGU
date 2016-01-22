@@ -16,6 +16,9 @@ namespace BGU.DRPL.DRClientAutomationLib
             //Window 000C0480 "Відділення  << Фiлiя - Волинське обласне управлiння публічного акцiонерного товариства "Державний ощадний банк України"" TGroupBox
             //    Window 00050892 "" TDBGridEh
             WindowInfo wi3rdBranchesGroupBox = FormAutomUtils.FindChildWindowCaptionContains(parent, "Відділення  << Фiлiя - ", "TGroupBox");
+            
+            if (wi3rdBranchesGroupBox == null)
+                wi3rdBranchesGroupBox = FormAutomUtils.FindChildWindowCaptionContains(parent, "Відділення  << Філія - ", "TGroupBox");
             if (wi3rdBranchesGroupBox == null)
                 return (IntPtr)0;
             System.Console.WriteLine("wi3rdBranchesGroupBox.Handle = {0}", wi3rdBranchesGroupBox.Handle);
