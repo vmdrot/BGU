@@ -41,6 +41,8 @@ namespace BGU.DRPL.DRClientAutomationLib.AuxData
             }
 
             List<WindowInfo> panels = new List<WindowInfo>(from c in ctrls where c.WndClass == "TPanel" || c.WndClass == "Panel" select c);
+            if (panels == null || panels.Count == 0)
+                return null;
             List<WindowInfo> wiBtns = FormAutomUtils.ListChildControls(panels[0].Handle);
             var saveBtn = new List<WindowInfo>(from b in wiBtns where b.Caption == "Внести зміни" && (b.WndClass == "TButton" || b.WndClass == "Button") select b);
             if(saveBtn != null && saveBtn.Count == 1)

@@ -628,16 +628,21 @@ namespace BGU.DRPL.DRClientAutomationLib
         }
 
 
+        public static IntPtr FindChangesSummaryCorrectionForm()
+        {
+            IntPtr rslt = FormAutomUtils.FindWindow("THISTORYForm", "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
+            if (rslt == IntPtr.Zero)
+                rslt = FormAutomUtils.FindWindow(null, "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
+            return rslt;
+        }
+
         public static bool ApplyChangesSummaryCorrectionToSingleBranch(TVBVsOpsSvcBulkChangeInfo changes, bool bEmulateOnly, int pauseBeforeClosing, int drClientProcessId, out TBVBChangeResultInfo currRslt, ref string lastBranchId, ref string prevBranchId, out bool bBreak, out bool bContinue)
         {
             bBreak = false;
             bContinue = false;
 
             currRslt = new TBVBChangeResultInfo();
-
-            IntPtr hwndChgsSummaryCorrectionFrm = FormAutomUtils.FindWindow("THISTORYForm", "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
-            if (hwndChgsSummaryCorrectionFrm == IntPtr.Zero)
-                hwndChgsSummaryCorrectionFrm = FormAutomUtils.FindWindow(null, "КОРИГУВАННЯ ЗМІН ДО СТАТУТУ(короткий опис змін)");
+            IntPtr hwndChgsSummaryCorrectionFrm = FindChangesSummaryCorrectionForm();
             if (hwndChgsSummaryCorrectionFrm == IntPtr.Zero)
             {
                 System.Console.WriteLine("Failed to find changes correction form");
@@ -658,10 +663,12 @@ namespace BGU.DRPL.DRClientAutomationLib
                     break;
                 Thread.Sleep(250); //todo - to shorten further (try reduce sleep while increasing retries count)
                 otherTabCtrlsRetries++;
-            } while (otherTabCtrlsRetries < 5);
+            } while (otherTabCtrlsRetries < 12);
 
             System.Console.WriteLine("ctrlsInfo = {0}", DRAutoDriver.ToJson(ctrlsInfo, true));
 
+            if (ctrlsInfo == null)
+                return false;
             string currIntBranchID = FormAutomUtils.GetWindowCaption(ctrlsInfo.BranchIDEdit);
 
             lastBranchId = currIntBranchID.Replace(" ", string.Empty).Trim();

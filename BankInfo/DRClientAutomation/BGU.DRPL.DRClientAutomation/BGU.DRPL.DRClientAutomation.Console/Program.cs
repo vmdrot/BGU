@@ -48,6 +48,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("applybulkchangessummarycorrection", ApplyBulkChangesSummaryCorrection);
             _cmdHandlers.Add("presscontextmenubutton2test", PressContextMenuButton2Test);
             _cmdHandlers.Add("applychangessummarycorrectiontosinglebranchtest", ApplyChangesSummaryCorrectionToSingleBranchTest);
+            _cmdHandlers.Add("applychangessummarycorrectionbulk", ApplyChangesSummaryCorrectionBulk);
             #endregion
 
 
@@ -930,5 +931,112 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 System.Console.WriteLine("Changes correction applied correctly");
             }
         }
+
+        private static void ApplyChangesSummaryCorrectionBulk(string[] args)
+        {
+            string inputXmlPath = args[1];
+            int pauseBeforeClosing;            //2
+            bool bEmulateOnly;                 //3
+            int maxProcessCount;               //4
+            string parentMFO = null;           //5
+            string skipBranchesIDsFile = null; //6
+
+            if (args.Length > 2)
+            {
+                string pauseBeforeClosingStr = args[2];
+                if (!int.TryParse(pauseBeforeClosingStr, out pauseBeforeClosing))
+                    pauseBeforeClosing = 0;
+            }
+            else
+                pauseBeforeClosing = 0;
+
+            if (args.Length > 3)
+            {
+                string bEmulateOnlyStr = args[3];
+                if (!bool.TryParse(bEmulateOnlyStr, out bEmulateOnly))
+                    bEmulateOnly = true;
+            }
+            else
+                bEmulateOnly = true;
+
+            if (args.Length > 4)
+            {
+                string maxProcessCountStr = args[4];
+                if (!int.TryParse(maxProcessCountStr, out maxProcessCount))
+                    maxProcessCount = 0;
+            }
+            else
+                maxProcessCount = 0;
+            if (args.Length > 5)
+                parentMFO = args[5];
+
+            if (args.Length > 6)
+                skipBranchesIDsFile = args[6];
+
+
+            if (!File.Exists(inputXmlPath))
+            {
+                System.Console.WriteLine("File doesn't exists - '{0}'", inputXmlPath);
+                return;
+            }
+
+            TVBVsOpsSvcBulkChangeInfo inputInfo = Tools.ReadXML<TVBVsOpsSvcBulkChangeInfo>(inputXmlPath);
+            if (!string.IsNullOrEmpty(parentMFO))
+            {
+                var filtered = from ii in inputInfo.Items where ii.ParentMFO == parentMFO select ii;
+                inputInfo.Items = new List<TVBVOpsSevicesChangeInfo>();
+                inputInfo.Items.AddRange(filtered);
+            }
+            if (!string.IsNullOrEmpty(skipBranchesIDsFile) && File.Exists(skipBranchesIDsFile))
+            {
+                List<string> skipBranchIDs = new List<string>(File.ReadAllLines(skipBranchesIDsFile));
+                for (int i = 0; i < skipBranchIDs.Count; i++)
+                    skipBranchIDs[i] = skipBranchIDs[i].Trim();
+                List<TVBVOpsSevicesChangeInfo> woSkippedItems = new List<TVBVOpsSevicesChangeInfo>();
+                foreach (TVBVOpsSevicesChangeInfo ci in inputInfo.Items)
+                {
+                    if (skipBranchIDs.Contains(ci.BranchID))
+                        continue;
+                    woSkippedItems.Add(ci);
+                }
+                inputInfo.Items = woSkippedItems;
+            }
+
+            DateTime dtStart = DateTime.Now;
+            System.Console.WriteLine("Started: {0}", dtStart);
+            IntPtr mainEditBranchesForm = FormAutomUtils.FindWindow("TBanks_modFm", "Редагування банківських установ");
+            if (mainEditBranchesForm == (IntPtr)0)
+            {
+                System.Console.WriteLine("Can't find main window");
+                return;
+            }
+            int drClientProcessId = FormAutomUtils.GetWindowProcess(mainEditBranchesForm);
+            System.Console.WriteLine("drClientProcessId = {0}", drClientProcessId);
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+
+            while (true)
+            {
+                while (DRAutoDriver.FindChangesSummaryCorrectionForm() == IntPtr.Zero)
+                {
+                    Thread.Sleep(100);
+                }
+                TBVBChangeResultInfo rslt;
+                string lastBranchId = string.Empty;
+                string prevBranchId = string.Empty;
+                bool bBreak;
+                bool bContinue;
+                if (!DRAutoDriver.ApplyChangesSummaryCorrectionToSingleBranch(inputInfo, bEmulateOnly, pauseBeforeClosing, drClientProcessId, out rslt, ref lastBranchId, ref prevBranchId, out bBreak, out bContinue))
+                {
+                    System.Console.WriteLine("Failed applying change correction to the branch {0}", lastBranchId);
+                    continue;
+                }
+                else
+                {
+                    System.Console.WriteLine("Changes correction applied correctly to the branch {0}", lastBranchId);
+                    Thread.Sleep(250);
+                }
+            }
+        }
+
     }
 }
