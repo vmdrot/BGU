@@ -65,6 +65,12 @@
     <Compile Include="ComponentModelEx\XamlExpanderWrappingAttribute.cs" />
     <Compile Include="ComponentModelEx\XamlTemplateNameAttribute.cs" />
     <Compile Include="Geo\BasicGeoposition.cs" />
+    <Compile Include="GoogleMaps\AddressComponent.cs" />
+    <Compile Include="GoogleMaps\AddressResolveResult.cs" />
+    <Compile Include="GoogleMaps\Geometry.cs" />
+    <Compile Include="GoogleMaps\LongLatInfo.cs" />
+    <Compile Include="GoogleMaps\ResolvedAddressEntry.cs" />
+    <Compile Include="GoogleMaps\Viewport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
