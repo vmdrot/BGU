@@ -1310,5 +1310,14 @@ namespace BGU.DRPL.SignificantOwnership.Core.Spares
         OtherManager
     }
 
+
+    public enum InterestRateType
+    { 
+        None = 0,
+        NoRate, 
+        Variable,
+        Fixed
+    }
+
 }
 

@@ -92,6 +92,12 @@
     <Compile Include="FXLicensing\Questionnares\IndividualFXLicenseApplAppx5.cs" />
     <Compile Include="FXLicensing\Questionnares\IndividualFXLicenseCancelApplAppx7.cs" />
     <Compile Include="FXLicensing\Questionnares\IndividualFXLisenceChangesApplAppx6.cs" />
+    <Compile Include="FXLoansReg\FXBankLoanInfo.cs" />
+    <Compile Include="FXLoansReg\FXLoanInfo.cs" />
+    <Compile Include="FXLoansReg\FXLoanRepaymentScheduleEntry.cs" />
+    <Compile Include="FXLoansReg\Spares\AgreementAttributes.cs" />
+    <Compile Include="FXLoansReg\Spares\NBURegistrationAttributes.cs" />
+    <Compile Include="FXLoansReg\Spares\SWIFPaymentReqs.cs" />
     <Compile Include="Interfaces\IAnonymizeable.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Messages\BankInfo\BankInfoEnums.cs" />
