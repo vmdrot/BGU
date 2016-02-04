@@ -100,6 +100,7 @@
     <Compile Include="FXLoansReg\Spares\SWIFPaymentReqs.cs" />
     <Compile Include="Interfaces\IAnonymizeable.cs" />
     <Compile Include="Interfaces\IModule.cs" />
+    <Compile Include="Interfaces\ISensitiveDataAnonymizer.cs" />
     <Compile Include="Messages\BankInfo\BankInfoEnums.cs" />
     <Compile Include="Messages\BankInfo\BkInfoChangesMessage.cs" />
     <Compile Include="Messages\BankOwnershipStructureP328MessageBody.cs" />
