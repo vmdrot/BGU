@@ -6,6 +6,7 @@ using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
 using System.ComponentModel;
 using Evolvex.Utility.Core.ComponentModelEx;
 using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
+using BGU.DRPL.SignificantOwnership.Core.Interfaces;
 
 namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
 {
@@ -14,7 +15,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     /// зг. з Постановою № 328 НБУ
     /// Відомості про остаточних ключових учасників у структурі власності банку 
     /// </summary>
-    public class BankOwnershipStructureP328 : QuestionnaireBase
+    public class BankOwnershipStructureP328 : QuestionnaireBase, IAnonymizeable
     {
 
         [DisplayName("Ідентифікація банку")]
@@ -101,6 +102,23 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
         protected override void DoAddToMentionedEntities(GenericPersonInfo gpi)
         {
             MentionedIdentities.Add(gpi);
+        }
+
+        public void Anonymize(List<Type> involveTypes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Anonymize(ISensitiveDataAnonymizer anonymizer)
+        {
+            anonymizer.SetSourceInfo(this.MentionedIdentities);
+            anonymizer.GeneratePersonIDs();
+            anonymizer.ReplacePersonIDs(this.MentionedIdentities);
+            anonymizer.ReplacePersonIDs(this.OwnershipsHive);
+            anonymizer.ReplacePersonIDs(this.PersonsLinks);
+            anonymizer.ReplacePersonIDs(this.UltimateOwners);
+            anonymizer.ReplacePersonID(this.BankRef);
+
         }
     }
 }
