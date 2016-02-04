@@ -10,6 +10,7 @@ namespace BGU.DRPL.SignificantOwnership.Core.Questionnaires
     public interface IQuestionnaire
     {
         string SuggestSaveAsFileName();
+        //void Anonymize(
     }
 
     public interface IGenericPersonsService
