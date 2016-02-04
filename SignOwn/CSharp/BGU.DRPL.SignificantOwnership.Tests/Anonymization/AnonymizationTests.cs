@@ -16,9 +16,12 @@ namespace BGU.DRPL.SignificantOwnership.Tests.Anonymization
     public class AnonymizationTests
     {
         [Test]
-        public void AnonymizeRegLicAppx2()
-        { 
-
+        public void AnonymizePost328Msg()
+        {
+            BankOwnershipStructureP328 msg = Tools.ReadXML<BankOwnershipStructureP328>(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_p328Msg.xml");
+            SensitiveDataAnonymizer anonymizer = new SensitiveDataAnonymizer();
+            msg.Anonymize(anonymizer);
+            Tools.WriteXML<BankOwnershipStructureP328>(msg, @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_p328Msg_Anonymized.xml");
         }
 
         [Test]

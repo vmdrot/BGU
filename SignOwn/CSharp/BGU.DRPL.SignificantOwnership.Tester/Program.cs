@@ -24,6 +24,7 @@ using BGU.DRPL.SignificantOwnership.Core.Messages;
 using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc;
 using System.Text.RegularExpressions;
 using BGU.DRPL.SignificantOwnership.Utility.Office;
+using BGU.DRPL.SignificantOwnership.Facade.Anonymizing;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -77,8 +78,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("parsegfxlicdoc", ParseGFXLicDoc);
             _cmdHandlers.Add("parsegenlicnonbankstest", ParseGenLicNonBanksTest);
             _cmdHandlers.Add("oshchadzhytomyropsbulkchange", OshchadZhytomyrOpsBulkChange);
-            
-            
+            _cmdHandlers.Add("anonymizepost328msg", AnonymizePost328Msg);
             #endregion
 
             #endregion
@@ -1514,6 +1514,18 @@ RegLicAppx9BankingLicenseAppl.xsd";
         {
             StateBankBranchRegistryChangePackageV1 pkg = (new Oshchad()).ZhytomyrOblastBulkChanges;
         }
+        #endregion
+
+        #region Anonymization
+
+        private static void AnonymizePost328Msg(string[] args)
+        {
+            BankOwnershipStructureP328 msg = Tools.ReadXML<BankOwnershipStructureP328>(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_p328Msg.xml");
+            SensitiveDataAnonymizer anonymizer = new SensitiveDataAnonymizer();
+            msg.Anonymize(anonymizer);
+            Tools.WriteXML<BankOwnershipStructureP328>(msg, @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_p328Msg_Anonymized.xml");
+        }
+
         #endregion
 
     }
