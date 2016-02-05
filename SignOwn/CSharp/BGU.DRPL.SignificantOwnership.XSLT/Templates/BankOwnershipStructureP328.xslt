@@ -21,9 +21,7 @@
       <head>
         <link rel="stylesheet" href="Questionnaire_Files/Questionnaire_print.css" />
         <title>
-          Відомості про остаточних ключових учасників у структурі власності банку <xsl:value-of select="BankRef/Name" /> станом на <xsl:call-template name="formatDate">
-            <xsl:with-param name="dateTime" select="DateAsOf" />
-          </xsl:call-template>
+          Відомості про остаточних ключових учасників у структурі власності банку <xsl:value-of select="BankRef/Name" /> станом на <xsl:call-template name="formatDate"><xsl:with-param name="dateTime" select="DateAsOf" /></xsl:call-template>
         </title>
       </head>
       <body>
@@ -46,7 +44,8 @@
           <tr>
             <td align="center">
               <h1>
-                Анкета юридичної особи (у тому числі банку) стосовно участі в <u>
+                Відомості про остаточних ключових учасників у структурі власності банку станом на <xsl:call-template name="formatDate"><xsl:with-param name="dateTime" select="DateAsOf" /></xsl:call-template><br/>
+                <u>
                   <b>
                     <xsl:value-of select="BankRef/Name" />
                   </b>

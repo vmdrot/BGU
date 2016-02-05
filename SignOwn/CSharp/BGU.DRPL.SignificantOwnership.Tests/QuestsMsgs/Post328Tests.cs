@@ -6,6 +6,8 @@ using NUnit.Framework;
 using BGU.DRPL.SignificantOwnership.Core.Questionnaires;
 using BGU.DRPL.SignificantOwnership.Utility;
 using BGU.DRPL.SignificantOwnership.Core.Checks;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Data;
+using BGU.DRPL.SignificantOwnership.Core.Spares.Dict;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.QuestsMsgs
 {
@@ -21,6 +23,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.QuestsMsgs
             rslt.MentionedIdentities = new List<Core.Spares.Data.GenericPersonInfo>();
             rslt.MentionedIdentities.AddRange(appx2.MentionedIdentities);
             rslt.ContactPerson = appx2.ContactPerson;
+            #region fill signatory(ies), if absent
             if (appx2.Signatory != null)
                 rslt.Signatory = appx2.Signatory;
             else
@@ -31,14 +34,26 @@ namespace BGU.DRPL.SignificantOwnership.Tests.QuestsMsgs
                 rslt.Signatory.SignatoryPosition = "Голова Правління ПАТ АКБ \"АРКАДА\"";
                 rslt.Signatory.IsActingByPowOfAttorney = false;
             }
+            #endregion
+
             if (appx2.Signatory != null && appx2.Signatory.DateSigned != null)
                 rslt.DateAsOf = (DateTime)appx2.Signatory.DateSigned;
             else rslt.DateAsOf = DateTime.Parse("2015-08-18T00:00:00");
+
             rslt.IsApplicationInfoAccurateAndTrue = true;
             rslt.OwnershipsHive = new List<Core.Spares.Data.OwnershipStructure>();
             rslt.OwnershipsHive.AddRange (appx2.BankExistingCommonImplicitOwners);
             rslt.PersonsLinks = new List<Core.Spares.Data.PersonsAssociation>();
             rslt.PersonsLinks.AddRange(appx2.PersonsLinks);
+
+            #region fill bank's requisites
+            GenericPersonInfo gpiBank = rslt.MentionedIdentities.Find(o => o.ID == rslt.BankRef.LegalPerson);
+            if (gpiBank != null)
+            {
+                if (gpiBank.LegalPerson.Address == null)
+                    gpiBank.LegalPerson.Address = new Core.Spares.Dict.LocationInfo() { Country = CountryInfo.UKRAINE, ZipCode = "01001", City = "м.Київ", Street = "вул. Ольгинська", HouseNr = "3" };
+            }
+            #endregion
             Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
             checker.Questionnaire = appx2;
             rslt.UltimateOwners = new List<Core.Spares.Data.TotalOwnershipDetailsInfoEx>();
