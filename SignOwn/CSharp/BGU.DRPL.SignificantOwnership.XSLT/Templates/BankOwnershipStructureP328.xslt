@@ -11,6 +11,7 @@
   <xsl:include href="CouncilBodyMembersLegal.xslt" />
   <xsl:include href="FormatAddressStreetEtc.xslt" />
   <xsl:include href="FormatAddressZipCityStreetEtc.xslt" />
+  <xsl:include href="FormatAddressZipCityStreetEtcEx.xslt" />
   <xsl:include href="FormatPhysPersonFullNameUkr.xslt" />
   <xsl:include href="TotalOwnershipDetailsInfo.xslt" />
   <xsl:include href="SignatoryInfo.xslt" />
