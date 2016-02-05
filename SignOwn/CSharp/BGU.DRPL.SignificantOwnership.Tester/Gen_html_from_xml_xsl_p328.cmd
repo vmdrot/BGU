@@ -1,0 +1,1 @@
+CALL Gen_html_from_xml_xsl_worker.cmd D:\home\vmdrot\DEV\BGU\SignOwn\CSharp\BGU.DRPL.SignificantOwnership.XSLT\Samples\p328Msg_xsltEnabled.xml D:\home\vmdrot\DEV\BGU\SignOwn\CSharp\BGU.DRPL.SignificantOwnership.XSLT\Templates\BankOwnershipStructureP328.xslt

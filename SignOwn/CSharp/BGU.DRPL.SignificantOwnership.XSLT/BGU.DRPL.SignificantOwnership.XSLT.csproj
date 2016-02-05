@@ -78,6 +78,7 @@
     <Content Include="Samples\_UpgradeReport_Files\UpgradeReport_Plus.gif" />
     <Content Include="Templates\Acquiree.xslt" />
     <Content Include="Templates\Appx2OwnershipStructLP.xslt" />
+    <Content Include="Templates\ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
     <Content Include="Templates\BankInfo.xslt" />
     <Content Include="Templates\BankOwnershipStructureP328.xslt" />
     <Content Include="Templates\CommonImplicitOwnersGeneric.xslt">
@@ -85,6 +86,7 @@
     </Content>
     <Content Include="Templates\CommonImplicitOwnersLegal.xslt" />
     <Content Include="Templates\CommonImplicitOwnersPhys.xslt" />
+    <Content Include="Templates\FormatAddressZipCityStreetEtc.xslt" />
     <Content Include="Templates\FormatPhysPersonFullNameUkr.xslt" />
     <Content Include="Templates\FormatAddressStreetEtc.xslt" />
     <Content Include="Templates\CouncilBodyMembersPhys.xslt" />
