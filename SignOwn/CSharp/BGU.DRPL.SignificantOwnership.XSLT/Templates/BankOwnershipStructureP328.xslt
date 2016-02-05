@@ -6,12 +6,16 @@
 
   <xsl:include href="Acquiree.xslt" />
   <xsl:include href="FormatDate.xslt" />
+  <xsl:include href="FormatPct.xslt" />
   <xsl:include href="CouncilBodyMembersPhys.xslt" />
   <xsl:include href="CouncilBodyMembersLegal.xslt" />
   <xsl:include href="FormatAddressStreetEtc.xslt" />
+  <xsl:include href="FormatAddressZipCityStreetEtc.xslt" />
   <xsl:include href="FormatPhysPersonFullNameUkr.xslt" />
   <xsl:include href="TotalOwnershipDetailsInfo.xslt" />
   <xsl:include href="SignatoryInfo.xslt" />
+  <xsl:include href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
+  
 
 
 
@@ -51,11 +55,26 @@
                   </b>
                 </u>
               </h1>
+              <br/>
+              <xsl:variable name ="bankRef" select="BankRef" />
+              <!--<xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType='Legal'][1]"></xsl:variable>--> <!--works-->
+              <!--<xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType=BankRef/LegalPerson/PersonType][1]"></xsl:variable>--> <!--doesn't work-->
+              <xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType=$bankRef/LegalPerson/PersonType and LegalPerson/TaxCodeOrHandelsRegNr=$bankRef/LegalPerson/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$bankRef/LegalPerson/CountryISO3Code][1]"></xsl:variable> <!--works-->
+              <!--<xsl:value-of select="MentionedIdentities/GenericPersonInfo[PersonType=BankRef/PersonType and LegalPerson/TaxCodeOrHandelsRegNr=BankRef/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=BankRef/PersonCode]/Address/Street" />-->
+              <!--<xsl:value-of select="$gpiBank/LegalPerson/Address/Street" />--> <!--works-->
+              <!--<xsl:call-template name="formatAddressStreetEtc"><xsl:with-param name="address" select="MentionedIdentities/GenericPersonInfo[PersonType=BankRef/PersonType and LegalPerson/TaxCodeOrHandelsRegNr=BankRef/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=BankRef/PersonCode]/Address" /></xsl:call-template>--> <!--doesn't work-->
+              <xsl:call-template name="formatAddressZipCityStreetEtc">
+                <xsl:with-param name="address" select="$gpiBank/LegalPerson/Address" />
+              </xsl:call-template>
+              
             </td>
           </tr>
           <tr>
             <td align="left">
-              <xsl:apply-templates select="Acquiree" mode="viewAcquiree"/>
+              <xsl:call-template name="arrayOfTotalOwnershipDetailsInfoEx">
+                <xsl:with-param name="theArr" select="UltimateOwners" />
+                <xsl:with-param name="gpis" select="MentionedIdentities" />
+              </xsl:call-template>
             </td>
           </tr>
           <tr>
