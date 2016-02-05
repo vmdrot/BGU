@@ -86,6 +86,8 @@
     </Content>
     <Content Include="Templates\CommonImplicitOwnersLegal.xslt" />
     <Content Include="Templates\CommonImplicitOwnersPhys.xslt" />
+    <Content Include="Templates\FormatAddressZipCityStreetEtcEx.xslt" />
+    <Content Include="Templates\FormatPct.xslt" />
     <Content Include="Templates\FormatAddressZipCityStreetEtc.xslt" />
     <Content Include="Templates\FormatPhysPersonFullNameUkr.xslt" />
     <Content Include="Templates\FormatAddressStreetEtc.xslt" />

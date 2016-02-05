@@ -36,21 +36,35 @@
         </tr>
       </thead>
       <tbody>
-        <!--<xsl:variable name="arrIdx">
-          <xsl:number/>
-        </xsl:variable>-->
         <xsl:for-each select="$theArr/TotalOwnershipDetailsInfoEx">
-          <!--<xsl: name="arrIdx" select="$arrIdx+1"/>-->
           <xsl:variable name="curr" select="."/>
-          <xsl:variable name="currGPI" select="$gpis/GenericPersonInfo[PersonType=$curr/OwnerID/PersonType and ((PersonType='Legal' and LegalPerson/TaxCodeOrHandelsRegNr=$curr/OwnerID/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$curr/OwnerID/CountryISO3Code) or (PersonType='Physical' and PhysicalPerson/TaxOrSocSecID=$curr/OwnerID/PersonCode and PhysicalPerson/CitizenshipCountry/CountryISONr=$curr/OwnerID/CountryISO3Code))][1]"></xsl:variable> <!--doesn't work-->
-          <!--<xsl:variable name="currGPI" select="$gpis/GenericPersonInfo[PersonType=$curr/OwnerID/PersonType][1]"></xsl:variable>-->
+          <xsl:if test="$curr/OwnerID/PersonType != 'None'">
+          <xsl:variable name="currGPI" select="$gpis/GenericPersonInfo[PersonType=$curr/OwnerID/PersonType and ((PersonType='Legal' and LegalPerson/TaxCodeOrHandelsRegNr=$curr/OwnerID/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$curr/OwnerID/CountryISO3Code) or (PersonType='Physical' and PhysicalPerson/TaxOrSocSecID=$curr/OwnerID/PersonCode and PhysicalPerson/CitizenshipCountry/CountryISONr=$curr/OwnerID/CountryISO3Code))][1]"></xsl:variable>
+            <xsl:variable name="currGPICountry">
+              <xsl:choose>
+                <xsl:when test="$currGPI/PersonType = 'Physical'">
+                  <xsl:value-of select="$currGPI/PhysicalPerson/CitizenshipCountry"/>
+                </xsl:when>
+                <xsl:when test="$currGPI/PersonType = 'Legal'">
+                  <xsl:value-of select="$currGPI/LegalPerson/ResidenceCountry"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <ResidenceCountry>
+                    <CountryISO2Code>UA</CountryISO2Code>
+                    <CountryISO3Code>UKR</CountryISO3Code>
+                    <CountryISONr>804</CountryISONr>
+                    <CountryNameEng>UKRAINE</CountryNameEng>
+                    <CountryNameUkr>Україна</CountryNameUkr>
+                  </ResidenceCountry>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+          
         <tr>
           <td>
-            <!--<xsl:value-of select="generate-id()"/> / <xsl:value-of select="$arrIdx"/> / <xsl:value-of select="1+ count(preceding-sibling::record)"/> /--> <!--didn't work-->
             <xsl:value-of select="1 + count(preceding-sibling::*)"/>
           </td>
           <td>
-            <xsl:value-of select="$currGPI/PersonType"/> / 
             <xsl:if test="$currGPI/PersonType='Legal'">
               <xsl:value-of select="$currGPI/LegalPerson/Name"/>
             </xsl:if>
@@ -58,7 +72,7 @@
               <xsl:value-of select="$currGPI/PhysicalPerson/FullName"/>
             </xsl:if>
           </td>
-          <td>
+          <td align="center">
             <xsl:if test="$currGPI/PersonType='Legal'">
               ЮО
             </xsl:if>
@@ -66,32 +80,33 @@
               ФО
             </xsl:if>
           </td>
-          <td>
+          <td align="center">
             <xsl:if test="$curr/TotalCapitalSharePct &gt;= 10">Так</xsl:if>
             <xsl:if test="$curr/TotalCapitalSharePct &lt; 10">Ні</xsl:if>
           </td>
-          <td>
+          <td align="left">
+            <xsl:if test="null != $currGPICountry">
+            <xsl:value-of select="$currGPICountry/CountryNameUkr"/>
+            </xsl:if>
             <xsl:if test="$currGPI/PersonType = 'Legal'">
-              <xsl:value-of select="$currGPI/LegalPerson/ResidenceCountry/CountryNameUkr"/>,
-            <xsl:call-template name="formatAddressZipCityStreetEtc">
+            <xsl:call-template name="formatAddressZipCityStreetEtcEx">
               <xsl:with-param name="address" select="$currGPI/LegalPerson/Address" />
+              <xsl:with-param name="gpiCountry" select="$currGPICountry" />
             </xsl:call-template>
             </xsl:if>
             <xsl:if test="$currGPI/PersonType = 'Physical'">
-              <xsl:value-of select="$currGPI/LegalPerson/CitizenshipCountry/CountryNameUkr"/>,
-              <xsl:call-template name="formatAddressZipCityStreetEtc">
+              <xsl:call-template name="formatAddressZipCityStreetEtcEx">
                 <xsl:with-param name="address" select="$currGPI/PhysicalPerson/Address" />
+                <xsl:with-param name="gpiCountry" select="$currGPICountry" />
               </xsl:call-template>
             </xsl:if>
           </td>
           <td align="right">
-            <!--<xsl:value-of select='format-number( round(100*$curr/DirectOwnership/Pct) div 100 ,"##0.00" )' />-->
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/DirectOwnership/Pct" />
             </xsl:call-template>
           </td>
           <td align="right">
-            <!--<xsl:value-of select="$curr/ImplicitOwnership/Pct" />-->
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/ImplicitOwnership/Pct" />
             </xsl:call-template>
@@ -100,10 +115,10 @@
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/TotalCapitalSharePct" />
             </xsl:call-template>
-            <!--<xsl:value-of select="$curr/TotalCapitalSharePct" />-->
           </td>
           <td>9</td>
         </tr>
+          </xsl:if>
         </xsl:for-each>
       </tbody>
     </table>
