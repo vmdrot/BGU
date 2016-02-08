@@ -2,9 +2,21 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
 >
+  <xsl:import href="Acquiree.xslt" />
+  <xsl:import href="FormatDate.xslt" />
+  <xsl:import href="FormatPct.xslt" />
+  <xsl:import href="CouncilBodyMembersPhys.xslt" />
+  <xsl:import href="CouncilBodyMembersLegal.xslt" />
+  <xsl:import href="FormatAddressStreetEtc.xslt" />
+  <xsl:import href="FormatAddressZipCityStreetEtc.xslt" />
+  <xsl:import href="FormatAddressZipCityStreetEtcEx.xslt" />
+  <xsl:import href="FormatPhysPersonFullNameUkr.xslt" />
+  <xsl:import href="TotalOwnershipDetailsInfo.xslt" />
+  <xsl:import href="SignatoryInfo.xslt" />
+  <xsl:import href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
   <xsl:output method="html" indent="yes"/>
 
-  <xsl:include href="Acquiree.xslt" />
+  <!--<xsl:include href="Acquiree.xslt" />
   <xsl:include href="FormatDate.xslt" />
   <xsl:include href="FormatPct.xslt" />
   <xsl:include href="CouncilBodyMembersPhys.xslt" />
@@ -15,11 +27,7 @@
   <xsl:include href="FormatPhysPersonFullNameUkr.xslt" />
   <xsl:include href="TotalOwnershipDetailsInfo.xslt" />
   <xsl:include href="SignatoryInfo.xslt" />
-  <xsl:include href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
-  
-
-
-
+  <xsl:include href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />-->
 
   <xsl:template match="BankOwnershipStructureP328">
     <html>

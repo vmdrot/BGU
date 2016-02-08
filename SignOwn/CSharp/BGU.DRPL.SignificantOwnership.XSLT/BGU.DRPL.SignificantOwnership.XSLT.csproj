@@ -69,7 +69,9 @@
     <Content Include="Samples\BkBranchOpsSvcs_Alfa_6.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Samples\p328Msg_xsltEnabled.xml" />
+    <Content Include="Samples\p328Msg_xsltEnabled.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Samples\Questionnaire_Files\Questionnaire_print.css" />
     <Content Include="Samples\UpgradeLog.XML" />
     <Content Include="Samples\_UpgradeReport_Files\UpgradeReport.css" />
@@ -78,15 +80,21 @@
     <Content Include="Samples\_UpgradeReport_Files\UpgradeReport_Plus.gif" />
     <Content Include="Templates\Acquiree.xslt" />
     <Content Include="Templates\Appx2OwnershipStructLP.xslt" />
-    <Content Include="Templates\ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
+    <Content Include="Templates\ArrayOfTotalOwnershipDetailsInfoEx.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Templates\BankInfo.xslt" />
-    <Content Include="Templates\BankOwnershipStructureP328.xslt" />
+    <Content Include="Templates\BankOwnershipStructureP328.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Templates\CommonImplicitOwnersGeneric.xslt">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\CommonImplicitOwnersLegal.xslt" />
     <Content Include="Templates\CommonImplicitOwnersPhys.xslt" />
-    <Content Include="Templates\FormatAddressZipCityStreetEtcEx.xslt" />
+    <Content Include="Templates\FormatAddressZipCityStreetEtcEx.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Templates\FormatPct.xslt" />
     <Content Include="Templates\FormatAddressZipCityStreetEtc.xslt" />
     <Content Include="Templates\FormatPhysPersonFullNameUkr.xslt" />
