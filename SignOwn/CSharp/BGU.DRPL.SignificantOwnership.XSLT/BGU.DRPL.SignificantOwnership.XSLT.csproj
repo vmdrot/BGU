@@ -92,6 +92,11 @@
     </Content>
     <Content Include="Templates\CommonImplicitOwnersLegal.xslt" />
     <Content Include="Templates\CommonImplicitOwnersPhys.xslt" />
+    <Content Include="Templates\ArrayOfTotalOwnershipDetailsInfoExFormulas.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\ImplicitOwnershipUnwindFormula.xslt" />
+    <Content Include="Templates\ImplicitOwnershipUnwindFormulaRecursive.xslt" />
     <Content Include="Templates\FormatAddressZipCityStreetEtcEx.xslt">
       <SubType>Designer</SubType>
     </Content>
