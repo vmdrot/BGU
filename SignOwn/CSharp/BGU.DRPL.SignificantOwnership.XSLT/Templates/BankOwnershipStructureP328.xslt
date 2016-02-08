@@ -14,6 +14,7 @@
   <xsl:import href="TotalOwnershipDetailsInfo.xslt" />
   <xsl:import href="SignatoryInfo.xslt" />
   <xsl:import href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />
+  <xsl:import href="ArrayOfTotalOwnershipDetailsInfoExFormulas.xslt" />
   <xsl:output method="html" indent="yes"/>
 
   <!--<xsl:include href="Acquiree.xslt" />
@@ -90,60 +91,15 @@
           </tr>
           <tr>
             <td>
-              <h3>1.5.	Голова та члени наглядової (спостережної) ради юридичної особи</h3>
+              <h3>Примітка. Розрахунок опосередкованої участі ключового учасника в банку (колонка 7 таблиці):</h3>
+              <xsl:call-template name="arrayOfTotalOwnershipDetailsInfoExFormulas">
+                <xsl:with-param name="theArr" select="UltimateOwners" />
+                <xsl:with-param name="gpis" select="MentionedIdentities" />
+                <xsl:with-param name="osHive" select="OwnershipsHive" />
+                <xsl:with-param name="targetAssetId" select="$bankRef/LegalPerson" />
+              </xsl:call-template>
             </td>
           </tr>
-          <xsl:if test="IsSupervisoryCouncilPresent='true'">
-            <tr>
-              <td align="left">
-                <h4>1.5.1.	Фізичні особи – члени наглядової (спостережної) ради юридичної особи та  фізичні особи, які представляють юридичну особу – члена наглядової ради</h4>
-              </td>
-            </tr>
-            <xsl:if test="SupervisoryCouncil/Members/CouncilMemberInfo/Member[PersonType='Physical']">
-              <tr>
-                <td>
-                  <xsl:call-template name="tmplSupervisoryCouncilPhys">
-                    <xsl:with-param name="council" select="SupervisoryCouncil" />
-                  </xsl:call-template>
-                </td>
-              </tr>
-            </xsl:if>
-            <xsl:if test="not(SupervisoryCouncil/Members/CouncilMemberInfo/Member[PersonType='Physical'])">
-              <tr>
-                <td>
-                  <i>(відсутні)</i>
-                </td>
-              </tr>
-            </xsl:if>
-            <tr>
-              <td align="left">
-                <h4>1.5.2.	Юридичні особи – члени наглядової (спостережної) ради юридичної особи</h4>
-              </td>
-            </tr>
-            <xsl:if test="SupervisoryCouncil/Members/CouncilMemberInfo/Member[PersonType='Legal']">
-              <tr>
-                <td>
-                  <xsl:call-template name="tmplSupervisoryCouncilLegal">
-                    <xsl:with-param name="council" select="SupervisoryCouncil" />
-                  </xsl:call-template>
-                </td>
-              </tr>
-            </xsl:if>
-            <xsl:if test="not(SupervisoryCouncil/Members/CouncilMemberInfo/Member[PersonType='Legal'])">
-              <tr>
-                <td>
-                  <i>(відсутні)</i>
-                </td>
-              </tr>
-            </xsl:if>
-          </xsl:if>
-          <xsl:if test="IsSupervisoryCouncilPresent!='true'">
-            <tr>
-              <td>
-                <input name="chkSupervisoryCouncilAbsent" type="checkbox" id="chkSupervisoryCouncilAbsent" disabled="disabled" checked="checked"/> Наглядова (спостережна) рада юридичної особи відсутня за статутом
-              </td>
-            </tr>
-          </xsl:if>
           <tr>
             <td>
               <h3>1.6.	Голова та члени виконавчого органу юридичної особи</h3>
