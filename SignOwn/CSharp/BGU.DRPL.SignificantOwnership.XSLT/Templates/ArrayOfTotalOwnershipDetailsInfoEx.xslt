@@ -8,10 +8,14 @@
   <xsl:import href="FormatAddressStreetEtc.xslt" />
   <xsl:import href="FormatAddressZipCityStreetEtc.xslt" />
   <xsl:import href="FormatAddressZipCityStreetEtcEx.xslt" />
+  <xsl:import href="ImplicitOwnershipUnwind.xslt" />
+  
 
   <xsl:template name="arrayOfTotalOwnershipDetailsInfoEx">
     <xsl:param name="theArr" />
     <xsl:param name="gpis" />
+    <xsl:param name="osHive" />
+    <xsl:param name="targetAssetId" />
     <table width="100%" style="border: 1pt solid black;">
       <thead>
         <tr>
@@ -82,10 +86,10 @@
               </xsl:choose>
             </xsl:variable>
             <tr>
-          <td>
+          <td valign="top">
             <xsl:value-of select="1 + count(preceding-sibling::*)"/>
           </td>
-          <td>
+              <td valign="top">
             <xsl:if test="$currGPI/PersonType='Legal'">
               <xsl:value-of select="$currGPI/LegalPerson/Name"/>
             </xsl:if>
@@ -93,7 +97,7 @@
               <xsl:value-of select="$currGPI/PhysicalPerson/FullName"/>
             </xsl:if>
           </td>
-          <td align="center">
+          <td align="center" valign="top">
             <xsl:if test="$currGPI/PersonType='Legal'">
               ЮО
             </xsl:if>
@@ -101,11 +105,11 @@
               ФО
             </xsl:if>
           </td>
-          <td align="center">
+          <td align="center" valign="top">
             <xsl:if test="$curr/TotalCapitalSharePct &gt;= 10">Так</xsl:if>
             <xsl:if test="$curr/TotalCapitalSharePct &lt; 10">Ні</xsl:if>
           </td>
-          <td align="left">
+          <td align="left" valign="top">
             <xsl:if test="null != $currGPICountry">
             <xsl:value-of select="$currGPICountry/CountryNameUkr"/>
             </xsl:if>
@@ -122,22 +126,29 @@
               </xsl:call-template>
             </xsl:if>
           </td>
-          <td align="right">
+          <td align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/DirectOwnership/Pct" />
             </xsl:call-template>
           </td>
-          <td align="right">
+          <td align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/ImplicitOwnership/Pct" />
             </xsl:call-template>
           </td>
-          <td align="right">
+          <td align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/TotalCapitalSharePct" />
             </xsl:call-template>
           </td>
-          <td>9</td>
+              <td valign="top">
+            <xsl:call-template name="implicitOwnershipUnwind">
+              <xsl:with-param name="ownerId" select="$curr/OwnerID" />
+              <xsl:with-param name="targetAssetId" select="$targetAssetId" />
+              <xsl:with-param name="osHive" select="$osHive" />
+              <xsl:with-param name="gpis" select="$gpis" />
+            </xsl:call-template>
+          </td>
         </tr>
           </xsl:if>
         </xsl:for-each>
