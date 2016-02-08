@@ -30,6 +30,7 @@
   <xsl:include href="ArrayOfTotalOwnershipDetailsInfoEx.xslt" />-->
 
   <xsl:template match="BankOwnershipStructureP328">
+    <xsl:variable name ="bankRef" select="BankRef" />
     <html>
       <head>
         <link rel="stylesheet" href="Questionnaire_Files/Questionnaire_print.css" />
@@ -65,7 +66,6 @@
                 </u>
               </h1>
               <br/>
-              <xsl:variable name ="bankRef" select="BankRef" />
               <!--<xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType='Legal'][1]"></xsl:variable>--> <!--works-->
               <!--<xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType=BankRef/LegalPerson/PersonType][1]"></xsl:variable>--> <!--doesn't work-->
               <xsl:variable name="gpiBank" select="MentionedIdentities/GenericPersonInfo[PersonType=$bankRef/LegalPerson/PersonType and LegalPerson/TaxCodeOrHandelsRegNr=$bankRef/LegalPerson/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$bankRef/LegalPerson/CountryISO3Code][1]"></xsl:variable> <!--works-->
@@ -83,6 +83,8 @@
               <xsl:call-template name="arrayOfTotalOwnershipDetailsInfoEx">
                 <xsl:with-param name="theArr" select="UltimateOwners" />
                 <xsl:with-param name="gpis" select="MentionedIdentities" />
+                <xsl:with-param name="osHive" select="OwnershipsHive" />
+                <xsl:with-param name="targetAssetId" select="$bankRef/LegalPerson" />
               </xsl:call-template>
             </td>
           </tr>
