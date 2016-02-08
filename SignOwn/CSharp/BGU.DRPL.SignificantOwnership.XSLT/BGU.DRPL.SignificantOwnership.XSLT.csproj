@@ -104,6 +104,7 @@
     <Content Include="Templates\FormatDate.xslt" />
     <Content Include="Templates\FullNameByPersonId.xslt" />
     <Content Include="Templates\ImplicitOwnershipUnwind.xslt" />
+    <Content Include="Templates\ImplicitOwnershipUnwindRecursive.xslt" />
     <Content Include="Templates\SignatoryInfo.xslt" />
     <Content Include="Templates\TotalOwnershipDetailsInfo.xslt" />
   </ItemGroup>
