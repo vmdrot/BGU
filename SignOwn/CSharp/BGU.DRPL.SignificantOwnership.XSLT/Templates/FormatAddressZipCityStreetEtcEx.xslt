@@ -8,8 +8,6 @@
       <xsl:value-of select="$address/Country/CountryNameUkr"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:if test="null != $gpiCountry">
-        <!--<xsl:value-of select="$gpiCountry/CountryNameUkr"/>-->
-      </xsl:if>
+      <xsl:value-of select="$gpiCountry/CountryNameUkr"/>
     </xsl:otherwise>
   </xsl:choose><xsl:if test="$address/ZipCode!=''">, <xsl:value-of select="normalize-space($address/ZipCode)"/></xsl:if><xsl:if test="$address/City!=''">, <xsl:value-of select="normalize-space($address/City)"/></xsl:if><xsl:if test="$address/Street!=''">, <xsl:value-of select="normalize-space($address/Street)"/></xsl:if><xsl:if test="$address/HouseNr!=''">, <xsl:value-of select="normalize-space($address/HouseNr)"/></xsl:if><xsl:if test="$address/ApptOfficeNr!=''">, <xsl:value-of select="normalize-space($address/ApptOfficeNr)"/></xsl:if></xsl:template></xsl:stylesheet>

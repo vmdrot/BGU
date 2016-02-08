@@ -3,6 +3,11 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
 >
   <!--<xsl:include href="FormatAddressZipCityStreetEtc.xslt" />-->
+  <xsl:import href="FormatDate.xslt" />
+  <xsl:import href="FormatPct.xslt" />
+  <xsl:import href="FormatAddressStreetEtc.xslt" />
+  <xsl:import href="FormatAddressZipCityStreetEtc.xslt" />
+  <xsl:import href="FormatAddressZipCityStreetEtcEx.xslt" />
 
   <xsl:template name="arrayOfTotalOwnershipDetailsInfoEx">
     <xsl:param name="theArr" />
@@ -40,27 +45,43 @@
           <xsl:variable name="curr" select="."/>
           <xsl:if test="$curr/OwnerID/PersonType != 'None'">
           <xsl:variable name="currGPI" select="$gpis/GenericPersonInfo[PersonType=$curr/OwnerID/PersonType and ((PersonType='Legal' and LegalPerson/TaxCodeOrHandelsRegNr=$curr/OwnerID/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$curr/OwnerID/CountryISO3Code) or (PersonType='Physical' and PhysicalPerson/TaxOrSocSecID=$curr/OwnerID/PersonCode and PhysicalPerson/CitizenshipCountry/CountryISONr=$curr/OwnerID/CountryISO3Code))][1]"></xsl:variable>
+            <!--<xsl:variable name="currGPICountry" select="$currGPI//PhysicalPerson/CitizenshipCountry"></xsl:variable>-->
+            <!--<xsl:if test="$currGPI/PersonType = 'Physical'">
+              <xsl:variable name="currGPICountry" select="$currGPI/PhysicalPerson/CitizenshipCountry" />
+            </xsl:if>
+            <xsl:if test="$currGPI/PersonType = 'Legal'">
+              <xsl:variable name="currGPICountry" select="$currGPI/LegalPerson/ResidenceCountry" />
+            </xsl:if>-->
+
+            <!--<xsl:variable name="currGPICountry" select="$currGPI/PhysicalPerson/CitizenshipCountry">-->
             <xsl:variable name="currGPICountry">
               <xsl:choose>
                 <xsl:when test="$currGPI/PersonType = 'Physical'">
-                  <xsl:value-of select="$currGPI/PhysicalPerson/CitizenshipCountry"/>
+                  <xsl:copy-of select ="$currGPI/PhysicalPerson/CitizenshipCountry/*"/>
                 </xsl:when>
                 <xsl:when test="$currGPI/PersonType = 'Legal'">
-                  <xsl:value-of select="$currGPI/LegalPerson/ResidenceCountry"/>
+                  <xsl:copy-of select="$currGPI/LegalPerson/ResidenceCountry/*"/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <ResidenceCountry>
-                    <CountryISO2Code>UA</CountryISO2Code>
-                    <CountryISO3Code>UKR</CountryISO3Code>
-                    <CountryISONr>804</CountryISONr>
-                    <CountryNameEng>UKRAINE</CountryNameEng>
-                    <CountryNameUkr>Україна</CountryNameUkr>
-                  </ResidenceCountry>
+                  <!--<xsl:element name="defaultCountry">
+                    <ResidenceCountry>
+                      <CountryISO2Code>UA</CountryISO2Code>
+                      <CountryISO3Code>UKR</CountryISO3Code>
+                      <CountryISONr>804</CountryISONr>
+                      <CountryNameEng>UKRAINE</CountryNameEng>
+                      <CountryNameUkr>Україна</CountryNameUkr>
+                    </ResidenceCountry>
+                  </xsl:element>-->
+                  <xsl:if test="null != $curr//CitizenshipCountry">
+                    <xsl:copy-of select="$curr//CitizenshipCountry/*"/>
+                  </xsl:if>
+                  <xsl:if test="null != $curr//ResidenceCountry">
+                    <xsl:copy-of select="$curr//ResidenceCountry/*"/>
+                  </xsl:if>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:variable>
-          
-        <tr>
+            <tr>
           <td>
             <xsl:value-of select="1 + count(preceding-sibling::*)"/>
           </td>
