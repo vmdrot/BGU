@@ -54,6 +54,10 @@ namespace BGU.DRPL.SignificantOwnership.Tests.QuestsMsgs
                     gpiBank.LegalPerson.Address = new Core.Spares.Dict.LocationInfo() { Country = CountryInfo.UKRAINE, ZipCode = "01001", City = "м.Київ", Street = "вул. Ольгинська", HouseNr = "3" };
             }
             #endregion
+
+            #region contact person
+            rslt.ContactPerson = new ContactInfo() { Person = new PhysicalPersonInfo() { FullName = "Левшинова Л.Г." }, Phones = new List<PhoneInfo>(new PhoneInfo[] { new PhoneInfo() { PhoneNr = "280-33-51" } }), Emails = new List<EmailInfo>(new EmailInfo[] { new EmailInfo(){ Email = "levshynova@arkada.ua" }}), PreferrableMeansOfCommunication = Core.Spares.MeansOfCommunication.Phone };
+            #endregion
             Appx2OwnershipStructLPChecker checker = new Appx2OwnershipStructLPChecker();
             checker.Questionnaire = appx2;
             rslt.UltimateOwners = new List<Core.Spares.Data.TotalOwnershipDetailsInfoEx>();
