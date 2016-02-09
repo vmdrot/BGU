@@ -16,32 +16,32 @@
     <xsl:param name="gpis" />
     <xsl:param name="osHive" />
     <xsl:param name="targetAssetId" />
-    <table width="100%" style="border: 1pt solid black;">
+    <table width="100%" style="border: solid thin; border-collapse: collapse;">
       <thead>
         <tr>
-          <th rowspan="2">№ з/п</th>
-          <th rowspan="2">Прізвище,  ім'я та по батькові фізичної  особи або повне найменування юридичної особи</th>
-          <th rowspan="2">Тип особи</th>
-          <th rowspan="2">Чи є особа власни- ком істотної участі  в банку</th>
-          <th rowspan="2">Інформація  про особу</th>
-          <th colspan="3">Участь особи в банку,  %</th>
-          <th rowspan="2">Опис взаємозв'язку особи з банком</th>
+          <th class="borderedTD" rowspan="2">№ з/п</th>
+          <th class="borderedTD" rowspan="2">Прізвище,  ім'я та по батькові фізичної  особи або повне найменування юридичної особи</th>
+          <th class="borderedTD" rowspan="2">Тип особи</th>
+          <th class="borderedTD" rowspan="2">Чи є особа власни- ком істотної участі  в банку</th>
+          <th class="borderedTD" rowspan="2">Інформація  про особу</th>
+          <th class="borderedTD" colspan="3">Участь особи в банку,  %</th>
+          <th class="borderedTD" rowspan="2">Опис взаємозв'язку особи з банком</th>
         </tr>
         <tr>
-          <th>Пряма</th>
-          <th>Опосеред-кована</th>
-          <th>Сукупна</th>
+          <th class="borderedTD">Пряма</th>
+          <th class="borderedTD">Опосеред-кована</th>
+          <th class="borderedTD">Сукупна</th>
         </tr>
         <tr>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th>7</th>
-          <th>8</th>
-          <th>9</th>
+          <th class="borderedTD">1</th>
+          <th class="borderedTD">2</th>
+          <th class="borderedTD">3</th>
+          <th class="borderedTD">4</th>
+          <th class="borderedTD">5</th>
+          <th class="borderedTD">6</th>
+          <th class="borderedTD">7</th>
+          <th class="borderedTD">8</th>
+          <th class="borderedTD">9</th>
         </tr>
       </thead>
       <tbody>
@@ -86,10 +86,10 @@
               </xsl:choose>
             </xsl:variable>
             <tr>
-          <td valign="top">
+          <td class="borderedTD" valign="top">
             <xsl:value-of select="1 + count(preceding-sibling::*)"/>
           </td>
-              <td valign="top">
+              <td class="borderedTD" valign="top">
             <xsl:if test="$currGPI/PersonType='Legal'">
               <xsl:value-of select="$currGPI/LegalPerson/Name"/>
             </xsl:if>
@@ -97,7 +97,7 @@
               <xsl:value-of select="$currGPI/PhysicalPerson/FullName"/>
             </xsl:if>
           </td>
-          <td align="center" valign="top">
+              <td class="borderedTD" align="center" valign="top">
             <xsl:if test="$currGPI/PersonType='Legal'">
               ЮО
             </xsl:if>
@@ -105,11 +105,11 @@
               ФО
             </xsl:if>
           </td>
-          <td align="center" valign="top">
+              <td class="borderedTD" align="center" valign="top">
             <xsl:if test="$curr/TotalCapitalSharePct &gt;= 10">Так</xsl:if>
             <xsl:if test="$curr/TotalCapitalSharePct &lt; 10">Ні</xsl:if>
           </td>
-          <td align="left" valign="top">
+              <td class="borderedTD" align="left" valign="top">
             <xsl:if test="null != $currGPICountry">
             <xsl:value-of select="$currGPICountry/CountryNameUkr"/>
             </xsl:if>
@@ -126,22 +126,22 @@
               </xsl:call-template>
             </xsl:if>
           </td>
-          <td align="right" valign="top">
+              <td class="borderedTD" align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/DirectOwnership/Pct" />
             </xsl:call-template>
           </td>
-          <td align="right" valign="top">
+              <td class="borderedTD" align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/ImplicitOwnership/Pct" />
             </xsl:call-template>
           </td>
-          <td align="right" valign="top">
+              <td class="borderedTD" align="right" valign="top">
             <xsl:call-template name="formatPct">
               <xsl:with-param name="pct" select="$curr/TotalCapitalSharePct" />
             </xsl:call-template>
           </td>
-              <td valign="top">
+              <td class="borderedTD" valign="top">
             <xsl:call-template name="implicitOwnershipUnwind">
               <xsl:with-param name="ownerId" select="$curr/OwnerID" />
               <xsl:with-param name="targetAssetId" select="$targetAssetId" />
