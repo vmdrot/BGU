@@ -3,11 +3,12 @@
     xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl"
 >
 <xsl:template name="formatAddressZipCityStreetEtcEx"><xsl:param name="address" /><xsl:param name="gpiCountry" />
+  <xsl:variable name="gpiCountryL" select="msxsl:node-set($gpiCountry)" />
   <xsl:choose>
     <xsl:when test ="null != $address/Country">
       <xsl:value-of select="$address/Country/CountryNameUkr"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:value-of select="$gpiCountry/CountryNameUkr/node()[1]"/>
+      <xsl:value-of select="$gpiCountryL/CountryNameUkr"/>
     </xsl:otherwise>
   </xsl:choose><xsl:if test="$address/ZipCode!=''">, <xsl:value-of select="normalize-space($address/ZipCode)"/></xsl:if><xsl:if test="$address/City!=''">, <xsl:value-of select="normalize-space($address/City)"/></xsl:if><xsl:if test="$address/Street!=''">, <xsl:value-of select="normalize-space($address/Street)"/></xsl:if><xsl:if test="$address/HouseNr!=''">, <xsl:value-of select="normalize-space($address/HouseNr)"/></xsl:if><xsl:if test="$address/ApptOfficeNr!=''">, <xsl:value-of select="normalize-space($address/ApptOfficeNr)"/></xsl:if></xsl:template></xsl:stylesheet>
