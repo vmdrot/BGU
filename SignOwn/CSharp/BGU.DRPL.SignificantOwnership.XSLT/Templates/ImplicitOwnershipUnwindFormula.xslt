@@ -9,9 +9,13 @@
     <xsl:param name="targetAssetId" />
     <xsl:param name="osHive" />
     <xsl:param name="gpis" />
-    <xsl:variable name="firstOS">
-      <xsl:copy-of select="$osHive/OwnershipStructure[Owner/CountryISO3Code = $ownerId/CountryISO3Code and Owner/PersonType = $ownerId/PersonType and Owner/PersonCode = $ownerId/PersonCode and not(Asset/CountryISO3Code = $targetAssetId/CountryISO3Code and Asset/PersonType = $targetAssetId/PersonType and Asset/PersonCode = $targetAssetId/PersonCode)]/*"/>
+    <xsl:variable name="firstOSRaw">
+      <xsl:copy-of select="$osHive/OwnershipStructure[Owner/CountryISO3Code = $ownerId/CountryISO3Code and Owner/PersonType = $ownerId/PersonType and Owner/PersonCode = $ownerId/PersonCode and not(Asset/CountryISO3Code = $targetAssetId/CountryISO3Code and Asset/PersonType = $targetAssetId/PersonType and Asset/PersonCode = $targetAssetId/PersonCode)][1]/*"/>
     </xsl:variable>
+    <!--<xsl:if test="function-available(msxsl:node-set)">
+      <xsl:text>function node-set is available</xsl:text>-->
+      <xsl:variable name="firstOS" select="msxsl:node-set($firstOSRaw)"></xsl:variable>
+    <!--<xsl:value-of select="$firstOS" />-->
     <xsl:for-each select="$osHive/OwnershipStructure[Owner/CountryISO3Code = $ownerId/CountryISO3Code and Owner/PersonType = $ownerId/PersonType and Owner/PersonCode = $ownerId/PersonCode]">
       <xsl:variable name="curr" select="."/>
       <xsl:choose>
@@ -19,7 +23,8 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:choose>
-            <xsl:when test="$curr/Asset/CountryISO3Code = $firstOS/Asset/CountryISO3Code and $curr/Asset/PersonType = $firstOS/Asset/PersonType and $curr/Asset/PersonCode = $firstOS/Asset/PersonCode and $curr/Owner/CountryISO3Code = $firstOS/Owner/CountryISO3Code and $curr/Owner/PersonType = $firstOS/Owner/PersonType and $curr/Owner/PersonCode = $firstOS/Owner/PersonCode"></xsl:when>
+            <xsl:when test="$curr/Asset/CountryISO3Code = $firstOS//Asset/CountryISO3Code and $curr/Asset/PersonType = $firstOS//Asset/PersonType and $curr/Asset/PersonCode = $firstOS//Asset/PersonCode"></xsl:when>
+            <!--<xsl:when test="$curr/Asset/CountryISO3Code = '455566666'"></xsl:when>-->
             <xsl:otherwise> + </xsl:otherwise>
           </xsl:choose>
           <xsl:value-of select="$curr/SharePct"/>
@@ -33,5 +38,6 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    <!--</xsl:if>-->
   </xsl:template>
 </xsl:stylesheet>
