@@ -28,7 +28,7 @@
         </title>
       </head>
       <body>
-        <table id="tblMain" width="1200px">
+        <table id="tblMain" width="100%">
           <tr>
             <td>
               <table width="100%">

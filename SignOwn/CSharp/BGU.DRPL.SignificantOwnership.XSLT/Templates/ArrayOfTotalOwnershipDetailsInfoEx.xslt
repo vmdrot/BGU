@@ -19,18 +19,18 @@
     <table width="100%" style="border: solid thin; border-collapse: collapse;">
       <thead>
         <tr>
-          <th class="borderedTD" rowspan="2">№ з/п</th>
-          <th class="borderedTD" rowspan="2">Прізвище,  ім'я та по батькові фізичної  особи або повне найменування юридичної особи</th>
-          <th class="borderedTD" rowspan="2">Тип особи</th>
-          <th class="borderedTD" rowspan="2">Чи є особа власни- ком істотної участі  в банку</th>
-          <th class="borderedTD" rowspan="2">Інформація  про особу</th>
-          <th class="borderedTD" colspan="3">Участь особи в банку,  %</th>
-          <th class="borderedTD" rowspan="2">Опис взаємозв'язку особи з банком</th>
+          <th class="borderedTD" rowspan="2" width="2%">№ з/п</th>
+          <th class="borderedTD" rowspan="2" width="10%">Прізвище,  ім'я та по батькові фізичної  особи або повне найменування юридичної особи</th>
+          <th class="borderedTD" rowspan="2" width="3%">Тип особи</th>
+          <th class="borderedTD" rowspan="2" width="5%">Чи є особа власни- ком істотної участі  в банку</th>
+          <th class="borderedTD" rowspan="2" width="10%">Інформація  про особу</th>
+          <th class="borderedTD" colspan="3" width="15%">Участь особи в банку,  %</th>
+          <th class="borderedTD" rowspan="2" width="55%">Опис взаємозв'язку особи з банком</th>
         </tr>
         <tr>
-          <th class="borderedTD">Пряма</th>
-          <th class="borderedTD">Опосеред-кована</th>
-          <th class="borderedTD">Сукупна</th>
+          <th class="borderedTD" width="5%">Пряма</th>
+          <th class="borderedTD" width="5%">Опосеред-кована</th>
+          <th class="borderedTD" width="5%">Сукупна</th>
         </tr>
         <tr>
           <th class="borderedTD">1</th>
