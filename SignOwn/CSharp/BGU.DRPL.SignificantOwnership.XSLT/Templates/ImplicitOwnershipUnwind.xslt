@@ -13,7 +13,7 @@
     <xsl:for-each select="$osHive/OwnershipStructure[Owner/CountryISO3Code = $ownerId/CountryISO3Code and Owner/PersonType = $ownerId/PersonType and Owner/PersonCode = $ownerId/PersonCode]">
       <xsl:variable name="curr" select="."/>
       <xsl:choose>
-        <xsl:when test="$curr/Asset/CountryISO3Code = $targetAssetId/CountryISO3Code and $curr/Asset/PersonType = $targetAssetId/PersonType and $curr/Asset/PersonCode = $targetAssetId/PersonCode">
+        <xsl:when test="$curr/Asset/CountryISO3Code = $targetAssetId/CountryISO3Code and $curr/Asset/PersonType = $targetAssetId/PersonType and $curr/Asset/PersonCode = $targetAssetId/PersonCode and $curr/Owner/CountryISO3Code = $ownerId/CountryISO3Code and $curr/Owner/PersonType = $ownerId/PersonType and $curr/Owner/PersonCode = $ownerId/PersonCode">
           Акціонер <xsl:call-template name="fullNameByPersonId"><xsl:with-param name="gpis" select="$gpis" /><xsl:with-param name="id" select="$curr/Asset" /></xsl:call-template> (частка <xsl:value-of select="$curr/SharePct"/>%)<br/><br/>
         </xsl:when>
         <xsl:otherwise>
@@ -38,6 +38,7 @@
             <xsl:with-param name="gpis" select="$gpis" />
             <xsl:with-param name="id" select="$curr/Asset" />
           </xsl:call-template>
+          <br/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>

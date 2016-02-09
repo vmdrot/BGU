@@ -12,22 +12,22 @@
     <xsl:param name="gpis" />
     <xsl:param name="osHive" />
     <xsl:param name="targetAssetId" />
-    <table width="100%" style="border: 1pt solid;">
+    <table width="100%" style="border: 1pt solid;border-collapse: collapse;">
       <thead>
         <tr>
-          <th width="3%">
+          <th class="borderedTD" width="3%">
             №<br/>з/п
           </th>
-          <th width="27%">
+          <th class="borderedTD" width="27%">
             Прізвище, ім'я  та по батькові фізичної  особи
             або повне найменування юридичної особи
           </th>
-          <th width="70%">Розрахунок</th>
+          <th class="borderedTD" width="70%">Розрахунок</th>
         </tr>
         <tr>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
+          <th class="borderedTD">1</th>
+          <th class="borderedTD">2</th>
+          <th class="borderedTD">3</th>
         </tr>
       </thead>
       <tbody>
@@ -37,10 +37,10 @@
             <xsl:variable name="currGPI" select="$gpis/GenericPersonInfo[PersonType=$curr/OwnerID/PersonType and ((PersonType='Legal' and LegalPerson/TaxCodeOrHandelsRegNr=$curr/OwnerID/PersonCode and LegalPerson/ResidenceCountry/CountryISONr=$curr/OwnerID/CountryISO3Code) or (PersonType='Physical' and PhysicalPerson/TaxOrSocSecID=$curr/OwnerID/PersonCode and PhysicalPerson/CitizenshipCountry/CountryISONr=$curr/OwnerID/CountryISO3Code))][1]"></xsl:variable>
             <xsl:if test="$curr/ImplicitOwnership/Pct > 0">
               <tr>
-                <td valign="top">
+                <td class="borderedTD" valign="top">
                   <xsl:value-of select="1 + count(preceding-sibling::*)"/>
                 </td>
-                <td valign="top">
+                <td class="borderedTD" valign="top">
                   <xsl:if test="$currGPI/PersonType='Legal'">
                     <xsl:value-of select="$currGPI/LegalPerson/Name"/>
                   </xsl:if>
@@ -48,7 +48,7 @@
                     <xsl:value-of select="$currGPI/PhysicalPerson/FullName"/>
                   </xsl:if>
                 </td>
-                <td valign="top" align="left">
+                <td class="borderedTD" valign="top" align="left">
                   <xsl:call-template name="implicitOwnershipUnwindFormula">
                     <xsl:with-param name="ownerId" select="$curr/OwnerID" />
                     <xsl:with-param name="targetAssetId" select="$targetAssetId" />
