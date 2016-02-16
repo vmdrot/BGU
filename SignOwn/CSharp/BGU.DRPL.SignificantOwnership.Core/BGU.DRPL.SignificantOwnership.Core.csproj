@@ -98,6 +98,7 @@
     <Compile Include="FXLoansReg\Spares\AgreementAttributes.cs" />
     <Compile Include="FXLoansReg\Spares\NBURegistrationAttributes.cs" />
     <Compile Include="FXLoansReg\Spares\SWIFPaymentReqs.cs" />
+    <Compile Include="FXRetailers\NFUInfo.cs" />
     <Compile Include="Interfaces\IAnonymizeable.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\ISensitiveDataAnonymizer.cs" />
