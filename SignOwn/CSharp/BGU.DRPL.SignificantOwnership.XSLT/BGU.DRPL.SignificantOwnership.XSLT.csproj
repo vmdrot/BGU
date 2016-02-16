@@ -83,7 +83,9 @@
     <Content Include="Templates\ArrayOfTotalOwnershipDetailsInfoEx.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\BankInfo.xslt" />
+    <Content Include="Templates\BankInfo.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Templates\BankOwnershipStructureP328.xslt">
       <SubType>Designer</SubType>
     </Content>
