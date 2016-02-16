@@ -1,0 +1,1 @@
+CALL ApplyBulkChangesSummaryCorrectionBulk.cmd D:\home\vmdrot\BGU\Var\DerzhReiestr\OshchadBulkChange\RealPackages\BGU-DRPL_-_OshchadBulkChanges_20160121_PROD.xml 325796
