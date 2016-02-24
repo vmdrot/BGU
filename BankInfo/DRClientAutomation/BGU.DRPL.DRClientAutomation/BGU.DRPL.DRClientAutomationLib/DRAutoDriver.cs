@@ -28,6 +28,23 @@ namespace BGU.DRPL.DRClientAutomationLib
             return wiGrid.Handle;
         }
 
+        public static IntPtr FindMiddleBranchesGrid(IntPtr parent)
+        {
+                //Window 02400A88 "Філії  << публічне акціонерне товариство "Державний ощадний банк України"" TGroupBox
+                //    Window 026106BA "" TDBGridEh
+            WindowInfo wi2ndBranchesGroupBox = FormAutomUtils.FindChildWindowCaptionContains(parent, "Філії  << ", "TGroupBox");
+
+            //if (wi2ndBranchesGroupBox == null)
+            //    wi2ndBranchesGroupBox = FormAutomUtils.FindChildWindowCaptionContains(parent, "Відділення  << Філія - ", "TGroupBox");
+            if (wi2ndBranchesGroupBox == null)
+                return (IntPtr)0;
+            System.Console.WriteLine("wi2ndBranchesGroupBox.Handle = {0}", wi2ndBranchesGroupBox.Handle);
+            WindowInfo wiGrid = FormAutomUtils.FindChildWindowCaptionContains(wi2ndBranchesGroupBox.Handle, "", "TDBGridEh");
+            if (wiGrid == null)
+                return (IntPtr)0; //todo
+            return wiGrid.Handle;
+        }
+
         public static IntPtr FindEditTVBVButton(IntPtr parent)
         {
             WindowInfo wiTVBVActionBtnsGroupBox = FormAutomUtils.FindChildWindowCaptionEquals(parent, "Відділення", "TGroupBox");
@@ -48,6 +65,37 @@ namespace BGU.DRPL.DRClientAutomationLib
                     return (IntPtr)0; //todo
             }
             return wiEditBtn.Handle;
+        }
+
+
+        public static IntPtr FindRollbackTVBVChanges4TodayButton(IntPtr parent)
+        {
+            //Window 022D0AAE "Відділення" TGroupBox
+            //    Window 02340C5E "ЕП" TBitBtn
+            //    Window 021E0C4A "ВИЛУЧИТИ ЗМІНИ ЗА СЬОГОДНІ" TBitBtn
+            //    Window 024A08BE "   ДОДАТИ           " TBitBtn
+            //    Window 00B50B1E "  РЕДАГУВАННЯ" TBitBtn
+            //    Window 00A90AE0 " ПЕРЕГЛЯД" TBitBtn
+
+            WindowInfo wiTVBVActionBtnsGroupBox = FormAutomUtils.FindChildWindowCaptionEquals(parent, "Відділення", "TGroupBox");
+            if (wiTVBVActionBtnsGroupBox == null)
+            {
+                System.Console.WriteLine("wiTVBVActionBtnsGroupBox == null");
+                return (IntPtr)0;
+            }
+            System.Console.WriteLine("wiTVBVActionBtnsGroupBox.Handle = {0}", wiTVBVActionBtnsGroupBox.Handle);
+
+            string caption = "ВИЛУЧИТИ ЗМІНИ ЗА СЬОГОДНІ";
+
+            WindowInfo wiRollBackBtn = FormAutomUtils.FindChildWindowCaptionContains(wiTVBVActionBtnsGroupBox.Handle, caption, "TBitBtn");
+
+            if (wiRollBackBtn == null)
+            {
+                wiRollBackBtn = FormAutomUtils.FindChildWindowCaptionContains(wiTVBVActionBtnsGroupBox.Handle, caption, "Button");
+                if (wiRollBackBtn == null)
+                    return (IntPtr)0; //todo
+            }
+            return wiRollBackBtn.Handle;
         }
 
         public static string ReadBranchID(IntPtr hwndBranchEditForm)
@@ -513,6 +561,145 @@ namespace BGU.DRPL.DRClientAutomationLib
                     FormAutomUtils.FocusAndClickArrowDown(hwndGrid);
                     Thread.Sleep(500);
                 }
+
+            } while (true);
+
+            return true;
+        }
+
+
+        public static bool RollbackAllChangesForToday(bool bEmulateOnly, int pauseBeforeClosing, int maxProcessCount)
+        {
+
+            IntPtr mainEditBranchesForm = FormAutomUtils.FindWindow("TBanks_modFm", "Редагування банківських установ");
+
+            if (mainEditBranchesForm == (IntPtr)0)
+            {
+                System.Console.WriteLine("Can't find main window");
+
+                return false;
+            }
+            int drClientProcessId = FormAutomUtils.GetWindowProcess(mainEditBranchesForm);
+            System.Console.WriteLine("drClientProcessId = {0}", drClientProcessId);
+            System.Console.WriteLine("mainEditBranchesForm = {0} ({0:X8})", mainEditBranchesForm);
+            if (!FormAutomUtils.SetForegroundWindow(mainEditBranchesForm))
+            {
+                System.Console.WriteLine("Can't activate main window");
+                return false;
+            }
+            IntPtr hwndGrid2 = DRAutoDriver.FindMiddleBranchesGrid(mainEditBranchesForm);
+
+            System.Console.WriteLine("hwndGrid2 = {0}", hwndGrid2);
+            
+            IntPtr hwndGrid3 = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
+            System.Console.WriteLine("hwndGrid3(I) = {0}", hwndGrid3);
+            if (hwndGrid3 == IntPtr.Zero)
+            {
+                FormAutomUtils.SetFocus(hwndGrid2);
+                FormAutomUtils.ClickGrid(hwndGrid2, 20, 20);
+                Thread.Sleep(500);
+                hwndGrid3 = DRAutoDriver.FindLowestBranchesGrid(mainEditBranchesForm);
+                System.Console.WriteLine("hwndGrid3(II) = {0}", hwndGrid3);
+            }
+            IntPtr hwndRollBackBtn = DRAutoDriver.FindRollbackTVBVChanges4TodayButton(mainEditBranchesForm);
+            System.Console.WriteLine("hwndRollBackBtn = {0}", hwndRollBackBtn);
+
+            if (hwndGrid2 == IntPtr.Zero || hwndGrid3 == IntPtr.Zero || hwndRollBackBtn == IntPtr.Zero)
+            {
+                System.Console.WriteLine("Can't find all needed windows");
+                return false;
+            }
+            System.Console.WriteLine("About to enter the loop");
+            string prevBranchId = string.Empty;
+            string lastBranchId = string.Empty;
+            int processIdx = 0;
+            do
+            {
+
+                FormAutomUtils.SetFocus(hwndGrid2);
+                FormAutomUtils.ClickGrid(hwndGrid2, 20, 20);
+                Thread.Sleep(500);
+                System.Console.WriteLine("Clicked grid2");
+                FormAutomUtils.SetFocus(hwndGrid3);
+                FormAutomUtils.ClickGrid(hwndGrid3);
+                System.Console.WriteLine("Clicked grid3");
+                Thread.Sleep(500);
+                FormAutomUtils.ClickButton2(hwndRollBackBtn);
+                System.Console.WriteLine("Clicked rollback btn");
+                Thread.Sleep(300);
+                #region deal with confirmation msg boxes
+                string cfmDlgCaption = "Підтвердження";
+                IntPtr hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow(cfmDlgCaption, "#32770 (Dialog)", drClientProcessId, 7, 250);
+                System.Console.WriteLine("Waited for confirm changes dlg (I)");
+                if (hwndConfirmChangesDlg == IntPtr.Zero)
+                    hwndConfirmChangesDlg = FormAutomUtils.WaitForWindow(cfmDlgCaption, null, drClientProcessId, 7, 250);
+                System.Console.WriteLine("Waited for confirm changes dlg (II)");
+                System.Console.WriteLine("hwndConfirmChangesDlg = {0}", hwndConfirmChangesDlg);
+                if (hwndConfirmChangesDlg == IntPtr.Zero)
+                {
+                    System.Console.WriteLine("Failed to find confirm changes save dialog");
+                }
+                else
+                {
+                    IntPtr hwndYesBtn = FormAutomUtils.WaitForChildWindow(hwndConfirmChangesDlg, "&Так", "Button", 7, 100);
+                    System.Console.WriteLine("hwndYesBtn = {0}", hwndYesBtn);
+                    if (hwndYesBtn == IntPtr.Zero)
+                    {
+                        System.Console.WriteLine("Failed to find yes button on confirm changes save dialog");
+                    }
+                    else
+                    {
+                        if (bEmulateOnly)
+                        {
+                            if (pauseBeforeClosing > 0)
+                                Thread.Sleep(pauseBeforeClosing);
+                            FormAutomUtils.CloseWindow(hwndConfirmChangesDlg);
+                            continue;
+                        }
+                        FormAutomUtils.ClickButton2(hwndYesBtn);
+                        System.Console.WriteLine("Clicked hwndYesBtn ");
+                        IntPtr hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "TMessageForm", drClientProcessId, 10, 100);
+                        System.Console.WriteLine("Waited for REIESTR wnd(I)");
+                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                            hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", "MessageForm", drClientProcessId, 10, 100);
+                        System.Console.WriteLine("Waited for REIESTR wnd(II)");
+                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                            hwndChangesSavedOKDlg = FormAutomUtils.WaitForWindow("РЕЄСТР", null, drClientProcessId, 10, 100);
+                        System.Console.WriteLine("Waited for REIESTR wnd(III)");
+
+                        System.Console.WriteLine("hwndChangesSavedOKDlg = {0}", hwndChangesSavedOKDlg);
+                        if (hwndChangesSavedOKDlg == IntPtr.Zero)
+                        {
+                            System.Console.WriteLine("Failed to find changes saved OK dialog");
+                        }
+                        else
+                        {
+                            IntPtr hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "TButton", 7, 50);
+                            System.Console.WriteLine("Waited for hwndOKBtn(I)");
+                            if (hwndOKBtn == IntPtr.Zero)
+                                hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", "Button", 7, 50);
+                            System.Console.WriteLine("Waited for hwndOKBtn(II)");
+                            if (hwndOKBtn == IntPtr.Zero)
+                                hwndOKBtn = FormAutomUtils.WaitForChildWindow(hwndChangesSavedOKDlg, "OK", null, 7, 50);
+                            System.Console.WriteLine("hwndOKBtn = {0}", hwndOKBtn);
+                            System.Console.WriteLine("Waited for hwndOKBtn(III)");
+                            if (hwndOKBtn == IntPtr.Zero)
+                            {
+                                System.Console.WriteLine("Failed to find ok button on changes saved OK dialog");
+                            }
+                            else
+                            {
+                                FormAutomUtils.ClickButton2(hwndOKBtn);
+                                processIdx++;
+                            }
+                        }
+                    }
+                }
+
+                #endregion
+                if (maxProcessCount > 0 && processIdx >= maxProcessCount)
+                    break;
+                Thread.Sleep(1000);
 
             } while (true);
 

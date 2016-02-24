@@ -49,6 +49,7 @@ namespace BGU.DRPL.DRClientAutomation.Console
             _cmdHandlers.Add("presscontextmenubutton2test", PressContextMenuButton2Test);
             _cmdHandlers.Add("applychangessummarycorrectiontosinglebranchtest", ApplyChangesSummaryCorrectionToSingleBranchTest);
             _cmdHandlers.Add("applychangessummarycorrectionbulk", ApplyChangesSummaryCorrectionBulk);
+            _cmdHandlers.Add("rollbackallchangesfortoday", RollbackAllChangesForToday);
             #endregion
 
 
@@ -536,6 +537,49 @@ namespace BGU.DRPL.DRClientAutomation.Console
                 PrintTBVBChangeResultInfo(rslts, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.rslts.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
                 PrintTBVBChangeNotFoundsInfo(notFoundBranches, string.Format("ApplyBulkOpsSvcsChanges_{0}.{1}.{2}.notFound.txt", (bEmulateOnly ? "Emul" : "Write"), resultsTabFileTimeSeed, parentMFO));
             }
+        }
+
+        private static void RollbackAllChangesForToday(string[] args)
+        {
+            int pauseBeforeClosing;  //1
+            bool bEmulateOnly;       //2
+            int maxProcessCount;     //3
+
+            if (args.Length > 1)
+            {
+                string pauseBeforeClosingStr = args[1];
+                if (!int.TryParse(pauseBeforeClosingStr, out pauseBeforeClosing))
+                    pauseBeforeClosing = 0;
+            }
+            else
+                pauseBeforeClosing = 0;
+
+            if (args.Length > 2)
+            {
+                string bEmulateOnlyStr = args[2];
+                if (!bool.TryParse(bEmulateOnlyStr, out bEmulateOnly))
+                    bEmulateOnly = true;
+            }
+            else
+                bEmulateOnly = true;
+
+            if (args.Length > 3)
+            {
+                string maxProcessCountStr = args[3];
+                if (!int.TryParse(maxProcessCountStr, out maxProcessCount))
+                    maxProcessCount = 0;
+            }
+            else
+                maxProcessCount = 0;
+
+            DateTime dtStart = DateTime.Now;
+            System.Console.WriteLine("Started: {0}", dtStart);
+            if (!DRAutoDriver.RollbackAllChangesForToday(bEmulateOnly, pauseBeforeClosing, maxProcessCount))
+            {
+                System.Console.WriteLine("Failed to roll back change in bulk as a whole");
+            }
+            else
+                System.Console.WriteLine("Roll back change in bulk succeeded");
         }
 
         private static void PrintTBVBChangeResultInfo(List<TBVBChangeResultInfo> rslts, string fileName)

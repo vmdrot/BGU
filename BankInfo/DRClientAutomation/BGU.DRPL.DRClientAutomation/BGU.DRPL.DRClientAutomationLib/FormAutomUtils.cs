@@ -386,7 +386,12 @@ namespace BGU.DRPL.DRClientAutomationLib
 
         public static void ClickGrid(IntPtr hwndGrid)
         {
-            ClickTab(hwndGrid, 10, 20);
+            ClickGrid(hwndGrid, 10, 20);
+        }
+
+        public static void ClickGrid(IntPtr hwndGrid, int xCorrection, int yCorrection)
+        {
+            ClickTab(hwndGrid, xCorrection, yCorrection);
         }
 
         public static List<WindowInfo> ListChildControls(IntPtr parentWnd)
