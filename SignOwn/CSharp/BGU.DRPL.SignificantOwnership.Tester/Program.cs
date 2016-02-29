@@ -25,6 +25,7 @@ using BGU.DRPL.SignificantOwnership.Core.EKDRBU.Spares.TextualFinBankOpsSvc;
 using System.Text.RegularExpressions;
 using BGU.DRPL.SignificantOwnership.Utility.Office;
 using BGU.DRPL.SignificantOwnership.Facade.Anonymizing;
+using BGU.DRPL.SignificantOwnership.Core.FXRetailers;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -79,6 +80,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("parsegenlicnonbankstest", ParseGenLicNonBanksTest);
             _cmdHandlers.Add("oshchadzhytomyropsbulkchange", OshchadZhytomyrOpsBulkChange);
             _cmdHandlers.Add("anonymizepost328msg", AnonymizePost328Msg);
+            _cmdHandlers.Add("updatexsdsfxretailerslicenses", UpdateXSDsFXRetailersLicenses);
             #endregion
 
             #endregion
@@ -1067,6 +1069,17 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
 
             ProcessTypeExport2XSD(typeof(BankOwnershipStructureP328), assemblySummariesXml);
+
+        }
+
+        private static void UpdateXSDsFXRetailersLicenses(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(BankOwnershipStructureP328).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.Messages" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.FXRetailers" };
+
+            ProcessTypeExport2XSD(typeof(FinBankLicensingEnumsUnion), assemblySummariesXml);
 
         }
 

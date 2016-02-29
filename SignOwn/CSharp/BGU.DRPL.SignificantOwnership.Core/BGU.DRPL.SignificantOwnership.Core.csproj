@@ -84,6 +84,7 @@
     <Compile Include="Checks\Appx2OwnershipStructLPChecker.cs" />
     <Compile Include="Checks\IQuestionnaireChecker.cs" />
     <Compile Include="Checks\QuestionnaireCheckUtils.cs" />
+    <Compile Include="FXLicensing\Messages\FXFinOpsInceptionMsgAppx8.cs" />
     <Compile Include="FXLicensing\Messages\IndividualFXLicenseAnnulMsgAppx9.cs" />
     <Compile Include="FXLicensing\Messages\IndividualFXLicenseAppx3.cs" />
     <Compile Include="FXLicensing\Messages\IndividualFXLicenseChangesAppx4.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="FXLoansReg\Spares\AgreementAttributes.cs" />
     <Compile Include="FXLoansReg\Spares\NBURegistrationAttributes.cs" />
     <Compile Include="FXLoansReg\Spares\SWIFPaymentReqs.cs" />
+    <Compile Include="FXRetailers\FinBankLicensingEnumsUnion.cs" />
     <Compile Include="FXRetailers\NFUInfo.cs" />
     <Compile Include="Interfaces\IAnonymizeable.cs" />
     <Compile Include="Interfaces\IModule.cs" />
