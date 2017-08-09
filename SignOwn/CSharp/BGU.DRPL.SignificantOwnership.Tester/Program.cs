@@ -26,6 +26,7 @@ using System.Text.RegularExpressions;
 using BGU.DRPL.SignificantOwnership.Utility.Office;
 using BGU.DRPL.SignificantOwnership.Facade.Anonymizing;
 using BGU.DRPL.SignificantOwnership.Core.FXRetailers;
+using System.Reflection;
 
 namespace BGU.DRPL.SignificantOwnership.Tester
 {
@@ -37,7 +38,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
         private static readonly Dictionary<string, CmdHandler> _cmdHandlers;
 
         private static readonly string XsdExePath;
-        private static readonly string XsdFilesOutputDir;
+        private static string XsdFilesOutputDir;
         private static readonly string OriginalXsdFilesOutputDir;
         private static readonly bool XsdPutDispNmDescrIntoAnnotation;
         private static readonly string XmlFormatterPath;
@@ -81,6 +82,8 @@ namespace BGU.DRPL.SignificantOwnership.Tester
             _cmdHandlers.Add("oshchadzhytomyropsbulkchange", OshchadZhytomyrOpsBulkChange);
             _cmdHandlers.Add("anonymizepost328msg", AnonymizePost328Msg);
             _cmdHandlers.Add("updatexsdsfxretailerslicenses", UpdateXSDsFXRetailersLicenses);
+            _cmdHandlers.Add("updatexsdsuniversal", UpdateXSDsUniversal);
+            _cmdHandlers.Add("updatexsdsrcukru", UpdateXSDsRcuKru);
             #endregion
 
             #endregion
@@ -89,7 +92,7 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         static void Main(string[] args)
         {
-            Console.Read();
+            //Console.Read();
 
             //CreateSampleAppx2OwnershipStructLP();
             //LocationInfoParser();
@@ -1061,6 +1064,19 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         }
 
+        private static void UpdateXSDsUniversal(string[] args)
+        {
+            string assemblyPath = args[1];
+            string typeFQN = args[2];
+            string outDir = args[3];
+            XsdFilesOutputDir = outDir;
+            Assembly asm = Assembly.LoadFile(assemblyPath);
+            Type typ = asm.GetType(typeFQN, true, false);
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(asm);
+            ProcessTypeExport2XSD(typ, assemblySummariesXml);
+
+        }
+
         private static void UpdateXSDs328P(string[] args)
         {
 
@@ -1072,6 +1088,16 @@ namespace BGU.DRPL.SignificantOwnership.Tester
 
         }
 
+        private static void UpdateXSDsRcuKru(string[] args)
+        {
+
+            XmlDocument assemblySummariesXml = XSDReflectionUtil.LoadAnnotationXml(typeof(RcuKruEntry).Assembly);
+            string[] auxNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Spares.Data", "BGU.DRPL.SignificantOwnership.Core.Spares.Dict", "BGU.DRPL.SignificantOwnership.Core.Spares", "BGU.DRPL.SignificantOwnership.Core.Messages" };
+            string[] questNamespacesNames = new string[] { "BGU.DRPL.SignificantOwnership.Core.Questionnaires" };
+
+            ProcessTypeExport2XSD(typeof(RcuKruEntry), assemblySummariesXml);
+
+        }
         private static void UpdateXSDsFXRetailersLicenses(string[] args)
         {
 

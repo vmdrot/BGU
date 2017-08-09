@@ -1,0 +1,1 @@
+CALL UpdateXSDsUniversal_worker.cmd D:\home\vmdrot\DEV\BGU\SignOwn\CSharp\BGU.DRPL.SignificantOwnership.Tester\bin\Debug\BGU.DRPL.SignificantOwnership.Core.dll BGU.DRPL.SignificantOwnership.Core.EKDRBU.Legacy.RcuKruEntry D:\home\vmdrot\Testing\OpenData\Input\bank.gov.ua

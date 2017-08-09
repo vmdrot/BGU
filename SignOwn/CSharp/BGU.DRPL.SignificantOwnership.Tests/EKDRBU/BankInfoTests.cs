@@ -33,7 +33,14 @@ namespace BGU.DRPL.SignificantOwnership.Tests.EKDRBU
         public void ParseDeptListSaveXml()
         {
             List<DeptListEntry> depts = ListDepts();
-            Tools.WriteXML<List<DeptListEntry>>(depts, @"D:\home\vmdrot\BGU\Var\eGov\OpenData\DeptList\sample.xml");
+            Tools.WriteXML<List<DeptListEntry>>(depts, @"D:\home\vmdrot\Testing\OpenData\Input\bank.gov.ua\DptList.xml");
+        }
+
+        [Test]
+        public void ParseRcuKruSaveXml()
+        {
+            List<RcuKruEntry> depts = ListRcuKrus();
+            Tools.WriteXML<List<RcuKruEntry>>(depts, @"D:\home\vmdrot\Testing\OpenData\Input\bank.gov.ua\RCUKRU.xml");
         }
 
         private void PrintDeptsWorker(List<DeptListEntry> depts)
@@ -50,7 +57,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.EKDRBU
         private List<DeptListEntry> ListDepts()
         {
             List<DeptListEntry> depts = new List<DeptListEntry>();
-            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\BGU\Var\DerzhReiestr\ShBO\dptlist.dbf");
+            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\Testing\OpenData\Input\bank.gov.ua\dptlist.dbf");
             foreach (DataRow dr in dt.Rows)
             {
                 depts.Add(DeptListEntry.Parse(dr));
@@ -58,6 +65,16 @@ namespace BGU.DRPL.SignificantOwnership.Tests.EKDRBU
             return depts;
         }
 
+        private List<RcuKruEntry> ListRcuKrus()
+        {
+            List<RcuKruEntry> depts = new List<RcuKruEntry>();
+            DataTable dt = RcuKruReader.Read(@"D:\home\vmdrot\Testing\OpenData\Input\bank.gov.ua\RCUKRU.DBF");
+            foreach (DataRow dr in dt.Rows)
+            {
+                depts.Add(RcuKruEntry.Parse(dr));
+            }
+            return depts;
+        }
 
         [Test]
         public void ListNFUs()
