@@ -22,20 +22,20 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         private const string WHICH_POSSESSES_FMT = "якому  належить 44.6% акцій  ТОВ \"Будеволюція\"";
         private const string VIA_FMT = "Через ТОВ \"Бориспіль-Інвест-Перспективи\" (частка 22%) ";
 
-        private const string SHAREHOLDER_WORDING_START = "Акціонер[ ]{0,1}";
-        private const string CONTROLLER_WORDING_START = "Контролер[ ]{0,1}";
-        private const string WHICH_POSSESSES_WORDING_START = "якому[ ]+належить[ ]{0,1}";
-        private const string VIA_WORDING_START = "Через[ ]+";
-        private const string ON_BEHALF_OF_WORDING_START = "від[ ]+імені[ ]{0,1}";
-        private const string ON_BEHALF_OF2_WORDING_START = "діє[ ]+від[ ]{0,1}";
-        private const string WHICH_IS_CONTROLLER_WORDING_START = "який[ ]+є[ ]+контролером[ ]{0,1}";
-        private const string PCT_RGX_PTRN = "[0-9\\.\\,]+\\%";
-        private static readonly Regex PCT_RGX = new Regex(PCT_RGX_PTRN, RegexOptions.IgnoreCase|RegexOptions.Multiline);
+        protected const string SHAREHOLDER_WORDING_START = "Акціонер[ ]{0,1}";
+        protected const string CONTROLLER_WORDING_START = "Контролер[ ]{0,1}";
+        protected const string WHICH_POSSESSES_WORDING_START = "якому[ ]+належить[ ]{0,1}";
+        protected const string VIA_WORDING_START = "Через[ ]+";
+        protected const string ON_BEHALF_OF_WORDING_START = "від[ ]+імені[ ]{0,1}";
+        protected const string ON_BEHALF_OF2_WORDING_START = "діє[ ]+від[ ]{0,1}";
+        protected const string WHICH_IS_CONTROLLER_WORDING_START = "який[ ]+є[ ]+контролером[ ]{0,1}";
+        protected const string PCT_RGX_PTRN = "[0-9\\.\\,]+\\%";
+        protected static readonly Regex PCT_RGX = new Regex(PCT_RGX_PTRN, RegexOptions.IgnoreCase|RegexOptions.Multiline);
 
-        private static readonly Dictionary<WordingType, WordingParseHandler> WORDING_PARSE_HANDLERS;
-        private static readonly Dictionary<string, WordingType> WORDING_STARTS2TYPES;
-        private static readonly Dictionary<string, Regex> WORDINGS2REGEXES;
-        private static readonly string WORDINGS_SPLIT_PTRN;
+        protected static readonly Dictionary<WordingType, WordingParseHandler> WORDING_PARSE_HANDLERS;
+        protected static readonly Dictionary<string, WordingType> WORDING_STARTS2TYPES;
+        protected static readonly Dictionary<string, Regex> WORDINGS2REGEXES;
+        protected static readonly string WORDINGS_SPLIT_PTRN;
         #endregion
 
         private static JsonSerializerSettings _jsonSerializationSettings;
@@ -77,7 +77,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
             WORDING_STARTS2TYPES.Add(WHICH_IS_CONTROLLER_WORDING_START, WordingType.WhichIsController);
             #endregion
 
-            #region 
+            #region wording regexes
             WORDINGS2REGEXES = new Dictionary<string, Regex>();
             foreach (string key in WORDING_STARTS2TYPES.Keys)
             {
@@ -148,28 +148,6 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
 #if __USE_WORDING_BLOCKS__
             }
 #endif
-            //int nxtWordingPos = -1;
-
-            //do { 
-            //    nxtWordingPos = 
-            //}
-            //while (nxtWordingPos != -1);
-            //#region debugging-related
-            //Console.WriteLine("dod2PrincipalRows:");
-            //JsonSerializerSettings settings = new JsonSerializerSettings();
-            //settings.NullValueHandling = NullValueHandling.Ignore;
-            //settings.Formatting = Formatting.Indented;
-            //string jsonStr = JsonConvert.SerializeObject(matches, settings);
-
-            ////File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\dod2PrincipalRows.json", jsonStr, Encoding.Unicode);
-            //Console.WriteLine(jsonStr);
-            //Console.WriteLine("----------------------------------------------------------------");
-            //#endregion
-            //foreach (string match in matches)
-            //    Console.WriteLine(match);
-
-            
-
             return rslt;
         }
 
@@ -375,7 +353,7 @@ namespace BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping
         }
 
         #region inner type(s)
-        private delegate bool WordingParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName);
+        protected delegate bool WordingParseHandler(WordingType wt, string wholeWording, out decimal pct, out string assetName);
         public enum WordingType
         { 
             None = 0,

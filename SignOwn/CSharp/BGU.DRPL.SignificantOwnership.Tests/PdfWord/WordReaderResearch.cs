@@ -10,6 +10,7 @@ using System.IO;
 using BGU.DRPL.SignificantOwnership.Tests.BankInfoTests;
 using BGU.DRPL.SignificantOwnership.EmpiricalData.Scraping.Data;
 using BGU.DRPL.SignificantOwnership.Utility;
+using Microsoft.Office.Interop.Word;
 
 namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
 {
@@ -17,23 +18,23 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
     public class WordReaderResearch
     {
 
-        private delegate void WordAppManipulator(Microsoft.Office.Interop.Word.Document docs);
+        private delegate void WordAppManipulator(Microsoft.Office.Interop.Word.Document docs, params object[] extraArgs);
 
-        private void WordManipulationWorker(WordAppManipulator manipulator)
+        private void WordManipulationWorker(WordAppManipulator manipulator, string srcDocPath, params object[] extraArgs)
         {
             Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
             object miss = System.Reflection.Missing.Value;
             //object path = @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818_cpy.rtf";
-            object path = @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc";
+            object path = !string.IsNullOrEmpty(srcDocPath) ? srcDocPath : @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\322335_20150818.doc"; //default to Arkada
             object readOnly = true;
             Microsoft.Office.Interop.Word.Document docs = word.Documents.Open(ref path, ref miss, ref readOnly, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss, ref miss);
-            manipulator(docs);
+            manipulator(docs, extraArgs);
             docs.Close();
             word.Quit();
         }
 
 
-        private void FirstDraftReadManipulator(Microsoft.Office.Interop.Word.Document docs)
+        private void FirstDraftReadManipulator(Microsoft.Office.Interop.Word.Document docs, params object[] extraArgs)
         {
             StringBuilder totaltext = new StringBuilder();
             for (int i = 0; i < docs.Tables.Count; i++)
@@ -74,7 +75,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             Console.WriteLine(totaltext.ToString());
         }
 
-        private void RangeCellsManipulator(Microsoft.Office.Interop.Word.Document docs)
+        private void RangeCellsManipulator(Microsoft.Office.Interop.Word.Document docs, params object[] extraArgs)
         {
             StringBuilder totaltext = new StringBuilder();
             for (int i = 0; i < docs.Tables.Count; i++)
@@ -105,7 +106,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             Console.WriteLine(totaltext.ToString());
         }
 
-        private void RangeCells2JsonManipulator(Microsoft.Office.Interop.Word.Document docs)
+        private void RangeCells2JsonManipulator(Microsoft.Office.Interop.Word.Document docs, params object[] extraArgs)
         {
             for (int i = 0; i < docs.Tables.Count; i++)
             {
@@ -133,7 +134,7 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
         }
 
 
-        private void RangeCellsOnlyInterestingRowsManipulator(Microsoft.Office.Interop.Word.Document docs)
+        private void RangeCellsOnlyInterestingRowsManipulator(Microsoft.Office.Interop.Word.Document docs, params object[] extraArgs)
         {
             List<List<string>> interestingRows = new List<List<string>>();
             List<List<string>> nonInterestingRows = new List<List<string>>();
@@ -160,7 +161,9 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
             string jsonStr = JsonConvert.SerializeObject(interestingRows, settings);
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json", jsonStr, Encoding.Unicode);
+            string firstExtraArg = (extraArgs != null && extraArgs.Length > 0) ? extraArgs[0] as string : null;
+            string targetJsonPath = !string.IsNullOrEmpty(firstExtraArg) ? firstExtraArg : @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json";
+            File.WriteAllText(targetJsonPath, jsonStr, Encoding.Unicode);
             Console.WriteLine(jsonStr);
             Console.WriteLine("----------------------------------------------------------------");
             Console.WriteLine("Wed-out rows:");
@@ -174,25 +177,49 @@ namespace BGU.DRPL.SignificantOwnership.Tests.PdfWord
         [Test]
         public void ReadTest()
         {
-            WordManipulationWorker(FirstDraftReadManipulator);
+            WordManipulationWorker(FirstDraftReadManipulator,null);
         }
 
         [Test]
         public void ReadTest2()
         {
-            WordManipulationWorker(RangeCellsManipulator);
+            WordManipulationWorker(RangeCellsManipulator, null);
         }
 
         [Test]
         public void ReadTest3()
         {
-            WordManipulationWorker(RangeCells2JsonManipulator);
+            WordManipulationWorker(RangeCells2JsonManipulator, null);
         }
 
         [Test]
         public void ReadTest4()
         {
-            WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator);
+            WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator, null);
+        }
+
+        [Test]
+        public void ReadPivdennyiTest()
+        {
+            const string SrcDoc = @"D:\git\BGU\SignOwn\CSharp\Data\328209_20180701-1-20.docx";
+            const string TargetJson = @"F:\home\vmdrot\Testing\BGU\SignOwn\Pivdennyi\Pivdennyi_preParsed.json";            
+            WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator, SrcDoc, TargetJson);
+        }
+
+        [Test]
+        public void ReadArkada20150818Test()
+        {
+            const string SrcDoc = @"D:\git\BGU\SignOwn\CSharp\Data\322335_20150818-1-347.docx";
+            const string TargetJson = @"F:\home\vmdrot\Testing\BGU\SignOwn\Arkada\Arkada20150818_preParsed.json";
+            WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator, SrcDoc, TargetJson);
+        }
+
+        [Test]
+        public void ReadArkada20180618Test()
+        {
+            const string SrcDoc = @"D:\git\BGU\SignOwn\CSharp\Data\322335_20180618-1-9.docx";
+            const string TargetJson = @"F:\home\vmdrot\Testing\BGU\SignOwn\Arkada\Arkada20180618_preParsed.json";
+            WordManipulationWorker(RangeCellsOnlyInterestingRowsManipulator, SrcDoc, TargetJson);
         }
 
         [Test]

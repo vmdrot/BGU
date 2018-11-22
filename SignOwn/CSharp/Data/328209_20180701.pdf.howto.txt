@@ -1,0 +1,8 @@
+1. https://www.ilovepdf.com/
+2. Split PDF (range 1 - 20 pg)
+3. Convert pdf to word
+---
+Urls:
+Actual task (Pivdennyi): https://bank.gov.ua/files/Shareholders/328209/328209_20180701.pdf
+same for original Arkada: https://bank.gov.ua/files/Shareholders/322335/322335_20150818.pdf
+Index of 328 versions: https://bank.gov.ua/files/Shareholders/{MFO}/index.html, e.g. https://bank.gov.ua/files/Shareholders/322335/index.html (Arkada)

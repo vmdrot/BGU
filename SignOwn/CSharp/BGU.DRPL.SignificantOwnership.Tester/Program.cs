@@ -1322,7 +1322,16 @@ RegLicAppx9BankingLicenseAppl.xsd";
         #region Arkada parsing-related
         private static void ArkadaOwnershipChainParserTest(string[] args)
         {
-            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\Arkada_signowners_last.json"));
+            string srcJson = (args != null && args.Length > 1 && !string.IsNullOrEmpty(args[1])) 
+                ? args[1] 
+                : @"F:\home\vmdrot\Testing\BGU\SignOwn\Arkada\Arkada_signowners_last.json";
+            string resultFilesSuffix = (args != null && args.Length > 2 && !string.IsNullOrEmpty(args[2]))
+                ? args[2]
+                : @"F:\home\vmdrot\Testing\BGU\SignOwn\Arkada\ArkadaOwnershipChainParserTest_";
+            string topEntityName = (args != null && args.Length > 3 && !string.IsNullOrEmpty(args[3]))
+                ? args[3]
+                : "ПАТ  АКБ  \"АРКАДА\"";
+            List<List<string>> interestingRows = JsonConvert.DeserializeObject<List<List<string>>>(File.ReadAllText(srcJson));
 
 
             List<Post328Dod2V1Row> dod2PrincipalRows;
@@ -1351,8 +1360,8 @@ RegLicAppx9BankingLicenseAppl.xsd";
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
             string jsonStr = JsonConvert.SerializeObject(rslt, settings);
             string errorsJson = JsonConvert.SerializeObject(fillOwnersErrors, settings);
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_rslt.json", jsonStr, Encoding.Unicode);
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_fillOwnersErrors.json", errorsJson, Encoding.Unicode);
+            File.WriteAllText(string.Format("{0}rslt.json", resultFilesSuffix), jsonStr, Encoding.Unicode);
+            File.WriteAllText(string.Format("{0}fillOwnersErrors.json", resultFilesSuffix), errorsJson, Encoding.Unicode);
 
             #region verify owners from formulas vs rslt
 
@@ -1376,13 +1385,13 @@ RegLicAppx9BankingLicenseAppl.xsd";
             }
             List<List<string>> tmp = new List<List<string>>(new List<string>[] { foundOwners, notFoundOwners });
             string tmpJsonStr = JsonConvert.SerializeObject(tmp, settings);
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_rslt_vs_formulas.json", tmpJsonStr, Encoding.Unicode);
+            File.WriteAllText(string.Format("{0}rslt_vs_formulas.json", resultFilesSuffix), tmpJsonStr, Encoding.Unicode);
             #endregion
 
-            Appx2OwnershipStructLP qu = ArkadaOwnershipChainDescriptionParser.ConvertWordingItems2OwnershipHive(rslt, dod2PrincipalRows, "ПАТ  АКБ  \"АРКАДА\"");
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.json", JsonConvert.SerializeObject(qu, settings), Encoding.Unicode);
-            BGU.DRPL.SignificantOwnership.Utility.Tools.WriteXML<Appx2OwnershipStructLP>(qu, @"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.xml");
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_MentionedIdentities.json", JsonConvert.SerializeObject(qu.MentionedIdentities, settings), Encoding.Unicode);
+            Appx2OwnershipStructLP qu = ArkadaOwnershipChainDescriptionParser.ConvertWordingItems2OwnershipHive(rslt, dod2PrincipalRows, topEntityName);
+            File.WriteAllText(string.Format("{0}Appx2Qu.json", resultFilesSuffix), JsonConvert.SerializeObject(qu, settings), Encoding.Unicode);
+            BGU.DRPL.SignificantOwnership.Utility.Tools.WriteXML<Appx2OwnershipStructLP>(qu, string.Format("{0}Appx2Qu.xml", resultFilesSuffix));
+            File.WriteAllText(string.Format("{0}Appx2Qu_MentionedIdentities.json", resultFilesSuffix), JsonConvert.SerializeObject(qu.MentionedIdentities, settings), Encoding.Unicode);
                //var pl = from r in info
                //  orderby r.metric    
                //  group r by r.metric into grp
@@ -1394,11 +1403,11 @@ RegLicAppx9BankingLicenseAppl.xsd";
             var osStatsSorted = from s in osStats
                                 orderby s.cnt descending
                                 select new { key = s.key, cnt = s.cnt };
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_OSStats.json", JsonConvert.SerializeObject(osStatsSorted, settings), Encoding.Unicode);
+            File.WriteAllText(string.Format("{0}Appx2Qu_OSStats.json", resultFilesSuffix), JsonConvert.SerializeObject(osStatsSorted, settings), Encoding.Unicode);
             var lps = from mp in qu.MentionedIdentities
                       where mp.PersonType == EntityType.Legal
                       select mp.ID.HashID;
-            File.WriteAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu_LPs.json", JsonConvert.SerializeObject(lps, settings), Encoding.Unicode);
+            File.WriteAllText(string.Format("{0}Appx2Qu_LPs.json", resultFilesSuffix), JsonConvert.SerializeObject(lps, settings), Encoding.Unicode);
             //Console.WriteLine("descRows.Count = {0}", descRows.Count);
 
             //File.WriteAllLines(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\DescrRows.txt", descRows.ToArray(), Encoding.Unicode);
@@ -1410,8 +1419,10 @@ RegLicAppx9BankingLicenseAppl.xsd";
         {
             string hashIdsFile = args.Length > 1 ? args[1] : string.Empty;
             string selHashIdIdxStr = args.Length > 2 ? args[2] : string.Empty;
+            string inputFile = args.Length > 3 ? args[3] : @"F:\home\vmdrot\Testing\BGU\SignOwn\Arkada20150818_OwnChainParseTest_Appx2Qu.json";
+            string outputFileSfx = args.Length > 4 ? args[4] : @"F:\home\vmdrot\Testing\BGU\SignOwn\ArkadaOwnershipChainAnalysis_selOS";
             string selHashId = string.Empty;
-            Appx2OwnershipStructLP qu = JsonConvert.DeserializeObject<Appx2OwnershipStructLP>(File.ReadAllText(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainParserTest_Appx2Qu.json"));
+            Appx2OwnershipStructLP qu = JsonConvert.DeserializeObject<Appx2OwnershipStructLP>(File.ReadAllText(inputFile));
             
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -1431,7 +1442,7 @@ RegLicAppx9BankingLicenseAppl.xsd";
                         var os4sel = from os in qu.BankExistingCommonImplicitOwners
                                      where os.Asset.HashID == selHashId
                                      select os;
-                        File.WriteAllText(string.Format(@"D:\home\vmdrot\BGU\Specs\SignigicantOwnership\Testing\Arkada\ArkadaOwnershipChainAnalysis_selOS_{0}.json", selHashIdIdx), JsonConvert.SerializeObject(os4sel, settings), Encoding.Unicode);
+                        File.WriteAllText(string.Format("{0}_{1}.json", outputFileSfx, selHashIdIdx), JsonConvert.SerializeObject(os4sel, settings), Encoding.Unicode);
                     }
                 }
             }
