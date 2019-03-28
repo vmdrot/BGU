@@ -1,0 +1,121 @@
+-		cpi.GetClippingPath()	{iText.Kernel.Geom.Path}	iText.Kernel.Geom.Path
++		Static members		
+-		Non-Public members		
++		currentPoint	{Point: [x=72.3610000610352,y=468.929992675781]}	iText.Kernel.Geom.Point
+-		subpaths	Count = 2	System.Collections.Generic.IList<iText.Kernel.Geom.Subpath> {System.Collections.Generic.List<iText.Kernel.Geom.Subpath>}
+-		[0]	{iText.Kernel.Geom.Subpath}	iText.Kernel.Geom.Subpath
+-		Non-Public members		
+		closed	true	bool
+-		segments	Count = 3	System.Collections.Generic.IList<iText.Kernel.Geom.IShape> {System.Collections.Generic.List<iText.Kernel.Geom.IShape>}
+-		[0]	{iText.Kernel.Geom.Line}	iText.Kernel.Geom.IShape {iText.Kernel.Geom.Line}
+-		Non-Public members		
+-		p1	{Point: [x=72.3610000610352,y=468.929992675781]}	iText.Kernel.Geom.Point
+		x	72.361000061035156	double
+		y	468.92999267578125	double
+-		p2	{Point: [x=45.4809989929199,y=468.929992675781]}	iText.Kernel.Geom.Point
+		x	45.480998992919922	double
+		y	468.92999267578125	double
+-		[1]	{iText.Kernel.Geom.Line}	iText.Kernel.Geom.IShape {iText.Kernel.Geom.Line}
+-		Non-Public members		
++		p1	{Point: [x=45.4809989929199,y=468.929992675781]}	iText.Kernel.Geom.Point
+-		p2	{Point: [x=45.4809989929199,y=407.010009765625]}	iText.Kernel.Geom.Point
+		x	45.480998992919922	double
+		y	407.010009765625	double
+-		[2]	{iText.Kernel.Geom.Line}	iText.Kernel.Geom.IShape {iText.Kernel.Geom.Line}
+-		Non-Public members		
+-		p1	{Point: [x=45.4809989929199,y=407.010009765625]}	iText.Kernel.Geom.Point
+		x	45.480998992919922	double
+		y	407.010009765625	double
+-		p2	{Point: [x=72.3610000610352,y=407.010009765625]}	iText.Kernel.Geom.Point
+		x	72.361000061035156	double
+		y	407.010009765625	double
++		Raw View		
++		startPoint	{Point: [x=72.3610000610352,y=468.929992675781]}	iText.Kernel.Geom.Point
+-		[1]	{iText.Kernel.Geom.Subpath}	iText.Kernel.Geom.Subpath
+-		Non-Public members		
+		closed	false	bool
++		segments	Count = 0	System.Collections.Generic.IList<iText.Kernel.Geom.IShape> {System.Collections.Generic.List<iText.Kernel.Geom.IShape>}
+-		startPoint	{Point: [x=72.3610000610352,y=468.929992675781]}	iText.Kernel.Geom.Point
+		x	72.361000061035156	double
+		y	468.92999267578125	double
+-		Raw View		
+		Capacity	4	int
+		Count	2	int
++		Static members		
+-		Non-Public members		
+		System.Collections.Generic.ICollection<iText.Kernel.Geom.Subpath>.IsReadOnly	false	bool
+		System.Collections.ICollection.IsSynchronized	false	bool
+		System.Collections.ICollection.SyncRoot	{object}	object
+		System.Collections.IList.IsFixedSize	false	bool
+		System.Collections.IList.IsReadOnly	false	bool
+-		_items	{iText.Kernel.Geom.Subpath[4]}	iText.Kernel.Geom.Subpath[]
++		[0]	{iText.Kernel.Geom.Subpath}	iText.Kernel.Geom.Subpath
++		[1]	{iText.Kernel.Geom.Subpath}	iText.Kernel.Geom.Subpath
+		[2]	null	iText.Kernel.Geom.Subpath
+		[3]	null	iText.Kernel.Geom.Subpath
+		_size	2	int
+		_syncRoot	{object}	object
+		_version	2	int
+
+---
++		cpi.GetClippingPath()	{iText.Kernel.Geom.Path}	iText.Kernel.Geom.Path
+
+---
+-		cpi.GetCtm()	{1	0	0
+0	1	0
+0	0	1}	iText.Kernel.Geom.Matrix
++		Static members		
+-		Non-Public members		
+-		vals	{float[9]}	float[]
+		[0]	1	float
+		[1]	0	float
+		[2]	0	float
+		[3]	0	float
+		[4]	1	float
+		[5]	0	float
+		[6]	0	float
+		[7]	0	float
+		[8]	1	float
+
+---
+-		cpi.GetGraphicsState()	{iText.Kernel.Pdf.Canvas.CanvasGraphicsState}	iText.Kernel.Pdf.Canvas.CanvasGraphicsState
+-		Non-Public members		
+		alphaIsShape	false	bool
+		automaticStrokeAdjustment	false	bool
++		blackGenerationFunction	null	iText.Kernel.Pdf.PdfObject
++		blackGenerationFunction2	null	iText.Kernel.Pdf.PdfObject
++		blendMode	{/Normal}	iText.Kernel.Pdf.PdfObject {iText.Kernel.Pdf.PdfName}
+		charSpacing	0	float
++		ctm	{1	0	0
+0	1	0
+0	0	1}	iText.Kernel.Geom.Matrix
++		dashPattern	{[[] 0 ]}	iText.Kernel.Pdf.PdfArray
+		fillAlpha	1	float
++		fillColor	{iText.Kernel.Colors.DeviceGray}	iText.Kernel.Colors.Color {iText.Kernel.Colors.DeviceGray}
+		fillOverprint	false	bool
+		flatnessTolerance	1	float
++		font	{PdfFont{fontProgram=Times New Roman}}	iText.Kernel.Font.PdfFont {iText.Kernel.Font.PdfTrueTypeFont}
+		fontSize	12	float
++		halftone	null	iText.Kernel.Pdf.PdfObject
++		htp	null	iText.Kernel.Pdf.PdfObject
+		leading	0	float
+		lineCapStyle	0	int
+		lineJoinStyle	0	int
+		lineWidth	1	float
+		miterLimit	10	float
+		overprintMode	0	int
++		renderingIntent	{/RelativeColorimetric}	iText.Kernel.Pdf.PdfName
+		scale	100	float
+		smoothnessTolerance	null	float?
++		softMask	{/None}	iText.Kernel.Pdf.PdfObject {iText.Kernel.Pdf.PdfName}
+		strokeAlpha	1	float
++		strokeColor	{iText.Kernel.Colors.DeviceGray}	iText.Kernel.Colors.Color {iText.Kernel.Colors.DeviceGray}
+		strokeOverprint	false	bool
+		textKnockout	true	bool
+		textRenderingMode	0	int
+		textRise	0	float
++		transferFunction	null	iText.Kernel.Pdf.PdfObject
++		transferFunction2	null	iText.Kernel.Pdf.PdfObject
++		underColorRemovalFunction	null	iText.Kernel.Pdf.PdfObject
++		underColorRemovalFunction2	null	iText.Kernel.Pdf.PdfObject
+		wordSpacing	0	float
