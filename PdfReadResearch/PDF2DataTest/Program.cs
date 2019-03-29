@@ -19,10 +19,11 @@ namespace PDF2DataTest
     {
         #region field(s)
         private static Dictionary<string, CmdHandler> _cmdHandlers;
+        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower() };
         #endregion
 
         #region inner type(s)
-        private delegate void CmdHandler(string[] args);
+        private delegate int CmdHandler(string[] args);
         #endregion
 
         #region Init CMD handlers
@@ -36,7 +37,7 @@ namespace PDF2DataTest
                 //skip the Main, otherwise we'll end up in an endless recursion
                 if (mi.Name == nameof(Main))
                     continue;
-                if (mi.ReturnType != typeof(void))
+                if (mi.ReturnType != typeof(int))
                     continue;
                 ParameterInfo[] args = mi.GetParameters();
                 if (args == null || args.Length != 1)
@@ -62,7 +63,7 @@ namespace PDF2DataTest
         #endregion
 
         #region the sacred Main()
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             FillCmdHandlers();
             string keyArg = args.Length > 0 ? args[0].ToLower() : null;
@@ -70,11 +71,12 @@ namespace PDF2DataTest
             {
                 List<string> origArgs = new List<string>(args);
                 origArgs.RemoveAt(0);
-                LogCmdArgs(_cmdHandlers[keyArg].Method.Name, origArgs.ToArray());
-                try { _cmdHandlers[keyArg](origArgs.ToArray()); } catch (Exception ex) { Console.WriteLine(ex); }
+                if (!_noLogArgsHandlers.Contains(keyArg))
+                    LogCmdArgs(_cmdHandlers[keyArg].Method.Name, origArgs.ToArray());
+                try { return _cmdHandlers[keyArg](origArgs.ToArray()); } catch (Exception ex) { Console.WriteLine(ex); return 1; }
             }
             else
-                _cmdHandlers[string.Empty](args);
+                return _cmdHandlers[string.Empty](args);
         }
         #endregion
 
@@ -89,7 +91,7 @@ namespace PDF2DataTest
         #endregion
 
         #region applied CMD handlers
-        public static void ResearchTableEvents(string[] args)
+        public static int ResearchTableEvents(string[] args)
         {
             Dictionary<int, List<RectangleInfo>> rects = new Dictionary<int, List<RectangleInfo>>();
 
@@ -113,12 +115,14 @@ namespace PDF2DataTest
                     Console.WriteLine("RectangleInfosDistinct({1}) = {0}", JsonConvert.SerializeObject(rects, Formatting.None), rects.Count);
                 }
             }
+            return 0;
         }
 
-        public static void ExtractTableRectangles(string[] args)
+        public static int ExtractTableRectangles(string[] args)
         {
+            //Console.Read();
             Dictionary<int, List<RectangleInfo>> rects = new Dictionary<int, List<RectangleInfo>>();
-
+            bool trimOverlaps = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? bool.Parse(args[1]) : false;
             using (iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(args[0]))
             {
                 using (PdfDocument doc = new PdfDocument(reader))
@@ -131,15 +135,17 @@ namespace PDF2DataTest
                         listener.Chatty = false;
                         parser.ProcessContent(pg, listener);
                         List<PathInfo> pathInfos = listener.GetClippingPaths();
-                        rects.Add(pg, PdfTableHelper.ClippingPaths2RectangleInfosDistinct(pathInfos));
+                        List<RectangleInfo> currRaw = PdfTableHelper.ClippingPaths2RectangleInfosDistinct(pathInfos);
+                        rects.Add(pg, trimOverlaps ? PdfTableHelper.RemoveOverlaps(currRaw) : currRaw);
                     }
 
-                    Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None), rects.Count);
+                    Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
                 }
             }
+            return 0;
         }
 
-        public static void ExtractTextByRects(string[] args)
+        public static int ExtractTextByRects(string[] args)
         {
             string pdfPath = args[0];
             string rectsPath = args[1];
@@ -164,6 +170,7 @@ namespace PDF2DataTest
 
             if (string.IsNullOrWhiteSpace(outputPath)) Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
             else File.WriteAllText(outputPath, JsonConvert.SerializeObject(rects, Formatting.None), Encoding.UTF8);
+            return 0;
         }
         #endregion
 

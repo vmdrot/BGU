@@ -45,6 +45,19 @@ namespace Pdf2DataLib
             return rslt;
         }
 
+        public static List<RectangleInfo> RemoveOverlaps(List<RectangleInfo> raw)
+        {
+            List<RectangleInfo> rslt = new List<RectangleInfo>();
+            foreach (RectangleInfo curr in raw)
+            {
+                if (curr == null)
+                    continue;
+                if (raw.Any(r => r != null && RectangleInfo.IsIntersecting(r, curr) && curr.GetArea() > r.GetArea()))
+                    continue;
+                rslt.Add(curr);
+            }
+            return rslt;
+        }
 
     }
 }

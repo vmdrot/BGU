@@ -217,6 +217,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Cmds\ExtractTableRectangles.cmd" />
+    <None Include="Cmds\ExtractTableRectangles_worker.cmd" />
+    <None Include="Cmds\ExtractTextByRects.cmd" />
+    <None Include="Cmds\ExtractTextByRects_worker.cmd" />
+    <None Include="Cmds\ResearchTableEvents.cmd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -225,9 +230,7 @@
       <Name>Pdf2DataLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cmds\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
