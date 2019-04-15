@@ -12,6 +12,7 @@ using iTextSharp.text.pdf.parser;
 using Newtonsoft.Json;
 using Pdf2DataLib;
 using Pdf2DataLib.Spares;
+using PDF2DataTest.Spares;
 
 namespace PDF2DataTest
 {
@@ -19,7 +20,7 @@ namespace PDF2DataTest
     {
         #region field(s)
         private static Dictionary<string, CmdHandler> _cmdHandlers;
-        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower() };
+        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower() };
         #endregion
 
         #region inner type(s)
@@ -122,8 +123,10 @@ namespace PDF2DataTest
         {
             //Console.Read();
             Dictionary<int, List<RectangleInfo>> rects = new Dictionary<int, List<RectangleInfo>>();
+            string pdfPath = args[0];
             bool trimOverlaps = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? bool.Parse(args[1]) : false;
-            using (iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(args[0]))
+            bool chatty = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? bool.Parse(args[2]) : false;
+            using (iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(pdfPath))
             {
                 using (PdfDocument doc = new PdfDocument(reader))
                 {
@@ -132,7 +135,7 @@ namespace PDF2DataTest
                     for (int pg = 1; pg <= pgsCount; pg++)
                     {
                         TablesEventListener listener = new TablesEventListener();
-                        listener.Chatty = false;
+                        listener.Chatty = chatty;
                         parser.ProcessContent(pg, listener);
                         List<PathInfo> pathInfos = listener.GetClippingPaths();
                         List<RectangleInfo> currRaw = PdfTableHelper.ClippingPaths2RectangleInfosDistinct(pathInfos);
@@ -150,12 +153,20 @@ namespace PDF2DataTest
             string pdfPath = args[0];
             string rectsPath = args[1];
             string outputPath = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : null;
+            var rects = ExtractTextByRectsWorker(pdfPath, rectsPath);
+            if (string.IsNullOrWhiteSpace(outputPath)) Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
+            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(rects, Formatting.None), Encoding.UTF8);
+            return 0;
+        }
+
+        private static Dictionary<int, List<RectangleInfoEx>> ExtractTextByRectsWorker(string pdfPath, string rectsPath)
+        {
             Dictionary<int, List<RectangleInfoEx>> rects = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(rectsPath), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
             using (iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(pdfPath))
             {
                 foreach (int pg in rects.Keys)
                 {
-                    for(int i = 0; i < rects[pg].Count; i++)
+                    for (int i = 0; i < rects[pg].Count; i++)
                     {
                         var rxi = rects[pg][i];
                         iTextSharp.text.Rectangle rect = new iTextSharp.text.Rectangle(rxi.ulx, rxi.uly, rxi.brx, rxi.bry);
@@ -167,9 +178,61 @@ namespace PDF2DataTest
                     }
                 }
             }
+            return rects;
+        }
 
+        private static Dictionary<int,List<List<string>>> ExtractTextsFromRectsWorker(Dictionary<int, List<RectangleInfoEx>> src)
+        {
+            Dictionary<int, List<List<string>>> rslt = new Dictionary<int, List<List<string>>>();
+            
+            foreach (int pg in src.Keys)
+            {
+                List<float> topYs = new List<float>(src[pg].Select(r => r.uly).Distinct().OrderByDescending( f => f));
+                List<List<string>> texts = new List<List<string>>();
+                foreach (float currTopY in topYs)
+                {
+                    List<string> currRow = new List<string>();
+                    List<RectangleInfoEx> currRects = new List<RectangleInfoEx>(src[pg].Where(r => r.uly == currTopY).OrderBy(r => r.ulx));
+                    foreach (var rect in currRects)
+                    {
+                        currRow.Add(rect.Text);
+                    }
+                    texts.Add(currRow);
+                }
+                rslt.Add(pg, texts);
+            }
+            return rslt;
+        }
+        public static int ExtractTableTexts(string[] args)
+        {
+            //Console.Read();
+            string pdfPath = args[0];
+            string rectsPath = args[1];
+            string outputPath = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : null;
+            var rects = ExtractTextByRectsWorker(pdfPath, rectsPath);
             if (string.IsNullOrWhiteSpace(outputPath)) Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
-            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(rects, Formatting.None), Encoding.UTF8);
+            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(ExtractTextsFromRectsWorker( rects), Formatting.None), Encoding.UTF8);
+            return 0;
+        }
+
+        public static int ExtractTableStats(string[] args)
+        {
+            //Console.Read();
+            string pdfPath = args[0];
+            Console.WriteLine(JsonConvert.SerializeObject(TableTextStatsCompiler.Extract(pdfPath), Formatting.None));
+            return 0;
+        }
+
+        public static int ExtractTableStatsBulk(string[] args)
+        {
+            string logsMask = args[0];
+            string[] files = Directory.GetFiles(System.IO.Path.GetDirectoryName(logsMask), System.IO.Path.GetFileName(logsMask));
+            List<ExtractedTableTextsStats> rslt = new List<ExtractedTableTextsStats>();
+            foreach (string file in files)
+            {
+                rslt.Add(TableTextStatsCompiler.Extract(file));
+            }
+            Console.WriteLine(JsonConvert.SerializeObject(rslt, Formatting.None));
             return 0;
         }
         #endregion

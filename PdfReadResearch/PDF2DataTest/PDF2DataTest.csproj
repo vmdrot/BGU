@@ -213,13 +213,21 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spares\ExtractedTableTextsStats.cs" />
+    <Compile Include="Spares\TableTextStatsCompiler.cs" />
     <Compile Include="TablesEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Cmds\ExtractTableRectangles.cmd" />
     <None Include="Cmds\ExtractTableRectangles_worker.cmd" />
+    <None Include="Cmds\ExtractTableRectsNTxts2.cmd" />
+    <None Include="Cmds\ExtractTableRectsNTxts.cmd" />
+    <None Include="Cmds\ExtractTableRectsNTxts2_worker.cmd" />
+    <None Include="Cmds\ExtractTableRectsNTxts_worker.cmd" />
+    <None Include="Cmds\ExtractTableTexts.cmd" />
     <None Include="Cmds\ExtractTextByRects.cmd" />
+    <None Include="Cmds\ExtractTableTexts_worker.cmd" />
     <None Include="Cmds\ExtractTextByRects_worker.cmd" />
     <None Include="Cmds\ResearchTableEvents.cmd" />
     <None Include="packages.config" />

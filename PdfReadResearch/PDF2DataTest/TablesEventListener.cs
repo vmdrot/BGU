@@ -56,7 +56,7 @@ namespace PDF2DataTest
                             var cpii = (PathInfo)cpi.GetClippingPath();
                             cpii.RelatedTextIndex = _currTextSegmentIndex;
                             _clippingPaths.Add(cpii);
-                            //if (Chatty) Console.WriteLine("cpi({1}) = {0}", JsonConvert.SerializeObject((PathInfo)cpi.GetClippingPath(), Formatting.Indented), _currTextSegmentIndex);
+                            if (Chatty) Console.WriteLine("cpi({1}) = {0}", JsonConvert.SerializeObject((PathInfo)cpi.GetClippingPath(), Formatting.Indented), _currTextSegmentIndex);
                         }
                     }
                     break;

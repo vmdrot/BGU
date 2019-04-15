@@ -1,0 +1,1 @@
+..\bin\Debug\PDF2DataTest.exe ExtractTableStatsBulk F:\home\vmdrot\Testing\OpenData\Output\BGU\328\??????_????????.pdf.xttbl_txts.log.json > F:\home\vmdrot\Testing\OpenData\Output\BGU\328\stats.log.json

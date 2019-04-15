@@ -1,6 +1,9 @@
 @echo off
 SET SRC_DIR=F:\home\vmdrot\Testing\OpenData\Output\BGU\328
 
+CALL ExtractTableRectsNTxts_worker.cmd %SRC_DIR%\307770_20150308.pdf
+EXIT /B 0
+
 CALL ExtractTableRectsNTxts_worker.cmd %SRC_DIR%\300012_20130101.pdf
 CALL ExtractTableRectsNTxts_worker.cmd %SRC_DIR%\300012_20140101.pdf
 CALL ExtractTableRectsNTxts_worker.cmd %SRC_DIR%\300012_20150101.pdf
