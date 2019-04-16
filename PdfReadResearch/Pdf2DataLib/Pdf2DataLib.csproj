@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\TabledPdfDoc.cs" />
     <Compile Include="PdfTableHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spares\LineInfo.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="Spares\RectangleInfo.cs" />
     <Compile Include="Spares\RectangleInfoEx.cs" />
     <Compile Include="Spares\SubPathInfo.cs" />
+    <Compile Include="Spares\TablesEventListener.cs" />
+    <Compile Include="TabledPdfDocExtractor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
