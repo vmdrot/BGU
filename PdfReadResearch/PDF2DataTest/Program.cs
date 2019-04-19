@@ -20,7 +20,7 @@ namespace PDF2DataTest
     {
         #region field(s)
         private static Dictionary<string, CmdHandler> _cmdHandlers;
-        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower() };
+        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower(), nameof(GetSuspectedRowBreaksFromTableStats).ToLower() };
         #endregion
 
         #region inner type(s)
@@ -233,6 +233,15 @@ namespace PDF2DataTest
                 rslt.Add(TableTextStatsCompiler.Extract(file));
             }
             Console.WriteLine(JsonConvert.SerializeObject(rslt, Formatting.None));
+            return 0;
+        }
+
+        public static int GetSuspectedRowBreaksFromTableStats(string[] args)
+        {
+            string input = args[0];
+            List<ExtractedTableTextsStats> stats = JsonConvert.DeserializeObject<List<ExtractedTableTextsStats>>(File.ReadAllText(input));
+            var files = stats.Where(s => s.SuspectedCellPageBreaks > 0).ToList();
+            Console.WriteLine(JsonConvert.SerializeObject(files, Formatting.None));
             return 0;
         }
         #endregion

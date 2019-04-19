@@ -16,6 +16,7 @@ namespace PDF2DataTest.Spares
         public string PdfName { get; set; }
         public string PdfPath { get; set; }
         public int PagesCount {get; set;}
+        public int SuspectedCellPageBreaks { get; set; }
         public Dictionary<int,int> RowsByColumnCount { get; set; }
     }
 }

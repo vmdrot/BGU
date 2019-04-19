@@ -225,6 +225,8 @@
     <None Include="Cmds\ExtractTableRectsNTxts.cmd" />
     <None Include="Cmds\ExtractTableRectsNTxts2_worker.cmd" />
     <None Include="Cmds\ExtractTableRectsNTxts_worker.cmd" />
+    <None Include="Cmds\ExtractTableStatsBulk_FindSuspectedRowPageBreaks.cmd" />
+    <None Include="Cmds\ExtractTableStatsBulk.cmd" />
     <None Include="Cmds\ExtractTableTexts.cmd" />
     <None Include="Cmds\ExtractTextByRects.cmd" />
     <None Include="Cmds\ExtractTableTexts_worker.cmd" />

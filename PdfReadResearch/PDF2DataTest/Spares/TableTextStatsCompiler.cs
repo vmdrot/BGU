@@ -31,18 +31,25 @@ namespace PDF2DataTest.Spares
         {
             ExtractedTableTextsStats rslt = new ExtractedTableTextsStats();
             rslt.PagesCount = input.Keys.Count;
+            rslt.SuspectedCellPageBreaks = 0;
+            int prevPgLastRowCellsCnt = -1;
             foreach (int pgi in input.Keys)
             {
-                foreach (List<string> row in input[pgi])
+                
+                for(int r = 0; r < input[pgi].Count; r++)
                 {
+                    List<string> row = input[pgi][r];
                     int? currColCnt = row?.Count;
                     if (currColCnt == null) continue;
                     int cc = (int)currColCnt;
+                    if (pgi > 1 && r == 0 && cc < prevPgLastRowCellsCnt)
+                        rslt.SuspectedCellPageBreaks++;
                     if (!rslt.RowsByColumnCount.ContainsKey(cc))
                         rslt.RowsByColumnCount.Add(cc, 1);
                     else
                         rslt.RowsByColumnCount[cc]++;
                 }
+                prevPgLastRowCellsCnt = input[pgi][input[pgi].Count - 1].Count;
             }
             return rslt;
         }
