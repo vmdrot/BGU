@@ -20,7 +20,7 @@ namespace PDF2DataTest
     {
         #region field(s)
         private static Dictionary<string, CmdHandler> _cmdHandlers;
-        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower(), nameof(GetSuspectedRowBreaksFromTableStats).ToLower() };
+        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower(), nameof(GetSuspectedRowBreaksFromTableStats).ToLower(), nameof(BuildCellsMatrix).ToLower()};
         #endregion
 
         #region inner type(s)
@@ -242,6 +242,26 @@ namespace PDF2DataTest
             List<ExtractedTableTextsStats> stats = JsonConvert.DeserializeObject<List<ExtractedTableTextsStats>>(File.ReadAllText(input));
             var files = stats.Where(s => s.SuspectedCellPageBreaks > 0).ToList();
             Console.WriteLine(JsonConvert.SerializeObject(files, Formatting.None));
+            return 0;
+        }
+
+        /// <summary>
+        /// Incomplete, experimental
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        [Obsolete]
+        public static int BuildCellsMatrix(string[] args)
+        {
+            Dictionary<int,List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
+
+            Dictionary<int, List<Tuple<int, int>>> matrices = new Dictionary<int, List<Tuple<int, int>>>();
+            foreach (int pgi in src.Keys)
+            {
+                matrices.Add(pgi, (new Pdf2HtmlTablesConverter()).DetectTables(src[pgi]));
+            }
+
+            Console.WriteLine(JsonConvert.SerializeObject(matrices, Formatting.None));
             return 0;
         }
         #endregion
