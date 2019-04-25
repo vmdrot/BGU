@@ -44,6 +44,16 @@ namespace Pdf2DataLib.Spares
             return leftX < rightX && topY < bottomY;
         }
 
+
+        public static bool IsWithin(RectangleInfo holder, RectangleInfo subj)
+        {
+            if (holder == subj)
+                return true;
+            if (holder == null || subj == null)
+                return false;
+            // Attention! The below condition is PDF rectangles-specific (where x coords grow left -> right, but y coords - bottom -> top);
+            return holder.ulx <= subj.ulx && holder.uly >= subj.uly && holder.brx>= subj.brx && holder.bry <= subj.bry;
+        }
         public float GetArea()
         { return (brx - ulx) * (bry - uly); }
     }

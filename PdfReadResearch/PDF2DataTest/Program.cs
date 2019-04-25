@@ -253,13 +253,18 @@ namespace PDF2DataTest
         [Obsolete]
         public static int BuildCellsMatrix(string[] args)
         {
+            Console.Read();
             Dictionary<int,List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
 
-            Dictionary<int, List<Tuple<int, int>>> matrices = new Dictionary<int, List<Tuple<int, int>>>();
+            var matrices = new Dictionary<int, PdfPageTablesInfos>();
             foreach (int pgi in src.Keys)
             {
                 matrices.Add(pgi, (new Pdf2HtmlTablesConverter()).DetectTables(src[pgi]));
             }
+
+            //var matricesPlus = from mx in matrices
+            //                   join 
+            
 
             Console.WriteLine(JsonConvert.SerializeObject(matrices, Formatting.None));
             return 0;

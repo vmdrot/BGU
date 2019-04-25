@@ -82,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spares\LineInfo.cs" />
     <Compile Include="Spares\PathInfo.cs" />
+    <Compile Include="Spares\PdfPageTablesInfos.cs" />
     <Compile Include="Spares\PdfTableInfo.cs" />
     <Compile Include="Spares\PointInfo.cs" />
     <Compile Include="Spares\RectangleInfo.cs" />
