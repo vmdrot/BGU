@@ -162,6 +162,11 @@ namespace PDF2DataTest
         private static Dictionary<int, List<RectangleInfoEx>> ExtractTextByRectsWorker(string pdfPath, string rectsPath)
         {
             Dictionary<int, List<RectangleInfoEx>> rects = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(rectsPath), new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            return ExtractTextByRectsWorker(pdfPath, rects);
+        }
+
+        private static Dictionary<int, List<RectangleInfoEx>> ExtractTextByRectsWorker(string pdfPath, Dictionary<int, List<RectangleInfoEx>> rects)
+        {
             using (iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(pdfPath))
             {
                 foreach (int pg in rects.Keys)
@@ -180,6 +185,7 @@ namespace PDF2DataTest
             }
             return rects;
         }
+
 
         private static Dictionary<int,List<List<string>>> ExtractTextsFromRectsWorker(Dictionary<int, List<RectangleInfoEx>> src)
         {
@@ -203,6 +209,7 @@ namespace PDF2DataTest
             }
             return rslt;
         }
+
         public static int ExtractTableTexts(string[] args)
         {
             //Console.Read();
@@ -253,20 +260,53 @@ namespace PDF2DataTest
         [Obsolete]
         public static int BuildCellsMatrix(string[] args)
         {
-            Console.Read();
+            //Console.Read();
             Dictionary<int,List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
-
+            string pdfPath = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? args[1] : string.Empty;
+            string saveAs = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : string.Empty;
             var matrices = new Dictionary<int, PdfPageTablesInfos>();
             foreach (int pgi in src.Keys)
             {
                 matrices.Add(pgi, (new Pdf2HtmlTablesConverter()).DetectTables(src[pgi]));
             }
+            #region fill in outer table rects' texts
+            if (!string.IsNullOrWhiteSpace(pdfPath))
+            {
+
+                Dictionary<int, List<RectangleInfoEx>> rectsIn = new Dictionary<int, List<RectangleInfoEx>>();
+                foreach (int pgi in matrices.Keys)
+                {
+                    List<RectangleInfoEx> curRects = new List<RectangleInfoEx>();
+                    foreach (int key in matrices[pgi].PreliminaryTableOuterRects.Keys)
+                    {
+                        curRects.Add(matrices[pgi].PreliminaryTableOuterRects[key]);
+                    }
+                    rectsIn.Add(pgi, curRects);
+                }
+                var rectsOut = ExtractTextByRectsWorker(pdfPath, rectsIn);
+
+                foreach (int pgi in matrices.Keys)
+                {
+                    int i = 0;
+                    foreach (int key in matrices[pgi].PreliminaryTableOuterRects.Keys)
+                    {
+                        matrices[pgi].PreliminaryTableOuterRects[key].Text = rectsOut[pgi][i].Text;
+                        i++;
+                    }
+                }
+            }
+            #endregion
 
             //var matricesPlus = from mx in matrices
             //                   join 
-            
 
-            Console.WriteLine(JsonConvert.SerializeObject(matrices, Formatting.None));
+            string resultantJson = JsonConvert.SerializeObject(matrices, Formatting.None);
+            if (!string.IsNullOrWhiteSpace(saveAs))
+            {
+                File.WriteAllText(saveAs, resultantJson, Encoding.UTF8);
+            }
+            else
+                Console.WriteLine(resultantJson);
             return 0;
         }
         #endregion

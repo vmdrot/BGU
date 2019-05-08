@@ -1,1 +1,1 @@
-..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.xtrects_txts.log.json > F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.cells_matrix.log.json
+..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.xtrects_txts.log.json F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.cells_matrix.log.json

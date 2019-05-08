@@ -128,14 +128,23 @@ namespace Pdf2DataLib
             //return preliminaryRslt;
             #endregion
             //todo: detect preliminary result intersections and 'trim' it accordingly
-
-            Dictionary<int, RectangleInfo> tableRects = DetectTableOuterRects(preliminaryRslt, target);
+            
+            Dictionary<int, RectangleInfoEx> tableRects = DetectTableOuterRects(preliminaryRslt, target);
+            target.PreliminaryTableOuterRects = tableRects;
             Dictionary<int, List<int>> duplicateRectKeys = new Dictionary<int, List<int>>();
             foreach (int ti in tableRects.Keys)
             {
                 if (duplicateRectKeys.Any(dk => dk.Value.Contains(ti)))
                     continue;
-                var currDuplicates = tableRects.Where(tr => RectangleInfo.IsWithin(tableRects[ti], tr.Value) || RectangleInfo.IsWithin(tr.Value, tableRects[ti])).Select(tr => tr.Key).ToList();
+                //var currDuplicates = tableRects.Where(tr => RectangleInfo.IsWithin(tableRects[ti], tr.Value) || RectangleInfo.IsWithin(tr.Value, tableRects[ti])).Select(tr => tr.Key).ToList();
+                //var currDuplicates = tableRects.Where(tr => RectangleInfo.IsIntersecting(tableRects[ti], tr.Value) == true).Select(tr => tr.Key).ToList();
+                List<int> currDuplicates = new List<int>();
+                foreach (int key in tableRects.Keys)
+                {
+                    if (key == ti) continue;
+                    if (RectangleInfo.IsIntersecting(tableRects[ti], tableRects[key]))
+                        currDuplicates.Add(key);
+                }
                 if (currDuplicates != null && currDuplicates.Any())
                 {
                     if (!duplicateRectKeys.ContainsKey(ti))
@@ -147,22 +156,32 @@ namespace Pdf2DataLib
             Dictionary<int, Tuple<List<int>, List<int>>> rslt = new Dictionary<int, Tuple<List<int>, List<int>>>();
             foreach (int ti in preliminaryRslt.Keys)
             {
-                if (!duplicateRectKeys.ContainsKey(ti))
+                if (duplicateRectKeys.Any(dk => dk.Value.Contains(ti)))
                     continue;
                 int currKey = rslt.Keys.Count + 1;
                 rslt.Add(currKey, new Tuple<List<int>, List<int>>(preliminaryRslt[ti].Item1, preliminaryRslt[ti].Item2));
-                foreach (int duplKey in duplicateRectKeys[ti])
+                if (duplicateRectKeys.ContainsKey(ti))
                 {
-                    AddRangeDistinct<int>(rslt[currKey].Item1, preliminaryRslt[duplKey].Item1);
-                    AddRangeDistinct<int>(rslt[currKey].Item2, preliminaryRslt[duplKey].Item2);
+
+                    foreach (int duplKey in duplicateRectKeys[ti])
+                    {
+                        AddRangeDistinct<int>(rslt[currKey].Item1, preliminaryRslt[duplKey].Item1);
+                        AddRangeDistinct<int>(rslt[currKey].Item2, preliminaryRslt[duplKey].Item2);
+                    }
                 }
+            }
+
+            foreach (int key in rslt.Keys)
+            {
+                rslt[key].Item1.Sort();
+                rslt[key].Item2.Sort();
             }
             return rslt;            
         }
 
-        private Dictionary<int, RectangleInfo> DetectTableOuterRects(Dictionary<int, Tuple<List<int>, List<int>>> tableRowsCols, PdfPageTablesInfos target)
+        private Dictionary<int, RectangleInfoEx> DetectTableOuterRects(Dictionary<int, Tuple<List<int>, List<int>>> tableRowsCols, PdfPageTablesInfos target)
         {
-            Dictionary<int, RectangleInfo> rslt = new Dictionary<int, RectangleInfo>();
+            Dictionary<int, RectangleInfoEx> rslt = new Dictionary<int, RectangleInfoEx>();
             foreach (int ti in tableRowsCols.Keys)
             {
 
@@ -174,11 +193,11 @@ namespace Pdf2DataLib
                                              select cols.Value.Item2)).Max();
                 float uly = (new List<float>(from rows in target.Rows
                                              join rowIds in tableRowsCols[ti].Item1 on rows.Key equals rowIds
-                                             select rows.Value.Item1)).Min();
+                                             select rows.Value.Item1)).Max();
                 float bry = (new List<float>(from rows in target.Rows
                                              join rowIds in tableRowsCols[ti].Item1 on rows.Key equals rowIds
-                                             select rows.Value.Item2)).Max();
-                rslt.Add(ti, new RectangleInfo() { ulx = ulx, brx = brx, uly = uly, bry = bry });
+                                             select rows.Value.Item2)).Min();
+                rslt.Add(ti, new RectangleInfoEx() { ulx = ulx, brx = brx, uly = uly, bry = bry });
             }
             return rslt;
         }
