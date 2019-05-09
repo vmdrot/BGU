@@ -1,5 +1,6 @@
 @echo off
-SET SRC_DIR=F:\home\vmdrot\Testing\OpenData\Output\BGU\328
+REM SET SRC_DIR=F:\home\vmdrot\Testing\OpenData\Output\BGU\328
+SET SRC_DIR=D:\Test
 
 CALL ExtractTableRectsNTxts2_worker.cmd %SRC_DIR%\300012_20130101.pdf
 CALL ExtractTableRectsNTxts2_worker.cmd %SRC_DIR%\300012_20140101.pdf
