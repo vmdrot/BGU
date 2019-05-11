@@ -87,6 +87,7 @@
     <Compile Include="Spares\PointInfo.cs" />
     <Compile Include="Spares\RectangleInfo.cs" />
     <Compile Include="Spares\RectangleInfoEx.cs" />
+    <Compile Include="Spares\RowColInfo.cs" />
     <Compile Include="Spares\SubPathInfo.cs" />
     <Compile Include="Spares\TablesEventListener.cs" />
     <Compile Include="TabledPdfDocExtractor.cs" />

@@ -30,9 +30,9 @@ namespace Pdf2DataLib
             return null; //todo
         }
         */
-        public Dictionary<int, PdfPageTablesInfos.RowColInfo> DetectRows(List<RectangleInfoEx> src)
+        public Dictionary<int, RowColInfo> DetectRows(List<RectangleInfoEx> src)
         {
-            Dictionary<int, PdfPageTablesInfos.RowColInfo> rslt = new Dictionary<int, PdfPageTablesInfos.RowColInfo>();
+            Dictionary<int, RowColInfo> rslt = new Dictionary<int, RowColInfo>();
             List<float> bryDistinct = new List<float>(src.Select(r => r.bry).Distinct().OrderByDescending(y => y));
             foreach (float bry in bryDistinct)
             {
@@ -41,15 +41,15 @@ namespace Pdf2DataLib
                 foreach (float y in currUlys)
                 {
                     int currId = rslt.Count;
-                    rslt.Add(currId, new PdfPageTablesInfos.RowColInfo() { Coord1 = bry, Coord2 = y, Id = currId });
+                    rslt.Add(currId, new RowColInfo() { Coord1 = bry, Coord2 = y, Id = currId });
                 }
                 
             }
             return rslt;
         }
-        public Dictionary<int, PdfPageTablesInfos.RowColInfo> DetectColumns(List<RectangleInfoEx> src)
+        public Dictionary<int, RowColInfo> DetectColumns(List<RectangleInfoEx> src)
         {
-            Dictionary<int, PdfPageTablesInfos.RowColInfo> rslt = new Dictionary<int, PdfPageTablesInfos.RowColInfo>();
+            Dictionary<int, RowColInfo> rslt = new Dictionary<int, RowColInfo>();
             List<float> ulxDistinct = new List<float>(src.Select(r => r.ulx).Distinct().OrderBy(x => x));
             foreach (float ulx in ulxDistinct)
             {
@@ -57,7 +57,7 @@ namespace Pdf2DataLib
                 foreach (float x in currBrxs)
                 {
                     int currId = rslt.Count;
-                    rslt.Add(currId, new PdfPageTablesInfos.RowColInfo() { Coord1 = ulx, Coord2 = x, Id = currId });
+                    rslt.Add(currId, new RowColInfo() { Coord1 = ulx, Coord2 = x, Id = currId });
                 }                
             }
             return rslt;
@@ -73,6 +73,11 @@ namespace Pdf2DataLib
 
             rslt.Rows2Cols = DetectRows2ColumnsMatrices(rslt.Rows, rslt.Cols, src);
             rslt.CandidateTables = DetectCandidateTables(rslt);
+            rslt.DistilledTables = DistillCandidateTables(rslt);
+            foreach (var subj in rslt.DistilledTables)
+            {
+                DetectColRowSpans(subj);
+            }            
             return rslt;
             //Dictionary<int, List<int>> rowGroups = DetectRowGroups(rows);
             /*
@@ -89,6 +94,106 @@ namespace Pdf2DataLib
             return rslt;*/
 
             
+        }
+
+        private void DetectColRowSpans(PdfTableInfo subj)
+        {
+            DetectColRowSpans(subj.Rows, true);
+            DetectColRowSpans(subj.Cols, false);
+        }
+
+        private void DetectColRowSpans(Dictionary<int, RowColInfo> subj, bool desc)
+        {
+            foreach (int key in subj.Keys)
+            {
+                var candidates = subj.Where(rc => 
+                IsBetween(new Tuple<float, float>(subj[key].Coord1, subj[key].Coord2),new Tuple<float, float>(rc.Value.Coord1, rc.Value.Coord2))
+                && !Equals(new Tuple<float, float>(subj[key].Coord1, subj[key].Coord2), new Tuple<float, float>(rc.Value.Coord1, rc.Value.Coord2))
+                ).Select(rc => rc.Key).ToList();
+                if (candidates?.Count() <= 1)
+                    continue;
+                subj[key].Span = candidates.Count();
+            }
+        }
+
+        private static bool IsBetween(Tuple<float, float> outer, Tuple<float, float> inner)
+        {
+            float lesser = Math.Min(outer.Item1, outer.Item2);
+            float greater = Math.Max(outer.Item1, outer.Item2);
+            return (inner.Item1 <= greater && inner.Item2 <= greater) && (inner.Item2 >= lesser && inner.Item1 >= lesser);
+        }
+        private static bool Equals(Tuple<float, float> outer, Tuple<float, float> inner)
+        {
+            float ol = Math.Min(outer.Item1, outer.Item2);
+            float og = Math.Max(outer.Item1, outer.Item2);
+            float il = Math.Min(inner.Item1, inner.Item2);
+            float ig = Math.Max(inner.Item1, inner.Item2);
+            return ol == il && og == ig;
+        }
+
+        private List<PdfTableInfo> DistillCandidateTables(PdfPageTablesInfos src)
+        {
+            List<PdfTableInfo> rslt = new List<PdfTableInfo>();
+            foreach (int ti in src.CandidateTables.Keys)
+            {
+                PdfTableInfo curr = new PdfTableInfo();
+                #region copy cols/rows
+                var rows = (from ri in src.CandidateTables[ti].Item1
+                             join rd in src.Rows on ri equals rd.Key
+                             select new RowColInfo() { Coord1 = rd.Value.Coord1, Coord2 = rd.Value.Coord2, Id = rd.Key, Span = rd.Value.Span }).ToList();
+                var cols = (from ci in src.CandidateTables[ti].Item2
+                            join cd in src.Cols on ci equals cd.Key
+                            select new RowColInfo() { Coord1 = cd.Value.Coord1, Coord2 = cd.Value.Coord2, Id = cd.Key, Span = cd.Value.Span }).ToList();
+                Dictionary<int, int> old2newRowIds = new Dictionary<int, int>();
+                Dictionary<int, int> old2newColIds = new Dictionary<int, int>();
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    RowColInfo rci = rows[i];
+                    old2newRowIds.Add(rci.Id, i);
+                    rci.Id = i;
+                    curr.Rows.Add(i, rci);
+                }
+
+                for (int i = 0; i < cols.Count; i++)
+                {
+                    RowColInfo rci = cols[i];
+                    old2newColIds.Add(rci.Id, i);
+                    rci.Id = i;
+                    curr.Cols.Add(i, rci);
+                }
+                #endregion
+
+                #region copy cols-2-rows
+                curr.Rows2Cols = new Dictionary<int, Tuple<int, int>>();
+                foreach (Tuple<int, int> r2c in src.Rows2Cols)
+                {
+                    if (!src.CandidateTables[ti].Item1.Contains(r2c.Item1) || !src.CandidateTables[ti].Item2.Contains(r2c.Item2))
+                        continue;
+                    if (!old2newRowIds.ContainsKey(r2c.Item1) || !old2newColIds.ContainsKey(r2c.Item2))
+                        continue;
+                    curr.Rows2Cols.Add(curr.Rows2Cols.Count, new Tuple<int, int>( old2newRowIds[r2c.Item1], old2newColIds[r2c.Item2] ));
+                }
+                #endregion
+                rslt.Add(curr);
+            }
+            return rslt;
+        }
+
+        private void DetectColRowSpans(PdfPageTablesInfos rslt)
+        {
+            foreach (int ti in rslt.CandidateTables.Keys)
+            {
+                DetectColRowSpans(rslt.CandidateTables[ti].Item1, rslt.Rows);
+                DetectColRowSpans(rslt.CandidateTables[ti].Item2, rslt.Cols);
+            }
+        }
+
+        private void DetectColRowSpans(List<int> ids, Dictionary<int, RowColInfo> infos)
+        {
+            foreach (int id in ids)
+            {
+                //todo
+            }
         }
 
         private Dictionary<int, Tuple<List<int>, List<int>>> DetectCandidateTables(PdfPageTablesInfos target)
@@ -226,16 +331,16 @@ namespace Pdf2DataLib
         //    foreach(var r in target.Rows)
         //}
 
-        private List<Tuple<int, int>> DetectRows2ColumnsMatrices(Dictionary<int, PdfPageTablesInfos.RowColInfo> rows, Dictionary<int, PdfPageTablesInfos.RowColInfo> cols, List<RectangleInfoEx> src)
+        private Dictionary<int,Tuple<int, int>> DetectRows2ColumnsMatrices(Dictionary<int, RowColInfo> rows, Dictionary<int, RowColInfo> cols, List<RectangleInfoEx> src)
         {
-            List<Tuple<int, int>> rslt = new List<Tuple<int, int>>();
+            Dictionary<int, Tuple<int, int>> rslt = new Dictionary<int, Tuple<int, int>>();
             foreach (int rowIdx in rows.Keys)
             {
                 List<RectangleInfoEx> currRowCells = src.Where(r => r.bry == rows[rowIdx].Coord1 && r.uly == rows[rowIdx].Coord2).ToList();
                 foreach (int colIdx in cols.Keys)
                 {
                     if (currRowCells.Any(r => r.ulx == cols[colIdx].Coord1 && r.brx == cols[colIdx].Coord2))
-                        rslt.Add(new Tuple<int, int>(rowIdx, colIdx));
+                        rslt.Add(rslt.Count, new Tuple<int, int>(rowIdx, colIdx));
                 }
             }
             return rslt;

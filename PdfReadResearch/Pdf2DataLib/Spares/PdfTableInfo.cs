@@ -11,20 +11,17 @@ namespace Pdf2DataLib.Spares
     {
         public PdfTableInfo()
         {
+            Rows = new Dictionary<int, RowColInfo>();
+            Cols = new Dictionary<int, RowColInfo>();
+            Rows2Cols = new Dictionary<int, Tuple<int, int>>();
+            CellTexts = new Dictionary<int, string>();
             OuterBoundaries = new RectangleInfo();
-            RowsBYs = new Dictionary<int, float>();
-            RowsUYs = new Dictionary<int, float>();
-            ColsLXs = new Dictionary<int, float>();
-            ColsRXs = new Dictionary<int, float>();
         }
 
         public RectangleInfo OuterBoundaries { get; set; }
-        public int RowsCount { get; set; }
-        public int ColsCount { get; set; }
-
-        public Dictionary<int, float> RowsUYs { get; set; }
-        public Dictionary<int, float> RowsBYs { get; set; }
-        public Dictionary<int, float> ColsLXs { get; set; }
-        public Dictionary<int, float> ColsRXs { get; set; }
+        public Dictionary<int, RowColInfo> Rows { get; set; }
+        public Dictionary<int, RowColInfo> Cols { get; set; }
+        public Dictionary<int,Tuple<int, int>> Rows2Cols { get; set; }
+        public Dictionary<int, string> CellTexts { get; set; }
     }
 }

@@ -260,7 +260,7 @@ namespace PDF2DataTest
         [Obsolete]
         public static int BuildCellsMatrix(string[] args)
         {
-            //Console.Read();
+            Console.Read();
             Dictionary<int,List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
             string pdfPath = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? args[1] : string.Empty;
             string saveAs = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : string.Empty;
@@ -269,10 +269,10 @@ namespace PDF2DataTest
             {
                 matrices.Add(pgi, (new Pdf2HtmlTablesConverter()).DetectTables(src[pgi]));
             }
-            #region fill in outer table rects' texts
+            
             if (!string.IsNullOrWhiteSpace(pdfPath))
             {
-
+                #region fill in outer table rects' texts
                 Dictionary<int, List<RectangleInfoEx>> rectsIn = new Dictionary<int, List<RectangleInfoEx>>();
                 foreach (int pgi in matrices.Keys)
                 {
@@ -294,8 +294,31 @@ namespace PDF2DataTest
                         i++;
                     }
                 }
+                #endregion
+                #region fill in outer table rects' texts
+                //Dictionary<int, List<RectangleInfoEx>> cellRectsIn = new Dictionary<int, List<RectangleInfoEx>>();
+                //foreach (int pgi in matrices.Keys)
+                //{
+                //    List<RectangleInfoEx> curRects = new List<RectangleInfoEx>();
+                //    foreach (int key in matrices[pgi].Rows2Cols)
+                //    {
+                //        curRects.Add(matrices[pgi].PreliminaryTableOuterRects[key]);
+                //    }
+                //    rectsIn.Add(pgi, curRects);
+                //}
+                //var rectsOut = ExtractTextByRectsWorker(pdfPath, rectsIn);
+
+                //foreach (int pgi in matrices.Keys)
+                //{
+                //    int i = 0;
+                //    foreach (int key in matrices[pgi].PreliminaryTableOuterRects.Keys)
+                //    {
+                //        matrices[pgi].PreliminaryTableOuterRects[key].Text = rectsOut[pgi][i].Text;
+                //        i++;
+                //    }
+                //}
+                #endregion
             }
-            #endregion
 
             //var matricesPlus = from mx in matrices
             //                   join 
