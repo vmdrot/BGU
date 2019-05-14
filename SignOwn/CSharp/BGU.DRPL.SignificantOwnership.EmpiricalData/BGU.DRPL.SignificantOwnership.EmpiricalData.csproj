@@ -60,6 +60,7 @@
     <Compile Include="Scraping\Data\Post328Dod2V1Row.cs" />
     <Compile Include="Scraping\Data\Post328Dod3V1Row.cs" />
     <Compile Include="Scraping\Data\Post328DodRowBase.cs" />
+    <Compile Include="Scraping\PivdennyiOwnershipChainDescriptionParser.cs" />
     <Compile Include="Scraping\WordPdfParsingUtils.cs" />
   </ItemGroup>
   <ItemGroup>
