@@ -269,7 +269,7 @@ namespace PDF2DataTest
             {
                 matrices.Add(pgi, (new Pdf2HtmlTablesConverter()).DetectTables(src[pgi]));
             }
-            
+            Dictionary<int, List<RectangleInfoEx>> cellRectsOut = null;
             if (!string.IsNullOrWhiteSpace(pdfPath))
             {
                 #region fill in outer table rects' texts
@@ -295,35 +295,54 @@ namespace PDF2DataTest
                     }
                 }
                 #endregion
-                #region fill in outer table rects' texts
-                //Dictionary<int, List<RectangleInfoEx>> cellRectsIn = new Dictionary<int, List<RectangleInfoEx>>();
-                //foreach (int pgi in matrices.Keys)
-                //{
-                //    List<RectangleInfoEx> curRects = new List<RectangleInfoEx>();
-                //    foreach (int key in matrices[pgi].Rows2Cols)
-                //    {
-                //        curRects.Add(matrices[pgi].PreliminaryTableOuterRects[key]);
-                //    }
-                //    rectsIn.Add(pgi, curRects);
-                //}
-                //var rectsOut = ExtractTextByRectsWorker(pdfPath, rectsIn);
-
-                //foreach (int pgi in matrices.Keys)
-                //{
-                //    int i = 0;
-                //    foreach (int key in matrices[pgi].PreliminaryTableOuterRects.Keys)
-                //    {
-                //        matrices[pgi].PreliminaryTableOuterRects[key].Text = rectsOut[pgi][i].Text;
-                //        i++;
-                //    }
-                //}
+                #region fill in all the cells' texts
+                Dictionary<int, List<RectangleInfoEx>> cellRectsIn = new Dictionary<int, List<RectangleInfoEx>>();
+                foreach (int pgi in matrices.Keys)
+                {
+                    List<RectangleInfoEx> curRects = new List<RectangleInfoEx>();
+                    foreach (int key in matrices[pgi].Rows2Cols.Keys)
+                    {
+                        Tuple<int, int> r2c = matrices[pgi].Rows2Cols[key];
+                        RectangleInfoEx rc = new RectangleInfoEx()
+                        {
+                            uly = matrices[pgi].Rows[r2c.Item1].Coord1,
+                            bry = matrices[pgi].Rows[r2c.Item1].Coord2,
+                            ulx = matrices[pgi].Cols[r2c.Item2].Coord1,
+                            brx = matrices[pgi].Cols[r2c.Item2].Coord2
+                        };
+                        curRects.Add(rc);
+                    }
+                    cellRectsIn.Add(pgi, curRects);
+                }
+                cellRectsOut = ExtractTextByRectsWorker(pdfPath, rectsIn);
+                foreach (int pgi in matrices.Keys)
+                {
+                    List<RectangleInfoEx> curRects = cellRectsOut[pgi];
+                    foreach (var tbl in matrices[pgi].DistilledTables)
+                    {
+                        foreach (int cellId in tbl.Rows2Cols.Keys)
+                        {
+                            Tuple<int, int> r2cc = tbl.Rows2Cols[cellId];
+                            RectangleInfoEx rct = new RectangleInfoEx()
+                            {
+                                uly = tbl.Rows[r2cc.Item1].Coord1,
+                                bry = tbl.Rows[r2cc.Item1].Coord2,
+                                ulx = tbl.Cols[r2cc.Item2].Coord1,
+                                brx = tbl.Cols[r2cc.Item2].Coord2
+                            };
+                            RectangleInfoEx txtRect = curRects.Find(r => (r.brx == rct.brx && r.bry == rct.bry && r.ulx == rct.ulx && r.uly == rct.uly));
+                            if (txtRect != null)
+                                tbl.CellTexts.Add(cellId, txtRect.Text);
+                        }
+                    }
+                }
                 #endregion
             }
 
             //var matricesPlus = from mx in matrices
             //                   join 
-
-            string resultantJson = JsonConvert.SerializeObject(matrices, Formatting.None);
+            Tuple<Dictionary<int, PdfPageTablesInfos>, Dictionary<int, List<RectangleInfoEx>>> rslt = new Tuple<Dictionary<int, PdfPageTablesInfos>, Dictionary<int, List<RectangleInfoEx>>>(matrices, cellRectsOut);
+            string resultantJson = JsonConvert.SerializeObject(rslt, Formatting.None);
             if (!string.IsNullOrWhiteSpace(saveAs))
             {
                 File.WriteAllText(saveAs, resultantJson, Encoding.UTF8);
