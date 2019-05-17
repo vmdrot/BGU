@@ -165,13 +165,14 @@ namespace Pdf2DataLib
 
                 #region copy cols-2-rows
                 curr.Rows2Cols = new Dictionary<int, Tuple<int, int>>();
-                foreach (Tuple<int, int> r2c in src.Rows2Cols)
+                foreach (int key in src.Rows2Cols.Keys)
                 {
+                    Tuple<int, int> r2c = src.Rows2Cols[key];
                     if (!src.CandidateTables[ti].Item1.Contains(r2c.Item1) || !src.CandidateTables[ti].Item2.Contains(r2c.Item2))
                         continue;
                     if (!old2newRowIds.ContainsKey(r2c.Item1) || !old2newColIds.ContainsKey(r2c.Item2))
                         continue;
-                    curr.Rows2Cols.Add(curr.Rows2Cols.Count, new Tuple<int, int>( old2newRowIds[r2c.Item1], old2newColIds[r2c.Item2] ));
+                    curr.Rows2Cols.Add(key, new Tuple<int, int>( old2newRowIds[r2c.Item1], old2newColIds[r2c.Item2] ));
                 }
                 #endregion
                 rslt.Add(curr);
@@ -206,8 +207,8 @@ namespace Pdf2DataLib
             {
                 if (rowsByTable.ContainsKey(ri))
                     continue;
-                List<int> relCols = target.Rows2Cols.Where(r2c => r2c.Item1 == ri).Select(r2c => r2c.Item2).Distinct().OrderBy( c => c).ToList();
-                List<int> relRows = target.Rows2Cols.Where(r2c => relCols.Contains(r2c.Item2)).Select(r2c => r2c.Item1).Distinct().OrderBy(r => r).ToList();
+                List<int> relCols = target.Rows2Cols.Where(r2c => r2c.Value.Item1 == ri).Select(r2c => r2c.Value.Item2).Distinct().OrderBy( c => c).ToList();
+                List<int> relRows = target.Rows2Cols.Where(r2c => relCols.Contains(r2c.Value.Item2)).Select(r2c => r2c.Value.Item1).Distinct().OrderBy(r => r).ToList();
 
                 int? existingTableId = preliminaryRslt.Where(pr => pr.Value.Item1.Intersect(relRows).Any() || pr.Value.Item2.Intersect(relCols).Any()).FirstOrDefault().Key;
                 int currTableId = existingTableId != null && existingTableId.Value > 0 ? (int)existingTableId : preliminaryRslt.Keys.Count + 1;
