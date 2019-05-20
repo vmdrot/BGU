@@ -363,7 +363,7 @@ namespace PDF2DataTest
                 distilledOnly.Add(pgi, matrices[pgi].DistilledTables);
             }
             var htmls = Pdf2HtmlTablesConverter.ToHtml(distilledOnly);
-            StringBuilder html = new StringBuilder("<html><head><style> table {border: 1px black solid;}</style></head><body>");
+            StringBuilder html = new StringBuilder("<html><head><style> table {border: 1px black solid;}  td {border: 1px black solid;} </style></head><body>");
             foreach (int pg in htmls.Keys)
             {
                 html.AppendLine(string.Format("<h1>Page {0}</h1>", pg));
