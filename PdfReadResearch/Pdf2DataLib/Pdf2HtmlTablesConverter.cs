@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Pdf2DataLib
 {
@@ -343,6 +344,44 @@ namespace Pdf2DataLib
                     if (currRowCells.Any(r => r.ulx == cols[colIdx].Coord1 && r.brx == cols[colIdx].Coord2))
                         rslt.Add(rslt.Count, new Tuple<int, int>(rowIdx, colIdx));
                 }
+            }
+            return rslt;
+        }
+
+        public static string ToHtml(PdfTableInfo src)
+        {
+            StringBuilder rslt = new StringBuilder();
+            rslt.Append("<table>");
+            foreach (int rowId in src.Rows.Keys)
+            {
+                var row = src.Rows[rowId];
+                var cells = src.Rows2Cols.Where(r2c => r2c.Value.Item1 == rowId).OrderBy(r2c => r2c.Key);
+                rslt.Append("<tr>");
+                foreach (var cell in cells)
+                {
+                    var col = src.Cols[cell.Value.Item2];
+                    rslt.Append("<td");
+                    if (row.Span > 1) rslt.AppendFormat(" rowspan={0}", row.Span);
+                    if (col.Span > 1) rslt.AppendFormat(" colspan={0}", col.Span);
+                    rslt.Append('>');
+                    rslt.Append(src.CellTexts[cell.Key]);
+                    rslt.Append("</td>");
+                }
+                rslt.Append("</tr>");
+            }
+            rslt.Append("</table>");
+            return rslt.ToString();
+        }
+
+        public static Dictionary<int, List<string>> ToHtml(Dictionary<int, List<PdfTableInfo>> src)
+        {
+            Dictionary<int, List<string>> rslt = new Dictionary<int, List<string>>();
+            foreach (int pg in src.Keys)
+            {
+                List<string> currHtmls = new List<string>();
+                foreach (var tbl in src[pg])
+                    currHtmls.Add(ToHtml(tbl));
+                rslt.Add(pg, currHtmls);
             }
             return rslt;
         }

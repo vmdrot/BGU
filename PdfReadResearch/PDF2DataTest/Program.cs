@@ -260,7 +260,7 @@ namespace PDF2DataTest
         [Obsolete]
         public static int BuildCellsMatrix(string[] args)
         {
-            Console.Read();
+            //Console.Read();
             Dictionary<int, List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
             string pdfPath = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? args[1] : string.Empty;
             string saveAs = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : string.Empty;
@@ -344,8 +344,7 @@ namespace PDF2DataTest
 
             //var matricesPlus = from mx in matrices
             //                   join 
-            Tuple<Dictionary<int, PdfPageTablesInfos>, Dictionary<int, List<RectangleInfoEx>>> rslt = new Tuple<Dictionary<int, PdfPageTablesInfos>, Dictionary<int, List<RectangleInfoEx>>>(matrices, cellRectsOut);
-            string resultantJson = JsonConvert.SerializeObject(rslt, Formatting.None);
+            string resultantJson = JsonConvert.SerializeObject(matrices, Formatting.None);
             if (!string.IsNullOrWhiteSpace(saveAs))
             {
                 File.WriteAllText(saveAs, resultantJson, Encoding.UTF8);
@@ -354,6 +353,32 @@ namespace PDF2DataTest
                 Console.WriteLine(resultantJson);
             return 0;
         }
+
+        public static int CellMatrices2Html(string[] args)
+        {
+            Dictionary<int, PdfPageTablesInfos> matrices = JsonConvert.DeserializeObject<Dictionary<int, PdfPageTablesInfos>>(File.ReadAllText(args[0], Encoding.UTF8));
+            Dictionary<int, List<PdfTableInfo>> distilledOnly = new Dictionary<int, List<PdfTableInfo>>();
+            foreach (int pgi in matrices.Keys)
+            {
+                distilledOnly.Add(pgi, matrices[pgi].DistilledTables);
+            }
+            var htmls = Pdf2HtmlTablesConverter.ToHtml(distilledOnly);
+            StringBuilder html = new StringBuilder("<html><head><style> table {border: 1px black solid;}</style></head><body>");
+            foreach (int pg in htmls.Keys)
+            {
+                html.AppendLine(string.Format("<h1>Page {0}</h1>", pg));
+                for (int i = 0; i < htmls[pg].Count; i++)
+                {
+                    if (i > 0)
+                        html.AppendLine("<br /><br />");
+                    html.AppendLine(htmls[pg][i]);
+                }
+            }
+            html.AppendLine("</body></html>");
+            File.WriteAllText(args[1], html.ToString(), Encoding.UTF8);
+            return 0;
+        }
+
         #endregion
 
         #region Aux
