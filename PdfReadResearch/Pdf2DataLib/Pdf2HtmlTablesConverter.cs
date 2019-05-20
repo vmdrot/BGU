@@ -355,6 +355,7 @@ namespace Pdf2DataLib
             foreach (int rowId in src.Rows.Keys)
             {
                 var row = src.Rows[rowId];
+                //todo - 1. it must be rows (not row), 2. aligned by uly, from max to min;
                 var cells = src.Rows2Cols.Where(r2c => r2c.Value.Item1 == rowId).OrderBy(r2c => r2c.Key);
                 rslt.Append("<tr>");
                 foreach (var cell in cells)

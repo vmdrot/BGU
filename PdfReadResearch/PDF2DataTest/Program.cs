@@ -370,7 +370,7 @@ namespace PDF2DataTest
                 for (int i = 0; i < htmls[pg].Count; i++)
                 {
                     if (i > 0)
-                        html.AppendLine("<br /><br />");
+                        html.AppendLine(string.Format("<br />{0}<br />", new string('-',20)));
                     html.AppendLine(htmls[pg][i]);
                 }
             }
