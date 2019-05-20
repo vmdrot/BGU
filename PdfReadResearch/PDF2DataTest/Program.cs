@@ -20,7 +20,7 @@ namespace PDF2DataTest
     {
         #region field(s)
         private static Dictionary<string, CmdHandler> _cmdHandlers;
-        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower(), nameof(GetSuspectedRowBreaksFromTableStats).ToLower(), nameof(BuildCellsMatrix).ToLower()};
+        private static List<string> _noLogArgsHandlers = new List<string> { nameof(ExtractTableRectangles).ToLower(), nameof(ExtractTableStatsBulk).ToLower(), nameof(GetSuspectedRowBreaksFromTableStats).ToLower(), nameof(BuildCellsMatrix).ToLower() };
         #endregion
 
         #region inner type(s)
@@ -187,13 +187,13 @@ namespace PDF2DataTest
         }
 
 
-        private static Dictionary<int,List<List<string>>> ExtractTextsFromRectsWorker(Dictionary<int, List<RectangleInfoEx>> src)
+        private static Dictionary<int, List<List<string>>> ExtractTextsFromRectsWorker(Dictionary<int, List<RectangleInfoEx>> src)
         {
             Dictionary<int, List<List<string>>> rslt = new Dictionary<int, List<List<string>>>();
-            
+
             foreach (int pg in src.Keys)
             {
-                List<float> topYs = new List<float>(src[pg].Select(r => r.uly).Distinct().OrderByDescending( f => f));
+                List<float> topYs = new List<float>(src[pg].Select(r => r.uly).Distinct().OrderByDescending(f => f));
                 List<List<string>> texts = new List<List<string>>();
                 foreach (float currTopY in topYs)
                 {
@@ -218,7 +218,7 @@ namespace PDF2DataTest
             string outputPath = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : null;
             var rects = ExtractTextByRectsWorker(pdfPath, rectsPath);
             if (string.IsNullOrWhiteSpace(outputPath)) Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
-            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(ExtractTextsFromRectsWorker( rects), Formatting.None), Encoding.UTF8);
+            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(ExtractTextsFromRectsWorker(rects), Formatting.None), Encoding.UTF8);
             return 0;
         }
 
@@ -261,7 +261,7 @@ namespace PDF2DataTest
         public static int BuildCellsMatrix(string[] args)
         {
             Console.Read();
-            Dictionary<int,List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
+            Dictionary<int, List<RectangleInfoEx>> src = JsonConvert.DeserializeObject<Dictionary<int, List<RectangleInfoEx>>>(File.ReadAllText(args[0]));
             string pdfPath = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? args[1] : string.Empty;
             string saveAs = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : string.Empty;
             var matrices = new Dictionary<int, PdfPageTablesInfos>();
@@ -300,21 +300,24 @@ namespace PDF2DataTest
                 foreach (int pgi in matrices.Keys)
                 {
                     List<RectangleInfoEx> curRects = new List<RectangleInfoEx>();
-                    foreach (int key in matrices[pgi].Rows2Cols.Keys)
+                    foreach (var dtbl in matrices[pgi].DistilledTables)
                     {
-                        Tuple<int, int> r2c = matrices[pgi].Rows2Cols[key];
-                        RectangleInfoEx rc = new RectangleInfoEx()
+                        foreach (int key in dtbl.Rows2Cols.Keys)
                         {
-                            uly = matrices[pgi].Rows[r2c.Item1].Coord1,
-                            bry = matrices[pgi].Rows[r2c.Item1].Coord2,
-                            ulx = matrices[pgi].Cols[r2c.Item2].Coord1,
-                            brx = matrices[pgi].Cols[r2c.Item2].Coord2
-                        };
-                        curRects.Add(rc);
+                            Tuple<int, int> r2c = dtbl.Rows2Cols[key];
+                            RectangleInfoEx rc = new RectangleInfoEx()
+                            {
+                                uly = dtbl.Rows[r2c.Item1].Coord1,
+                                bry = dtbl.Rows[r2c.Item1].Coord2,
+                                ulx = dtbl.Cols[r2c.Item2].Coord1,
+                                brx = dtbl.Cols[r2c.Item2].Coord2
+                            };
+                            curRects.Add(rc);
+                        }
                     }
                     cellRectsIn.Add(pgi, curRects);
                 }
-                cellRectsOut = ExtractTextByRectsWorker(pdfPath, rectsIn);
+                cellRectsOut = ExtractTextByRectsWorker(pdfPath, cellRectsIn);
                 foreach (int pgi in matrices.Keys)
                 {
                     List<RectangleInfoEx> curRects = cellRectsOut[pgi];
