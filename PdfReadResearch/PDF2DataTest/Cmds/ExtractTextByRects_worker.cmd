@@ -2,9 +2,11 @@
 
 SET PDF_PATH=%~1
 SET RECTS_PATH=%~2
+SET OUT_XTRECTS_TXTS_PATH=%~3
 
-SET LOG_PATH=%PDF_PATH%.xtrects_txts.log
+IF "%OUT_XTRECTS_TXTS_PATH%"=="" (SET LOG_PATH=%PDF_PATH%.xtrects_txts.log) ELSE (SET LOG_PATH=%OUT_XTRECTS_TXTS_PATH%.log)
+IF "%OUT_XTRECTS_TXTS_PATH%"=="" (SET OUT_XTRECTS_TXTS_PATH=%LOG_PATH%.json)
 
-..\bin\Debug\PDF2DataTest.exe ExtractTextByRects "%PDF_PATH%" "%RECTS_PATH%" "%LOG_PATH%.json" 1> %LOG_PATH% 2>&1
+..\bin\Debug\PDF2DataTest.exe ExtractTextByRects "%PDF_PATH%" "%RECTS_PATH%" "%OUT_XTRECTS_TXTS_PATH%" 1> %LOG_PATH% 2>&1
 
 EXIT /B %ERRORLEVEL%

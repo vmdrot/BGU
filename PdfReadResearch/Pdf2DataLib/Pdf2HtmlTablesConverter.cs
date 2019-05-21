@@ -352,15 +352,16 @@ namespace Pdf2DataLib
         {
             StringBuilder rslt = new StringBuilder();
             rslt.Append("<table>");
-            foreach (int rowId in src.Rows.Keys)
+            List<float> ulys = src.Rows.Select(r => r.Value.Coord1).Distinct().OrderByDescending(f => f).ToList();
+            foreach (float uly in ulys)
             {
-                var row = src.Rows[rowId];
-                //todo - 1. it must be rows (not row), 2. aligned by uly, from max to min;
-                var cells = src.Rows2Cols.Where(r2c => r2c.Value.Item1 == rowId).OrderBy(r2c => r2c.Key);
+                List<int> currRowIds = src.Rows.Where(r => r.Value.Coord1 == uly).Select(r => r.Key).ToList();
+                var cells = src.Rows2Cols.Where(r2c => currRowIds.Contains(r2c.Value.Item1)).OrderBy(r2c => src.Cols[r2c.Value.Item2].Coord1);
                 rslt.Append("<tr>");
                 foreach (var cell in cells)
                 {
                     var col = src.Cols[cell.Value.Item2];
+                    var row = src.Rows[cell.Value.Item1];
                     rslt.Append("<td");
                     if (row.Span > 1) rslt.AppendFormat(" rowspan={0}", row.Span);
                     if (col.Span > 1) rslt.AppendFormat(" colspan={0}", col.Span);
