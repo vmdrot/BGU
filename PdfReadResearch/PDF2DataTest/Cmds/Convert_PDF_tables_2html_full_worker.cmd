@@ -8,10 +8,11 @@ SET MATRIX_PATH=%SRC_PDF%.mtrxs.json
 
 IF "%OUT_HTML_PATH%"=="" (SET OUT_HTML_PATH=%SRC_PDF%.tables.html)
 
-CALL ExtractTableRectangles_worker.cmd "%SRC_PDF%" true "%RECTS_PATH%"
+CALL ExtractTableRectangles_worker.cmd "%SRC_PDF%" true false "%RECTS_PATH%"
 IF NOT "%ERRORLEVEL%"=="0" (GOTO ExtractTableRectangles_Error)
 
-CALL ExtractTextByRects_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
+REM CALL ExtractTextByRects_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
+CALL ExtractTableTexts_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
 IF NOT "%ERRORLEVEL%"=="0" (GOTO ExtractTextByRects_Error)
 
 ..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix "%RECTXTS_PATH%" "%SRC_PDF%" "%MATRIX_PATH%"

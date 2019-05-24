@@ -1,3 +1,4 @@
 @echo off
-..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.xtrects_txts.log.json F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.cells_matrix.log.json
+rem ..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.xtrects_txts.log.json F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.cells_matrix.log.json
+..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix F:\home\vmdrot\Testing\OpenData\Output\BGU\328\ConvLogs\0\300012_20150308.pdf.xtrects_txts.log.json F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\ConvLogs\0\300012_20150308.pdf.cells_matrix.1.log.json
 REM ..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix D:\Test\300012_20150308.pdf.xtrects_txts.log.json D:\Test\300012_20150308.pdf D:\Test\300012_20150308.pdf.cells_matrix.log.json

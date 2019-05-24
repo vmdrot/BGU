@@ -126,6 +126,8 @@ namespace PDF2DataTest
             string pdfPath = args[0];
             bool trimOverlaps = args.Length > 1 && !string.IsNullOrWhiteSpace(args[1]) ? bool.Parse(args[1]) : false;
             bool chatty = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? bool.Parse(args[2]) : false;
+            string saveAs = args.Length > 3 && !string.IsNullOrWhiteSpace(args[3]) ? args[3] : string.Empty;
+            
             using (iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(pdfPath))
             {
                 using (PdfDocument doc = new PdfDocument(reader))
@@ -141,8 +143,9 @@ namespace PDF2DataTest
                         List<RectangleInfo> currRaw = PdfTableHelper.ClippingPaths2RectangleInfosDistinct(pathInfos);
                         rects.Add(pg, trimOverlaps ? PdfTableHelper.RemoveOverlaps(currRaw) : currRaw);
                     }
-
-                    Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
+                    string rsltStr = JsonConvert.SerializeObject(rects, Formatting.None);
+                    if (string.IsNullOrWhiteSpace(saveAs)) Console.WriteLine("{0}", rsltStr);
+                    else File.WriteAllText(saveAs, rsltStr, Encoding.UTF8);                    
                 }
             }
             return 0;
@@ -218,7 +221,8 @@ namespace PDF2DataTest
             string outputPath = args.Length > 2 && !string.IsNullOrWhiteSpace(args[2]) ? args[2] : null;
             var rects = ExtractTextByRectsWorker(pdfPath, rectsPath);
             if (string.IsNullOrWhiteSpace(outputPath)) Console.WriteLine("{0}", JsonConvert.SerializeObject(rects, Formatting.None));
-            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(ExtractTextsFromRectsWorker(rects), Formatting.None), Encoding.UTF8);
+            //else File.WriteAllText(outputPath, JsonConvert.SerializeObject(ExtractTextsFromRectsWorker(rects), Formatting.None), Encoding.UTF8);
+            else File.WriteAllText(outputPath, JsonConvert.SerializeObject(rects, Formatting.None), Encoding.UTF8);
             return 0;
         }
 
