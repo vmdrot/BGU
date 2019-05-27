@@ -1,7 +1,10 @@
 SET SRC_DIR=F:\home\vmdrot\Testing\OpenData\Output\BGU\328
 
-CALL Convert_PDF_tables_2html_full_worker.cmd F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.tbls_distilled.html 1> F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.2html.log 2>&1
-EXIT 0
+REM A sample for debugging/finetuning
+REM CALL Convert_PDF_tables_2html_full_worker.cmd F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.tbls_distilled.html 1> F:\home\vmdrot\Testing\OpenData\Output\BGU\328\300012_20150308.pdf.2html.log 2>&1
+REM EXIT 0
+
+REM All input files
 CALL Convert_PDF_tables_2html_full_worker.cmd %SRC_DIR%\300012_20130101.pdf %SRC_DIR%\300012_20130101.pdf.tbls_distilled.html 1> %SRC_DIR%\300012_20130101.pdf.2html.log 2>&1
 CALL Convert_PDF_tables_2html_full_worker.cmd %SRC_DIR%\300012_20140101.pdf %SRC_DIR%\300012_20140101.pdf.tbls_distilled.html 1> %SRC_DIR%\300012_20140101.pdf.2html.log 2>&1
 CALL Convert_PDF_tables_2html_full_worker.cmd %SRC_DIR%\300012_20150101.pdf %SRC_DIR%\300012_20150101.pdf.tbls_distilled.html 1> %SRC_DIR%\300012_20150101.pdf.2html.log 2>&1

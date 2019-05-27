@@ -8,14 +8,20 @@ SET MATRIX_PATH=%SRC_PDF%.mtrxs.json
 
 IF "%OUT_HTML_PATH%"=="" (SET OUT_HTML_PATH=%SRC_PDF%.tables.html)
 
+REM ExtractTableRectangles
 CALL ExtractTableRectangles_worker.cmd "%SRC_PDF%" true false "%RECTS_PATH%"
+REM IF NOT "%ERRORLEVEL%"=="0" (GOTO ExtractTableRectangles_Error) ELSE (GOTO Success)
 IF NOT "%ERRORLEVEL%"=="0" (GOTO ExtractTableRectangles_Error)
 
-REM CALL ExtractTextByRects_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
-CALL ExtractTableTexts_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
+REM ExtractTextByRects
+REM ExtractTextByRects_worker.cmd - works, verified
+CALL ExtractTextByRects_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
+REM ExtractTableTexts - works as well, verified
+REM CALL ExtractTableTexts_worker.cmd "%SRC_PDF%" "%RECTS_PATH%" "%RECTXTS_PATH%"
 IF NOT "%ERRORLEVEL%"=="0" (GOTO ExtractTextByRects_Error)
 
-..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix "%RECTXTS_PATH%" "%SRC_PDF%" "%MATRIX_PATH%"
+REM ..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix "%RECTXTS_PATH%" "%SRC_PDF%" "%MATRIX_PATH%"
+..\bin\Debug\PDF2DataTest.exe BuildCellsMatrix "%RECTS_PATH%" "%SRC_PDF%" "%MATRIX_PATH%"
 IF NOT "%ERRORLEVEL%"=="0" (GOTO BuildCellsMatrix_Error)
 
 ..\bin\Debug\PDF2DataTest.exe CellMatrices2Html "%MATRIX_PATH%" "%OUT_HTML_PATH%"

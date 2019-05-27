@@ -35,6 +35,29 @@ namespace Pdf2DataLib.Spares
         #endregion
 
         #region static method(s)
+        public static bool IsIntersecting_v2(RectangleInfo r1, RectangleInfo r2)
+        {
+            Console.WriteLine("{0} = {1}", nameof(r1), r1);
+            Console.WriteLine("{0} = {1}", nameof(r2), r2);
+            if (r1 == r2)
+                return true;
+            if (r1 == null || r2 == null)
+                return false;
+            float leftX = Math.Max(r1.ulx, r2.ulx);
+            Console.WriteLine("{0} = {1}", nameof(leftX), leftX);
+            float rightX = Math.Min(r1.brx, r2.brx);
+            Console.WriteLine("{0} = {1}", nameof(rightX), rightX);
+            float topY = Math.Max(r1.uly, r2.uly);
+            Console.WriteLine("{0} = {1}", nameof(topY), topY);
+            float bottomY = Math.Min(r1.bry, r2.bry);
+            Console.WriteLine("{0} = {1}", nameof(bottomY), bottomY);
+
+            Console.WriteLine("leftX <= rightX = {0}", leftX <= rightX);
+            Console.WriteLine("topY >= bottomY = {0}", topY >= bottomY);
+            Console.WriteLine(new string('-',20));
+            return leftX <= rightX && topY >= bottomY;
+        }
+
         public static bool IsIntersecting(RectangleInfo r1, RectangleInfo r2)
         {
             if (r1 == r2)
@@ -43,12 +66,11 @@ namespace Pdf2DataLib.Spares
                 return false;
             float leftX = Math.Max(r1.ulx, r2.ulx);
             float rightX = Math.Min(r1.brx, r2.brx);
-            float topY = Math.Min(r1.uly, r2.uly);
-            float bottomY = Math.Max(r1.bry, r2.bry);
+            float topY = Math.Max(r1.uly, r2.uly);
+            float bottomY = Math.Min(r1.bry, r2.bry);
 
-            return leftX <= rightX && topY >= bottomY;
+            return leftX < rightX && topY < bottomY;
         }
-
 
         public static bool IsWithin(RectangleInfo holder, RectangleInfo subj)
         {
