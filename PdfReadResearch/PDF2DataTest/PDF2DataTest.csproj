@@ -219,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Cmds\CellMatrices2Html.cmd" />
+    <None Include="Cmds\Convert_PDF_tables_2html_full.cmd" />
+    <None Include="Cmds\Convert_PDF_tables_2html_full_worker.cmd" />
     <None Include="Cmds\ExtractTableRectangles.cmd" />
     <None Include="Cmds\ExtractTableRectangles_worker.cmd" />
     <None Include="Cmds\ExtractTableRectsNTxts2.cmd" />
@@ -232,6 +235,7 @@
     <None Include="Cmds\ExtractTextByRects.cmd" />
     <None Include="Cmds\ExtractTableTexts_worker.cmd" />
     <None Include="Cmds\ExtractTextByRects_worker.cmd" />
+    <None Include="Cmds\ListBottom2TopOrR2LRectangles.cmd" />
     <None Include="Cmds\ResearchTableEvents.cmd" />
     <None Include="packages.config" />
   </ItemGroup>
