@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdf2DataLib", "..\Pdf2DataL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdf2DataLib.Tests", "..\Pdf2DataLib.Tests\Pdf2DataLib.Tests.csproj", "{FAB77518-EBFC-47AA-838B-FD8BD9C5840C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdf2Docx", "..\Pdf2Docx\Pdf2Docx.csproj", "{889F9930-D007-4879-803C-D8EBE1AB404E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FAB77518-EBFC-47AA-838B-FD8BD9C5840C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB77518-EBFC-47AA-838B-FD8BD9C5840C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB77518-EBFC-47AA-838B-FD8BD9C5840C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{889F9930-D007-4879-803C-D8EBE1AB404E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889F9930-D007-4879-803C-D8EBE1AB404E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889F9930-D007-4879-803C-D8EBE1AB404E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889F9930-D007-4879-803C-D8EBE1AB404E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
